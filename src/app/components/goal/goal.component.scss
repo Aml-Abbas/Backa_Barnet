@@ -1,0 +1,58 @@
+.container{
+    width: 90%;
+  }
+  
+  h1{
+      font-size: 30px;
+      font-weight: bold;
+  }
+
+    
+  h3{
+    font-size: 20px;
+}
+
+.buttons{
+  margin-top: 15px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+button{
+  margin-right: 2%;
+  background-color: #4B0082;
+  color: white;
+}
+
+
+
+table {
+  font-size: 13px;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+td, th {
+  text-align: left;
+  padding: 10px;
+}
+td {
+  background-color: white;
+}
+th {
+  border:3px solid #E0FFFF;
+}
+
+
+@media screen and (max-width: 1000px){
+  html{
+  overflow-x:auto !important;
+  }
+  body{
+  overflow-x:auto !important;
+  }
+  .list{
+    height: 50px;;
+  }
+}

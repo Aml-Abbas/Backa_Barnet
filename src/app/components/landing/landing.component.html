@@ -1,0 +1,96 @@
+<mat-toolbar class="mat-elevation-z8">
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">
+            menu
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+            close
+        </mat-icon>
+    </button>
+    Backa Barnet
+  </mat-toolbar>
+  
+    <mat-sidenav-container>
+      <mat-sidenav  #sidenav="matSidenav" class="mat-elevation-z8">
+      
+        <img class="avatar mat-elevation-z8" src="https://c.files.bbci.co.uk/9552/production/_113562283_child.png" />
+  
+  <h4 class="name">Kalle Karlson</h4>
+  <p class="designation">3 år</p>
+  
+  <mat-divider></mat-divider>
+  
+        <button mat-button class="menu-button">
+            <a routerLink="/contact">
+            <span>Barn & Kontakt</span>
+        </a>
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" >
+            <a routerLink="/discover_card">
+            <span>Upptäckerkort</span>
+        </a>
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button">
+            <a routerLink="/communication_material">
+            <span>Samtalsunderlag</span>
+        </a>
+        </button>
+  
+        <mat-divider></mat-divider>
+  
+        <button mat-button class="menu-button">
+            <a routerLink="/estimate">
+            <span>Skattningar</span>
+        </a>
+        </button>
+  
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button">
+            <a routerLink="/goal">
+            <span>Barnets Mål</span>
+        </a>
+        </button>
+  
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button">
+            <a routerLink="/need_compass">
+            <span>Behovskompass</span>
+        </a>
+        </button>
+  
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button">
+            <a routerLink="/event_and_plan">
+            <span>Händelse & plan</span>
+        </a>
+        </button>
+  
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button">
+            <a routerLink="/admin">
+            <span>Admin</span>
+        </a>
+        </button>
+  
+        <mat-divider></mat-divider>
+
+    </mat-sidenav>
+  
+        <mat-sidenav-content>
+           <div class="content mat-elevation-z8">
+            <router-outlet>
+
+            </router-outlet>          
+           </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>

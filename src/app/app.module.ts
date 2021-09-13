@@ -10,9 +10,20 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { LandingComponent } from './components/landing/landing.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { DiscoverCardComponent } from './components/discover-card/discover-card.component';
+import { CommunicationMaterialComponent } from './components/communication-material/communication-material.component';
+import { EstimateComponent } from './components/estimate/estimate.component';
+import { GoalComponent } from './components/goal/goal.component';
+import { NeedCompassComponent } from './components/need-compass/need-compass.component';
+import { EventAndPlanComponent } from './components/event-and-plan/event-and-plan.component';
+import { AdminComponent } from './components/admin/admin.component';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent, CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent, EventAndPlanComponent, AdminComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -21,7 +32,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    MatDividerModule
+    MatDividerModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent],
