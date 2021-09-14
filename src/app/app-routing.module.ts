@@ -9,6 +9,7 @@ import { EventAndPlanComponent } from './components/event-and-plan/event-and-pla
 import { GoalComponent } from './components/goal/goal.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { NeedCompassComponent } from './components/need-compass/need-compass.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 const routes: Routes = [
   {
@@ -48,7 +49,11 @@ const routes: Routes = [
         component: NeedCompassComponent
       }
     ]
-  }
+  },
+  { 
+    path: 'sign-in',
+  component: SignInComponent,
+}
 
 ];
 @NgModule({

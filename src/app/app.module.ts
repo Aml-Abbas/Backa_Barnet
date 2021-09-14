@@ -21,9 +21,12 @@ import { EventAndPlanComponent } from './components/event-and-plan/event-and-pla
 import { AdminComponent } from './components/admin/admin.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 @NgModule({
-  declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent, CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent, EventAndPlanComponent, AdminComponent],
+  declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent, 
+    CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent, 
+    EventAndPlanComponent, AdminComponent, SignInComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
