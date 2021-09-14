@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { LandingComponent } from './components/landing/landing.component';
@@ -23,6 +22,11 @@ import { AdminComponent } from './components/admin/admin.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+
+
 @NgModule({
   declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent, 
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent, 
@@ -36,7 +40,14 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule
+  ],exports:[
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent],
