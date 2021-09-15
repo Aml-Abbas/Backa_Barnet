@@ -38,6 +38,12 @@ td, th, tr{
     background-color: lightgreen;
     color: black;
   }
+  .table-container {
+    position: relative;
+    min-height: 200px;
+    max-height: 600px;
+    overflow: auto;
+  }
 
   @media screen and (max-width: 900px){
     .search{
@@ -49,6 +55,7 @@ td, th, tr{
     button{
       width: 50%;
       margin-left: 25%;
+      margin-top: 10px;
     }
     .mat-form-field {
     margin-left: 20%;
