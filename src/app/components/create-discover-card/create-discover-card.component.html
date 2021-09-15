@@ -1,3 +1,75 @@
 <div class="container">
-    <h1>Samtycke</h1>
+    <h1>Skapa Upptäckerkort</h1>
+ 
+    <div class="form-container">
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Upptäckarens namn</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Upptäckarens organisation</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Upptäckarens title</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Barnets namn</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Barnets personnummer</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Vårdnadshavarens namn</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Vårdnadshavarens personnummer</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>BMM/ BvC/ Förskola/ Skola</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Situationen där barnet uppmärksammats: ​</mat-label>
+        <textarea matInput placeholder="Nyckelord: hur, var och när..."></textarea>
+      </mat-form-field>
+      <p>Åtgärder har vidtagits inom egen organisation?</p>
+            <mat-checkbox >Ja</mat-checkbox>
+            <mat-checkbox >Nej</mat-checkbox>
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>kommentar: ​</mat-label>
+                <textarea matInput></textarea>
+              </mat-form-field>
+
+              
+
+            <p>Vårdnadshavare är informerad om att Upptäckerkort upprättas</p>
+            <mat-checkbox >Ja</mat-checkbox>
+            <mat-checkbox >Nej</mat-checkbox>
+
+            <p>Vårdnadshavare har gett samtycke till att information gällande upptäckerkorten delas mellan Upptäckare och Barnkontakt</p>
+            <mat-checkbox >Ja</mat-checkbox>
+            <mat-checkbox >Nej</mat-checkbox>
+
+    </div>
 </div>    

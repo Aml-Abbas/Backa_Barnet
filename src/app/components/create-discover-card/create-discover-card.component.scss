@@ -1,0 +1,31 @@
+h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+  
+.form-container{
+    background-color: lightgray;
+    color: black;
+    padding: 10px;;
+}
+mat-label{
+    color: black;
+}
+
+.full-width{
+    width: 100%;
+}
+
+.mat-datepicker-toggle{
+    color: #663399;
+}
+
+mat-form-field{
+    margin-right: 10%;
+    width: 40%;
+}
+
+mat-checkbox{
+    padding: 5px;
+    width: 10%;;
+}

@@ -20,6 +20,7 @@ import { EventAndPlanComponent } from './components/event-and-plan/event-and-pla
 import { AdminComponent } from './components/admin/admin.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { ConsentComponent } from './components/consent/consent.component';
+import { CreateDiscoverCardComponent } from './components/create-discover-card/create-discover-card.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -30,7 +31,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { CreateDiscoverCardComponent } from './components/create-discover-card/create-discover-card.component';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 @NgModule({
@@ -53,7 +55,10 @@ import { CreateDiscoverCardComponent } from './components/create-discover-card/c
     MatTableModule,
     MatCardModule,
     MatCheckboxModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+    
   ],exports:[
     MatInputModule,
     MatFormFieldModule,
@@ -61,7 +66,9 @@ import { CreateDiscoverCardComponent } from './components/create-discover-card/c
     MatTableModule,
     MatCardModule,
     MatCheckboxModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent],
