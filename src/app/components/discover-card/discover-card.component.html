@@ -1,4 +1,37 @@
 <div class="container">
-    <p>discover-card works!</p>
+    <h1>Upptäckerkort</h1>
+
+    
+  <div class="search">
+    <mat-form-field appearance="standard">
+      <mat-label>Sök - namn</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+    <button mat-raised-button routerLink="/create-discover-card">Skapa nytt upptäckerkort</button>
+  </div>
+
+
+    <div class="table-container">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Av </th>
+            <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+          </ng-container>
+      
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">inga data som matchar din sökning "{{input.value}}"</td>
+          </tr>
+        </table>
+        </div>
 
 </div>

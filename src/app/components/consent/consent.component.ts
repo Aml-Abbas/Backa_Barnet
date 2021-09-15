@@ -11,5 +11,5 @@ export class ConsentComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+    
 }

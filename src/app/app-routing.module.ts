@@ -4,6 +4,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { CommunicationMaterialComponent } from './components/communication-material/communication-material.component';
 import { ConsentComponent } from './components/consent/consent.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { CreateDiscoverCardComponent } from './components/create-discover-card/create-discover-card.component';
 import { DiscoverCardComponent } from './components/discover-card/discover-card.component';
 import { EstimateComponent } from './components/estimate/estimate.component';
 import { EventAndPlanComponent } from './components/event-and-plan/event-and-plan.component';
@@ -11,6 +12,7 @@ import { GoalComponent } from './components/goal/goal.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { NeedCompassComponent } from './components/need-compass/need-compass.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+
 
 const routes: Routes = [
   {
@@ -22,7 +24,7 @@ const routes: Routes = [
         component: AdminComponent
       },
       {
-        path: 'communication_material',
+        path: 'communication-material',
         component: CommunicationMaterialComponent
       },  
       {
@@ -34,7 +36,7 @@ const routes: Routes = [
         component: EstimateComponent
       },
       {
-        path: 'event_and_plan',
+        path: 'event-and-plan',
         component: EventAndPlanComponent
       },
       {
@@ -42,16 +44,20 @@ const routes: Routes = [
         component: GoalComponent
       },
       {
-        path: 'discover_card',
+        path: 'discover-card',
         component: DiscoverCardComponent
       },
       {
-        path: 'need_compass',
+        path: 'need-compass',
         component: NeedCompassComponent
       },
       {
         path: 'consent',
         component: ConsentComponent
+      },
+      {
+        path: 'create-discover-card',
+        component: CreateDiscoverCardComponent
       }
     ]
   },

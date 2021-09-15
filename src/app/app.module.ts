@@ -27,12 +27,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { CreateDiscoverCardComponent } from './components/create-discover-card/create-discover-card.component';
 
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent, 
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent, 
-    EventAndPlanComponent, AdminComponent, SignInComponent, ConsentComponent],
+    EventAndPlanComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -46,12 +50,18 @@ import {MatTableModule} from '@angular/material/table';
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatGridListModule
   ],exports:[
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent],
