@@ -23,9 +23,26 @@ mat-label{
 mat-form-field{
     margin-right: 10%;
     width: 40%;
+    color: black;
 }
 
 mat-checkbox{
     padding: 5px;
-    width: 10%;;
+    width: 10%;
+    color: black;
+}
+
+mat-card-title, mat-card-subtitle{
+    color: black;
+}
+
+mat-card-title{
+    text-align: center;
+}
+
+
+mat-grid-tile, mat-card{
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
 }

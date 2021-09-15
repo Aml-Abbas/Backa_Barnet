@@ -62,6 +62,25 @@
               </mat-form-field>
 
               
+              <mat-grid-list cols="2" rowHeight="2:1" >
+                <mat-grid-tile *ngFor="let item of ELEMENT_DATA">
+                        <mat-card [style.background]="item.color">
+                        <mat-card-title>{{item.type}}</mat-card-title>
+                        <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
+                        
+                        <mat-checkbox >Ja</mat-checkbox>
+                        <mat-checkbox >Nej</mat-checkbox>
+                        <mat-checkbox>VET EJ</mat-checkbox>
+                        
+                        <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>kommentar: ​</mat-label>
+                            <textarea matInput></textarea>
+                          </mat-form-field>
+
+                    </mat-card>
+                </mat-grid-tile>   
+        </mat-grid-list>
+
 
             <p>Vårdnadshavare är informerad om att Upptäckerkort upprättas</p>
             <mat-checkbox >Ja</mat-checkbox>
@@ -72,4 +91,4 @@
             <mat-checkbox >Nej</mat-checkbox>
 
     </div>
-</div>    
+</div>
