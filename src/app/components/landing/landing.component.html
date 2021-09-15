@@ -12,17 +12,22 @@
   
     <mat-sidenav-container>
       <mat-sidenav  #sidenav="matSidenav" class="mat-elevation-z8">
-      
-        <img class="avatar mat-elevation-z8" src="https://c.files.bbci.co.uk/9552/production/_113562283_child.png" />
-  
-  <h4 class="name">Kalle Karlson</h4>
-  <p class="designation">3 år</p>
+ 
+  <h2 class="name">Kalle Karlson</h2>
   
   <mat-divider></mat-divider>
   
         <button mat-button class="menu-button">
             <a routerLink="/contact">
             <span>Barn & Kontakt</span>
+        </a>
+        </button>
+
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" >
+            <a routerLink="/consent">
+            <span>Samtycke</span>
         </a>
         </button>
 
@@ -87,10 +92,7 @@
     </mat-sidenav>
   
         <mat-sidenav-content>
-           <div class="content mat-elevation-z8">
-            <router-outlet>
-
-            </router-outlet>          
-           </div>
+            <router-outlet></router-outlet>          
+          
         </mat-sidenav-content>
     </mat-sidenav-container>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './components/admin/admin.component';
 import { CommunicationMaterialComponent } from './components/communication-material/communication-material.component';
+import { ConsentComponent } from './components/consent/consent.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DiscoverCardComponent } from './components/discover-card/discover-card.component';
 import { EstimateComponent } from './components/estimate/estimate.component';
@@ -47,6 +48,10 @@ const routes: Routes = [
       {
         path: 'need_compass',
         component: NeedCompassComponent
+      },
+      {
+        path: 'consent',
+        component: ConsentComponent
       }
     ]
   },

@@ -18,19 +18,21 @@ import { GoalComponent } from './components/goal/goal.component';
 import { NeedCompassComponent } from './components/need-compass/need-compass.component';
 import { EventAndPlanComponent } from './components/event-and-plan/event-and-plan.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { ConsentComponent } from './components/consent/consent.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SignInComponent } from './components/sign-in/sign-in.component';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent, 
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent, 
-    EventAndPlanComponent, AdminComponent, SignInComponent],
+    EventAndPlanComponent, AdminComponent, SignInComponent, ConsentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -43,11 +45,13 @@ import { MatButtonModule } from '@angular/material/button';
     FontAwesomeModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ],exports:[
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent],

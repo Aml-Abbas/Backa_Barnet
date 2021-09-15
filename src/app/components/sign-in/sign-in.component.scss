@@ -11,6 +11,7 @@ h1{
     width:100%;
     margin:0 !important;
     padding:0 !important;
+    background-color: white;
 }
 
 .container-signin {
@@ -36,4 +37,14 @@ h1{
     margin-top:30%;
 }
 
-button{}
+form{
+    background-color: lightgray;
+}
+button{
+background-color: lightgreen;
+color: black;
+
+}
+mat-label, input{
+color: black;
+}

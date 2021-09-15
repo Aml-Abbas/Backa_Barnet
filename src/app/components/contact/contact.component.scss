@@ -3,67 +3,54 @@ h1{
     font-size: 30px;
     font-weight: bold;
 }
-
-
-#search_input {
-    background-image: url('/css/searchicon.png');
-    background-position: 10px 12px;
-    background-repeat: no-repeat;
-    width: 45%;
-    font-size: 16px;
-    padding: 12px 20px 12px 40px;
-    border: 1px solid black;
-    margin-bottom: 12px;
-  }
   
-  
-.search_div {
-    width: 100%;
-    margin-bottom: 10px;
+h2{
+  font-size: 23px;
+  font-weight: bold;
+  margin-top: 25px;;
 }
-  
-#icon {
-    padding: 10px;
-    min-width: 40px;
-}
-
-
-  .purple_button{
-    color: white;
-    background-color: #4B0082	;
-    margin-right:0px;
-    padding: 12px;
-    width: 25%;
-  }
-
 
   table {
-    font-size: 13px;
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 80%;
+    width: 100%;
+    background-color: lightgray;
   }
   
-  td, th {
-    text-align: left;
-    padding: 10px;
+  .mat-form-field {
+    font-size: 14px;
+    width: 60%;
+    border-bottom: solid;
   }
-  td {
-    background-color: white;
-  }
-  th {
-    border:3px solid #E0FFFF;
+td, th, tr{
+  color: black;
+}
+  
+  mat-label{
+  color: black;
   }
 
+  .search{
+    width: 100%;
+  }
 
-  @media screen and (max-width: 1000px){
-    html{
-    overflow-x:auto !important;
+  button{
+    margin-left: 10%;
+    width: 30%;
+    background-color: lightgreen;
+    color: black;
+  }
+
+  @media screen and (max-width: 900px){
+    .search{
+    display: flex;
+    flex-direction: column;
+    
     }
-    body{
-    overflow-x:auto !important;
+
+    button{
+      width: 50%;
+      margin-left: 25%;
     }
-    .list{
-      height: 50px;
+    .mat-form-field {
+    margin-left: 20%;
     }
   }
