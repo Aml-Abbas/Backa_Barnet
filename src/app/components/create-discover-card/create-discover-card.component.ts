@@ -27,6 +27,7 @@ export class CreateDiscoverCardComponent implements OnInit {
     { color: 'LightPink',type: 'UTVECKLAS',  description: 'Barnet utvecklas i fas med sin ålder och tar förmågor att klara av det vardagliga livet.'},
     
   ];
+  labelPosition: 'before' | 'after' = 'after';
 
   constructor() { }
 

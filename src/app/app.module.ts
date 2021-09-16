@@ -33,6 +33,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatGridListModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatRadioModule
     
   ],exports:[
     MatInputModule,
@@ -69,6 +71,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatGridListModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent],
