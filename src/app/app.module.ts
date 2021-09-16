@@ -57,7 +57,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatCheckboxModule,
     MatGridListModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
     
   ],exports:[
     MatInputModule,
@@ -68,7 +68,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatCheckboxModule,
     MatGridListModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

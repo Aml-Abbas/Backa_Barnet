@@ -2,16 +2,7 @@
 h1{
     font-size: 40px;
     font-weight: bold;
-}
-
-
-.container {
-    display: block;
-    height:100%;
-    width:100%;
-    margin:0 !important;
-    padding:0 !important;
-    background-color: white;
+    margin-bottom: 40px;
 }
 
 .container-signin {
@@ -21,10 +12,6 @@ h1{
     height: 100%;
     width:60%;
     margin-left:20%;
-}
-
-.container-signin > .container-signin-form {
-    position:relative;
 }
 
 .container-signin-form {
@@ -37,14 +24,24 @@ h1{
     margin-top:30%;
 }
 
-form{
-    background-color: lightgray;
-}
 button{
 background-color: lightgreen;
 color: black;
-
 }
+
+.sig-in-button{
+    width: 30%;
+    margin-left: 70%;;
+}
+
 mat-label, input{
 color: black;
 }
+  
+
+  
+  ::ng-deep.mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: lightgreen !important;;
+  }
+

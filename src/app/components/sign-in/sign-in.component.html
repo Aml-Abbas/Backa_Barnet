@@ -12,7 +12,7 @@
             <mat-form-field appearance="fill">
 
               <mat-label>Användarnamn</mat-label>
-              <input matInput id="email">
+              <input matInput >
 
             </mat-form-field>
           
@@ -24,7 +24,7 @@
                 </button>
               </mat-form-field>
 
-            <button mat-raised-button routerLink="/contact">Logga in</button>
+            <button mat-raised-button  class="sig-in-button" (click)="login();" routerLink="/contact">Logga in</button>
 
           </form>
 
