@@ -12,13 +12,12 @@ h2{
 
   table {
     width: 100%;
-    background-color: lightgray;
+    background-color: whitesmoke;
   }
   
   .mat-form-field {
     font-size: 14px;
     width: 60%;
-    border-bottom: solid;
   }
 td, th, tr{
   color: black;
@@ -44,6 +43,11 @@ td, th, tr{
     max-height: 600px;
     overflow: auto;
   }
+
+  ::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: lightgreen !important;;
+   }
 
   @media screen and (max-width: 900px){
     .search{
