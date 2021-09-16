@@ -24,6 +24,7 @@ mat-form-field{
     margin-right: 10%;
     width: 40%;
     color: black;
+    margin-bottom: 10px;
 }
 
 mat-checkbox{
@@ -63,11 +64,11 @@ mat-card-title{
     width: 20%;
     background-color: lightgreen;
     color: black;
+    margin-bottom: 15px;
   }
 
   .cancel-button{
     background-color: #FF0000;
-    color: white;
   }
 
   .save-button{
@@ -100,11 +101,11 @@ mat-card-title{
       margin-bottom: 20px;;
   }
 
-  @media screen and (max-width: 900px){
+  @media screen and (max-width: 700px){
   
     .discover-card-button{
-      margin-left: 25%;
-      width: 50%;
+      margin-left: 15%;
+      width: 70%;
     }
 
   }
