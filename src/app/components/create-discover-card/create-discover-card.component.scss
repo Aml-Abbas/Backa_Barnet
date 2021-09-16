@@ -47,6 +47,11 @@ mat-grid-tile, mat-card{
     margin: 10px;
 }
 
+mat-grid-list{
+padding: 10px;
+margin: 10px;
+}
+
 .example-section {
     padding: 10px;
     display: flex;
@@ -55,3 +60,22 @@ mat-grid-tile, mat-card{
   label, mat-radio-button{
       margin-right: 10px;
   }
+
+  button{
+    margin-left: 10%;
+    width: 20%;
+    background-color: lightgreen;
+    color: black;
+  }
+
+  .cancel-button{
+    background-color: #FF0000;
+    color: white;
+  }
+
+  .save-button{
+    background-color:lightgray;
+  }
+
+
+  

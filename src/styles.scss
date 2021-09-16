@@ -9,3 +9,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: black;
     }
   
+    .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+        background-color:black !important;
+      }
+
+      .mat-radio-button.mat-accent .mat-radio-outer-circle {
+        border-color: lightgray;
+    }
+
+    
+    ::ng-deep.mat-form-field-ripple {
+        background-color: lightgreen !important;;
+       }

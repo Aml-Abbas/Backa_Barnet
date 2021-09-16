@@ -44,10 +44,7 @@ td, th, tr{
     overflow: auto;
   }
 
-  ::ng-deep.mat-form-field-ripple {
-    /*change color of underline when focused*/
-    background-color: lightgreen !important;;
-   }
+
 
   @media screen and (max-width: 900px){
     .search{
