@@ -22,5 +22,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
        }
     
      .mat-checkbox.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
-        background-color: lightgray;
+        background-color: black !important;
       }
+
+    
+  mat-radio-button{
+    color: black;
+}
