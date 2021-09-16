@@ -29,3 +29,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   mat-radio-button{
     color: black;
 }
+
+
+/* To display a border for the input */
+.mat-form-field{
+  border: 1px solid #663399 !important;
+  margin-bottom: 2px;
+}
