@@ -74,16 +74,19 @@
            
             <mat-form-field class="full-width" appearance="fill">
                 <mat-label>kommentar: ​</mat-label>
-                <textarea matInput></textarea>
+                <textarea class="comment" matInput></textarea>
               </mat-form-field>
 
               
               <mat-grid-list cols="2" rowHeight="2:1" >
+                
                 <mat-grid-tile *ngFor="let item of ELEMENT_DATA">
-                        <mat-card [style.background]="item.color">
+                        <mat-card >
+                          <div class="card-container" [style.background]="item.color">
                         <mat-card-title>{{item.type}}</mat-card-title>
                         <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
-                        
+                      </div>
+
                         <section >
                           <mat-radio-group class="example-section" >
                             <mat-radio-button value="no">Ja</mat-radio-button>
@@ -94,7 +97,7 @@
                         
                         <mat-form-field class="full-width" appearance="fill">
                             <mat-label>kommentar: ​</mat-label>
-                            <textarea matInput></textarea>
+                            <textarea class="comment" matInput></textarea>
                           </mat-form-field>
 
                     </mat-card>

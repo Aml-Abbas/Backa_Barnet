@@ -41,8 +41,11 @@ mat-card-title{
 }
 
 
-mat-grid-tile, mat-card{
-    width: 80%;
+mat-grid-tile{
+    padding: 20px;    
+}
+
+.card-container{
     padding: 10px;
     margin: 10px;
 }
@@ -75,4 +78,17 @@ margin: 10px;
 
   .save-button{
     background-color:lightgray;
+  }
+
+  mat-card{
+      background-color: whitesmoke;
+      width: 80%;
+    padding: 10px;
+    margin-bottom: 10%;
+    margin-top: 10%;
+
+  }
+
+  .comment{
+      height: 60px;
   }
