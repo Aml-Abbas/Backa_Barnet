@@ -93,3 +93,18 @@ mat-card-title{
     }
   
   }
+
+  .discover-card-button{
+      width: 30%;
+      margin-left: 70%;
+      margin-bottom: 20px;;
+  }
+
+  @media screen and (max-width: 900px){
+  
+    .discover-card-button{
+      margin-left: 25%;
+      width: 50%;
+    }
+
+  }

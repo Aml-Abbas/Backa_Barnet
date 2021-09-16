@@ -1,6 +1,8 @@
 <div class="container">
     <h1>Skapa Upptäckarkort</h1>
  
+    <button mat-raised-button class="discover-card-button" routerLink="/discover-card">Tidigare upptäckarkorten</button>
+
     <div class="form-container">
         <mat-form-field class="full-width" appearance="fill">
             <mat-label>Choose a date</mat-label>
@@ -31,6 +33,11 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Barnets personnummer</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Barnets address</mat-label>
         <input matInput>
       </mat-form-field>
 
