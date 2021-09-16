@@ -5,6 +5,7 @@ import { CommunicationMaterialComponent } from './components/communication-mater
 import { ConsentComponent } from './components/consent/consent.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { CreateDiscoverCardComponent } from './components/create-discover-card/create-discover-card.component';
+import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-need-compass.component';
 import { DiscoverCardComponent } from './components/discover-card/discover-card.component';
 import { EstimateComponent } from './components/estimate/estimate.component';
 import { EventAndPlanComponent } from './components/event-and-plan/event-and-plan.component';
@@ -58,6 +59,10 @@ const routes: Routes = [
       {
         path: 'create-discover-card',
         component: CreateDiscoverCardComponent
+      },
+      {
+        path: 'deep-need-compass',
+        component: DeepNeedCompassComponent
       }
     ]
   },

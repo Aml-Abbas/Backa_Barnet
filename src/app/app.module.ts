@@ -34,12 +34,14 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatMenuModule} from '@angular/material/menu';
+import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-need-compass.component';
 
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent, 
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent, 
-    EventAndPlanComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent],
+    EventAndPlanComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent, DeepNeedCompassComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -59,7 +61,9 @@ import {MatRadioModule} from '@angular/material/radio';
     MatGridListModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatRadioModule
+    MatRadioModule,
+    MatMenuModule,
+    
     
   ],exports:[
     MatInputModule,
@@ -71,7 +75,9 @@ import {MatRadioModule} from '@angular/material/radio';
     MatGridListModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatRadioModule
+    MatRadioModule,
+    MatMenuModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

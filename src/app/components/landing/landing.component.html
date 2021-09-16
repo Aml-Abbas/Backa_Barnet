@@ -16,10 +16,13 @@
   <h2 class="name">Kalle Karlson</h2>
   
   <mat-divider></mat-divider>
-  
-        <button mat-button routerLink="/contact"class="menu-button">
-            <span>Barn & Kontakt</span>
-        </button>
+
+        <button mat-button class="menu-button" [matMenuTriggerFor]="contact">Barn & Kontakt</button>
+        <mat-menu #contact="matMenu">
+         <button mat-menu-item routerLink="/contact">Barnlista</button>
+         <button mat-menu-item>Kontaktinfo Barn</button>
+         <button mat-menu-item>Kontaktpersoner</button>
+        </mat-menu>
 
         <mat-divider></mat-divider>
 
@@ -35,15 +38,24 @@
 
         <mat-divider></mat-divider>
 
-        <button mat-button routerLink="/communication-material" class="menu-button">
+<!--         <button mat-button routerLink="/communication-material" class="menu-button">
             <span>Samtalsunderlag</span>
-        </button>
+        </button> -->
   
-        <mat-divider></mat-divider>
+       <!--  <mat-divider></mat-divider>
   
         <button mat-button routerLink="/estimate" class="menu-button">
             <span>Skattningar</span>
         </button>
+  
+        <mat-divider></mat-divider> -->
+
+        <button mat-button class="menu-button" [matMenuTriggerFor]="need_compass">Behovskompass</button>
+        <mat-menu #need_compass="matMenu">
+         <button mat-menu-item>Samtalsunderlag</button>
+         <button mat-menu-item routerLink="/need-compass">Behovskompassar</button>
+         <button mat-menu-item>Skattningar</button>
+        </mat-menu>
   
         <mat-divider></mat-divider>
 
@@ -53,15 +65,19 @@
   
         <mat-divider></mat-divider>
 
-        <button mat-button routerLink="/need-compass" class="menu-button">
-            <span>Behovskompass</span>
-        </button>
-  
+        <button mat-button class="menu-button" [matMenuTriggerFor]="deep_compass">Fördjupat Behovskompass</button>
+        <mat-menu #deep_compass="matMenu">
+         <button mat-menu-item routerLink="/deep-need-compass">Fördjupat Behovskompass</button>
+         <button mat-menu-item>Bedömning</button>
+        </mat-menu>
+
         <mat-divider></mat-divider>
 
-        <button mat-button routerLink="/event-and-plan" class="menu-button">
-            <span>Händelse & plan</span>
-        </button>
+        <button mat-button class="menu-button" [matMenuTriggerFor]="event">Händelse & plan</button>
+        <mat-menu #event="matMenu">
+         <button mat-menu-item routerLink="/event-and-plan">Händelse</button>
+         <button mat-menu-item>Min plan framåt</button>
+        </mat-menu>
   
         <mat-divider></mat-divider>
 
