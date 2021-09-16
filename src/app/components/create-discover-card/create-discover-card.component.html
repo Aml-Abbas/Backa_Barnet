@@ -77,11 +77,10 @@
                 <textarea class="comment" matInput></textarea>
               </mat-form-field>
 
-              
-              <mat-grid-list cols="2" rowHeight="2:1" >
-                
-                <mat-grid-tile *ngFor="let item of ELEMENT_DATA">
-                        <mat-card >
+              <div class="container">
+                <div>
+                  <div class="grid-container">
+                        <mat-card *ngFor="let item of ELEMENT_DATA">
                           <div class="card-container" [style.background]="item.color">
                         <mat-card-title>{{item.type}}</mat-card-title>
                         <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
@@ -101,8 +100,11 @@
                           </mat-form-field>
 
                     </mat-card>
-                </mat-grid-tile>   
-        </mat-grid-list>
+                  </div>
+
+                </div>
+              
+              </div>
 
         <section class="example-section">
           <label>Vårdnadshavare 1 är informerad om att Upptäckarkort upprättas</label>

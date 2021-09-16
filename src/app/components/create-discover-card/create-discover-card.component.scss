@@ -41,18 +41,12 @@ mat-card-title{
 }
 
 
-mat-grid-tile{
-    padding: 20px;    
-}
 
 .card-container{
     padding: 10px;
     margin: 10px;
-}
+    border-radius: 15px;
 
-mat-grid-list{
-padding: 10px;
-margin: 10px;
 }
 
 .example-section {
@@ -81,14 +75,21 @@ margin: 10px;
   }
 
   mat-card{
-      background-color: whitesmoke;
-      width: 80%;
+    background-color: whitesmoke;
+    width: 95%;
     padding: 10px;
-    margin-bottom: 10%;
-    margin-top: 10%;
-
+    margin-bottom: 15px;
+    margin-right: 5%;
   }
 
   .comment{
       height: 60px;
+  }
+  .container {
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(30rem, 2fr));
+      grid-gap: 1em;
+    }
+  
   }
