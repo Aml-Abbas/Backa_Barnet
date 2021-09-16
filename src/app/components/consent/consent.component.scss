@@ -1,5 +1,4 @@
-  
-    h1{
+h1{
         font-size: 30px;
         font-weight: bold;
     }
@@ -8,7 +7,25 @@
         background-color: whitesmoke;
         color: black;
     }
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      th, td {
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {background-color: #f2f2f2;}
 
 mat-label{
     color: black;
 }
+
+::ng-deep .mat-checkbox.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    border-radius: 45%;
+    border: 4px black;
+    padding: 10px;
+  }

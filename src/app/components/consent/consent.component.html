@@ -2,126 +2,39 @@
 <h1>Samtycke</h1>
 
 
-<mat-card>
-    <mat-card-content>
-        <mat-grid-list cols="4" rowHeight="80px">
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <p></p>
-            </mat-grid-tile>
-
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <p>Barn</p>
-            </mat-grid-tile>
-
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <p>Vårdnadshavare 1</p>
-            </mat-grid-tile>
-
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <p>Vårdnashavare 2</p>
-            </mat-grid-tile>
-
-
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <p>Uptäckerkort (muntligt)</p>
-            </mat-grid-tile>
-           
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-checkbox ></mat-checkbox>
-            </mat-grid-tile>            
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-checkbox ></mat-checkbox>
-            </mat-grid-tile>            
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-checkbox ></mat-checkbox>
-            </mat-grid-tile>
-
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <p></p>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <form>
-                    <mat-form-field appearance="fill">
-                      <mat-label>Inhämtat av</mat-label>
-                      <input matInput placeholder="" value="">
-                    </mat-form-field>
-                  </form>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="2" [rowspan]="1">
-                <p></p>
-            </mat-grid-tile>
-
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <p>Barnteam (skriftligt)</p>
-            </mat-grid-tile>
-           
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-checkbox ></mat-checkbox>
-            </mat-grid-tile>            
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-checkbox ></mat-checkbox>
-            </mat-grid-tile>            
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-checkbox ></mat-checkbox>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <p></p>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <form>
-                    <mat-form-field appearance="fill">
-                      <mat-label>Inhämtat av</mat-label>
-                      <input matInput placeholder="" value="">
-                    </mat-form-field>
-                  </form>
-            </mat-grid-tile>
-
-            <mat-grid-tile [colspan]="2" [rowspan]="1">
-                <form>
-                    <mat-form-field appearance="fill">
-                <mat-label>Var ligger skriftligt samtycke</mat-label>
-                <input matInput placeholder="" value="">
-              </mat-form-field>
-                  </form>
-            </mat-grid-tile>
-
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <p>Individuell Barnteam (skriftligt)</p>
-            </mat-grid-tile>
-           
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-checkbox ></mat-checkbox>
-            </mat-grid-tile>            
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-checkbox ></mat-checkbox>
-            </mat-grid-tile>            
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <mat-checkbox ></mat-checkbox>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <p></p>
-            </mat-grid-tile>
-            <mat-grid-tile [colspan]="1" [rowspan]="1">
-                <form>
-                    <mat-form-field appearance="fill">
-                      <mat-label>Inhämtat av</mat-label>
-                      <input matInput placeholder="" value="">
-                    </mat-form-field>
-                  </form>
-            </mat-grid-tile>
-
-            <mat-grid-tile [colspan]="2" [rowspan]="1">
-                <form>
-                    <mat-form-field appearance="fill">
-                <mat-label>Var ligger skriftligt samtycke</mat-label>
-                <input matInput placeholder="" value="">
-              </mat-form-field>
-                  </form>
-            </mat-grid-tile>
-
-        </mat-grid-list>
-    </mat-card-content>
-  </mat-card>
-
+<table>
+    <tr>
+    <th></th>
+    <th>Barn</th>
+    <th>Vårdnadshavare 1</th>
+    <th>Vårdnadshavare 2</th>
+    <th>Inhämtat av</th>
+    <th>Var ligger skriftligt samtycke</th>
+    </tr>
+    <tr>
+    <td>Uptäckerkort (muntligt)</td>
+    <td><mat-checkbox ></mat-checkbox></td>
+    <td><mat-checkbox ></mat-checkbox></td>
+    <td><mat-checkbox ></mat-checkbox></td>
+    <td><input matInput placeholder="" value=""></td>
+<td></td>
+    </tr>
+    <tr>
+    <td>Barnteam (skriftligt)</td>
+    <td><mat-checkbox ></mat-checkbox></td>
+    <td><mat-checkbox ></mat-checkbox></td>
+    <td><mat-checkbox ></mat-checkbox></td>
+    <td><input matInput placeholder="" value=""></td>
+    <td><input matInput placeholder="" value=""></td>
+</tr>
+    <tr>
+    <td>Individuell Barnteam (skriftligt)</td>
+    <td><mat-checkbox ></mat-checkbox></td>
+    <td><mat-checkbox ></mat-checkbox></td>
+    <td><mat-checkbox ></mat-checkbox></td>
+    <td><input matInput placeholder="" value=""></td>
+    <td><input matInput placeholder="" value=""></td>
+</tr>
+  </table>
 
 </div>
