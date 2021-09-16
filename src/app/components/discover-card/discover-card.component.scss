@@ -4,7 +4,7 @@ h1{
 }
 table {
     width: 60%;
-    background-color: lightgray;
+    background-color: whitesmoke;
   }
   td, th, tr{
     color: black;
@@ -28,7 +28,6 @@ table {
     .mat-form-field {
         font-size: 14px;
         width: 60%;
-        border-bottom: solid;
         margin-bottom: 15px;
       }
 
@@ -38,6 +37,12 @@ table {
         background-color: lightgreen;
         color: black;
       }
+
+      
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: lightgreen !important;;
+ }
 
       @media screen and (max-width: 900px){
         .search{
