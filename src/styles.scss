@@ -16,8 +16,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       .mat-radio-button.mat-accent .mat-radio-outer-circle {
         border-color: lightgray;
     }
-
     
-    ::ng-deep.mat-form-field-ripple {
+    .mat-form-field-ripple {
         background-color: lightgreen !important;;
        }
+    
+     .mat-checkbox.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+        background-color: lightgray;
+      }
