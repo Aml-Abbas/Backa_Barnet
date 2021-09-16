@@ -4,26 +4,27 @@ import {MatTableDataSource} from '@angular/material/table';
 export interface PeriodicElement {
   name: string;
   changed: string;
-  Type: string;
+  type: string;
+  person_number: number;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {name: '1', changed: 'Hydrogen', Type: 'Hydrogen'},
-  {name: '2', changed: 'Helium', Type: 'Hydrogen'},
-  {name: '3', changed: 'Lithium', Type: 'Hydrogen'},
-  {name: '4', changed: 'Beryllium', Type: 'Hydrogen'},
-  {name: '5', changed: 'Boron', Type: 'Hydrogen'},
-  {name: '6', changed: 'Carbon', Type: 'Hydrogen'},
-  {name: '7', changed: 'Nitrogen', Type: 'Hydrogen'},
-  {name: '8', changed: 'Oxygen', Type: 'Hydrogen'},
-  {name: '9', changed: 'Fluorine', Type: 'Hydrogen'},
-  {name: '4', changed: 'Beryllium', Type: 'Hydrogen'},
-  {name: '5', changed: 'Boron', Type: 'Hydrogen'},
-  {name: '6', changed: 'Carbon', Type: 'Hydrogen'},
-  {name: '7', changed: 'Nitrogen', Type: 'Hydrogen'},
-  {name: '8', changed: 'Oxygen', Type: 'Hydrogen'},
-  {name: '9', changed: 'Fluorine', Type: 'Hydrogen'},
-  {name: '10', changed: 'Neon', Type: 'Hydrogen'},
+  {name: 'Aml', changed: 'Hydrogen', type: 'Hydrogen', person_number: 123},
+  {name: 'Kalle', changed: 'Helium', type: 'Hydrogen', person_number: 123},
+  {name: 'Peter', changed: 'Lithium', type: 'Hydrogen', person_number: 123},
+  {name: 'Lina', changed: 'Beryllium', type: 'Hydrogen', person_number: 123},
+  {name: 'Maia', changed: 'Boron', type: 'Hydrogen', person_number: 123},
+  {name: 'Nada', changed: 'Carbon', type: 'Hydrogen', person_number: 123},
+  {name: 'Gustav', changed: 'Nitrogen', type: 'Hydrogen', person_number: 123},
+  {name: 'Liam', changed: 'Oxygen', type: 'Hydrogen', person_number: 123},
+  {name: 'Linin', changed: 'Fluorine', type: 'Hydrogen', person_number: 123},
+  {name: 'Sandra', changed: 'Beryllium', type: 'Hydrogen', person_number: 123},
+  {name: 'Anna', changed: 'Boron', type: 'Hydrogen', person_number: 123},
+  {name: 'Elin', changed: 'Carbon', type: 'Hydrogen', person_number: 123},
+  {name: 'Karl', changed: 'Nitrogen', type: 'Hydrogen', person_number: 123},
+  {name: 'Hanna', changed: 'Oxygen', type: 'Hydrogen', person_number: 123},
+  {name: 'Liam', changed: 'Fluorine', type: 'Hydrogen', person_number: 123},
+  {name: 'Angelika', changed: 'Neon', type: 'Hydrogen', person_number: 123},
 ];
 
 
@@ -33,7 +34,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight'];
+  displayedColumns: string[] = ['person_number', 'name', 'changed', 'type'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {

@@ -5,15 +5,26 @@ import {MatTableDataSource} from '@angular/material/table';
 export interface PeriodicElement {
   id: number;
   type: string;
+  status: string
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, type: 'Polisen 1'},
-  {id: 2, type: 'Skolan'},
-  {id: 3, type: 'Socialtjänsten'},
-  {id: 4, type: 'Polisen 2'},
-
-
+  {id: 1, type: 'Polisen 1', status:'inskickat'},
+  {id: 2, type: 'Skolan',status:'inskickat'},
+  {id: 3, type: 'Socialtjänsten' ,status:'inskickat'},
+  {id: 4, type: 'Polisen 2',status:'inskickat'},
+  {id: 1, type: 'Polisen 1',status:'inskickat'},
+  {id: 2, type: 'Skolan',status:'sparat'},
+  {id: 3, type: 'Socialtjänsten',status:'inskickat'},
+  {id: 4, type: 'Polisen 2',status:'inskickat'},
+  {id: 1, type: 'Polisen 1',status:'sparat'},
+  {id: 2, type: 'Skolan',status:'sparat'},
+  {id: 3, type: 'Socialtjänsten',status:'sparat'},
+  {id: 4, type: 'Polisen 2',status:'inskickat'},
+  {id: 1, type: 'Polisen 1',status:'sparat'},
+  {id: 2, type: 'Skolan',status:'inskickat'},
+  {id: 3, type: 'Socialtjänsten',status:'sparat'},
+  {id: 4, type: 'Polisen 2',status:'sparat'},
 ];
 
 @Component({
@@ -22,7 +33,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./discover-card.component.scss']
 })
 export class DiscoverCardComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'type'];
+  displayedColumns: string[] = ['id', 'type','status'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {
