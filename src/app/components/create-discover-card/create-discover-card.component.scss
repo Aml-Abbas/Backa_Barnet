@@ -50,11 +50,12 @@ mat-card-title{
 
 }
 
-.example-section {
+.section {
     padding: 10px;
     display: flex;
     height: 60px;
   }
+
   label, mat-radio-button{
       margin-right: 10px;
   }
@@ -86,7 +87,7 @@ mat-card-title{
   .comment{
       height: 60px;
   }
-  .container {
+  .container-grid {
     .grid-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(30rem, 2fr));
@@ -101,12 +102,41 @@ mat-card-title{
       margin-bottom: 20px;;
   }
 
+  mat-radio-button{
+    margin-bottom: 20px;
+  }
 
-  @media screen and (max-width: 700px){
+  .card-container{
+    height: 100px;
+  }
+
+  @media screen and (max-width: 800px){
   
     .discover-card-button{
       margin-left: 15%;
       width: 70%;
+    }
+    mat-form-field{
+      width: 100%;
+    }
+    .container-grid {
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+      }
+    }
+
+    .section {
+      padding: 10px;
+      display: flex;
+      height: 90px;
+    }
+    .section-height{
+      height: 110px;
+    }
+    button{
+      width: 40%;
+      margin-left: 30%;
     }
 
   }

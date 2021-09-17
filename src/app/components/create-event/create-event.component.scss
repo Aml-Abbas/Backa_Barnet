@@ -29,3 +29,13 @@ button{
     width: 50%;
     margin-right: 50%;
   }
+
+  @media only screen and (max-width: 800px) {
+    button{
+      width: 50%;
+      margin-left: 25%;
+      }
+      .half-width{
+        width: 100%;
+      }
+  }

@@ -34,3 +34,13 @@ h1{
     margin-right: 5%;
     margin-top: 15px;
   }
+
+  @media only screen and (max-width: 800px) {
+    button{
+      width: 50%;
+      margin-left: 25%;
+      }
+      .container-2{
+        width: 100%;
+      }
+  }
