@@ -44,6 +44,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatStepperModule} from '@angular/material/stepper';
 import { CreateEventComponent } from './components/create-event/create-event.component';
+import { CreatePlanComponent } from './components/create-plan/create-plan.component';
 
 
 @NgModule({
@@ -51,7 +52,7 @@ import { CreateEventComponent } from './components/create-event/create-event.com
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent, 
     EventComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent, 
     DeepNeedCompassComponent, PlanComponent, AssessmentComponent, ConversationMaterialComponent, 
-    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent],
+    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, CreatePlanComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

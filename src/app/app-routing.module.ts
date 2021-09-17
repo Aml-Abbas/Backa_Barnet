@@ -10,6 +10,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ConversationMaterialComponent } from './components/conversation-material/conversation-material.component';
 import { CreateDiscoverCardComponent } from './components/create-discover-card/create-discover-card.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
+import { CreatePlanComponent } from './components/create-plan/create-plan.component';
 import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-need-compass.component';
 import { DiscoverCardComponent } from './components/discover-card/discover-card.component';
 import { EstimateComponent } from './components/estimate/estimate.component';
@@ -93,6 +94,10 @@ const routes: Routes = [
       {
         path: 'create-event',
         component: CreateEventComponent
+      },
+      {
+        path: 'create-plan',
+        component: CreatePlanComponent
       }
     ]
   },
