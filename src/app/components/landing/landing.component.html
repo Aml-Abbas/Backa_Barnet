@@ -17,68 +17,97 @@
   
   <mat-divider></mat-divider>
 
+  <mat-button-toggle-group vertical= "true">
+
+    <mat-button-toggle> 
+
       <button (click)="showFillerContact = !showFillerContact" mat-button class="menu-button">
         <span>Barn & Kontakt</span>
         <span class="material-icons">expand_more</span>
      </button>
+         </mat-button-toggle>
+
       <button mat-menu-item (click)="showFillerContact = !showFillerContact" routerLink="/contact" *ngIf="showFillerContact">Barnlista</button>
       <button mat-menu-item (click)="showFillerContact = !showFillerContact" *ngIf="showFillerContact" routerLink="/contact-person">Kontaktinfo Barn</button>
       <button mat-menu-item (click)="showFillerContact = !showFillerContact" *ngIf="showFillerContact" routerLink="/contact-guardian">Kontaktpersoner</button>
-
+      
 
   <mat-divider></mat-divider>
+
+  <mat-button-toggle>
 
         <button mat-button routerLink="/consent" class="menu-button" >
             <span>Samtycke</span>
         </button>
+    </mat-button-toggle>
 
         <mat-divider></mat-divider>
+        <mat-button-toggle>
 
         <button mat-button routerLink="/create-discover-card" class="menu-button" >
             <span>Upptäckarkort</span>
         </button>
+    </mat-button-toggle>
 
         <mat-divider></mat-divider>
-  
+
+        <mat-button-toggle>
+
         <button (click)="need_compass= !need_compass" mat-button class="menu-button">
             <span>Behovskompass</span>
             <span class="material-icons">expand_more</span>
     </button>
+
+</mat-button-toggle>
+
           <button mat-menu-item (click)="need_compass= !need_compass" *ngIf="need_compass" routerLink="/conversation-material">Samtalsunderlag</button>
           <button mat-menu-item (click)="need_compass= !need_compass" *ngIf="need_compass" routerLink="/need-compass">Behovskompassar</button>
           <button mat-menu-item (click)="need_compass= !need_compass" *ngIf="need_compass" routerLink="/estimate">Skattningar</button>
     
         <mat-divider></mat-divider>
+       
+        <mat-button-toggle>
 
         <button mat-button routerLink="/goal" class="menu-button">
             <span>Barnets Mål</span>
         </button>
-  
+    </mat-button-toggle>
+
         <mat-divider></mat-divider>
+        <mat-button-toggle>
 
         <button (click)="deep_need_compass= !deep_need_compass" mat-button class="menu-button">
             <span>Fördjupat Behovskompass</span>
             <span class="material-icons">expand_more</span>
 </button>
+</mat-button-toggle>
+
         <button mat-menu-item (click)="deep_need_compass= !deep_need_compass" *ngIf="deep_need_compass" routerLink="/deep-need-compass">Fördjupat Behovskompass</button>
         <button mat-menu-item (click)="deep_need_compass= !deep_need_compass" *ngIf="deep_need_compass" routerLink="/assessment">Bedömning</button>
 
         <mat-divider></mat-divider>
+        <mat-button-toggle>
 
         <button (click)="event= !event" mat-button class="menu-button">
             <span>Händelse & plan</span>
             <span class="material-icons">expand_more</span>
 </button>
+</mat-button-toggle>
+
         <button mat-menu-item (click)="event= !event" *ngIf="event" routerLink="/event">Händelse</button>
         <button mat-menu-item (click)="event= !event" *ngIf="event" routerLink="/plan">Min plan framåt</button>
   
         <mat-divider></mat-divider>
+        <mat-button-toggle>
 
         <button mat-button routerLink="/admin" class="menu-button">
             <span>Admin</span>
         </button>
-  
+    </mat-button-toggle>
+
         <mat-divider></mat-divider>
+
+    </mat-button-toggle-group>
 
     </mat-sidenav>
   

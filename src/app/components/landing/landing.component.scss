@@ -73,6 +73,27 @@ font-weight: bold;
       color: #663399 !important;
   }
   
+  ::ng-deep .mat-button-toggle {
+      border: none !important;
+      background-color: #663399 !important;
+  }
+  
+  ::ng-deep .mat-button-toggle:hover {
+      border: 1px #000 solid !important;
+      background-color: #FFF !important;
+      border-radius: 5px !important;
+  }
+  
+  ::ng-deep .mat-button-toggle-checked {
+      box-shadow: 0 0 30px #000 !important;
+      border: 1px #000 solid !important;
+      border-radius: 5px !important;
+      background-color: #FFF !important;
+      color: #663399 !important;
+  }
+  
+
+
 @media only screen and (min-width: 800px) {
     mat-toolbar {
         display: none;

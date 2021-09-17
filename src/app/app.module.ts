@@ -22,6 +22,11 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { ConsentComponent } from './components/consent/consent.component';
 import { CreateDiscoverCardComponent } from './components/create-discover-card/create-discover-card.component';
 import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-need-compass.component';
+import { PlanComponent } from './components/plan/plan.component';
+import { AssessmentComponent } from './components/assessment/assessment.component';
+import { ConversationMaterialComponent } from './components/conversation-material/conversation-material.component';
+import { ContactPersonComponent } from './components/contact-person/contact-person.component';
+import { ContactGuardianComponent } from './components/contact-guardian/contact-guardian.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatInputModule } from '@angular/material/input';
@@ -36,11 +41,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
-import { PlanComponent } from './components/plan/plan.component';
-import { AssessmentComponent } from './components/assessment/assessment.component';
-import { ConversationMaterialComponent } from './components/conversation-material/conversation-material.component';
-import { ContactPersonComponent } from './components/contact-person/contact-person.component';
-import { ContactGuardianComponent } from './components/contact-guardian/contact-guardian.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { ContactGuardianComponent } from './components/contact-guardian/contact-
     MatNativeDateModule,
     MatRadioModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    MatButtonToggleModule
     
   ],exports:[
     MatInputModule,
@@ -84,7 +86,8 @@ import { ContactGuardianComponent } from './components/contact-guardian/contact-
     MatNativeDateModule,
     MatRadioModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent],
