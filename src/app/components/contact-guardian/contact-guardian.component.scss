@@ -36,3 +36,13 @@ mat-label{
     font-size: 250px;
     color: darkcyan;
 }
+
+@media screen and (max-width: 800px){
+    .person-container{
+        width: 100%;
+    }
+        button{
+        width: 30%;
+        margin-left: 35%;
+    }
+}
