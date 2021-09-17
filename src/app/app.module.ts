@@ -42,6 +42,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatStepperModule} from '@angular/material/stepper';
+import { CreateEventComponent } from './components/create-event/create-event.component';
 
 
 @NgModule({
@@ -49,7 +51,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent, 
     EventComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent, 
     DeepNeedCompassComponent, PlanComponent, AssessmentComponent, ConversationMaterialComponent, 
-    ContactPersonComponent, ContactGuardianComponent],
+    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -72,7 +74,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatRadioModule,
     MatMenuModule,
     MatTabsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatStepperModule
     
   ],exports:[
     MatInputModule,
@@ -87,7 +90,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatRadioModule,
     MatMenuModule,
     MatTabsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent],
