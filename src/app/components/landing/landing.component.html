@@ -17,14 +17,16 @@
   
   <mat-divider></mat-divider>
 
-        <button mat-button class="menu-button" [matMenuTriggerFor]="contact">Barn & Kontakt</button>
-        <mat-menu #contact="matMenu">
-         <button mat-menu-item routerLink="/contact">Barnlista</button>
-         <button mat-menu-item>Kontaktinfo Barn</button>
-         <button mat-menu-item>Kontaktpersoner</button>
-        </mat-menu>
+      <button (click)="showFillerContact = !showFillerContact" mat-button class="menu-button">
+        <span>Barn & Kontakt</span>
+        <span class="material-icons">expand_more</span>
+     </button>
+      <button mat-menu-item (click)="showFillerContact = !showFillerContact" routerLink="/contact" *ngIf="showFillerContact">Barnlista</button>
+      <button mat-menu-item (click)="showFillerContact = !showFillerContact" *ngIf="showFillerContact" routerLink="/contact-person">Kontaktinfo Barn</button>
+      <button mat-menu-item (click)="showFillerContact = !showFillerContact" *ngIf="showFillerContact" routerLink="/contact-guardian">Kontaktpersoner</button>
 
-        <mat-divider></mat-divider>
+
+  <mat-divider></mat-divider>
 
         <button mat-button routerLink="/consent" class="menu-button" >
             <span>Samtycke</span>
@@ -37,26 +39,15 @@
         </button>
 
         <mat-divider></mat-divider>
-
-<!--         <button mat-button routerLink="/communication-material" class="menu-button">
-            <span>Samtalsunderlag</span>
-        </button> -->
   
-       <!--  <mat-divider></mat-divider>
-  
-        <button mat-button routerLink="/estimate" class="menu-button">
-            <span>Skattningar</span>
-        </button>
-  
-        <mat-divider></mat-divider> -->
-
-        <button mat-button class="menu-button" [matMenuTriggerFor]="need_compass">Behovskompass</button>
-        <mat-menu #need_compass="matMenu">
-         <button mat-menu-item>Samtalsunderlag</button>
-         <button mat-menu-item routerLink="/need-compass">Behovskompassar</button>
-         <button mat-menu-item>Skattningar</button>
-        </mat-menu>
-  
+        <button (click)="need_compass= !need_compass" mat-button class="menu-button">
+            <span>Behovskompass</span>
+            <span class="material-icons">expand_more</span>
+    </button>
+          <button mat-menu-item (click)="need_compass= !need_compass" *ngIf="need_compass" routerLink="/conversation-material">Samtalsunderlag</button>
+          <button mat-menu-item (click)="need_compass= !need_compass" *ngIf="need_compass" routerLink="/need-compass">Behovskompassar</button>
+          <button mat-menu-item (click)="need_compass= !need_compass" *ngIf="need_compass" routerLink="/estimate">Skattningar</button>
+    
         <mat-divider></mat-divider>
 
         <button mat-button routerLink="/goal" class="menu-button">
@@ -65,19 +56,21 @@
   
         <mat-divider></mat-divider>
 
-        <button mat-button class="menu-button" [matMenuTriggerFor]="deep_compass">Fördjupat Behovskompass</button>
-        <mat-menu #deep_compass="matMenu">
-         <button mat-menu-item routerLink="/deep-need-compass">Fördjupat Behovskompass</button>
-         <button mat-menu-item>Bedömning</button>
-        </mat-menu>
+        <button (click)="deep_need_compass= !deep_need_compass" mat-button class="menu-button">
+            <span>Fördjupat Behovskompass</span>
+            <span class="material-icons">expand_more</span>
+</button>
+        <button mat-menu-item (click)="deep_need_compass= !deep_need_compass" *ngIf="deep_need_compass" routerLink="/deep-need-compass">Fördjupat Behovskompass</button>
+        <button mat-menu-item (click)="deep_need_compass= !deep_need_compass" *ngIf="deep_need_compass" routerLink="/assessment">Bedömning</button>
 
         <mat-divider></mat-divider>
 
-        <button mat-button class="menu-button" [matMenuTriggerFor]="event">Händelse & plan</button>
-        <mat-menu #event="matMenu">
-         <button mat-menu-item routerLink="/event-and-plan">Händelse</button>
-         <button mat-menu-item>Min plan framåt</button>
-        </mat-menu>
+        <button (click)="event= !event" mat-button class="menu-button">
+            <span>Händelse & plan</span>
+            <span class="material-icons">expand_more</span>
+</button>
+        <button mat-menu-item (click)="event= !event" *ngIf="event" routerLink="/event">Händelse</button>
+        <button mat-menu-item (click)="event= !event" *ngIf="event" routerLink="/plan">Min plan framåt</button>
   
         <mat-divider></mat-divider>
 

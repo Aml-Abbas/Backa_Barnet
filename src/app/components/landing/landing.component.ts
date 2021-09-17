@@ -11,6 +11,10 @@ import {MatSidenav} from '@angular/material/sidenav';
 export class LandingComponent implements OnInit {
   @ViewChild(MatSidenav)
  sidenav!: MatSidenav;
+ showFillerContact = false;
+ need_compass = false;
+ deep_need_compass = false;
+ event = false;
 
   constructor(private observer: BreakpointObserver) {}
 

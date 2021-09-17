@@ -4,11 +4,11 @@ mat-toolbar {
 }
 
 mat-sidenav {
-    width: 240px;
+    width: 270px;
     border-right: none;
     background: #663399;
     color: white;
-    padding: 16px;
+    padding: 8px;
     text-align: center;
 }
 
@@ -25,8 +25,8 @@ mat-sidenav-container{
     align-items: center;
     justify-content: flex-start;
     font-size: 1rem;
-    mat-icon {
-        margin-right: 8px;
+    .material-icons {
+        margin-right: 0px;
     }
 }
 
@@ -55,19 +55,27 @@ font-weight: bold;
 
 .mat-menu-item {
     color: white !important;
+    width: 100%;
+    font-size: 1rem;
+    border: none;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
   }
   
   button.mat-menu-item{
       background-color: #663399;
   }
   
-  button.mat-menu-item:hover {
+  button.mat-menu-item:hover , button.menu-button:hover{
       background-color: white;
       color: #663399 !important;
   }
-
+  
 @media only screen and (min-width: 800px) {
     mat-toolbar {
         display: none;
       }
   }
+

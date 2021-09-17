@@ -16,14 +16,14 @@ import { CommunicationMaterialComponent } from './components/communication-mater
 import { EstimateComponent } from './components/estimate/estimate.component';
 import { GoalComponent } from './components/goal/goal.component';
 import { NeedCompassComponent } from './components/need-compass/need-compass.component';
-import { EventAndPlanComponent } from './components/event-and-plan/event-and-plan.component';
+import { EventComponent } from './components/event/event.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { ConsentComponent } from './components/consent/consent.component';
 import { CreateDiscoverCardComponent } from './components/create-discover-card/create-discover-card.component';
+import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-need-compass.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -35,13 +35,20 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatMenuModule} from '@angular/material/menu';
-import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-need-compass.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { PlanComponent } from './components/plan/plan.component';
+import { AssessmentComponent } from './components/assessment/assessment.component';
+import { ConversationMaterialComponent } from './components/conversation-material/conversation-material.component';
+import { ContactPersonComponent } from './components/contact-person/contact-person.component';
+import { ContactGuardianComponent } from './components/contact-guardian/contact-guardian.component';
 
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent, 
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent, 
-    EventAndPlanComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent, DeepNeedCompassComponent],
+    EventComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent, 
+    DeepNeedCompassComponent, PlanComponent, AssessmentComponent, ConversationMaterialComponent, 
+    ContactPersonComponent, ContactGuardianComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -63,7 +70,7 @@ import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-ne
     MatNativeDateModule,
     MatRadioModule,
     MatMenuModule,
-    
+    MatTabsModule
     
   ],exports:[
     MatInputModule,
@@ -77,7 +84,7 @@ import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-ne
     MatNativeDateModule,
     MatRadioModule,
     MatMenuModule,
-    
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
