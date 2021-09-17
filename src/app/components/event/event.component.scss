@@ -7,7 +7,10 @@ h1{
   h4{
     font-size: 20px;
   }
-
+  h3{
+    font-size: 17px;
+    font-weight: bold;
+  }
   .add-event{
     background-color: lightgreen;
     color: black;
@@ -16,20 +19,9 @@ h1{
     margin-bottom: 20px;
   }
 
-  mat-stepper{
-    background-color: whitesmoke;
+  .items-container {
+    display: flex;
   }
-
-  ::ng-deep .basic-container .mat-step-header .mat-step-icon-selected {
-    background-color: #6cb73a;
-    color: #fff;
+  .item {
+    padding: 10px;
   }
-  
-  ::ng-deep .mat-step-header .mat-step-icon {
-      background-color: rgba(167, 35, 35, 0.54);
-      color: #fff;
-  }
-
-  ::ng-deep .mat-step-header .mat-step-label {
-    color: black !important;
-}
