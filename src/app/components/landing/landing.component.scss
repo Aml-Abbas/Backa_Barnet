@@ -8,8 +8,9 @@ mat-sidenav {
     border-right: none;
     background: #663399;
     color: white;
-    padding: 8px;
-    text-align: center;
+    h2{
+        text-align: center;
+    }
 }
 
 mat-sidenav-container{
@@ -18,6 +19,8 @@ mat-sidenav-container{
     height: 100%;
     color: black;
 }
+
+
 
 .name {
     margin-top: 8px;
@@ -43,15 +46,11 @@ font-weight: bold;
 }
 
 .mat-menu-item {
-    color: white !important;
-    width: 100%;
     font-size: 1rem;
     border: none;
-    padding: 10px;
+    padding: 5px;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background-color: #663399;
+    margin-left: 15px;
   }
   
   
@@ -81,9 +80,12 @@ font-weight: bold;
   }
   ::ng-deep .mat-button-toggle-group {
     border: none !important;
+
 }
 
-
+::ng-deep .mat-button-toggle-label-content{
+    text-align: left;
+}
 
 @media only screen and (min-width: 800px) {
     mat-toolbar {
