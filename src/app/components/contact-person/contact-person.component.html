@@ -1,38 +1,38 @@
 <div class="container">
     <h1>Kontaktuppgifter</h1>
-<h4>Information om Kalle</h4>
+    <h4>Information om Kalle</h4>
 
 
 <mat-form-field appearance="fill">
     <mat-label>Namn</mat-label>
-    <input matInput>
+    <input matInput name="namn" [(ngModel)]="namn">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Personsnummer</mat-label>
-    <input matInput>
+    <input matInput name="personNumber" [(ngModel)]="personNumber">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Adress</mat-label>
-    <input matInput>
+    <input matInput name="address" [(ngModel)]="address">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Nuvarande adress om annan finns</mat-label>
-    <input matInput>
+    <input matInput name="currentAddress" [(ngModel)]="currentAddress">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Postnummer</mat-label>
-    <input matInput>
+    <input matInput name="postNumber" [(ngModel)]="postNumber">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Postnummer</mat-label>
-    <input matInput>
+    <input matInput name="currentPostNumber" [(ngModel)]="currentPostNumber">
   </mat-form-field>
 
-  <button mat-raised-button>Spara</button>
+  <button mat-raised-button (click)="save()">Spara</button>
 
 </div>
