@@ -30,7 +30,10 @@ export class LandingComponent implements OnInit {
     });
   }
 
-public showFillerContactIcon = 'chevron_right'; 
+showFillerContactIcon = 'chevron_right'; 
+showFillerEventIcon = 'chevron_right'; 
+showFillerDeepCompassIcon = 'chevron_right'; 
+showFillerCompassIcon = 'chevron_right'; 
 
 public changeShowFillerContact(){
   this.showFillerContact = !this.showFillerContact;
@@ -42,7 +45,36 @@ public changeShowFillerContact(){
   }
 }
 
+public changeShowFillerEvent(){
+  this.event = !this.event;
+
+  if(this.showFillerEventIcon == 'chevron_right'){
+    this.showFillerEventIcon = 'expand_more' ;
+  }else{
+    this.showFillerEventIcon = 'chevron_right' ;
+  }
+}
+
+public changeShowFillerDeepCompass(){
+  this.deep_need_compass = !this.deep_need_compass;
+
+  if(this.showFillerDeepCompassIcon == 'chevron_right'){
+    this.showFillerDeepCompassIcon = 'expand_more' ;
+  }else{
+    this.showFillerDeepCompassIcon = 'chevron_right' ;
+  }
+}
+
+public changeShowFillerNeedCompass(){
+  this.need_compass = !this.need_compass;
+
+  if(this.showFillerCompassIcon == 'chevron_right'){
+    this.showFillerCompassIcon = 'expand_more' ;
+  }else{
+    this.showFillerCompassIcon = 'chevron_right' ;
+  }
+}
+
   ngOnInit(): void {
   }
-
 }
