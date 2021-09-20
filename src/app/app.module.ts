@@ -45,6 +45,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatStepperModule} from '@angular/material/stepper';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { CreatePlanComponent } from './components/create-plan/create-plan.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -76,7 +79,9 @@ import { CreatePlanComponent } from './components/create-plan/create-plan.compon
     MatMenuModule,
     MatTabsModule,
     MatButtonToggleModule,
-    MatStepperModule
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule
     
   ],exports:[
     MatInputModule,
@@ -92,7 +97,9 @@ import { CreatePlanComponent } from './components/create-plan/create-plan.compon
     MatMenuModule,
     MatTabsModule,
     MatButtonToggleModule,
-    MatStepperModule
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

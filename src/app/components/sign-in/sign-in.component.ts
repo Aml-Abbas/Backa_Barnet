@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,17 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
   hide = true;
-  email: string = '';
-  enteredPassword: string = '';
+  email = '';
+  enteredPassword = '';
+  router: Router;
 
 
-  constructor() { }
+  constructor(router: Router, private aRoute: ActivatedRoute) { 
+    this.router = router;
+
+  }
 
   ngOnInit(): void {
   }
 
   public login(): void {
+    console.log("email: " +  this.email);
+    console.log("Lösenord: " +  this.enteredPassword);
 
+    if(true){
+      this.router.navigate(
+        ['../contact'],
+        {replaceUrl: true, relativeTo: this.aRoute});
+    }
   }
 
 }

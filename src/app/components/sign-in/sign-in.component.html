@@ -12,19 +12,19 @@
             <mat-form-field appearance="fill">
 
               <mat-label>Användarnamn</mat-label>
-              <input matInput >
+              <input matInput name="email" [(ngModel)]="email">
 
             </mat-form-field>
           
             <mat-form-field appearance="fill">
                 <mat-label>Lösenord</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'">
+                <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]='enteredPassword' name="enteredPassword">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                   <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
               </mat-form-field>
 
-            <button mat-raised-button class="sig-in-button" (click)="login();" routerLink="/contact">Logga in</button>
+            <button mat-raised-button class="sign-in-button" (click)="login()">Logga in</button>
 
           </form>
 
