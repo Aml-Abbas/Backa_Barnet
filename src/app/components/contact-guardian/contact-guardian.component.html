@@ -9,17 +9,17 @@
 
 <mat-form-field appearance="fill">
     <mat-label>Namn</mat-label>
-    <input matInput>
+    <input matInput name="contactName" [(ngModel)]="contactName">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Kontaktuppgifter</mat-label>
-    <input matInput>
+    <input matInput name="contactTask" [(ngModel)]="contactTask">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Arbetsplats</mat-label>
-    <input matInput>
+    <input matInput name="contactWorkPlace" [(ngModel)]="contactWorkPlace">
   </mat-form-field>
 
 </div>
@@ -31,21 +31,21 @@
 
 <mat-form-field appearance="fill">
     <mat-label>Namn</mat-label>
-    <input matInput>
+    <input matInput name="supporterName" [(ngModel)]="supporterName">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Kontaktuppgifter</mat-label>
-    <input matInput>
+    <input matInput name="supporterTask" [(ngModel)]="supporterTask">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Arbetsplats</mat-label>
-    <input matInput>
+    <input matInput name="supporterWorkPlace" [(ngModel)]="supporterWorkPlace">
   </mat-form-field>
 </div>
 
 
-  <button mat-raised-button>Spara</button>
+  <button mat-raised-button (click)="save()">Spara</button>
 
 </div>
