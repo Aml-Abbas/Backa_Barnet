@@ -2,13 +2,9 @@ h1{
         font-size: 30px;
         font-weight: bold;
     }
- 
-    mat-card{
-        background-color: whitesmoke;
-        color: black;
-    }
 
-    table {
+
+     table {
         border-collapse: collapse;
         width: 100%;
       }
@@ -27,13 +23,58 @@ mat-label{
 ::ng-deep .mat-checkbox.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
     border-radius: 45%;
     border: 4px black;
-    padding: 10px;
+    padding: 8px;
   }
 
   .matInput{
     border:10px black;
 }
 
-@media screen and (max-width: 800px){
+.mat-form-field-disabled{
+  border: lightgray !important;
+}
+
+@media only screen and (max-width: 1000px) {
+
+table, thead, tbody, th, td, tr {
+  display: block;
+}
+
+thead tr {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+tr {
+  margin: 0 0 1rem 0;
+}
   
+tr:nth-child(odd) {
+  background: #ccc;
+}
+
+td {
+  border: none;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  padding-left: 50%;
+  margin-bottom: 20px;
+}
+
+td:before {
+  position: absolute;
+  top: 0;
+  left: 6px;
+  width: 50%;
+  padding-right: 10px;
+  white-space: nowrap;
+}
+
+td:nth-of-type(1):before { content: ""; }
+td:nth-of-type(2):before { content: "Barn"; }
+td:nth-of-type(3):before { content: "Vårdnadshavare 1"; }
+td:nth-of-type(4):before { content: "Vårdnadshavare "; }
+td:nth-of-type(5):before { content: "Inhämtat av"; }
+td:nth-of-type(6):before { content: "Var ligger skriftligt samtycke"; }
 }
