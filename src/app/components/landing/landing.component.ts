@@ -30,6 +30,18 @@ export class LandingComponent implements OnInit {
     });
   }
 
+public showFillerContactIcon = 'chevron_right'; 
+
+public changeShowFillerContact(){
+  this.showFillerContact = !this.showFillerContact;
+
+  if(this.showFillerContactIcon == 'chevron_right'){
+    this.showFillerContactIcon = 'expand_more' ;
+  }else{
+    this.showFillerContactIcon = 'chevron_right' ;
+  }
+}
+
   ngOnInit(): void {
   }
 

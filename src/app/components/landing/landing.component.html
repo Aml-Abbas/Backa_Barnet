@@ -19,14 +19,14 @@
 
   <mat-button-toggle-group vertical= "true">
 
-    <mat-button-toggle  (click)="showFillerContact = !showFillerContact"> 
+    <mat-button-toggle (click)="changeShowFillerContact()"> 
         <span>Barn & Kontakt</span>
-        <span class="material-icons">expand_more</span>
+        <span class="material-icons" >{{showFillerContactIcon}}</span>
     </mat-button-toggle>
 
-      <button mat-menu-item (click)="showFillerContact = !showFillerContact" routerLink="/contact" *ngIf="showFillerContact">Barnlista</button>
-      <button mat-menu-item (click)="showFillerContact = !showFillerContact" *ngIf="showFillerContact" routerLink="/contact-person">Kontaktinfo Barn</button>
-      <button mat-menu-item (click)="showFillerContact = !showFillerContact" *ngIf="showFillerContact" routerLink="/contact-guardian">Kontaktpersoner</button>
+      <button mat-menu-item  (click)="changeShowFillerContact()" routerLink="/contact" *ngIf="showFillerContact">Barnlista</button>
+      <button mat-menu-item  (click)="changeShowFillerContact()" *ngIf="showFillerContact" routerLink="/contact-person">Kontaktinfo Barn</button>
+      <button mat-menu-item (click)="changeShowFillerContact()" *ngIf="showFillerContact" routerLink="/contact-guardian">Kontaktpersoner</button>
       
 
   <mat-divider></mat-divider>
