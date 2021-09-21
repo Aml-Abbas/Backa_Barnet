@@ -10,9 +10,10 @@ import { SignInServiceService } from 'src/app/services/sign-in-service/sign-in-s
 })
 export class SignInComponent implements OnInit {
   hide = true;
-  email = '';
-  enteredPassword = '';
+  email = 'adnan.karahmetovic@cgi.com';
+  enteredPassword = '*r3hHXj&YC5M@R@J';
   router: Router;
+  signinError = '';
 
 
   constructor(router: Router, 
@@ -29,17 +30,19 @@ export class SignInComponent implements OnInit {
     console.log("email: " +  this.email);
     console.log("Lösenord: " +  this.enteredPassword);
 
-    this.signInService.signIn().subscribe((data)=>{
+    this.signInService.signIn(this.email, this.enteredPassword).subscribe(
+      (data)=>{
       console.warn("get api data", data);
-      // console.warn("personNr", data['personNr']);
-
-    })
-
-    if(true){
-      this.router.navigate(
-        ['../contact'],
-        {replaceUrl: true, relativeTo: this.aRoute});
+      if(true){
+        this.router.navigate(
+          ['../contact'],
+          {replaceUrl: true, relativeTo: this.aRoute});
+      }
+    },
+    (error) => {
+      this.signinError= 'Fel email eller lösenord';
     }
+    )
   }
 
 }
