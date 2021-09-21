@@ -48,13 +48,6 @@ export class SignInComponent implements OnInit {
       }
     );
 
-    /*     if(this.in_signedin){
-          this.router.navigate(
-          ['../contact'],
-          {replaceUrl: true, relativeTo: this.aRoute});
-    }else{
-      this.signinError= 'Fel email eller lösenord';
-    } */
   }
 
 }
