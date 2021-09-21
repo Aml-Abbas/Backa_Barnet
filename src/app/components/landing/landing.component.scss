@@ -54,6 +54,11 @@ font-weight: bold;
       color: #663399 !important;
   }
   
+  ::ng-deep .mat-menu-item-checked{
+    background-color: white !important;
+    color: #663399 !important;
+}
+
   ::ng-deep .mat-button-toggle-label-content{
     font-size: 16px;
   }
