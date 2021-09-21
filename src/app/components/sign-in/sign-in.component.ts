@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import { SignInServiceService } from 'src/app/services/sign-in-service/sign-in-service.service';
+import { SignInService } from 'src/app/services/sign-in/sign-in.service';
+import { Person } from 'src/app/models/person';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -14,11 +16,14 @@ export class SignInComponent implements OnInit {
   enteredPassword = '*r3hHXj&YC5M@R@J';
   router: Router;
   signinError = '';
-
+  in_signedin:boolean= false;
+  persons: Person[]= []
+  private persons_list= new BehaviorSubject<Person[]>(this.persons);
+  current_persons_list= this.persons_list.asObservable();
 
   constructor(router: Router, 
     private aRoute: ActivatedRoute,
-    private signInService: SignInServiceService) { 
+    private signInService: SignInService) { 
     this.router = router;
 
   }
@@ -27,22 +32,29 @@ export class SignInComponent implements OnInit {
   }
 
   public signIn(): void {
-    console.log("email: " +  this.email);
-    console.log("Lösenord: " +  this.enteredPassword);
 
     this.signInService.signIn(this.email, this.enteredPassword).subscribe(
       (data)=>{
-      console.warn("get api data", data);
-      if(true){
-        this.router.navigate(
+        console.warn(data);
+        this.persons= data;
+        console.warn(this.persons_list);
+      
+          this.router.navigate(
           ['../contact'],
           {replaceUrl: true, relativeTo: this.aRoute});
+
+      }, (error)=>{
+        this.signinError= 'Fel email eller lösenord';
       }
-    },
-    (error) => {
+    );
+
+    /*     if(this.in_signedin){
+          this.router.navigate(
+          ['../contact'],
+          {replaceUrl: true, relativeTo: this.aRoute});
+    }else{
       this.signinError= 'Fel email eller lösenord';
-    }
-    )
+    } */
   }
 
 }

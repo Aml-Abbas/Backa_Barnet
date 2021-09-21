@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
+import { SignInService } from 'src/app/services/sign-in/sign-in.service';
+import { Person } from 'src/app/models/person';
 
 export interface PeriodicElement {
   name: string;
@@ -36,6 +38,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class ContactComponent implements OnInit {
   displayedColumns: string[] = ['person_number', 'name', 'changed', 'type'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
+  persons_list: Person[]= []
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -43,9 +46,10 @@ export class ContactComponent implements OnInit {
 
   }
 
-  constructor() { }
+  constructor(private signinService: SignInService) { }
 
   ngOnInit(): void {
+    //this.signinService.current_persons_list.subscribe(persons_list=> this.persons_list= persons_list);
   }
 
 

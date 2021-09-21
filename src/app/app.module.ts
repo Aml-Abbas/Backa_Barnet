@@ -48,7 +48,7 @@ import { CreatePlanComponent } from './components/create-plan/create-plan.compon
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { SignInServiceService } from './services/sign-in-service/sign-in-service.service';
+import { SignInService } from './services/sign-in/sign-in.service';
 
 
 
@@ -105,7 +105,7 @@ import { SignInServiceService } from './services/sign-in-service/sign-in-service
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [SignInServiceService],
+  providers: [SignInService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
