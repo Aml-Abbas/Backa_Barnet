@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { SignInService } from 'src/app/services/sign-in/sign-in.service';
-import { Person } from 'src/app/models/person';
+import { Person } from 'src/app/models/Person';
 import { BehaviorSubject } from 'rxjs';
 
 

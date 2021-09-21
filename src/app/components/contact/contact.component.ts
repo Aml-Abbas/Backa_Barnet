@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { SignInService } from 'src/app/services/sign-in/sign-in.service';
-import { Person } from 'src/app/models/person';
+import { Person } from 'src/app/models/Person';
 
 export interface PeriodicElement {
   name: string;
