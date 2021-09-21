@@ -47,6 +47,7 @@ import { CreateEventComponent } from './components/create-event/create-event.com
 import { CreatePlanComponent } from './components/create-plan/create-plan.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -81,7 +82,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonToggleModule,
     MatStepperModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
     
   ],exports:[
     MatInputModule,
@@ -99,7 +101,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonToggleModule,
     MatStepperModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import { SignInServiceService } from 'src/app/services/sign-in-service/sign-in-service.service';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -13,7 +15,9 @@ export class SignInComponent implements OnInit {
   router: Router;
 
 
-  constructor(router: Router, private aRoute: ActivatedRoute) { 
+  constructor(router: Router, 
+    private aRoute: ActivatedRoute,
+    private signInService: SignInServiceService) { 
     this.router = router;
 
   }
@@ -21,9 +25,15 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public login(): void {
+  public signIn(): void {
     console.log("email: " +  this.email);
     console.log("Lösenord: " +  this.enteredPassword);
+
+    this.signInService.signIn().subscribe((data)=>{
+      console.warn("get api data", data);
+      // console.warn("personNr", data['personNr']);
+
+    })
 
     if(true){
       this.router.navigate(
