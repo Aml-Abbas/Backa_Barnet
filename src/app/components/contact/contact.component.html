@@ -16,7 +16,7 @@
 
       <ng-container matColumnDef="personNr">
         <th mat-header-cell *matHeaderCellDef> Personnummer </th>
-        <td mat-cell *matCellDef="let element"> {{element.personNr}} </td>
+        <td mat-cell *matCellDef="let element"><button class="choose-person" (click)="setCurrentPerson(element.personNr)">{{element.personNr}}</button></td>
       </ng-container>
 
       <ng-container matColumnDef="firstName">

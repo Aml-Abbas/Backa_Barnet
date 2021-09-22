@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ViewChild } from '@angular/core'
 import {MatSidenav} from '@angular/material/sidenav';
+import { PersonsService } from 'src/app/services/persons/persons.service';
 
 @Component({
   selector: 'app-landing',
@@ -15,8 +16,12 @@ export class LandingComponent implements OnInit {
  need_compass = false;
  deep_need_compass = false;
  event = false;
+ current_person= JSON.parse(localStorage.currentPerson || '[]');
 
-  constructor(private observer: BreakpointObserver) {}
+  constructor(private observer: BreakpointObserver,
+    private personsService: PersonsService) {
+      //this.current_person=[];
+    }
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
@@ -76,5 +81,7 @@ public changeShowFillerNeedCompass(){
 }
 
   ngOnInit(): void {
+    this.personsService.current_person$.subscribe(current_person=> this.current_person=current_person);
+
   }
 }

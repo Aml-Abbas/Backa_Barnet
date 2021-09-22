@@ -45,7 +45,13 @@ td, th, tr{
     overflow: auto;
   }
 
-
+  .choose-person {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    margin: 0px;
+    text-align: left;
+  }
 
   @media screen and (max-width: 800px){
     button{

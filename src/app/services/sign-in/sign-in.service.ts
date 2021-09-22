@@ -29,6 +29,8 @@ export class SignInService {
   signOut() {
     localStorage.clear();
     this.signedIn = false;
+    localStorage.removeItem("currentPerson");
+    localStorage.removeItem("signedIn");
 
     this.router.navigate(
       ['../sign-in'],
