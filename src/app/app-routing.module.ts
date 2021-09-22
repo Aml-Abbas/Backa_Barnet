@@ -20,84 +20,85 @@ import { LandingComponent } from './components/landing/landing.component';
 import { NeedCompassComponent } from './components/need-compass/need-compass.component';
 import { PlanComponent } from './components/plan/plan.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: LandingComponent,
+    component: LandingComponent, canActivate: [AuthGuard],
     children:[
       {
         path: 'admin',
-        component: AdminComponent
+        component: AdminComponent, canActivate: [AuthGuard]
       },
       {
         path: 'communication-material',
-        component: CommunicationMaterialComponent
+        component: CommunicationMaterialComponent, canActivate: [AuthGuard]
       },  
       {
         path: 'contact',
-        component: ContactComponent
+        component: ContactComponent, canActivate: [AuthGuard]
       },
       {
         path: 'estimate',
-        component: EstimateComponent
+        component: EstimateComponent, canActivate: [AuthGuard]
       },
       {
         path: 'event',
-        component: EventComponent
+        component: EventComponent, canActivate: [AuthGuard]
       },
       {
         path: 'goal',
-        component: GoalComponent
+        component: GoalComponent, canActivate: [AuthGuard]
       },
       {
         path: 'discover-card',
-        component: DiscoverCardComponent
+        component: DiscoverCardComponent, canActivate: [AuthGuard]
       },
       {
         path: 'need-compass',
-        component: NeedCompassComponent
+        component: NeedCompassComponent, canActivate: [AuthGuard]
       },
       {
         path: 'consent',
-        component: ConsentComponent
+        component: ConsentComponent, canActivate: [AuthGuard]
       },
       {
         path: 'create-discover-card',
-        component: CreateDiscoverCardComponent
+        component: CreateDiscoverCardComponent, canActivate: [AuthGuard]
       },
       {
         path: 'deep-need-compass',
-        component: DeepNeedCompassComponent
+        component: DeepNeedCompassComponent, canActivate: [AuthGuard]
       },
       {
         path: 'plan',
-        component: PlanComponent
+        component: PlanComponent, canActivate: [AuthGuard]
       },
       {
         path: 'assessment',
-        component: AssessmentComponent
+        component: AssessmentComponent, canActivate: [AuthGuard]
       },
       {
         path: 'conversation-material',
-        component: ConversationMaterialComponent
+        component: ConversationMaterialComponent, canActivate: [AuthGuard]
       },
       {
         path: 'contact-person',
-        component: ContactPersonComponent
+        component: ContactPersonComponent, canActivate: [AuthGuard]
       },
       {
         path: 'contact-guardian',
-        component: ContactGuardianComponent
+        component: ContactGuardianComponent, canActivate: [AuthGuard]
       },
       {
         path: 'create-event',
-        component: CreateEventComponent
+        component: CreateEventComponent, canActivate: [AuthGuard]
       },
       {
         path: 'create-plan',
-        component: CreatePlanComponent
+        component: CreatePlanComponent, canActivate: [AuthGuard]
       }
     ]
   },

@@ -41,8 +41,6 @@ export class SignInComponent implements OnInit {
 
         data.map( function(v, i) {
           
-          // int_ref.push(new Person(v.name, ))
-
           let int_person = new Person(
                                       v.personID,
                                       v.personNr,
@@ -59,7 +57,6 @@ export class SignInComponent implements OnInit {
                                       )    
 
           int_ref.push(int_person);
-
         })
 
           this.personsService.setPersonList(this.persons_list);
@@ -69,6 +66,7 @@ export class SignInComponent implements OnInit {
 
       }, (error)=>{
         this.signinError= 'Fel email eller lösenord';
+        this.signInService.signOut();
       }
     );
 
