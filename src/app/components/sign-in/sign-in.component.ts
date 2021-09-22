@@ -46,8 +46,8 @@ export class SignInComponent implements OnInit {
           let int_person = new Person(
                                       v.personID,
                                       v.personNr,
-                                      v.lastName,
                                       v.firstName,
+                                      v.lastName,
                                       v.address,
                                       v.city,
                                       v.personRoleID,
