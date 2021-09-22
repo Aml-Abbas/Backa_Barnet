@@ -13,7 +13,6 @@ export class ContactComponent implements OnInit {
   displayedColumns: string[] = ['personNr', 'firstName', 'changeDate', 'changeBy'];
   persons_list: Person[]= [];
 
-
   dataSource = new MatTableDataSource(this.persons_list);
 
 
@@ -26,9 +25,7 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.personsService.current_persons_list$.subscribe(persons_list=> this.persons_list= persons_list);
-    console.log(this.persons_list);
     this.dataSource = new MatTableDataSource(this.persons_list);
-
   }
 
 
