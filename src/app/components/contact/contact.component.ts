@@ -12,13 +12,14 @@ import { PersonsService } from 'src/app/services/persons/persons.service';
 export class ContactComponent implements OnInit {
   displayedColumns: string[] = ['personNr', 'firstName', 'changeDate', 'changeBy'];
   persons_list: Person[]= [];
+
+
   dataSource = new MatTableDataSource(this.persons_list);
 
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
   }
 
   constructor(private personsService: PersonsService) { }
@@ -26,6 +27,8 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
     this.personsService.current_persons_list$.subscribe(persons_list=> this.persons_list= persons_list);
     console.log(this.persons_list);
+    this.dataSource = new MatTableDataSource(this.persons_list);
+
   }
 
 

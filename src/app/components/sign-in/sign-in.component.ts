@@ -37,18 +37,35 @@ export class SignInComponent implements OnInit {
       (data)=>{
 
 
-        console.log(data); //allt
+        let int_ref = this.persons_list
 
-        console.log(data[0]); //person
+        data.map( function(v, i) {
+          
+          // int_ref.push(new Person(v.name, ))
 
-        console.log(data[0].address); //Gata 1
-/*         this.persons_list= data[0];
-        data[0].forEach(person: Person => {
-          this.persons_list.push(person);
-        }); */
+          let int_person = new Person(
+                                      v.personID,
+                                      v.personNr,
+                                      v.lastName,
+                                      v.firstName,
+                                      v.address,
+                                      v.city,
+                                      v.personRoleID,
+                                      v.personTypeID,
+                                      v.createBy,
+                                      v.createDate,
+                                      v.changeBy,
+                                      v.changeDate
+                                      )    
 
-        this.persons_list.push(data[0]);
-        console.log(this.persons_list);
+          int_ref.push(int_person)
+
+        })
+
+
+        let sec_person = new Person("Hans", "Hans", "Hans", "Hans", "Hans", "Hans", "Hans", "Hans", "Hans", "Hans", "Hans", "Hans")
+
+        this.persons_list.push(sec_person)
 
           this.personsService.setPersonList(this.persons_list);
           this.router.navigate(
