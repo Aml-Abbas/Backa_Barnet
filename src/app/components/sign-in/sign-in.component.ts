@@ -62,9 +62,6 @@ export class SignInComponent implements OnInit {
 
         })
 
-
-        let sec_person = new Person("Hans", "Hans", "Hans", "Hans", "Hans", "Hans", "Hans", "Hans", "Hans", "Hans", "Hans", "Hans")
-
         this.persons_list.push(sec_person)
 
           this.personsService.setPersonList(this.persons_list);
