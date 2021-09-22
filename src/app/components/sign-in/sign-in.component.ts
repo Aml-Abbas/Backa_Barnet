@@ -64,6 +64,7 @@ export class SignInComponent implements OnInit {
           ['../contact'],
           {replaceUrl: true, relativeTo: this.aRoute});
 
+          localStorage.setItem("personsList", JSON.stringify(this.persons_list));
       }, (error)=>{
         this.signinError= 'Fel email eller lösenord';
         this.signInService.signOut();

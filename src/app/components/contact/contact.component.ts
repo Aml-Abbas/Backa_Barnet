@@ -11,7 +11,7 @@ import { PersonsService } from 'src/app/services/persons/persons.service';
 })
 export class ContactComponent implements OnInit {
   displayedColumns: string[] = ['personNr', 'firstName', 'changeDate', 'changeBy'];
-  persons_list: Person[]= [];
+  persons_list: Person[]= JSON.parse(localStorage.personsList || '[]');
 
   dataSource = new MatTableDataSource(this.persons_list);
 
@@ -26,7 +26,8 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
     this.personsService.current_persons_list$.subscribe(persons_list=> this.persons_list= persons_list);
     this.dataSource = new MatTableDataSource(this.persons_list);
-  }
+
+    }
 
 
 }

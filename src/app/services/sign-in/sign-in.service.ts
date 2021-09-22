@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Injectable({
@@ -8,8 +9,15 @@ import { Observable } from 'rxjs';
 })
 export class SignInService {
   signedIn = false;
+  router: Router;
 
-  constructor(private http:HttpClient) { }
+  constructor(router: Router, 
+    private aRoute: ActivatedRoute,
+    private http:HttpClient) {
+
+    this.router = router;
+
+     }
 
   signIn(email: string, password: string): Observable<any>{
 
@@ -19,8 +27,12 @@ export class SignInService {
   }
 
   signOut() {
-    localStorage.setItem('signedIn', 'false');
+    localStorage.clear();
     this.signedIn = false;
+
+    this.router.navigate(
+      ['../sign-in'],
+      {replaceUrl: true, relativeTo: this.aRoute});
   }
 
   isSignedIn() {
