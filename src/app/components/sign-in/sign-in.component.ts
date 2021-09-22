@@ -37,7 +37,7 @@ export class SignInComponent implements OnInit {
       (data)=>{
 
 
-        let int_ref = this.persons_list
+        let int_ref = this.persons_list;
 
         data.map( function(v, i) {
           
@@ -58,11 +58,9 @@ export class SignInComponent implements OnInit {
                                       v.changeDate
                                       )    
 
-          int_ref.push(int_person)
+          int_ref.push(int_person);
 
         })
-
-        this.persons_list.push(sec_person)
 
           this.personsService.setPersonList(this.persons_list);
           this.router.navigate(
