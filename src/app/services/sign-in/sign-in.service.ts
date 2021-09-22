@@ -14,10 +14,12 @@ export class SignInService {
   signIn(email: string, password: string): Observable<any>{
 
     this.signedIn = true;
+    localStorage.setItem('signedIn', 'true');
      return this.http.get('https://func-ykbb.azurewebsites.net/api/person/'+email+'/'+password+'?code=SkXpI51pgjWl6UVNjxKjKNUr3o2gmPdlOZ4EFMFwn0LR0KlyDlYu3w==');
   }
 
   signOut() {
+    localStorage.setItem('signedIn', 'false');
     this.signedIn = false;
   }
 

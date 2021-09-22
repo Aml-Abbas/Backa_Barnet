@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { SignInService } from '../services/sign-in/sign-in.service';
 
 @Injectable({
@@ -15,7 +14,7 @@ export class AuthGuard implements CanActivate {
 
 canActivate(): any {
 
-if (this.signinService.isSignedIn()) {
+if (this.signinService.isSignedIn() || localStorage.getItem('signedIn')=='true') {
     return true;
 } else {
   this.router.navigate(['/sign-in']);
