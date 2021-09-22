@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import { SignInService } from 'src/app/services/sign-in/sign-in.service';
 import { Person } from 'src/app/models/Person';
-import { BehaviorSubject } from 'rxjs';
+import { PersonsService } from 'src/app/services/persons/persons.service';
+import { SignInService } from 'src/app/services/sign-in/sign-in.service';
 
 
 @Component({
@@ -17,13 +17,13 @@ export class SignInComponent implements OnInit {
   router: Router;
   signinError = '';
   in_signedin:boolean= false;
-  persons: Person[]= []
-  private persons_list= new BehaviorSubject<Person[]>(this.persons);
-  current_persons_list= this.persons_list.asObservable();
+  persons_list: Person[]= [];
+
 
   constructor(router: Router, 
     private aRoute: ActivatedRoute,
-    private signInService: SignInService) { 
+    private signInService: SignInService,
+    private personsService: PersonsService) { 
     this.router = router;
 
   }
@@ -35,10 +35,22 @@ export class SignInComponent implements OnInit {
 
     this.signInService.signIn(this.email, this.enteredPassword).subscribe(
       (data)=>{
-        console.warn(data);
-        this.persons= data;
-        console.warn(this.persons_list);
-      
+
+
+        console.log(data); //allt
+
+        console.log(data[0]); //person
+
+        console.log(data[0].address); //Gata 1
+/*         this.persons_list= data[0];
+        data[0].forEach(person: Person => {
+          this.persons_list.push(person);
+        }); */
+
+        this.persons_list.push(data[0]);
+        console.log(this.persons_list);
+
+          this.personsService.setPersonList(this.persons_list);
           this.router.navigate(
           ['../contact'],
           {replaceUrl: true, relativeTo: this.aRoute});

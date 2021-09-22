@@ -1,33 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-import { SignInService } from 'src/app/services/sign-in/sign-in.service';
 import { Person } from 'src/app/models/Person';
-
-export interface PeriodicElement {
-  name: string;
-  changed: string;
-  type: string;
-  person_number: number;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {name: 'Aml', changed: 'Hydrogen', type: 'Hydrogen', person_number: 123},
-  {name: 'Kalle', changed: 'Helium', type: 'Hydrogen', person_number: 123},
-  {name: 'Peter', changed: 'Lithium', type: 'Hydrogen', person_number: 123},
-  {name: 'Lina', changed: 'Beryllium', type: 'Hydrogen', person_number: 123},
-  {name: 'Maia', changed: 'Boron', type: 'Hydrogen', person_number: 123},
-  {name: 'Nada', changed: 'Carbon', type: 'Hydrogen', person_number: 123},
-  {name: 'Gustav', changed: 'Nitrogen', type: 'Hydrogen', person_number: 123},
-  {name: 'Liam', changed: 'Oxygen', type: 'Hydrogen', person_number: 123},
-  {name: 'Linin', changed: 'Fluorine', type: 'Hydrogen', person_number: 123},
-  {name: 'Sandra', changed: 'Beryllium', type: 'Hydrogen', person_number: 123},
-  {name: 'Anna', changed: 'Boron', type: 'Hydrogen', person_number: 123},
-  {name: 'Elin', changed: 'Carbon', type: 'Hydrogen', person_number: 123},
-  {name: 'Karl', changed: 'Nitrogen', type: 'Hydrogen', person_number: 123},
-  {name: 'Hanna', changed: 'Oxygen', type: 'Hydrogen', person_number: 123},
-  {name: 'Liam', changed: 'Fluorine', type: 'Hydrogen', person_number: 123},
-  {name: 'Angelika', changed: 'Neon', type: 'Hydrogen', person_number: 123},
-];
+import { PersonsService } from 'src/app/services/persons/persons.service';
 
 
 @Component({
@@ -36,9 +10,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-  displayedColumns: string[] = ['person_number', 'name', 'changed', 'type'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-  persons_list: Person[]= []
+  displayedColumns: string[] = ['personNr', 'firstName', 'changeDate', 'changeBy'];
+  persons_list: Person[]= [];
+  dataSource = new MatTableDataSource(this.persons_list);
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -46,10 +21,11 @@ export class ContactComponent implements OnInit {
 
   }
 
-  constructor(private signinService: SignInService) { }
+  constructor(private personsService: PersonsService) { }
 
   ngOnInit(): void {
-    //this.signinService.current_persons_list.subscribe(persons_list=> this.persons_list= persons_list);
+    this.personsService.current_persons_list$.subscribe(persons_list=> this.persons_list= persons_list);
+    console.log(this.persons_list);
   }
 
 

@@ -14,24 +14,24 @@
     <div class="table-container">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-      <ng-container matColumnDef="person_number">
+      <ng-container matColumnDef="personNr">
         <th mat-header-cell *matHeaderCellDef> Personnummer </th>
-        <td mat-cell *matCellDef="let element"> {{element.person_number}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.personNr}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="name">
+      <ng-container matColumnDef="firstName">
         <th mat-header-cell *matHeaderCellDef> Namn </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
       </ng-container>
     
-      <ng-container matColumnDef="changed">
+      <ng-container matColumnDef="changeDate">
         <th mat-header-cell *matHeaderCellDef> Senaste ändrad </th>
-        <td mat-cell *matCellDef="let element"> {{element.changed}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.changeDate}} </td>
       </ng-container>
     
-      <ng-container matColumnDef="type">
-        <th mat-header-cell *matHeaderCellDef> Typ </th>
-        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      <ng-container matColumnDef="changeBy">
+        <th mat-header-cell *matHeaderCellDef> Av </th>
+        <td mat-cell *matCellDef="let element"> {{element.changeBy}} </td>
       </ng-container>
   
     
