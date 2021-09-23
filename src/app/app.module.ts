@@ -49,6 +49,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SignInService } from './services/sign-in/sign-in.service';
+//import { EffectsModule } from '@ngrx/effects';
 
 
 
@@ -84,7 +85,8 @@ import { SignInService } from './services/sign-in/sign-in.service';
     MatStepperModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    //EffectsModule.forRoot([])
     
   ],exports:[
     MatInputModule,
