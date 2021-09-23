@@ -5,9 +5,10 @@ import {map, switchMap, catchError, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {LoginState} from '../reducers/login.reducer';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
 import {SignInService} from '../../services/sign-in/sign-in.service';
 import * as fromRoot from '../../../app/state';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -17,16 +18,15 @@ export class LoginEffect {
               private snackBar: MatSnackBar) {
   }
 
-
-  login$ = createEffect(() =>
-    this.actions$.ofType(loginAction.LOGIN).pipe(
-      switchMap((action: loginAction.Login) => {
+  @Effect()
+  login$ : Observable<Actions> = this.actions$.pipe(
+    ofType(loginAction.LOGIN),
+      map((action: loginAction.Login) => {
         return SignInService.signIn(action.payload).pipe(
-          map((response) => new loginActions.LoginSuccess(response)),
+          map((response) => new loginAction.LoginSuccess(response)),
           catchError((error) => of(new loginAction.LoginFail(error)))
       )}
-    )
-  ));
+    ));
 
 
   loginSuccess$ = createEffect(() =>
