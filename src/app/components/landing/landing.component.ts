@@ -20,7 +20,7 @@ export class LandingComponent implements OnInit {
 
   constructor(private observer: BreakpointObserver,
     private personsService: PersonsService) {
-      //this.current_person=[];
+      this.current_person=[];
     }
 
   ngAfterViewInit() {
