@@ -1,10 +1,11 @@
-/* import * as fromLogin from '../actions/login.action';
+ import * as fromLogin from '../actions/login.action';
+ import { Person } from 'src/app/models/Person';
 
 
 export interface LoginState {
     pending: boolean;
     loggedIn: boolean;
-    response: AuthResponse | null;
+    response: Person[] | null;
   }
   
   export const initialState: LoginState = {
@@ -12,6 +13,8 @@ export interface LoginState {
     loggedIn: false,
     response: null,
   };
+
+
   
   export function reducer(
     state = initialState,
@@ -48,9 +51,7 @@ export interface LoginState {
     }
   }
   
-  export const getAuthResponse = (state: LoginState) => state.response;
+  export const getPersons = (state: LoginState) => state.response;
   export const getPending = (state: LoginState) => state.pending;
-  export const getLoggedIn = (state: LoginState) => state.loggedIn && state.response?.roles === constants.ROLE_BUYER;
-  export const getToken = (state: LoginState) => state.response?.Authorization;
-  export const getAuthEmail = (state: LoginState) => state.response?.email;
-   */
+  export const getLoggedIn = (state: LoginState) => state.loggedIn;
+  

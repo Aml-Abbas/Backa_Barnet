@@ -31,46 +31,8 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public signIn(): void {
-
-    this.signInService.signIn(this.email, this.enteredPassword).subscribe(
-      (data)=>{
-
-
-        let int_ref = this.persons_list;
-
-        data.map( function(v, i) {
-          
-          let int_person = new Person(
-                                      v.personID,
-                                      v.personNr,
-                                      v.firstName,
-                                      v.lastName,
-                                      v.address,
-                                      v.city,
-                                      v.personRoleID,
-                                      v.personTypeID,
-                                      v.createBy,
-                                      v.createDate,
-                                      v.changeBy,
-                                      v.changeDate
-                                      )    
-
-          int_ref.push(int_person);
-        })
-
-          this.personsService.setPersonList(this.persons_list);
-          this.router.navigate(
-          ['../contact'],
-          {replaceUrl: true, relativeTo: this.aRoute});
-
-          localStorage.setItem("personsList", JSON.stringify(this.persons_list));
-      }, (error)=>{
-        this.signinError= 'Fel email eller lösenord';
-        this.signInService.signOut();
-      }
-    );
-
+  public signIn(): Person[] {
+    return this.signInService.signIn(this.email, this.enteredPassword);
   }
 
 }
