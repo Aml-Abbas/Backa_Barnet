@@ -1,5 +1,6 @@
 import * as fromLogin from './login.reducer';
 import * as fromRouter from '@ngrx/router-store';
+
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
@@ -42,7 +43,7 @@ export interface State {
   };
   
   export const getRouterState = createFeatureSelector<
-  fromRouter.RouterReducerState<RouterStateUrl>>('routerReducer');
+  fromRouter.RouterReducerState<RouterStateUrl>>('');
 
 
   export const getState = createFeatureSelector<State>('app');

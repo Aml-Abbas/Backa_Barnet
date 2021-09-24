@@ -48,10 +48,20 @@ import { CreatePlanComponent } from './components/create-plan/create-plan.compon
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { SignInService } from './services/sign-in/sign-in.service';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './state';
+import {EffectsModule} from '@ngrx/effects';
+import {reducers} from '../app/state/reducers';
+import {environment} from 'src/environments/environment';
+
+import {effects} from '../app/state/effects';
+
+import {CustomSerializer} from './state';
+import {
+  StoreRouterConnectingModule,
+  RouterStateSerializer,
+} from '@ngrx/router-store';
 
 
 
@@ -88,7 +98,16 @@ import { reducers } from './state';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({})        
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('app', reducers),
+    EffectsModule.forRoot(),
+    EffectsModule.forFeature(effects),
+    StoreRouterConnectingModule.forRoot(),   
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+  }),
+
   ],exports:[
     MatInputModule,
     MatFormFieldModule,
@@ -108,7 +127,12 @@ import { reducers } from './state';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [SignInService],
+  providers: [
+    {
+      provide: RouterStateSerializer,
+      useClass: CustomSerializer
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

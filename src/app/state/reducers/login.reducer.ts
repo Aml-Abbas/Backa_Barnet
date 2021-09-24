@@ -29,6 +29,8 @@ export interface LoginState {
         };
       }
       case fromLogin.LOGIN_SUCCESS: {
+        console.log('in success reducer');
+        console.log(action.payload);    
         return {
           ...state,
           pending: false,

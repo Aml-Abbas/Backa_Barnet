@@ -1,11 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Store} from '@ngrx/store';
 import * as loginAction from '../actions/login.action';
 import {map, switchMap, catchError, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs';
-import {LoginState} from '../reducers/login.reducer';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {SignInService} from '../../services/sign-in/sign-in.service';
 import * as fromRoot from '../../../app/state';
 import { Observable } from 'rxjs';
@@ -14,27 +11,29 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class LoginEffect {
   constructor(private actions$: Actions,
-              private store: Store<LoginState>,
-              private snackBar: MatSnackBar) {
+              private signInService: SignInService) {
   }
 
-  @Effect()
-  login$ : Observable<Actions> = this.actions$.pipe(
+  login$ = createEffect(() =>
+  this.actions$.pipe(
     ofType(loginAction.LOGIN),
-      map((action: loginAction.Login) => {
-        return SignInService.signIn(action.payload).pipe(
-          map((response) => new loginAction.LoginSuccess(response)),
-          catchError((error) => of(new loginAction.LoginFail(error)))
-      )}
-    ));
+    switchMap((action: loginAction.Login) => {
+
+    return this.signInService.signIn(action.payload).pipe(
+      map((response) => new loginAction.LoginSuccess(response)),
+      catchError((error: any) => 
+        of(new loginAction.LoginFail(error))
+      )
+    );
+    }),
+  )
+);
 
 
   loginSuccess$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginAction.LOGIN_SUCCESS),
       switchMap((action: loginAction.LoginSuccess) => [
-        // console.log(`paylod@LoginSuccess: ${actions.payload.email}`);
-        //new userActions.BuyerLoadCurrentUser(action.payload.email),
         new fromRoot.Go({path: ['/contact']})
       ]),
     )
@@ -54,14 +53,13 @@ export class LoginEffect {
       this.actions$.pipe(
         ofType(loginAction.LOGIN_FAIL),
         map((action: loginAction.LoginFail) => {
-          this.snackBar.open('Fel e-post eller lösenord!', 'Ok', {
+        /*   this.snackBar.open('Fel e-post eller lösenord!', 'Ok', {
             duration: 2000
           });
-        }),
+         */}),
       ),
     {dispatch: false}
   );
-
 
   logoutSuccess$ = createEffect(() =>
     this.actions$.pipe(

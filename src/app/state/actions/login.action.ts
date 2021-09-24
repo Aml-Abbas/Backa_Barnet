@@ -19,6 +19,8 @@ export class Login implements Action {
 export class LoginSuccess implements Action {
   readonly type = LOGIN_SUCCESS;
   constructor(public payload: Person[]) {
+    console.log('in success action');
+    console.log(payload);
   }
 }
 

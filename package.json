@@ -28,6 +28,7 @@
     "@ngrx/router-store": "^12.4.0",
     "@ngrx/store": "^12.4.0",
     "@ngrx/store-devtools": "^12.4.0",
+    "redux-devtools-extension": "^2.13.9",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

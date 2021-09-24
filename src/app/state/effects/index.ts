@@ -1,11 +1,11 @@
 import {LoginEffect} from './login.effect';
-//import {RouterEffect} from './router.effect';
+import {RouterEffect} from './router.effect';
 
 export const effects: any[] = [
     LoginEffect,
-   // RouterEffect
+    RouterEffect
   ];
   
 
 export * from './login.effect';
-//export * from './router.effect';
+export * from './router.effect';

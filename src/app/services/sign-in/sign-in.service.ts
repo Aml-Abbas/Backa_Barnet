@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Person } from 'src/app/models/Person';
+import { LoginInfo } from '../../models/LoginInfo.model';
 
 
 @Injectable({
@@ -13,6 +14,7 @@ export class SignInService {
   router: Router;
   persons_list: Person[]= [];
 
+
   constructor(router: Router, 
     private aRoute: ActivatedRoute,
     private http:HttpClient) {
@@ -21,11 +23,9 @@ export class SignInService {
 
      }
 
-  signIn(email: string, password: string): Person []{
+  signIn(info: LoginInfo): Observable<Person []>{
 
-    this.signedIn = true;
-    localStorage.setItem('signedIn', 'true');
-    this.http.get('https://func-ykbb.azurewebsites.net/api/person/'+email+'/'+password+'?code=SkXpI51pgjWl6UVNjxKjKNUr3o2gmPdlOZ4EFMFwn0LR0KlyDlYu3w==').subscribe(
+    this.http.get('https://func-ykbb.azurewebsites.net/api/person/'+info.email+'/'+info.password+'?code=SkXpI51pgjWl6UVNjxKjKNUr3o2gmPdlOZ4EFMFwn0LR0KlyDlYu3w==').subscribe(
       (data)=>{
 
         let int_ref = this.persons_list;
@@ -52,22 +52,15 @@ export class SignInService {
         })
       }
       });
-      return this.persons_list;
+      return new BehaviorSubject(this.persons_list).asObservable();
     }
 
   signOut() {
-    localStorage.clear();
-    this.signedIn = false;
-    localStorage.removeItem("currentPerson");
-    localStorage.removeItem("signedIn");
 
     this.router.navigate(
       ['../sign-in'],
       {replaceUrl: true, relativeTo: this.aRoute});
   }
 
-  isSignedIn() {
-    return this.signedIn;
-  }
 
 }
