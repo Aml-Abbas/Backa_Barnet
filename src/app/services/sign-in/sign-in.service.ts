@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Person } from 'src/app/models/Person';
 import { LoginInfo } from '../../models/LoginInfo.model';
 
@@ -9,14 +9,14 @@ import { LoginInfo } from '../../models/LoginInfo.model';
   providedIn: 'root'
 })
 export class SignInService {
-  persons_list: Person[]= [];
+  persons_list: Person[] = [];
 
 
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  signIn(info: LoginInfo): Observable<Person []>{
+  signIn(info: LoginInfo): Observable<Person[]> {
 
-    return this.http.get<Person[]>('https://func-ykbb.azurewebsites.net/api/person/'+info.email+'/'+info.password+'?code=SkXpI51pgjWl6UVNjxKjKNUr3o2gmPdlOZ4EFMFwn0LR0KlyDlYu3w==')/* .subscribe(
+    return this.http.get<Person[]>('https://func-ykbb.azurewebsites.net/api/person/' + info.email + '/' + info.password + '?code=SkXpI51pgjWl6UVNjxKjKNUr3o2gmPdlOZ4EFMFwn0LR0KlyDlYu3w==')/* .subscribe(
       (data)=>{
 
         let int_ref: Person[] = [];
@@ -58,7 +58,7 @@ export class SignInService {
       console.log('persons_list');
 
       return this.persons_list; */
-    }
+  }
 
 
 }

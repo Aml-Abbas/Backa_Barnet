@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Person } from 'src/app/models/Person';
-import {Observable} from 'rxjs';
-import {Store} from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
-import {map} from 'rxjs/operators';
 
 
 @Component({
@@ -18,15 +17,17 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.persons$ = this.store.select(fromState.getPersons);
-    }
+  }
 
-    setCurrentPerson(personNbr: string){
-      this.persons$.pipe(map(persons => persons.map(person => {
-        if (person.personNr== personNbr) {
-          console.log(personNbr);
-          console.log(person.personNr);
-        }
-      })));
-    }
+  setCurrentPerson(personNbr: string) {
+    this.persons$.subscribe((data) => {
+      if (data instanceof Array) {
+        data.map(function (v, i) {
+          if (v.personNr == personNbr) {
+          }
+        })
+      }
+    })
+  }
 
 }
