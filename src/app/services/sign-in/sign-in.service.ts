@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import {ActivatedRoute, Router} from '@angular/router';
 import { Person } from 'src/app/models/Person';
 import { LoginInfo } from '../../models/LoginInfo.model';
 
@@ -10,30 +9,22 @@ import { LoginInfo } from '../../models/LoginInfo.model';
   providedIn: 'root'
 })
 export class SignInService {
-  signedIn = false;
-  router: Router;
   persons_list: Person[]= [];
 
 
-  constructor(router: Router, 
-    private aRoute: ActivatedRoute,
-    private http:HttpClient) {
-
-    this.router = router;
-
-     }
+  constructor(private http:HttpClient) {}
 
   signIn(info: LoginInfo): Observable<Person []>{
 
-    this.http.get('https://func-ykbb.azurewebsites.net/api/person/'+info.email+'/'+info.password+'?code=SkXpI51pgjWl6UVNjxKjKNUr3o2gmPdlOZ4EFMFwn0LR0KlyDlYu3w==').subscribe(
+    return this.http.get<Person[]>('https://func-ykbb.azurewebsites.net/api/person/'+info.email+'/'+info.password+'?code=SkXpI51pgjWl6UVNjxKjKNUr3o2gmPdlOZ4EFMFwn0LR0KlyDlYu3w==')/* .subscribe(
       (data)=>{
 
-        let int_ref = this.persons_list;
+        let int_ref: Person[] = [];
 
         if (data instanceof Array) {
           data.map(function(v, i) {
           
-          let int_person = new Person(
+          let int_person: Person = new Person(
                                       v.personID,
                                       v.personNr,
                                       v.firstName,
@@ -46,21 +37,28 @@ export class SignInService {
                                       v.createDate,
                                       v.changeBy,
                                       v.changeDate
-                                      )    
+                                      );    
+
 
           int_ref.push(int_person);
         })
       }
-      });
-      return new BehaviorSubject(this.persons_list).asObservable();
+      console.log(int_ref);
+      console.log('int_ref');
+
+      this.persons_list = int_ref;
+      console.log(this.persons_list);
+      console.log('persons_list');
+
+      return this.persons_list;
+
+    });
+
+      console.log(this.persons_list);
+      console.log('persons_list');
+
+      return this.persons_list; */
     }
-
-  signOut() {
-
-    this.router.navigate(
-      ['../sign-in'],
-      {replaceUrl: true, relativeTo: this.aRoute});
-  }
 
 
 }

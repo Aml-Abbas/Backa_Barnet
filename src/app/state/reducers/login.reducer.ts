@@ -5,13 +5,13 @@
 export interface LoginState {
     pending: boolean;
     loggedIn: boolean;
-    response: Person[] | null;
+    response: Person[];
   }
   
   export const initialState: LoginState = {
     pending: false,
     loggedIn: false,
-    response: null,
+    response: [],
   };
 
 
@@ -29,8 +29,6 @@ export interface LoginState {
         };
       }
       case fromLogin.LOGIN_SUCCESS: {
-        console.log('in success reducer');
-        console.log(action.payload);    
         return {
           ...state,
           pending: false,
@@ -45,7 +43,14 @@ export interface LoginState {
           ...state,
           pending: false,
           loggedIn: false,
-          response: null
+          response: []
+        };
+      }
+      case fromLogin.LOGOUT: {
+        return {
+          ...state,
+          pending: true,
+          loggedIn: true,
         };
       }
       default:

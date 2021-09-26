@@ -14,18 +14,17 @@ export class LoginEffect {
               private signInService: SignInService) {
   }
 
-  login$ = createEffect(() =>
+login$ = createEffect(() =>
   this.actions$.pipe(
     ofType(loginAction.LOGIN),
     switchMap((action: loginAction.Login) => {
 
     return this.signInService.signIn(action.payload).pipe(
       map((response) => new loginAction.LoginSuccess(response)),
-      catchError((error: any) => 
-        of(new loginAction.LoginFail(error))
-      )
+      catchError((error: any) => of(new loginAction.LoginFail(error)))
     );
-    }),
+
+    })
   )
 );
 
@@ -42,11 +41,10 @@ export class LoginEffect {
   logout$ = createEffect(() =>
       this.actions$.pipe(
         ofType(loginAction.LOGOUT),
-        map((action: loginAction.Logout) => {
-          
-        })
-      ),
-    {dispatch: false}
+        switchMap((action: loginAction.Logout) => {
+          return of(new loginAction.LogoutSuccess())
+        }),
+      )
   );
 
   loginFail$ = createEffect(() =>

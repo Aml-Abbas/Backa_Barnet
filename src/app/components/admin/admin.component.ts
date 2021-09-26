@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SignInService } from 'src/app/services/sign-in/sign-in.service';
+import {Store} from '@ngrx/store';
+import * as fromStore from 'src/app/state';
 
 @Component({
   selector: 'app-admin',
@@ -8,12 +9,12 @@ import { SignInService } from 'src/app/services/sign-in/sign-in.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private signInService: SignInService) { }
+  constructor(private store: Store<fromStore.State>) { }
 
   ngOnInit(): void {
   }
 
   public signOut(): void {
-    this.signInService.signOut();
+    this.store.dispatch(new fromStore.Logout());
   }
 }
