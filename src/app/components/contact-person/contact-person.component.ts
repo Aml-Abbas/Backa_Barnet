@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Person } from 'src/app/models/Person';
-import { PersonsService } from 'src/app/services/persons/persons.service';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as fromState from '../../state';
+
 
 @Component({
   selector: 'app-contact-person',
@@ -9,21 +12,19 @@ import { PersonsService } from 'src/app/services/persons/persons.service';
 })
 export class ContactPersonComponent implements OnInit {
 
-  current_person= JSON.parse(localStorage.currentPerson || '[]');
-  firstName= (this.current_person.firstName || '');
-  lastName= (this.current_person.lastName || '');
+  current_person$= new Observable<Person | null>();
 
-  namn = this.firstName+" "+ this.lastName;
-  personNumber = this.current_person.personNr;
-  address = this.current_person.address;
+  namn = '';
+  personNumber = '';
+  address = '';
   currentAddress = '';
   postNumber = '';
   currentPostNumber = '';
 
-  constructor(private personsService: PersonsService) { }
+  constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
-    this.personsService.current_person$.subscribe(current_person=> this.current_person=current_person);
+    this.current_person$ = this.store.select(fromState.getCurrentPerson);
   }
 
   public save(): void {

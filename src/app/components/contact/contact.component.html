@@ -20,7 +20,7 @@
         <th>Senaste ändrad</th>
       </tr>
 
-      <tr *ngFor="let person of persons" style='cursor: pointer; cursor: hand;' (click)="setCurrentPerson(person.personNr)">
+      <tr *ngFor="let person of persons" style='cursor: pointer; cursor: hand;' (click)="setCurrentPerson(person)">
       <td>{{ person.personNr }}</td>
         <td>{{ person.firstName }}</td>
         <td>{{ person.changeDate }}</td>

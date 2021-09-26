@@ -2,37 +2,38 @@
     <h1>Kontaktuppgifter</h1>
     <h4>Information om Kalle</h4>
 
-
+<div *ngIf="(current_person$ | async) as current_person">
 <mat-form-field appearance="fill">
     <mat-label>Namn</mat-label>
-    <input matInput name="namn" [(ngModel)]="namn">
+    <input matInput name="namn" [(ngModel)]="current_person.firstName">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Personsnummer</mat-label>
-    <input matInput name="personNumber" [(ngModel)]="personNumber">
+    <input matInput name="personNumber" [(ngModel)]="current_person.personNr">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Adress</mat-label>
-    <input matInput name="address" [(ngModel)]="address">
+    <input matInput name="address" [(ngModel)]="current_person.address">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Nuvarande adress om annan finns</mat-label>
-    <input matInput name="currentAddress" [(ngModel)]="currentAddress">
+    <input matInput name="currentAddress" [(ngModel)]="current_person.firstName">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Postnummer</mat-label>
-    <input matInput name="postNumber" [(ngModel)]="postNumber">
+    <input matInput name="postNumber" [(ngModel)]="current_person.firstName">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Postnummer</mat-label>
-    <input matInput name="currentPostNumber" [(ngModel)]="currentPostNumber">
+    <input matInput name="currentPostNumber" [(ngModel)]="current_person.firstName">
   </mat-form-field>
 
   <button mat-raised-button (click)="save()">Spara</button>
+</div>
 
 </div>

@@ -19,15 +19,10 @@ export class ContactComponent implements OnInit {
     this.persons$ = this.store.select(fromState.getPersons);
   }
 
-  setCurrentPerson(personNbr: string) {
-    this.persons$.subscribe((data) => {
-      if (data instanceof Array) {
-        data.map(function (v, i) {
-          if (v.personNr == personNbr) {
-          }
-        })
-      }
-    })
+  setCurrentPerson(person: Person) {
+     
+    this.store.dispatch(new fromState.UpdatePerson(person));
   }
+
 
 }
