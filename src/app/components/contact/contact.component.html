@@ -11,6 +11,7 @@
   </div>
     <h2>Barn Lista</h2>
     
+    <div *ngIf="(persons$ | async) as persons">
 
     <table role="table">
       <tr>
@@ -18,7 +19,6 @@
         <th>Namn</th>
         <th>Senaste ändrad</th>
       </tr>
-      <div *ngIf="(persons$ | async) as persons">
 
       <tr *ngFor="let person of persons" style='cursor: pointer; cursor: hand;' (click)="setCurrentPerson(person.personNr)">
       <td>{{ person.personNr }}</td>
@@ -26,8 +26,8 @@
         <td>{{ person.changeDate }}</td>
       </tr>
     
-      </div>
     </table>
+  </div>
 
     <!-- <div class="table-container">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
