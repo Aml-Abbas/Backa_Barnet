@@ -1,5 +1,6 @@
 import * as fromLogin from './login.reducer';
 import * as fromRouter from '@ngrx/router-store';
+import * as fromCurrentPerson from './currentPerson.reducer';
 
 import {
   ActivatedRouteSnapshot,
@@ -19,6 +20,7 @@ export interface RouterStateUrl {
 export interface State {
     Login: fromLogin.LoginState;
     routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
+    currentPerson: fromCurrentPerson.CurrentPersonState;
   }
   
   export class CustomSerializer
@@ -40,6 +42,7 @@ export interface State {
   export const reducers: ActionReducerMap<State, any> = {
     Login: fromLogin.reducer,
     routerReducer: fromRouter.routerReducer,
+    currentPerson: fromCurrentPerson.reducer,
   };
   
   export const getRouterState = createFeatureSelector<
