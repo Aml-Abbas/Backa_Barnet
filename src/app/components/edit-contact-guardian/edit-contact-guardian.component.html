@@ -1,6 +1,7 @@
 <div class="container">
     <h1>Kontaktuppgifter</h1>
 <h4>Barnkontakt och Stödsamordnare</h4>
+<div *ngIf="(current_person$ | async) as current_person">
 
 
 <div class="person-container">
@@ -47,5 +48,6 @@
 
 
   <button mat-raised-button (click)="save()">Spara</button>
+</div>
 
 </div>

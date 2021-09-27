@@ -14,28 +14,14 @@ import * as fromState from '../../state';
 export class EditContactPersonComponent implements OnInit {
   current_person$= new Observable<Person | null>();
 
-  namn = '';
-  personNumber = '';
-  address = '';
-  currentAddress = '';
-  postNumber = '';
-  currentPostNumber = '';
   constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
-
   }
 
   public save(): void {
-    console.log("namn: " +  this.namn);
-    console.log("personNumber: " +  this.personNumber);
-    console.log("address: " +  this.address);
-    console.log("currentAddress: " +  this.currentAddress);
-    console.log("postNumber: " +  this.postNumber);
-    console.log("currentPostNumber: " +  this.currentPostNumber);
     this.store.dispatch(new fromRoot.Go({ path: ['contact-person'] }));
-
   }
 
 }

@@ -1,16 +1,17 @@
 <div class="container">
-    <h1>Kontaktuppgifter</h1>
-    <h4>Information om Kalle</h4>
+  <div *ngIf="(current_person$ | async) as current_person">
 
-<div *ngIf="(current_person$ | async) as current_person">
+    <h1>Kontaktuppgifter</h1>
+    <h4>Information om {{current_person.firstName}}</h4>
+
 <mat-form-field appearance="fill">
     <mat-label>Namn</mat-label>
-    <input matInput name="namn" [(ngModel)]="current_person.firstName" >
+    <input matInput name="namn" [(ngModel)]="current_person.firstName+' '+current_person.lastName" >
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Personsnummer</mat-label>
-    <input matInput name="personNumber" [ngModel]="current_person.personNr" disabled>
+    <input matInput disabled value="{{current_person.personNr}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">

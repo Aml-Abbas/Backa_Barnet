@@ -23,6 +23,10 @@ mat-label{
     color: black;
 }
 
+.mat-input-element:disabled{
+    color: black;
+    }
+    
 .person-container{
     display: inline-block;
     width: 45%;
