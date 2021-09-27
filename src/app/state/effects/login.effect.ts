@@ -60,16 +60,6 @@ login$ = createEffect(() =>
     {dispatch: false}
   );
 
-/*   logoutSuccess$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(loginAction.LOGOUT_SUCCESS),
-    mergeMap((action: loginAction.LogoutSuccess) => {
-      new currentPersonAction.UpdatePerson(null);
-      return of(new fromRoot.Go({path: ['/sign-in'], extras: {replaceUrl: true}}));
-    })
-  )
-); */
-
    logoutSuccess$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginAction.LOGOUT_SUCCESS),
