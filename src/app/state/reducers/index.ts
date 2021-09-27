@@ -2,6 +2,7 @@ import * as fromLogin from './login.reducer';
 import * as fromRouter from '@ngrx/router-store';
 import * as fromCurrentPerson from './currentPerson.reducer';
 import {hydrationMetaReducer} from './hydration.reducer';
+import {clearMetaReducer} from './clear.reducer';
 
 import {
   ActivatedRouteSnapshot,
@@ -51,4 +52,4 @@ export interface State {
 
 
   export const getState = createFeatureSelector<State>('app');
-  export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
+  export const metaReducers: MetaReducer[] = [hydrationMetaReducer, clearMetaReducer];
