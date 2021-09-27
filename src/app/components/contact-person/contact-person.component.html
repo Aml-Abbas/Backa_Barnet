@@ -7,32 +7,32 @@
 
 <mat-form-field appearance="fill">
     <mat-label>Namn</mat-label>
-    <input matInput name="namn" [(ngModel)]="current_person.firstName">
+    <input matInput disabled value="{{current_person.firstName}} {{current_person.lastName}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Personsnummer</mat-label>
-    <input matInput name="personNumber" [(ngModel)]="current_person.personNr">
+    <input matInput disabled value="{{current_person.personNr}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Adress</mat-label>
-    <input matInput name="address" [(ngModel)]="current_person.address">
+    <input matInput disabled value="{{current_person.address}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Nuvarande adress om annan finns</mat-label>
-    <input matInput name="currentAddress" [(ngModel)]="current_person.firstName">
+    <input matInput disabled value="{{current_person.firstName}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Postnummer</mat-label>
-    <input matInput name="postNumber" [(ngModel)]="current_person.firstName">
+    <input matInput disabled value="{{current_person.firstName}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Postnummer</mat-label>
-    <input matInput name="currentPostNumber" [(ngModel)]="current_person.firstName">
+    <input matInput disabled value="{{current_person.firstName}}">
   </mat-form-field>
 
   <button mat-raised-button routerLink="/edit-contact-person">Ändra</button>

@@ -2,6 +2,7 @@
     <h1>Kontaktuppgifter</h1>
 <h4>Barnkontakt och Stödsamordnare</h4>
 
+<div *ngIf="(current_person$ | async) as current_person">
 
 <div class="person-container">
     <span class="material-icons">person</span>
@@ -9,17 +10,17 @@
 
 <mat-form-field appearance="fill">
     <mat-label>Namn</mat-label>
-    <input matInput name="contactName" [(ngModel)]="contactName">
+    <input matInput disabled value="{{current_person.personNr}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Kontaktuppgifter</mat-label>
-    <input matInput name="contactTask" [(ngModel)]="contactTask">
+    <input matInput disabled value="{{current_person.personNr}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Arbetsplats</mat-label>
-    <input matInput name="contactWorkPlace" [(ngModel)]="contactWorkPlace">
+    <input matInput disabled value="{{current_person.personNr}}">
   </mat-form-field>
 
 </div>
@@ -31,21 +32,22 @@
 
 <mat-form-field appearance="fill">
     <mat-label>Namn</mat-label>
-    <input matInput name="supporterName" [(ngModel)]="supporterName">
+    <input matInput disabled value="{{current_person.personNr}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Kontaktuppgifter</mat-label>
-    <input matInput name="supporterTask" [(ngModel)]="supporterTask">
+    <input matInput disabled value="{{current_person.personNr}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Arbetsplats</mat-label>
-    <input matInput name="supporterWorkPlace" [(ngModel)]="supporterWorkPlace">
+    <input matInput disabled value="{{current_person.personNr}}">
   </mat-form-field>
 </div>
 
 
   <button mat-raised-button routerLink="/edit-contact-guardian">Ändra</button>
+</div>
 
 </div>

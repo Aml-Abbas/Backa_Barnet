@@ -24,6 +24,10 @@ mat-label{
     color: black;
 }
 
+.mat-input-element:disabled{
+color: black;
+}
+
 @media screen and (max-width: 800px){
     mat-form-field{
         width: 100%;
