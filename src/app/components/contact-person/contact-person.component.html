@@ -1,8 +1,10 @@
 <div class="container">
-    <h1>Kontaktuppgifter</h1>
-    <h4>Information om Kalle</h4>
 
 <div *ngIf="(current_person$ | async) as current_person">
+  <h1>Kontaktuppgifter</h1>
+  <h4>Information om {{current_person.firstName}}</h4>
+
+
 <mat-form-field appearance="fill">
     <mat-label>Namn</mat-label>
     <input matInput name="namn" [(ngModel)]="current_person.firstName">
