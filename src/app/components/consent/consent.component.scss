@@ -16,6 +16,13 @@ h1{
       
       tr:nth-child(even) {background-color: #f2f2f2;}
 
+      button{
+        width: 15%;
+        background-color: lightgreen;
+        color: black;
+      }
+
+      
 mat-label{
     color: black;
 }
@@ -36,6 +43,11 @@ mat-label{
 
 @media only screen and (max-width: 1000px) {
 
+  button{
+    width: 50%;
+    margin-left: 25%;
+    }
+    
 table, thead, tbody, th, td, tr {
   display: block;
 }
