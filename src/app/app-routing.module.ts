@@ -23,6 +23,7 @@ import { NeedCompassComponent } from './components/need-compass/need-compass.com
 import { PlanComponent } from './components/plan/plan.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AuthGuard } from './guards/auth.guard';
+import { SignInGuard } from './guards/sign-in.guard';
 
 
 const routes: Routes = [
@@ -114,7 +115,7 @@ const routes: Routes = [
   },
   { 
     path: 'sign-in',
-  component: SignInComponent,
+  component: SignInComponent, canActivate: [SignInGuard]
 }
 
 ];
