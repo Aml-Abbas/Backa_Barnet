@@ -62,6 +62,8 @@ import {
   StoreRouterConnectingModule,
   RouterStateSerializer,
 } from '@ngrx/router-store';
+import { EditContactPersonComponent } from './components/edit-contact-person/edit-contact-person.component';
+import { EditContactGuardianComponent } from './components/edit-contact-guardian/edit-contact-guardian.component';
 
 
 
@@ -70,7 +72,7 @@ import {
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent, 
     EventComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent, 
     DeepNeedCompassComponent, PlanComponent, AssessmentComponent, ConversationMaterialComponent, 
-    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, CreatePlanComponent],
+    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, CreatePlanComponent, EditContactPersonComponent, EditContactGuardianComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

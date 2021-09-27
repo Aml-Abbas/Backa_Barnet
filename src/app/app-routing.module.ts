@@ -13,6 +13,8 @@ import { CreateEventComponent } from './components/create-event/create-event.com
 import { CreatePlanComponent } from './components/create-plan/create-plan.component';
 import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-need-compass.component';
 import { DiscoverCardComponent } from './components/discover-card/discover-card.component';
+import { EditContactGuardianComponent } from './components/edit-contact-guardian/edit-contact-guardian.component';
+import { EditContactPersonComponent } from './components/edit-contact-person/edit-contact-person.component';
 import { EstimateComponent } from './components/estimate/estimate.component';
 import { EventComponent } from './components/event/event.component';
 import { GoalComponent } from './components/goal/goal.component';
@@ -89,8 +91,16 @@ const routes: Routes = [
         component: ContactPersonComponent, canActivate: [AuthGuard]
       },
       {
+        path: 'edit-contact-person',
+        component: EditContactPersonComponent, canActivate: [AuthGuard]
+      },
+      {
         path: 'contact-guardian',
         component: ContactGuardianComponent, canActivate: [AuthGuard]
+      },
+      {
+        path: 'edit-contact-guardian',
+        component: EditContactGuardianComponent, canActivate: [AuthGuard]
       },
       {
         path: 'create-event',

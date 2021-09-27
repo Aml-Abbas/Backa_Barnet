@@ -5,12 +5,12 @@
 <div *ngIf="(current_person$ | async) as current_person">
 <mat-form-field appearance="fill">
     <mat-label>Namn</mat-label>
-    <input matInput name="namn" [(ngModel)]="current_person.firstName">
+    <input matInput name="namn" [(ngModel)]="current_person.firstName" >
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Personsnummer</mat-label>
-    <input matInput name="personNumber" [(ngModel)]="current_person.personNr">
+    <input matInput name="personNumber" [ngModel]="current_person.personNr" disabled>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -33,7 +33,7 @@
     <input matInput name="currentPostNumber" [(ngModel)]="current_person.firstName">
   </mat-form-field>
 
-  <button mat-raised-button routerLink="/edit-contact-person">Ändra</button>
+  <button mat-raised-button (click)="save()">spara</button>
 </div>
 
 </div>

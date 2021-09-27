@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { SignInService } from '../services/sign-in/sign-in.service';
+import { CanActivate } from '@angular/router';
 import * as fromState from '../state';
 import { Store } from '@ngrx/store';
-import { tap, filter, take, switchMap, catchError } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import * as fromRoot from '../../app/state';
 import { Observable } from 'rxjs';
 
@@ -13,11 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private signinService: SignInService,
-    private router: Router,
-    private store: Store<fromState.State>) {
-
-}
+  constructor(private store: Store<fromState.State>) {}
 
 canActivate(): Observable<boolean> {
   return this.store.select(fromState.getLoggedIn).pipe(

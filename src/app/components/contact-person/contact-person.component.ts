@@ -11,15 +11,7 @@ import * as fromState from '../../state';
   styleUrls: ['./contact-person.component.scss']
 })
 export class ContactPersonComponent implements OnInit {
-
   current_person$= new Observable<Person | null>();
-
-  namn = '';
-  personNumber = '';
-  address = '';
-  currentAddress = '';
-  postNumber = '';
-  currentPostNumber = '';
 
   constructor(private store: Store<fromState.State>) { }
 
@@ -27,12 +19,5 @@ export class ContactPersonComponent implements OnInit {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
   }
 
-  public save(): void {
-    console.log("namn: " +  this.namn);
-    console.log("personNumber: " +  this.personNumber);
-    console.log("address: " +  this.address);
-    console.log("currentAddress: " +  this.currentAddress);
-    console.log("postNumber: " +  this.postNumber);
-    console.log("currentPostNumber: " +  this.currentPostNumber);
-  }
+
 }
