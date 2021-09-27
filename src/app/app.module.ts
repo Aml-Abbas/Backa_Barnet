@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { LandingComponent } from './components/landing/landing.component';
@@ -31,31 +31,31 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import {MatTableModule} from '@angular/material/table';
-import {MatCardModule} from '@angular/material/card';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatDatepickerModule} from '@angular/material/datepicker'; 
-import {MatNativeDateModule} from '@angular/material/core';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatStepperModule } from '@angular/material/stepper';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { CreatePlanComponent } from './components/create-plan/create-plan.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { StoreModule } from '@ngrx/store';
-import {EffectsModule} from '@ngrx/effects';
-import {environment} from 'src/environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { environment } from 'src/environments/environment';
 
-import {effects} from '../app/state/effects';
+import { effects } from '../app/state/effects';
 
-import {CustomSerializer, reducers, metaReducers} from './state';
+import { CustomSerializer, reducers, metaReducers } from './state';
 import {
   StoreRouterConnectingModule,
   RouterStateSerializer,
@@ -66,10 +66,10 @@ import { EditContactGuardianComponent } from './components/edit-contact-guardian
 
 
 @NgModule({
-  declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent, 
-    CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent, 
-    EventComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent, 
-    DeepNeedCompassComponent, PlanComponent, AssessmentComponent, ConversationMaterialComponent, 
+  declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent,
+    CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent,
+    EventComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent,
+    DeepNeedCompassComponent, PlanComponent, AssessmentComponent, ConversationMaterialComponent,
     ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, CreatePlanComponent, EditContactPersonComponent, EditContactGuardianComponent],
   imports: [
     BrowserModule,
@@ -98,17 +98,17 @@ import { EditContactGuardianComponent } from './components/edit-contact-guardian
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {metaReducers}),
+    StoreModule.forRoot({}, { metaReducers }),
     StoreModule.forFeature('app', reducers),
     EffectsModule.forRoot(),
     EffectsModule.forFeature(effects),
-    StoreRouterConnectingModule.forRoot(),   
+    StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
-  }),
+    }),
 
-  ],exports:[
+  ], exports: [
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
@@ -135,4 +135,4 @@ import { EditContactGuardianComponent } from './components/edit-contact-guardian
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
