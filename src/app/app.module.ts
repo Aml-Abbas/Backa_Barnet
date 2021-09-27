@@ -27,7 +27,6 @@ import { AssessmentComponent } from './components/assessment/assessment.componen
 import { ConversationMaterialComponent } from './components/conversation-material/conversation-material.component';
 import { ContactPersonComponent } from './components/contact-person/contact-person.component';
 import { ContactGuardianComponent } from './components/contact-guardian/contact-guardian.component';
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -52,12 +51,11 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import { StoreModule } from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
-import {reducers} from '../app/state/reducers';
 import {environment} from 'src/environments/environment';
 
 import {effects} from '../app/state/effects';
 
-import {CustomSerializer} from './state';
+import {CustomSerializer, reducers, metaReducers} from './state';
 import {
   StoreRouterConnectingModule,
   RouterStateSerializer,
@@ -100,7 +98,7 @@ import { EditContactGuardianComponent } from './components/edit-contact-guardian
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({}, {metaReducers}),
     StoreModule.forFeature('app', reducers),
     EffectsModule.forRoot(),
     EffectsModule.forFeature(effects),

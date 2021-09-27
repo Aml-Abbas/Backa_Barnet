@@ -1,6 +1,7 @@
 import * as fromLogin from './login.reducer';
 import * as fromRouter from '@ngrx/router-store';
 import * as fromCurrentPerson from './currentPerson.reducer';
+import {hydrationMetaReducer} from './hydration.reducer';
 
 import {
   ActivatedRouteSnapshot,
@@ -8,7 +9,7 @@ import {
   Params,
 } from '@angular/router';
 
-import {ActionReducerMap, createFeatureSelector} from '@ngrx/store';
+import {ActionReducerMap, createFeatureSelector, MetaReducer} from '@ngrx/store';
 
 export interface RouterStateUrl {
   url: string;
@@ -46,7 +47,8 @@ export interface State {
   };
   
   export const getRouterState = createFeatureSelector<
-  fromRouter.RouterReducerState<RouterStateUrl>>('');
+  fromRouter.RouterReducerState<RouterStateUrl>>('routerReducer');
 
 
   export const getState = createFeatureSelector<State>('app');
+  export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
