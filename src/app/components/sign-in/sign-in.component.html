@@ -12,8 +12,13 @@
             <mat-form-field appearance="fill">
 
               <mat-label>Användarnamn</mat-label>
-              <input matInput name="email" [(ngModel)]="email">
-
+              <input matInput type="email" [formControl]="emailFormControl" name="email" [(ngModel)]="email">
+              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Ange en giltig e-postadress
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                E-postadress <strong>krävs</strong>
+              </mat-error>
             </mat-form-field>
           
             <mat-form-field appearance="fill">

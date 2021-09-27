@@ -5,6 +5,7 @@ import {LoginInfo} from '../../models/LoginInfo.model';
 import {Actions, ofType} from '@ngrx/effects';
 import * as loginAction from '../../state/actions/login.action';
 import { tap } from 'rxjs/operators';
+import {FormControl, Validators} from '@angular/forms';
 
 
 @Component({
@@ -18,6 +19,10 @@ export class SignInComponent implements OnInit {
   email = 'adnan.karahmetovic@cgi.com';
   enteredPassword = '*r3hHXj&YC5M@R@J';
   public loginInfo: LoginInfo = {email: '', password: ''};
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
 
   constructor(private store: Store<fromStore.State>,
     private actions$: Actions) {}
