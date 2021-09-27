@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import * as fromStore from 'src/app/state';
 import {LoginInfo} from '../../models/LoginInfo.model';
+import {Actions, ofType} from '@ngrx/effects';
+import * as loginAction from '../../state/actions/login.action';
+import { tap } from 'rxjs/operators';
 
 
 @Component({
@@ -16,10 +19,18 @@ export class SignInComponent implements OnInit {
   enteredPassword = '*r3hHXj&YC5M@R@J';
   public loginInfo: LoginInfo = {email: '', password: ''};
 
-  constructor(private store: Store<fromStore.State>) { 
-  }
+  constructor(private store: Store<fromStore.State>,
+    private actions$: Actions) {}
 
   ngOnInit(): void {
+
+    this.actions$.pipe(
+      ofType(loginAction.LOGIN_FAIL),
+      tap(() => {
+        this.signinError= 'Fel e-post eller lösenord!';
+            })
+    ).subscribe();
+
   }
 
   public signIn(): void{

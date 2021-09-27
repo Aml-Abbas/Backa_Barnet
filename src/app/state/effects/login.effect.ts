@@ -5,9 +5,6 @@ import {of} from 'rxjs';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {SignInService} from '../../services/sign-in/sign-in.service';
 import * as fromRoot from '../../../app/state';
-import { Observable } from 'rxjs';
-import * as currentPersonAction from '../actions/currentPerson.action';
-
 
 @Injectable()
 export class LoginEffect {
