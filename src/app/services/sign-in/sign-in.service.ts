@@ -9,7 +9,6 @@ import { LoginInfo } from '../../models/LoginInfo.model';
   providedIn: 'root'
 })
 export class SignInService {
-  persons_list: Person[] = [];
 
 
   constructor(private http: HttpClient) { }
