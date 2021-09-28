@@ -28,9 +28,9 @@ export class ContactComponent implements OnInit {
     this.persons$ = this.store.select(fromState.getPersons);
     this.persons$.subscribe(data => {
       data.map((person:Person)=>{
-      let personNbr= person.personNr;
+      let personNbr= person.personNr.slice(2, 12);
       let name= person.firstName+' '+ person.lastName;
-      let changeDate= person.changeDate;
+      let changeDate= person.changeDate.slice(0, 10);
       let personTableElement= {personNbr, name, changeDate}; 
       this.persons.push(personTableElement);
       })
