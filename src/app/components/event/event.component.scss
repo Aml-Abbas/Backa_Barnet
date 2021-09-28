@@ -40,10 +40,13 @@ h1{
     width:14%;
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 767px) {
     .add-event{
       width: 50%;
       margin-left: 25%;
+      }
+      .circle, .date,  .title-container, .responsible{
+        display: none;
       }
   }
 
@@ -100,7 +103,7 @@ h1{
     position: absolute;
   }
   
-  .content {
+  .content{
     max-height: 20px;
     padding: 50px 20px 0;
     border-color: transparent;
@@ -110,7 +113,12 @@ h1{
     position: relative;
     width: 70%;
   }
-    
+  
+  .text-container{
+    max-height: 150px;
+    overflow-y: scroll;
+  }
+
   .content:before, .content:after {
     content: "";
     width: 0;
@@ -181,6 +189,16 @@ h1{
     transition: color 0.3s linear 0.3s;
   }
 
+  @media screen and (max-width: 1030px) and (min-width: 767px) {
+    .content{
+      width: 60%;
+    }
+    .responsible {
+      right: 15px;
+    }
+  
+  }
+
   @media screen and (max-width: 767px) {
     #timeline {
       margin-left: 0;
@@ -216,20 +234,16 @@ h1{
       left: 50px;
       margin-left: -17px;
     }
-    .content:after {
-      border-bottom-color: #48b379;
-      border-width: 20px;
-      top: -20px;
-      left: 50px;
-      margin-left: -20px;
-    }
+
     .content p {
       font-size: 0.9em;
       line-height: 1.4;
     }
-  
-    .circle, .date {
-      display: none;
+
+    .text-container{
+      max-height: 150px;
+      overflow-y: scroll;
     }
-  }
+  
+    }
   
