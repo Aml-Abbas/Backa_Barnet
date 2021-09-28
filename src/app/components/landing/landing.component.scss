@@ -38,58 +38,57 @@ font-size: 40px;
 font-weight: bold;
 }
 
-.mat-menu-item {
-    font-size: 1rem;
-    border: none;
-    padding: 5px;
-    display: flex;
-    padding-left: 15px;
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  
-  
-  button.mat-menu-item:hover{
-      background-color: white;
-      color: #663399 !important;
-  }
-  
-  ::ng-deep .mat-menu-item-checked{
-    background-color: white !important;
-    color: #663399 !important;
+::ng-deep .mat-button-toggle {
+    border: none !important;
+    background-color: #663399 !important;
 }
 
-  ::ng-deep .mat-button-toggle-label-content{
-    font-size: 16px;
-  }
-
-  
-  ::ng-deep .mat-button-toggle {
-      border: none !important;
-      background-color: #663399 !important;
-  }
-  
-  ::ng-deep .mat-button-toggle:hover {
-      border: 1px #000 solid !important;
-      background-color: #FFF !important;
-      border-radius: 5px !important;
-      color: #663399 !important;
-  }
-  
-  ::ng-deep .mat-button-toggle-checked {
-      border: 1px #000 solid !important;
-      border-radius: 5px !important;
-      background-color: #FFF !important;
-      color: #663399 !important;
-  }
-  ::ng-deep .mat-button-toggle-group {
+::ng-deep .mat-button-toggle-group {
     border: none !important;
+    width: 100% !important;
 }
 
 ::ng-deep .mat-button-toggle-label-content{
     text-align: left;
+} 
+.mat-menu-item{
+    border: none !important;
+    text-align: left;
+    padding: 12px;
 }
+
+::ng-deep .mat-button-toggle:hover {
+    background-color: #FFF !important;
+    color: #663399 !important;
+}
+.mat-menu-item{
+    width: 100%;
+}
+
+
+.mat-menu-item:hover{
+    background-color: #FFF !important;
+    color: #663399 !important;
+}
+
+::ng-deep .mat-button-toggle-checked {
+    background-color: #FFF !important;
+    color: #663399 !important;
+}
+
+.mat-button-toggle-checked{
+    background-color: #FFF !important;
+    color: #663399 !important;
+}
+button:active{
+    background-color: #FFF !important;
+    color: #663399 !important;
+}
+button:focus{
+    background-color: #FFF !important;
+    color: #663399 !important;
+}
+
 
 @media only screen and (min-width: 800px) {
     mat-toolbar {

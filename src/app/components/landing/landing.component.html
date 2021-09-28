@@ -17,14 +17,15 @@
   
   <mat-divider></mat-divider>
 
-  <mat-button-toggle-group vertical= "true">
+
+<mat-button-toggle-group vertical= "true">
 
     <mat-button-toggle (click)="changeShowFillerContact()"> 
         <span>Barn & Kontakt</span>
         <span class="material-icons" >{{showFillerContactIcon}}</span>
     </mat-button-toggle>
 
-    <div *ngIf="showFillerContact">
+    <div class *ngIf="showFillerContact">
       <button mat-menu-item routerLink="/contact">Barnlista</button>
       <mat-divider></mat-divider>
       <button mat-menu-item routerLink="/contact-person">Kontaktinfo Barn</button>
@@ -35,10 +36,10 @@
 
       <mat-divider></mat-divider>
 
-        <mat-button-toggle routerLink="/consent">Samtycke</mat-button-toggle>
+        <button mat-menu-item routerLink="/consent">Samtycke</button>
 
         <mat-divider></mat-divider>
-        <mat-button-toggle routerLink="/create-discover-card">Upptäckarkort</mat-button-toggle>
+        <button mat-menu-item routerLink="/create-discover-card">Upptäckarkort</button>
 
         <mat-divider></mat-divider>
 
@@ -57,7 +58,7 @@
 
         <mat-divider></mat-divider>
        
-        <mat-button-toggle routerLink="/goal">Barnets Mål</mat-button-toggle>
+        <button mat-menu-item routerLink="/goal">Barnets Mål</button>
 
         <mat-divider></mat-divider>
         <mat-button-toggle (click)="changeShowFillerDeepCompass()">
@@ -84,7 +85,7 @@
         </div>
 
         <mat-divider ></mat-divider>
-        <mat-button-toggle routerLink="/admin">Admin </mat-button-toggle>
+        <button mat-menu-item routerLink="/admin">Admin </button>
 
         <mat-divider></mat-divider>
 
