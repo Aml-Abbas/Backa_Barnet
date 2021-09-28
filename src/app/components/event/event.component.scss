@@ -40,16 +40,6 @@ h1{
     width:14%;
   }
 
-  @media only screen and (max-width: 767px) {
-    .add-event{
-      width: 50%;
-      margin-left: 25%;
-      }
-      .circle, .date,  .title-container, .responsible{
-        display: none;
-      }
-  }
-
 
   @import url(http://fonts.googleapis.com/css?family=Noto+Sans);
   
@@ -114,11 +104,6 @@ h1{
     width: 70%;
   }
   
-  .text-container{
-    max-height: 150px;
-    overflow-y: scroll;
-  }
-
   .content:before, .content:after {
     content: "";
     width: 0;
@@ -188,6 +173,11 @@ h1{
     color: black;
     transition: color 0.3s linear 0.3s;
   }
+  .radio:checked ~ .text-container{
+    max-height: 150px;
+    overflow-y: scroll;
+  }
+
 
   @media screen and (max-width: 1030px) and (min-width: 767px) {
     .content{
@@ -200,6 +190,14 @@ h1{
   }
 
   @media screen and (max-width: 767px) {
+    .add-event{
+      width: 50%;
+      margin-left: 25%;
+      }
+      .circle, .date,  .title-container, .responsible{
+        display: none;
+      }
+
     #timeline {
       margin-left: 0;
       padding-left: 0;
