@@ -63,22 +63,18 @@ font-weight: bold;
     width: 100%;
 }
 
-
 .mat-menu-item:hover{
     background-color: #FFF !important;
     color: #663399 !important;
 }
-
-button:active{
+.mat-menu-item:active{
     background-color: #FFF !important;
     color: #663399 !important;
 }
-button:focus{
+.mat-menu-item:focus{
     background-color: #FFF !important;
     color: #663399 !important;
-
 }
-
 
 @media only screen and (min-width: 800px) {
     mat-toolbar {
