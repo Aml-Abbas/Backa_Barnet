@@ -43,7 +43,15 @@ showFillerDeepCompassIcon = 'chevron_right';
 showFillerCompassIcon = 'chevron_right'; 
 
 public changeShowFillerContact(){
+  this.need_compass = false;
+  this.deep_need_compass = false;
+  this.event = false;
+ 
   this.showFillerContact = !this.showFillerContact;
+
+  this.showFillerEventIcon = 'chevron_right'; 
+  this.showFillerDeepCompassIcon = 'chevron_right'; 
+  this.showFillerCompassIcon = 'chevron_right'; 
 
   if(this.showFillerContactIcon == 'chevron_right'){
     this.showFillerContactIcon = 'expand_more' ;
@@ -53,7 +61,15 @@ public changeShowFillerContact(){
 }
 
 public changeShowFillerEvent(){
+  this.showFillerContact = false;
+  this.need_compass = false;
+  this.deep_need_compass = false;
+
   this.event = !this.event;
+
+  this.showFillerContactIcon = 'chevron_right'; 
+  this.showFillerDeepCompassIcon = 'chevron_right'; 
+  this.showFillerCompassIcon = 'chevron_right'; 
 
   if(this.showFillerEventIcon == 'chevron_right'){
     this.showFillerEventIcon = 'expand_more' ;
@@ -63,7 +79,15 @@ public changeShowFillerEvent(){
 }
 
 public changeShowFillerDeepCompass(){
+  this.showFillerContact = false;
+  this.need_compass = false;
+  this.event = false;
+
   this.deep_need_compass = !this.deep_need_compass;
+
+  this.showFillerContactIcon = 'chevron_right'; 
+  this.showFillerEventIcon = 'chevron_right'; 
+  this.showFillerCompassIcon = 'chevron_right'; 
 
   if(this.showFillerDeepCompassIcon == 'chevron_right'){
     this.showFillerDeepCompassIcon = 'expand_more' ;
@@ -73,7 +97,15 @@ public changeShowFillerDeepCompass(){
 }
 
 public changeShowFillerNeedCompass(){
+  this.showFillerContact = false;
+  this.deep_need_compass = false;
+  this.event = false;
+
   this.need_compass = !this.need_compass;
+
+  this.showFillerContactIcon = 'chevron_right'; 
+  this.showFillerEventIcon = 'chevron_right'; 
+  this.showFillerDeepCompassIcon = 'chevron_right'; 
 
   if(this.showFillerCompassIcon == 'chevron_right'){
     this.showFillerCompassIcon = 'expand_more' ;

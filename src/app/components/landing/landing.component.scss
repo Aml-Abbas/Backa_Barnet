@@ -71,15 +71,16 @@ font-weight: bold;
     color: #663399 !important;
 }
 
-::ng-deep .mat-button-toggle-checked {
+/*  ::ng-deep .mat-button-toggle-checked {
     background-color: #FFF !important;
     color: #663399 !important;
-}
+} 
 
 .mat-button-toggle-checked{
     background-color: #FFF !important;
     color: #663399 !important;
-}
+}  */
+
 button:active{
     background-color: #FFF !important;
     color: #663399 !important;
@@ -87,6 +88,7 @@ button:active{
 button:focus{
     background-color: #FFF !important;
     color: #663399 !important;
+
 }
 
 
