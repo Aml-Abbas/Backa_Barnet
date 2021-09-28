@@ -5,6 +5,12 @@ import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
 import {MatTableDataSource} from '@angular/material/table';
 
+export interface PersonTableElement {
+  personNbr: string;
+  name: string;
+  changeDate: string
+}
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -12,8 +18,8 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class ContactComponent implements OnInit {
   persons$: Observable<Person[]> = new Observable<Person[]>();
-  private persons:Person[]= [];
-  displayedColumns: string[] = ['personID', 'firstName','changeDate'];
+  private persons:PersonTableElement[]= [];
+  displayedColumns: string[] = ['personNbr', 'name','changeDate'];
   dataSource = new MatTableDataSource(this.persons);
 
   constructor(private store: Store<fromState.State>) { }
@@ -22,7 +28,11 @@ export class ContactComponent implements OnInit {
     this.persons$ = this.store.select(fromState.getPersons);
     this.persons$.subscribe(data => {
       data.map((person:Person)=>{
-      this.persons.push(person);
+      let personNbr= person.personNr;
+      let name= person.firstName+' '+ person.lastName;
+      let changeDate= person.changeDate;
+      let personTableElement= {personNbr, name, changeDate}; 
+      this.persons.push(personTableElement);
       })
   });
   }
