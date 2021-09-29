@@ -7,7 +7,6 @@ mat-sidenav {
     width: 230px;
     border-right: none;
     background: #663399;
-    color: white;
     h2{
         text-align: center;
     }
@@ -31,50 +30,30 @@ mat-divider {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-h4{
-font-size: 40px;
-font-weight: bold;
+h4 {
+    font-size: 40px;
+    font-weight: bold;
 }
 
-::ng-deep .mat-button-toggle {
-    border: none !important;
-    background-color: #663399 !important;
+#landing-sidebar {
+    border: none;
+    width: 100%;   
 }
 
-::ng-deep .mat-button-toggle-group {
-    border: none !important;
-    width: 100% !important;
+.mat-button-toggle {
+    border: none;
+    background-color: #663399;
+    color: white;
 }
 
+ .mat-button-toggle.mat-button-toggle-checked {
+    background-color: white;
+    color:  #663399;
+}
 ::ng-deep .mat-button-toggle-label-content{
     text-align: left;
 } 
-.mat-menu-item{
-    border: none !important;
-    text-align: left;
-    padding: 12px;
-}
 
-::ng-deep .mat-button-toggle:hover {
-    background-color: #FFF !important;
-    color: #663399 !important;
-}
-.mat-menu-item{
-    width: 100%;
-}
-
-.mat-menu-item:hover{
-    background-color: #FFF !important;
-    color: #663399 !important;
-}
-.mat-menu-item:active{
-    background-color: #FFF !important;
-    color: #663399 !important;
-}
-.mat-menu-item:focus{
-    background-color: #FFF !important;
-    color: #663399 !important;
-}
 
 @media only screen and (min-width: 800px) {
     mat-toolbar {

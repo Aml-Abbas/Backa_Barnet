@@ -29,7 +29,9 @@ export interface CurrentPersonState {
       case currentPerson.UPDATE_PERSON_SUCCESS: {
         return {
           ...state,
-          currentPerson: action.payload
+          currentPerson: action.payload,
+          currentPersonLoaded: true,
+          currentPersonLoading: false
         };
       }
       default:

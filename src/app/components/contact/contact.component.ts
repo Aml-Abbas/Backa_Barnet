@@ -5,12 +5,6 @@ import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
 import {MatTableDataSource} from '@angular/material/table';
 
-export interface PersonTableElement {
-  personNbr: string;
-  name: string;
-  changeDate: string
-}
-
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -18,8 +12,8 @@ export interface PersonTableElement {
 })
 export class ContactComponent implements OnInit {
   persons$: Observable<Person[]> = new Observable<Person[]>();
-  private persons:PersonTableElement[]= [];
-  displayedColumns: string[] = ['personNbr', 'name','changeDate'];
+  private persons:Person[]= [];
+  displayedColumns: string[] = ['personNr', 'firstName','changeDate'];
   dataSource = new MatTableDataSource(this.persons);
 
   constructor(private store: Store<fromState.State>) { }
@@ -28,11 +22,21 @@ export class ContactComponent implements OnInit {
     this.persons$ = this.store.select(fromState.getPersons);
     this.persons$.subscribe(data => {
       data.map((person:Person)=>{
-      let personNbr= person.personNr.slice(2, 12);
-      let name= person.firstName+' '+ person.lastName;
-      let changeDate= person.changeDate.slice(0, 10);
-      let personTableElement= {personNbr, name, changeDate}; 
-      this.persons.push(personTableElement);
+        let personID= person.personID;
+        let personNr= person.personNr.slice(2, 12);
+        let lastName= person.lastName;
+        let firstName= person.firstName;
+        let address= person.address;
+        let city= person.city;
+        let personRoleID= person.personRoleID;
+        let personTypeID= person.personTypeID;
+        let createBy = person.createBy;
+        let createDate= person.createDate;
+        let changeBy= person.changeBy;
+        let changeDate= person.changeDate.slice(0, 10);
+        
+        this.persons.push({personID, personNr, lastName, 
+          firstName, address, city, personRoleID, personTypeID, createBy, createDate, changeBy, changeDate});
       })
   });
   }

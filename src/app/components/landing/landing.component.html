@@ -1,12 +1,12 @@
 <mat-toolbar class="mat-elevation-z8">
-    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-button-toggle mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
         <mat-icon *ngIf="!sidenav.opened">
             menu
         </mat-icon>
         <mat-icon *ngIf="sidenav.opened">
             close
         </mat-icon>
-    </button>
+    </mat-button-toggle >
     Backa Barnet
   </mat-toolbar>
   
@@ -18,74 +18,74 @@
   <mat-divider></mat-divider>
 
 
-<mat-button-toggle-group vertical= "true">
+<mat-button-toggle-group id='landing-sidebar' vertical= "true">
 
-    <mat-button-toggle (click)="changeShowFillerContact()"> 
+    <mat-button-toggle  (click)="changeShowFillerContact()"> 
         <span>Barn & Kontakt</span>
         <span class="material-icons" >{{showFillerContactIcon}}</span>
-    </mat-button-toggle>
+    </mat-button-toggle >
 
-    <div class *ngIf="showFillerContact">
-      <button mat-menu-item routerLink="/contact">Barnlista</button>
+    <div *ngIf="showFillerContact">
+      <mat-button-toggle  routerLink="/contact"><span>Barnlista</span></mat-button-toggle >
       <mat-divider></mat-divider>
-      <button mat-menu-item routerLink="/contact-person">Kontaktinfo Barn</button>
+      <mat-button-toggle  routerLink="/contact-person"><span>Kontaktinfo Barn</span></mat-button-toggle >
       <mat-divider></mat-divider>
-      <button mat-menu-item routerLink="/contact-guardian">Kontaktpersoner</button>
+      <mat-button-toggle  routerLink="/contact-guardian"><span>Kontaktpersoner</span></mat-button-toggle >
     </div>
 
 
       <mat-divider></mat-divider>
 
-        <button mat-menu-item routerLink="/consent">Samtycke</button>
+        <mat-button-toggle  routerLink="/consent">Samtycke</mat-button-toggle >
 
         <mat-divider></mat-divider>
-        <button mat-menu-item routerLink="/create-discover-card">Upptäckarkort</button>
+        <mat-button-toggle  routerLink="/create-discover-card">Upptäckarkort</mat-button-toggle >
 
         <mat-divider></mat-divider>
 
-        <mat-button-toggle (click)="changeShowFillerNeedCompass()">
+        <mat-button-toggle  (click)="changeShowFillerNeedCompass()">
             <span>Behovskompass</span>
             <span class="material-icons">{{showFillerCompassIcon}}</span>
-        </mat-button-toggle>
+        </mat-button-toggle >
 
         <div *ngIf="need_compass">
-          <button mat-menu-item routerLink="/conversation-material">Samtalsunderlag</button>
+          <mat-button-toggle  routerLink="/conversation-material">Samtalsunderlag</mat-button-toggle >
           <mat-divider></mat-divider>
-          <button mat-menu-item routerLink="/need-compass">Behovskompassar</button>
+          <mat-button-toggle  routerLink="/need-compass">Behovskompassar</mat-button-toggle >
           <mat-divider></mat-divider>
-          <button mat-menu-item routerLink="/estimate">Skattningar</button>
+          <mat-button-toggle  routerLink="/estimate">Skattningar</mat-button-toggle >
         </div>
 
         <mat-divider></mat-divider>
        
-        <button mat-menu-item routerLink="/goal">Barnets Mål</button>
+        <mat-button-toggle routerLink="/goal">Barnets Mål</mat-button-toggle >
 
         <mat-divider></mat-divider>
-        <mat-button-toggle (click)="changeShowFillerDeepCompass()">
+        <mat-button-toggle  (click)="changeShowFillerDeepCompass()">
             <span>Fördjupat Behovskompass</span>
             <span class="material-icons">{{showFillerDeepCompassIcon}}</span>
-        </mat-button-toggle>
+        </mat-button-toggle >
 
         <div *ngIf="deep_need_compass">
-        <button mat-menu-item routerLink="/deep-need-compass">Fördjupat Behovskompass</button>
+        <mat-button-toggle  routerLink="/deep-need-compass">Fördjupat Behovskompass</mat-button-toggle >
         <mat-divider></mat-divider>
-        <button mat-menu-item routerLink="/assessment">Bedömning</button>
+        <mat-button-toggle  routerLink="/assessment">Bedömning</mat-button-toggle >
     </div>
 
         <mat-divider></mat-divider>
-        <mat-button-toggle (click)="changeShowFillerEvent()">
+        <mat-button-toggle  (click)="changeShowFillerEvent()">
             <span>Händelse & plan</span>
             <span class="material-icons">{{showFillerEventIcon}}</span>
-        </mat-button-toggle>
+        </mat-button-toggle >
 
         <div *ngIf="event" >
-        <button mat-menu-item routerLink="/event">Händelse</button>
+        <mat-button-toggle  routerLink="/event">Händelse</mat-button-toggle >
         <mat-divider></mat-divider>
-        <button mat-menu-item routerLink="/plan">Min plan framåt</button>
+        <mat-button-toggle  routerLink="/plan">Min plan framåt</mat-button-toggle >
         </div>
 
         <mat-divider ></mat-divider>
-        <button mat-menu-item routerLink="/admin">Admin </button>
+        <mat-button-toggle  routerLink="/admin">Admin </mat-button-toggle >
 
         <mat-divider></mat-divider>
 
