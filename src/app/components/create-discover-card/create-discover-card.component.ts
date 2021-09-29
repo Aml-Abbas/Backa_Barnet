@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {map} from 'rxjs/operators';
 
 
 export interface PeriodicElement {
@@ -6,9 +7,6 @@ export interface PeriodicElement {
   description: string;
   color: string;
 }
-
-
-
 
 @Component({
   selector: 'app-create-discover-card',
@@ -29,7 +27,10 @@ export class CreateDiscoverCardComponent implements OnInit {
   ];
   labelPosition: 'before' | 'after' = 'after';
 
-  constructor() { }
+  guardianNbr: number=0;
+
+  constructor() { 
+  }
 
   ngOnInit(): void {
   }

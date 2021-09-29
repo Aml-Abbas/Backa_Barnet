@@ -44,16 +44,17 @@ h4 {
     border: none;
     background-color: #663399;
     color: white;
+    height: 48px;
 }
 
  .mat-button-toggle.mat-button-toggle-checked {
     background-color: white;
     color:  #663399;
 }
+
 ::ng-deep .mat-button-toggle-label-content{
     text-align: left;
 } 
-
 
 @media only screen and (min-width: 800px) {
     mat-toolbar {
