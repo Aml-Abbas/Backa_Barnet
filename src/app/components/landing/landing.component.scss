@@ -37,7 +37,7 @@ h4 {
 
 #landing-sidebar {
     border: none;
-    width: 100%;   
+    width: 100%; 
 }
 
 .mat-button-toggle {
@@ -50,11 +50,23 @@ h4 {
  .mat-button-toggle.mat-button-toggle-checked {
     background-color: white;
     color:  #663399;
+
+     .mat-button-toggle-label-content{
+        background-color: white;
+        color: #663399;
+        }
 }
 
-::ng-deep .mat-button-toggle-label-content{
-    text-align: left;
-} 
+#button-container > button{
+        display: none;
+}
+
+::ng-deep .mat-button-toggle-label-content {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        text-align: left;
+        text-indent: 12px;
+    }
 
 @media only screen and (min-width: 800px) {
     mat-toolbar {

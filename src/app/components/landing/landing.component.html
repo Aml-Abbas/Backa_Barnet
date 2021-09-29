@@ -25,14 +25,14 @@
         <span class="material-icons" >{{showFillerContactIcon}}</span>
     </mat-button-toggle >
 
-    <div *ngIf="showFillerContact">
-      <mat-button-toggle routerLink="/contact">Barnlista</mat-button-toggle >
-      <mat-divider></mat-divider>
-      <mat-button-toggle routerLink="/contact-person">Kontaktinfo Barn</mat-button-toggle >
-      <mat-divider></mat-divider>
-      <mat-button-toggle routerLink="/contact-guardian">Kontaktpersoner</mat-button-toggle >
-    </div>
+        <div *ngIf="showFillerContact">
 
+        <mat-button-toggle routerLink="/contact"><span class="mat-button-toggle-label-content">Barnlista</span></mat-button-toggle >
+        <mat-divider></mat-divider>
+        <mat-button-toggle routerLink="/contact-person"><span class="mat-button-toggle-label-content">Kontaktinfo Barn</span></mat-button-toggle >
+        <mat-divider></mat-divider>
+        <mat-button-toggle routerLink="/contact-guardian"><span class="mat-button-toggle-label-content">Kontaktpersoner</span></mat-button-toggle >
+        </div>
 
       <mat-divider></mat-divider>
 
@@ -48,12 +48,12 @@
             <span class="material-icons">{{showFillerCompassIcon}}</span>
         </mat-button-toggle >
 
-        <div *ngIf="need_compass">
-          <mat-button-toggle routerLink="/conversation-material">Samtalsunderlag</mat-button-toggle >
+        <div id="button-container" *ngIf="need_compass">
+          <mat-button-toggle routerLink="/conversation-material"><span class="mat-button-toggle-label-content">Samtalsunderlag</span></mat-button-toggle >
           <mat-divider></mat-divider>
-          <mat-button-toggle routerLink="/need-compass">Behovskompassar</mat-button-toggle >
+          <mat-button-toggle routerLink="/need-compass"><span class="mat-button-toggle-label-content">Behovskompassar</span></mat-button-toggle >
           <mat-divider></mat-divider>
-          <mat-button-toggle routerLink="/estimate">Skattningar</mat-button-toggle >
+          <mat-button-toggle routerLink="/estimate"><span class="mat-button-toggle-label-content">Skattningar</span></mat-button-toggle >
         </div>
 
         <mat-divider></mat-divider>
@@ -67,9 +67,9 @@
         </mat-button-toggle >
 
         <div *ngIf="deep_need_compass">
-        <mat-button-toggle routerLink="/deep-need-compass">Fördjupat Behovskompass</mat-button-toggle >
+        <mat-button-toggle routerLink="/deep-need-compass"><span class="mat-button-toggle-label-content">Fördjupat Behovskompass</span></mat-button-toggle >
         <mat-divider></mat-divider>
-        <mat-button-toggle routerLink="/assessment">Bedömning</mat-button-toggle >
+        <mat-button-toggle routerLink="/assessment"><span class="mat-button-toggle-label-content">Bedömning</span></mat-button-toggle >
     </div>
 
         <mat-divider></mat-divider>
@@ -79,9 +79,9 @@
         </mat-button-toggle >
 
         <div *ngIf="event" >
-        <mat-button-toggle routerLink="/event">Händelse</mat-button-toggle >
+        <mat-button-toggle routerLink="/event"><span class="mat-button-toggle-label-content">Händelse</span></mat-button-toggle >
         <mat-divider></mat-divider>
-        <mat-button-toggle routerLink="/plan">Min plan framåt</mat-button-toggle >
+        <mat-button-toggle routerLink="/plan"><span class="mat-button-toggle-label-content">Min plan framåt</span></mat-button-toggle >
         </div>
 
         <mat-divider ></mat-divider>
