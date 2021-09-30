@@ -9,12 +9,20 @@ import { Label } from 'ng2-charts';
 })
 export class NeedCompassComponent implements OnInit {
   public radarChartOptions: RadialChartOptions = {
- responsive: true,
+    responsive: true,
     scale:{
       gridLines:{
-        circular: true
+        circular: true,
       }
-    }
+    },
+    elements:{
+      line:{
+        borderWidth:1,
+      }
+    },
+    scales:{
+        }
+    
   };
 
   public radarChartLabels: Label[] = ['OMSORG', 'TRYGGHET', 'MÅR BRA', 
@@ -29,7 +37,9 @@ export class NeedCompassComponent implements OnInit {
   ];
   public radarChartType: ChartType = 'radar';
 
-  constructor() {}
+  constructor() {
+    
+  }
 
   ngOnInit(): void {
   }
