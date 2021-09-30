@@ -27,7 +27,7 @@ export class CreateDiscoverCardComponent implements OnInit {
   ];
   labelPosition: 'before' | 'after' = 'after';
 
-  guardianNbr: number=0;
+  guardianNbr: number=1;
 
   constructor() { 
   }
