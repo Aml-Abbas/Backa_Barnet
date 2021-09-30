@@ -28,6 +28,7 @@ export class CreateDiscoverCardComponent implements OnInit {
   labelPosition: 'before' | 'after' = 'after';
 
   guardianNbr: number=1;
+  selected = '1';
 
   constructor() { 
   }
@@ -35,4 +36,7 @@ export class CreateDiscoverCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  changeGuardianNbr(nbr: number){
+    this.guardianNbr= nbr;
+  }
 }

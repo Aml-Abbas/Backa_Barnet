@@ -41,7 +41,17 @@ mat-card-title{
     text-align: center;
 }
 
+::ng-deep .mat-select-value{
+  color: black !important;
+}
 
+::ng-deep .mat-select-panel{
+  background-color: #663399 !important;
+}
+
+::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
+  color: white !important;
+}
 
 .card-container{
     padding: 10px;
