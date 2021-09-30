@@ -7,15 +7,16 @@
     <div>
         <div>
           <div style="display: block">
-            <canvas baseChart
-              [data]="polarAreaChartData"
+            <canvas width="15" baseChart
+              [datasets]="radarChartData"
               [labels]="polarAreaChartLabels"
               [legend]="polarAreaLegend"
-              [chartType]="polarAreaChartType">
+              [chartType]="polarAreaChartType"
+              [options]="radarChartOptions">
             </canvas>
           </div>
         </div>
       </div>
-      
+
     
     </div>

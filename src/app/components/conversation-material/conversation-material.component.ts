@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SingleDataSet, Label} from 'ng2-charts';
-import { ChartType } from 'chart.js';
+import { ChartType, RadialChartOptions, ChartDataSets } from 'chart.js';
 
 @Component({
   selector: 'app-conversation-material',
@@ -12,12 +12,48 @@ export class ConversationMaterialComponent implements OnInit {
                                              'MÅR BRA', 'FRITID',
                                               'TILLHÖRIGHET', 'ANSVARSTAGANDE',
                                               'RESPEKTERAS', 'UTVECKLAS'];
-  public polarAreaChartData: SingleDataSet = [300, 500, 100, 40, 120, 50, 70, 30];
+  public polarAreaChartData: SingleDataSet = [300, 500, 100, 400, 120, 500, 700, 300];
   public polarAreaLegend = true;
 
-  public polarAreaChartType: ChartType = 'polarArea';
+  public radarChartData: ChartDataSets[] = [
+    { data: [300, 500, 100, 400, 120, 500, 700, 300],
+      backgroundColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 100, 64, 1)',
+        'rgba(153, 50, 255, 1)',
+        'rgba(255, 70, 64, 1)' ],
+      
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 100, 64, 1)',
+        'rgba(153, 50, 255, 1)',
+        'rgba(255, 70, 64, 1)' ]
+      }
+  ];
 
-  constructor() {}
+  public polarAreaChartType: ChartType = 'polarArea';
+  public radarChartOptions: RadialChartOptions = {
+    scale: {
+      ticks: {
+        backdropColor: 'transparent',
+      }
+  },
+  elements:{
+    
+  }
+  };
+
+  constructor() {
+    
+  }
 
   ngOnInit(): void {
   }
