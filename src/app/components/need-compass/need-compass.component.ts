@@ -10,10 +10,10 @@ import { Label } from 'ng2-charts';
 export class NeedCompassComponent implements OnInit {
   public radarChartOptions: RadialChartOptions = {
  responsive: true,
-    scales:{
+    scale:{
       gridLines:{
-        circular: true,
-      },
+        circular: true
+      }
     }
   };
 
