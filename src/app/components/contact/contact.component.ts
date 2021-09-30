@@ -20,6 +20,8 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.persons$ = this.store.select(fromState.getPersons);
+    this.persons.push(new Person('11', '9308887654', 'Gustav', 
+      'Sandberg', 'Tågaborg', ' ', '', '', '', '', '', '2015-11-01'));
     this.persons$.subscribe(data => {
       data.map((person:Person)=>{
         let personID= person.personID;
