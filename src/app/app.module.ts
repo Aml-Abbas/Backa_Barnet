@@ -62,6 +62,7 @@ import {
 } from '@ngrx/router-store';
 import { EditContactPersonComponent } from './components/edit-contact-person/edit-contact-person.component';
 import { EditContactGuardianComponent } from './components/edit-contact-guardian/edit-contact-guardian.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -107,6 +108,7 @@ import { EditContactGuardianComponent } from './components/edit-contact-guardian
       maxAge: 25,
       logOnly: environment.production,
     }),
+    ChartsModule,
 
   ], exports: [
     MatInputModule,
