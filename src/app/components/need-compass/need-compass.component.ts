@@ -13,16 +13,21 @@ export class NeedCompassComponent implements OnInit {
     scale:{
       gridLines:{
         circular: true,
-      }
+      },
+       angleLines: {
+            display: true,
+            
+        },
+        ticks: {
+          suggestedMin: 0,
+          suggestedMax: 5
+    }
     },
     elements:{
       line:{
         borderWidth:1,
       }
     },
-    scales:{
-        }
-    
   };
 
   public radarChartLabels: Label[] = ['OMSORG', 'TRYGGHET', 'MÅR BRA', 
@@ -30,9 +35,9 @@ export class NeedCompassComponent implements OnInit {
                                       'RESPEKTERAS', 'UTVECKLAS'];
 
   public radarChartData: ChartDataSets[] = [
-    { data: [65, 59, 90, 81, 56, 55, 40, 40], label: 'Anna Eriksson', backgroundColor:'transparent' },
-    { data: [28, 48, 40, 19, 96, 27, 100, 100], label: 'Dalia Bagdadi' , backgroundColor:'transparent'},
-    { data: [28, 48, 30, 19, 10, 27, 50, 80], label: 'Amina Malak' , backgroundColor:'transparent'}
+    { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Anna Eriksson', backgroundColor:'transparent' },
+    { data: [3, 3, 1, 2, 1, 3, 4, 4], label: 'Dalia Bagdadi' , backgroundColor:'transparent'},
+    { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Amina Malak' , backgroundColor:'transparent'}
 
   ];
   public radarChartType: ChartType = 'radar';
