@@ -117,4 +117,8 @@ public changeShowFillerNeedCompass(){
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
   }
+
+  delete_current_person(): void{
+    this.store.dispatch(new fromState.UpdatePerson(null));
+  }
 }

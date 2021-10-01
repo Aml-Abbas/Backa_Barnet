@@ -13,7 +13,13 @@
     <mat-sidenav-container>
       <mat-sidenav  #sidenav="matSidenav" class="mat-elevation-z8">
  
-  <h2 class="name" *ngIf="(current_person$ | async) as current_person">{{current_person.firstName}} {{current_person.lastName}}</h2>
+  <h2 class="name" *ngIf="(current_person$ | async) as current_person">{{current_person.firstName}} {{current_person.lastName}} 
+      <button mat-icon-button *ngIf="(current_person$ | async) as current_person" (click)="delete_current_person()">
+    <mat-icon *ngIf="sidenav.opened">
+        close
+    </mat-icon>
+</button >
+</h2>
   
   <mat-divider></mat-divider>
 

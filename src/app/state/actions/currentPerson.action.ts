@@ -9,13 +9,13 @@ export const UPDATE_PERSON_FAIL = '[Current Person] Update Person Fail';
 export class UpdatePerson implements Action {
     readonly type = UPDATE_PERSON;
   
-    constructor(public payload: Person) {}
+    constructor(public payload: Person | null) {}
   }
   
   export class UpdatePersonSuccess implements Action {
     readonly type = UPDATE_PERSON_SUCCESS;
   
-    constructor(public payload: Person) {}
+    constructor(public payload: Person | null) {}
   }
   
   export class UpdatePersonFail implements Action {
