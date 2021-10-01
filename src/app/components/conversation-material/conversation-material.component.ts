@@ -16,7 +16,7 @@ export class ConversationMaterialComponent implements OnInit {
   public polarAreaLegend = true;
 
   public radarChartData: ChartDataSets[] = [
-    { data: [300, 500, 100, 400, 120, 500, 700, 300],
+    { data: [3, 5, 1, 4, 1, 4, 2, 1],
       
       backgroundColor: [
         'rgba(255, 99, 132, 0.3)',
@@ -43,13 +43,24 @@ export class ConversationMaterialComponent implements OnInit {
   public polarAreaChartType: ChartType = 'polarArea';
   public radarChartOptions: RadialChartOptions = {
     scale: {
+      angleLines: {
+        display: true,  
+    },
       ticks: {
+        min: 0,
+        max: 5,
+        maxTicksLimit: 6,
+        fontSize: 15,
         backdropColor: 'transparent',
-      }
+  }
   },
   elements:{
-    
-  }
+    line:{
+      borderWidth:1,
+    },
+
+  },
+
   };
 
   constructor() {
