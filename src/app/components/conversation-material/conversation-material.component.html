@@ -3,20 +3,15 @@
     <h1>Samtalsunderlag</h1>
 
     <h4>Bedömning av Kalles situation</h4>
-
-    <div>
-        <div>
+    <p>{{selected}}</p>
           <div style="display: block">
             <canvas width="15" baseChart
-              [datasets]="radarChartData"
+              [data]="polarAreaChartData"
               [labels]="polarAreaChartLabels"
               [legend]="polarAreaLegend"
               [chartType]="polarAreaChartType"
               [options]="radarChartOptions">
             </canvas>
           </div>
-        </div>
-      </div>
-
     
     </div>

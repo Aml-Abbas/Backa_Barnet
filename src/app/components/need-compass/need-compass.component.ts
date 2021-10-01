@@ -10,14 +10,19 @@ import { Label } from 'ng2-charts';
 export class NeedCompassComponent implements OnInit {
   public radarChartOptions: RadialChartOptions = {
     responsive: true ,
+    title:{
+display: true,
+//text:'helllo'
+    },
        scale:{
       gridLines:{
         circular: true,
+        color: 'black'
 
       },
        angleLines: {
             display: true,
-            
+            color: 'black'
         },
         ticks: {
           min: 0,
@@ -27,8 +32,15 @@ export class NeedCompassComponent implements OnInit {
     }
     },
     elements:{
-      line:{
+      rectangle:{
+        borderWidth:50,
+        backgroundColor:'pink'
+      },point:{
+       // borderWidth: 30,
+      }, line:{
         borderWidth:1,
+        tension: 0.15,
+        fill: false
       },
     },
     legend:{
@@ -43,9 +55,9 @@ export class NeedCompassComponent implements OnInit {
                                       'RESPEKTERAS', 'UTVECKLAS'];
 
   public radarChartData: ChartDataSets[] = [
-    { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Anna Eriksson', backgroundColor:'transparent' },
-    { data: [3, 3, 1, 2, 1, 3, 4, 4], label: 'Dalia Bagdadi' , backgroundColor:'transparent'},
-    { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Amina Malak' , backgroundColor:'transparent'}
+    { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Anna Eriksson'},
+    { data: [3, 3, 1, 2, 1, 3, 4, 4], label: 'Dalia Bagdadi'},
+    { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Amina Malak'}
   ];
   public radarChartType: ChartType = 'radar';
 
