@@ -9,25 +9,33 @@ import { Label } from 'ng2-charts';
 })
 export class NeedCompassComponent implements OnInit {
   public radarChartOptions: RadialChartOptions = {
-    responsive: true,
-    scale:{
+    responsive: true ,
+       scale:{
       gridLines:{
         circular: true,
+
       },
        angleLines: {
             display: true,
             
         },
         ticks: {
-          suggestedMin: 0,
-          suggestedMax: 5
+          min: 0,
+          max: 5,
+          maxTicksLimit: 6,
+          fontSize: 15,
     }
     },
     elements:{
       line:{
         borderWidth:1,
-      }
+      },
     },
+    legend:{
+      labels:{
+        fontSize: 15,
+      }, 
+    }
   };
 
   public radarChartLabels: Label[] = ['OMSORG', 'TRYGGHET', 'MÅR BRA', 
@@ -38,7 +46,6 @@ export class NeedCompassComponent implements OnInit {
     { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Anna Eriksson', backgroundColor:'transparent' },
     { data: [3, 3, 1, 2, 1, 3, 4, 4], label: 'Dalia Bagdadi' , backgroundColor:'transparent'},
     { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Amina Malak' , backgroundColor:'transparent'}
-
   ];
   public radarChartType: ChartType = 'radar';
 
