@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {map} from 'rxjs/operators';
+import {MatDialog} from '@angular/material/dialog';
+import { CreateDiscoverCardDialogComponent } from './create-discover-card-dialog/create-discover-card-dialog.component';
 
 
 export interface PeriodicElement {
@@ -30,7 +31,7 @@ export class CreateDiscoverCardComponent implements OnInit {
   guardianNbr: number=1;
   selected = '1';
 
-  constructor() { 
+  constructor(public dialog: MatDialog) { 
   }
 
   ngOnInit(): void {
@@ -39,4 +40,16 @@ export class CreateDiscoverCardComponent implements OnInit {
   changeGuardianNbr(nbr: number){
     this.guardianNbr= nbr;
   }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+
 }
+
+

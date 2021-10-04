@@ -49,6 +49,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -64,6 +65,7 @@ import {
 import { EditContactPersonComponent } from './components/edit-contact-person/edit-contact-person.component';
 import { EditContactGuardianComponent } from './components/edit-contact-guardian/edit-contact-guardian.component';
 import { ChartsModule } from 'ng2-charts';
+import { CreateDiscoverCardDialogComponent } from './components/create-discover-card/create-discover-card-dialog/create-discover-card-dialog.component';
 
 
 
@@ -72,7 +74,7 @@ import { ChartsModule } from 'ng2-charts';
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent,
     EventComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent,
     DeepNeedCompassComponent, PlanComponent, AssessmentComponent, ConversationMaterialComponent,
-    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, CreatePlanComponent, EditContactPersonComponent, EditContactGuardianComponent],
+    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, CreatePlanComponent, EditContactPersonComponent, EditContactGuardianComponent, CreateDiscoverCardDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -101,6 +103,7 @@ import { ChartsModule } from 'ng2-charts';
     ReactiveFormsModule,
     HttpClientModule,
     MatSelectModule,
+    MatDialogModule,
     StoreModule.forRoot({}, { metaReducers }),
     StoreModule.forFeature('app', reducers),
     EffectsModule.forRoot(),
