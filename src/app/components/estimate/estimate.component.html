@@ -1,5 +1,281 @@
 
 <div class="container">
 
-    <p>estimate works!</p>
+    <h1>Skattningsformulär</h1>
+    <h4>För personal</h4>
+
+
+    <mat-stepper id="mat-stepper" #stepper orientation="vertical">
+        <mat-step id="care" [stepControl]="firstFormGroup" errorMessage="Name is required.">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>OMSORG</ng-template>
+            <mat-form-field appearance="fill">
+                <mat-label>Barnet har någon att lita på och vända sig till när det behövs</mat-label>
+                <input matInput formControlName="care_1" type="number" min="0" max="5" min="0" max="5"min="0" max="5">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet har tillgängliga vuxna som uppmuntrar och uppmärksammar det</mat-label>
+                <input matInput formControlName="care_2" type="number" min="0" max="5">
+              </mat-form-field>           
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet får kognitiv stimulans av vuxna i sin närhet</mat-label>
+                <input matInput formControlName="care_3" type="number" min="0" max="5">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet får extra stöd och vård när det behövs</mat-label>
+                <input matInput formControlName="care_4" type="number" min="0" max="5">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet bor i en miljö som är anpassad efter barnets behov samt främjar dess utveckling</mat-label>
+                <input matInput formControlName="care_5" type="number" min="0" max="5">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet har någon som ser till att hen är ren och lämpligt klädd efter årstid</mat-label>
+                <input matInput formControlName="care_6" type="number" min="0" max="5">
+              </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Nästa</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step id="security" [stepControl]="secondFormGroup" errorMessage="Address is required.">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>TRYGGHET</ng-template>
+            <mat-form-field appearance="fill">
+                <mat-label>Barnet känner sig trygg hemma, i skolan, på nätet och i sin närmiljö</mat-label>
+                <input matInput formControlName="security_1" type="number" min="0" max="5">
+              </mat-form-field>            
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet skyddas från kränkningar </mat-label>
+                <input matInput formControlName="security_2" type="number" min="0" max="5">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet skyddas från fysiska faror och hälsofaror i och utanför hemmet</mat-label>
+                <input matInput formControlName="security_3" type="number" min="0" max="5">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet visar förmåga att bedöma och hantera situationer som kan innebära en risk både för barnet själv och andra</mat-label>
+                <input matInput formControlName="security_4" type="number" min="0" max="5">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet litar på de som finns i dess närhet, såväl barn som vuxna</mat-label>
+                <input matInput formControlName="security_5" type="number" min="0" max="5">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet skyddas från att bli utnyttjat av andra</mat-label>
+                <input matInput formControlName="security_6" type="number" min="0" max="5">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet skyddas från kriminalitet och olaglig verksamhet</mat-label>
+                <input matInput formControlName="security_7" type="number" min="0" max="5">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet lever i en hemmiljö som är fri från missbruk, våld, försummelse och utnyttjande </mat-label>
+                <input matInput formControlName="security_8" type="number" min="0" max="5">
+              </mat-form-field>
+              <div>
+              <button mat-button matStepperPrevious>Tillbaka</button>
+              <button mat-button matStepperNext>Nästa</button>
+            </div>
+          </form>
+        </mat-step>
+        
+        <!-- 
+        <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+            <form [formGroup]="thirdFormGroup">
+              <ng-template matStepLabel>MÅ BRA</ng-template>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet är frisk och upprätthåller god fysisk och psykisk hälsa</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet har en hälsosam livsstil</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet mår bra och ser positivt på framtiden</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet kan hantera svårigheter och problem</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet deltar vid kontroller/besök som ska ge barnet stöd/hjälp</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet uppvisar inte negativa eller destruktiva beteenden</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+              <div>    
+                <button mat-button matStepperPrevious>Tillbaka</button>
+                <button mat-button matStepperNext>Nästa</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+            <form [formGroup]="fourthFormGroup">
+              <ng-template matStepLabel>FRITID</ng-template>
+              <mat-form-field appearance="fill">
+                <mat-form-field appearance="fill">
+                    <mat-label>Barnet och familjen är aktiva tillsammans och gör saker som barnet tycker är roligt</mat-label>
+                    <input matInput formControlName="pageSize" type="number" min="0" max="5">
+                  </mat-form-field>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Barnet uppmuntras att vara aktiv utifrån sin förmåga, tex deltar i  lek, friluftsliv och idrottsaktiviteter</mat-label>
+                    <input matInput formControlName="pageSize" type="number" min="0" max="5">
+                  </mat-form-field>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Barnet uppmuntras och ges förutsättningar för att utveckla egna intressen och att delta i aktiviteter som är stimulerande</mat-label>
+                    <input matInput formControlName="pageSize" type="number" min="0" max="5">
+                  </mat-form-field>
+                <div>
+                <button mat-button matStepperPrevious>Tillbaka</button>
+                <button mat-button matStepperNext>Nästa</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+            <form [formGroup]="fifthFormGroup">
+              <ng-template matStepLabel>TILLHÖRIGHET</ng-template>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet känner sig viktig och uppskattad av de som tar hand om hen</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet känner sig viktig och uppskattad av barn och vuxna som finn i dess närhet</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Familjen har ett socialt nätverk som deltar aktivt i barnets liv</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+          <div>
+                
+                <button mat-button matStepperPrevious>Tillbaka</button>
+                <button mat-button matStepperNext>Nästa</button>
+              </div>
+            </form>
+          </mat-step>
+
+
+          <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+            <form [formGroup]="sixthFormGroup">
+              <ng-template matStepLabel>ANSVARSTAGANDE</ng-template>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet deltar i undervisningen i skolan</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet kan förstå och följa regler</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet vet vad som är rätt och fel och agerar utifrån det</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet tar ansvar för sina handlingar</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet förstår vad som förväntas av hen och tar ansvar hemma, i skolan och i närmiljön.</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet visar hänsyn och omtanke om andra</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet har bra förebilder i sin närhet</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+              <div>
+                
+                <button mat-button matStepperPrevious>Tillbaka</button>
+                <button mat-button matStepperNext>Nästa</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+            <form [formGroup]="seventhFormGroup">
+              <ng-template matStepLabel>RESPEKTERAS</ng-template>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet känner sig lyssnad till, tagen på allvar och är delaktig i viktiga vardagsbeslut</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet har en bra självkänsla och ser sig själv som värdeful</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet känner att vänner och andra tror på dess förmåga och stöttar hen</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>  
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet känner sig inte retad, utsatt/utstött  eller kränkt av andra</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>  
+
+              <div>
+                <button mat-button matStepperPrevious>Tillbaka</button>
+                <button mat-button matStepperNext>Nästa</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+            <form [formGroup]="eigthFormGroup">
+              <ng-template matStepLabel>UTVECKLAS</ng-template>
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet utvecklas och lär sig nya saker i olika miljöer</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>  
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet är nyfiket och motiverat till att lära sig nya saker</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>  
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet uppnår kunskapskraven för sin åldern</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>  
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet har utvecklat förmågor för att klara av och hantera sin vardag</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>  
+
+              <mat-form-field appearance="fill">
+                <mat-label>Barnet har engagerade vuxna i sin närhet som stöttar hen i sin utveckling och i sitt lärande</mat-label>
+                <input matInput formControlName="pageSize" type="number" min="0" max="5">
+              </mat-form-field>  
+
+              <div>
+                <button mat-button matStepperPrevious>Tillbaka</button>
+                <button mat-button (click)="send()">Skicka in</button>
+            </div>
+            </form>
+          </mat-step> -->
+      </mat-stepper>
+      
 </div>

@@ -1,0 +1,33 @@
+h1{
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  h4{
+    font-size: 20px;
+  }
+
+mat-stepper{
+    background-color: whitesmoke;
+}
+
+::ng-deep .mat-step-text-label{
+    color: black;
+}
+
+.mat-step-header .mat-step-icon .mat-step-icon-selected{
+            background-color: red !important;
+}
+
+/* 
+::ng-deep .mat-step-header .mat-step-icon-selected{
+    background-color: #663399;
+ } */
+
+ mat-form-field{
+     width: 100%;
+
+     mat-label{
+         color: black;
+     }
+ }
