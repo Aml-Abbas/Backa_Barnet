@@ -28,17 +28,17 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Barnets namn</mat-label>
-        <input matInput>
+        <input matInput [ngModel]="name">
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Barnets personnummer</mat-label>
-        <input matInput>
+        <input matInput [ngModel]="personNbr">
       </mat-form-field>
 
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Barnets address</mat-label>
-        <input matInput>
+        <input matInput [ngModel]="adress">
       </mat-form-field>
 
       <mat-form-field appearance="fill">

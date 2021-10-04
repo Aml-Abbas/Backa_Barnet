@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { CreateDiscoverCardDialogComponent } from './create-discover-card-dialog/create-discover-card-dialog.component';
+import * as fromState from '../../state';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../../app/state';
 
 
 export interface PeriodicElement {
@@ -31,7 +34,13 @@ export class CreateDiscoverCardComponent implements OnInit {
   guardianNbr: number=1;
   selected = '1';
 
-  constructor(public dialog: MatDialog) { 
+  name = '';
+  personNbr = '';
+  adress = '';
+  guardianName1 = '';
+
+  constructor(public dialog: MatDialog,
+              private store: Store<fromState.State>) { 
   }
 
   ngOnInit(): void {
@@ -42,10 +51,19 @@ export class CreateDiscoverCardComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent);
+    const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
+      data:{
+        name: this.name,
+        personNbr: this.personNbr,
+        adress: this.adress,
+        guardianName1: this.guardianName1
+      }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if(result){
+        this.store.dispatch(new fromRoot.Go({ path: ['discover-card'] }));
+      }
     });
   }
 
