@@ -5,3 +5,193 @@ h1{
   h4{
     font-size: 20px;
   }
+
+  mat-card{
+      background-color: whitesmoke;
+      color: black;
+      margin: 20px;
+      float: left;
+      width: 40%;
+    }
+  mat-card-title{
+      color: white;
+      padding: 10px;
+      text-align: center;
+  }
+
+  mat-form-field{
+    width: 100%;
+    margin-top: 10px;
+      mat-label{
+          color: black;
+      }
+  }
+
+  mat-button-toggle{
+      width: 20%;
+  }
+
+  mat-button-toggle-group{
+      width: 100%;
+  }
+
+  #care{
+      mat-card-title{
+        background-color: #003686;
+      }
+      mat-form-field{
+          border: 1px solid #003686 !important;
+      }
+      mat-button-toggle-group{
+        background-color: #003686;
+    }    
+    .mat-button-toggle-appearance-standard{
+        background-color: #003686;
+    }    
+
+    .mat-button-toggle.mat-button-toggle-checked {
+        background-color: white;
+        color:  #003686;
+      }
+  }
+
+  
+  #security{
+    mat-card-title{
+      background-color: #353370;
+    }
+    mat-form-field{
+        border: 1px solid #353370 !important;
+    }
+    .mat-button-toggle-appearance-standard{
+        background-color: #353370;
+    }    
+
+    .mat-button-toggle.mat-button-toggle-checked {
+        background-color: white;
+        color:  #353370;
+      }
+
+}
+
+#feel_good{
+    mat-card-title{
+      background-color: #e0448c;
+    }
+    mat-form-field{
+        border: 1px solid #e0448c !important;
+    }
+    .mat-button-toggle-appearance-standard{
+        background-color: #e0448c;
+    }    
+
+    .mat-button-toggle.mat-button-toggle-checked {
+        background-color: white;
+        color:  #e0448c;
+      }
+}
+
+#free_time{
+    mat-card-title{
+      background-color: #df2d5b;
+    }
+    mat-form-field{
+        border: 1px solid #df2d5b !important;
+    }
+    .mat-button-toggle-appearance-standard{
+        background-color: #df2d5b;
+    }    
+
+    .mat-button-toggle.mat-button-toggle-checked {
+        background-color: white;
+        color:  #df2d5b;
+      }
+}
+
+#beloning{
+    mat-card-title{
+      background-color: #eb612d;
+    }
+    mat-form-field{
+        border: 1px solid #eb612d !important;
+    }
+    .mat-button-toggle-appearance-standard{
+        background-color: #eb612d;
+    }    
+
+    .mat-button-toggle.mat-button-toggle-checked {
+        background-color: white;
+        color:  #eb612d;
+      }
+}
+
+
+#responsibility{
+    mat-card-title{
+      background-color: #f79c2e;
+    }
+    mat-form-field{
+        border: 1px solid #f79c2e !important;
+    }
+    .mat-button-toggle-appearance-standard{
+        background-color: #f79c2e;
+    }    
+
+    .mat-button-toggle.mat-button-toggle-checked {
+        background-color: white;
+        color:  #f79c2e;
+      }
+}
+
+
+
+#respekt{
+    mat-card-title{
+      background-color: #4ba562;
+    }
+    mat-form-field{
+        border: 1px solid #4ba562 !important;
+    }
+    .mat-button-toggle-appearance-standard{
+        background-color: #4ba562;
+    }    
+
+    .mat-button-toggle.mat-button-toggle-checked {
+        background-color: white;
+        color:  #4ba562;
+      }
+}
+
+
+#develop{
+    mat-card-title{
+      background-color: #31acaf;
+    }
+    mat-form-field{
+        border: 1px solid #31acaf !important;
+    }
+    .mat-button-toggle-appearance-standard{
+        background-color: #31acaf;
+    }    
+
+    .mat-button-toggle.mat-button-toggle-checked {
+        background-color: white;
+        color:  #31acaf;
+      }
+}
+
+@media screen and (max-width: 1024px){
+
+    mat-card{
+        width: 90%;
+    }
+
+}
+
+@media screen and (max-width: 280px){
+
+    mat-card{
+        width: 80%;
+    }
+
+}
