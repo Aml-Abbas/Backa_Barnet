@@ -15,15 +15,6 @@ mat-stepper{
     color: black;
 }
 
-.mat-step-header .mat-step-icon .mat-step-icon-selected{
-            background-color: red !important;
-}
-
-/* 
-::ng-deep .mat-step-header .mat-step-icon-selected{
-    background-color: #663399;
- } */
-
  mat-form-field{
      width: 100%;
 
@@ -31,3 +22,130 @@ mat-stepper{
          color: black;
      }
  }
+
+ ::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
+    color: white !important;
+  }
+
+  ::ng-deep .mat-select-value{
+    color: black !important;
+  }
+
+h5{
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    padding: 10px;
+  }
+
+::ng-deep #care-form {
+    h5{
+        background-color: #003686;
+      }
+
+ .mat-form-field {
+    border: 1px solid #003686 !important;
+}
+}
+
+::ng-deep .care.mat-select-panel {
+    background-color: #003686;
+}
+
+::ng-deep #security-form {
+    h5{
+        background-color: #353370;
+      }
+
+ .mat-form-field {
+    border: 1px solid #353370 !important;
+}
+}
+
+::ng-deep .security.mat-select-panel {
+    background-color: #353370;
+}
+
+::ng-deep #feelgood-form {
+    h5{
+        background-color: #e0448c;
+      }
+
+ .mat-form-field {
+    border: 1px solid #e0448c !important;
+}
+}
+
+::ng-deep .feelgood.mat-select-panel {
+    background-color: #e0448c;
+}
+
+::ng-deep #freetime-form {
+    h5{
+        background-color: #df2d5b;
+      }
+
+ .mat-form-field {
+    border: 1px solid #df2d5b !important;
+}
+}
+
+::ng-deep .freetime.mat-select-panel {
+    background-color: #df2d5b;
+}
+
+::ng-deep #beloning-form {
+    h5{
+        background-color: #eb612d;
+      }
+
+ .mat-form-field {
+    border: 1px solid #eb612d !important;
+}
+}
+
+::ng-deep .beloning.mat-select-panel {
+    background-color: #eb612d;
+}
+
+::ng-deep #responsibility-form {
+    h5{
+        background-color: #f79c2e;
+      }
+
+ .mat-form-field {
+    border: 1px solid #f79c2e !important;
+}
+}
+
+::ng-deep .responsibility.mat-select-panel {
+    background-color: #f79c2e;
+}
+
+::ng-deep #respekt-form {
+    h5{
+        background-color: #4ba562;
+      }
+
+ .mat-form-field {
+    border: 1px solid #4ba562 !important;
+}
+}
+
+::ng-deep .respekt.mat-select-panel {
+    background-color: #4ba562;
+}
+
+::ng-deep #develop-form {
+    h5{
+        background-color: #31acaf;
+      }
+
+ .mat-form-field {
+    border: 1px solid #31acaf !important;
+}
+}
+
+::ng-deep .develop.mat-select-panel {
+    background-color: #31acaf;
+}
