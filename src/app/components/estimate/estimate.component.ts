@@ -160,6 +160,8 @@ export class EstimateComponent implements OnInit {
     }
 
     
+
+/*   
   console.log(this.care_1);
     console.log(this.care_2);
     console.log(this.care_3);
@@ -167,7 +169,6 @@ export class EstimateComponent implements OnInit {
     console.log(this.care_5);
     console.log(this.care_6);
 
-/*   
     console.log(this.security_1);
     console.log(this.security_2);
     console.log(this.security_3);
