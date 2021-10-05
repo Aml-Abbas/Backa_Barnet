@@ -31,7 +31,7 @@
       <mat-card-title>TRYGGHET</mat-card-title>
       <mat-card-content>
         <h4>Jag känner mig trygg</h4>
-        <mat-button-toggle-group [value]="security_score" aria-label="Font Style">
+        <mat-button-toggle-group (change)="changeSecurityScore($event.value)" aria-label="Font Style">
           <mat-button-toggle value="1">1</mat-button-toggle>
           <mat-button-toggle value="2">2</mat-button-toggle>
           <mat-button-toggle value="3">3</mat-button-toggle>
@@ -52,7 +52,7 @@
       <mat-card-title>MÅ BRA</mat-card-title>
       <mat-card-content>
         <h4>Jag mår bra</h4>
-        <mat-button-toggle-group [value]="feel_good_score" aria-label="Font Style">
+        <mat-button-toggle-group (change)="changeFeelGoodScore($event.value)" aria-label="Font Style">
           <mat-button-toggle value="1">1</mat-button-toggle>
           <mat-button-toggle value="2">2</mat-button-toggle>
           <mat-button-toggle value="3">3</mat-button-toggle>
@@ -72,7 +72,7 @@
       <mat-card-title>FRITID</mat-card-title>
       <mat-card-content>
         <h4>Jag trivs med min fritid</h4>
-        <mat-button-toggle-group [value]="free_time_score" aria-label="Font Style">
+        <mat-button-toggle-group (change)="changeFreeTimeScore($event.value)" aria-label="Font Style">
           <mat-button-toggle value="1">1</mat-button-toggle>
           <mat-button-toggle value="2">2</mat-button-toggle>
           <mat-button-toggle value="3">3</mat-button-toggle>
@@ -91,7 +91,7 @@
       <mat-card-title>TILLHÖRIGHET</mat-card-title>
       <mat-card-content>
         <h4>Jag får vara med</h4>
-        <mat-button-toggle-group [value]="beloning_score" aria-label="Font Style">
+        <mat-button-toggle-group (change)="changeBeloningScore($event.value)" aria-label="Font Style">
           <mat-button-toggle value="1">1</mat-button-toggle>
           <mat-button-toggle value="2">2</mat-button-toggle>
           <mat-button-toggle value="3">3</mat-button-toggle>
@@ -110,7 +110,7 @@
       <mat-card-title>ANSVARSTAGANDE</mat-card-title>
       <mat-card-content>
         <h4>Jag tar ansvar för mig själv och andra</h4>
-        <mat-button-toggle-group [value]="responsibility_score" aria-label="Font Style">
+        <mat-button-toggle-group (change)="changeResponsibilityScore($event.value)" aria-label="Font Style">
           <mat-button-toggle value="1">1</mat-button-toggle>
           <mat-button-toggle value="2">2</mat-button-toggle>
           <mat-button-toggle value="3">3</mat-button-toggle>
@@ -129,7 +129,7 @@
       <mat-card-title>RESPEKTERAS</mat-card-title>
       <mat-card-content>
         <h4>Jag känner mig respekterad</h4>
-        <mat-button-toggle-group [value]="respekt_score" aria-label="Font Style">
+        <mat-button-toggle-group (change)="changeRespektScore($event.value)" aria-label="Font Style">
           <mat-button-toggle value="1">1</mat-button-toggle>
           <mat-button-toggle value="2">2</mat-button-toggle>
           <mat-button-toggle value="3">3</mat-button-toggle>
@@ -148,7 +148,7 @@
       <mat-card-title>UTVECKLAS</mat-card-title>
       <mat-card-content>
         <h4>Jag gör mitt bästa</h4>
-        <mat-button-toggle-group [value]="develop_score" aria-label="Font Style">
+        <mat-button-toggle-group (change)="changeDevelopScore($event.value)" aria-label="Font Style">
           <mat-button-toggle value="1">1</mat-button-toggle>
           <mat-button-toggle value="2">2</mat-button-toggle>
           <mat-button-toggle value="3">3</mat-button-toggle>
