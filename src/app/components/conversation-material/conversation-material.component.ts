@@ -15,6 +15,15 @@ export class ConversationMaterialComponent implements OnInit {
   respekt_score: string;
   develop_score: string;
 
+  care_comment: string;
+  security_comment: string;
+  feel_good_comment: string;
+  free_time_comment: string;
+  beloning_comment: string;
+  responsibility_comment: string;
+  respekt_comment: string;
+  develop_comment: string;
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -24,38 +33,24 @@ export class ConversationMaterialComponent implements OnInit {
   }
   changeSecurityScore(value: string){
     this.security_score= value;
-    console.log(this.security_score);
-
   }
   changeFeelGoodScore(value: string){
     this.feel_good_score= value;
-    console.log(this.feel_good_score);
-
   }
   changeFreeTimeScore(value: string){
     this.free_time_score= value;
-    console.log(this.free_time_score);
-
   }
   changeBeloningScore(value: string){
     this.beloning_score= value;
-    console.log(this.beloning_score);
-
   }
   changeResponsibilityScore(value: string){
     this.responsibility_score= value;
-    console.log(this.responsibility_score);
-
   }
   changeRespektScore(value: string){
     this.respekt_score= value;
-    console.log(this.respekt_score);
-
   }
   changeDevelopScore(value: string){
     this.develop_score= value;
-    console.log(this.develop_score);
-
   }
 
   save(): void{
@@ -67,5 +62,15 @@ export class ConversationMaterialComponent implements OnInit {
     console.log(this.responsibility_score);
     console.log(this.respekt_score);
     console.log(this.develop_score);
+
+    console.log(this.care_comment);
+    console.log(this.security_comment);
+    console.log(this.feel_good_comment);
+    console.log(this.free_time_comment);
+    console.log(this.beloning_comment);
+    console.log(this.responsibility_comment);
+    console.log(this.respekt_comment);
+    console.log(this.develop_comment);
+
   }
 }
