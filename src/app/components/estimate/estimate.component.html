@@ -6,13 +6,9 @@
 
 
     <mat-stepper #stepper orientation="vertical">
-        <mat-step id="care-mat-step">
-<!--         [stepControl]="firstFormGroup"
-         errorMessage="Name is required."
- -->         
-          <form id="care-form">
-          <!-- [formGroup]="firstFormGroup" -->
-        
+        <mat-step id="care-mat-step" [stepControl]="careFormGroup" 
+          errorMessage="ett fält saknas poäng.">    
+          <form id="care-form">        
             <ng-template matStepLabel>OMSORG</ng-template>
             <h5>OMSORG</h5>
 
@@ -88,7 +84,8 @@
           </form>
         </mat-step>
 
-        <mat-step>
+        <mat-step [stepControl]="securityFormGroup" 
+        errorMessage="ett fält saknas poäng.">
           <form id="security-form">
             <ng-template matStepLabel>TRYGGHET</ng-template>
             <h5>TRYGGHET</h5>
@@ -189,7 +186,8 @@
         </mat-step>
         
 
-        <mat-step>
+        <mat-step [stepControl]="feelgoodFormGroup" 
+        errorMessage="ett fält saknas poäng."> 
             <form id="feelgood-form">
               <ng-template matStepLabel>MÅ BRA</ng-template>
               <h5>MÅ BRA</h5>
@@ -267,7 +265,8 @@
           </mat-step>
 
 
-          <mat-step>
+          <mat-step [stepControl]="freetimeFormGroup" 
+          errorMessage="ett fält saknas poäng."> 
             <form id="freetime-form">
               <ng-template matStepLabel>FRITID</ng-template>
               <h5>FRITID</h5>
@@ -309,7 +308,8 @@
             </form>
           </mat-step>
     
-          <mat-step>
+          <mat-step [stepControl]="beloningFormGroup" 
+          errorMessage="ett fält saknas poäng."> 
             <form id="beloning-form">
               <ng-template matStepLabel>TILLHÖRIGHET</ng-template>
               <h5>TILLHÖRIGHET</h5>
@@ -355,7 +355,8 @@
           </mat-step>
 
 
-          <mat-step>
+          <mat-step [stepControl]="responsibilityFormGroup" 
+          errorMessage="ett fält saknas poäng.">
             <form id="responsibility-form">
               <ng-template matStepLabel>ANSVARSTAGANDE</ng-template>
               <h5>ANSVARSTAGANDE</h5>
@@ -444,7 +445,8 @@
             </form>
           </mat-step>
 
-          <mat-step>
+          <mat-step [stepControl]="respektFormGroup" 
+          errorMessage="ett fält saknas poäng.">
             <form id="respekt-form">
               <ng-template matStepLabel>RESPEKTERAS</ng-template>
               <h5>RESPEKTERAS</h5>
@@ -497,7 +499,8 @@
             </form>
           </mat-step>
 
-          <mat-step>
+          <mat-step [stepControl]="developFormGroup" 
+          errorMessage="ett fält saknas poäng.">
             <form id="develop-form">
               <ng-template matStepLabel>UTVECKLAS</ng-template>
               <h5>UTVECKLAS</h5>
@@ -565,4 +568,6 @@
           </mat-step>
       </mat-stepper>
       
+      <p>{{saveError}}</p>
+
 </div>
