@@ -24,6 +24,8 @@ export class ConversationMaterialComponent implements OnInit {
   respekt_comment: string;
   develop_comment: string;
 
+  saveError='';
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -54,23 +56,15 @@ export class ConversationMaterialComponent implements OnInit {
   }
 
   save(): void{
-    console.log(this.care_score);
-    console.log(this.security_score);
-    console.log(this.feel_good_score);
-    console.log(this.free_time_score);
-    console.log(this.beloning_score);
-    console.log(this.responsibility_score);
-    console.log(this.respekt_score);
-    console.log(this.develop_score);
+    if (this.care_score==undefined|| this.security_score== undefined
+        || this.feel_good_score== undefined || this.free_time_score== undefined
+        || this.beloning_score== undefined || this.responsibility_score== undefined
+         || this.respekt_score== undefined || this.develop_score== undefined) {
+    this.saveError='Du har glömt att välja ett betyg';
+    }else{
 
-    console.log(this.care_comment);
-    console.log(this.security_comment);
-    console.log(this.feel_good_comment);
-    console.log(this.free_time_comment);
-    console.log(this.beloning_comment);
-    console.log(this.responsibility_comment);
-    console.log(this.respekt_comment);
-    console.log(this.develop_comment);
+      this.saveError='';
+    }
+}
 
-  }
 }
