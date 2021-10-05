@@ -46,7 +46,7 @@ h1{
 
   }
 
-  #care{
+  ::ng-deep #care{
       mat-card-title{
         background-color: #003686;
       }
@@ -64,10 +64,14 @@ h1{
         background-color: white;
         color:  #003686;
       }
+      .mat-form-field-appearance-fill .mat-form-field-underline::before{
+        background-color: #003686;
+      }
+    
   }
 
   
-  #security{
+  ::ng-deep #security{
     mat-card-title{
       background-color: #353370;
     }
@@ -82,10 +86,13 @@ h1{
         background-color: white;
         color:  #353370;
       }
+      .mat-form-field-appearance-fill .mat-form-field-underline::before{
+        background-color: #353370;
+      }
 
 }
 
-#feel_good{
+::ng-deep #feel_good{
     mat-card-title{
       background-color: #e0448c;
     }
@@ -100,9 +107,13 @@ h1{
         background-color: white;
         color:  #e0448c;
       }
+      .mat-form-field-appearance-fill .mat-form-field-underline::before{
+        background-color: #e0448c;
+      }
+
 }
 
-#free_time{
+::ng-deep #free_time{
     mat-card-title{
       background-color: #df2d5b;
     }
@@ -117,9 +128,13 @@ h1{
         background-color: white;
         color:  #df2d5b;
       }
+      .mat-form-field-appearance-fill .mat-form-field-underline::before{
+        background-color: #df2d5b;
+      }
+
 }
 
-#beloning{
+::ng-deep #beloning{
     mat-card-title{
       background-color: #eb612d;
     }
@@ -134,10 +149,14 @@ h1{
         background-color: white;
         color:  #eb612d;
       }
+      .mat-form-field-appearance-fill .mat-form-field-underline::before{
+        background-color: #eb612d;
+      }
+
 }
 
 
-#responsibility{
+::ng-deep #responsibility{
     mat-card-title{
       background-color: #f79c2e;
     }
@@ -152,11 +171,15 @@ h1{
         background-color: white;
         color:  #f79c2e;
       }
+      .mat-form-field-appearance-fill .mat-form-field-underline::before{
+        background-color: #f79c2e;
+      }
+
 }
 
 
 
-#respekt{
+::ng-deep #respekt{
     mat-card-title{
       background-color: #4ba562;
     }
@@ -171,10 +194,14 @@ h1{
         background-color: white;
         color:  #4ba562;
       }
+      .mat-form-field-appearance-fill .mat-form-field-underline::before{
+        background-color: #4ba562;
+      }
+
 }
 
 
-#develop{
+::ng-deep #develop{
     mat-card-title{
       background-color: #31acaf;
     }
@@ -189,6 +216,10 @@ h1{
         background-color: white;
         color:  #31acaf;
       }
+      .mat-form-field-appearance-fill .mat-form-field-underline::before{
+        background-color: #31acaf;
+      }
+
 }
 
 @media screen and (max-width: 1024px){

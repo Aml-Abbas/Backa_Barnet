@@ -38,6 +38,10 @@ h5{
     padding: 10px;
   }
 
+  ::ng-deep .mat-step-header .mat-step-icon{
+    background-color: #003686;
+  }
+
 ::ng-deep #care-form {
     h5{
         background-color: #003686;
