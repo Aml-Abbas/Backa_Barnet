@@ -29,8 +29,8 @@ export class CreateDiscoverCardComponent implements OnInit {
     { color: '#d1f3f3',type: 'UTVECKLAS',  description: 'Barnet utvecklas i fas med sin ålder och tar förmågor att klara av det vardagliga livet.'},
     
   ];
-  labelPosition: 'before' | 'after' = 'after';
-
+/*   labelPosition: 'before' | 'after' = 'after';
+ */
   guardianNbr: number=1;
   selected = '1';
 
@@ -43,6 +43,10 @@ export class CreateDiscoverCardComponent implements OnInit {
   discovererName: string;
   discovererOrganisation: string;
   discovererTitle: string;
+
+  personCotactName: string;
+  situationComment: string;
+
 
   constructor(public dialog: MatDialog,
               private store: Store<fromState.State>) { 
