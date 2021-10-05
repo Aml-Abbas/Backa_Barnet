@@ -34,10 +34,15 @@ export class CreateDiscoverCardComponent implements OnInit {
   guardianNbr: number=1;
   selected = '1';
 
-  name = '';
-  personNbr = '';
-  adress = '';
-  guardianName1 = '';
+  name: string;
+  personNbr: string;
+  adress: string;
+  guardians: string[][]=[['',''],['','']];
+
+  date: Date;
+  discovererName: string;
+  discovererOrganisation: string;
+  discovererTitle: string;
 
   constructor(public dialog: MatDialog,
               private store: Store<fromState.State>) { 
@@ -50,8 +55,28 @@ export class CreateDiscoverCardComponent implements OnInit {
     this.guardianNbr= nbr;
   }
 
+  saveGuardian(index1: number, index2: number, value:string){
+    console.log(index1);
+    console.log(index2);
+    console.log(value);
+
+  }
+
   openDialog() {
-    const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
+    /* console.log(this.date.toLocaleDateString());
+    console.log(this.discovererName);
+    console.log(this.discovererOrganisation);
+    console.log(this.discovererTitle);
+
+    console.log(this.name);
+    console.log(this.personNbr);
+    console.log(this.adress);
+     */console.log(this.guardians[0][0]);
+    console.log(this.guardians[0][1]);
+    console.log(this.guardians[1][0]);
+    console.log(this.guardians[1][1]);
+
+   /*  const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
       data:{
         name: this.name,
         personNbr: this.personNbr,
@@ -64,7 +89,7 @@ export class CreateDiscoverCardComponent implements OnInit {
       if(result){
         this.store.dispatch(new fromRoot.Go({ path: ['discover-card'] }));
       }
-    });
+    }); */
   }
 
 

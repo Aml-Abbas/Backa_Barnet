@@ -54,6 +54,10 @@ mat-card-title{
   color: white !important;
 }
 
+::ng-deep .mat-datepicker-content {
+  background-color: #663399;
+}
+
 .card-container{
     padding: 10px;
     margin: 10px;
