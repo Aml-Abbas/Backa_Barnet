@@ -121,16 +121,16 @@
               <section class="section">
           <label>Vårdnadshavare {{i+1}} är informerad om att Upptäckarkort upprättas</label>
           <mat-radio-group >
-            <mat-radio-button value="true">JA</mat-radio-button>
-            <mat-radio-button value="false">NEJ</mat-radio-button>
+            <mat-radio-button value="true" (change)="radioChangefour($event, i, 2)">JA</mat-radio-button>
+            <mat-radio-button value="false" (change)="radioChangefour($event, i, 2)">NEJ</mat-radio-button>
           </mat-radio-group>
         </section>
 
         <section class="section section-height">
           <label>Vårdnadshavare {{i+1}} har gett samtycke till att information gällande upptäckarkorten delas mellan Upptäckare och Barnkontakt</label>
           <mat-radio-group >
-            <mat-radio-button value="true">JA</mat-radio-button>
-            <mat-radio-button value="false">NEJ</mat-radio-button>
+            <mat-radio-button value="true" (change)="radioChangefour($event, i, 3)">JA</mat-radio-button>
+            <mat-radio-button value="false" (change)="radioChangefour($event, i, 3)">NEJ</mat-radio-button>
           </mat-radio-group>
         </section>
 

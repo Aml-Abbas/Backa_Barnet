@@ -32,7 +32,7 @@ export class CreateDiscoverCardComponent implements OnInit {
   name: string;
   personNbr: string;
   adress: string;
-  guardians: string[][]=[['',''],['','']];
+  guardians: string[][]=[['','', '', ''],['','','','']];
   comments: string[]=[];
 
   date: Date;
@@ -82,6 +82,10 @@ radioChangeThree(event: MatRadioChange, data) {
 
 }
 
+radioChangefour(event: MatRadioChange, index1: number, index2: number) {
+  this.guardians[index1][index2]= event.value;
+  console.log(this.guardians);
+}
 
   openDialog() {
     /* console.log(this.date.toLocaleDateString());
