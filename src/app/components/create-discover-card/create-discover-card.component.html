@@ -74,10 +74,10 @@
       </mat-form-field>
 
       <section class="example-section">
-        <label>Åtgärder har vidtagits ifalsem egen organisation?</label>
-        <mat-radio-group aria-label="Availability for joining" formControlName="availabilityGroup">
-          <mat-radio-button value="true" (change)="radioChange($event)">JA</mat-radio-button>
-          <mat-radio-button value="false" (change)="radioChange($event)">NEJ</mat-radio-button>
+        <label>Åtgärder har vidtagits i egen organisation?</label>
+        <mat-radio-group (change)="radioChange($event)">
+          <mat-radio-button value="true">JA</mat-radio-button>
+          <mat-radio-button value="false">NEJ</mat-radio-button>
         </mat-radio-group>
       </section>
            
@@ -96,10 +96,10 @@
                       </div>
 
                         <section >
-                          <mat-radio-group class="example-section" >
-                            <mat-radio-button value="true" (change)="radioChangeThree($event,item)">JA</mat-radio-button>
-                            <mat-radio-button value="false" (change)="radioChangeThree($event,item)">NEJ</mat-radio-button>
-                            <mat-radio-button value="dont_know" (change)="radioChangeThree($event,item)">VET EJ</mat-radio-button>
+                          <mat-radio-group class="example-section" (change)="radioChangeThree($event,item)">
+                            <mat-radio-button value="true" >JA</mat-radio-button>
+                            <mat-radio-button value="false">NEJ</mat-radio-button>
+                            <mat-radio-button value="dont_know">VET EJ</mat-radio-button>
                           </mat-radio-group>
                         </section>
                         
@@ -120,17 +120,17 @@
 
               <section class="section">
           <label>Vårdnadshavare {{i+1}} är informerad om att Upptäckarkort upprättas</label>
-          <mat-radio-group >
-            <mat-radio-button value="true" (change)="radioChangefour($event, i, 2)">JA</mat-radio-button>
-            <mat-radio-button value="false" (change)="radioChangefour($event, i, 2)">NEJ</mat-radio-button>
+          <mat-radio-group (change)="radioChangefour($event, i, 2)">
+            <mat-radio-button value="true">JA</mat-radio-button>
+            <mat-radio-button value="false">NEJ</mat-radio-button>
           </mat-radio-group>
         </section>
 
         <section class="section section-height">
           <label>Vårdnadshavare {{i+1}} har gett samtycke till att information gällande upptäckarkorten delas mellan Upptäckare och Barnkontakt</label>
-          <mat-radio-group >
-            <mat-radio-button value="true" (change)="radioChangefour($event, i, 3)">JA</mat-radio-button>
-            <mat-radio-button value="false" (change)="radioChangefour($event, i, 3)">NEJ</mat-radio-button>
+          <mat-radio-group (change)="radioChangefour($event, i, 3)">
+            <mat-radio-button value="true">JA</mat-radio-button>
+            <mat-radio-button value="false">NEJ</mat-radio-button>
           </mat-radio-group>
         </section>
 
