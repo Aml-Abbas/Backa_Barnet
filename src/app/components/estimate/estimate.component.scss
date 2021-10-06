@@ -15,27 +15,13 @@ mat-stepper{
     color: black;
 }
 
- mat-form-field{
-     width: 100%;
 
-     mat-label{
-         color: black;
-     }
- }
 
  p{
     margin-top: 15px;
     color: brown;
     font-size: 15px;
  }
-
- ::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
-    color: white !important;
-  }
-
-  ::ng-deep .mat-select-value{
-    color: black !important;
-  }
 
 h5{
     font-size: 20px;
@@ -48,18 +34,28 @@ h5{
     background-color: #663399;
   }
 
+  mat-button-toggle{
+    width: 20%;
+}
+
+mat-button-toggle-group{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
 ::ng-deep #care-form {
     h5{
         background-color: #003686;
       }
 
- .mat-form-field {
-    border: 1px solid #003686 !important;
-}
-}
-
-::ng-deep .care.mat-select-panel {
+    .mat-button-toggle-appearance-standard {
     background-color: #003686;
+    }
+    .mat-button-toggle.mat-button-toggle-checked {
+        color:  #003686;
+        background-color: white;
+
+    }
 }
 
 ::ng-deep #security-form {
@@ -67,95 +63,101 @@ h5{
         background-color: #353370;
       }
 
- .mat-form-field {
-    border: 1px solid #353370 !important;
-}
-}
+      .mat-button-toggle-appearance-standard {
+        background-color: #353370;
+        }
+        .mat-button-toggle.mat-button-toggle-checked {
+            color:  #353370;
+            background-color: white;
 
-::ng-deep .security.mat-select-panel {
-    background-color: #353370;
-}
+        }
+    }
 
 ::ng-deep #feelgood-form {
     h5{
         background-color: #e0448c;
       }
 
- .mat-form-field {
-    border: 1px solid #e0448c !important;
-}
-}
+      .mat-button-toggle-appearance-standard {
+        background-color: #e0448c;
+        }
+        .mat-button-toggle.mat-button-toggle-checked {
+            color:  #e0448c;
+            background-color: white;
 
-::ng-deep .feelgood.mat-select-panel {
-    background-color: #e0448c;
-}
+        }}
 
 ::ng-deep #freetime-form {
     h5{
         background-color: #df2d5b;
       }
 
- .mat-form-field {
-    border: 1px solid #df2d5b !important;
-}
-}
+      .mat-button-toggle-appearance-standard {
+        background-color: #df2d5b;
+        }
+        .mat-button-toggle.mat-button-toggle-checked {
+            color:  #df2d5b;
+            background-color: white;
 
-::ng-deep .freetime.mat-select-panel {
-    background-color: #df2d5b;
-}
+        }}
 
 ::ng-deep #beloning-form {
     h5{
         background-color: #eb612d;
       }
 
- .mat-form-field {
-    border: 1px solid #eb612d !important;
-}
-}
 
-::ng-deep .beloning.mat-select-panel {
-    background-color: #eb612d;
-}
+      .mat-button-toggle-appearance-standard {
+        background-color: #eb612d;
+        }
+        .mat-button-toggle.mat-button-toggle-checked {
+            color:  #eb612d;
+            background-color: white;
+
+        }}
 
 ::ng-deep #responsibility-form {
     h5{
         background-color: #f79c2e;
       }
 
- .mat-form-field {
-    border: 1px solid #f79c2e !important;
-}
-}
+      .mat-button-toggle-appearance-standard {
+        background-color: #f79c2e;
+        }
+        .mat-button-toggle.mat-button-toggle-checked {
+            color:  #f79c2e;
+            background-color: white;
 
-::ng-deep .responsibility.mat-select-panel {
-    background-color: #f79c2e;
-}
+        }}
+
 
 ::ng-deep #respekt-form {
     h5{
         background-color: #4ba562;
       }
 
- .mat-form-field {
-    border: 1px solid #4ba562 !important;
-}
-}
+      .mat-button-toggle-appearance-standard {
+        background-color: #4ba562;
+        }
+        .mat-button-toggle.mat-button-toggle-checked {
+            color:  #4ba562;
+            background-color: white;
 
-::ng-deep .respekt.mat-select-panel {
-    background-color: #4ba562;
-}
+        }
+    }
+
 
 ::ng-deep #develop-form {
     h5{
         background-color: #31acaf;
       }
 
- .mat-form-field {
-    border: 1px solid #31acaf !important;
-}
-}
+      .mat-button-toggle-appearance-standard {
+        background-color: #31acaf;
+        }
+        .mat-button-toggle.mat-button-toggle-checked {
+            color:  #31acaf;
+            background-color: white;
 
-::ng-deep .develop.mat-select-panel {
-    background-color: #31acaf;
-}
+        }
+    }

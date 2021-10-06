@@ -4,9 +4,44 @@
     <h1>Skattningsformulär</h1>
     <h4>För personal</h4>
 
+    <mat-stepper #stepper orientation="vertical" >
 
-    <mat-stepper #stepper orientation="vertical">
-        <mat-step id="care-mat-step" [stepControl]="careFormGroup" 
+      <mat-step *ngFor="let step of questions; let index1=index" 
+      [stepControl]="step.stepControl" errorMessage="ett fält saknas poäng.">
+
+      <form id="{{step.id}}">        
+
+        <ng-template matStepLabel>{{step.area}}</ng-template>
+        <h5>{{step.area}}</h5>
+
+        <div *ngFor="let step_question of step.question; let index2=index">
+          <h4>{{step_question}}</h4>
+
+          <mat-button-toggle-group (change)="changeScore($event.value, index1, index2)" aria-label="Font Style">
+            <mat-button-toggle value="1">1</mat-button-toggle>
+            <mat-button-toggle value="2">2</mat-button-toggle>
+            <mat-button-toggle value="3">3</mat-button-toggle>
+            <mat-button-toggle value="4">4</mat-button-toggle>
+            <mat-button-toggle value="5">5</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+
+        <div>
+          <button mat-button matStepperPrevious *ngIf="index1!=0">Tillbaka</button>
+          <button mat-button matStepperNext *ngIf="index1!=7">Nästa</button>
+          <button mat-button matStepperNext *ngIf="index1==7" (click)="send()">Skicka</button>
+
+      </div>
+
+      </form>
+
+      </mat-step>
+
+    </mat-stepper>
+
+<!--     <mat-stepper #stepper orientation="vertical">
+
+        <mat-step [stepControl]="careFormGroup" 
           errorMessage="ett fält saknas poäng.">    
           <form id="care-form">        
             <ng-template matStepLabel>OMSORG</ng-template>
@@ -567,7 +602,7 @@
             </form>
           </mat-step>
       </mat-stepper>
-      
+ -->      
       <p>{{saveError}}</p>
 
 </div>
