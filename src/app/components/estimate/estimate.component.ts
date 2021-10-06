@@ -29,18 +29,14 @@ export class EstimateComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.scores=[ {id:1},{id:2}, {id:3}, {id:4},
+     this.scores=[ {id:1},{id:2}, {id:3}, {id:4},
                   {id:5}, {id:6}, {id:7},{id:8}];
 
-    this.careFormGroup = this._formBuilder.group({
-      care_1: [undefined, Validators.required],
-      care_2: [undefined, Validators.required],
-      care_3: [undefined, Validators.required],
-      care_4: [undefined, Validators.required],
-      care_5: [undefined, Validators.required],
-      care_6: [undefined, Validators.required]
-    });
+     this.careFormGroup = this._formBuilder.group({
+       scores:[]
+             });
     
+      
     this.securityFormGroup = this._formBuilder.group({
       security_1: [undefined, Validators.required],
       security_2: [undefined, Validators.required],
@@ -135,6 +131,7 @@ export class EstimateComponent implements OnInit {
   }
 
   changeScore(value: string, index1: number, index2: number){
+    console.log(this.scores[index1][index2]);
     this.scores[index1][index2]= parseInt(value);
     console.log(this.scores[index1][index2]);
     console.log(this.scores);
