@@ -12,6 +12,34 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
 })
 export class EstimateComponent implements OnInit {
+  questions = [
+    { area: "OMSORG", question: ['Barnet har någon att lita på och vända sig till när det behövs',
+     'Barnet har tillgängliga vuxna som uppmuntrar och uppmärksammar det', 'Barnet får kognitiv stimulans av vuxna i sin närhet',
+      'Barnet får extra stöd och vård när det behövs', 'Barnet bor i en miljö som är anpassad efter barnets behov samt främjar dess utveckling', 
+      'Barnet har någon som ser till att hen är ren och lämpligt klädd efter årstid'] },
+    { area: "TRYGGHET", question: ['Barnet känner sig trygg hemma, i skolan, på nätet och i sin närmiljö', 
+    'Barnet skyddas från kränkningar', 'Barnet skyddas från fysiska faror och hälsofaror i och utanför hemmet', 
+    'Barnet visar förmåga att bedöma och hantera situationer som kan innebära en risk både för barnet själv och andra', 
+    'Barnet litar på de som finns i dess närhet, såväl barn som vuxna', 'Barnet skyddas från att bli utnyttjat av andra', 'Barnet skyddas från kriminalitet och olaglig verksamhet',
+    'Barnet lever i en hemmiljö som är fri från missbruk, våld, försummelse och utnyttjande']},
+    { area: "MÅ BRA", question: ['Barnet är frisk och upprätthåller god fysisk och psykisk hälsa', 'Barnet har en hälsosam livsstil', 
+    'Barnet mår bra och ser positivt på framtiden', 'Barnet kan hantera svårigheter och problem', 'Barnet deltar vid kontroller/besök som ska ge barnet stöd/hjälp', 
+    'Barnet uppvisar inte negativa eller destruktiva beteenden'] },
+    { area: "FRITID", question: ['Barnet och familjen är aktiva tillsammans och gör saker som barnet tycker är roligt', 
+    'Barnet uppmuntras att vara aktiv utifrån sin förmåga, tex deltar i  lek, friluftsliv och idrottsaktiviteter', 'Barnet uppmuntras och ges förutsättningar för att utveckla egna intressen och att delta i aktiviteter som är stimulerande']},
+    { area: "TILLHÖRIGHET", question: ['Barnet känner sig viktig och uppskattad av de som tar hand om hen', 'Barnet känner sig viktig och uppskattad av barn och vuxna som finn i dess närhet', 
+    'Familjen har ett socialt nätverk som deltar aktivt i barnets liv']},
+    { area: "ANSVARSTAGANDE", question: ['Barnet deltar i undervisningen i skolan', 'Barnet kan förstå och följa regler', 
+    'Barnet vet vad som är rätt och fel och agerar utifrån det', 'Barnet tar ansvar för sina handlingar', 'Barnet förstår vad som förväntas av hen och tar ansvar hemma, i skolan och i närmiljön.', 
+    'Barnet visar hänsyn och omtanke om andra', 'Barnet har bra förebilder i sin närhet'] },
+    { area: "RESPEKTERAS", question: ['Barnet känner sig lyssnad till, tagen på allvar och är delaktig i viktiga vardagsbeslut', 
+    'Barnet har en bra självkänsla och ser sig själv som värdeful', 'Barnet känner att vänner och andra tror på dess förmåga och stöttar hen', 
+    'Barnet känner sig inte retad, utsatt/utstött  eller kränkt av andra'] },
+    { area: "UTVECKLAS", question: ['Barnet utvecklas och lär sig nya saker i olika miljöer', 'Barnet är nyfiket och motiverat till att lära sig nya saker', 
+    'Barnet uppnår kunskapskraven för sin åldern', 'Barnet har utvecklat förmågor för att klara av och hantera sin vardag', 'Barnet har engagerade vuxna i sin närhet som stöttar hen i sin utveckling och i sitt lärande']},
+  ];
+
+
   careFormGroup: FormGroup;
   securityFormGroup: FormGroup;
   feelgoodFormGroup: FormGroup;
