@@ -74,22 +74,22 @@
       </mat-form-field>
 
       <section class="example-section">
-        <label>Åtgärder har vidtagits inom egen organisation?</label>
-        <mat-radio-group >
-          <mat-radio-button value="after">JA</mat-radio-button>
-          <mat-radio-button value="before">NEJ</mat-radio-button>
+        <label>Åtgärder har vidtagits ifalsem egen organisation?</label>
+        <mat-radio-group aria-label="Availability for joining" formControlName="availabilityGroup">
+          <mat-radio-button value="true" (change)="radioChange($event)">JA</mat-radio-button>
+          <mat-radio-button value="false" (change)="radioChange($event)">NEJ</mat-radio-button>
         </mat-radio-group>
       </section>
            
             <mat-form-field class="full-width" appearance="fill">
                 <mat-label>kommentar: ​</mat-label>
-                <textarea class="comment" matInput></textarea>
+                <textarea class="comment" matInput [(ngModel)]="isMeasureTakenComment"></textarea>
               </mat-form-field>
 
               <div class="container-grid">
                 <div>
                   <div class="grid-container">
-                        <mat-card *ngFor="let item of ELEMENT_DATA">
+                        <mat-card *ngFor="let item of ELEMENT_DATA; let i=index">
                           <div class="card-container" [style.background]="item.color">
                         <mat-card-title>{{item.type}}</mat-card-title>
                         <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
@@ -97,8 +97,8 @@
 
                         <section >
                           <mat-radio-group class="example-section" >
-                            <mat-radio-button value="no">JA</mat-radio-button>
-                            <mat-radio-button value="yes">NEJ</mat-radio-button>
+                            <mat-radio-button value="false">JA</mat-radio-button>
+                            <mat-radio-button value="true">NEJ</mat-radio-button>
                             <mat-radio-button value="dont_know">VET EJ</mat-radio-button>
                           </mat-radio-group>
                         </section>
@@ -121,16 +121,16 @@
               <section class="section">
           <label>Vårdnadshavare {{i+1}} är informerad om att Upptäckarkort upprättas</label>
           <mat-radio-group >
-            <mat-radio-button value="after">JA</mat-radio-button>
-            <mat-radio-button value="before">NEJ</mat-radio-button>
+            <mat-radio-button value="true">JA</mat-radio-button>
+            <mat-radio-button value="false">NEJ</mat-radio-button>
           </mat-radio-group>
         </section>
 
         <section class="section section-height">
           <label>Vårdnadshavare {{i+1}} har gett samtycke till att information gällande upptäckarkorten delas mellan Upptäckare och Barnkontakt</label>
           <mat-radio-group >
-            <mat-radio-button value="after">JA</mat-radio-button>
-            <mat-radio-button value="before">NEJ</mat-radio-button>
+            <mat-radio-button value="true">JA</mat-radio-button>
+            <mat-radio-button value="false">NEJ</mat-radio-button>
           </mat-radio-group>
         </section>
 

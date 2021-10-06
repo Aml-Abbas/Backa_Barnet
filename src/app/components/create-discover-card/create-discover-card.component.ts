@@ -4,6 +4,8 @@ import { CreateDiscoverCardDialogComponent } from './create-discover-card-dialog
 import * as fromState from '../../state';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MatRadioChange } from '@angular/material/radio';
 
 
 export interface PeriodicElement {
@@ -29,8 +31,7 @@ export class CreateDiscoverCardComponent implements OnInit {
     { color: '#d1f3f3',type: 'UTVECKLAS',  description: 'Barnet utvecklas i fas med sin ålder och tar förmågor att klara av det vardagliga livet.'},
     
   ];
-/*   labelPosition: 'before' | 'after' = 'after';
- */
+
   guardianNbr: number=1;
   selected = '1';
 
@@ -47,9 +48,13 @@ export class CreateDiscoverCardComponent implements OnInit {
   personCotactName: string;
   situationComment: string;
 
+  isMeasureTaken: boolean;
+  isMeasureTakenComment: string
 
   constructor(public dialog: MatDialog,
               private store: Store<fromState.State>) { 
+                
+            
   }
 
   ngOnInit(): void {
@@ -66,6 +71,13 @@ export class CreateDiscoverCardComponent implements OnInit {
 
   }
 
+  radioChange(event: MatRadioChange) {
+    this.isMeasureTaken = event.value.toLowerCase() == 'true';
+    console.log(this.isMeasureTaken);  
+
+}
+
+
   openDialog() {
     /* console.log(this.date.toLocaleDateString());
     console.log(this.discovererName);
@@ -75,10 +87,14 @@ export class CreateDiscoverCardComponent implements OnInit {
     console.log(this.name);
     console.log(this.personNbr);
     console.log(this.adress);
-     */console.log(this.guardians[0][0]);
+     */
+
+    console.log('VALUE OF THE RADIO BUTTON IS:');
+    console.log();
+/*     console.log(this.guardians[0][0]);
     console.log(this.guardians[0][1]);
     console.log(this.guardians[1][0]);
-    console.log(this.guardians[1][1]);
+    console.log(this.guardians[1][1]); */
 
    /*  const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
       data:{
