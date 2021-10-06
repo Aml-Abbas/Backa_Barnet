@@ -83,14 +83,6 @@ export class EstimateComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.careFormGroup = this._formBuilder.group({
-      care_1: [undefined, Validators.required],
-      care_2: [undefined, Validators.required],
-      care_3: [undefined, Validators.required],
-      care_4: [undefined, Validators.required],
-      care_5: [undefined, Validators.required],
-      care_6: [undefined, Validators.required]
-    });
     
     this.securityFormGroup = this._formBuilder.group({
       security_1: [undefined, Validators.required],
@@ -150,10 +142,10 @@ export class EstimateComponent implements OnInit {
     }); 
 
     this.questions = [
-      { area: "OMSORG", question: [{text:'Barnet har någon att lita på och vända sig till när det behövs', score: this.care_1},
-      {text:'Barnet har tillgängliga vuxna som uppmuntrar och uppmärksammar det', score: this.care_2}, {text:'Barnet får kognitiv stimulans av vuxna i sin närhet', score: this.care_3},
-      {text:'Barnet får extra stöd och vård när det behövs', score:this.care_4}, {text:'Barnet bor i en miljö som är anpassad efter barnets behov samt främjar dess utveckling', score:this.care_5}, 
-      {text:'Barnet har någon som ser till att hen är ren och lämpligt klädd efter årstid', score: this.care_6}],
+      { area: "OMSORG", question: [{text:'Barnet har någon att lita på och vända sig till när det behövs', score: 'care_1'},
+      {text:'Barnet har tillgängliga vuxna som uppmuntrar och uppmärksammar det', score: 'care_2'}, {text:'Barnet får kognitiv stimulans av vuxna i sin närhet', score: 'care_3'},
+      {text:'Barnet får extra stöd och vård när det behövs', score:'care_4'}, {text:'Barnet bor i en miljö som är anpassad efter barnets behov samt främjar dess utveckling', score:'care_5'}, 
+      {text:'Barnet har någon som ser till att hen är ren och lämpligt klädd efter årstid', score: 'care_6'}],
       stepControl: this.careFormGroup, id: "care-form"},
       
       { area: "TRYGGHET", question: [{text:'Barnet känner sig trygg hemma, i skolan, på nätet och i sin närmiljö',score: this.security_1}, 
@@ -170,7 +162,7 @@ export class EstimateComponent implements OnInit {
       {text:'Barnet uppvisar inte negativa eller destruktiva beteenden', score: this.feelgood_6}],
       stepControl:this.feelgoodFormGroup , id: "feelgood-form"},
       
-      { area: "FRITID", question: [{text: 'Barnet och familjen är aktiva tillsammans och gör saker som barnet tycker är roligt', score: this.freetime_1}, 
+      {area: "FRITID", question: [{text: 'Barnet och familjen är aktiva tillsammans och gör saker som barnet tycker är roligt', score: this.freetime_1}, 
       {text: 'Barnet uppmuntras att vara aktiv utifrån sin förmåga, tex deltar i  lek, friluftsliv och idrottsaktiviteter', score: this.freetime_2}, 
       {text: 'Barnet uppmuntras och ges förutsättningar för att utveckla egna intressen och att delta i aktiviteter som är stimulerande', score: this.freetime_3}],
       stepControl:this.freetimeFormGroup, id: "freetime-form"},
@@ -182,7 +174,7 @@ export class EstimateComponent implements OnInit {
       
       { area: "ANSVARSTAGANDE", question: [{text: 'Barnet deltar i undervisningen i skolan', score: this.responsibility_1}, {text:'Barnet kan förstå och följa regler', score: this.responsibility_2}, 
       {text: 'Barnet vet vad som är rätt och fel och agerar utifrån det', score: this.responsibility_3}, {text: 'Barnet tar ansvar för sina handlingar', score: this.responsibility_4}, 
-      {text: 'Barnet förstår vad som förväntas av hen och tar ansvar hemma, i skolan och i närmiljön.', score: this.responsibility_5}, 
+      {text: 'Barnet förstår vad som förväntas av hen och tar ansvar hemma, i skolan och i nära miljön.', score: this.responsibility_5}, 
       {text: 'Barnet visar hänsyn och omtanke om andra',score:this.responsibility_6}, {text:'Barnet har bra förebilder i sin närhet', score:this.responsibility_7}],
       stepControl:this.responsibilityFormGroup , id: "responsibility-form"},
       
@@ -192,27 +184,32 @@ export class EstimateComponent implements OnInit {
       stepControl:this.respektFormGroup, id: "respekt-form"},
       
       { area: "UTVECKLAS", question: [{text: 'Barnet utvecklas och lär sig nya saker i olika miljöer', score: this.develop_1}, 
-      {text: 'Barnet är nyfiket och motiverat till att lära sig nya saker', score: this.respekt_2}, 
-      {text: 'Barnet uppnår kunskapskraven för sin åldern', score: this.respekt_3}, {text: 'Barnet har utvecklat förmågor för att klara av och hantera sin vardag', score: this.respekt_4}, 
-      {text: 'Barnet har engagerade vuxna i sin närhet som stöttar hen i sin utveckling och i sitt lärande', score: this.feelgood_3}],
+      {text: 'Barnet är nyfiket och motiverat till att lära sig nya saker', score: this.develop_2}, 
+      {text: 'Barnet uppnår kunskapskraven för sin åldern', score: this.develop_3}, {text: 'Barnet har utvecklat förmågor för att klara av och hantera sin vardag', score: this.develop_4}, 
+      {text: 'Barnet har engagerade vuxna i sin närhet som stöttar hen i sin utveckling och i sitt lärande', score: this.develop_5}],
       stepControl:this.developFormGroup, id: "develop-form"},
     ];
+
+    this.careFormGroup = this._formBuilder.group({
+/*       care_2: [undefined, Validators.required],
+      care_3: [undefined, Validators.required],
+      care_4: [undefined, Validators.required],
+      care_5: [undefined, Validators.required],
+      care_6: [undefined, Validators.required]
+ */    });
+
   }
 
-  changeScore(value: string, index1: number, index2: number, object: Object){
-    console.log(object);
-    console.log(this.questions[index1][index2]);
-    console.log(this.care_1);
+  changeScore(value: string, index1: number, index2: number){
 
-    this.questions[index1][index2]= value;
-    object= value;
-    console.log(object);
-    console.log(this.questions[index1][index2]);
+    
+    this.questions[index1].question[index2].score= value;
     console.log(this.care_1);
-
   }
 
   send(): void{
+    console.log(this.care_1);
+
     if(this.careFormGroup.status== "INVALID" ||
     this.securityFormGroup.status=="INVALID" ||
     this.feelgoodFormGroup.status=="INVALID" ||

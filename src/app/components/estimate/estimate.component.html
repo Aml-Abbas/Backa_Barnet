@@ -8,7 +8,7 @@
       <mat-step *ngFor="let step of questions; let index1=index" 
       [stepControl]="step.stepControl" errorMessage="ett fält saknas poäng.">
 
-      <form id="{{step.id}}">        
+      <div id="{{step.id}}">        
 
         <ng-template matStepLabel>{{step.area}}</ng-template>
         <h5>{{step.area}}</h5>
@@ -16,12 +16,14 @@
         <div *ngFor="let step_question of step.question; let index2=index">
           <h4>{{step_question.text}}</h4>
 
-          <mat-button-toggle-group (change)="changeScore($event.value, index1, index2, step_question.score)" aria-label="Font Style">
-            <mat-button-toggle value="1">1</mat-button-toggle>
-            <mat-button-toggle value="2">2</mat-button-toggle>
-            <mat-button-toggle value="3">3</mat-button-toggle>
-            <mat-button-toggle value="4">4</mat-button-toggle>
-            <mat-button-toggle value="5">5</mat-button-toggle>
+          <mat-button-toggle-group
+          (change)="changeScore($event.value, index1, index2)" aria-label="Font Style">
+
+            <mat-button-toggle [value]="1">1</mat-button-toggle>
+            <mat-button-toggle [value]="2">2</mat-button-toggle>
+            <mat-button-toggle [value]="3">3</mat-button-toggle>
+            <mat-button-toggle [value]="4">4</mat-button-toggle>
+            <mat-button-toggle [value]="5">5</mat-button-toggle>
           </mat-button-toggle-group>
         </div>
 
@@ -32,7 +34,7 @@
 
       </div>
 
-      </form>
+      </div>
 
       </mat-step>
 
