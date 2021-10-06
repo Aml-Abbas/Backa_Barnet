@@ -14,9 +14,9 @@
         <h5>{{step.area}}</h5>
 
         <div *ngFor="let step_question of step.question; let index2=index">
-          <h4>{{step_question}}</h4>
+          <h4>{{step_question.text}}</h4>
 
-          <mat-button-toggle-group (change)="changeScore($event.value, index1, index2)" aria-label="Font Style">
+          <mat-button-toggle-group (change)="changeScore($event.value, index1, index2, step_question.score)" aria-label="Font Style">
             <mat-button-toggle value="1">1</mat-button-toggle>
             <mat-button-toggle value="2">2</mat-button-toggle>
             <mat-button-toggle value="3">3</mat-button-toggle>
