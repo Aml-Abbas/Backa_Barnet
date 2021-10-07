@@ -1,18 +1,16 @@
 <h1 mat-dialog-title>Upptäckarkort</h1>
 
 <mat-dialog-content class="mat-typography">
+  <p>{{text}}</p>
+
 <p><strong>Barnets namn: </strong>{{data.name}}</p>
 
 <p><strong>Barnets personnummer: </strong>{{data.personNbr}}</p>
-
-<p><strong>Barnets address: </strong>{{data.adress}}</p>
-
-<p><strong>Vårdnadshavare namn: </strong>{{data.guardianName1}}</p>
 
 
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Avbryt</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Skicka in</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Bekräfta</button>
 </mat-dialog-actions>

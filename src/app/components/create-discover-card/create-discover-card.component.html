@@ -33,7 +33,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Barnets personnummer</mat-label>
-        <input matInput [(ngModel)]="personNbr">
+        <input matInput [(ngModel)]="personNbr" type="number">
       </mat-form-field>
 
       <mat-form-field class="full-width" appearance="fill">
@@ -58,7 +58,7 @@
   
         <mat-form-field appearance="fill">
           <mat-label>Vårdnadshavarens {{i+1}} personnummer</mat-label>
-          <input matInput name="personNbr" [(ngModel)]="guardians[i][1]">
+          <input matInput name="personNbr" [(ngModel)]="guardians[i][1]" type="number">
         </mat-form-field>
   
       </div>
