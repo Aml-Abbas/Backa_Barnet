@@ -83,7 +83,15 @@ export class EstimateComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
+    this.careFormGroup = this._formBuilder.group({
+      care_1: [undefined, Validators.required],
+      care_2: [undefined, Validators.required],
+      care_3: [undefined, Validators.required],
+      care_4: [undefined, Validators.required],
+      care_5: [undefined, Validators.required],
+      care_6: [undefined, Validators.required],
+    }); 
+
     this.securityFormGroup = this._formBuilder.group({
       security_1: [undefined, Validators.required],
       security_2: [undefined, Validators.required],
