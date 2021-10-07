@@ -15,6 +15,17 @@ mat-stepper{
     color: black;
 }
 
+mat-form-field{
+  margin-right: 10%;
+  width: 100%;
+  margin-bottom: 20px;
+}
+input{
+  color: black;
+  }
+  mat-label{
+    color: black;
+}
 
 
  p{
@@ -54,7 +65,9 @@ mat-button-toggle-group{
     .mat-button-toggle.mat-button-toggle-checked {
         color:  #003686;
         background-color: white;
-
+    }
+    .mat-form-field{
+      border: 2px solid #003686 !important;
     }
 }
 
@@ -69,8 +82,10 @@ mat-button-toggle-group{
         .mat-button-toggle.mat-button-toggle-checked {
             color:  #353370;
             background-color: white;
-
         }
+        .mat-form-field{
+          border: 2px solid #353370 !important;
+        }    
     }
 
 ::ng-deep #feelgood-form {
@@ -84,8 +99,11 @@ mat-button-toggle-group{
         .mat-button-toggle.mat-button-toggle-checked {
             color:  #e0448c;
             background-color: white;
-
-        }}
+        }
+        .mat-form-field{
+          border: 2px solid #e0448c !important;
+        }
+    }
 
 ::ng-deep #freetime-form {
     h5{
@@ -98,8 +116,11 @@ mat-button-toggle-group{
         .mat-button-toggle.mat-button-toggle-checked {
             color:  #df2d5b;
             background-color: white;
-
-        }}
+        }
+        .mat-form-field{
+          border: 2px solid #df2d5b !important;
+        }
+    }
 
 ::ng-deep #beloning-form {
     h5{
@@ -114,7 +135,11 @@ mat-button-toggle-group{
             color:  #eb612d;
             background-color: white;
 
-        }}
+        }
+        .mat-form-field{
+          border: 2px solid #eb612d !important;
+        }
+    }
 
 ::ng-deep #responsibility-form {
     h5{
@@ -128,7 +153,11 @@ mat-button-toggle-group{
             color:  #f79c2e;
             background-color: white;
 
-        }}
+        }
+        .mat-form-field{
+          border: 2px solid #f79c2e !important;
+        }
+    }
 
 
 ::ng-deep #respekt-form {
@@ -142,8 +171,10 @@ mat-button-toggle-group{
         .mat-button-toggle.mat-button-toggle-checked {
             color:  #4ba562;
             background-color: white;
-
         }
+        .mat-form-field{
+          border: 2px solid #4ba562 !important;
+        }    
     }
 
 
@@ -158,6 +189,8 @@ mat-button-toggle-group{
         .mat-button-toggle.mat-button-toggle-checked {
             color:  #31acaf;
             background-color: white;
-
         }
+        .mat-form-field{
+          border: 2px solid #31acaf !important;
+        }    
     }

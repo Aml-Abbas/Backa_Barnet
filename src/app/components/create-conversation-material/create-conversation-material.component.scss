@@ -57,7 +57,7 @@ h1{
         background-color: #003686;
       }
       mat-form-field{
-          border: 1px solid #003686 !important;
+          border: 2px solid #003686 !important;
       }
       mat-button-toggle-group{
         background-color: #003686;
@@ -70,10 +70,6 @@ h1{
         background-color: white;
         color:  #003686;
       }
-      .mat-form-field-appearance-fill .mat-form-field-underline::before{
-        background-color: #003686;
-      }
-    
   }
 
   
@@ -82,7 +78,7 @@ h1{
       background-color: #353370;
     }
     mat-form-field{
-        border: 1px solid #353370 !important;
+        border: 2px solid #353370 !important;
     }
     .mat-button-toggle-appearance-standard{
         background-color: #353370;
@@ -92,10 +88,6 @@ h1{
         background-color: white;
         color:  #353370;
       }
-      .mat-form-field-appearance-fill .mat-form-field-underline::before{
-        background-color: #353370;
-      }
-
 }
 
 ::ng-deep #feel_good{
@@ -103,7 +95,7 @@ h1{
       background-color: #e0448c;
     }
     mat-form-field{
-        border: 1px solid #e0448c !important;
+        border: 2px solid #e0448c !important;
     }
     .mat-button-toggle-appearance-standard{
         background-color: #e0448c;
@@ -113,10 +105,6 @@ h1{
         background-color: white;
         color:  #e0448c;
       }
-      .mat-form-field-appearance-fill .mat-form-field-underline::before{
-        background-color: #e0448c;
-      }
-
 }
 
 ::ng-deep #free_time{
@@ -124,7 +112,7 @@ h1{
       background-color: #df2d5b;
     }
     mat-form-field{
-        border: 1px solid #df2d5b !important;
+        border: 2px solid #df2d5b !important;
     }
     .mat-button-toggle-appearance-standard{
         background-color: #df2d5b;
@@ -134,10 +122,6 @@ h1{
         background-color: white;
         color:  #df2d5b;
       }
-      .mat-form-field-appearance-fill .mat-form-field-underline::before{
-        background-color: #df2d5b;
-      }
-
 }
 
 ::ng-deep #beloning{
@@ -145,7 +129,7 @@ h1{
       background-color: #eb612d;
     }
     mat-form-field{
-        border: 1px solid #eb612d !important;
+        border: 2px solid #eb612d !important;
     }
     .mat-button-toggle-appearance-standard{
         background-color: #eb612d;
@@ -155,10 +139,6 @@ h1{
         background-color: white;
         color:  #eb612d;
       }
-      .mat-form-field-appearance-fill .mat-form-field-underline::before{
-        background-color: #eb612d;
-      }
-
 }
 
 
@@ -167,7 +147,7 @@ h1{
       background-color: #f79c2e;
     }
     mat-form-field{
-        border: 1px solid #f79c2e !important;
+        border: 2px solid #f79c2e !important;
     }
     .mat-button-toggle-appearance-standard{
         background-color: #f79c2e;
@@ -177,10 +157,6 @@ h1{
         background-color: white;
         color:  #f79c2e;
       }
-      .mat-form-field-appearance-fill .mat-form-field-underline::before{
-        background-color: #f79c2e;
-      }
-
 }
 
 
@@ -190,7 +166,7 @@ h1{
       background-color: #4ba562;
     }
     mat-form-field{
-        border: 1px solid #4ba562 !important;
+        border: 2px solid #4ba562 !important;
     }
     .mat-button-toggle-appearance-standard{
         background-color: #4ba562;
@@ -200,10 +176,6 @@ h1{
         background-color: white;
         color:  #4ba562;
       }
-      .mat-form-field-appearance-fill .mat-form-field-underline::before{
-        background-color: #4ba562;
-      }
-
 }
 
 
@@ -212,7 +184,7 @@ h1{
       background-color: #31acaf;
     }
     mat-form-field{
-        border: 1px solid #31acaf !important;
+        border: 2px solid #31acaf !important;
     }
     .mat-button-toggle-appearance-standard{
         background-color: #31acaf;
@@ -222,24 +194,16 @@ h1{
         background-color: white;
         color:  #31acaf;
       }
-      .mat-form-field-appearance-fill .mat-form-field-underline::before{
-        background-color: #31acaf;
-      }
-
 }
 
 @media screen and (max-width: 1024px){
-
     mat-card{
         width: 90%;
     }
-
 }
 
 @media screen and (max-width: 360px){
-
     mat-card{
         width: 80%;
     }
-
 }
