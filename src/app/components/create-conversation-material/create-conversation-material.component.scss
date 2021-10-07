@@ -9,10 +9,10 @@ h1{
   mat-card{
       background-color: whitesmoke;
       color: black;
-      margin: 20px;
+      margin: 5px;
       float: left;
-      width: 40%;
-      height: 250px;
+      width: 44%;
+      height: 500px;
     }
   mat-card-title{
       color: white;
@@ -31,9 +31,9 @@ h1{
   mat-button-toggle{
       width: 20%;
   }
-
   mat-button-toggle-group{
       width: 100%;
+      margin-bottom: 20px;
   }
 
   button{
@@ -47,6 +47,10 @@ h1{
   }
 
   p{
+    font-size: 20px;
+  }
+
+  #error{
     margin-top: 15px;
     color: brown;
     font-size: 15px;
