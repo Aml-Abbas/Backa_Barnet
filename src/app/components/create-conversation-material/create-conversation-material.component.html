@@ -9,42 +9,63 @@
         <mat-card-title>{{card.area}}</mat-card-title>
         <mat-card-content>
           <p>{{card.question}}</p>
-  
-          <p>Barn svar</p>
-          <mat-button-toggle-group (change)="changeScore($event.value, i)" aria-label="Font Style">
+
+          <div class="answer">
+            <p>barn</p>
+
+            <mat-button-toggle-group (change)="changeScore($event.value, i)" aria-label="Font Style">
             <mat-button-toggle value="1">1</mat-button-toggle>
             <mat-button-toggle value="2">2</mat-button-toggle>
             <mat-button-toggle value="3">3</mat-button-toggle>
             <mat-button-toggle value="4">4</mat-button-toggle>
             <mat-button-toggle value="5">5</mat-button-toggle>
           </mat-button-toggle-group>
-
-          <p>Vårdnadshavare 1 svar</p>
-          <mat-button-toggle-group (change)="changeScore($event.value, i)" aria-label="Font Style">
-            <mat-button-toggle value="1">1</mat-button-toggle>
-            <mat-button-toggle value="2">2</mat-button-toggle>
-            <mat-button-toggle value="3">3</mat-button-toggle>
-            <mat-button-toggle value="4">4</mat-button-toggle>
-            <mat-button-toggle value="5">5</mat-button-toggle>
-          </mat-button-toggle-group>
-
-          <p>Vårdnadshavare 2 svar</p>
-          <mat-button-toggle-group (change)="changeScore($event.value, i)" aria-label="Font Style">
-            <mat-button-toggle value="1">1</mat-button-toggle>
-            <mat-button-toggle value="2">2</mat-button-toggle>
-            <mat-button-toggle value="3">3</mat-button-toggle>
-            <mat-button-toggle value="4">4</mat-button-toggle>
-            <mat-button-toggle value="5">5</mat-button-toggle>
-          </mat-button-toggle-group>
-
 
           <mat-form-field appearance="fill">
             <mat-label>kommentar: ​</mat-label>
             <textarea matInput [(ngModel)]="card.comment"></textarea>
           </mat-form-field>
-  
+        </div>
+
+        <div class="answer">
+          <p>föräldrar 1</p>
+
+          <mat-button-toggle-group (change)="changeScore($event.value, i)" aria-label="Font Style">
+            <mat-button-toggle value="1">1</mat-button-toggle>
+            <mat-button-toggle value="2">2</mat-button-toggle>
+            <mat-button-toggle value="3">3</mat-button-toggle>
+            <mat-button-toggle value="4">4</mat-button-toggle>
+            <mat-button-toggle value="5">5</mat-button-toggle>
+          </mat-button-toggle-group>
+
+          <mat-form-field appearance="fill">
+            <mat-label>kommentar: ​</mat-label>
+            <textarea matInput [(ngModel)]="card.comment"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="answer">
+          <p>föräldrar 2</p>
+
+          <mat-button-toggle-group (change)="changeScore($event.value, i)" aria-label="Font Style">
+            <mat-button-toggle value="1">1</mat-button-toggle>
+            <mat-button-toggle value="2">2</mat-button-toggle>
+            <mat-button-toggle value="3">3</mat-button-toggle>
+            <mat-button-toggle value="4">4</mat-button-toggle>
+            <mat-button-toggle value="5">5</mat-button-toggle>
+          </mat-button-toggle-group>
+
+          <mat-form-field appearance="fill">
+            <mat-label>kommentar: ​</mat-label>
+            <textarea matInput [(ngModel)]="card.comment"></textarea>
+          </mat-form-field>
+        </div>
+
+
         </mat-card-content>
       </mat-card>
+
+
 
     </div>
 
