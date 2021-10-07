@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as fromState from '../../state';
+import * as fromRoot from '../../../app/state';
 
 @Component({
   selector: 'app-create-conversation-material',
@@ -27,7 +30,7 @@ export class CreateConversationMaterialComponent implements OnInit {
     { area: "UTVECKLAS", id: "develop", question:'Jag gör mitt bästa', score:'', comment: this.develop_comment}
   ];
 
-  constructor() { }
+  constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
   }
@@ -45,6 +48,8 @@ export class CreateConversationMaterialComponent implements OnInit {
     this.saveError='Du har glömt att välja ett betyg';
     }else{
       this.saveError='';
+      this.store.dispatch(new fromRoot.Go({ path: ['/conversation-material'] }));
+
     }
 }
 
