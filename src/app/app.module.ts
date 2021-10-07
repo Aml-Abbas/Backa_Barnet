@@ -66,6 +66,7 @@ import { EditContactPersonComponent } from './components/edit-contact-person/edi
 import { EditContactGuardianComponent } from './components/edit-contact-guardian/edit-contact-guardian.component';
 import { ChartsModule } from 'ng2-charts';
 import { CreateDiscoverCardDialogComponent } from './components/create-discover-card/create-discover-card-dialog/create-discover-card-dialog.component';
+import { DiscoverCardDetailsComponent } from './components/discover-card-details/discover-card-details.component';
 
 
 
@@ -74,7 +75,7 @@ import { CreateDiscoverCardDialogComponent } from './components/create-discover-
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent,
     EventComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent,
     DeepNeedCompassComponent, PlanComponent, AssessmentComponent, ConversationMaterialComponent,
-    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, CreatePlanComponent, EditContactPersonComponent, EditContactGuardianComponent, CreateDiscoverCardDialogComponent],
+    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, CreatePlanComponent, EditContactPersonComponent, EditContactGuardianComponent, CreateDiscoverCardDialogComponent, DiscoverCardDetailsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

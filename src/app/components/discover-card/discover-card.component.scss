@@ -9,6 +9,10 @@ table {
   td, th, tr{
     color: black;
   }
+
+  td{
+    cursor: pointer;
+  }
   
   .table-container {
     position: relative;

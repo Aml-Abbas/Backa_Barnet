@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
+import * as fromState from '../../state';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../../app/state';
 
 
 export interface PeriodicElement {
@@ -13,18 +16,18 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {id: 2, type: 'Skolan',status:'inskickat'},
   {id: 3, type: 'Socialtjänsten' ,status:'inskickat'},
   {id: 4, type: 'Polisen 2',status:'inskickat'},
-  {id: 1, type: 'Polisen 1',status:'inskickat'},
-  {id: 2, type: 'Skolan',status:'sparat'},
-  {id: 3, type: 'Socialtjänsten',status:'inskickat'},
-  {id: 4, type: 'Polisen 2',status:'inskickat'},
-  {id: 1, type: 'Polisen 1',status:'sparat'},
-  {id: 2, type: 'Skolan',status:'sparat'},
-  {id: 3, type: 'Socialtjänsten',status:'sparat'},
-  {id: 4, type: 'Polisen 2',status:'inskickat'},
-  {id: 1, type: 'Polisen 1',status:'sparat'},
-  {id: 2, type: 'Skolan',status:'inskickat'},
-  {id: 3, type: 'Socialtjänsten',status:'sparat'},
-  {id: 4, type: 'Polisen 2',status:'sparat'},
+  {id: 11, type: 'Polisen 1',status:'inskickat'},
+  {id: 12, type: 'Skolan',status:'sparat'},
+  {id: 13, type: 'Socialtjänsten',status:'inskickat'},
+  {id: 14, type: 'Polisen 2',status:'inskickat'},
+  {id: 10, type: 'Polisen 1',status:'sparat'},
+  {id: 20, type: 'Skolan',status:'sparat'},
+  {id: 30, type: 'Socialtjänsten',status:'sparat'},
+  {id: 40, type: 'Polisen 2',status:'inskickat'},
+  {id: 16, type: 'Polisen 1',status:'sparat'},
+  {id: 22, type: 'Skolan',status:'inskickat'},
+  {id: 33, type: 'Socialtjänsten',status:'sparat'},
+  {id: 44, type: 'Polisen 2',status:'sparat'},
 ];
 
 @Component({
@@ -42,9 +45,12 @@ export class DiscoverCardComponent implements OnInit {
   }
 
 
-  constructor() { }
+  constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
   }
 
+  moveToCard(id: string){
+    this.store.dispatch(new fromRoot.Go({ path: ['/discover-card', id] }));
+  }
 }

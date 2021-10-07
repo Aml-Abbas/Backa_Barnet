@@ -12,6 +12,7 @@ import { CreateDiscoverCardComponent } from './components/create-discover-card/c
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { CreatePlanComponent } from './components/create-plan/create-plan.component';
 import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-need-compass.component';
+import { DiscoverCardDetailsComponent } from './components/discover-card-details/discover-card-details.component';
 import { DiscoverCardComponent } from './components/discover-card/discover-card.component';
 import { EditContactGuardianComponent } from './components/edit-contact-guardian/edit-contact-guardian.component';
 import { EditContactPersonComponent } from './components/edit-contact-person/edit-contact-person.component';
@@ -58,6 +59,10 @@ const routes: Routes = [
       {
         path: 'discover-card',
         component: DiscoverCardComponent, canActivate: [AuthGuard]
+      },
+      {
+        path: 'discover-card/:discoverCardId',
+        component: DiscoverCardDetailsComponent, canActivate: [AuthGuard]
       },
       {
         path: 'need-compass',
