@@ -17,7 +17,7 @@
           <h4>{{step_question.text}}</h4>
 
           <mat-button-toggle-group
-          (change)="changeScore($event.value, index1, index2)" aria-label="Font Style" formControlName="{{step_question.score}}">
+          (change)="changeScore($event.value, index1, index2)" aria-label="Font Style" formControlName="{{step_question.formControlScore}}">
 
             <mat-button-toggle [value]="1">1</mat-button-toggle>
             <mat-button-toggle [value]="2">2</mat-button-toggle>
@@ -31,7 +31,7 @@
         <div>
           <mat-form-field appearance="fill">
             <mat-label>kommentar: ​</mat-label>
-            <textarea matInput [(ngModel)]="step.comment"></textarea>
+            <textarea matInput [(ngModel)]="comments[index1]" [ngModelOptions]="{standalone: true}"></textarea>
           </mat-form-field>
 
           <button mat-button matStepperPrevious *ngIf="index1!=0">Tillbaka</button>

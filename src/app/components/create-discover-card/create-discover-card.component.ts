@@ -26,7 +26,7 @@ export class CreateDiscoverCardComponent implements OnInit {
     
   ];
 
-  choses=[
+  choices=[
     {type:'OMSORG', choice:''},
     {type:'TRYGGHET', choice:''},
     {type:'MÅR BRA', choice:''},

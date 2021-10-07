@@ -76,7 +76,7 @@ export class EstimateComponent implements OnInit {
   freetime_1: string; 
   freetime_2: string; 
   freetime_3: string; 
-
+  comments: string[]=[];
 
   constructor(private _formBuilder: FormBuilder) { }
 
@@ -149,62 +149,67 @@ export class EstimateComponent implements OnInit {
     }); 
 
     this.questions = [
-      { area: "OMSORG", question: [{text:'Barnet har någon att lita på och vända sig till när det behövs', score: 'care_1'},
-      {text:'Barnet har tillgängliga vuxna som uppmuntrar och uppmärksammar det', score: 'care_2'}, {text:'Barnet får kognitiv stimulans av vuxna i sin närhet', score: 'care_3'},
-      {text:'Barnet får extra stöd och vård när det behövs', score:'care_4'}, {text:'Barnet bor i en miljö som är anpassad efter barnets behov samt främjar dess utveckling', score:'care_5'}, 
-      {text:'Barnet har någon som ser till att hen är ren och lämpligt klädd efter årstid', score: 'care_6'}],
-      stepControl: this.careFormGroup, id: "care-form", comment:''},
+      {area: "OMSORG", question: [{text:'Barnet har någon att lita på och vända sig till när det behövs', formControlScore: 'care_1', score: this.care_1},
+      {text:'Barnet har tillgängliga vuxna som uppmuntrar och uppmärksammar det', formControlScore: 'care_2', score: this.care_2}, 
+      {text:'Barnet får kognitiv stimulans av vuxna i sin närhet', formControlScore: 'care_3', score: this.care_3},
+      {text:'Barnet får extra stöd och vård när det behövs', formControlScore:'care_4', score: this.care_4}, 
+      {text:'Barnet bor i en miljö som är anpassad efter barnets behov samt främjar dess utveckling', formControlScore:'care_5', score: this.care_5}, 
+      {text:'Barnet har någon som ser till att hen är ren och lämpligt klädd efter årstid', formControlScore: 'care_6', score: this.care_6}],
+      stepControl: this.careFormGroup, id: "care-form"},
 
-      { area: "TRYGGHET", question: [{text:'Barnet känner sig trygg hemma, i skolan, på nätet och i sin närmiljö',score: 'security_1'}, 
-      {text: 'Barnet skyddas från kränkningar',score: 'security_2'}, {text:'Barnet skyddas från fysiska faror och hälsofaror i och utanför hemmet',score: 'security_3'},
-      {text:'Barnet visar förmåga att bedöma och hantera situationer som kan innebära en risk både för barnet själv och andra', score: 'security_4'},
-      {text: 'Barnet litar på de som finns i dess närhet, såväl barn som vuxna', score:'security_5'}, {text: 'Barnet skyddas från att bli utnyttjat av andra', score:'security_6'},
-      {text: 'Barnet skyddas från kriminalitet och olaglig verksamhet',score: 'security_7'},
-      {text: 'Barnet lever i en hemmiljö som är fri från missbruk, våld, försummelse och utnyttjande',score: 'security_8'}],
-      stepControl:this.securityFormGroup, id: "security-form", comment:''},
+      { area: "TRYGGHET", question: [{text:'Barnet känner sig trygg hemma, i skolan, på nätet och i sin närmiljö',formControlScore: 'security_1'}, 
+      {text: 'Barnet skyddas från kränkningar',formControlScore: 'security_2'}, {text:'Barnet skyddas från fysiska faror och hälsofaror i och utanför hemmet',formControlScore: 'security_3'},
+      {text:'Barnet visar förmåga att bedöma och hantera situationer som kan innebära en risk både för barnet själv och andra', formControlScore: 'security_4'},
+      {text: 'Barnet litar på de som finns i dess närhet, såväl barn som vuxna', formControlScore:'security_5'}, {text: 'Barnet skyddas från att bli utnyttjat av andra', formControlScore:'security_6'},
+      {text: 'Barnet skyddas från kriminalitet och olaglig verksamhet',formControlScore: 'security_7'},
+      {text: 'Barnet lever i en hemmiljö som är fri från missbruk, våld, försummelse och utnyttjande',formControlScore: 'security_8'}],
+      stepControl:this.securityFormGroup, id: "security-form"},
             
-      { area: "MÅ BRA", question: [ {text:'Barnet är frisk och upprätthåller god fysisk och psykisk hälsa', score: 'feelgood_1'},  {text:'Barnet har en hälsosam livsstil', score: 'feelgood_2'}, 
-      {text: 'Barnet mår bra och ser positivt på framtiden', score: 'feelgood_3'}, {text: 'Barnet kan hantera svårigheter och problem', score: 'feelgood_4'},
-       {text: 'Barnet deltar vid kontroller/besök som ska ge barnet stöd/hjälp', score: 'feelgood_5'}, 
-      {text:'Barnet uppvisar inte negativa eller destruktiva beteenden', score:'feelgood_6'}],
-      stepControl:this.feelgoodFormGroup , id: "feelgood-form", comment:''},
+      { area: "MÅ BRA", question: [ {text:'Barnet är frisk och upprätthåller god fysisk och psykisk hälsa', formControlScore: 'feelgood_1'},  {text:'Barnet har en hälsosam livsstil', formControlScore: 'feelgood_2'}, 
+      {text: 'Barnet mår bra och ser positivt på framtiden', formControlScore: 'feelgood_3'}, {text: 'Barnet kan hantera svårigheter och problem', formControlScore: 'feelgood_4'},
+       {text: 'Barnet deltar vid kontroller/besök som ska ge barnet stöd/hjälp', formControlScore: 'feelgood_5'}, 
+      {text:'Barnet uppvisar inte negativa eller destruktiva beteenden', formControlScore:'feelgood_6'}],
+      stepControl:this.feelgoodFormGroup , id: "feelgood-form"},
       
-      {area: "FRITID", question: [{text: 'Barnet och familjen är aktiva tillsammans och gör saker som barnet tycker är roligt', score: 'freetime_1'}, 
-      {text: 'Barnet uppmuntras att vara aktiv utifrån sin förmåga, tex deltar i  lek, friluftsliv och idrottsaktiviteter', score: 'freetime_2'}, 
-      {text: 'Barnet uppmuntras och ges förutsättningar för att utveckla egna intressen och att delta i aktiviteter som är stimulerande', score: 'freetime_3'}],
-      stepControl:this.freetimeFormGroup, id: "freetime-form", comment:''},
+      {area: "FRITID", question: [{text: 'Barnet och familjen är aktiva tillsammans och gör saker som barnet tycker är roligt', formControlScore: 'freetime_1'}, 
+      {text: 'Barnet uppmuntras att vara aktiv utifrån sin förmåga, tex deltar i  lek, friluftsliv och idrottsaktiviteter', formControlScore: 'freetime_2'}, 
+      {text: 'Barnet uppmuntras och ges förutsättningar för att utveckla egna intressen och att delta i aktiviteter som är stimulerande', formControlScore: 'freetime_3'}],
+      stepControl:this.freetimeFormGroup, id: "freetime-form"},
       
-      { area: "TILLHÖRIGHET", question: [{text: 'Barnet känner sig viktig och uppskattad av de som tar hand om hen', score: 'beloning_1'}, 
-      {text: 'Barnet känner sig viktig och uppskattad av barn och vuxna som finn i dess närhet', score: 'beloning_2'}, 
-      {text: 'Familjen har ett socialt nätverk som deltar aktivt i barnets liv', score: 'beloning_3'}],
-      stepControl:this.beloningFormGroup, id: "beloning-form", comment:''},
+      { area: "TILLHÖRIGHET", question: [{text: 'Barnet känner sig viktig och uppskattad av de som tar hand om hen', formControlScore: 'beloning_1'}, 
+      {text: 'Barnet känner sig viktig och uppskattad av barn och vuxna som finn i dess närhet', formControlScore: 'beloning_2'}, 
+      {text: 'Familjen har ett socialt nätverk som deltar aktivt i barnets liv', formControlScore: 'beloning_3'}],
+      stepControl:this.beloningFormGroup, id: "beloning-form"},
       
-      { area: "ANSVARSTAGANDE", question: [{text: 'Barnet deltar i undervisningen i skolan', score: 'responsibility_1'}, {text:'Barnet kan förstå och följa regler', score: 'responsibility_2'}, 
-      {text: 'Barnet vet vad som är rätt och fel och agerar utifrån det', score: 'responsibility_3'}, {text: 'Barnet tar ansvar för sina handlingar', score: 'responsibility_4'}, 
-      {text: 'Barnet förstår vad som förväntas av hen och tar ansvar hemma, i skolan och i nära miljön.', score: 'responsibility_5'}, 
-      {text: 'Barnet visar hänsyn och omtanke om andra',score: 'responsibility_6'}, {text:'Barnet har bra förebilder i sin närhet', score:'responsibility_7'}],
-      stepControl:this.responsibilityFormGroup , id: "responsibility-form", comment:''},
+      { area: "ANSVARSTAGANDE", question: [{text: 'Barnet deltar i undervisningen i skolan', formControlScore: 'responsibility_1'}, {text:'Barnet kan förstå och följa regler', formControlScore: 'responsibility_2'}, 
+      {text: 'Barnet vet vad som är rätt och fel och agerar utifrån det', formControlScore: 'responsibility_3'}, {text: 'Barnet tar ansvar för sina handlingar', formControlScore: 'responsibility_4'}, 
+      {text: 'Barnet förstår vad som förväntas av hen och tar ansvar hemma, i skolan och i nära miljön.', formControlScore: 'responsibility_5'}, 
+      {text: 'Barnet visar hänsyn och omtanke om andra',formControlScore: 'responsibility_6'}, {text:'Barnet har bra förebilder i sin närhet', formControlScore:'responsibility_7'}],
+      stepControl:this.responsibilityFormGroup , id: "responsibility-form"},
       
-      { area: "RESPEKTERAS", question: [{text: 'Barnet känner sig lyssnad till, tagen på allvar och är delaktig i viktiga vardagsbeslut', score: 'respekt_1'}, 
-      {text: 'Barnet har en bra självkänsla och ser sig själv som värdeful', score: 'respekt_2'},{text:  'Barnet känner att vänner och andra tror på dess förmåga och stöttar hen', score:'respekt_3'}, 
-      {text: 'Barnet känner sig inte retad, utsatt/utstött  eller kränkt av andra', score: 'respekt_4'}], 
-      stepControl:this.respektFormGroup, id: "respekt-form", comment: ''},
+      { area: "RESPEKTERAS", question: [{text: 'Barnet känner sig lyssnad till, tagen på allvar och är delaktig i viktiga vardagsbeslut', formControlScore: 'respekt_1'}, 
+      {text: 'Barnet har en bra självkänsla och ser sig själv som värdeful', formControlScore: 'respekt_2'},{text:  'Barnet känner att vänner och andra tror på dess förmåga och stöttar hen', formControlScore:'respekt_3'}, 
+      {text: 'Barnet känner sig inte retad, utsatt/utstött  eller kränkt av andra', formControlScore: 'respekt_4'}], 
+      stepControl:this.respektFormGroup, id: "respekt-form"},
       
-      { area: "UTVECKLAS", question: [{text: 'Barnet utvecklas och lär sig nya saker i olika miljöer', score: 'develop_1'}, 
-      {text: 'Barnet är nyfiket och motiverat till att lära sig nya saker', score: 'develop_2'}, 
-      {text: 'Barnet uppnår kunskapskraven för sin åldern', score: 'develop_3'}, {text: 'Barnet har utvecklat förmågor för att klara av och hantera sin vardag', score: 'develop_4'}, 
-      {text: 'Barnet har engagerade vuxna i sin närhet som stöttar hen i sin utveckling och i sitt lärande', score: this.develop_5}],
-      stepControl:this.developFormGroup, id: "develop-form", comment:''},
+      { area: "UTVECKLAS", question: [{text: 'Barnet utvecklas och lär sig nya saker i olika miljöer', formControlScore: 'develop_1'}, 
+      {text: 'Barnet är nyfiket och motiverat till att lära sig nya saker', formControlScore: 'develop_2'}, 
+      {text: 'Barnet uppnår kunskapskraven för sin åldern', formControlScore: 'develop_3'}, {text: 'Barnet har utvecklat förmågor för att klara av och hantera sin vardag', formControlScore: 'develop_4'}, 
+      {text: 'Barnet har engagerade vuxna i sin närhet som stöttar hen i sin utveckling och i sitt lärande', formControlScore: this.develop_5}],
+      stepControl:this.developFormGroup, id: "develop-form"},
     ];
   }
 
   changeScore(value: string, index1: number, index2: number){
     this.questions[index1].question[index2].score= value;
-    console.log(this.care_1);
   }
 
   send(): void{
-    console.log(this.questions[0].comment);
+    console.log(this.care_1);
+
+    console.log(this.questions[0].question[0].score);
+
+    console.log(this.comments);
 
     if(this.careFormGroup.status== "INVALID" ||
     this.securityFormGroup.status=="INVALID" ||
@@ -217,6 +222,7 @@ export class EstimateComponent implements OnInit {
 
       this.saveError='Du har missat att välja ett poäng';
     }else{
+
       this.saveError='';
     }
 }
