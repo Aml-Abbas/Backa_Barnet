@@ -1,0 +1,35 @@
+<div class="container">
+    <h1>Samtalsunderlag</h1>
+
+    <h4>Bedömning av Kalles situation</h4>
+
+    <div class="card_container" *ngFor="let card of scores; let i=index">
+
+      <mat-card id="{{card.id}}">
+        <mat-card-title>{{card.area}}</mat-card-title>
+        <mat-card-content>
+          <h4>{{card.question}}</h4>
+  
+          <mat-button-toggle-group (change)="changeScore($event.value, i)" aria-label="Font Style">
+            <mat-button-toggle value="1">1</mat-button-toggle>
+            <mat-button-toggle value="2">2</mat-button-toggle>
+            <mat-button-toggle value="3">3</mat-button-toggle>
+            <mat-button-toggle value="4">4</mat-button-toggle>
+            <mat-button-toggle value="5">5</mat-button-toggle>
+          </mat-button-toggle-group>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>kommentar: ​</mat-label>
+            <textarea matInput [(ngModel)]="card.comment"></textarea>
+          </mat-form-field>
+  
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+
+    <button mat-raised-button (click)="save()">Spara</button>
+
+    <p>{{saveError}}</p>
+
+</div>

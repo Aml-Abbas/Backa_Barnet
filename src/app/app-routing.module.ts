@@ -7,7 +7,9 @@ import { ConsentComponent } from './components/consent/consent.component';
 import { ContactGuardianComponent } from './components/contact-guardian/contact-guardian.component';
 import { ContactPersonComponent } from './components/contact-person/contact-person.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { ConversationMaterialDetailsComponent } from './components/conversation-material-details/conversation-material-details.component';
 import { ConversationMaterialComponent } from './components/conversation-material/conversation-material.component';
+import { CreateConversationMaterialComponent } from './components/create-conversation-material/create-conversation-material.component';
 import { CreateDiscoverCardComponent } from './components/create-discover-card/create-discover-card.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { CreatePlanComponent } from './components/create-plan/create-plan.component';
@@ -91,6 +93,14 @@ const routes: Routes = [
       {
         path: 'conversation-material',
         component: ConversationMaterialComponent, canActivate: [AuthGuard]
+      },
+      {
+        path: 'create-conversation-material',
+        component: CreateConversationMaterialComponent, canActivate: [AuthGuard]
+      },
+      {
+        path: 'conversation-material/:conversationMaterialId',
+        component: ConversationMaterialDetailsComponent, canActivate: [AuthGuard]
       },
       {
         path: 'contact-person',
