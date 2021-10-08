@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ViewChild } from '@angular/core'
 import { MatSidenav} from '@angular/material/sidenav';
 import { Observable } from 'rxjs';
 import { Person } from 'src/app/models/Person';
-import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
-
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../../app/state';
 
 @Component({
   selector: 'app-landing',
@@ -16,14 +16,18 @@ import * as fromState from '../../state';
 export class LandingComponent implements OnInit {
   @ViewChild(MatSidenav)
  sidenav!: MatSidenav;
+ 
  showFillerContact = false;
  need_compass = false;
  deep_need_compass = false;
  event = false;
  current_person$= new Observable<Person | null>();
 
+ isDisabled= true;
   constructor(private observer: BreakpointObserver,
-    private store: Store<fromState.State>) {}
+    private store: Store<fromState.State>) {    
+    
+    }
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
@@ -121,4 +125,13 @@ public changeShowFillerNeedCompass(){
   delete_current_person(): void{
     this.store.dispatch(new fromState.UpdatePerson(null));
   }
+
+  goToRoute(event, route: string){
+    if(this.isDisabled){
+      event.stopPropagation()
+    }else{
+      this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
+    }
+  }
+
 }

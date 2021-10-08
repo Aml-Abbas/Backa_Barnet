@@ -91,8 +91,7 @@
         </div>
 
         <mat-divider ></mat-divider>
-        <mat-button-toggle routerLink="/admin">Admin </mat-button-toggle >
-
+        <mat-button-toggle (click)="goToRoute($event, 'admin')" disabled="isDiabled">Admin </mat-button-toggle >
         <mat-divider></mat-divider>
 
     </mat-button-toggle-group>
