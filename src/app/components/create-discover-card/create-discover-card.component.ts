@@ -4,7 +4,7 @@ import { CreateDiscoverCardDialogComponent } from './create-discover-card-dialog
 import * as fromState from '../../state';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
 
 
@@ -18,10 +18,10 @@ export class CreateDiscoverCardComponent implements OnInit {
     { color: '#ccd8ec', type: 'OMSORG', description: 'Barnet har vuxna i sin närhet som hen kan lita på och vända sig till.', selected:'false'},
     { color: '#dbd9e6',type: 'TRYGGHET', description: 'Barnet skyddas från sådant som kan skada hen i och utanför hemmet.', selected:'false'},
     { color: '#ffdcee',type: 'MÅR BRA', description: 'Barnet har hälsosamma matvanor, god hygien och ett liv fritt från tobak, alkohol och narkotika.', selected:'false'},
-    {color: '#fbdae1',type: 'FRITID', description: 'Barnet har fritidsintresse med delaktight från vårdnadshavare eller annan trygg person i dess närhet.', selected:'false'},
+    { color: '#fbdae1',type: 'FRITID', description: 'Barnet har fritidsintresse med delaktight från vårdnadshavare eller annan trygg person i dess närhet.', selected:'false'},
     { color: '#fee4d7',type: 'TILLHÖRIGHET', description: 'Barnet känner tillhörighet och uppskattning av personer som barne möter i sin vardag.', selected:'false'},
-    {color: '#fcedd6', type: 'ANSVARSTAGANDE', description: 'Barnet förstår vas som förväntas av det i sin vardag, visar hänsyn och omtanke inför andra och följer givna regler.', selected:'false'},
-    {color: '#d9f2e4', type: 'RESPEKTERAS', description: 'Barnet känner sig sedd, hörd och bekräftad av viktiga personer i sin vardag.', selected:'false'},
+    { color: '#fcedd6', type: 'ANSVARSTAGANDE', description: 'Barnet förstår vas som förväntas av det i sin vardag, visar hänsyn och omtanke inför andra och följer givna regler.', selected:'false'},
+    { color: '#d9f2e4', type: 'RESPEKTERAS', description: 'Barnet känner sig sedd, hörd och bekräftad av viktiga personer i sin vardag.', selected:'false'},
     { color: '#d1f3f3',type: 'UTVECKLAS', description: 'Barnet utvecklas i fas med sin ålder och tar förmågor att klara av det vardagliga livet.', selected:'false'},
     
   ];
@@ -36,6 +36,8 @@ export class CreateDiscoverCardComponent implements OnInit {
     {type:'RESPEKTERAS', choice:''},
     {type:'UTVECKLAS', choice:''}
   ];
+  createDiscoveCardFormGroup: FormGroup;
+  saveError='';
 
   guardianNbr: number=1;
   selected = '1';
@@ -46,11 +48,6 @@ export class CreateDiscoverCardComponent implements OnInit {
   guardians: string[][]=[['','', '', ''],['','','','']];
   comments: string[]=[];
 
-  date: Date;
-  discovererName: string;
-  discovererOrganisation: string;
-  discovererTitle: string;
-
   personCotactName: string;
   situationComment: string;
 
@@ -58,29 +55,27 @@ export class CreateDiscoverCardComponent implements OnInit {
   isMeasureTakenComment: string;
 
   constructor(public dialog: MatDialog,
-              private store: Store<fromState.State>) { 
-                
-            
-  }
+              private store: Store<fromState.State>,
+              private _formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
+    this.createDiscoveCardFormGroup = this._formBuilder.group({
+      dateControl: ['', Validators.required],
+      discovererNameControl: ['', Validators.required],
+      discovererOrganisationControl: ['', Validators.required],
+      discovererTitleControl: ['', Validators.required],
+
+    }); 
+
   }
 
   changeGuardianNbr(nbr: number){
     this.guardianNbr= nbr;
   }
 
-  saveGuardian(index1: number, index2: number, value:string){
-    console.log(index1);
-    console.log(index2);
-    console.log(value);
-
-  }
-
   radioChange(event: MatRadioChange) {
-    this.isMeasureTaken = event.value.toLowerCase() == 'true';
+    this.isMeasureTaken = event.value;
     console.log(this.isMeasureTaken);  
-
 }
 
 radioChangeThree(event: MatRadioChange, data) {
@@ -102,42 +97,23 @@ radioChangefour(event: MatRadioChange, index1: number, index2: number) {
 }
 
   openDialog() {
-   // console.log(this.date.toLocaleDateString());
-    console.log(this.discovererName);
-    console.log(this.discovererOrganisation);
-    console.log(this.discovererTitle);
+   if(this.createDiscoveCardFormGroup.status== "INVALID"){
+    this.saveError='Du har missat att fylla i saker';
 
-    console.log(this.name);
-    console.log(this.personNbr);
-    console.log(this.adress);
-    
+   }else{
 
-    console.log(this.comments);
-    console.log(this.guardians[0][0]);
-    console.log(this.guardians[0][1]);
-    console.log(this.guardians[1][0]);
-    console.log(this.guardians[1][1]);
+    console.log(this.createDiscoveCardFormGroup.value.dateControl.toLocaleDateString());
+    console.log(this.createDiscoveCardFormGroup.value.discovererNameControl);
+    console.log(this.createDiscoveCardFormGroup.value.discovererOrganisationControl);
+    console.log(this.createDiscoveCardFormGroup.value.discovererTitleControl);
 
-    
-     const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
+    this.saveError='';
+    const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
       data:{
-       /*  date:this.date,
-        discovererName: this.discovererName,
-        discovererOrganisation: this.discovererOrganisation,
-        discovererTitle: this.discovererTitle,
- */
         name: this.name,
         personNbr: this.personNbr,
-        // adress: this.adress,
         guardians: this.guardians,
-
-/*         personCotactName: this.personCotactName,
-        situationComment: this.situationComment,
-        comments:this.comments,
-
-        isMeasureTaken:this.isMeasureTaken,
-        isMeasureTakenComment: this.isMeasureTakenComment,
- */      }
+  }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -145,9 +121,10 @@ radioChangefour(event: MatRadioChange, index1: number, index2: number) {
         this.store.dispatch(new fromRoot.Go({ path: ['discover-card'] }));
       }
     });
-  }
 
-
+   }
+    
+     }
 }
 
 

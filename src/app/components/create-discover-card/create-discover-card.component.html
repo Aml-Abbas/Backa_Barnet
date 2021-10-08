@@ -3,29 +3,35 @@
  
     <button mat-raised-button class="discover-card-button" routerLink="/discover-card">Tidigare upptäckarkorten</button>
 
-    <div class="form-container">
+<!--     <div [formGroup]="myGroup">
+      <input formControlName="firstName">
+      <input [(ngModel)]="showMoreControls" [ngModelOptions]="{standalone: true}">
+   </div> -->
+
+    <div class="form-container" [formGroup]="createDiscoveCardFormGroup">
         <mat-form-field class="full-width" appearance="fill">
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" [(ngModel)]= "date">
+            <input matInput [matDatepicker]="picker" formControlName="dateControl">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker #picker ></mat-datepicker>
           </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Upptäckarens namn</mat-label>
-        <input matInput [(ngModel)]="discovererName">
+        <input matInput formControlName="discovererNameControl">
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Upptäckarens organisation</mat-label>
-        <input matInput [(ngModel)]="discovererOrganisation">
+        <input matInput formControlName="discovererOrganisationControl">
       </mat-form-field>
 
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Upptäckarens title</mat-label>
-        <input matInput [(ngModel)]="discovererTitle">
+        <input matInput formControlName="discovererTitleControl">
       </mat-form-field>
 
+<!-- 
       <mat-form-field appearance="fill">
         <mat-label>Barnets namn</mat-label>
         <input matInput [(ngModel)]="name">
@@ -135,6 +141,9 @@
         </section>
 
               </div>
+ -->
+
+        <p>{{saveError}}</p>
 
         <button mat-raised-button (click)="openDialog()">Skicka in</button>
         <button mat-raised-button class="cancel-button" routerLink="/contact">Avbryt</button>
