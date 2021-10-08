@@ -31,25 +31,26 @@
         <input matInput formControlName="discovererTitleControl">
       </mat-form-field>
 
-<!-- 
+
       <mat-form-field appearance="fill">
         <mat-label>Barnets namn</mat-label>
-        <input matInput [(ngModel)]="name">
+        <input matInput formControlName="nameControl">
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Barnets personnummer</mat-label>
-        <input matInput [(ngModel)]="personNbr" type="number">
+        <input matInput formControlName="personNbrControl" type="number">
       </mat-form-field>
 
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Barnets address</mat-label>
-        <input matInput [(ngModel)]="adress">
+        <input matInput formControlName="adressControl">
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>Antal Vårdnadshavare</mat-label>
-        <mat-select [(ngModel)]="selected" name="selected">
+        <mat-label>Antal Vårdnadshavare som ska ge samtycke</mat-label>
+        <mat-select [(ngModel)]="selected" name="selected" [ngModelOptions]="{standalone: true}">
+          <mat-option (click)="changeGuardianNbr(0)" value="0">0</mat-option>
           <mat-option (click)="changeGuardianNbr(1)" value="1">1</mat-option>
           <mat-option (click)="changeGuardianNbr(2)" value="2">2</mat-option>
         </mat-select>
@@ -68,7 +69,7 @@
         </mat-form-field>
   
       </div>
-
+<!-- 
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>BMM/ BvC/ Förskola/ Skola (Barnkontakt)</mat-label>
         <input matInput [(ngModel)]="personCotactName">

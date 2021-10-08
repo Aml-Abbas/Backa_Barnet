@@ -39,12 +39,9 @@ export class CreateDiscoverCardComponent implements OnInit {
   createDiscoveCardFormGroup: FormGroup;
   saveError='';
 
-  guardianNbr: number=1;
-  selected = '1';
+  guardianNbr: number=0;
+  selected = '0';
 
-  name: string;
-  personNbr: string;
-  adress: string;
   guardians: string[][]=[['','', '', ''],['','','','']];
   comments: string[]=[];
 
@@ -61,9 +58,13 @@ export class CreateDiscoverCardComponent implements OnInit {
   ngOnInit(): void {
     this.createDiscoveCardFormGroup = this._formBuilder.group({
       dateControl: ['', Validators.required],
-      discovererNameControl: ['', Validators.required],
+      discovererNameControl: ['', [Validators.required, Validators.minLength(2)]],
       discovererOrganisationControl: ['', Validators.required],
       discovererTitleControl: ['', Validators.required],
+
+      nameControl: ['', [Validators.required, Validators.minLength(2)]],
+      personNbrControl: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+      adressControl: ['', Validators.required],
 
     }); 
 
@@ -110,9 +111,6 @@ radioChangefour(event: MatRadioChange, index1: number, index2: number) {
     this.saveError='';
     const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
       data:{
-        name: this.name,
-        personNbr: this.personNbr,
-        guardians: this.guardians,
   }
     });
 
