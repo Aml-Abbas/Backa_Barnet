@@ -16,6 +16,7 @@ button{
     width: 100%;
     color: black;
     margin-bottom: 10px;
+    height: 55px;
 }
 
 
@@ -37,7 +38,7 @@ mat-label{
 }
 
 .material-icons { 
-    font-size: 250px;
+    font-size: 230px;
     color: darkcyan;
 }
 
@@ -48,5 +49,8 @@ mat-label{
         button{
         width: 30%;
         margin-left: 35%;
+    }
+    .material-icons { 
+        font-size: 150px;
     }
 }

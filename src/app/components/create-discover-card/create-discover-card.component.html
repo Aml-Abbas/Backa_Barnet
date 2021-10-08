@@ -60,16 +60,16 @@
       <div *ngFor="let item of [].constructor(guardianNbr); let i = index">
        <mat-form-field appearance="fill">
           <mat-label>Vårdnadshavarens {{i+1}} namn</mat-label>
-          <input matInput name="name" [(ngModel)]="guardians[i][0]">
+          <input matInput name="name" [(ngModel)]="guardians[i][0]" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
   
         <mat-form-field appearance="fill">
           <mat-label>Vårdnadshavarens {{i+1}} personnummer</mat-label>
-          <input matInput name="personNbr" [(ngModel)]="guardians[i][1]" type="number">
+          <input matInput name="personNbr" [(ngModel)]="guardians[i][1]" type="number" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
   
       </div>
-<!-- 
+              <!-- 
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>BMM/ BvC/ Förskola/ Skola (Barnkontakt)</mat-label>
         <input matInput [(ngModel)]="personCotactName">
@@ -142,6 +142,7 @@
         </section>
 
               </div>
+
  -->
 
         <p>{{saveError}}</p>
