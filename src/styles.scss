@@ -32,9 +32,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-form-field{
   border: 1px solid #663399 !important;
-  margin-bottom: 2px;
 }
 
 .mat-form-field-ripple{
   background-color: transparent !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex{
+  padding: 5px 0px 0px 5px !important;
 }
