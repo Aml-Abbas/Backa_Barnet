@@ -74,6 +74,10 @@ mat-card-title{
 
 }
 
+.section_margin-top{
+  margin-top: 10px;
+}
+
 .section {
     padding: 10px;
     display: flex;
@@ -129,6 +133,8 @@ mat-card-title{
   .card-container{
     height: 100px;
   }
+
+
 
   @media screen and (max-width: 800px){
   
