@@ -131,8 +131,30 @@ mat-card-title{
     height: 100px;
   }
 
-
-
+#care{
+    border: 2px solid #ccd8ec !important;
+}
+#security{
+  border: 2px solid #dbd9e6 !important;
+}
+#feel_good{
+  border: 2px solid #ffdcee !important;
+}
+#free_time{
+  border: 2px solid #fbdae1 !important;
+}
+#beloning{
+  border: 2px solid #fee4d7 !important;
+}
+#responsibility{
+  border: 2px solid #fcedd6 !important;
+}
+#respect{
+  border: 2px solid #d9f2e4 !important;
+}
+#develop{
+  border: 2px solid #d1f3f3 !important;
+}
   @media screen and (max-width: 800px){
   
     .discover-card-button{

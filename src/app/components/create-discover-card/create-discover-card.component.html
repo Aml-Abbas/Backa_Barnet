@@ -64,14 +64,16 @@
         </mat-form-field>
   
       </div>
+
+      <!-- It will be a mat-select -->
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>BMM/ BvC/ Förskola/ Skola (Barnkontakt)</mat-label>
-        <input matInput [(ngModel)]="personCotactName">
+        <input matInput [(ngModel)]="personCotactName" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
 
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Situationen där barnet uppmärksammats: ​</mat-label>
-        <textarea matInput [(ngModel)]="situationComment"></textarea>
+        <textarea matInput formControlName="situationCommentControl"></textarea>
       </mat-form-field>
 
       <section class="section_margin-top">
@@ -84,10 +86,8 @@
            
             <mat-form-field class="full-width" appearance="fill">
                 <mat-label>kommentar: ​</mat-label>
-                <textarea matInput [(ngModel)]="isMeasureTakenComment"></textarea>
+                <textarea matInput [(ngModel)]="isMeasureTakenComment" [ngModelOptions]="{standalone: true}"></textarea>
               </mat-form-field>
-
-              <!-- 
 
               <div class="container-grid">
                 <div>
@@ -106,10 +106,11 @@
                           </mat-radio-group>
                         </section>
                         
-                        <mat-form-field                           
+                        <mat-form-field
+                        id="{{item.id}}"                        
                           class="full-width" appearance="fill">
                             <mat-label>kommentar: ​</mat-label>
-                            <textarea class="comment" matInput [(ngModel)]="comments[i]"></textarea>
+                            <textarea class="comment" matInput [(ngModel)]="comments[i]" [ngModelOptions]="{standalone: true}"></textarea>
                           </mat-form-field>
 
                     </mat-card>
@@ -138,8 +139,6 @@
         </section>
 
               </div>
-
- -->
 
         <p>{{saveError}}</p>
 
