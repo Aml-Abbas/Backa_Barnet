@@ -89,7 +89,7 @@ mat-card-title{
   }
 
   button{
-    margin-left: 20%;
+    margin-left: 12.5%;
     width: 20%;
     background-color: #cde7e6;
     color: black;
@@ -98,6 +98,9 @@ mat-card-title{
 
   .cancel-button{
     background-color: #e83344;
+  }
+  .save-button{
+    background-color: lightgrey;
   }
 
   mat-card{
@@ -155,6 +158,11 @@ mat-card-title{
 #develop{
   border: 2px solid #d1f3f3 !important;
 }
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex{
+  padding: 5px 0px 0px 5px !important;
+}
+
   @media screen and (max-width: 800px){
   
     .discover-card-button{

@@ -4,7 +4,7 @@
     <h4>För personal</h4>
 
 
-    <div class="table-container mat-elevation-z8">
+    <div class="table-container">
       <table mat-table [dataSource]="dataSource">
     
         <!-- Name Column -->
@@ -52,6 +52,8 @@
       </table>
     </div>
     
+    <button mat-raised-button (click)="save()">Spara</button>
+
 <!-- 
     <mat-stepper #stepper orientation="vertical" >
 
