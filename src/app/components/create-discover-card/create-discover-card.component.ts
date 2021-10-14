@@ -4,7 +4,7 @@ import { CreateDiscoverCardDialogComponent } from './create-discover-card-dialog
 import * as fromState from '../../state';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
 
 
@@ -64,7 +64,6 @@ export class CreateDiscoverCardComponent implements OnInit {
 
       nameControl: ['', [Validators.required, Validators.minLength(2)]],
       personNbrControl: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
-      adressControl: ['', Validators.required],
 
       situationCommentControl:['', Validators.required],
 
