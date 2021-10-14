@@ -62,7 +62,6 @@ import {
   StoreRouterConnectingModule,
   RouterStateSerializer,
 } from '@ngrx/router-store';
-import { EditContactPersonComponent } from './components/edit-contact-person/edit-contact-person.component';
 import { EditContactGuardianComponent } from './components/edit-contact-guardian/edit-contact-guardian.component';
 import { ChartsModule } from 'ng2-charts';
 import { CreateDiscoverCardDialogComponent } from './components/create-discover-card/create-discover-card-dialog/create-discover-card-dialog.component';
@@ -77,7 +76,9 @@ import { ConversationMaterialDetailsComponent } from './components/conversation-
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent,
     EventComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent,
     DeepNeedCompassComponent, PlanComponent, AssessmentComponent, ConversationMaterialComponent,
-    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, CreatePlanComponent, EditContactPersonComponent, EditContactGuardianComponent, CreateDiscoverCardDialogComponent, DiscoverCardDetailsComponent, CreateConversationMaterialComponent, ConversationMaterialDetailsComponent],
+    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, CreatePlanComponent, 
+    EditContactGuardianComponent, CreateDiscoverCardDialogComponent, DiscoverCardDetailsComponent, 
+    CreateConversationMaterialComponent, ConversationMaterialDetailsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

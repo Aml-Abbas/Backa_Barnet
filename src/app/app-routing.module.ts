@@ -17,7 +17,6 @@ import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-ne
 import { DiscoverCardDetailsComponent } from './components/discover-card-details/discover-card-details.component';
 import { DiscoverCardComponent } from './components/discover-card/discover-card.component';
 import { EditContactGuardianComponent } from './components/edit-contact-guardian/edit-contact-guardian.component';
-import { EditContactPersonComponent } from './components/edit-contact-person/edit-contact-person.component';
 import { EstimateComponent } from './components/estimate/estimate.component';
 import { EventComponent } from './components/event/event.component';
 import { GoalComponent } from './components/goal/goal.component';
@@ -105,10 +104,6 @@ const routes: Routes = [
       {
         path: 'contact-person',
         component: ContactPersonComponent, canActivate: [AuthGuard]
-      },
-      {
-        path: 'edit-contact-person',
-        component: EditContactPersonComponent, canActivate: [AuthGuard]
       },
       {
         path: 'contact-guardian',

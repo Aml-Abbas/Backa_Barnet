@@ -36,14 +36,7 @@ export const getCurrentPersonPersonNr = createSelector(
   getCurrentPersonState,
   fromCurrentPerson.getCurrentPersonPersonNr
 );
-export const getCurrentPersonCity = createSelector(
-  getCurrentPersonState,
-  fromCurrentPerson.getCurrentPersonCity
-);
-export const getCurrentPersonAddress = createSelector(
-  getCurrentPersonState,
-  fromCurrentPerson.getCurrentPersonAddress
-);
+
 export const getCurrentPersonRoleID = createSelector(
   getCurrentPersonState,
   fromCurrentPerson.getCurrentPersonRoleID

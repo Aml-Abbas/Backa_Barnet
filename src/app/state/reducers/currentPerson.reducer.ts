@@ -46,8 +46,6 @@ export interface CurrentPersonState {
 export const getCurrentPersonPersonID = (state: CurrentPersonState) => state.currentPerson?.personID;
 export const getCurrentPersonPersonNr = (state: CurrentPersonState) => state.currentPerson?.personNr;
 export const getCurrentPersonName = (state: CurrentPersonState) => ( state.currentPerson?.firstName , state.currentPerson?.lastName);
-export const getCurrentPersonCity = (state: CurrentPersonState) => state.currentPerson?.city;
-export const getCurrentPersonAddress = (state: CurrentPersonState) => state.currentPerson?.address;
 export const getCurrentPersonRoleID = (state: CurrentPersonState) => state.currentPerson?.personRoleID;
 export const getCurrentPersonTypeID = (state: CurrentPersonState) => state.currentPerson?.personTypeID;
 export const getCurrentPersonCreateBy = (state: CurrentPersonState) => state.currentPerson?.createBy;

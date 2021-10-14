@@ -43,9 +43,8 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>Antal Vårdnadshavare som ska ge samtycke</mat-label>
+        <mat-label>Antal Vårdnadshavare</mat-label>
         <mat-select [(ngModel)]="selected" name="selected" [ngModelOptions]="{standalone: true}">
-          <mat-option (click)="changeGuardianNbr(0)" value="0">0</mat-option>
           <mat-option (click)="changeGuardianNbr(1)" value="1">1</mat-option>
           <mat-option (click)="changeGuardianNbr(2)" value="2">2</mat-option>
         </mat-select>

@@ -19,5 +19,4 @@ export class ContactPersonComponent implements OnInit {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
   }
 
-
 }

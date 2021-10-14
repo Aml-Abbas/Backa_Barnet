@@ -20,16 +20,13 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.persons$ = this.store.select(fromState.getPersons);
-    this.persons.push(new Person('11', '9308887654', 'Gustav', 
-      'Sandberg', 'Tågaborg', ' ', '', '', '', '', '', '2015-11-01'));
+   
     this.persons$.subscribe(data => {
       data.map((person:Person)=>{
         let personID= person.personID;
         let personNr= person.personNr.slice(2, 12);
         let lastName= person.lastName;
         let firstName= person.firstName;
-        let address= person.address;
-        let city= person.city;
         let personRoleID= person.personRoleID;
         let personTypeID= person.personTypeID;
         let createBy = person.createBy;
@@ -38,7 +35,7 @@ export class ContactComponent implements OnInit {
         let changeDate= person.changeDate.slice(0, 10);
         
         this.persons.push({personID, personNr, lastName, 
-          firstName, address, city, personRoleID, personTypeID, createBy, createDate, changeBy, changeDate});
+          firstName, personRoleID, personTypeID, createBy, createDate, changeBy, changeDate});
       })
   });
   }

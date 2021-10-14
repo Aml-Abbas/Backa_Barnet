@@ -39,8 +39,8 @@ export class CreateDiscoverCardComponent implements OnInit {
   createDiscoveCardFormGroup: FormGroup;
   saveError='';
 
-  guardianNbr: number=0;
-  selected = '0';
+  guardianNbr: number=2;
+  selected = '2';
 
   guardians: string[][]=[['','', '', ''],['','','','']];
   comments: string[]=[];

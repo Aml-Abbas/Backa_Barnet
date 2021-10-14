@@ -3,8 +3,6 @@ export class Person {
     personNr: string;
     lastName: string;
     firstName: string;
-    address: string;
-    city: string;
     personRoleID: string;
     personTypeID: string;
     createBy: string;
@@ -15,7 +13,6 @@ export class Person {
   
     constructor(personID: string, personNr: string, 
         firstName: string, lastName: string,
-        address: string, city: string,
         personRoleID: string, personTypeID: string,
         createBy: string, createDate: string, 
         changeBy: string, changeDate: string) {
@@ -26,8 +23,6 @@ export class Person {
       this.changeDate = changeDate;
       this.personID= personID;
 
-      this.address= address;
-      this.city= city;
       this.personRoleID= personRoleID;
       this.personTypeID= personTypeID;
       this.createBy= createBy;
