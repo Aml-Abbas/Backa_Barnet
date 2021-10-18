@@ -6,6 +6,39 @@ h1{
     font-size: 20px;
   }
 
+  .table-container {
+    width: 550px;
+    max-width: 100%;
+    overflow: auto;
+  }
+  
+  table {
+    width: 1000px;
+    background-color: whitesmoke;
+  }
+  
+  td, th, tr{
+    color: black;
+  }
+  
+  td.mat-column-star {
+    width: 20px;
+    padding-right: 8px;
+  }
+  
+  th.mat-column-position, td.mat-column-position {
+    padding-left: 8px;
+  }
+  
+  .mat-table-sticky-border-elem-right {
+    border-left: 1px solid #e0e0e0;
+  }
+  
+  .mat-table-sticky-border-elem-left {
+    border-right: 1px solid #e0e0e0;
+  }
+
+/* 
   mat-card{
       background-color: whitesmoke;
       color: black;
@@ -41,7 +74,7 @@ h1{
       width: 100%;
       margin-bottom: 20px;
   }
-
+ */
   button{
     margin-top: 30px;
     margin-left: 13%;
@@ -62,7 +95,7 @@ h1{
     font-size: 15px;
  }
 
-  ::ng-deep #care{
+/*   ::ng-deep #care{
       mat-card-title{
         background-color: #003686;
       }
@@ -205,7 +238,7 @@ h1{
         color:  #31acaf;
       }
 }
-
+ */
 @media screen and (max-width: 1024px){
     mat-card{
         width: 90%;

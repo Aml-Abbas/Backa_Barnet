@@ -3,7 +3,40 @@
 
     <h4>Bedömning av Kalles situation</h4>
 
-    <div class="card_container" *ngFor="let card of scores; let i=index">
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource">
+      
+        <ng-container matColumnDef="question" sticky>
+          <th mat-header-cell *matHeaderCellDef> Fråga </th>
+          <td mat-cell *matCellDef="let element"> {{element.question}} </td>
+        </ng-container>
+    
+         <ng-container matColumnDef="score" >
+          <th mat-header-cell *matHeaderCellDef> Betyg </th>
+          <td mat-cell *matCellDef="let element">
+            <input type="number">
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="star" stickyEnd>
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon>more_vert</mat-icon>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    
+<!--     <div class="card_container" *ngFor="let card of scores; let i=index">
 
       <mat-card id="{{card.id}}">
         <mat-card-title>{{card.area}}</mat-card-title>
@@ -68,7 +101,7 @@
 
 
     </div>
-
+ -->
     <button mat-raised-button (click)="send(1)">Spara</button>
     <button mat-raised-button (click)="send(2)">Behovet uppfyllt</button>
     <button mat-raised-button (click)="send(3)">Skicka till barnteam</button>

@@ -3,13 +3,36 @@ import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
 import * as fromRoot from '../../../app/state';
 
+export interface PeriodicElement {
+  question: string;
+  position: number;
+  score: number;
+  }
+  
+  const ELEMENT_DATA: PeriodicElement[] = [
+    {position: 1, question: 'Hydrogen',score: 1},
+    {position: 2, question: 'Helium',score: 1},
+    {position: 3, question: 'Lithium',score: 1},
+    {position: 4, question: 'Beryllium', score: 1,},
+    {position: 5, question: 'Boron', score: 1},
+    {position: 6, question: 'Carbon',score: 1},
+    {position: 7, question: 'Nitrogen',score: 1},
+    {position: 8, question: 'Oxygen',score: 1},
+    {position: 9, question: 'Fluorine',score: 1},
+    {position: 10, question: 'Neon',score: 1},
+    ];
+
+
 @Component({
   selector: 'app-create-conversation-material',
   templateUrl: './create-conversation-material.component.html',
   styleUrls: ['./create-conversation-material.component.scss']
 })
 export class CreateConversationMaterialComponent implements OnInit {
-  care_comment: string='';
+  displayedColumns = ['question', 'score', 'position', 'position', 'star'];
+  dataSource = ELEMENT_DATA;
+
+/*   care_comment: string='';
   security_comment: string='';
   feel_good_comment: string='';
   free_time_comment: string='';
@@ -17,9 +40,9 @@ export class CreateConversationMaterialComponent implements OnInit {
   responsibility_comment: string='';
   respekt_comment: string='';
   develop_comment: string='';
-
+ */
   saveError='';
-  scores = [
+/*   scores = [
     { area: "OMSORG", id: "care", question:'Jag har någon som bryr sig om mig', score:'', comment: this.care_comment },
     { area: "TRYGGHET", id: "security", question:'Jag känner mig trygg', score:'', comment: this.security_comment},
     { area: "MÅ BRA", id: "feel_good", question:'Jag mår bra', score:'', comment: this.feel_good_comment},
@@ -29,16 +52,16 @@ export class CreateConversationMaterialComponent implements OnInit {
     { area: "RESPEKTERAS", id: "respekt", question:'Jag känner mig respekterad', score:'', comment: this.respekt_comment},
     { area: "UTVECKLAS", id: "develop", question:'Jag gör mitt bästa', score:'', comment: this.develop_comment}
   ];
-
+ */
   constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
   }
 
-  changeScore(value: string, index: number){
+/*   changeScore(value: string, index: number){
     this.scores[index].score= value;
     }
-
+ */
 
   send(nbr: number): void{
   /*   if (this.scores[0].score==''|| this.scores[1].score==''||
