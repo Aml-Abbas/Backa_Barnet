@@ -255,7 +255,12 @@ export class EstimateComponent implements OnInit {
  */
 
 save() {
-       
+       // spara skattning
+}
+
+
+compile() {
+     //sammanställa alla skattningar, bara för barnteam
 }
 
 }
