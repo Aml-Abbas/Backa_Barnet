@@ -120,6 +120,7 @@ public changeShowFillerNeedCompass(){
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
+    this.store.dispatch(new fromRoot.Go({ path: ['contact'] }));
   }
 
   delete_current_person(): void{
