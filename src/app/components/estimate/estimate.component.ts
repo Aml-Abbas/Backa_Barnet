@@ -6,25 +6,23 @@ import {MatTableDataSource} from '@angular/material/table';
 export interface PeriodicElement {
   question: string;
   position: number;
-  weight: number;
-  symbol: string;
   score: number;
   }
   
   const ELEMENT_DATA: PeriodicElement[] = [
-    {position: 1, question: 'Hydrogen',score: 1, weight: 1.0079, symbol: 'H'},
-    {position: 2, question: 'Helium',score: 1, weight: 4.0026, symbol: 'He'},
-    {position: 3, question: 'Lithium',score: 1, weight: 6.941, symbol: 'Li'},
-    {position: 4, question: 'Beryllium', score: 1,weight: 9.0122, symbol: 'Be'},
-    {position: 5, question: 'Boron', score: 1,weight: 10.811, symbol: 'B'},
-    {position: 6, question: 'Carbon',score: 1, weight: 12.0107, symbol: 'C'},
-    {position: 7, question: 'Nitrogen',score: 1, weight: 14.0067, symbol: 'N'},
-    {position: 8, question: 'Oxygen',score: 1, weight: 15.9994, symbol: 'O'},
-    {position: 9, question: 'Fluorine',score: 1, weight: 18.9984, symbol: 'F'},
-    {position: 10, question: 'Neon',score: 1, weight: 20.1797, symbol: 'Ne'},
+    {position: 1, question: 'Hydrogen',score: 1},
+    {position: 2, question: 'Helium',score: 1},
+    {position: 3, question: 'Lithium',score: 1},
+    {position: 4, question: 'Beryllium', score: 1,},
+    {position: 5, question: 'Boron', score: 1},
+    {position: 6, question: 'Carbon',score: 1},
+    {position: 7, question: 'Nitrogen',score: 1},
+    {position: 8, question: 'Oxygen',score: 1},
+    {position: 9, question: 'Fluorine',score: 1},
+    {position: 10, question: 'Neon',score: 1},
     ];
     
-  
+
 @Component({
   selector: 'app-estimate',
   templateUrl: './estimate.component.html',
@@ -35,9 +33,10 @@ export interface PeriodicElement {
 
 })
 export class EstimateComponent implements OnInit {
-  displayedColumns = ['question', 'score', 'position', 'weight', 'symbol', 'position', 'weight', 'symbol', 'star'];
+  displayedColumns = ['question', 'score', 'position', 'position', 'star'];
   dataSource = ELEMENT_DATA;
 
+  areas:any []=[]
 
 /*   careFormGroup: FormGroup;
   securityFormGroup: FormGroup;
@@ -107,6 +106,10 @@ export class EstimateComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.areas = [
+      {area:'Omsorg', questions:['Fråga 1', 'Fråga 2', 'Fråga 3'], score:[{date:'2021',scores:['1','2','3']}, {date:'2020',scores:['7','6','5']}]},
+      {area:'Må bra', questions:['Fråga 1', 'Fråga 2', 'Fråga 3', 'Fråga 4', 'Fråga 5'], score:[{date:'2021', scores:['1','2','3','4','5']}, {date:'2020',scores:['9','8','7','6','5']}]}
+      ];
 
   /*   this.careFormGroup = this._formBuilder.group({
       care_1: [undefined, Validators.required],

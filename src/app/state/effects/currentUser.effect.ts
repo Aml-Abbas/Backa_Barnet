@@ -6,12 +6,18 @@ import * as currentUserAction from '../actions/currentUser.action';
 
 @Injectable()
 export class CurrentUserEffect {
-    
-  /* constructor(private actions$: Actions,
-              private userService: UsersService) {
-  }
 
-  loadCurrentUser$ = createEffect(() =>
+  constructor(private actions$: Actions) {}
+  
+/* 
+  updateCurrentPerson$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(currentPersonAction.UPDATE_PERSON),
+    map((action: currentPersonAction.UpdatePerson) => {
+      return new currentPersonAction.UpdatePersonSuccess(action.payload);
+    }))); */
+    
+/*   loadCurrentUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(userActions.LOAD_CURRENT_USER),
       switchMap((action: LoadCurrentUser) => {
@@ -21,7 +27,7 @@ export class CurrentUserEffect {
         );
       })
     )
-  );
+  ); */
 
   /*
     loadCurrentUserSuccess$ = createEffect(() =>
@@ -55,4 +61,8 @@ export class CurrentUserEffect {
       })
     ),
   ); */
+
+
+
+
     }

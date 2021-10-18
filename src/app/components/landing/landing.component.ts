@@ -25,9 +25,7 @@ export class LandingComponent implements OnInit {
 
  isDisabled= true;
   constructor(private observer: BreakpointObserver,
-    private store: Store<fromState.State>) {    
-    
-    }
+    private store: Store<fromState.State>) {}
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
@@ -120,7 +118,6 @@ public changeShowFillerNeedCompass(){
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
-    this.store.dispatch(new fromRoot.Go({ path: ['contact'] }));
   }
 
   delete_current_person(): void{
