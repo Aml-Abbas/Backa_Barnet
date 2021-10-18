@@ -40,17 +40,26 @@ export class CreateConversationMaterialComponent implements OnInit {
     }
 
 
-  save(): void{
-    if (this.scores[0].score==''|| this.scores[1].score==''||
+  send(nbr: number): void{
+  /*   if (this.scores[0].score==''|| this.scores[1].score==''||
       this.scores[2].score==''|| this.scores[3].score==''||
       this.scores[4].score==''|| this.scores[5].score==''||
       this.scores[6].score==''|| this.scores[7].score=='') {
     this.saveError='Du har glömt att välja ett betyg';
-    }else{
+    }else{ */
       this.saveError='';
+      if(nbr==1){
+        console.log(nbr +" nbr is 1");
+      }else if(nbr==2){
+        console.log(nbr +" nbr is 2");
+
+      }else{
+        console.log(nbr +" nbr is 3");
+
+      }
       this.store.dispatch(new fromRoot.Go({ path: ['/conversation-material'] }));
 
-    }
+    // }
 }
 
 }

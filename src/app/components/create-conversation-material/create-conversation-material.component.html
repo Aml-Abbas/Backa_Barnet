@@ -69,7 +69,9 @@
 
     </div>
 
-    <button mat-raised-button (click)="save()">Spara</button>
+    <button mat-raised-button (click)="send(1)">Spara</button>
+    <button mat-raised-button (click)="send(2)">Behovet uppfyllt</button>
+    <button mat-raised-button (click)="send(3)">Skicka till barnteam</button>
 
     <p class="error">{{saveError}}</p>
 

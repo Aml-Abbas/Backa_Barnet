@@ -51,6 +51,14 @@ export class CreateDiscoverCardComponent implements OnInit {
   isMeasureTaken: boolean;
   isMeasureTakenComment: string;
 
+/*
+Hämtas automatisk, kalla på ett API för att hämta dem   
+  discovererNameControl: string='';
+  discovererOrganisationControl: string='';
+  discovererTitleControl: string=''; */
+
+// hämta options för barnet enheter
+
   constructor(public dialog: MatDialog,
               private store: Store<fromState.State>,
               private _formBuilder: FormBuilder) {}
@@ -58,9 +66,9 @@ export class CreateDiscoverCardComponent implements OnInit {
   ngOnInit(): void {
     this.createDiscoveCardFormGroup = this._formBuilder.group({
       dateControl: ['', Validators.required],
-      discovererNameControl: ['', [Validators.required, Validators.minLength(2)]],
+    /*   discovererNameControl: ['', [Validators.required, Validators.minLength(2)]],
       discovererOrganisationControl: ['', Validators.required],
-      discovererTitleControl: ['', Validators.required],
+      discovererTitleControl: ['', Validators.required], */
 
       nameControl: ['', [Validators.required, Validators.minLength(2)]],
       personNbrControl: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
@@ -103,6 +111,15 @@ checkChoices(): boolean{
   return emptyChoice;
 }
 
+isAnonyms(): boolean{
+  //eller om enheten är Annat, då kommer kortet att anonymiseras
+  if(this.guardians[0][3]=='false'||this.guardians[1][3]=='false'){
+    return false;
+    // this.text= 'kortet kommer att annomineras för det saknas samtycke';
+  }
+    // this.text= 'kortet kommer att skickas in';
+  return true;
+}
   openDialog() {
    if(
       this.createDiscoveCardFormGroup.status== "INVALID" ||
@@ -112,18 +129,30 @@ checkChoices(): boolean{
 
    }else{
     console.log(this.createDiscoveCardFormGroup.value.dateControl.toLocaleDateString());
-    console.log(this.createDiscoveCardFormGroup.value.discovererNameControl);
+   /*  console.log(this.createDiscoveCardFormGroup.value.discovererNameControl);
     console.log(this.createDiscoveCardFormGroup.value.discovererOrganisationControl);
-    console.log(this.createDiscoveCardFormGroup.value.discovererTitleControl);
+    console.log(this.createDiscoveCardFormGroup.value.discovererTitleControl); */
 
     this.saveError='';
+  
     const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
       data:{
-  }
+        isAnonyms: this.isAnonyms(),
+     }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
+
+      if(this.isAnonyms()){
+        //Här kommer vi anonymisera kortet
+        // barnet namn och föräldrarnas namn inte med
+        // barnet personnummer och föräldrarnas personnummer inte med
+
+      }else{
+        //Här kommer vi skicka in kortet
+
+      }
         this.store.dispatch(new fromRoot.Go({ path: ['discover-card'] }));
       }
     });
@@ -133,7 +162,7 @@ checkChoices(): boolean{
      }
 
      save() {
-       
+       /* spara för sen */
      }
 }
 

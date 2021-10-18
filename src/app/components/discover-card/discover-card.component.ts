@@ -7,27 +7,30 @@ import * as fromRoot from '../../../app/state';
 
 export interface PeriodicElement {
   id: number;
+  date: string,
   type: string;
-  status: string
+  status: string,
+  by: string,
+  organisation: string,
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, type: 'Polisen 1', status:'inskickat'},
-  {id: 2, type: 'Skolan',status:'inskickat'},
-  {id: 3, type: 'Socialtjänsten' ,status:'inskickat'},
-  {id: 4, type: 'Polisen 2',status:'inskickat'},
-  {id: 11, type: 'Polisen 1',status:'inskickat'},
-  {id: 12, type: 'Skolan',status:'sparat'},
-  {id: 13, type: 'Socialtjänsten',status:'inskickat'},
-  {id: 14, type: 'Polisen 2',status:'inskickat'},
-  {id: 10, type: 'Polisen 1',status:'sparat'},
-  {id: 20, type: 'Skolan',status:'sparat'},
-  {id: 30, type: 'Socialtjänsten',status:'sparat'},
-  {id: 40, type: 'Polisen 2',status:'inskickat'},
-  {id: 16, type: 'Polisen 1',status:'sparat'},
-  {id: 22, type: 'Skolan',status:'inskickat'},
-  {id: 33, type: 'Socialtjänsten',status:'sparat'},
-  {id: 44, type: 'Polisen 2',status:'sparat'},
+  {id: 1, type: 'Polisen 1', status:'inskickat' , date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 2, type: 'Skolan',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 3, type: 'Socialtjänsten' ,status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 4, type: 'Polisen 2',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 11, type: 'Polisen 1',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 12, type: 'Skolan',status:'sparat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 13, type: 'Socialtjänsten',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 14, type: 'Polisen 2',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 10, type: 'Polisen 1',status:'sparat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 20, type: 'Skolan',status:'sparat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 30, type: 'Socialtjänsten',status:'sparat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 40, type: 'Polisen 2',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 16, type: 'Polisen 1',status:'sparat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 22, type: 'Skolan',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 33, type: 'Socialtjänsten',status:'sparat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+  {id: 44, type: 'Polisen 2',status:'sparat', date: '2021', by: 'polis 1', organisation: 'skolan'},
 ];
 
 @Component({
@@ -36,7 +39,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./discover-card.component.scss']
 })
 export class DiscoverCardComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'type','status'];
+  displayedColumns: string[] = ['date', 'by', 'organisation','status'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {

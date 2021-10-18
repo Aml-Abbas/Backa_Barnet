@@ -9,18 +9,19 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class CreateDiscoverCardDialogComponent implements OnInit {
   text:string;
-  status:boolean= true;
+  status:boolean= false;
   guardians:string[][];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {name: string, personNbr: string, guardians: [][] }) { 
-    this.guardians= data.guardians;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {isAnonyms: boolean}) {
+    this.status= data.isAnonyms;
   }
 
   ngOnInit(): void {
-    if(this.guardians[0][3]=='false'||this.guardians[1][3]=='false'){
-      this.text= 'kortet kommer att annomineras för det saknas samtycke';
+    if(this.status){
+    this.text= 'kortet kommer att skickas in';
+
     }else{
-      this.text= 'kortet kommer att skickas in';
+    this.text= 'kortet kommer att anonymiseras för det saknas samtycke';
     }
   }
 }
