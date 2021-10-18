@@ -83,8 +83,6 @@
                 <textarea matInput [(ngModel)]="isMeasureTakenComment" [ngModelOptions]="{standalone: true}"></textarea>
               </mat-form-field>
 
-              <div class="container-grid">
-                <div>
                   <div class="grid-container">
                         <mat-card *ngFor="let item of ELEMENT_DATA; let i=index">
                           <div class="card-container" [style.background]="item.color">
@@ -110,9 +108,6 @@
                     </mat-card>
                   </div>
 
-                </div>
-              
-              </div>
 
               <div *ngFor="let item of [].constructor(guardianNbr); let i = index" >
 

@@ -105,20 +105,19 @@ mat-card-title{
 
   mat-card{
     background-color: whitesmoke;
-    width: 95%;
+    display: inline-block;
+    /*  grid-template-columns: repeat(auto-fit, minmax(30rem, 2fr));
+     grid-gap: 1em; */
+     width: 43%;
     padding: 10px;
     margin-bottom: 15px;
     margin-right: 5%;
   }
 
-  .container-grid {
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(30rem, 2fr));
-      grid-gap: 1em;
+    .card-container {
+      height: 100px;
     }
   
-  }
 
   .discover-card-button{
       width: 35%;
@@ -130,9 +129,6 @@ mat-card-title{
     margin-bottom: 20px;
   }
 
-  .card-container{
-    height: 100px;
-  }
 
 #care{
     border: 2px solid #ccd8ec !important;
@@ -172,13 +168,10 @@ mat-card-title{
     mat-form-field{
       width: 100%;
     }
-    .container-grid {
-      .grid-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-      }
+    mat-card{
+      width: 100%;
+      padding: 0%;
     }
-
     .section {
       padding: 10px;
       display: flex;
