@@ -13,65 +13,55 @@ export class CreateConversationMaterialComponent implements OnInit {
 
   guardianNbr: number=2;
   selected = '2';
-
-
-  care_comment: string='';
-  security_comment: string='';
-  feel_good_comment: string='';
-  free_time_comment: string='';
-  beloning_comment: string='';
-  responsibility_comment: string='';
-  respekt_comment: string='';
-  develop_comment: string='';
- 
   saveError='';
+
    scores = [
     { area: "OMSORG", id: "care",class: "care-class", question:'Jag har någon som bryr sig om mig', 
-    person_score:'', person_comment: this.care_comment,
-    guardian1_score:'', guardian1_comment: this.care_comment,
-    guardian2_score:'', guardian2_comment: this.care_comment,
+    person_score:'', person_comment: '',
+    guardian1_score:'', guardian1_comment: '',
+    guardian2_score:'', guardian2_comment: '',
     color: '#003686'},
 
     { area: "TRYGGHET", id: "security", class:'security-class', question:'Jag känner mig trygg', 
-    person_score:'', person_comment: this.security_comment,
-    guardian1_score:'', guardian1_comment: this.care_comment,
-    guardian2_score:'', guardian2_comment: this.care_comment,
+    person_score:'', person_comment:'',
+    guardian1_score:'', guardian1_comment: '',
+    guardian2_score:'', guardian2_comment: '',
     color: '#353370'},
 
     { area: "MÅ BRA", id: "feel_good", class:'feel_good-class', question:'Jag mår bra', 
-    person_score:'', person_comment: this.feel_good_comment,
-    guardian1_score:'', guardian1_comment: this.care_comment,
-    guardian2_score:'', guardian2_comment: this.care_comment,
+    person_score:'', person_comment: '',
+    guardian1_score:'', guardian1_comment: '',
+    guardian2_score:'', guardian2_comment: '',
     color: '#e0448c'},
 
     { area: "FRITID", id: "free_time", class:'free_time-class', question:'Jag trivs med min fritid', 
-    person_score:'', person_comment: this.free_time_comment,
-    guardian1_score:'', guardian1_comment: this.care_comment,
-    guardian2_score:'', guardian2_comment: this.care_comment,
+    person_score:'', person_comment: '',
+    guardian1_score:'', guardian1_comment: '',
+    guardian2_score:'', guardian2_comment: '',
     color: '#df2d5b'},
 
     { area: "TILLHÖRIGHET", id: "beloning", class:'beloning-class', question:'Jag får vara med', 
-    person_score:'', person_comment: this.beloning_comment,
-    guardian1_score:'', guardian1_comment: this.care_comment,
-    guardian2_score:'', guardian2_comment: this.care_comment,
+    person_score:'', person_comment: '',
+    guardian1_score:'', guardian1_comment: '',
+    guardian2_score:'', guardian2_comment: '',
     color: '#eb612d'},
 
     { area: "ANSVARSTAGANDE", id: "responsibility", class:'responsibility-class', question:'Jag tar ansvar för mig själv och andra', 
-    person_score:'', person_comment: this.responsibility_comment,
-    guardian1_score:'', guardian1_comment: this.care_comment,
-    guardian2_score:'', guardian2_comment: this.care_comment,
+    person_score:'', person_comment: '',
+    guardian1_score:'', guardian1_comment: '',
+    guardian2_score:'', guardian2_comment: '',
     color: '#f79c2e'},
 
     { area: "RESPEKTERAS", id: "respekt", class:'respekt-class', question:'Jag känner mig respekterad', 
-    person_score:'', person_comment: this.respekt_comment,
-    guardian1_score:'', guardian1_comment: this.care_comment,
-    guardian2_score:'', guardian2_comment: this.care_comment,
+    person_score:'', person_comment: '',
+    guardian1_score:'', guardian1_comment: '',
+    guardian2_score:'', guardian2_comment: '',
     color: '#4ba562'},
 
     { area: "UTVECKLAS", id: "develop", class:'develop-class', question:'Jag gör mitt bästa', 
-    person_score:'', person_comment: this.develop_comment,
-    guardian1_score:'', guardian1_comment: this.care_comment,
-    guardian2_score:'', guardian2_comment: this.care_comment,
+    person_score:'', person_comment: '',
+    guardian1_score:'', guardian1_comment: '',
+    guardian2_score:'', guardian2_comment: '',
     color: '#31acaf'}
   ];
  
@@ -85,13 +75,24 @@ export class CreateConversationMaterialComponent implements OnInit {
     }
  */
 
+    checkErroes(): boolean{
+      var isMissed= false;
+      this.scores.forEach(element => {
+        if(element.person_score==''||
+        element.guardian1_score==''){
+          isMissed= true;
+        }
+        if( element.guardian2_score=='' && this.selected=='2'){
+          isMissed= true;
+        }
+      });
+      return !isMissed;
+    }
+
   send(nbr: number): void{
-  /*   if (this.scores[0].score==''|| this.scores[1].score==''||
-      this.scores[2].score==''|| this.scores[3].score==''||
-      this.scores[4].score==''|| this.scores[5].score==''||
-      this.scores[6].score==''|| this.scores[7].score=='') {
+     if (!this.checkErroes()) {
     this.saveError='Du har glömt att välja ett betyg';
-    }else{ */
+    }else{ 
       console.log(this.scores);
       this.saveError='';
       if(nbr==1){
@@ -105,7 +106,7 @@ export class CreateConversationMaterialComponent implements OnInit {
       }
       this.store.dispatch(new fromRoot.Go({ path: ['/conversation-material'] }));
 
-    // }
+     }
 }
 
 changeGuardianNbr(nbr: number){

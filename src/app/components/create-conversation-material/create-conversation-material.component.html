@@ -16,19 +16,19 @@
         <thead role="rowgroup">
       <tr role="row">
     
-      <th rowspan="2">Kategori</th>
-      <th rowspan="2">Frågan</th>
-      <th colspan="2">Barnet</th>
-      <th colspan="2">Vårdnadshavare 1</th>
-      <th *ngIf="selected=='2'" colspan="2">Vårdnadshavare 2</th>
+      <th rowspan="2" role="columnheader">Kategori</th>
+      <th rowspan="2" role="columnheader">Frågan</th>
+      <th colspan="2" role="columnheader">Barnet</th>
+      <th colspan="2" role="columnheader">Vårdnadshavare 1</th>
+      <th *ngIf="selected=='2'" colspan="2" role="columnheader">Vårdnadshavare 2</th>
     </tr>
     <tr>
-      <th>Betyg</th>
-      <th>Kommentär</th>
-      <th>Betyg</th>
-      <th>Kommentär</th>
-      <th *ngIf="selected=='2'">Betyg</th>
-      <th *ngIf="selected=='2'">Kommentär</th>
+      <th role="columnheader">Betyg</th>
+      <th role="columnheader">Kommentär</th>
+      <th> role="columnheader"Betyg</th>
+      <th role="columnheader">Kommentär</th>
+      <th *ngIf="selected=='2'" role="columnheader">Betyg</th>
+      <th *ngIf="selected=='2'" role="columnheader">Kommentär</th>
 
     </tr>
   </thead>
