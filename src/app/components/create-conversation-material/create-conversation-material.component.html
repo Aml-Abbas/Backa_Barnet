@@ -3,38 +3,82 @@
 
     <h4>Bedömning av Kalles situation</h4>
 
-    <div class="table-container">
-      <table mat-table [dataSource]="dataSource">
-      
-        <ng-container matColumnDef="question" sticky>
-          <th mat-header-cell *matHeaderCellDef> Fråga </th>
-          <td mat-cell *matCellDef="let element"> {{element.question}} </td>
-        </ng-container>
-    
-         <ng-container matColumnDef="score" >
-          <th mat-header-cell *matHeaderCellDef> Betyg </th>
-          <td mat-cell *matCellDef="let element">
-            <input type="number">
-          </td>
-        </ng-container>
+    <h5>Antal Vårdnadshavare som ska fylla formulär</h5>
+    <mat-form-field id="matFormFieldGuardians" appearance="fill">
+      <mat-label>Antal Vårdnadshavare</mat-label>
+      <mat-select id="matselectGuardians" [(ngModel)]="selected" name="selected">
+        <mat-option (click)="changeGuardianNbr(1)" value="1">1</mat-option>
+        <mat-option (click)="changeGuardianNbr(2)" value="2">2</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-        </ng-container>
+      <table role="table">
+        <thead role="rowgroup">
+      <tr role="row">
     
-        <ng-container matColumnDef="star" stickyEnd>
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <mat-icon>more_vert</mat-icon>
-          </td>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
+      <th rowspan="2">Kategori</th>
+      <th rowspan="2">Frågan</th>
+      <th colspan="2">Barnet</th>
+      <th colspan="2">Vårdnadshavare 1</th>
+      <th *ngIf="selected=='2'" colspan="2">Vårdnadshavare 2</th>
+    </tr>
+    <tr>
+      <th>Betyg</th>
+      <th>Kommentär</th>
+      <th>Betyg</th>
+      <th>Kommentär</th>
+      <th *ngIf="selected=='2'">Betyg</th>
+      <th *ngIf="selected=='2'">Kommentär</th>
 
+    </tr>
+  </thead>
+  <tbody role="rowgroup" *ngFor="let card of scores; let i=index">
+
+    <tr role="row" id="{{card.id}}">
+      <td role="cell"><strong>{{card.area}}</strong></td>
+      <td role="cell">{{card.question}}</td>
+      <td role="cell">
+          <mat-select id="{{card.class}}" [style.border-color]='card.color' [(ngModel)]="card.person_score" name="{{card.person_score}}">
+            <mat-option (click)="changePersonScore(1, i)" value="1">1</mat-option>
+            <mat-option (click)="changePersonScore(2, i)" value="2">2</mat-option>
+            <mat-option (click)="changePersonScore(3, i)" value="3">3</mat-option>
+            <mat-option (click)="changePersonScore(4, i)" value="4">4</mat-option>
+            <mat-option (click)="changePersonScore(5, i)" value="5">5</mat-option>
+          </mat-select>
+      </td>
+      <td role="cell">
+          <textarea [style.border-color]='card.color' matInput [(ngModel)]="card.person_comment" name="{{card.person_comment}}"></textarea>
+      </td>
+      <td role="cell">
+          <mat-select id="{{card.class}}" [style.border-color]='card.color' [(ngModel)]="card.guardian1_score" name="{{card.guardian1_score}}">
+            <mat-option (click)="changeGuardian1Score(1, i)" value="1">1</mat-option>
+            <mat-option (click)="changeGuardian1Score(2, i)" value="2">2</mat-option>
+            <mat-option (click)="changeGuardian1Score(3, i)" value="3">3</mat-option>
+            <mat-option (click)="changeGuardian1Score(4, i)" value="4">4</mat-option>
+            <mat-option (click)="changeGuardian1Score(5, i)" value="5">5</mat-option>
+          </mat-select>
+      </td>
+      <td role="cell">
+          <textarea [style.border-color]='card.color' matInput [(ngModel)]="card.guardian1_comment" name="{{card.guardian1_comment}}"></textarea>
+      </td>
+      <td role="cell" *ngIf="selected=='2'">
+          <mat-select id="{{card.class}}" [style.border-color]='card.color' [(ngModel)]="card.guardian2_score" name="{{card.guardian2_score}}">
+            <mat-option (click)="changeGuardian2Score(1, i)" value="1">1</mat-option>
+            <mat-option (click)="changeGuardian2Score(2, i)" value="2">2</mat-option>
+            <mat-option (click)="changeGuardian2Score(3, i)" value="3">3</mat-option>
+            <mat-option (click)="changeGuardian2Score(4, i)" value="4">4</mat-option>
+            <mat-option (click)="changeGuardian2Score(5, i)" value="5">5</mat-option>
+          </mat-select>
+      </td>
+      <td role="cell" *ngIf="selected=='2'">
+          <textarea [style.border-color]='card.color' matInput [(ngModel)]="card.guardian2_comment" name="{{card.guardian2_comment}}"></textarea>
+      </td>
+
+    </tr>
+
+
+  </tbody>
+</table>
     
 <!--     <div class="card_container" *ngFor="let card of scores; let i=index">
 
