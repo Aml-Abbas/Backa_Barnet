@@ -17,6 +17,7 @@ import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-ne
 import { DiscoverCardDetailsComponent } from './components/discover-card-details/discover-card-details.component';
 import { DiscoverCardComponent } from './components/discover-card/discover-card.component';
 import { EditContactGuardianComponent } from './components/edit-contact-guardian/edit-contact-guardian.component';
+import { EstimateOverviewComponent } from './components/estimate-overview/estimate-overview.component';
 import { EstimateComponent } from './components/estimate/estimate.component';
 import { EventComponent } from './components/event/event.component';
 import { GoalComponent } from './components/goal/goal.component';
@@ -48,6 +49,10 @@ const routes: Routes = [
       {
         path: 'estimate',
         component: EstimateComponent, canActivate: [AuthGuard]
+      },
+      {
+        path: 'estimate-overview',
+        component: EstimateOverviewComponent, canActivate: [AuthGuard]
       },
       {
         path: 'event',

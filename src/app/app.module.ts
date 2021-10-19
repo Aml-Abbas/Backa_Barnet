@@ -68,6 +68,7 @@ import { CreateDiscoverCardDialogComponent } from './components/create-discover-
 import { DiscoverCardDetailsComponent } from './components/discover-card-details/discover-card-details.component';
 import { CreateConversationMaterialComponent } from './components/create-conversation-material/create-conversation-material.component';
 import { ConversationMaterialDetailsComponent } from './components/conversation-material-details/conversation-material-details.component';
+import { EstimateOverviewComponent } from './components/estimate-overview/estimate-overview.component';
 
 
 
@@ -78,7 +79,7 @@ import { ConversationMaterialDetailsComponent } from './components/conversation-
     DeepNeedCompassComponent, PlanComponent, AssessmentComponent, ConversationMaterialComponent,
     ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, CreatePlanComponent, 
     EditContactGuardianComponent, CreateDiscoverCardDialogComponent, DiscoverCardDetailsComponent, 
-    CreateConversationMaterialComponent, ConversationMaterialDetailsComponent],
+    CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

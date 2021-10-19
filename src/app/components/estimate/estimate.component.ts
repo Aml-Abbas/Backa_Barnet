@@ -261,9 +261,4 @@ save() {
        // spara skattning
 }
 
-
-compile() {
-     //sammanställa alla skattningar, bara för barnteam
-}
-
 }
