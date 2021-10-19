@@ -4,16 +4,17 @@ import {MatTableDataSource} from '@angular/material/table';
 export interface PeriodicElement {
   status: string,
   name: string,
+  date: string,
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {name: 'Kalle', status:'sparat'},
-  {name: 'Peter', status:'icke sparat'},
-  {name: 'Deaa', status:'sparat'},
-  {name: 'Malak', status:'sparat'},
-  {name: 'Lars', status:'sparat'},
-  {name: 'Ludviq', status:'sparat'},
-  {name: 'Anetta', status:'icke sparat'},
+  {name: 'Kalle', status:'sparat', date:'2021-08-19'},
+  {name: 'Peter', status:'inte sparad', date:''},
+  {name: 'Deaa', status:'sparat', date:'2021-08-19'},
+  {name: 'Malak', status:'sparat', date:'2021-08-19'},
+  {name: 'Lars', status:'sparat', date:'2021-08-19'},
+  {name: 'Ludviq', status:'sparat', date:'2021-08-19'},
+  {name: 'Anetta', status:'inte sparad', date:''},
 ];
 
 @Component({
@@ -22,7 +23,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./estimate-overview.component.scss']
 })
 export class EstimateOverviewComponent implements OnInit {
-  displayedColumns: string[] = ['name','status'];
+  displayedColumns: string[] = ['name','status', 'date'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   constructor() { }
