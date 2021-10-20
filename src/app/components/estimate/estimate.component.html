@@ -49,8 +49,44 @@
         </div>
     
       <mat-drawer #drawer class="mat-drawer-sidenav" mode="side" position="end">
-        <p>Auto-resizing sidenav</p>
-      </mat-drawer>
+        
+        <table id="sidenav-table" role="table">
+          <thead role="rowgroup">
+            <tr role="row">
+              <th role="columnheader" [style.color]="category.color" 
+              *ngFor="let oldScore of category.oldScores;">
+            {{oldScore.date}}</th>        
+          </tr>
+        </thead>
+
+          <tbody role="rowgroup">
+        
+            <tr role="row">
+                <td role="cell" *ngFor="let oldScore of category.oldScores; let i= index;">
+                  {{oldScore.scores[0]}}
+                </td>
+          </tr>
+          <tr role="row">
+            <td role="cell" *ngFor="let oldScore of category.oldScores; let i= index;">
+              {{oldScore.scores[1]}}
+            </td>
+      </tr>
+      <tr role="row">
+        <td role="cell" *ngFor="let oldScore of category.oldScores; let i= index;">
+          {{oldScore.scores[2]}}
+        </td>
+  </tr>
+           <tr role="row">
+            <td *ngFor="let oldScore of category.oldScores;">
+              {{oldScore.comment}}
+            </td>
+           </tr>
+          
+          </tbody>
+          </table>
+  
+
+        </mat-drawer>
     </mat-drawer-container>
 
 
