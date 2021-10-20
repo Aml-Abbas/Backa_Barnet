@@ -1,26 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
-import {MatTableDataSource} from '@angular/material/table';
 
-export interface PeriodicElement {
-  question: string;
-  position: number;
-  score: number;
-  }
-  
-  const ELEMENT_DATA: PeriodicElement[] = [
-    {position: 1, question: 'Hydrogen',score: 1},
-    {position: 2, question: 'Helium',score: 1},
-    {position: 3, question: 'Lithium',score: 1},
-    {position: 4, question: 'Beryllium', score: 1,},
-    {position: 5, question: 'Boron', score: 1},
-    {position: 6, question: 'Carbon',score: 1},
-    {position: 7, question: 'Nitrogen',score: 1},
-    {position: 8, question: 'Oxygen',score: 1},
-    {position: 9, question: 'Fluorine',score: 1},
-    {position: 10, question: 'Neon',score: 1},
-    ];
     
 
 @Component({
@@ -33,10 +14,129 @@ export interface PeriodicElement {
 
 })
 export class EstimateComponent implements OnInit {
-  displayedColumns = ['question', 'score', 'position', 'position', 'star'];
-  dataSource = ELEMENT_DATA;
+  oldScores: number= 7;
+  categories = [
+    { area: "OMSORG", id: "care",class: "care-class", 
+    questions:[{text:'Jag har någon som bryr sig om mig', score:''},
+    {text:'annan fråga 1', score:''},
+    {text:'annan fråga 2', score:''}],
+    comment:'', 
+    oldScores:[{date:'2021', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2017', scores:['3','4','5'], comment:''}],
+    color: '#003686'},
 
-  areas:any []=[]
+    { area: "TRYGGHET", id: "security", class:'security-class', 
+    questions:[{text:'Jag känner mig trygg', score:''},
+    {text:'annan fråga 1', score:''},
+    {text:'annan fråga 2', score:''}], 
+    comment:'', 
+    oldScores:[{date:'2021', scores:['3','4','5']},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2017', scores:['3','4','5'], comment:''}],
+    color: '#353370'},
+
+    { area: "MÅ BRA", id: "feel_good", class:'feel_good-class', 
+    questions:[{text:'Jag mår bra', score:''},
+    {text:'annan fråga 1', score:''}, 
+    {text:'annan fråga 2', score:''}], 
+    comment:'', 
+    oldScores:[{date:'2021', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2017', scores:['3','4','5'], comment:''}],
+    color: '#e0448c'},
+
+    { area: "FRITID", id: "free_time", class:'free_time-class', 
+    questions:[{text:'Jag trivs med min fritid', score:''},
+    {text:'annan fråga 1', score:''}, 
+    {text:'annan fråga 2', score:''}], 
+    comment:'', 
+    oldScores:[{date:'2021', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2017', scores:['3','4','5'], comment:''}],
+    color: '#df2d5b'},
+
+    { area: "TILLHÖRIGHET", id: "beloning", class:'beloning-class', 
+    questions:[{text:'Jag får vara med', score:''},
+    {text:'annan fråga 1', score:''}, 
+    {text:'annan fråga 2', score:''}],  
+    comment:'', 
+    oldScores:[{date:'2021', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2017', scores:['3','4','5'], comment:''}],
+    color: '#eb612d'},
+
+    { area: "ANSVARSTAGANDE", id: "responsibility", class:'responsibility-class', 
+    questions:[{text:'Jag tar ansvar för mig själv och andra', score:''},
+    {text:'annan fråga 1', score:''}, 
+    {text:'annan fråga 2', score:''}], 
+    comment:'', 
+    oldScores:[{date:'2021', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2017', scores:['3','4','5'], comment:''}],
+    color: '#f79c2e'},
+
+    { area: "RESPEKTERAS", id: "respekt", class:'respekt-class', 
+    questions:[{text:'Jag känner mig respekterad', score:''},
+    {text:'annan fråga 1', score:''}, 
+    {text:'annan fråga 2', score:''}], 
+    comment:'', 
+    oldScores:[{date:'2021', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2017', scores:['3','4','5'], comment:''}],
+    color: '#4ba562'},
+
+    { area: "UTVECKLAS", id: "develop", class:'develop-class', 
+    questions:[{text:'Jag gör mitt bästa', score:''},
+    {text:'annan fråga 1', score:''}, 
+    {text:'annan fråga 2', score:''}],  
+    comment:'', 
+    oldScores:[{date:'2021', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2020', scores:['3','4','5'], comment:''},
+    {date:'2019', scores:['3','4','5'], comment:''},
+    {date:'2018', scores:['3','4','5'], comment:''},
+    {date:'2017', scores:['3','4','5'], comment:''}],
+    color: '#31acaf'}
+  ];
 
 /*   careFormGroup: FormGroup;
   securityFormGroup: FormGroup;
@@ -106,10 +206,6 @@ export class EstimateComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.areas = [
-      {area:'Omsorg', questions:['Fråga 1', 'Fråga 2', 'Fråga 3'], score:[{date:'2021',scores:['1','2','3']}, {date:'2020',scores:['7','6','5']}]},
-      {area:'Må bra', questions:['Fråga 1', 'Fråga 2', 'Fråga 3', 'Fråga 4', 'Fråga 5'], score:[{date:'2021', scores:['1','2','3','4','5']}, {date:'2020',scores:['9','8','7','6','5']}]}
-      ];
 
   /*   this.careFormGroup = this._formBuilder.group({
       care_1: [undefined, Validators.required],
@@ -258,7 +354,7 @@ export class EstimateComponent implements OnInit {
  */
 
 save() {
-       // spara skattning
+  console.log(this.categories);
 }
 
 }

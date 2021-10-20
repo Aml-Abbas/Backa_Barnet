@@ -70,11 +70,6 @@ export class CreateConversationMaterialComponent implements OnInit {
   ngOnInit(): void {
   }
 
-/*   changeScore(value: string, index: number){
-    this.scores[index].score= value;
-    }
- */
-
     checkErroes(): boolean{
       var isMissed= false;
       this.scores.forEach(element => {
@@ -107,20 +102,6 @@ export class CreateConversationMaterialComponent implements OnInit {
       this.store.dispatch(new fromRoot.Go({ path: ['/conversation-material'] }));
 
      }
-}
-
-changeGuardianNbr(nbr: number){
-  this.guardianNbr= nbr;
-}
-changePersonScore(nbr: number, i: number){
-  this.scores[i].person_score= String(nbr);
-}
-
-changeGuardian1Score(nbr: number, i: number){
-  this.scores[i].guardian1_score= String(nbr);
-}
-changeGuardian2Score(nbr: number, i: number){
-  this.scores[i].guardian2_score= String(nbr);
 }
 
 }

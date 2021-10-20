@@ -7,8 +7,8 @@
     <mat-form-field id="matFormFieldGuardians" appearance="fill">
       <mat-label>Antal Vårdnadshavare</mat-label>
       <mat-select id="matselectGuardians" [(ngModel)]="selected" name="selected">
-        <mat-option (click)="changeGuardianNbr(1)" value="1">1</mat-option>
-        <mat-option (click)="changeGuardianNbr(2)" value="2">2</mat-option>
+        <mat-option value="1">1</mat-option>
+        <mat-option value="2">2</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -39,11 +39,11 @@
       <td role="cell">{{card.question}}</td>
       <td role="cell">
           <mat-select id="{{card.class}}" [style.border-color]='card.color' [(ngModel)]="card.person_score" name="{{card.person_score}}">
-            <mat-option (click)="changePersonScore(1, i)" value="1">1</mat-option>
-            <mat-option (click)="changePersonScore(2, i)" value="2">2</mat-option>
-            <mat-option (click)="changePersonScore(3, i)" value="3">3</mat-option>
-            <mat-option (click)="changePersonScore(4, i)" value="4">4</mat-option>
-            <mat-option (click)="changePersonScore(5, i)" value="5">5</mat-option>
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+            <mat-option value="5">5</mat-option>
           </mat-select>
       </td>
       <td role="cell">
@@ -51,11 +51,11 @@
       </td>
       <td role="cell">
           <mat-select id="{{card.class}}" [style.border-color]='card.color' [(ngModel)]="card.guardian1_score" name="{{card.guardian1_score}}">
-            <mat-option (click)="changeGuardian1Score(1, i)" value="1">1</mat-option>
-            <mat-option (click)="changeGuardian1Score(2, i)" value="2">2</mat-option>
-            <mat-option (click)="changeGuardian1Score(3, i)" value="3">3</mat-option>
-            <mat-option (click)="changeGuardian1Score(4, i)" value="4">4</mat-option>
-            <mat-option (click)="changeGuardian1Score(5, i)" value="5">5</mat-option>
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+            <mat-option value="5">5</mat-option>
           </mat-select>
       </td>
       <td role="cell">
@@ -63,11 +63,11 @@
       </td>
       <td role="cell" *ngIf="selected=='2'">
           <mat-select id="{{card.class}}" [style.border-color]='card.color' [(ngModel)]="card.guardian2_score" name="{{card.guardian2_score}}">
-            <mat-option (click)="changeGuardian2Score(1, i)" value="1">1</mat-option>
-            <mat-option (click)="changeGuardian2Score(2, i)" value="2">2</mat-option>
-            <mat-option (click)="changeGuardian2Score(3, i)" value="3">3</mat-option>
-            <mat-option (click)="changeGuardian2Score(4, i)" value="4">4</mat-option>
-            <mat-option (click)="changeGuardian2Score(5, i)" value="5">5</mat-option>
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+            <mat-option value="5">5</mat-option>
           </mat-select>
       </td>
       <td role="cell" *ngIf="selected=='2'">
