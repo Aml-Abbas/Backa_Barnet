@@ -7,7 +7,26 @@ h1{
     font-size: 20px;
   }
 
+  .mat-drawer-container {
+    width: 98%;
+    background-color: whitesmoke;
+    margin-bottom: 30px;
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .mat-drawer-sidenav {
+    padding: 20px;
+  }
+
+
+  
   .category{
+    //margin-left: 15px;
     text-align: center;
   }
 
@@ -16,11 +35,12 @@ h1{
   }
     
   table {
-    width: 50%;
+    width: 60%;
     background-color: whitesmoke;
     margin-bottom: 30px;
     border-collapse: collapse;
     padding: 5px;
+    margin-left: 10px;
   }
   th{
     text-align: left;
@@ -166,4 +186,11 @@ h1{
 
 ::ng-deep #develop-panel{
   background-color: #31acaf !important;
+}
+
+.show-more{
+  color: white;
+  width: 20%;
+  margin-bottom: 30px;
+  margin-left: 10px;
 }

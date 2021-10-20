@@ -14,7 +14,7 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
 })
 export class EstimateComponent implements OnInit {
-  oldScores: number= 7;
+
   categories = [
     { area: "OMSORG", id: "care",class: "care-class", 
     questions:[{text:'Jag har någon som bryr sig om mig', score:''},
