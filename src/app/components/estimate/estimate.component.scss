@@ -204,3 +204,10 @@ h1{
   margin-bottom: 30px;
   margin-left: 10px;
 }
+
+@media screen and (max-width: 1024px){
+  .show-more{
+    width: 120px;
+  }
+  
+}
