@@ -23,7 +23,7 @@ export class ContactComponent implements OnInit {
    
     this.persons$.subscribe(data => {
       data.map((person:Person)=>{
-        let personNbr= person.personNbr.slice(2, 12);
+        let personNbr= person.personNbr.slice(0, 12);
         let lastName= person.lastName;
         let firstName= person.firstName;
 

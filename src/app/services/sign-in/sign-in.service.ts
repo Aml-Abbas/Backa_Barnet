@@ -18,5 +18,3 @@ export class SignInService {
     return this.http.get<Person[]>('https://func-ykbb.azurewebsites.net/api/login/' + info.email + '/' + info.password + '?code=UjWHWQAU5ymIdDfDGA3r9TPmbqjMsaiOSr812fke5kMDmD/uiouwxQ==');
   }
 }
-
-//return this.http.get<Person[]>('http://localhost:7071/api/login/'+info.email+'/'+info.password);

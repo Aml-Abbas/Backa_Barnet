@@ -1,8 +1,9 @@
 <div class="container">
     <h1>Kontaktuppgifter</h1>
-<h4>Barnkontakt och Stödsamordnare</h4>
+    <h4>Barnkontakt och Stödsamordnare</h4>
 
-<div *ngIf="(current_person$ | async) as current_person">
+<div 
+*ngIf="(contacts$ | async) as contacts" >
 
 <div class="person-container">
     <span class="material-icons">person</span>
@@ -10,17 +11,17 @@
 
 <mat-form-field appearance="fill">
     <mat-label>Namn</mat-label>
-    <input matInput disabled value="{{current_person.personNbr}}">
+    <input matInput disabled value="{{contacts[0].firstName}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Kontaktuppgifter</mat-label>
-    <input matInput disabled value="{{current_person.personNbr}}">
+    <input matInput disabled value="{{contacts[0].phoneNbr}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Arbetsplats</mat-label>
-    <input matInput disabled value="{{current_person.personNbr}}">
+    <input matInput disabled value="{{contacts[0].employer}}">
   </mat-form-field>
 
 </div>
@@ -32,17 +33,17 @@
 
 <mat-form-field appearance="fill">
     <mat-label>Namn</mat-label>
-    <input matInput disabled value="{{current_person.personNbr}}">
+    <input matInput disabled value="{{contacts[1].firstName}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Kontaktuppgifter</mat-label>
-    <input matInput disabled value="{{current_person.personNbr}}">
+    <input matInput disabled value="{{contacts[0].phoneNbr}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Arbetsplats</mat-label>
-    <input matInput disabled value="{{current_person.personNbr}}">
+    <input matInput disabled value="{{contacts[0].employer}}">
   </mat-form-field>
 </div>
 

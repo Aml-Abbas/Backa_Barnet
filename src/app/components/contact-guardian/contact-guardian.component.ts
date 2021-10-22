@@ -3,6 +3,8 @@ import { Person } from 'src/app/models/Person';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
+import { ContactGuardianService } from 'src/app/services/contact-guardian/contact-guardian.service';
+import { Contact } from 'src/app/models/Contact';
 
 @Component({
   selector: 'app-contact-guardian',
@@ -11,12 +13,29 @@ import * as fromState from '../../state';
 })
 export class ContactGuardianComponent implements OnInit {
   current_person$= new Observable<Person | null>();
-
-  constructor(private store: Store<fromState.State>) { }
+  contacts$: Observable<Contact[]>=  new Observable<Contact[]>();
+  private contacts: Contact[]=[];
+  
+  constructor(private store: Store<fromState.State>,
+              private contactGuardianService: ContactGuardianService) { }
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
-    
+
+      this.contacts$= this.contactGuardianService.getContacts('');
+      
+      this.contacts$.subscribe(data => {
+        data.map((contact:Contact)=>{
+          let contactPersonNbr= contact.contactPersonNbr;
+          let lastName= contact.lastName;
+          let firstName= contact.firstName;
+  
+          let phoneNbr = contact.phoneNbr;
+          let employer = contact.employer;  
+          
+          this.contacts.push({contactPersonNbr, lastName, firstName, phoneNbr, employer});
+         })
+          });
   }
 
 
