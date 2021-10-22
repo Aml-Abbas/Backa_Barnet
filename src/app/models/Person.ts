@@ -1,32 +1,22 @@
 export class Person {
-    personID: string;
-    personNr: string;
+    personNbr: string;
     lastName: string;
     firstName: string;
-    personRoleID: string;
-    personTypeID: string;
-    createBy: string;
-    createDate: string;
-    changeBy: string;
-    changeDate: string;
+    changedBy: string;
+    changedOn: string;
+    status: string;
 
   
-    constructor(personID: string, personNr: string, 
-        firstName: string, lastName: string,
-        personRoleID: string, personTypeID: string,
-        createBy: string, createDate: string, 
-        changeBy: string, changeDate: string) {
+    constructor(personNbr: string, lastName: string, 
+        firstName: string, changedBy: string,
+        changedOn: string, status: string) {
             
-      this.personNr = personNr;
+      this.personNbr = personNbr;
       this.firstName = firstName;
       this.lastName = lastName;
-      this.changeDate = changeDate;
-      this.personID= personID;
+      this.status= status;
+      this.changedBy= changedBy;
+      this.changedOn= changedOn;
 
-      this.personRoleID= personRoleID;
-      this.personTypeID= personTypeID;
-      this.createBy= createBy;
-      this.createDate= createDate;
-      this.changeBy= changeBy;
     }
   }

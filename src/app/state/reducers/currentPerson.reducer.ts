@@ -43,12 +43,8 @@ export interface CurrentPersonState {
   export const getCurrentPersonLoaded = (state: CurrentPersonState) => state.currentPersonLoaded;
   export const getCurrentPersonLoading = (state: CurrentPersonState) => state.currentPersonLoading;
 
-export const getCurrentPersonPersonID = (state: CurrentPersonState) => state.currentPerson?.personID;
-export const getCurrentPersonPersonNr = (state: CurrentPersonState) => state.currentPerson?.personNr;
+export const getCurrentPersonPersonNbr = (state: CurrentPersonState) => state.currentPerson?.personNbr;
 export const getCurrentPersonName = (state: CurrentPersonState) => ( state.currentPerson?.firstName , state.currentPerson?.lastName);
-export const getCurrentPersonRoleID = (state: CurrentPersonState) => state.currentPerson?.personRoleID;
-export const getCurrentPersonTypeID = (state: CurrentPersonState) => state.currentPerson?.personTypeID;
-export const getCurrentPersonCreateBy = (state: CurrentPersonState) => state.currentPerson?.createBy;
-export const getCurrentPersonCreateDate = (state: CurrentPersonState) => state.currentPerson?.createDate;
-export const getCurrentPersonChangeBy = (state: CurrentPersonState) => state.currentPerson?.changeBy;
-export const getCurrentPersonChangeDate = (state: CurrentPersonState) => state.currentPerson?.changeDate;
+export const getCurrentPersonStatus = (state: CurrentPersonState) => state.currentPerson?.status;
+export const getCurrentPersonChangedBy = (state: CurrentPersonState) => state.currentPerson?.changedBy;
+export const getCurrentPersonChangedOn = (state: CurrentPersonState) => state.currentPerson?.changedOn;

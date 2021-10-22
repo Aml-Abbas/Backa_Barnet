@@ -24,41 +24,24 @@ export const getCurrentPerson = createSelector(
   fromCurrentPerson.getCurrentPerson
 );
 
-export const getCurrentPersonPersonID = createSelector(
-  getCurrentPersonState,
-  fromCurrentPerson.getCurrentPersonPersonID
-);
 export const getCurrentPersonName = createSelector(
   getCurrentPersonState,
   fromCurrentPerson.getCurrentPersonName
 );
-export const getCurrentPersonPersonNr = createSelector(
+export const getCurrentPersonPersonNbr = createSelector(
   getCurrentPersonState,
-  fromCurrentPerson.getCurrentPersonPersonNr
+  fromCurrentPerson.getCurrentPersonName
 );
 
-export const getCurrentPersonRoleID = createSelector(
+export const getCurrentPersonStatus = createSelector(
   getCurrentPersonState,
-  fromCurrentPerson.getCurrentPersonRoleID
+  fromCurrentPerson.getCurrentPersonStatus
 );
-
-export const getCurrentPersonTypeID = createSelector(
+export const getCurrentPersonChangedBy = createSelector(
   getCurrentPersonState,
-  fromCurrentPerson.getCurrentPersonTypeID
+  fromCurrentPerson.getCurrentPersonChangedBy
 );
-export const getCurrentPersonCreateBy = createSelector(
+export const getCurrentPersonChangedOn = createSelector(
   getCurrentPersonState,
-  fromCurrentPerson.getCurrentPersonCreateBy
-);
-export const getCurrentPersonCreateDate = createSelector(
-  getCurrentPersonState,
-  fromCurrentPerson.getCurrentPersonCreateDate
-);
-export const getCurrentPersonChangeBy = createSelector(
-  getCurrentPersonState,
-  fromCurrentPerson.getCurrentPersonChangeBy
-);
-export const getCurrentPersonChangeDate = createSelector(
-  getCurrentPersonState,
-  fromCurrentPerson.getCurrentPersonChangeDate
+  fromCurrentPerson.getCurrentPersonChangedOn
 );

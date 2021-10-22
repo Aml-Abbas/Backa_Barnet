@@ -13,7 +13,7 @@ import {MatTableDataSource} from '@angular/material/table';
 export class ContactComponent implements OnInit {
   persons$: Observable<Person[]> = new Observable<Person[]>();
   private persons:Person[]= [];
-  displayedColumns: string[] = ['personNr', 'firstName','changeDate'];
+  displayedColumns: string[] = ['personNbr', 'firstName','changedOn'];
   dataSource = new MatTableDataSource(this.persons);
 
   constructor(private store: Store<fromState.State>) { }
@@ -23,19 +23,16 @@ export class ContactComponent implements OnInit {
    
     this.persons$.subscribe(data => {
       data.map((person:Person)=>{
-        let personID= person.personID;
-        let personNr= person.personNr.slice(2, 12);
+        let personNbr= person.personNbr.slice(2, 12);
         let lastName= person.lastName;
         let firstName= person.firstName;
-        let personRoleID= person.personRoleID;
-        let personTypeID= person.personTypeID;
-        let createBy = person.createBy;
-        let createDate= person.createDate;
-        let changeBy= person.changeBy;
-        let changeDate= person.changeDate.slice(0, 10);
+
+        let changedBy = person.changedBy;
+        let changedOn = person.changedOn.slice(0, 10);
+        let status= person.status;
+
         
-        this.persons.push({personID, personNr, lastName, 
-          firstName, personRoleID, personTypeID, createBy, createDate, changeBy, changeDate});
+        this.persons.push({personNbr, lastName, firstName, changedBy, changedOn, status});
       })
   });
   }

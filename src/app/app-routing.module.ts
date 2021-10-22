@@ -32,7 +32,7 @@ import { SignInGuard } from './guards/sign-in.guard';
 const routes: Routes = [
   {
     path: '',
-    component: LandingComponent,
+    component: LandingComponent, canActivate: [AuthGuard],
     children:[
       {
         path: 'admin',
