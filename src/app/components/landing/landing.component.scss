@@ -50,15 +50,12 @@ h4 {
  .mat-button-toggle.mat-button-toggle-checked {
     background-color: white;
     color:  #663399;
-
-     .mat-button-toggle-label-content{
-        background-color: white;
-        color: #663399;
-        }
 }
 
-#button-container > button{
-        display: none;
+.under-button{
+    background-color: rgb(179,154,204);
+    text-indent: 18px;
+
 }
 
 ::ng-deep .mat-button-toggle-label-content {

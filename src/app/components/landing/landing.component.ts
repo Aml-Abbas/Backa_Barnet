@@ -116,6 +116,18 @@ public changeShowFillerNeedCompass(){
   }
 }
 
+changeShowFiller(){
+  this.showFillerContact = false;
+  this.deep_need_compass = false;
+  this.event = false;
+  this.need_compass = false;
+  this.showFillerContactIcon = 'chevron_right'; 
+  this.showFillerEventIcon = 'chevron_right'; 
+  this.showFillerDeepCompassIcon = 'chevron_right'; 
+  this.showFillerCompassIcon = 'chevron_right' ;
+
+}
+
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
   }

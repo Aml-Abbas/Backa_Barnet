@@ -15,6 +15,8 @@ export class SignInService {
 
   signIn(info: LoginInfo): Observable<Person[]> {
 
-    return this.http.get<Person[]>('https://func-ykbb.azurewebsites.net/api/person/' + info.email + '/' + info.password + '?code=SkXpI51pgjWl6UVNjxKjKNUr3o2gmPdlOZ4EFMFwn0LR0KlyDlYu3w==');
+    return this.http.get<Person[]>('https://func-ykbb.azurewebsites.net/api/login/' + info.email + '/' + info.password + '?code=SkXpI51pgjWl6UVNjxKjKNUr3o2gmPdlOZ4EFMFwn0LR0KlyDlYu3w==');
   }
 }
+
+//return this.http.get<Person[]>('http://localhost:7071/api/login/'+info.email+'/'+info.password);

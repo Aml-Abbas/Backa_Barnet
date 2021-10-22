@@ -17,7 +17,12 @@ export class SignInComponent implements OnInit {
   hide = true;
   signinError='';
   email = 'adnan.karahmetovic@cgi.com';
-  enteredPassword = '*r3hHXj&YC5M@R@J';
+  //email = 'aml.abbas@cgi.com';
+  //email = 'tony.jonsson@cgi.com';
+
+  enteredPassword = 'pv123';
+
+
   public loginInfo: LoginInfo = {email: '', password: ''};
   emailFormControl = new FormControl('', [
     Validators.required,

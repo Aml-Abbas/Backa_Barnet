@@ -32,99 +32,99 @@ import { SignInGuard } from './guards/sign-in.guard';
 const routes: Routes = [
   {
     path: '',
-    component: LandingComponent, canActivate: [AuthGuard],
+    component: LandingComponent,
     children:[
       {
         path: 'admin',
-        component: AdminComponent, canActivate: [AuthGuard]
+        component: AdminComponent
       },
       {
         path: 'communication-material',
-        component: CommunicationMaterialComponent, canActivate: [AuthGuard]
+        component: CommunicationMaterialComponent
       },  
       {
         path: 'contact',
-        component: ContactComponent, canActivate: [AuthGuard]
+        component: ContactComponent
       },
       {
         path: 'estimate',
-        component: EstimateComponent, canActivate: [AuthGuard]
+        component: EstimateComponent
       },
       {
         path: 'estimate-overview',
-        component: EstimateOverviewComponent, canActivate: [AuthGuard]
+        component: EstimateOverviewComponent
       },
       {
         path: 'event',
-        component: EventComponent, canActivate: [AuthGuard]
+        component: EventComponent
       },
       {
         path: 'goal',
-        component: GoalComponent, canActivate: [AuthGuard]
+        component: GoalComponent
       },
       {
         path: 'discover-card',
-        component: DiscoverCardComponent, canActivate: [AuthGuard]
+        component: DiscoverCardComponent
       },
       {
         path: 'discover-card/:discoverCardId',
-        component: DiscoverCardDetailsComponent, canActivate: [AuthGuard]
+        component: DiscoverCardDetailsComponent
       },
       {
         path: 'need-compass',
-        component: NeedCompassComponent, canActivate: [AuthGuard]
+        component: NeedCompassComponent
       },
       {
         path: 'consent',
-        component: ConsentComponent, canActivate: [AuthGuard]
+        component: ConsentComponent
       },
       {
         path: 'create-discover-card',
-        component: CreateDiscoverCardComponent, canActivate: [AuthGuard]
+        component: CreateDiscoverCardComponent
       },
       {
         path: 'deep-need-compass',
-        component: DeepNeedCompassComponent, canActivate: [AuthGuard]
+        component: DeepNeedCompassComponent
       },
       {
         path: 'plan',
-        component: PlanComponent, canActivate: [AuthGuard]
+        component: PlanComponent
       },
       {
         path: 'assessment',
-        component: AssessmentComponent, canActivate: [AuthGuard]
+        component: AssessmentComponent
       },
       {
         path: 'conversation-material',
-        component: ConversationMaterialComponent, canActivate: [AuthGuard]
+        component: ConversationMaterialComponent
       },
       {
         path: 'create-conversation-material',
-        component: CreateConversationMaterialComponent, canActivate: [AuthGuard]
+        component: CreateConversationMaterialComponent
       },
       {
         path: 'conversation-material/:conversationMaterialId',
-        component: ConversationMaterialDetailsComponent, canActivate: [AuthGuard]
+        component: ConversationMaterialDetailsComponent
       },
       {
         path: 'contact-person',
-        component: ContactPersonComponent, canActivate: [AuthGuard]
+        component: ContactPersonComponent
       },
       {
         path: 'contact-guardian',
-        component: ContactGuardianComponent, canActivate: [AuthGuard]
+        component: ContactGuardianComponent
       },
       {
         path: 'edit-contact-guardian',
-        component: EditContactGuardianComponent, canActivate: [AuthGuard]
+        component: EditContactGuardianComponent
       },
       {
         path: 'create-event',
-        component: CreateEventComponent, canActivate: [AuthGuard]
+        component: CreateEventComponent
       },
       {
         path: 'create-plan',
-        component: CreatePlanComponent, canActivate: [AuthGuard]
+        component: CreatePlanComponent
       }
     ]
   },
