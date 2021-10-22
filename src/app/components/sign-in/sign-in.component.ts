@@ -47,6 +47,7 @@ export class SignInComponent implements OnInit {
   public signIn(): void{
     this.loginInfo = {email: this.email, password: this.enteredPassword};
     this.store.dispatch(new fromStore.Login(this.loginInfo));
+    this.store.dispatch(new fromStore.LoadCurrentUser(this.loginInfo.email));
   }
 
 }
