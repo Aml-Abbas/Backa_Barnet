@@ -53,7 +53,6 @@
         <table id="sidenav-table" role="table">
           <thead role="rowgroup">
             <tr role="row">
-              <th role="columnheader" [style.color]="category.color">Frågan</th>
               <th role="columnheader" [style.color]="category.color" 
               *ngFor="let oldScore of category.oldScores;">
             {{oldScore.date}}</th>        
@@ -62,21 +61,12 @@
 
           <tbody role="rowgroup">
              
-           <tr role="row">
-               <td role="cell" *ngFor="let oldScore of category.oldScores; let i= index;">
-                  {{oldScore.scores[0]}}
+           <tr role="row" *ngFor="let question of category.questions; let i= index;">
+               <td role="cell" *ngFor="let oldScore of category.oldScores;">
+                  {{oldScore.scores[i]}}
                 </td>
           </tr>
-          <tr role="row">
-            <td role="cell" *ngFor="let oldScore of category.oldScores; let i= index;">
-              {{oldScore.scores[1]}}
-            </td>
-      </tr>
-      <tr role="row">
-        <td role="cell" *ngFor="let oldScore of category.oldScores; let i= index;">
-          {{oldScore.scores[2]}}
-        </td>
-  </tr>
+    
            <tr role="row">
             <td *ngFor="let oldScore of category.oldScores;">
               {{oldScore.comment}}
