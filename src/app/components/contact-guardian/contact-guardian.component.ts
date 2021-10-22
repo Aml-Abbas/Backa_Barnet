@@ -14,29 +14,14 @@ import { Contact } from 'src/app/models/Contact';
 export class ContactGuardianComponent implements OnInit {
   current_person$= new Observable<Person | null>();
   contacts$: Observable<Contact[]>=  new Observable<Contact[]>();
-  private contacts: Contact[]=[];
   
   constructor(private store: Store<fromState.State>,
               private contactGuardianService: ContactGuardianService) { }
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
-
-      this.contacts$= this.contactGuardianService.getContacts('');
-      
-      this.contacts$.subscribe(data => {
-        data.map((contact:Contact)=>{
-          let contactPersonNbr= contact.contactPersonNbr;
-          let lastName= contact.lastName;
-          let firstName= contact.firstName;
-  
-          let phoneNbr = contact.phoneNbr;
-          let employer = contact.employer;  
-          
-          this.contacts.push({contactPersonNbr, lastName, firstName, phoneNbr, employer});
-         })
-          });
-  }
+    this.contacts$= this.contactGuardianService.getContacts('');
+    }
 
 
 }

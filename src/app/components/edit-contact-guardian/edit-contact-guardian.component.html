@@ -4,45 +4,45 @@
 <div *ngIf="(current_person$ | async) as current_person">
 
 
-<div class="person-container">
+<div class="person-container" *ngIf="(contacts$ | async) as contacts">
     <span class="material-icons">person</span>
     <h4>Barnkontakt</h4>
 
 <mat-form-field appearance="fill">
     <mat-label>Namn</mat-label>
-    <input matInput name="contactName" [(ngModel)]="contactName">
+    <input matInput name="contactName" [(ngModel)]="contacts[0].firstName">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Kontaktuppgifter</mat-label>
-    <input matInput name="contactTask" [(ngModel)]="contactTask">
+    <input matInput name="contactTask" [(ngModel)]="contacts[0].phoneNbr">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Arbetsplats</mat-label>
-    <input matInput name="contactWorkPlace" [(ngModel)]="contactWorkPlace">
+    <input matInput name="contactWorkPlace" [(ngModel)]="contacts[0].employer">
   </mat-form-field>
 
 </div>
 
 
-<div class="person-container">
+<div class="person-container" *ngIf="(contacts$ | async) as contacts">
     <span class="material-icons">person</span>
     <h4>Stödsamordnare</h4>
 
 <mat-form-field appearance="fill">
     <mat-label>Namn</mat-label>
-    <input matInput name="supporterName" [(ngModel)]="supporterName">
+    <input matInput name="supporterName" [(ngModel)]="contacts[1].firstName">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Kontaktuppgifter</mat-label>
-    <input matInput name="supporterTask" [(ngModel)]="supporterTask">
+    <input matInput name="supporterTask" [(ngModel)]="contacts[0].phoneNbr">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Arbetsplats</mat-label>
-    <input matInput name="supporterWorkPlace" [(ngModel)]="supporterWorkPlace">
+    <input matInput name="supporterWorkPlace" [(ngModel)]="contacts[0].employer">
   </mat-form-field>
 </div>
 
