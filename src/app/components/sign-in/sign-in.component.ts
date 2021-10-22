@@ -6,6 +6,7 @@ import {Actions, ofType} from '@ngrx/effects';
 import * as loginAction from '../../state/actions/login.action';
 import { tap } from 'rxjs/operators';
 import {FormControl, Validators} from '@angular/forms';
+import { User } from 'src/app/models/User';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class SignInComponent implements OnInit {
   //email = 'aml.abbas@cgi.com';
   //email = 'tony.jonsson@cgi.com';
 
-  enteredPassword = 'pv123';
+  enteredPassword = 'pw123';
 
 
   public loginInfo: LoginInfo = {email: '', password: ''};
@@ -46,6 +47,7 @@ export class SignInComponent implements OnInit {
   public signIn(): void{
     this.loginInfo = {email: this.email, password: this.enteredPassword};
     this.store.dispatch(new fromStore.Login(this.loginInfo));
+    //this.store.dispatch(new fromStore.LoadCurrentUser(new User('1993','19930819', 'Abbas', 'Aml', '1','4','aml.abbas','skolan', 'barnkontakt')));
   }
 
 }
