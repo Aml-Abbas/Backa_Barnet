@@ -51,6 +51,7 @@ export class DiscoverCardComponent implements OnInit {
   constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
+    //https://func-ykbb.azurewebsites.net/api/card/1?code=bbdIBAbikn/AMydOBvxm69FyKFhRfS4fxUb55SaSz0TfK/cjnxiYEw==
   }
 
   moveToCard(id: string){
