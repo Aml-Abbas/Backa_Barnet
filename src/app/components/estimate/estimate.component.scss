@@ -23,14 +23,11 @@ h1{
     padding: 20px;
     width: 50%;
     background-color: whitesmoke;
-
   }
-
-
   
   .category{
-    //margin-left: 15px;
-    text-align: center;
+    margin-top: 5px;
+    margin-left: 15px;
   }
 
   .table-container {
@@ -54,6 +51,7 @@ h1{
 
   th{
     text-align: left;
+    font-size: 15px;
   }
 
   td, th, tr{
@@ -61,18 +59,24 @@ h1{
     padding: 8px;
   }
 
-  td, th{
-    border-bottom: 2px solid black;
+  tr{
+    border-bottom: 1px solid lightgray;
   }
-  
+
+/* 
+thead{
+  border-bottom: 1px solid lightgray !important;
+} */
+
   textarea{
-    border: 1px solid black;
+    border: 1px solid gray;
     color: black;
     width: 100%;
+    background-color: whitesmoke;
   }
 
   mat-select{
-    border: 1px solid black;
+    border: 1px solid gray;
     width: 40px;
   }
 
@@ -92,7 +96,11 @@ h1{
   color: white !important;
 }
 
+::ng-deep .mat-select-arrow{
+  color: gray;
+}
 
+/* 
 ::ng-deep #care{
   td{
     color: #003686;
@@ -196,7 +204,7 @@ h1{
 
 ::ng-deep #develop-panel{
   background-color: #31acaf !important;
-}
+} */
 
 .show-more{
   color: white;

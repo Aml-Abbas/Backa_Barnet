@@ -25,7 +25,7 @@
           <tr role="row" *ngFor="let question of category.questions; let index2= index;">
               <td role="cell" [style.color]="category.color">{{question.text}}</td>
               <td role="cell">
-                <mat-select id="{{category.id}}" [style.border-color]="category.color" [(ngModel)]="question.score" name="{{question.score}}">
+                <mat-select id="{{category.id}}" [(ngModel)]="question.score" name="{{question.score}}">
                   <mat-option value="1">1</mat-option>
                   <mat-option value="2">2</mat-option>
                   <mat-option value="3">3</mat-option>
@@ -37,7 +37,7 @@
          <tr role="row">
           <td [style.color]="category.color">Kommentar</td>
           <td>
-            <textarea [style.border-color]="category.color" matInput [(ngModel)]="category.comment" name="{{category.comment}}"></textarea>
+            <textarea matInput [(ngModel)]="category.comment" name="{{category.comment}}"></textarea>
           </td>
          </tr>
         
@@ -53,6 +53,7 @@
         <table id="sidenav-table" role="table">
           <thead role="rowgroup">
             <tr role="row">
+              <th role="columnheader" [style.color]="category.color">Frågan</th>
               <th role="columnheader" [style.color]="category.color" 
               *ngFor="let oldScore of category.oldScores;">
             {{oldScore.date}}</th>        
@@ -60,9 +61,9 @@
         </thead>
 
           <tbody role="rowgroup">
-        
-            <tr role="row">
-                <td role="cell" *ngFor="let oldScore of category.oldScores; let i= index;">
+             
+           <tr role="row">
+               <td role="cell" *ngFor="let oldScore of category.oldScores; let i= index;">
                   {{oldScore.scores[0]}}
                 </td>
           </tr>
