@@ -7,6 +7,7 @@ import { Person } from 'src/app/models/Person';
 import * as fromState from '../../state';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
+import * as fromStore from 'src/app/state';
 
 @Component({
   selector: 'app-landing',
@@ -25,7 +26,9 @@ export class LandingComponent implements OnInit {
 
  isDisabled= true;
   constructor(private observer: BreakpointObserver,
-    private store: Store<fromState.State>) {}
+    private store: Store<fromState.State>) {
+      //this.store.dispatch(new fromStore.LoadCurrentUser());
+    }
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {

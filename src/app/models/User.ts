@@ -1,31 +1,22 @@
 export class User {
-    personID: string;
-    personNr: string;
+    userID: string;
     lastName: string;
     firstName: string;
-    personRoleID: string;
-    personTypeID: string;
     email: string;
-    organisation: string;
-    title: string;
+    roleID: string;
+    description: string;
 
   
-    constructor(personID: string, personNr: string, 
-        firstName: string, lastName: string,
-        personRoleID: string, personTypeID: string,
-        email: string, organisation: string, 
-        title: string) {
+    constructor(userID: string, firstName: string, lastName: string,
+        email: string, roleID: string, description: string) {
             
-      this.personNr = personNr;
+      this.userID = userID;
       this.firstName = firstName;
       this.lastName = lastName;
-      this.personID= personID;
 
-      this.personRoleID= personRoleID;
-      this.personTypeID= personTypeID;
+      this.roleID= roleID;
+      this.description= description;
 
       this.email= email;
-      this.organisation= organisation;
-      this.title= title;
     }
   }

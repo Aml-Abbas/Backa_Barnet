@@ -24,13 +24,13 @@ export const getCurrentUser = createSelector(
   getCurrentUserState,
   fromCurrentUser.getCurrentUser
 );
-export const getCurrentUserPersonID = createSelector(
+export const getCurrentUserID = createSelector(
   getCurrentUserState,
-  fromCurrentUser.getCurrentUserPersonID
+  fromCurrentUser.getCurrentUserID
 );
-export const getCurrentUserPersonNr = createSelector(
+export const getCurrentUserRoleID= createSelector(
   getCurrentUserState,
-  fromCurrentUser.getCurrentUserPersonNr
+  fromCurrentUser.getCurrentUserRoleID
 );
 export const getCurrentUserLastName = createSelector(
   getCurrentUserState,
@@ -40,27 +40,12 @@ export const getCurrentUserFirstName = createSelector(
   getCurrentUserState,
   fromCurrentUser.getCurrentUserFirstName
 );
-export const getCurrentUserPersonRoleId = createSelector(
+export const getCurrentUserDescription = createSelector(
   getCurrentUserState,
-  fromCurrentUser.getCurrentUserPersonRoleId
-);
-export const getCurrentUserPersonTypeId = createSelector(
-  getCurrentUserState,
-  fromCurrentUser.getCurrentUserPersonTypeId
+  fromCurrentUser.getCurrentUserDescription
 );
 
 export const getCurrentUserEmail = createSelector(
   getCurrentUserState,
   fromCurrentUser.getCurrentUserEmail
 );
-
-
-export const getCurrentUserOrganisation = createSelector(
-    getCurrentUserState,
-    fromCurrentUser.getCurrentUserOrganisation
-  );
-  
-export const getCurrentUserTitle = createSelector(
-    getCurrentUserState,
-    fromCurrentUser.getCurrentUserTitle
-  );

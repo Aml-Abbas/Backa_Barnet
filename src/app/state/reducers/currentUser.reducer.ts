@@ -49,12 +49,9 @@ export function reducer(
 export const getCurrentUser = (state: CurrentUserState) => state.currentUser;
 export const getCurrentUserLoaded = (state: CurrentUserState) => state.currentUserLoaded;
 export const getCurrentUserLoading = (state: CurrentUserState) => state.currentUserLoading;
-export const getCurrentUserPersonID = (state: CurrentUserState) => state.currentUser?.personID;
-export const getCurrentUserPersonNr = (state: CurrentUserState) => state.currentUser?.personNr;
 export const getCurrentUserLastName = (state: CurrentUserState) => state.currentUser?.lastName;
 export const getCurrentUserFirstName = (state: CurrentUserState) => state.currentUser?.firstName;
-export const getCurrentUserPersonRoleId = (state: CurrentUserState) => state.currentUser?.personRoleID;
-export const getCurrentUserPersonTypeId = (state: CurrentUserState) => state.currentUser?.personTypeID;
+export const getCurrentUserID = (state: CurrentUserState) => state.currentUser?.userID;
+export const getCurrentUserRoleID = (state: CurrentUserState) => state.currentUser?.roleID;
 export const getCurrentUserEmail = (state: CurrentUserState) => state.currentUser?.email;
-export const getCurrentUserOrganisation = (state: CurrentUserState) => state.currentUser?.organisation;
-export const getCurrentUserTitle = (state: CurrentUserState) => state.currentUser?.title;
+export const getCurrentUserDescription = (state: CurrentUserState) => state.currentUser?.description;

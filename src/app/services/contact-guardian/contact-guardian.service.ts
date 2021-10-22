@@ -11,6 +11,6 @@ export class ContactGuardianService {
   constructor(private http: HttpClient) { }
 
   getContacts(personNbr: string): Observable<Contact[]> {
-    return this.http.get<Contact[]>('https://func-ykbb.azurewebsites.net/api/contact/' + '201001019999' + '?code=tc2OJy49azMOIqZUVev09yLarIt8kQfg7gr6GGs3uG3daqLORwHPhg==');
+    return this.http.get<Contact[]>('https://func-ykbb.azurewebsites.net/api/contact/' + personNbr + '?code=tc2OJy49azMOIqZUVev09yLarIt8kQfg7gr6GGs3uG3daqLORwHPhg==');
   }
 }

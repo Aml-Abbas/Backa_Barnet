@@ -15,14 +15,23 @@ import { ContactGuardianService } from 'src/app/services/contact-guardian/contac
 export class EditContactGuardianComponent implements OnInit {
   current_person$= new Observable<Person | null>();
   contacts$: Observable<Contact[]>=  new Observable<Contact[]>();
-  contacts: Contact[];
-  
+  contacts: Contact[]= [];
+  contactName='H';
+  supporterName='N';
+
+  contactTask='';
+  supporterTask='';
+
+  contactWorkPlace='';
+  supporterWorkPlace='';
   constructor(private store: Store<fromState.State>,
     private contactGuardianService: ContactGuardianService) { }
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
-    this.contacts$= this.contactGuardianService.getContacts('');
+    this.current_person$.subscribe(data=>{
+      this.contacts$= this.contactGuardianService.getContacts(String(data?.personNbr));
+    });
 
     this.contacts$.subscribe(data => {
         data.map((contact:Contact)=>{
@@ -36,10 +45,14 @@ export class EditContactGuardianComponent implements OnInit {
           this.contacts.push({contactPersonNbr, lastName, firstName, phoneNbr, employer});
          })
           });
-
+          
+          
+        this.contactName= this.contacts[0].firstName;
+        this.supporterName= this.contacts[1].firstName;
   }
 
   public save(): void {
+    console.log(this.contacts);
     this.store.dispatch(new fromRoot.Go({ path: ['contact-guardian'] }));
   }
 

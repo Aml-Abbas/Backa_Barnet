@@ -1,21 +1,34 @@
 
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {map} from 'rxjs/operators';
+import {catchError, map, switchMap} from 'rxjs/operators';
 import * as currentUserAction from '../actions/currentUser.action';
+import {SignInService} from '../../services/sign-in/sign-in.service';
+import { of } from 'rxjs';
 
 @Injectable()
 export class CurrentUserEffect {
 
-  constructor(private actions$: Actions) {}
+  constructor(private actions$: Actions,
+    private signInService: SignInService) {}
   
-/* 
-  updateCurrentPerson$ = createEffect(() =>
+
+  updateCurrentUser$ = createEffect(() =>
   this.actions$.pipe(
-    ofType(currentPersonAction.UPDATE_PERSON),
-    map((action: currentPersonAction.UpdatePerson) => {
-      return new currentPersonAction.UpdatePersonSuccess(action.payload);
-    }))); */
+    ofType(currentUserAction.LOAD_CURRENT_USER),
+    switchMap((action: currentUserAction.LoadCurrentUser)=>{
+
+      return this.signInService.getCurrentUser(action.payload).pipe(
+        map((response)=> new currentUserAction.LoadCurrentUserSuccess(response)),
+        catchError((error: any)=> of(new currentUserAction.LoadCurrentUserFail(error)))
+      );
+    })
+/*     map((action: currentUserAction.LoadCurrentUser) => {
+      return new currentUserAction.LoadCurrentUserSuccess(action.payload);
+    
+    } */
+    )
+    );
     
 /*   loadCurrentUser$ = createEffect(() =>
     this.actions$.pipe(
