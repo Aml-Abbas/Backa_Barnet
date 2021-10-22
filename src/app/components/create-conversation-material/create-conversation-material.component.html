@@ -3,9 +3,8 @@
 
     <h4>Bedömning av Kalles situation</h4>
 
-    <h5>Antal Vårdnadshavare som ska fylla formulär</h5>
     <mat-form-field id="matFormFieldGuardians" appearance="fill">
-      <mat-label>Antal Vårdnadshavare</mat-label>
+      <mat-label>Antal Vårdnadshavare som ska fylla formulär</mat-label>
       <mat-select id="matselectGuardians" [(ngModel)]="selected" name="selected">
         <mat-option value="1">1</mat-option>
         <mat-option value="2">2</mat-option>
@@ -32,13 +31,14 @@
 
     </tr>
   </thead>
-  <tbody role="rowgroup" *ngFor="let card of scores; let i=index">
+  <tbody role="rowgroup">
 
-    <tr role="row" id="{{card.id}}">
-      <td role="cell"><strong>{{card.area}}</strong></td>
-      <td role="cell">{{card.question}}</td>
+    <tr role="row" id="{{card.id}}" *ngFor="let card of scores; let i=index">
+      <td role="cell" [style.color]='card.color'><strong>{{card.area}}</strong></td>
+      <td role="cell" [style.color]='card.color'>{{card.question}}</td>
       <td role="cell">
-          <mat-select id="{{card.class}}" [style.border-color]='card.color' [(ngModel)]="card.person_score" name="{{card.person_score}}">
+        <!-- [style.border-color]='card.color' -->
+          <mat-select id="{{card.class}}" [(ngModel)]="card.person_score" name="{{card.person_score}}">
             <mat-option value="1">1</mat-option>
             <mat-option value="2">2</mat-option>
             <mat-option value="3">3</mat-option>
@@ -47,10 +47,10 @@
           </mat-select>
       </td>
       <td role="cell">
-          <textarea [style.border-color]='card.color' matInput [(ngModel)]="card.person_comment" name="{{card.person_comment}}"></textarea>
+          <textarea matInput [(ngModel)]="card.person_comment" name="{{card.person_comment}}"></textarea>
       </td>
       <td role="cell">
-          <mat-select id="{{card.class}}" [style.border-color]='card.color' [(ngModel)]="card.guardian1_score" name="{{card.guardian1_score}}">
+          <mat-select id="{{card.class}}" [(ngModel)]="card.guardian1_score" name="{{card.guardian1_score}}">
             <mat-option value="1">1</mat-option>
             <mat-option value="2">2</mat-option>
             <mat-option value="3">3</mat-option>
@@ -59,10 +59,10 @@
           </mat-select>
       </td>
       <td role="cell">
-          <textarea [style.border-color]='card.color' matInput [(ngModel)]="card.guardian1_comment" name="{{card.guardian1_comment}}"></textarea>
+          <textarea matInput [(ngModel)]="card.guardian1_comment" name="{{card.guardian1_comment}}"></textarea>
       </td>
       <td role="cell" *ngIf="selected=='2'">
-          <mat-select id="{{card.class}}" [style.border-color]='card.color' [(ngModel)]="card.guardian2_score" name="{{card.guardian2_score}}">
+          <mat-select id="{{card.class}}" [(ngModel)]="card.guardian2_score" name="{{card.guardian2_score}}">
             <mat-option value="1">1</mat-option>
             <mat-option value="2">2</mat-option>
             <mat-option value="3">3</mat-option>
@@ -71,7 +71,7 @@
           </mat-select>
       </td>
       <td role="cell" *ngIf="selected=='2'">
-          <textarea [style.border-color]='card.color' matInput [(ngModel)]="card.guardian2_comment" name="{{card.guardian2_comment}}"></textarea>
+          <textarea matInput [(ngModel)]="card.guardian2_comment" name="{{card.guardian2_comment}}"></textarea>
       </td>
 
     </tr>

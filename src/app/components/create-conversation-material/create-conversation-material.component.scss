@@ -5,37 +5,51 @@ h1{
 
   h4{
     font-size: 20px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
   }
   
   table {
     width: 100%;
     background-color: whitesmoke;
-  }
-  th{
-    text-align: left;
-  }
-  td, th, tr{
-    color: black;
-    padding: 8px;
+    border-collapse: collapse;
   }
 
+  th{
+    text-align: left;
+    font-size: 15px;
+  }
+  
+
+  td, th, tr{
+    color: black;
+    padding: 4px;
+  }
+
+  
   thead{
-    border-bottom: 2px solid black !important;
+    border-bottom: 1px solid lightgray !important;
   }
 
   textarea{
-    border: 1px solid black;
+    border: 1px solid gray;
     color: black;
+    margin-bottom: 8px !important;
+    margin-top: 5px !important;
+  }
+
+  tbody{
+    tr{
+      border-bottom: 1px solid lightgray !important;
+    }
   }
 
   mat-select{
-    border: 1px solid black;
+    border: 1px solid gray;
   }
 
   #matFormFieldGuardians{
     width: 25%;
-    height: 55px;
+    height: 45px;
     margin-bottom: 25px;
       mat-label{
           color: black;
@@ -49,7 +63,7 @@ h1{
  mat-form-field{
     width: 100%;
     height: 55px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
       mat-label{
           color: black;
       }
@@ -86,6 +100,11 @@ h1{
     font-size: 15px;
  }
 
+::ng-deep .mat-select-arrow{
+  color: gray;
+}
+
+ /* 
  ::ng-deep #care{
   td{
     color: #003686;
@@ -189,7 +208,7 @@ h1{
 
 ::ng-deep #develop-class-panel{
   background-color: #31acaf !important;
-}
+} */
 
 @media screen and (max-width: 1024px){
   button{
