@@ -50,6 +50,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatListModule} from '@angular/material/list';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -109,6 +110,7 @@ import { EstimateOverviewComponent } from './components/estimate-overview/estima
     HttpClientModule,
     MatSelectModule,
     MatDialogModule,
+    MatListModule,
     StoreModule.forRoot({}, { metaReducers }),
     StoreModule.forFeature('app', reducers),
     EffectsModule.forRoot(),
@@ -137,7 +139,8 @@ import { EstimateOverviewComponent } from './components/estimate-overview/estima
     MatStepperModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatListModule
   ],
   providers: [
     {
