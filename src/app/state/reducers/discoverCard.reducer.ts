@@ -4,13 +4,13 @@ import * as discoverCardAction from '../actions/discoverCard.action';
 export interface DiscoverCardState {
   discoverCardLoading: boolean;
   discoverCardLoaded: boolean;
-  discoverCards: DiscoverCard[] | null;
+  discoverCards: DiscoverCard[];
 }
 
 export const initialState: DiscoverCardState = {
     discoverCardLoading: false,
     discoverCardLoaded: false,
-    discoverCards: null,
+    discoverCards: [],
 };
 
 export function reducer(
@@ -38,7 +38,7 @@ export function reducer(
         ...state,
         discoverCardLoaded: false,
         discoverCardLoading: false,
-        discoverCards: null,
+        discoverCards: [],
       };
     }
     default:

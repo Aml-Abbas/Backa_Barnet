@@ -16,6 +16,7 @@ export class ContactGuardianService {
   }
 
   getCards(userId: string): Observable<DiscoverCard[]> {
+    console.log(userId);
     return this.http.get<DiscoverCard[]>('https://func-ykbb.azurewebsites.net/api/card/'+userId+'?code=bbdIBAbikn/AMydOBvxm69FyKFhRfS4fxUb55SaSz0TfK/cjnxiYEw==');
   }
 

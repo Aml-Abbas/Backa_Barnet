@@ -3,6 +3,11 @@ import {MatTableDataSource} from '@angular/material/table';
 import * as fromState from '../../state';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
+import { DiscoverCard } from 'src/app/models/DiscoverCard';
+import { User } from 'src/app/models/User';
+
+import { Observable } from 'rxjs';
+import * as fromStore from 'src/app/state';
 
 
 export interface PeriodicElement {
@@ -41,6 +46,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class DiscoverCardComponent implements OnInit {
   displayedColumns: string[] = ['date', 'by', 'organisation','status'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
+  cards$: Observable<DiscoverCard[]> = new Observable<DiscoverCard[]>();
+  current_user$: Observable<User| null> = new Observable<User| null>();
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -51,7 +58,12 @@ export class DiscoverCardComponent implements OnInit {
   constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
-    //https://func-ykbb.azurewebsites.net/api/card/1?code=bbdIBAbikn/AMydOBvxm69FyKFhRfS4fxUb55SaSz0TfK/cjnxiYEw==
+    this.current_user$ = this.store.select(fromState.getCurrentUser);
+    this.current_user$.subscribe(data=>{
+      this.store.dispatch(new fromStore.LoadDiscoverCard(String(data?.userID)));
+    });
+    
+    this.cards$ = this.store.select(fromState.getDiscoverCards);
   }
 
   moveToCard(id: string){
