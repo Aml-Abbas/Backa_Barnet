@@ -23,7 +23,7 @@ export class ContactGuardianComponent implements OnInit {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data =>{
       this.contacts$= this.contactGuardianService.getContacts(String(data?.personNbr));
-      this.userId= parseInt(String(this.store.select(fromState.getCurrentUserID)));
+      this.userId= parseInt(String(this.store.select(fromState.getCurrentUserRoleID)));
     });
     }
 
