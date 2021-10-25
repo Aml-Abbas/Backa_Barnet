@@ -2,6 +2,7 @@ import * as fromLogin from './login.reducer';
 import * as fromRouter from '@ngrx/router-store';
 import * as fromCurrentPerson from './currentPerson.reducer';
 import * as fromCurrentUser from './currentUser.reducer';
+import * as fromDiscoverCard from './discoverCard.reducer';
 
 import {hydrationMetaReducer} from './hydration.reducer';
 import {clearMetaReducer} from './clear.reducer';
@@ -26,6 +27,8 @@ export interface State {
     routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
     currentPerson: fromCurrentPerson.CurrentPersonState;
     currentUser: fromCurrentUser.CurrentUserState;
+    discoverCard: fromDiscoverCard.DiscoverCardState;
+
   }
   
   export class CustomSerializer
@@ -49,6 +52,7 @@ export interface State {
     routerReducer: fromRouter.routerReducer,
     currentPerson: fromCurrentPerson.reducer,
     currentUser: fromCurrentUser.reducer,
+    discoverCard: fromDiscoverCard.reducer,
   };
   
   export const getRouterState = createFeatureSelector<

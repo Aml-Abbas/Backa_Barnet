@@ -4,3 +4,4 @@ export * from './currentPerson.action';
 export * from './hydration.action';
 
 export * from './currentUser.action';
+export * from './discoverCard.action';
