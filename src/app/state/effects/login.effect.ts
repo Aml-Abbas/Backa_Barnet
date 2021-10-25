@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as loginAction from '../actions/login.action';
+import * as loadCurrentUserAction from '../actions/currentUser.action';
+
 import {map, switchMap, catchError, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
@@ -21,7 +23,6 @@ login$ = createEffect(() =>
       map((response) => new loginAction.LoginSuccess(response)),
       catchError((error: any) => of(new loginAction.LoginFail(error)))
     );
-
     })
   )
 );
@@ -30,9 +31,21 @@ login$ = createEffect(() =>
   loginSuccess$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginAction.LOGIN_SUCCESS),
-      switchMap((action: loginAction.LoginSuccess) => [
+      switchMap((action: loadCurrentUserAction.LoadCurrentUserSuccess) => [
         new fromRoot.Go({path: ['/contact']})
       ]),
+    )
+  );
+
+  loginSuccess2$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loginAction.LOGIN),
+      switchMap((action: loginAction.Login) => {
+        return this.signInService.getCurrentUser(action.payload.email).pipe(
+          map((response) => new loadCurrentUserAction.LoadCurrentUserSuccess(response)),
+          catchError((error: any) => of(new loadCurrentUserAction.LoadCurrentUserFail(error)))
+        );
+      }),
     )
   );
 

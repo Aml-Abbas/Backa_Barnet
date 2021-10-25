@@ -19,6 +19,7 @@ export class SignInService {
   }
 
   getCurrentUser(email: string):Observable<User>{
+    
     return this.http.get<User>('https://func-ykbb.azurewebsites.net/api/user/' + email + '?code=nyrEAwV1dDkmib3rqP96Svgk9RLX2Qq/laSc2lortlfiv8Ra13LfiQ==');
 
   }

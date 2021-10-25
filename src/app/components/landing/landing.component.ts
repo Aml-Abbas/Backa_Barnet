@@ -4,6 +4,7 @@ import { ViewChild } from '@angular/core'
 import { MatSidenav} from '@angular/material/sidenav';
 import { Observable } from 'rxjs';
 import { Person } from 'src/app/models/Person';
+import { User } from 'src/app/models/User';
 import * as fromState from '../../state';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
@@ -22,6 +23,8 @@ export class LandingComponent implements OnInit {
  deep_need_compass = false;
  event = false;
  current_person$= new Observable<Person | null>();
+ current_user$= new Observable<User | null>();
+ userId: number;
 
  isDisabled= true;
   constructor(private observer: BreakpointObserver,
@@ -131,6 +134,10 @@ changeShowFiller(){
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
+    this.current_user$ = this.store.select(fromState.getCurrentUser);
+    this.current_user$.subscribe(data=>{
+      this.userId= parseInt(String(data?.userID));
+    })
   }
 
   delete_current_person(): void{

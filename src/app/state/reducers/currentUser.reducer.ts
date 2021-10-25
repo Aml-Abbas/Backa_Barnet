@@ -30,7 +30,7 @@ export function reducer(
         ...state,
         currentUserLoaded: true,
         currentUserLoading: false,
-        currentUser: action.payload
+        currentUser: action.payload[0]
       };
     }
     case userActions.LOAD_CURRENT_USER_FAIL: {
