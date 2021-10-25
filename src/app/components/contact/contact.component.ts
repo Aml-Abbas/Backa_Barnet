@@ -13,7 +13,7 @@ import {MatTableDataSource} from '@angular/material/table';
 export class ContactComponent implements OnInit {
   persons$: Observable<Person[]> = new Observable<Person[]>();
   private persons:Person[]= [];
-  displayedColumns: string[] = ['personNbr', 'firstName','changedOn'];
+  displayedColumns: string[] = ['personNbr', 'firstName','changedOn', 'status'];
   dataSource = new MatTableDataSource(this.persons);
 
   constructor(private store: Store<fromState.State>) { }
