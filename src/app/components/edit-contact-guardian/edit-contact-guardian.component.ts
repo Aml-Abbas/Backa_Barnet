@@ -15,7 +15,8 @@ import { ContactGuardianService } from 'src/app/services/contact-guardian/contac
 export class EditContactGuardianComponent implements OnInit {
   current_person$= new Observable<Person | null>();
   contacts$: Observable<Contact[]>=  new Observable<Contact[]>();
-  contacts: Contact[]= [];
+  contacts: Contact[]= [new Contact('', '','','',''),
+                        new Contact('', '','','','')];
   contactName='H';
   supporterName='N';
 
@@ -32,6 +33,7 @@ export class EditContactGuardianComponent implements OnInit {
     this.current_person$.subscribe(data=>{
       this.contacts$= this.contactGuardianService.getContacts(String(data?.personNbr));
     });
+    var index=0;
 
     this.contacts$.subscribe(data => {
         data.map((contact:Contact)=>{
@@ -42,13 +44,21 @@ export class EditContactGuardianComponent implements OnInit {
           let phoneNbr = contact.phoneNbr;
           let employer = contact.employer;  
           
-          this.contacts.push({contactPersonNbr, lastName, firstName, phoneNbr, employer});
-         })
-          });
+          this.contacts[index]= new Contact(contactPersonNbr, lastName, firstName,
+            phoneNbr, employer);
+          index++;
+          })
+    
+        });
           
-          
-        this.contactName= this.contacts[0].firstName;
-        this.supporterName= this.contacts[1].firstName;
+        this.contactName= this.contacts[0].firstName + this.contacts[0].lastName;
+        this.supporterName= this.contacts[1].firstName+ this.contacts[1].lastName;
+
+        this.contactTask= this.contacts[0].phoneNbr;
+        this.supporterTask= this.contacts[1].phoneNbr;
+
+        this.contactWorkPlace= this.contacts[0].employer;
+        this.supporterWorkPlace= this.contacts[1].employer;
   }
 
   public save(): void {
