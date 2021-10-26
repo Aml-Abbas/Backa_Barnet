@@ -24,7 +24,7 @@ export class LandingComponent implements OnInit {
  event = false;
  current_person$= new Observable<Person | null>();
  current_user$= new Observable<User | null>();
- userId: number;
+ userRoleId: number;
 
  isDisabled= true;
   constructor(private observer: BreakpointObserver,
@@ -136,7 +136,7 @@ changeShowFiller(){
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_user$ = this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data=>{
-      this.userId= parseInt(String(data?.userID));
+      this.userRoleId= parseInt(String(data?.roleID));
     })
   }
 
