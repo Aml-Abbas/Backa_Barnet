@@ -27,6 +27,7 @@ import { PlanComponent } from './components/plan/plan.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AuthGuard } from './guards/auth.guard';
 import { SignInGuard } from './guards/sign-in.guard';
+import { EditGuardianGuard } from './guards/edit-guardian.guard';
 
 
 const routes: Routes = [
@@ -116,7 +117,7 @@ const routes: Routes = [
       },
       {
         path: 'edit-contact-guardian',
-        component: EditContactGuardianComponent
+        component: EditContactGuardianComponent, canActivate: [EditGuardianGuard]
       },
       {
         path: 'create-event',

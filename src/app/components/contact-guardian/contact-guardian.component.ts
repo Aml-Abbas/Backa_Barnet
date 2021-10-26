@@ -14,7 +14,7 @@ import { Contact } from 'src/app/models/Contact';
 export class ContactGuardianComponent implements OnInit {
   current_person$= new Observable<Person | null>();
   contacts$: Observable<Contact[]>=  new Observable<Contact[]>();
-  userId: number;
+  userRoleId: number;
 
   constructor(private store: Store<fromState.State>,
               private contactGuardianService: ContactGuardianService) { }
@@ -23,7 +23,7 @@ export class ContactGuardianComponent implements OnInit {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data =>{
       this.contacts$= this.contactGuardianService.getContacts(String(data?.personNbr));
-      this.userId= parseInt(String(this.store.select(fromState.getCurrentUserRoleID)));
+      this.userRoleId= parseInt(String(this.store.select(fromState.getCurrentUserRoleID)));
     });
     }
 
