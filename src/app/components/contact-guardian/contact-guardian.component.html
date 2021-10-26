@@ -4,7 +4,7 @@
 
 <div *ngIf="(current_person$ | async) as current_person">
 
-<div class="person-container" *ngIf="(contacts$ | async) as contacts" >
+<div class="person-container">
     <span class="material-icons">person</span>
     <h4>Barnkontakt</h4>
 
@@ -26,7 +26,7 @@
 </div>
 
 
-<div class="person-container" *ngIf="(contacts$ | async) as contacts">
+<div class="person-container">
     <span class="material-icons">person</span>
     <h4>Stödsamordnare</h4>
 
@@ -37,17 +37,16 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Kontaktuppgifter</mat-label>
-    <input matInput disabled value="{{contacts[0].phoneNbr}}">
+    <input matInput disabled value="{{contacts[1].phoneNbr}}">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Arbetsplats</mat-label>
-    <input matInput disabled value="{{contacts[0].employer}}">
+    <input matInput disabled value="{{contacts[1].employer}}">
   </mat-form-field>
 </div>
 
 
-  <button *ngIf="userRoleId==2" mat-raised-button routerLink="/edit-contact-guardian">Ändra</button>
+<button *ngIf="userRoleId== '2'" mat-raised-button routerLink="/edit-contact-guardian">Ändra</button>
 </div>
-
-</div>
+<div>
