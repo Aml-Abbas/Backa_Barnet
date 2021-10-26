@@ -27,12 +27,19 @@ export class ContactComponent implements OnInit {
         let lastName= person.lastName;
         let firstName= person.firstName;
 
+        let guardian1= person.guardian1;
+        let guardianPersonNbr1= person.guardianPersonNbr1;
+        let guardian2= person.guardian2;
+        let guardianPersonNbr2= person.guardianPersonNbr2;
+
         let changedBy = person.changedBy;
         let changedOn = person.changedOn.slice(0, 10);
         let status= person.status;
 
         
-        this.persons.push({personNbr, lastName, firstName, changedBy, changedOn, status});
+        this.persons.push({personNbr, lastName, firstName,
+          guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
+          changedBy, changedOn, status});
       })
   });
   }

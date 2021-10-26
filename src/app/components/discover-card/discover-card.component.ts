@@ -5,9 +5,11 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
 import { DiscoverCard } from 'src/app/models/DiscoverCard';
 import { User } from 'src/app/models/User';
+import { Card } from 'src/app/models/Card';
 
 import { Observable } from 'rxjs';
 import * as fromStore from 'src/app/state';
+import { ContactGuardianService } from 'src/app/services/contact-guardian/contact-guardian.service';
 
 
 export interface PeriodicElement {
@@ -46,14 +48,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class DiscoverCardComponent implements OnInit {
   displayedColumns: string[] = ['date', 'by', 'organisation','status'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-  cards$: Observable<DiscoverCard[]> = new Observable<DiscoverCard[]>();
+  discoverCards$: Observable<DiscoverCard[]> = new Observable<DiscoverCard[]>();
   current_user$: Observable<User| null> = new Observable<User| null>();
+  cards: Card[]= [];
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 
   constructor(private store: Store<fromState.State>) { }
 
@@ -63,7 +65,10 @@ export class DiscoverCardComponent implements OnInit {
       this.store.dispatch(new fromStore.LoadDiscoverCard(String(data?.userID)));
     });
     
-    this.cards$ = this.store.select(fromState.getDiscoverCards);
+    this.discoverCards$ = this.store.select(fromState.getDiscoverCards);
+    this.discoverCards$.subscribe(data=>{
+     // if(containsCard())
+    });
   }
 
   moveToCard(id: string){

@@ -60,8 +60,8 @@
       <section class="section_margin-top">
         <label>Åtgärder har vidtagits i egen organisation?</label>
         <mat-radio-group (change)="radioChange($event)">
-          <mat-radio-button value="true">JA</mat-radio-button>
-          <mat-radio-button value="false">NEJ</mat-radio-button>
+          <mat-radio-button value="1">JA</mat-radio-button>
+          <mat-radio-button value="2">NEJ</mat-radio-button>
         </mat-radio-group>
       </section>
            
@@ -79,9 +79,9 @@
 
                         <section >
                           <mat-radio-group (change)="radioChangeThree($event,item)">
-                            <mat-radio-button value="true" >JA</mat-radio-button>
-                            <mat-radio-button value="false">NEJ</mat-radio-button>
-                            <mat-radio-button value="dont_know">VET EJ</mat-radio-button>
+                            <mat-radio-button value="1" >JA</mat-radio-button>
+                            <mat-radio-button value="2">NEJ</mat-radio-button>
+                            <mat-radio-button value="3">VET EJ</mat-radio-button>
                           </mat-radio-group>
                         </section>
                         
@@ -101,16 +101,16 @@
               <section class="section">
           <label>Vårdnadshavare {{i+1}} är informerad om att Upptäckarkort upprättas</label>
           <mat-radio-group (change)="radioChangefour($event, i, 2)">
-            <mat-radio-button value="true">JA</mat-radio-button>
-            <mat-radio-button value="false">NEJ</mat-radio-button>
+            <mat-radio-button value="1">JA</mat-radio-button>
+            <mat-radio-button value="2">NEJ</mat-radio-button>
           </mat-radio-group>
         </section>
 
         <section class="section section-height">
           <label>Vårdnadshavare {{i+1}} har gett samtycke till att information gällande upptäckarkorten delas mellan Upptäckare och Barnkontakt</label>
           <mat-radio-group (change)="radioChangefour($event, i, 3)">
-            <mat-radio-button value="true">JA</mat-radio-button>
-            <mat-radio-button value="false">NEJ</mat-radio-button>
+            <mat-radio-button value="1">JA</mat-radio-button>
+            <mat-radio-button value="2">NEJ</mat-radio-button>
           </mat-radio-group>
         </section>
 

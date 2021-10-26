@@ -113,7 +113,7 @@ checkChoices(): boolean{
 
 isAnonyms(): boolean{
   //eller om enheten är Annat, då kommer kortet att anonymiseras
-  if(this.guardians[0][3]=='false'||this.guardians[1][3]=='false'){
+  if(this.guardians[0][3]=='2'||this.guardians[1][3]=='2'){
     return false;
     // this.text= 'kortet kommer att annomineras för det saknas samtycke';
   }else if(this.personCotactName=='Annat'){
@@ -147,6 +147,7 @@ isAnonyms(): boolean{
       if(result){
 
       if(this.isAnonyms()){
+        //instructions -> 1 create, 2 spara, 3 anonymisera
         //Här kommer vi anonymisera kortet
         // barnet namn och föräldrarnas namn inte med
         // barnet personnummer och föräldrarnas personnummer inte med
