@@ -8,7 +8,9 @@ import { DiscoverCard } from 'src/app/models/DiscoverCard';
 })
 export class DiscoverCardDetailsComponent implements OnInit {
   discoverCard: DiscoverCard= new DiscoverCard('2021', 'AML','cgi','utvecklare',
-                                                'Ahmad', '19930819','Baraa', '93081987643',
+                                                'Ahmad', '19930819',
+                                                'Baraa', '93081987643',
+                                                'Baraa2','1993093833',
                                                 '0', 'uyagfaugfa', '12', '4', 'dhrh');
 
   constructor() { }

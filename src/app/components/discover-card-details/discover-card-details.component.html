@@ -2,11 +2,40 @@
     <h1>Upptäckarkortet</h1>
 
     <mat-list>
-        <mat-list-item>Item 1</mat-list-item>
+        <mat-list-item><strong>Datum:</strong>
+          {{discoverCard.gradedOn}}</mat-list-item>
+
         <mat-divider></mat-divider>
-        <mat-list-item>Item 2</mat-list-item>
+        <mat-list-item><strong>Upptäckarens namn:</strong>
+          {{discoverCard.userName}}</mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item>Item 3</mat-list-item>
+        <mat-list-item><strong>Upptackarens organisation:</strong>
+          {{discoverCard.userOrg}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><strong>Upptäckarens title:</strong>
+          {{discoverCard.userTitle}}</mat-list-item>
+
+        <mat-divider></mat-divider>
+        <mat-list-item><strong>Barnets namn:</strong>
+          {{discoverCard.personName}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><strong>Barnets personnummer:</strong>
+          {{discoverCard.personNbr}}</mat-list-item>
+
+        <mat-divider></mat-divider>
+        <mat-list-item><strong>Vårdnadshavare 1 namn:</strong>
+          {{discoverCard.guardian1}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><strong>Vårdnadshavare 1 personnummer:</strong>
+          {{discoverCard.guardianPersonNbr1}}</mat-list-item>
+
+        <mat-divider></mat-divider>
+        <mat-list-item><strong>BarnKontakt:</strong>
+          {{discoverCard.healthTeam}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><strong>Situationen där barnets upptäckts:</strong>
+          {{discoverCard.situation}}</mat-list-item>
+
       </mat-list>
 
 </div>

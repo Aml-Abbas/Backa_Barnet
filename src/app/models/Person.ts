@@ -13,8 +13,7 @@ export class Person {
     status: string;
 
   
-    constructor(personNbr: string, lastName: string, 
-        firstName: string, 
+    constructor(personNbr: string, lastName: string, firstName: string, 
         guardian1: string, guardianPersonNbr1: string,
         guardian2: string, guardianPersonNbr2: string,
         changedBy: string, changedOn: string, status: string) {

@@ -6,11 +6,13 @@ import * as fromRoot from '../../../app/state';
 import { DiscoverCard } from 'src/app/models/DiscoverCard';
 import { User } from 'src/app/models/User';
 import { Card } from 'src/app/models/Card';
-
 import { Observable } from 'rxjs';
 import * as fromStore from 'src/app/state';
-import { ContactGuardianService } from 'src/app/services/contact-guardian/contact-guardian.service';
 
+export interface QuestionText {
+  id: number;
+  text: string,
+}
 
 export interface PeriodicElement {
   id: number;
@@ -26,18 +28,20 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {id: 2, type: 'Skolan',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
   {id: 3, type: 'Socialtjänsten' ,status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
   {id: 4, type: 'Polisen 2',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 11, type: 'Polisen 1',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 12, type: 'Skolan',status:'sparat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 13, type: 'Socialtjänsten',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 14, type: 'Polisen 2',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 10, type: 'Polisen 1',status:'sparat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 20, type: 'Skolan',status:'sparat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 30, type: 'Socialtjänsten',status:'sparat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 40, type: 'Polisen 2',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 16, type: 'Polisen 1',status:'sparat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 22, type: 'Skolan',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 33, type: 'Socialtjänsten',status:'sparat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 44, type: 'Polisen 2',status:'sparat', date: '2021', by: 'polis 1', organisation: 'skolan'},
+];
+
+const QuestionTextData: QuestionText[] = [
+  {id: 40, text: 'Barnet har vuxna i sin närhet som hen kan lita på och vända sig till'},
+  {id: 41, text: 'Barnet skyddas från sådant som kan skada hen i och utanför hemmet'},
+  {id: 42, text: 'Barnet har hälsosamma matvanor, god hygien och ett liv fritt från tobak, alkohol och narkotika'},
+  {id: 43, text: 'Barnet har fritidsintresse med delaktighet från vårdnadshavare eller annan trygg person i dess närhet'},
+  {id: 44, text: 'Barnet känner tillhörighet och uppskattning av personer som barnet möter i sin vardag'},
+  {id: 45, text: 'Barnet förstår vad som förväntas av det i sin vardag, visar hänsyn och omtanke inför andra och följer givna regler'},
+  {id: 46, text: 'Barnet känner sig sedd, hörd och bekräftad av viktiga personer i sin vardag'},
+  {id: 47, text: 'Barnet utvecklas i fas med sin ålder och har förmågor att klara av det vardagliga livet'},
+  {id: 48, text: 'Åtgärder har vidtagits inom egen organisation'},
+  {id: 49, text: 'Vårdnadshavare är informerad om att upptäckarkort upprättats'},
+  {id: 50, text: 'Vårdnadshavare har gett samtycke till att information gällande upptäckten delas mellan upptäckare och barnkontakt'},
 ];
 
 @Component({

@@ -7,10 +7,11 @@ export class Card {
 
     personName: string;
     personNbr: string;
-    contactName: string;
-    contactPersonNbr: string;
-    //contactName2: string;
-    //contactPersonNbr2: string;
+
+    guardian1: string;
+    guardianPersonNbr1: string;
+    guardian2: string;
+    guardianPersonNbr2: string;
 
     healthTeam: string;
     situation: string;
@@ -23,7 +24,8 @@ export class Card {
     constructor(id: string, gradedOn: string, userName: string, 
         userOrg: string, userTitle: string,
         personName: string, personNbr: string,
-        contactName: string, contactPersonNbr: string,
+        guardian1: string, guardianPersonNbr1: string,
+        guardian2: string, guardianPersonNbr2: string,
         healthTeam: string, situation: string,
         questions: string[], grades: string[], comments: string[]) {
 
@@ -36,8 +38,11 @@ export class Card {
 
       this.personName= personName;
       this.personNbr= personNbr;
-      this.contactName= contactName;
-      this.contactPersonNbr= contactPersonNbr;
+
+      this.guardian1 = guardian1;
+      this.guardianPersonNbr1 = guardianPersonNbr1;
+      this.guardian2 = guardian2;
+      this.guardianPersonNbr2 = guardianPersonNbr2;
 
       this.healthTeam= healthTeam;
       this.situation= situation;
