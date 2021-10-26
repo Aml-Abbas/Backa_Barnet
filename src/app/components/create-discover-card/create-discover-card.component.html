@@ -43,10 +43,13 @@
   
       </div>
 
-      <!-- It will be a mat-select -->
-      <mat-form-field class="full-width" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>BMM/ BvC/ Förskola/ Skola (Barnkontakt)</mat-label>
-        <input matInput [(ngModel)]="personCotactName" [ngModelOptions]="{standalone: true}">
+        <mat-select [(ngModel)]="personCotactName" name="personCotactName">
+          <mat-option value="GustavsLund">GustavsLund Skola</mat-option>
+          <mat-option value="Nicolai">Nicolai Skola</mat-option>
+          <mat-option value="Annat">Annat</mat-option>
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field class="full-width" appearance="fill">

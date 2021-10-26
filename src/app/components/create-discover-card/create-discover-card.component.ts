@@ -116,6 +116,8 @@ isAnonyms(): boolean{
   if(this.guardians[0][3]=='false'||this.guardians[1][3]=='false'){
     return false;
     // this.text= 'kortet kommer att annomineras för det saknas samtycke';
+  }else if(this.personCotactName=='Annat'){
+    return false;
   }
     // this.text= 'kortet kommer att skickas in';
   return true;

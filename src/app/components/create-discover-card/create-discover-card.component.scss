@@ -67,6 +67,11 @@ mat-card-title{
   background-color: #663399;
 }
 
+::ng-deep .mat-select-arrow{
+  color: #663399;
+}
+
+
 .card-container{
     padding: 10px;
     margin: 10px;
