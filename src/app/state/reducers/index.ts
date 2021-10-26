@@ -3,6 +3,7 @@ import * as fromRouter from '@ngrx/router-store';
 import * as fromCurrentPerson from './currentPerson.reducer';
 import * as fromCurrentUser from './currentUser.reducer';
 import * as fromDiscoverCard from './discoverCard.reducer';
+import * as fromCurrentCard from './currentCard.reducer';
 
 import {hydrationMetaReducer} from './hydration.reducer';
 import {clearMetaReducer} from './clear.reducer';
@@ -28,6 +29,7 @@ export interface State {
     currentPerson: fromCurrentPerson.CurrentPersonState;
     currentUser: fromCurrentUser.CurrentUserState;
     discoverCard: fromDiscoverCard.DiscoverCardState;
+    currentCard: fromCurrentCard.CurrentCardState;
 
   }
   
@@ -53,6 +55,8 @@ export interface State {
     currentPerson: fromCurrentPerson.reducer,
     currentUser: fromCurrentUser.reducer,
     discoverCard: fromDiscoverCard.reducer,
+    currentCard: fromCurrentCard.reducer,
+
   };
   
   export const getRouterState = createFeatureSelector<

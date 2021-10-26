@@ -1,5 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { DiscoverCard } from 'src/app/models/DiscoverCard';
+import { Card } from 'src/app/models/Card';
+import { Observable } from 'rxjs';
+import * as fromState from '../../state';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../../app/state';
+
+export interface QuestionText {
+  id: number;
+  text: string,
+}
+
+const QuestionTextData: QuestionText[] = [
+  {id: 40, text: 'Barnet har vuxna i sin närhet som hen kan lita på och vända sig till'},
+  {id: 41, text: 'Barnet skyddas från sådant som kan skada hen i och utanför hemmet'},
+  {id: 42, text: 'Barnet har hälsosamma matvanor, god hygien och ett liv fritt från tobak, alkohol och narkotika'},
+  {id: 43, text: 'Barnet har fritidsintresse med delaktighet från vårdnadshavare eller annan trygg person i dess närhet'},
+  {id: 44, text: 'Barnet känner tillhörighet och uppskattning av personer som barnet möter i sin vardag'},
+  {id: 45, text: 'Barnet förstår vad som förväntas av det i sin vardag, visar hänsyn och omtanke inför andra och följer givna regler'},
+  {id: 46, text: 'Barnet känner sig sedd, hörd och bekräftad av viktiga personer i sin vardag'},
+  {id: 47, text: 'Barnet utvecklas i fas med sin ålder och har förmågor att klara av det vardagliga livet'},
+  {id: 48, text: 'Åtgärder har vidtagits inom egen organisation'},
+  {id: 49, text: 'Vårdnadshavare är informerad om att upptäckarkort upprättats'},
+  {id: 50, text: 'Vårdnadshavare har gett samtycke till att information gällande upptäckten delas mellan upptäckare och barnkontakt'},
+];
+
 
 @Component({
   selector: 'app-discover-card-details',
@@ -7,15 +32,13 @@ import { DiscoverCard } from 'src/app/models/DiscoverCard';
   styleUrls: ['./discover-card-details.component.scss']
 })
 export class DiscoverCardDetailsComponent implements OnInit {
-  discoverCard: DiscoverCard= new DiscoverCard('2021', 'AML','cgi','utvecklare',
-                                                'Ahmad', '19930819',
-                                                'Baraa', '93081987643',
-                                                'Baraa2','1993093833',
-                                                '0', 'uyagfaugfa', '12', '4', 'dhrh');
+  current_card$= new Observable<Card | null>();
 
-  constructor() { }
+  constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
+    this.current_card$ = this.store.select(fromState.getCurrentCard);
+
   }
 
 }

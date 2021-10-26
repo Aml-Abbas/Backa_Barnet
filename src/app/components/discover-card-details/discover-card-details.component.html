@@ -1,40 +1,40 @@
 <div class="container">
     <h1>Upptäckarkortet</h1>
 
-    <mat-list>
+    <mat-list *ngIf="(current_card$ | async) as current_card">
         <mat-list-item><strong>Datum:</strong>
-          {{discoverCard.gradedOn}}</mat-list-item>
+          {{current_card.gradedOn}}</mat-list-item>
 
         <mat-divider></mat-divider>
         <mat-list-item><strong>Upptäckarens namn:</strong>
-          {{discoverCard.userName}}</mat-list-item>
+          {{current_card.userName}}</mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item><strong>Upptackarens organisation:</strong>
-          {{discoverCard.userOrg}}</mat-list-item>
+          {{current_card.userOrg}}</mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item><strong>Upptäckarens title:</strong>
-          {{discoverCard.userTitle}}</mat-list-item>
+          {{current_card.userTitle}}</mat-list-item>
 
         <mat-divider></mat-divider>
         <mat-list-item><strong>Barnets namn:</strong>
-          {{discoverCard.personName}}</mat-list-item>
+          {{current_card.personName}}</mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item><strong>Barnets personnummer:</strong>
-          {{discoverCard.personNbr}}</mat-list-item>
+          {{current_card.personNbr}}</mat-list-item>
 
         <mat-divider></mat-divider>
         <mat-list-item><strong>Vårdnadshavare 1 namn:</strong>
-          {{discoverCard.guardian1}}</mat-list-item>
+          {{current_card.guardian1}}</mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item><strong>Vårdnadshavare 1 personnummer:</strong>
-          {{discoverCard.guardianPersonNbr1}}</mat-list-item>
+          {{current_card.guardianPersonNbr1}}</mat-list-item>
 
         <mat-divider></mat-divider>
         <mat-list-item><strong>BarnKontakt:</strong>
-          {{discoverCard.healthTeam}}</mat-list-item>
+          {{current_card.healthTeam}}</mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item><strong>Situationen där barnets upptäckts:</strong>
-          {{discoverCard.situation}}</mat-list-item>
+          {{current_card.situation}}</mat-list-item>
 
       </mat-list>
 

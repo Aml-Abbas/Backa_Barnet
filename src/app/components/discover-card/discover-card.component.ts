@@ -9,52 +9,20 @@ import { Card } from 'src/app/models/Card';
 import { Observable } from 'rxjs';
 import * as fromStore from 'src/app/state';
 
-export interface QuestionText {
-  id: number;
-  text: string,
-}
-
-export interface PeriodicElement {
-  id: number;
-  date: string,
-  type: string;
-  status: string,
-  by: string,
-  organisation: string,
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, type: 'Polisen 1', status:'inskickat' , date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 2, type: 'Skolan',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 3, type: 'Socialtjänsten' ,status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-  {id: 4, type: 'Polisen 2',status:'inskickat', date: '2021', by: 'polis 1', organisation: 'skolan'},
-];
-
-const QuestionTextData: QuestionText[] = [
-  {id: 40, text: 'Barnet har vuxna i sin närhet som hen kan lita på och vända sig till'},
-  {id: 41, text: 'Barnet skyddas från sådant som kan skada hen i och utanför hemmet'},
-  {id: 42, text: 'Barnet har hälsosamma matvanor, god hygien och ett liv fritt från tobak, alkohol och narkotika'},
-  {id: 43, text: 'Barnet har fritidsintresse med delaktighet från vårdnadshavare eller annan trygg person i dess närhet'},
-  {id: 44, text: 'Barnet känner tillhörighet och uppskattning av personer som barnet möter i sin vardag'},
-  {id: 45, text: 'Barnet förstår vad som förväntas av det i sin vardag, visar hänsyn och omtanke inför andra och följer givna regler'},
-  {id: 46, text: 'Barnet känner sig sedd, hörd och bekräftad av viktiga personer i sin vardag'},
-  {id: 47, text: 'Barnet utvecklas i fas med sin ålder och har förmågor att klara av det vardagliga livet'},
-  {id: 48, text: 'Åtgärder har vidtagits inom egen organisation'},
-  {id: 49, text: 'Vårdnadshavare är informerad om att upptäckarkort upprättats'},
-  {id: 50, text: 'Vårdnadshavare har gett samtycke till att information gällande upptäckten delas mellan upptäckare och barnkontakt'},
-];
-
 @Component({
   selector: 'app-discover-card',
   templateUrl: './discover-card.component.html',
   styleUrls: ['./discover-card.component.scss']
 })
 export class DiscoverCardComponent implements OnInit {
-  displayedColumns: string[] = ['date', 'by', 'organisation','status'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ['gradedOn', 'userName', 'userOrg'];
   discoverCards$: Observable<DiscoverCard[]> = new Observable<DiscoverCard[]>();
   current_user$: Observable<User| null> = new Observable<User| null>();
   cards: Card[]= [];
+  questions: string []= [];
+  grades: string[]= [];
+  comments: string[]= [];
+  dataSource = new MatTableDataSource(this.cards);
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -69,13 +37,73 @@ export class DiscoverCardComponent implements OnInit {
       this.store.dispatch(new fromStore.LoadDiscoverCard(String(data?.userID)));
     });
     
+
     this.discoverCards$ = this.store.select(fromState.getDiscoverCards);
     this.discoverCards$.subscribe(data=>{
-     // if(containsCard())
-    });
+      var index=1;
+      data.map((discoverCard: DiscoverCard)=>{
+        let gradedOn= discoverCard.gradedOn;
+        let userName= discoverCard.userName;
+        let userOrg= discoverCard.userOrg;
+        let userTitle= discoverCard.userTitle;
+
+        let personName= discoverCard.personName;
+        let personNbr= discoverCard.personNbr;
+
+        let guardian1= discoverCard.guardian1;
+        let guardianPersonNbr1= discoverCard.guardianPersonNbr1;
+        let guardian2= discoverCard.guardian2;
+        let guardianPersonNbr2= discoverCard.guardianPersonNbr2;
+
+
+        let healthTeam = discoverCard.healthTeam;
+        let situation = discoverCard.situation;
+
+        let questionID= discoverCard.questionID;
+        let grade= discoverCard.grade;
+        let comment= discoverCard.comment;
+
+
+        if(!this.containsCard(discoverCard.gradedOn)){
+         this.questions.push(questionID);
+         this.grades.push(grade);
+         this.comments.push(comment);
+          this.cards.push(new Card(String(index), gradedOn, userName, userOrg, userTitle,
+            personName, personNbr, guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2,
+            healthTeam, situation, this.questions, this.grades, this.comments));
+            this.questions= [];
+            this.grades= [];
+            this.comments= [];
+          
+            index++;
+          }else{
+            this.cards.forEach(element => {
+              if(element.gradedOn== gradedOn){
+                element.questions.push(questionID);
+                element.grades.push(grade);
+                element.comments.push(comment);
+              }      
+            });
+
+        }
+      })
+        });
+        this.dataSource = new MatTableDataSource(this.cards);
   }
 
-  moveToCard(id: string){
-    this.store.dispatch(new fromRoot.Go({ path: ['/discover-card', id] }));
+  moveToCard(card: Card){
+    this.store.dispatch(new fromState.UpdateCard(card));
+    this.store.dispatch(new fromRoot.Go({ path: ['/discover-card', card.id] }));
   }
+  
+  containsCard(date: string): boolean{
+    var found= false;
+    this.cards.forEach(element => {
+      if(element.gradedOn== date){
+        found= true;
+      }      
+    });
+    return found;
+  }
+
 }
