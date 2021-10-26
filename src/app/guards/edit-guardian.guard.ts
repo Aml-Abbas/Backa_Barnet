@@ -15,14 +15,16 @@ export class EditGuardianGuard implements CanActivate {
 constructor(private store: Store<fromState.State>) {}
 
 canActivate(): Observable<boolean> {
- this.store.select(fromState.getCurrentUserRoleID).pipe(
-    tap((roleID) => {
-      if (roleID!='2') {
-        this.store.dispatch(new fromRoot.Back());
-        return of(false);
-      }
-    })
-  );
+  console.log('in the guardian');
+  var currentUser= this.store.select(fromState.getCurrentUser);
+  currentUser.subscribe(data=>{
+    console.log(String(data?.roleID));
+    if(String(data?.roleID)!='2'){
+      this.store.dispatch(new fromRoot.Go({ path: ['contact-guardian'] }));
+
+    }
+  });
+
   return of(true);
 }  
 }
