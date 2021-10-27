@@ -12,7 +12,7 @@ export class NeedCompassComponent implements OnInit {
   selectedDate= 0;
   
   public radarChartOptions: RadialChartOptions = {
-    responsive: true ,
+    
     title:{
       display: true,
       text:''
@@ -80,19 +80,13 @@ export class NeedCompassComponent implements OnInit {
   ];
   public radarChartType: ChartType = 'radar';
 
+  dates: string[]=[];
+
   constructor() {
-    
+    this.dates=['2021', '2020','2019'];
   }
 
   ngOnInit(): void {
-  }
-
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
   }
 
 }

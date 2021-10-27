@@ -22,3 +22,16 @@ h1{
   ::ng-deep.mat-select-arrow{
     color: #663399;
   }
+
+  ::ng-deep .mat-select-value{
+    color: black !important;
+  }
+  ::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
+    color: white !important;
+  }
+  @media screen and (max-width: 1024px){
+    mat-form-field{
+      width: 100%;
+    }
+
+  }

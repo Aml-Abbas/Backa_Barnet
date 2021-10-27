@@ -15,13 +15,12 @@
     <mat-label>Antal Vårdnadshavare som ska fylla formulär</mat-label>
     <mat-select [(ngModel)]="selectedDate" name="selectedDate">
       <mat-option value="0">Alla</mat-option>
-      <mat-option value="1">2021</mat-option>
-      <mat-option value="2">2020</mat-option>
+      <mat-option *ngFor="let date of dates, let i= index" value="(i+1)">{{date}}</mat-option>
     </mat-select>
   </mat-form-field>
 
     <div style="display: block;">
-        <canvas width="15" baseChart 
+        <canvas width="20" height="8" baseChart 
           [datasets]="radarChartData"
           [options]="radarChartOptions"
           [labels]="radarChartLabels"
