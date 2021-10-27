@@ -25,6 +25,8 @@ export class EditContactGuardianComponent implements OnInit {
 
   contactWorkPlace='';
   supporterWorkPlace='';
+  userRoleId: string;
+
   constructor(private store: Store<fromState.State>,
     private contactGuardianService: ContactGuardianService) { }
 
@@ -51,6 +53,11 @@ export class EditContactGuardianComponent implements OnInit {
     
         });
           
+        this.store.select(fromState.getCurrentUser).subscribe(data=>{
+          this.userRoleId= String(data?.roleID);
+    
+        });
+    
         this.contactName= this.contacts[0].firstName + this.contacts[0].lastName;
         this.supporterName= this.contacts[1].firstName+ this.contacts[1].lastName;
 
@@ -63,6 +70,11 @@ export class EditContactGuardianComponent implements OnInit {
 
   public save(): void {
     console.log(this.contacts);
+    if(this.userRoleId=='4'){
+
+    }else{
+
+    }
     this.store.dispatch(new fromRoot.Go({ path: ['contact-guardian'] }));
   }
 
