@@ -2,7 +2,17 @@ h1{
     font-size: 30px;
     font-weight: bold;
 }
-
+h4{
+    font-size: 16px;
+    margin-right: 12px;
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+p{
+    margin-bottom: 0px;
+    font-size: 14px;
+    margin-right: 12px;
+}
 .mat-list-item{
     color: black;
 }
@@ -10,3 +20,23 @@ h1{
 .mat-list-item{
     border-bottom: 1px solid lightgray;
 }
+    
+  table {
+    width: 60%;
+    background-color: whitesmoke;
+    border-collapse: collapse;
+    padding: 5px;
+  }
+  th{
+    text-align: left;
+    font-size: 15px;
+  }
+
+  td, th, tr{
+    color: black;
+    padding: 8px;
+  }
+
+  tr{
+    border-bottom: 1px solid lightgray;
+  }

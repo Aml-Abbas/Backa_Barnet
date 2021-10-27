@@ -37,6 +37,7 @@ export class DiscoverCardComponent implements OnInit {
       this.store.dispatch(new fromStore.LoadDiscoverCard(String(data?.userID)));
     });
     
+    this.cards= [];
 
     this.discoverCards$ = this.store.select(fromState.getDiscoverCards);
     this.discoverCards$.subscribe(data=>{
@@ -63,6 +64,9 @@ export class DiscoverCardComponent implements OnInit {
         let grade= discoverCard.grade;
         let comment= discoverCard.comment;
 
+        console.log(questionID);
+        console.log(grade);
+        console.log(comment);
 
         if(!this.containsCard(discoverCard.gradedOn)){
          this.questions.push(questionID);
@@ -78,7 +82,7 @@ export class DiscoverCardComponent implements OnInit {
             index++;
           }else{
             this.cards.forEach(element => {
-              if(element.gradedOn== gradedOn){
+              if(element.gradedOn== gradedOn && !this.containsQuestion(element, questionID)){
                 element.questions.push(questionID);
                 element.grades.push(grade);
                 element.comments.push(comment);
@@ -106,4 +110,14 @@ export class DiscoverCardComponent implements OnInit {
     return found;
   }
 
+  containsQuestion(card: Card, questionId: string): boolean{
+    var found= false;
+
+    card.questions.forEach(question => {
+      if(question== questionId){
+        found= true;
+      }      
+    });
+    return found;
+  }
 }
