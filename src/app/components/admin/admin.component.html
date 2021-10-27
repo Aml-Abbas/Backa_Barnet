@@ -1,5 +1,30 @@
 <div class="container">
-    <p>admin works!</p>
-    <button mat-raised-button class="add-plan" (click)="signOut()">logga ut</button>
+    <h1>Skapa användare</h1>
+
+    <div class="form-container" [formGroup]="createUserFormGroup">
+        <mat-form-field appearance="fill">
+            <mat-label>Användarens e-post</mat-label>
+            <input matInput formControlName="emailControl">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Användarens organisation</mat-label>
+            <input matInput formControlName="organisationControl">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Användarens role</mat-label>
+            <input matInput formControlName="roleControl">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Användarens enhet</mat-label>
+            <input matInput formControlName="unitControl">
+          </mat-form-field>
+        </div>
+
+        <p>{{saveError}}</p>
+
+        <button mat-raised-button (click)="createUser()">Skapa</button>
 
 </div>

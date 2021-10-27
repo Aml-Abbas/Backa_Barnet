@@ -27,6 +27,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { SignInGuard } from './guards/sign-in.guard';
 import { EditGuardianGuard } from './guards/edit-guardian.guard';
 import { DiscoverCardDetailsGuard } from './guards/discover-card-details.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
       {
         path: 'admin',
         component: AdminComponent
+        //, canActivate: [AdminGuard]
       },
       {
         path: 'communication-material',

@@ -77,11 +77,14 @@
         <mat-button-toggle (click)="changeShowFiller()" routerLink="/event">Tidslinje & händelser</mat-button-toggle >
 
         <mat-divider ></mat-divider>
-        <mat-button-toggle (click)="changeShowFiller()" disabled="isDiabled">Admin </mat-button-toggle >
-<!--          (click)="goToRoute($event, 'admin')"
- -->          
+        <mat-button-toggle (click)="goToRoute($event, 'admin')" [disabled]="isDiabledAdmin">Admin </mat-button-toggle >
+         
         <mat-divider></mat-divider>
-
+        
+        <mat-button-toggle (click)="logOut()">Logga ut </mat-button-toggle >
+        <mat-divider></mat-divider>
+            
+            
     </mat-button-toggle-group>
 
     </mat-sidenav>

@@ -25,8 +25,9 @@ export class LandingComponent implements OnInit {
  current_user$= new Observable<User | null>();
  userRoleId: number;
 
- isDisabled= true;
-  constructor(private observer: BreakpointObserver,
+ isDiabledAdmin= true;
+  
+ constructor(private observer: BreakpointObserver,
     private store: Store<fromState.State>) {
     }
 
@@ -111,6 +112,11 @@ changeShowFiller(){
     this.current_user$.subscribe(data=>{
       this.userRoleId= parseInt(String(data?.roleID));
     })
+
+    if(this.userRoleId==4){
+      console.log('Admin yes');
+      this.isDiabledAdmin= false;
+    }
   }
 
   delete_current_person(): void{
@@ -118,11 +124,15 @@ changeShowFiller(){
   }
 
   goToRoute(event, route: string){
-    if(this.isDisabled){
+    this.changeShowFiller();
+    if(this.isDiabledAdmin){
       event.stopPropagation()
     }else{
       this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
     }
   }
 
+  logOut(){
+    this.store.dispatch(new fromState.Logout());
+  }
 }

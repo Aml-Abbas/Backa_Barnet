@@ -19,8 +19,8 @@ canActivate(): Observable<boolean> {
   var currentUser= this.store.select(fromState.getCurrentUser);
   currentUser.subscribe(data=>{
     console.log(String(data?.roleID));
-    if(String(data?.roleID)!='2'){
-      this.store.dispatch(new fromRoot.Go({ path: ['contact-guardian'] }));
+    if(String(data?.roleID)!='2' && String(data?.roleID)!='4'){
+      this.store.dispatch(new fromRoot.Back());
 
     }
   });
