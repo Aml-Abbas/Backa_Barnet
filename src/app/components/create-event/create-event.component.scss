@@ -36,6 +36,19 @@ mat-label{
   margin-top: 15px;
 }
 
+.mat-datepicker-toggle{
+  color: #663399;
+}
+::ng-deep .mat-datepicker-content {
+  background-color: #663399;
+}
+
+p{
+  margin-top: 15px;
+  color: brown;
+  font-size: 15px;
+}
+
 @media only screen and (max-width: 800px) {
   button{
     width: 50%;

@@ -5,33 +5,38 @@
 
   <h5>Händelse</h5>
   <mat-form-field appearance="fill">
-      <input matInput>
+      <input matInput formControlName="eventControl">
     </mat-form-field>
 
     <h5>Planerad insats</h5>
     <mat-form-field appearance="fill">
-      <input matInput>
+      <input matInput formControlName="planControl">
     </mat-form-field>
 
     <div class="container-2">
       <h5>Ansvariga för insatsen</h5>
       <mat-form-field appearance="fill">
         <mat-label>Namn</mat-label>
-        <input matInput>
-      </mat-form-field> 
+        <input matInput formControlName="nameControl">
+      </mat-form-field>
+
       <mat-form-field appearance="fill">
         <mat-label>Profession</mat-label>
-        <input matInput>
+        <input matInput formControlName="proControl">
       </mat-form-field>
     </div>
 
     <div class="container-2">
-      <h5>Start datum</h5>
       <mat-form-field appearance="fill">
-        <input matInput>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dateControl">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker ></mat-datepicker>
       </mat-form-field>
-  </div>
+</div>
 
-    <button mat-raised-button routerLink="/plan">Spara</button>
+<p>{{saveError}}</p>
+
+    <button mat-raised-button (click)="save()">Spara</button>
 
 </div>
