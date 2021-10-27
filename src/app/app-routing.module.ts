@@ -12,7 +12,6 @@ import { ConversationMaterialComponent } from './components/conversation-materia
 import { CreateConversationMaterialComponent } from './components/create-conversation-material/create-conversation-material.component';
 import { CreateDiscoverCardComponent } from './components/create-discover-card/create-discover-card.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
-import { CreatePlanComponent } from './components/create-plan/create-plan.component';
 import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-need-compass.component';
 import { DiscoverCardDetailsComponent } from './components/discover-card-details/discover-card-details.component';
 import { DiscoverCardComponent } from './components/discover-card/discover-card.component';
@@ -23,7 +22,6 @@ import { EventComponent } from './components/event/event.component';
 import { GoalComponent } from './components/goal/goal.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { NeedCompassComponent } from './components/need-compass/need-compass.component';
-import { PlanComponent } from './components/plan/plan.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AuthGuard } from './guards/auth.guard';
 import { SignInGuard } from './guards/sign-in.guard';
@@ -89,10 +87,6 @@ const routes: Routes = [
         component: DeepNeedCompassComponent
       },
       {
-        path: 'plan',
-        component: PlanComponent
-      },
-      {
         path: 'assessment',
         component: AssessmentComponent
       },
@@ -124,10 +118,6 @@ const routes: Routes = [
         path: 'create-event',
         component: CreateEventComponent
       },
-      {
-        path: 'create-plan',
-        component: CreatePlanComponent
-      }
     ]
   },
   { 

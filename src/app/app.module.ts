@@ -23,7 +23,6 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { ConsentComponent } from './components/consent/consent.component';
 import { CreateDiscoverCardComponent } from './components/create-discover-card/create-discover-card.component';
 import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-need-compass.component';
-import { PlanComponent } from './components/plan/plan.component';
 import { AssessmentComponent } from './components/assessment/assessment.component';
 import { ConversationMaterialComponent } from './components/conversation-material/conversation-material.component';
 import { ContactPersonComponent } from './components/contact-person/contact-person.component';
@@ -44,7 +43,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatStepperModule } from '@angular/material/stepper';
 import { CreateEventComponent } from './components/create-event/create-event.component';
-import { CreatePlanComponent } from './components/create-plan/create-plan.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -77,8 +75,8 @@ import { EstimateOverviewComponent } from './components/estimate-overview/estima
   declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent,
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent,
     EventComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent,
-    DeepNeedCompassComponent, PlanComponent, AssessmentComponent, ConversationMaterialComponent,
-    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, CreatePlanComponent, 
+    DeepNeedCompassComponent, AssessmentComponent, ConversationMaterialComponent,
+    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, 
     EditContactGuardianComponent, CreateDiscoverCardDialogComponent, DiscoverCardDetailsComponent, 
     CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent],
   imports: [

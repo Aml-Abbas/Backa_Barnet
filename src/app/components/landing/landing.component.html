@@ -74,14 +74,7 @@
         <mat-button-toggle *ngIf="deep_need_compass" class="under-button" routerLink="/assessment"><span>Bedömning</span></mat-button-toggle >
 
         <mat-divider></mat-divider>
-        <mat-button-toggle (click)="changeShowFillerEvent()">
-            <span>Händelse & plan</span>
-            <span class="material-icons">{{showFillerEventIcon}}</span>
-        </mat-button-toggle >
-
-        <mat-button-toggle *ngIf="event" class="under-button" routerLink="/event"><span>Händelse</span></mat-button-toggle >
-        <mat-divider *ngIf="event"></mat-divider>
-        <mat-button-toggle *ngIf="event" class="under-button" routerLink="/plan"><span>Min plan framåt</span></mat-button-toggle >
+        <mat-button-toggle (click)="changeShowFiller()" routerLink="/event">Tidslinje & händelser</mat-button-toggle >
 
         <mat-divider ></mat-divider>
         <mat-button-toggle (click)="changeShowFiller()" disabled="isDiabled">Admin </mat-button-toggle >

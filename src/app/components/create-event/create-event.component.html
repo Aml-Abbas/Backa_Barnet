@@ -1,28 +1,37 @@
 <div class="container">
-    <h1>Händelser</h1>
-    <h4>Insatser och viktiga händelser i Kalles liv</h4>
+  <h1>Min plan framåt</h1>
+  <h4>Lägg till ny insats</h4>
 
-    <h5>Händelse</h5>
+
+  <h5>Händelse</h5>
+  <mat-form-field appearance="fill">
+      <input matInput>
+    </mat-form-field>
+
+    <h5>Planerad insats</h5>
     <mat-form-field appearance="fill">
-        <input matInput>
-      </mat-form-field>
+      <input matInput>
+    </mat-form-field>
 
-      <h5>Detta stöd gavs</h5>
+    <div class="container-2">
+      <h5>Ansvariga för insatsen</h5>
       <mat-form-field appearance="fill">
-        <input matInput>
-      </mat-form-field>
-
-
-      <h5>Mina medhjälpare</h5>
-      <mat-form-field class="half-width" appearance="fill">
         <mat-label>Namn</mat-label>
         <input matInput>
       </mat-form-field> 
-      <mat-form-field class="half-width" appearance="fill">
+      <mat-form-field appearance="fill">
         <mat-label>Profession</mat-label>
         <input matInput>
       </mat-form-field>
+    </div>
 
-      <button mat-raised-button routerLink="/event">Spara</button>
+    <div class="container-2">
+      <h5>Start datum</h5>
+      <mat-form-field appearance="fill">
+        <input matInput>
+      </mat-form-field>
+  </div>
+
+    <button mat-raised-button routerLink="/plan">Spara</button>
 
 </div>
