@@ -71,7 +71,11 @@
             <tbody role="rowgroup">
              <tr role="row" *ngFor="let question of QuestionTextData; let i= index;">
               <td *ngIf="i < 8 ">{{question.text}}</td>
-              <td *ngIf="i < 8 ">{{current_card.grades[i]}}</td>
+              <td *ngIf="i < 8 ">
+                <p *ngIf="current_card.grades[i] == '0'">Ja</p>
+                <p *ngIf="current_card.grades[i] == '1'">Nej</p>
+                <p *ngIf="current_card.grades[i] == '2'">Vet ej</p>
+              </td>
               <td *ngIf="i < 8 ">{{current_card.comments[i]}}</td>
              </tr>
             </tbody>
