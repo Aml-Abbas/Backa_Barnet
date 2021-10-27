@@ -53,7 +53,8 @@
             <span class="material-icons">{{showFillerCompassIcon}}</span>
         </mat-button-toggle >
 
-          <mat-button-toggle *ngIf="need_compass" class="under-button" routerLink="/conversation-material"><span>Samtalsunderlag</span></mat-button-toggle >
+          <mat-button-toggle *ngIf="need_compass" class="under-button" (click)="goToRoute($event, 'conversation-material')"
+           [disabled]="isDisabledConversationMaterial"><span>Samtalsunderlag</span></mat-button-toggle >
           <mat-divider *ngIf="need_compass"></mat-divider>
           <mat-button-toggle *ngIf="need_compass" class="under-button" routerLink="/need-compass"><span>Behovskompassar</span></mat-button-toggle >
           <mat-divider *ngIf="need_compass"></mat-divider>
@@ -77,7 +78,7 @@
         <mat-button-toggle (click)="changeShowFiller()" routerLink="/event">Tidslinje & händelser</mat-button-toggle >
 
         <mat-divider ></mat-divider>
-        <mat-button-toggle (click)="goToRoute($event, 'admin')" [disabled]="isDiabledAdmin">Admin </mat-button-toggle >
+        <mat-button-toggle (click)="goToRoute($event, 'admin')" [disabled]="isDisabledAdmin">Admin </mat-button-toggle >
          
         <mat-divider></mat-divider>
         

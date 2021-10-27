@@ -28,6 +28,8 @@ import { SignInGuard } from './guards/sign-in.guard';
 import { EditGuardianGuard } from './guards/edit-guardian.guard';
 import { DiscoverCardDetailsGuard } from './guards/discover-card-details.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { ConversationMaterialGuard } from './guards/conversation-material.guard';
+import { ConversationMaterialDetailsGuard } from './guards/conversation-material-details.guard';
 
 
 const routes: Routes = [
@@ -37,8 +39,7 @@ const routes: Routes = [
     children:[
       {
         path: 'admin',
-        component: AdminComponent
-        //, canActivate: [AdminGuard]
+        component: AdminComponent, canActivate: [AdminGuard]
       },
       {
         path: 'communication-material',
@@ -94,15 +95,15 @@ const routes: Routes = [
       },
       {
         path: 'conversation-material',
-        component: ConversationMaterialComponent
+        component: ConversationMaterialComponent, canActivate: [ConversationMaterialGuard]
       },
       {
         path: 'create-conversation-material',
-        component: CreateConversationMaterialComponent
+        component: CreateConversationMaterialComponent, canActivate: [ConversationMaterialGuard]
       },
       {
         path: 'conversation-material/:conversationMaterialId',
-        component: ConversationMaterialDetailsComponent
+        component: ConversationMaterialDetailsComponent, canActivate: [ConversationMaterialDetailsGuard]
       },
       {
         path: 'contact-person',

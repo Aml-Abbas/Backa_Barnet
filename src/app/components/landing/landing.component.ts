@@ -25,8 +25,9 @@ export class LandingComponent implements OnInit {
  current_user$= new Observable<User | null>();
  userRoleId: number;
 
- isDiabledAdmin= true;
-  
+ isDisabledAdmin= true;
+ isDisabledConversationMaterial= true;
+
  constructor(private observer: BreakpointObserver,
     private store: Store<fromState.State>) {
     }
@@ -112,10 +113,11 @@ changeShowFiller(){
     this.current_user$.subscribe(data=>{
       this.userRoleId= parseInt(String(data?.roleID));
     })
-
+    if(this.userRoleId==4 || this.userRoleId==2){
+      this.isDisabledConversationMaterial= false;
+    }
     if(this.userRoleId==4){
-      console.log('Admin yes');
-      this.isDiabledAdmin= false;
+      this.isDisabledAdmin= false;
     }
   }
 
@@ -124,12 +126,20 @@ changeShowFiller(){
   }
 
   goToRoute(event, route: string){
-    this.changeShowFiller();
-    if(this.isDiabledAdmin){
-      event.stopPropagation()
-    }else{
-      this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
+    if(route== 'admin'){
+      if(this.isDisabledAdmin){
+        event.stopPropagation()
+      }else{
+        this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
+      }
+    }else if(route== 'conversation-material'){
+      if(this.isDisabledConversationMaterial){
+        event.stopPropagation()
+      }else{
+        this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
+      }
     }
+   
   }
 
   logOut(){
