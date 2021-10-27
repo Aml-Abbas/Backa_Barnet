@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
 import {MatTableDataSource} from '@angular/material/table';
+import * as fromStore from 'src/app/state';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-contact',
@@ -15,10 +17,16 @@ export class ContactComponent implements OnInit {
   private persons:Person[]= [];
   displayedColumns: string[] = ['personNbr', 'firstName','changedOn', 'status'];
   dataSource = new MatTableDataSource(this.persons);
+  current_user$: Observable<User| null> = new Observable<User| null>();
 
   constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
+    this.current_user$ = this.store.select(fromState.getCurrentUser);
+    this.current_user$.subscribe(data=>{
+      this.store.dispatch(new fromStore.LoadDiscoverCard(String(data?.userID)));
+    });
+
     this.persons$ = this.store.select(fromState.getPersons);
    
     this.persons$.subscribe(data => {

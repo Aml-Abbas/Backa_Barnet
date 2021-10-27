@@ -24,21 +24,10 @@ export class DiscoverCardComponent implements OnInit {
   comments: string[]= [];
   dataSource = new MatTableDataSource(this.cards);
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  constructor(private store: Store<fromState.State>) { }
+  constructor(private store: Store<fromState.State>) {}
 
   ngOnInit(): void {
-    this.current_user$ = this.store.select(fromState.getCurrentUser);
-    this.current_user$.subscribe(data=>{
-      this.store.dispatch(new fromStore.LoadDiscoverCard(String(data?.userID)));
-    });
     
-    this.cards= [];
-
     this.discoverCards$ = this.store.select(fromState.getDiscoverCards);
     this.discoverCards$.subscribe(data=>{
       var index=1;
@@ -64,10 +53,6 @@ export class DiscoverCardComponent implements OnInit {
         let grade= discoverCard.grade;
         let comment= discoverCard.comment;
 
-        console.log(questionID);
-        console.log(grade);
-        console.log(comment);
-
         if(!this.containsCard(discoverCard.gradedOn)){
          this.questions.push(questionID);
          this.grades.push(grade);
@@ -88,11 +73,9 @@ export class DiscoverCardComponent implements OnInit {
                 element.comments.push(comment);
               }      
             });
-
         }
       })
         });
-        this.dataSource = new MatTableDataSource(this.cards);
   }
 
   moveToCard(card: Card){
@@ -120,4 +103,10 @@ export class DiscoverCardComponent implements OnInit {
     });
     return found;
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 }
