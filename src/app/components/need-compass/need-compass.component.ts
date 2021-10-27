@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartType, RadialChartOptions } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { defaultColors, Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-need-compass',
@@ -8,11 +8,14 @@ import { Label } from 'ng2-charts';
   styleUrls: ['./need-compass.component.scss']
 })
 export class NeedCompassComponent implements OnInit {
+  selectedType=1;
+  selectedDate= 0;
+  
   public radarChartOptions: RadialChartOptions = {
     responsive: true ,
     title:{
-display: true,
-//text:'helllo'
+      display: true,
+      text:''
     },
        scale:{
       gridLines:{
@@ -38,14 +41,16 @@ display: true,
       },point:{
        // borderWidth: 30,
       }, line:{
-        borderWidth:1,
+        borderWidth:2,
         tension: 0.15,
-        fill: false
+        fill: false,
+        borderColor:['pink', 'black']
       },
     },
     legend:{
       labels:{
         fontSize: 15,
+        
       }, 
     }
   };
@@ -53,11 +58,25 @@ display: true,
   public radarChartLabels: Label[] = ['OMSORG', 'TRYGGHET', 'MÅR BRA', 
                                       'FRITID', 'TILLHÖRIGHET', 'ANSVARSTAGANDE',
                                       'RESPEKTERAS', 'UTVECKLAS'];
+  public colors: string[]=['#003686', '#353370', '#e0448c', '#df2d5b', '#eb612d',
+                            '#f79c2e', '#4ba562', '#31acaf', '#A52A2A', '#0000FF',
+                            '#2F4F4F', '#228B22', '#FF69B4','#CD853F', '#008080',
+                            '#FF6347', '#A0522D', '#808000', '#DAA520', '#B22222',
+                           '#D2691E'];
 
   public radarChartData: ChartDataSets[] = [
     { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Anna Eriksson'},
     { data: [3, 3, 1, 2, 1, 3, 4, 4], label: 'Dalia Bagdadi'},
-    { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Amina Malak'}
+    { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Amina Malak'},
+    { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Nina Larsson'},
+    { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Baraa Lund'},
+    { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Maria Erik'},
+    { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Lama Lila'},
+    { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Anna Eriksson'},
+    { data: [3, 3, 1, 2, 1, 3, 4, 4], label: 'Dalia Bagdadi'},
+    { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Amina Malak'},
+
+
   ];
   public radarChartType: ChartType = 'radar';
 

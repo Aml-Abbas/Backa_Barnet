@@ -2,6 +2,24 @@
   <h1>Behovskompassen</h1>
 
   <h4>Bedömning av Kalles situation</h4>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Antal Vårdnadshavare som ska fylla formulär</mat-label>
+    <mat-select [(ngModel)]="selectedType" name="selectedType">
+      <mat-option value="1">Samtalsunderlag</mat-option>
+      <mat-option value="2">Skattning</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Antal Vårdnadshavare som ska fylla formulär</mat-label>
+    <mat-select [(ngModel)]="selectedDate" name="selectedDate">
+      <mat-option value="0">Alla</mat-option>
+      <mat-option value="1">2021</mat-option>
+      <mat-option value="2">2020</mat-option>
+    </mat-select>
+  </mat-form-field>
+
     <div style="display: block;">
         <canvas width="15" baseChart 
           [datasets]="radarChartData"
