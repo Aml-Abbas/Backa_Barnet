@@ -10,51 +10,51 @@
         <mat-divider></mat-divider>
         <mat-list-item>
           <h4>Upptäckarens namn:</h4>
-          {{current_card.userName}}</mat-list-item>
+          <p>{{current_card.userName}}</p></mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
           <h4>Upptackarens organisation:</h4>
-          {{current_card.userOrg}}</mat-list-item>
+          <p>{{current_card.userOrg}}</p></mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
           <h4>Upptäckarens title:</h4>
-          {{current_card.userTitle}}</mat-list-item>
+          <p>{{current_card.userTitle}}</p></mat-list-item>
 
         <mat-divider></mat-divider>
         <mat-list-item>
           <h4>Barnets namn:</h4>
-          {{current_card.personName}}</mat-list-item>
+          <p>{{current_card.personName}}</p></mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
           <h4>Barnets personnummer:</h4>
-          {{current_card.personNbr}}</mat-list-item>
+          <p>{{current_card.personNbr}}</p></mat-list-item>
 
         <mat-divider></mat-divider>
         <mat-list-item>
           <h4>Vårdnadshavare 1 namn:</h4>
-          {{current_card.guardian1}}</mat-list-item>
+          <p>{{current_card.guardian1}}</p></mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
           <h4>Vårdnadshavare 1 personnummer:</h4>
-          {{current_card.guardianPersonNbr1}}</mat-list-item>
+          <p>{{current_card.guardianPersonNbr1}}</p></mat-list-item>
 
           <mat-divider></mat-divider>
           <mat-list-item>
             <h4>Vårdnadshavare 2 namn:</h4>
-            {{current_card.guardian2}}</mat-list-item>
+            <p>{{current_card.guardian2}}</p></mat-list-item>
           <mat-divider></mat-divider>
           <mat-list-item>
             <h4>Vårdnadshavare 2 personnummer:</h4>
-            {{current_card.guardianPersonNbr2}}</mat-list-item>
+            <p>{{current_card.guardianPersonNbr2}}</p></mat-list-item>
   
         <mat-divider></mat-divider>
         <mat-list-item>
           <h4>healthTeam:</h4>
-          {{current_card.healthTeam}}</mat-list-item>
+          <p>{{current_card.healthTeam}}</p></mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
           <h4>Situationen där barnets upptäckts:</h4>
-          {{current_card.situation}}</mat-list-item>
+          <p>{{current_card.situation}}</p></mat-list-item>
           <mat-divider></mat-divider>
 
 
@@ -79,14 +79,14 @@
             <mat-divider></mat-divider>  
 
             <div *ngFor="let question of QuestionTextData; let i= index;">
-              <mat-list-item *ngIf="i == 8 ">
-                <h4>{{question.text}}</h4>
+              <mat-list-item *ngIf="i == 8 " style="height: 80px !important;">
+                <h4 >{{question.text}}</h4>
                 <p *ngIf="current_card.grades[i] != '0'">Ja</p>
                 <p *ngIf="current_card.grades[i] == '0'">Nej</p>
-                {{current_card.comments[i]}}
+                <p>{{current_card.comments[i]}}</p>
                 </mat-list-item>
 
-                <mat-list-item *ngIf="i > 8 ">
+                <mat-list-item *ngIf="i > 8 " style="height: 90px !important;">
                   <h4>{{question.text}}</h4>
                   <p *ngIf="current_card.grades[i] == '2'">Ja, båda</p>
                   <p *ngIf="current_card.grades[i] == '1'">Ja, en av dem</p>

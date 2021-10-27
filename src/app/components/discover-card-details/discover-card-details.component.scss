@@ -22,7 +22,7 @@ p{
 }
     
   table {
-    width: 60%;
+    width: 100%;
     background-color: whitesmoke;
     border-collapse: collapse;
     padding: 5px;
@@ -39,4 +39,18 @@ p{
 
   tr{
     border-bottom: 1px solid lightgray;
+  }
+
+
+  @media screen and (max-width: 900px){
+    ::ng-deep .mat-list-item{
+     // height: 85px !important;
+    }
+    h4{
+      font-size: 14px;
+      font-weight: normal;
+  }
+  p{
+      font-size: 12px;
+  }
   }
