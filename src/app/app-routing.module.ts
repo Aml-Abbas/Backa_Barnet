@@ -28,6 +28,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AuthGuard } from './guards/auth.guard';
 import { SignInGuard } from './guards/sign-in.guard';
 import { EditGuardianGuard } from './guards/edit-guardian.guard';
+import { DiscoverCardDetailsGuard } from './guards/discover-card-details.guard';
 
 
 const routes: Routes = [
@@ -69,7 +70,7 @@ const routes: Routes = [
       },
       {
         path: 'discover-card/:discoverCardId',
-        component: DiscoverCardDetailsComponent
+        component: DiscoverCardDetailsComponent, canActivate: [DiscoverCardDetailsGuard]
       },
       {
         path: 'need-compass',

@@ -9,11 +9,19 @@ export class CurrentCardEffect {
   constructor(private actions$: Actions) {}
 
 
-  updateCurrentPerson$ = createEffect(() =>
+  updateCurrentCard$ = createEffect(() =>
   this.actions$.pipe(
     ofType(currentCardAction.UPDATE_CARD),
     map((action: currentCardAction.UpdateCard) => {
       return new currentCardAction.UpdateCardSuccess(action.payload);
     })));
 
-  }
+
+    updateCurrentCards$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(currentCardAction.UPDATE_CARDS),
+      map((action: currentCardAction.UpdateCards) => {
+        return new currentCardAction.UpdateCardsSuccess(action.payload);
+      })));
+
+    }

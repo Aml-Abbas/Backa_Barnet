@@ -76,6 +76,8 @@ export class DiscoverCardComponent implements OnInit {
         }
       })
         });
+        this.store.dispatch(new fromState.UpdateCards(this.cards));
+
   }
 
   moveToCard(card: Card){

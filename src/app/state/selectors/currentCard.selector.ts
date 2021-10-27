@@ -24,3 +24,20 @@ export const getCurrentCard = createSelector(
   fromCurrentCard.getCurrentCard
 );
 
+export const getCurrentCardsLoading = createSelector(
+  getCurrentCardState,
+  fromCurrentCard.getCurrentCardsLoading
+);
+
+
+export const getCurrentCardsLoaded = createSelector(
+    getCurrentCardState,
+  fromCurrentCard.getCurrentCardsLoaded
+);
+
+
+export const getCurrentCards = createSelector(
+    getCurrentCardState,
+  fromCurrentCard.getCurrentCards
+);
+

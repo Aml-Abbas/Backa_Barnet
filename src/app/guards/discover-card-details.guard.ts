@@ -1,15 +1,43 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import * as fromState from '../state';
+import { Store } from '@ngrx/store';
+import { tap } from 'rxjs/operators';
+import * as fromRoot from '../../app/state';
+import { of } from 'rxjs';
+import { Card } from 'src/app/models/Card';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DiscoverCardDetailsGuard implements CanActivate {
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+  
+  constructor(private store: Store<fromState.State>) {}
+
+  canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
+    var id= route.params.discoverCardId;
+    console.log(id);
+
+    return this.checkDiscoverCard(id);
   }
   
+  checkDiscoverCard(id: string): Observable<boolean>{
+   // var discoverCards= this.store.select(fromState.getDiscoverCards);
+    //discoverCards._subscribe
+    var found= false;
+    this.store.select(fromState.getCurrentCards).subscribe(data=>{
+      data.map((card: Card)=>{
+      if(card.id== id){
+        this.store.dispatch(new fromState.UpdateCard(card));
+        found= true;
+        }
+      })
+    });
+    if(!found){
+    this.store.dispatch(new fromRoot.Go({ path: ['discover-card'] }));
+    }
+
+    return of(found);
+  }
 }
