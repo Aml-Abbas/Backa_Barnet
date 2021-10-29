@@ -23,7 +23,7 @@
         <tbody role="rowgroup">
         
           <tr role="row" *ngFor="let question of category.questions; let index2= index;">
-              <td role="cell" [style.color]="category.color"><div style="width: 200px">{{question.text}}</div></td>
+              <td role="cell"><div style="width: 200px">{{question.text}}</div></td>
               <td role="cell">
                 <mat-select id="{{category.id}}" [(ngModel)]="question.score" name="{{question.score}}">
                   <mat-option value="1">1</mat-option>
@@ -35,7 +35,7 @@
               </td>
         </tr>
          <tr role="row">
-          <td [style.color]="category.color">Kommentar</td>
+          <td>Kommentar</td>
           <td>
             <textarea matInput [(ngModel)]="category.comment" name="{{category.comment}}"></textarea>
           </td>
@@ -63,7 +63,7 @@
           <tbody role="rowgroup">
              
            <tr role="row" *ngFor="let question of category.questions; let i= index;">
-            <td role="cell" [style.color]="category.color"><div style="width: 200px">{{question.text}}</div></td>
+            <td role="cell"><div style="width: 200px">{{question.text}}</div></td>
 
                <td role="cell" *ngFor="let oldScore of category.oldScores;">
                   {{oldScore.scores[i]}}
@@ -71,7 +71,7 @@
           </tr>
     
            <tr role="row">
-            <td [style.color]="category.color">Kommentar</td>
+            <td>Kommentar</td>
 
             <td *ngFor="let oldScore of category.oldScores;">
               {{oldScore.comment}}

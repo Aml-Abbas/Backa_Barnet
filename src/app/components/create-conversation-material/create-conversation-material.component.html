@@ -35,7 +35,7 @@
 
     <tr role="row" id="{{card.id}}" *ngFor="let card of scores; let i=index">
       <td role="cell" [style.color]='card.color'><strong>{{card.area}}</strong></td>
-      <td role="cell" [style.color]='card.color'>{{card.question}}</td>
+      <td role="cell" >{{card.question}}</td>
       <td role="cell">
         <!-- [style.border-color]='card.color' -->
           <mat-select id="{{card.class}}" [(ngModel)]="card.person_score" name="{{card.person_score}}">
