@@ -70,7 +70,6 @@ import { ConversationMaterialDetailsComponent } from './components/conversation-
 import { EstimateOverviewComponent } from './components/estimate-overview/estimate-overview.component';
 
 
-
 @NgModule({
   declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent,
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent,

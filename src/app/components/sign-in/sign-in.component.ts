@@ -6,7 +6,6 @@ import {Actions, ofType} from '@ngrx/effects';
 import * as loginAction from '../../state/actions/login.action';
 import { tap } from 'rxjs/operators';
 import {FormControl, Validators} from '@angular/forms';
-import { User } from 'src/app/models/User';
 
 
 @Component({

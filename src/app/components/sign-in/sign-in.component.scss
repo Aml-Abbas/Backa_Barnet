@@ -1,3 +1,4 @@
+
 h1{
     font-size: 40px;
     font-weight: bold;
@@ -50,14 +51,16 @@ mat-form-field{
     color: brown;
     font-size: 15px;
  }
-
- object{
-//background-color: black;
- }
+SVG{
+    height: 150px;
+    width: 150px;
+    margin-bottom: 15px;
+    margin-top: 5%;
+}
 
 @media only screen and (max-width: 800px) {
     .sign-in-button{
-        width: 50%;
-        margin-left: 25%;
+        width: 60%;
+        margin-left: 20%;
     }
   }
