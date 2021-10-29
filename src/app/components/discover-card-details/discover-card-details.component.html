@@ -2,7 +2,77 @@
     <h1>Upptäckarkortet</h1>
 
     <mat-list *ngIf="(current_card$ | async) as current_card">
-        <mat-list-item>
+
+      <table role="table" class="table_white_background">
+        <thead role="rowgroup">
+          <tr role="row">
+          </tr>
+      </thead>
+
+      <tbody role="rowgroup">
+       <tr role="row">
+        <td>Datum:</td>
+        <td>{{current_card.gradedOn.slice(0, 10)}}</td>
+       </tr>
+
+       <tr role="row">
+        <td>Upptäckarens namn:</td>
+        <td>{{current_card.userName}}</td>
+       </tr>
+
+       <tr role="row">
+        <td>Upptäckarens organisation:</td>
+        <td>{{current_card.userOrg}}</td>
+       </tr>
+
+       <tr role="row">
+        <td>Upptäckarens title:</td>
+        <td>{{current_card.userTitle}}</td>
+       </tr>
+
+       <tr role="row">
+        <td>Barnets namn:</td>
+        <td>{{current_card.personName}}</td>
+       </tr>
+
+       <tr role="row">
+        <td>Barnets personnummer:</td>
+        <td>{{current_card.personNbr}}</td>
+       </tr>
+
+       <tr role="row">
+        <td>Vårdnadshavare 1 namn::</td>
+        <td>{{current_card.guardian1}}</td>
+       </tr>
+
+       <tr role="row">
+        <td>Vårdnadshavare 1 personnummer:</td>
+        <td>{{current_card.guardianPersonNbr1}}</td>
+       </tr>
+
+       <tr role="row">
+        <td>Vårdnadshavare 2 namn::</td>
+        <td>{{current_card.guardian2}}</td>
+       </tr>
+
+       <tr role="row">
+        <td>Vårdnadshavare 2 personnummer:</td>
+        <td>{{current_card.guardianPersonNbr2}}</td>
+       </tr>
+
+       <tr role="row">
+        <td>healthTeam:</td>
+        <td>{{current_card.healthTeam}}</td>
+       </tr>
+
+       <tr role="row">
+        <td>Situationen där barnets upptäckts:</td>
+        <td>{{current_card.situation}}</td>
+       </tr>
+
+      </tbody>
+      </table>
+      <!--        <mat-list-item>
           <h4>Datum: </h4>
           <p>{{current_card.gradedOn.slice(0, 10)}}</p>
         </mat-list-item>
@@ -54,14 +124,14 @@
         <mat-divider></mat-divider>
         <mat-list-item>
           <h4>Situationen där barnets upptäckts:</h4>
-          <p>{{current_card.situation}}</p></mat-list-item>
+          <p>{{current_card.situation}}</p></mat-list-item> -->
           <mat-divider></mat-divider>
 
 
-            <div class="table-container" *ngIf="(current_card$ | async) as current_card">      
               <table role="table">
               <thead role="rowgroup">
                 <tr role="row">
+                  <th role="columnheader">kategori</th>
                 <th role="columnheader">Frågan</th>
                 <th role="columnheader">Betyg</th>
                 <th role="columnheader">Komment</th>
@@ -70,6 +140,7 @@
 
             <tbody role="rowgroup">
              <tr role="row" *ngFor="let question of QuestionTextData; let i= index;">
+              <td *ngIf="i < 8 " [style.color]="question.color"><strong>{{question.category}}</strong></td>
               <td *ngIf="i < 8 ">{{question.text}}</td>
               <td *ngIf="i < 8 ">
                 <p *ngIf="current_card.grades[i] == '0'">Ja</p>
@@ -100,7 +171,6 @@
                 <mat-divider></mat-divider>
     
             </div>
-          </div>
   
       </mat-list>
 
