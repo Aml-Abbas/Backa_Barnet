@@ -52,15 +52,23 @@ mat-form-field{
     font-size: 15px;
  }
 SVG{
-    height: 150px;
-    width: 150px;
+    height: 250px;
+    width: 250px;
     margin-bottom: 15px;
     margin-top: 5%;
+    //margin-left: 30%;
 }
+
 
 @media only screen and (max-width: 800px) {
     .sign-in-button{
         width: 60%;
         margin-left: 20%;
+    }
+    SVG{
+        margin-top: 40px;
+        height: 150px;
+        width: 150px;
+        margin-left: 13%;
     }
   }
