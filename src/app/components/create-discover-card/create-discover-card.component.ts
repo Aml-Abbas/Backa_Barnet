@@ -6,6 +6,9 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
+import { ContactGuardianService } from '../../services/contact-guardian/contact-guardian.service';
+import { Observable } from 'rxjs';
+import { Unit } from 'src/app/models/Unit';
 
 
 @Component({
@@ -45,11 +48,14 @@ export class CreateDiscoverCardComponent implements OnInit {
   guardians: string[][]=[['','', '', ''],['','','','']];
   comments: string[]=[];
 
-  personCotactName: string;
+  unitNbr: number=0;
+  unitString = '0';
+
   situationComment: string;
 
   isMeasureTaken: boolean;
   isMeasureTakenComment: string;
+  units$: Observable<Unit[]> = new Observable<Unit[]>();
 
 /*
 Hämtas automatisk, kalla på ett API för att hämta dem   
@@ -57,13 +63,15 @@ Hämtas automatisk, kalla på ett API för att hämta dem
   discovererOrganisationControl: string='';
   discovererTitleControl: string=''; */
 
-// hämta options för barnet enheter
 
   constructor(public dialog: MatDialog,
               private store: Store<fromState.State>,
-              private _formBuilder: FormBuilder) {}
+              private _formBuilder: FormBuilder,
+              private contactGuardianService: ContactGuardianService) {}
 
   ngOnInit(): void {
+    this.units$= this.contactGuardianService.getUnits();
+
     this.createDiscoveCardFormGroup = this._formBuilder.group({
       dateControl: ['', Validators.required],
     /*   discovererNameControl: ['', [Validators.required, Validators.minLength(2)]],
@@ -72,6 +80,7 @@ Hämtas automatisk, kalla på ett API för att hämta dem
 
       nameControl: ['', [Validators.required, Validators.minLength(2)]],
       personNbrControl: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+      unitStringControl:['', Validators.required],
 
       situationCommentControl:['', Validators.required],
 
@@ -82,7 +91,11 @@ Hämtas automatisk, kalla på ett API för att hämta dem
   changeGuardianNbr(nbr: number){
     this.guardianNbr= nbr;
   }
+  changeUnitNbr(name: string, nbr: string){
+    this.unitString= name;
+    this.unitNbr= parseInt(nbr);
 
+  }
   radioChange(event: MatRadioChange) {
     this.isMeasureTaken = event.value;
 }
@@ -116,7 +129,7 @@ isAnonyms(): boolean{
   if(this.guardians[0][3]=='2'||this.guardians[1][3]=='2'){
     return false;
     // this.text= 'kortet kommer att annomineras för det saknas samtycke';
-  }else if(this.personCotactName=='Annat'){
+  }else if(this.unitNbr==7){
     return false;
   }
     // this.text= 'kortet kommer att skickas in';
@@ -166,6 +179,7 @@ isAnonyms(): boolean{
 
      save() {
        /* spara för sen */
+       console.log(this.unitNbr);
      }
 }
 

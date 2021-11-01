@@ -43,12 +43,10 @@
   
       </div>
 
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" *ngIf="(units$ | async) as units">
         <mat-label>BMM/ BvC/ Förskola/ Skola (Barnkontakt)</mat-label>
-        <mat-select [(ngModel)]="personCotactName" name="personCotactName">
-          <mat-option value="GustavsLund">GustavsLund Skola</mat-option>
-          <mat-option value="Nicolai">Nicolai Skola</mat-option>
-          <mat-option value="Annat">Annat</mat-option>
+        <mat-select formControlName="unitStringControl">
+          <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitID}}" (click)="changeUnitNbr(unit.unitName, unit.unitID)">{{unit.unitName}}</mat-option>
         </mat-select>
       </mat-form-field>
 
