@@ -141,48 +141,22 @@ changeShowFiller(){
   }
 
   goToRoute(event, route: string){
-    if(route== 'admin'){
-      if(this.isDisabledAdmin){
+    if(route== 'admin' && this.isDisabledAdmin){
         event.stopPropagation()
-      }else{
-        this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
-      }
-    }else if(route== 'conversation-material'){
-      if(this.isDisabledConversationMaterial){
+    }else if(route== 'conversation-material' && this.isDisabledConversationMaterial){
         event.stopPropagation()
-      }else{
-        this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
-      }
-    }else if(route== 'need-compass'){
-      if(this.isDisabledNeedCompass){
+    }else if(route== 'need-compass' && this.isDisabledNeedCompass){
         event.stopPropagation()
-      }else{
-        this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
-      }
-    }else if(route== 'estimate'){
-      if(this.isDisabledEstimate){
+    }else if(route== 'estimate' && this.isDisabledEstimate){
         event.stopPropagation()
-      }else{
-        this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
-      }
-    }else if(route== 'consent'){
-      if(this.isDisabledConsent){
+    }else if(route== 'consent' && this.isDisabledConsent){
         event.stopPropagation()
-      }else{
-        this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
-      }
-    }else if(route== 'event'){
-      if(this.isDisabledEvent){
+    }else if(route== 'event' && this.isDisabledEvent){
         event.stopPropagation()
-      }else{
-        this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
-      }
-    }else if(route== 'goal'){
-      if(this.isDisabledGoal){
+    }else if(route== 'goal' && this.isDisabledGoal){
         event.stopPropagation()
-      }else{
-        this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
-      }
+    }else{
+      this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
     }
   }
 
