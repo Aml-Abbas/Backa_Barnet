@@ -57,6 +57,11 @@ h4 {
 
 }
 
+.mat-button-toggle.mat-button-toggle-disabled {
+    background-color: lightgray;
+    color: black;
+  }
+
 ::ng-deep .mat-button-toggle-label-content {
         padding-left: 0px !important;
         padding-right: 0px !important;

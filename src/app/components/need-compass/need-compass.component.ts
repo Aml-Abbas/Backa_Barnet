@@ -51,7 +51,8 @@ export class NeedCompassComponent implements OnInit {
     },
     legend:{
       labels:{
-        fontSize: 15
+        fontSize: 15,
+        usePointStyle: false
       }, 
     }
   };
@@ -66,17 +67,12 @@ export class NeedCompassComponent implements OnInit {
                            '#D2691E'];
 
   public radarChartData: ChartDataSets[] = [
-    { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Anna Eriksson'},
+    { data: [0, 4, 0, 4, 1, 4, 5, 0], label: 'Anna Eriksson'},
     { data: [3, 3, 1, 2, 1, 3, 4, 4], label: 'Dalia Bagdadi'},
     { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Amina Malak'},
-    { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Nina Larsson'},
-    { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Baraa Lund'},
-    { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Maria Erik'},
-    { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Lama Lila'},
-    { data: [1, 4, 0, 4, 1, 4, 5, 0], label: 'Anna Eriksson'},
+    { data: [0, 4, 0, 4, 1, 4, 5, 0], label: 'Anna Eriksson'},
     { data: [3, 3, 1, 2, 1, 3, 4, 4], label: 'Dalia Bagdadi'},
     { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Amina Malak'},
-
 
   ];
   public radarChartType: ChartType = 'radar';

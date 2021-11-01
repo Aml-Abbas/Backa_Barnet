@@ -1,8 +1,23 @@
 svg{
-    width: 420px;
+    width: 37.5%;
     position: relative;
-    top: 124px;
-    left: 450px;
+    top: 92px;
+    left: 33.1%;
     border: 1px red solid;
 
 }
+
+
+@media screen and (max-width: 1600px){
+    svg{
+        width: 34%;
+        top: 104px;
+        left: 34.6%;    
+    }
+  }
+  @media screen and (max-width: 1024px){
+    mat-form-field{
+      width: 100%;
+    }
+
+  }
