@@ -156,7 +156,6 @@ changeShowFiller(){
     }else if(route== 'goal' && this.isDisabledGoal){
         event.stopPropagation()
     }else{
-      this.changeShowFiller();
       this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
     }
   }
