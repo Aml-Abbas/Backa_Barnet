@@ -23,7 +23,6 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { ConsentComponent } from './components/consent/consent.component';
 import { CreateDiscoverCardComponent } from './components/create-discover-card/create-discover-card.component';
 import { DeepNeedCompassComponent } from './components/deep-need-compass/deep-need-compass.component';
-import { AssessmentComponent } from './components/assessment/assessment.component';
 import { ConversationMaterialComponent } from './components/conversation-material/conversation-material.component';
 import { ContactPersonComponent } from './components/contact-person/contact-person.component';
 import { ContactGuardianComponent } from './components/contact-guardian/contact-guardian.component';
@@ -76,7 +75,7 @@ import { BBLogComponent } from './components/landing/bb-log.component';
   declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent,
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent,
     EventComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent,
-    DeepNeedCompassComponent, AssessmentComponent, ConversationMaterialComponent,
+    DeepNeedCompassComponent, ConversationMaterialComponent,
     ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, 
     EditContactGuardianComponent, CreateDiscoverCardDialogComponent, DiscoverCardDetailsComponent, 
     CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent, SvgComponent, BBLogComponent],

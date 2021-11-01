@@ -25,8 +25,13 @@ export class LandingComponent implements OnInit {
  current_user$= new Observable<User | null>();
  userRoleId: number;
 
+ isDisabledEstimate=true;
  isDisabledAdmin= true;
  isDisabledConversationMaterial= true;
+ isDisabledNeedCompass= true;
+ isDisabledConsent= true;
+ isDisabledEvent= true;
+ isDisabledGoal= true;
 
  constructor(private observer: BreakpointObserver,
     private store: Store<fromState.State>) {
@@ -113,9 +118,19 @@ changeShowFiller(){
     this.current_user$.subscribe(data=>{
       this.userRoleId= parseInt(String(data?.roleID));
     })
+
+
     if(this.userRoleId==4 || this.userRoleId==2){
       this.isDisabledConversationMaterial= false;
+      this.isDisabledEvent= false;
     }
+    if(this.userRoleId==4|| this.userRoleId==2|| this.userRoleId==3){
+      this.isDisabledEstimate= false;
+      this.isDisabledNeedCompass= false;
+      this.isDisabledConsent= false;
+      this.isDisabledGoal= false;
+    }
+
     if(this.userRoleId==4){
       this.isDisabledAdmin= false;
     }
@@ -138,8 +153,37 @@ changeShowFiller(){
       }else{
         this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
       }
+    }else if(route== 'need-compass'){
+      if(this.isDisabledNeedCompass){
+        event.stopPropagation()
+      }else{
+        this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
+      }
+    }else if(route== 'estimate'){
+      if(this.isDisabledEstimate){
+        event.stopPropagation()
+      }else{
+        this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
+      }
+    }else if(route== 'consent'){
+      if(this.isDisabledConsent){
+        event.stopPropagation()
+      }else{
+        this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
+      }
+    }else if(route== 'event'){
+      if(this.isDisabledEvent){
+        event.stopPropagation()
+      }else{
+        this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
+      }
+    }else if(route== 'goal'){
+      if(this.isDisabledGoal){
+        event.stopPropagation()
+      }else{
+        this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
+      }
     }
-   
   }
 
   logOut(){

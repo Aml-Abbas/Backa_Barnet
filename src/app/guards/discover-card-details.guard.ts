@@ -23,8 +23,6 @@ export class DiscoverCardDetailsGuard implements CanActivate {
   }
   
   checkDiscoverCard(id: string): Observable<boolean>{
-   // var discoverCards= this.store.select(fromState.getDiscoverCards);
-    //discoverCards._subscribe
     var found= false;
     this.store.select(fromState.getCurrentCards).subscribe(data=>{
       data.map((card: Card)=>{

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as fromState from '../../state';
 
 
 
@@ -8,11 +10,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./consent.component.scss']
 })
 export class ConsentComponent implements OnInit {
+  userRoleId: string;
 
 
-  constructor() { }
+  constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
+    this.store.select(fromState.getCurrentUser).subscribe(data=>{
+      this.userRoleId= String(data?.roleID);
+
+    });
+
   }
     
+  save(){
+    
+  }
 }

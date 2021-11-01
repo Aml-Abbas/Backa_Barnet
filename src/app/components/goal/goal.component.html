@@ -1,6 +1,9 @@
 <div class="container">
 <h1>Mål med barnplanen</h1>
-<h3>Kalles mål</h3>
 
+<div *ngIf="(current_person$ | async) as current_person">
 
+<h3>{{current_person.firstName}}s mål</h3>
+
+</div>
 </div>

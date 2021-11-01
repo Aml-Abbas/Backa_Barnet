@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
-
+import * as fromRoot from '../../state';
+import { Store } from '@ngrx/store';
+import * as fromState from '../../state';
+import { Observable } from 'rxjs';
     
-
 @Component({
   selector: 'app-estimate',
   templateUrl: './estimate.component.html',
@@ -14,6 +16,7 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
 })
 export class EstimateComponent implements OnInit {
+  userRoleId: string;
 
   categories = [
     { area: "OMSORG", id: "care",class: "care-class", 
@@ -209,9 +212,14 @@ export class EstimateComponent implements OnInit {
   freetime_3: string; 
   comments: string[]=[];
  */
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder,
+               private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
+    this.store.select(fromState.getCurrentUser).subscribe(data=>{
+      this.userRoleId= String(data?.roleID);
+
+    });
 
   /*   this.careFormGroup = this._formBuilder.group({
       care_1: [undefined, Validators.required],

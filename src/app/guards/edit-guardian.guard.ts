@@ -21,7 +21,6 @@ canActivate(): Observable<boolean> {
     console.log(String(data?.roleID));
     if(String(data?.roleID)!='2' && String(data?.roleID)!='4'){
       this.store.dispatch(new fromRoot.Back());
-
     }
   });
 

@@ -62,7 +62,7 @@
     </tbody>
   </table>
 
-  <button mat-raised-button >Spara</button>
+  <button mat-raised-button (click)="save()" *ngIf="userRoleId=='4' || userRoleId=='3'">Spara</button>
 
 
 </div>

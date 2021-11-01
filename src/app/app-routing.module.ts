@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './components/admin/admin.component';
-import { AssessmentComponent } from './components/assessment/assessment.component';
 import { CommunicationMaterialComponent } from './components/communication-material/communication-material.component';
 import { ConsentComponent } from './components/consent/consent.component';
 import { ContactGuardianComponent } from './components/contact-guardian/contact-guardian.component';
@@ -30,6 +29,13 @@ import { DiscoverCardDetailsGuard } from './guards/discover-card-details.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { ConversationMaterialGuard } from './guards/conversation-material.guard';
 import { ConversationMaterialDetailsGuard } from './guards/conversation-material-details.guard';
+import { EstimateGuard } from './guards/estimate.guard';
+import { EstimateOverviewGuard } from './guards/estimate-overview.guard';
+import { NeedCompassGuard } from './guards/need-compass.guard';
+import { ConsentGuard } from './guards/consent.guard';
+import { EventGuard } from './guards/event.guard';
+import { GoalGuard } from './guards/goal.guard';
+import { CreateEventGuard } from './guards/create-event.guard';
 
 
 const routes: Routes = [
@@ -51,19 +57,19 @@ const routes: Routes = [
       },
       {
         path: 'estimate',
-        component: EstimateComponent
+        component: EstimateComponent, canActivate: [EstimateGuard]
       },
       {
         path: 'estimate-overview',
-        component: EstimateOverviewComponent
+        component: EstimateOverviewComponent, canActivate: [EstimateOverviewGuard]
       },
       {
         path: 'event',
-        component: EventComponent
+        component: EventComponent, canActivate: [EventGuard]
       },
       {
         path: 'goal',
-        component: GoalComponent
+        component: GoalComponent, canActivate: [GoalGuard]
       },
       {
         path: 'discover-card',
@@ -75,11 +81,11 @@ const routes: Routes = [
       },
       {
         path: 'need-compass',
-        component: NeedCompassComponent
+        component: NeedCompassComponent, canActivate: [NeedCompassGuard]
       },
       {
         path: 'consent',
-        component: ConsentComponent
+        component: ConsentComponent, canActivate: [ConsentGuard]
       },
       {
         path: 'create-discover-card',
@@ -88,10 +94,6 @@ const routes: Routes = [
       {
         path: 'deep-need-compass',
         component: DeepNeedCompassComponent
-      },
-      {
-        path: 'assessment',
-        component: AssessmentComponent
       },
       {
         path: 'conversation-material',
@@ -119,7 +121,7 @@ const routes: Routes = [
       },
       {
         path: 'create-event',
-        component: CreateEventComponent
+        component: CreateEventComponent, canActivate: [CreateEventGuard]
       },
     ]
   },
