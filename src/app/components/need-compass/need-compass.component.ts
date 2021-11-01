@@ -20,18 +20,20 @@ export class NeedCompassComponent implements OnInit {
        scale:{
       gridLines:{
         circular: true,
-        color: 'black'
+        color: 'transparent'
 
       },
        angleLines: {
             display: true,
-            color: 'black'
+            color: 'transparent'
         },
         ticks: {
           min: 0,
           max: 5,
           maxTicksLimit: 6,
           fontSize: 15,
+          fontColor:'transparent',
+          backdropColor:'transparent'
     }
     },
     elements:{
@@ -49,15 +51,14 @@ export class NeedCompassComponent implements OnInit {
     },
     legend:{
       labels:{
-        fontSize: 15,
-        
+        fontSize: 15
       }, 
     }
   };
 
-  public radarChartLabels: Label[] = ['OMSORG', 'TRYGGHET', 'MÅR BRA', 
-                                      'FRITID', 'TILLHÖRIGHET', 'ANSVARSTAGANDE',
-                                      'RESPEKTERAS', 'UTVECKLAS'];
+  public radarChartLabels: Label[] = ['', '', '', 
+                                      '', '', '',
+                                      '', ''];
   public colors: string[]=['#003686', '#353370', '#e0448c', '#df2d5b', '#eb612d',
                             '#f79c2e', '#4ba562', '#31acaf', '#A52A2A', '#0000FF',
                             '#2F4F4F', '#228B22', '#FF69B4','#CD853F', '#008080',

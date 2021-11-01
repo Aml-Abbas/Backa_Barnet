@@ -29,6 +29,20 @@ h1{
   ::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
     color: white !important;
   }
+
+  .parent {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  .image2 {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    border: 1px green solid;
+  }
+
+
   @media screen and (max-width: 1024px){
     mat-form-field{
       width: 100%;

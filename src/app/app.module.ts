@@ -68,7 +68,7 @@ import { DiscoverCardDetailsComponent } from './components/discover-card-details
 import { CreateConversationMaterialComponent } from './components/create-conversation-material/create-conversation-material.component';
 import { ConversationMaterialDetailsComponent } from './components/conversation-material-details/conversation-material-details.component';
 import { EstimateOverviewComponent } from './components/estimate-overview/estimate-overview.component';
-import { SvgComponent } from './components/deep-need-compass/svg.component';
+import { SvgComponent } from './components/need-compass/svg.component';
 import { BBLogComponent } from './components/landing/bb-log.component';
 
 
