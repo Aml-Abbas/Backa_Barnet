@@ -4,8 +4,9 @@
 
   <div class="search">
     <mat-form-field appearance="standard">
-      <mat-label>Sök - namn eller personnummer</mat-label>
-      <input matInput (keyup)="applyFilter($event)" #input>
+      <mat-label>Sök - namn eller personnummer
+      </mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input>  
     </mat-form-field>
     <button mat-raised-button routerLink="/create-discover-card">Nytt Upptäckt</button>
   </div>

@@ -17,9 +17,11 @@ h2{
   .mat-form-field {
     font-size: 14px;
     width: 55%;
+    height: 55px;
   }
 
-td, th, tr{
+
+  td, th, tr{
   color: black;
 }
   
@@ -56,6 +58,7 @@ td{
     margin: 0px;
     text-align: left;
   }
+
 
   @media screen and (max-width: 800px){
     button{
