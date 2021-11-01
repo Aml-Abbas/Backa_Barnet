@@ -68,6 +68,8 @@ import { DiscoverCardDetailsComponent } from './components/discover-card-details
 import { CreateConversationMaterialComponent } from './components/create-conversation-material/create-conversation-material.component';
 import { ConversationMaterialDetailsComponent } from './components/conversation-material-details/conversation-material-details.component';
 import { EstimateOverviewComponent } from './components/estimate-overview/estimate-overview.component';
+import { SvgComponent } from './components/deep-need-compass/svg.component';
+import { BBLogComponent } from './components/landing/bb-log.component';
 
 
 @NgModule({
@@ -77,7 +79,7 @@ import { EstimateOverviewComponent } from './components/estimate-overview/estima
     DeepNeedCompassComponent, AssessmentComponent, ConversationMaterialComponent,
     ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, 
     EditContactGuardianComponent, CreateDiscoverCardDialogComponent, DiscoverCardDetailsComponent, 
-    CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent],
+    CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent, SvgComponent, BBLogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
