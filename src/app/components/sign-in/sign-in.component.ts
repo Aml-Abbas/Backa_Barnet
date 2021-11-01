@@ -16,8 +16,8 @@ import {FormControl, Validators} from '@angular/forms';
 export class SignInComponent implements OnInit {
   hide = true;
   signinError='';
-  email = 'adnan.karahmetovic@cgi.com';
-  //email = 'aml.abbas@cgi.com';
+  //email = 'adnan.karahmetovic@cgi.com';
+  email = 'aml.abbas@cgi.com';
   //email = 'tony.jonsson@cgi.com';
 
   enteredPassword = 'pw123';

@@ -17,7 +17,7 @@ export class CreateEventGuard implements CanActivate {
     var currentUser= this.store.select(fromState.getCurrentUser);
     currentUser.subscribe(data=>{
       console.log(String(data?.roleID));
-      if(String(data?.roleID)!='3'){
+      if(String(data?.roleID)!='2'){
         this.store.dispatch(new fromRoot.Back());
       }
     });
