@@ -45,7 +45,8 @@ const routes: Routes = [
     children:[
       {
         path: 'admin',
-        component: AdminComponent, canActivate: [AdminGuard]
+        component: AdminComponent
+        //, canActivate: [AdminGuard]
       },
       {
         path: 'communication-material',

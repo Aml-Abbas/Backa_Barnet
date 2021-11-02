@@ -2,9 +2,11 @@
     <h1>Skapa användare</h1>
 
     <div class="form-container" [formGroup]="createUserFormGroup">
-        <mat-form-field appearance="fill">
+
+          <mat-form-field appearance="fill">
             <mat-label>Användarens e-post</mat-label>
-            <input matInput formControlName="emailControl">
+            <input matInput placeholder="pat@example.com" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
@@ -13,11 +15,15 @@
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>Användarens role</mat-label>
-            <input matInput formControlName="roleControl">
-          </mat-form-field>
+            <mat-label>Användarens role:</mat-label>
+            <mat-select [(ngModel)]="selectedRole" [ngModelOptions]="{standalone: true}">
+              <mat-option value="0">Upptäckare</mat-option>
+              <mat-option value="1">BarnKontakt</mat-option>
+              <mat-option value="2">BarnTeam</mat-option>
+            </mat-select>
+            </mat-form-field>
 
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" *ngIf="selectedRole== '1'">
             <mat-label>Användarens enhet</mat-label>
             <input matInput formControlName="unitControl">
           </mat-form-field>
