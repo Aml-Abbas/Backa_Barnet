@@ -9,6 +9,7 @@ h4{
 h5{
   font-size: 15px;
   font-weight: bold;
+  margin-top: 10px;
 }
 
 button{
@@ -51,6 +52,14 @@ p{
   margin-top: 15px;
   color: brown;
   font-size: 15px;
+}
+textarea{
+  border: 1px solid #663399;
+  height: 60px;
+}
+
+textarea.mat-input-element{
+  padding: 5px;
 }
 
 @media only screen and (max-width: 800px) {

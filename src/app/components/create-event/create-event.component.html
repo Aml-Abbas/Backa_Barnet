@@ -2,16 +2,13 @@
   <h1>Min plan framåt</h1>
   <h4>Lägg till ny insats</h4>
 
+  <div class="form-container" [formGroup]="createPlanFormGroup">
 
   <h5>Händelse</h5>
-  <mat-form-field appearance="fill">
-      <input matInput formControlName="eventControl">
-    </mat-form-field>
+      <textarea matInput formControlName="eventControl"></textarea>
 
     <h5>Planerad insats</h5>
-    <mat-form-field appearance="fill">
-      <input matInput formControlName="planControl">
-    </mat-form-field>
+      <textarea matInput formControlName="planControl"></textarea>
 
     <div class="container-2">
       <h5>Ansvariga för insatsen</h5>
@@ -35,6 +32,7 @@
       </mat-form-field>
 </div>
 
+  </div>
 <p>{{saveError}}</p>
 
     <button mat-raised-button (click)="save()">Spara</button>
