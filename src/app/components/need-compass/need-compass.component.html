@@ -19,17 +19,17 @@
     </mat-select>
   </mat-form-field>
 
+
   <div class="parent">
-
-        <app-svg class="image1"></app-svg>
-
-        <canvas class="image2" width="20" height="8" baseChart 
+        <app-svg></app-svg>
+        <div class="chart-container">
+        <canvas baseChart 
           [datasets]="radarChartData"
           [options]="radarChartOptions"
           [labels]="radarChartLabels"
           [chartType]="radarChartType">
         </canvas>
-    
+      </div>
     </div>
 
 

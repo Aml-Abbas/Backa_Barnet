@@ -34,12 +34,19 @@ h1{
     position: relative;
     top: 0;
     left: 0;
+    //border: 1px blue solid;
+    width:1030px !important;
+    height:530px !important;
   }
-  .image2 {
+
+  .chart-container {
     position: absolute;
     top: 30px;
     left: 30px;
-    border: 1px green solid;
+    //border: 1px green solid;
+    
+    width:1000px !important;
+    height:500px !important;
   }
 
   @media screen and (max-width: 1024px){

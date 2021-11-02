@@ -1,3 +1,4 @@
+import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartType, RadialChartOptions } from 'chart.js';
 import { defaultColors, Label } from 'ng2-charts';
@@ -12,7 +13,9 @@ export class NeedCompassComponent implements OnInit {
   selectedDate= 0;
   
   public radarChartOptions: RadialChartOptions = {
-    
+    responsive:true,
+    maintainAspectRatio: false,
+
     title:{
       display: true,
       text:''
@@ -50,12 +53,19 @@ export class NeedCompassComponent implements OnInit {
       },
     },
     legend:{
+      display: true,
+      position:'right',
+      fullWidth: true,
       labels:{
+        boxWidth:20,
         fontSize: 15,
-        usePointStyle: false
+        usePointStyle: false,
+        
       }, 
     }
   };
+
+
 
   public radarChartLabels: Label[] = ['', '', '', 
                                       '', '', '',
@@ -67,12 +77,27 @@ export class NeedCompassComponent implements OnInit {
                            '#D2691E'];
 
   public radarChartData: ChartDataSets[] = [
-    { data: [0, 4, 0, 4, 1, 4, 5, 0], label: 'Anna Eriksson'},
-    { data: [3, 3, 1, 2, 1, 3, 4, 4], label: 'Dalia Bagdadi'},
-    { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Amina Malak'},
-    { data: [0, 4, 0, 4, 1, 4, 5, 0], label: 'Anna Eriksson'},
-    { data: [3, 3, 1, 2, 1, 3, 4, 4], label: 'Dalia Bagdadi'},
-    { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Amina Malak'},
+    { data: [0, 4, 0, 4, 1, 4, 5, 0], label: 'Anna Lundberg', backgroundColor:'#003686'},
+    { data: [3, 3, 1, 2, 1, 3, 4, 4], label: 'Dalia Sundberg', backgroundColor:'#353370'},
+    { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Amina Lundberg', backgroundColor:'#e0448c'},
+    { data: [0, 4, 0, 4, 1, 4, 5, 0], label: 'Hanna Lundberg', backgroundColor:'#df2d5b'},
+    { data: [3, 3, 1, 2, 1, 3, 4, 4], label: 'Dalia Lundberg', backgroundColor:'#eb612d'},
+    { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Amina Lundberg', backgroundColor:'#f79c2e'},
+
+    { data: [0, 4, 0, 4, 1, 4, 5, 0], label: 'Karl Sundberg', backgroundColor:'#4ba562'},
+    { data: [1, 3, 1, 3, 1, 3, 1, 3], label: 'Gustav Sundberg', backgroundColor:'#31acaf'},
+    { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Elin Sundberg', backgroundColor:'#2F4F4F'},
+    { data: [4, 4, 4, 4, 4, 4, 5, 5], label: 'Tony Sundberg', backgroundColor:'#228B22'},
+    { data: [0, 0, 1, 1, 1, 1, 1, 4], label: 'Adnan Sundberg', backgroundColor:'#FF69B4'},
+    { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Maha Sundberg', backgroundColor:'#CD853F'},
+
+    { data: [1, 2, 3, 4, 5, 0, 1, 2], label: 'Luna Svensson', backgroundColor:'#008080'},
+    { data: [3, 3, 1, 1, 1, 1, 4, 4], label: 'Mia Svensson', backgroundColor:'#FF6347'},
+    { data: [1, 1, 1, 1, 1, 1, 1, 1], label: 'Maram Svensson', backgroundColor:'#A0522D'},
+    { data: [0, 4, 0, 4, 0, 4, 0, 4], label: 'Manal Svensson', backgroundColor:'#808000'},
+    { data: [3, 3, 3, 2, 3, 3, 4, 4], label: 'Lama Svensson', backgroundColor:'#DAA520'},
+    { data: [4, 4, 2, 4, 1, 4, 3, 4], label: 'Nina Svensson', backgroundColor:'#B22222'},
+    { data: [5, 4, 5, 4, 5, 4, 5, 5], label: 'Kalle Svensson', backgroundColor:'#D2691E'},
 
   ];
   public radarChartType: ChartType = 'radar';
