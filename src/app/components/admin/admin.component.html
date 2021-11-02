@@ -23,10 +23,19 @@
             </mat-select>
             </mat-form-field>
 
-          <mat-form-field appearance="fill" *ngIf="selectedRole== '1'">
+          <button mat-raised-button (click)="increaseUnit()" *ngIf="selectedRole== '1'">lägg till enhet</button>
+
+          <div *ngIf="(units$ | async) as units">
+          <mat-form-field appearance="fill" *ngFor="let item of [].constructor(unit); let i = index">
             <mat-label>Användarens enhet</mat-label>
-            <input matInput formControlName="unitControl">
+            <mat-select>
+              <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitID}}" (click)="addUnit(unit.unitName, unit.unitID)">{{unit.unitName}}</mat-option>
+            </mat-select>
+    
           </mat-form-field>
+        </div>
+
+
         </div>
 
         <p>{{saveError}}</p>
