@@ -32,6 +32,7 @@ export class LandingComponent implements OnInit {
  isDisabledConsent= true;
  isDisabledEvent= true;
  isDisabledGoal= true;
+ isDisabledNeedCompassMenu= false;
 
  constructor(private observer: BreakpointObserver,
     private store: Store<fromState.State>) {
@@ -134,6 +135,10 @@ changeShowFiller(){
     if(this.userRoleId==4){
       this.isDisabledAdmin= false;
     }
+    if(this.isDisabledEstimate && this.isDisabledConversationMaterial &&
+       this.isDisabledNeedCompass){
+      this.isDisabledNeedCompassMenu= true;
+    }
   }
 
   delete_current_person(): void{
@@ -141,7 +146,13 @@ changeShowFiller(){
   }
 
   goToRoute(event, route: string){
-    if(route== 'admin' && this.isDisabledAdmin){
+  if(route== 'need-compass-menu'){
+    if(this.isDisabledNeedCompassMenu){
+      event.stopPropagation()
+    }else{
+      this.changeShowFillerNeedCompass();
+    }
+  }else if(route== 'admin' && this.isDisabledAdmin){
         event.stopPropagation()
     }else if(route== 'conversation-material' && this.isDisabledConversationMaterial){
         event.stopPropagation()
