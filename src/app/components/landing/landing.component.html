@@ -37,18 +37,18 @@
 
 
             <mat-button-toggle *ngIf="showFillerContact" class="under-button" routerLink="/contact">
-                <span>Barnlista</span></mat-button-toggle>
+                <span>Barnlista</span>
+            </mat-button-toggle>
             <mat-divider *ngIf="showFillerContact"></mat-divider>
             <mat-button-toggle *ngIf="showFillerContact" class="under-button" routerLink="/contact-person">
-                <span>Kontaktinfo Barn</span></mat-button-toggle>
+                <span>Kontaktuppgifter Barn</span>
+            </mat-button-toggle>
             <mat-divider *ngIf="showFillerContact"></mat-divider>
             <mat-button-toggle *ngIf="showFillerContact" class="under-button" routerLink="/contact-guardian">
-                <span>Kontaktpersoner</span></mat-button-toggle>
+                <span>Kontaktpersoner</span>
+            </mat-button-toggle>
 
 
-            <mat-divider></mat-divider>
-
-            <mat-button-toggle (click)="goToRoute($event, 'consent')" [disabled]="isDisabledConsent">Samtycke</mat-button-toggle>
 
             <mat-divider></mat-divider>
             <mat-button-toggle routerLink="/create-discover-card">Upptäckarkort
@@ -63,32 +63,52 @@
 
             <mat-button-toggle *ngIf="need_compass" class="under-button"
                 (click)="goToRoute($event, 'conversation-material')" [disabled]="isDisabledConversationMaterial">
-                <span>Samtalsunderlag</span></mat-button-toggle>
+                <span>Samtalsunderlag</span>
+            </mat-button-toggle>
             <mat-divider *ngIf="need_compass"></mat-divider>
-            <mat-button-toggle *ngIf="need_compass" class="under-button" (click)="goToRoute($event, 'need-compass')" [disabled]="isDisabledNeedCompass">
-                <span>Behovskompassar</span></mat-button-toggle>
+            <mat-button-toggle *ngIf="need_compass" class="under-button" (click)="goToRoute($event, 'estimate')"
+                [disabled]="isDisabledEstimate"><span>Skattningar</span>
+            </mat-button-toggle>
             <mat-divider *ngIf="need_compass"></mat-divider>
-            <mat-button-toggle *ngIf="need_compass" class="under-button" (click)="goToRoute($event, 'estimate')" [disabled]="isDisabledEstimate"><span>Skattningar</span>
+            <mat-button-toggle *ngIf="need_compass" class="under-button" (click)="goToRoute($event, 'need-compass')"
+                [disabled]="isDisabledNeedCompass">
+                <span>Behovskompassen</span>
             </mat-button-toggle>
 
-            <mat-divider></mat-divider>
 
-            <mat-button-toggle (click)="goToRoute($event, 'goal')" [disabled]="isDisabledGoal">Barnets Mål</mat-button-toggle>
-
-            <mat-divider></mat-divider>
+<!--             <mat-divider></mat-divider>
             <mat-button-toggle (click)="changeShowFillerDeepCompass()">
                 <span>Fördjupat Behovskompass</span>
                 <span class="material-icons">{{showFillerDeepCompassIcon}}</span>
             </mat-button-toggle>
 
             <mat-button-toggle *ngIf="deep_need_compass" class="under-button" routerLink="/deep-need-compass">
-                <span>Fördjupat Behovskompass</span></mat-button-toggle>
+                <span>Fördjupat Behovskompass</span>
+            </mat-button-toggle>
             <mat-divider *ngIf="deep_need_compass"></mat-divider>
             <mat-button-toggle *ngIf="deep_need_compass" class="under-button" routerLink="/assessment">
-                <span>Bedömning</span></mat-button-toggle>
+                <span>Bedömning</span>
+            </mat-button-toggle> -->
 
             <mat-divider></mat-divider>
-            <mat-button-toggle (click)="goToRoute($event, 'event')" [disabled]="isDisabledEvent">Tidslinje & händelser
+
+            <mat-button-toggle (click)="goToRoute($event, 'goal-menu')" [disabled]="isDisabledGoalMenu">
+                <span>Barnplan</span>
+                <span class="material-icons">{{showFillerGoalIcon}}</span>
+            </mat-button-toggle>
+
+            <mat-button-toggle *ngIf="goal" class="under-button"
+            (click)="goToRoute($event, 'event')" [disabled]="isDisabledEvent">
+                <span>Tidslinje & händelser</span>
+            </mat-button-toggle>
+            <mat-divider *ngIf="goal"></mat-divider>
+            <mat-button-toggle *ngIf="goal" class="under-button" (click)="goToRoute($event, 'goal')" [disabled]="isDisabledGoal"><span>Barnets Mål</span>
+            </mat-button-toggle>
+
+
+
+            <mat-divider></mat-divider>
+            <mat-button-toggle (click)="goToRoute($event, 'consent')" [disabled]="isDisabledConsent">Samtycke
             </mat-button-toggle>
 
             <mat-divider></mat-divider>

@@ -21,6 +21,8 @@ export class LandingComponent implements OnInit {
  showFillerContact = false;
  need_compass = false;
  deep_need_compass = false;
+ goal= false;
+
  current_person$= new Observable<Person | null>();
  current_user$= new Observable<User | null>();
  userRoleId: number;
@@ -33,6 +35,7 @@ export class LandingComponent implements OnInit {
  isDisabledEvent= true;
  isDisabledGoal= true;
  isDisabledNeedCompassMenu= false;
+ isDisabledGoalMenu= false;
 
  constructor(private observer: BreakpointObserver,
     private store: Store<fromState.State>) {
@@ -53,15 +56,18 @@ export class LandingComponent implements OnInit {
 showFillerContactIcon = 'chevron_right'; 
 showFillerDeepCompassIcon = 'chevron_right'; 
 showFillerCompassIcon = 'chevron_right'; 
+showFillerGoalIcon= 'chevron_right';
 
 public changeShowFillerContact(){
   this.need_compass = false;
   this.deep_need_compass = false;
- 
+  this.goal = false;
+
   this.showFillerContact = !this.showFillerContact;
 
   this.showFillerDeepCompassIcon = 'chevron_right'; 
   this.showFillerCompassIcon = 'chevron_right'; 
+  this.showFillerGoalIcon = 'chevron_right'; 
 
   if(this.showFillerContactIcon == 'chevron_right'){
     this.showFillerContactIcon = 'expand_more' ;
@@ -70,15 +76,34 @@ public changeShowFillerContact(){
   }
 }
 
+public changeShowFillerGoal(){
+  this.need_compass = false;
+  this.deep_need_compass = false;
+  this.showFillerContact = false;
+
+  this.goal= !this.goal;
+
+  this.showFillerDeepCompassIcon = 'chevron_right'; 
+  this.showFillerCompassIcon = 'chevron_right'; 
+  this.showFillerGoalIcon = 'chevron_right'; 
+
+  if(this.showFillerGoalIcon == 'chevron_right'){
+    this.showFillerGoalIcon = 'expand_more' ;
+  }else{
+    this.showFillerGoalIcon = 'chevron_right' ;
+  }
+}
 
 public changeShowFillerDeepCompass(){
   this.showFillerContact = false;
   this.need_compass = false;
+  this.goal = false;
 
   this.deep_need_compass = !this.deep_need_compass;
 
   this.showFillerContactIcon = 'chevron_right'; 
   this.showFillerCompassIcon = 'chevron_right'; 
+  this.showFillerGoalIcon = 'chevron_right'; 
 
   if(this.showFillerDeepCompassIcon == 'chevron_right'){
     this.showFillerDeepCompassIcon = 'expand_more' ;
@@ -90,11 +115,13 @@ public changeShowFillerDeepCompass(){
 public changeShowFillerNeedCompass(){
   this.showFillerContact = false;
   this.deep_need_compass = false;
+  this.goal = false;
 
   this.need_compass = !this.need_compass;
 
   this.showFillerContactIcon = 'chevron_right'; 
   this.showFillerDeepCompassIcon = 'chevron_right'; 
+  this.showFillerGoalIcon = 'chevron_right'; 
 
   if(this.showFillerCompassIcon == 'chevron_right'){
     this.showFillerCompassIcon = 'expand_more' ;
@@ -107,9 +134,12 @@ changeShowFiller(){
   this.showFillerContact = false;
   this.deep_need_compass = false;
   this.need_compass = false;
+  this.goal = false;
+
   this.showFillerContactIcon = 'chevron_right'; 
   this.showFillerDeepCompassIcon = 'chevron_right'; 
   this.showFillerCompassIcon = 'chevron_right' ;
+  this.showFillerGoalIcon = 'chevron_right'; 
 
 }
 
@@ -139,6 +169,10 @@ changeShowFiller(){
        this.isDisabledNeedCompass){
       this.isDisabledNeedCompassMenu= true;
     }
+    if(this.isDisabledEvent && this.isDisabledGoal){
+     this.isDisabledGoalMenu= true;
+   }
+
   }
 
   delete_current_person(): void{
@@ -151,6 +185,12 @@ changeShowFiller(){
       event.stopPropagation()
     }else{
       this.changeShowFillerNeedCompass();
+    }
+  } else if(route== 'goal-menu'){
+    if(this.isDisabledGoalMenu){
+      event.stopPropagation()
+    }else{
+      this.changeShowFillerGoal();
     }
   }else if(route== 'admin' && this.isDisabledAdmin){
         event.stopPropagation()
