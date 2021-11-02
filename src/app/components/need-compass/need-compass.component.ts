@@ -1,7 +1,6 @@
-import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartType, RadialChartOptions } from 'chart.js';
-import { defaultColors, Label } from 'ng2-charts';
+import { Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-need-compass',
@@ -9,8 +8,8 @@ import { defaultColors, Label } from 'ng2-charts';
   styleUrls: ['./need-compass.component.scss']
 })
 export class NeedCompassComponent implements OnInit {
-  selectedType=1;
-  selectedDate= 0;
+  selectedType='1';
+  selectedDate= '0';
   
   public radarChartOptions: RadialChartOptions = {
     responsive:true,
