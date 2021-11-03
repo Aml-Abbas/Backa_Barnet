@@ -180,19 +180,7 @@ changeShowFiller(){
   }
 
   goToRoute(event, route: string){
-  if(route== 'need-compass-menu'){
-    if(this.isDisabledNeedCompassMenu){
-      event.stopPropagation()
-    }else{
-      this.changeShowFillerNeedCompass();
-    }
-  } else if(route== 'goal-menu'){
-    if(this.isDisabledGoalMenu){
-      event.stopPropagation()
-    }else{
-      this.changeShowFillerGoal();
-    }
-  }else if(route== 'admin' && this.isDisabledAdmin){
+   if(route== 'admin' && this.isDisabledAdmin){
         event.stopPropagation()
     }else if(route== 'conversation-material' && this.isDisabledConversationMaterial){
         event.stopPropagation()
@@ -208,6 +196,22 @@ changeShowFiller(){
         event.stopPropagation()
     }else{
       this.store.dispatch(new fromRoot.Go({ path: ['/'+route] }));
+    }
+  }
+
+  changeFiller(event, type: string){
+    if(type== 'need-compass-menu'){
+      if(this.isDisabledNeedCompassMenu){
+        event.stopPropagation()
+      }else{
+        this.changeShowFillerNeedCompass();
+      }
+    } else if(type== 'goal-menu'){
+      if(this.isDisabledGoalMenu){
+        event.stopPropagation()
+      }else{
+        this.changeShowFillerGoal();
+      }
     }
   }
 

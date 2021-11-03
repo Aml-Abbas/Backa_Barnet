@@ -56,7 +56,7 @@
 
             <mat-divider></mat-divider>
 
-            <mat-button-toggle (click)="goToRoute($event, 'need-compass-menu')" [disabled]="isDisabledNeedCompassMenu">
+            <mat-button-toggle (click)="changeFiller($event, 'need-compass-menu')" [disabled]="isDisabledNeedCompassMenu">
                 <span>Behovskompass</span>
                 <span class="material-icons">{{showFillerCompassIcon}}</span>
             </mat-button-toggle>
@@ -92,7 +92,7 @@
 
             <mat-divider></mat-divider>
 
-            <mat-button-toggle (click)="goToRoute($event, 'goal-menu')" [disabled]="isDisabledGoalMenu">
+            <mat-button-toggle (click)="changeFiller($event, 'goal-menu')" [disabled]="isDisabledGoalMenu">
                 <span>Barnplan</span>
                 <span class="material-icons">{{showFillerGoalIcon}}</span>
             </mat-button-toggle>
