@@ -24,4 +24,9 @@ export class ContactGuardianService {
   getUnits(): Observable<Unit[]> {
     return this.http.get<Unit[]>('https://func-ykbb.azurewebsites.net/api/unit?code=7od5M5/US4aBc4L61rBOQKHBv3CXO7sWhxxQtZXi43tDknxT2zuIzQ==');
   }
+
+  createCard(discoverCardJson: any): Observable<any> {
+    return this.http.post('https://func-ykbb.azurewebsites.net/api/card/create?code=Cvux9kZKdDPlaG0IA5taD4gsFzO6ajU9TMlh5OzAparDg6fCOEw6Gg==', discoverCardJson);
+  }
+
 }

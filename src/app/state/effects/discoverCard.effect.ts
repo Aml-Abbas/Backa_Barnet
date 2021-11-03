@@ -26,4 +26,26 @@ discoverCard$ = createEffect(() =>
   )
 );
 
+createDiscoverCard$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(discoverCardAction.CREATE_DISCOVERCARD),
+    switchMap((action: discoverCardAction.CreateDiscoverCard) => {
+
+    return this.contactGuardian.createCard(action.payload).pipe(
+      map((response) => new discoverCardAction.CreateDiscoverCardSuccess(response)),
+      catchError((error: any) => of(new discoverCardAction.CreateDiscoverCardFail(error)))
+    );
+    })
+  )
+);
+
+createDiscoverCardSuccess$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(discoverCardAction.CREATE_DISCOVERCARD_SUCCESS),
+    switchMap((action: discoverCardAction.CreateDiscoverCardSuccess) =>[
+      new fromRoot.Go({path: ['discover-card']}),
+    ])
+  )
+);
+
 }

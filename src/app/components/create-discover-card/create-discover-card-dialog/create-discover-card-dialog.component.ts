@@ -21,7 +21,7 @@ export class CreateDiscoverCardDialogComponent implements OnInit {
     this.text= 'kortet kommer att skickas in';
 
     }else{
-    this.text= 'kortet kommer att anonymiseras för det saknas samtycke';
+    this.text= 'kortet kommer att anonymiseras';
     }
   }
 }
