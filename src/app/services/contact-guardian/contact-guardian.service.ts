@@ -26,7 +26,44 @@ export class ContactGuardianService {
   }
 
   createCard(discoverCardJson: any): Observable<any> {
+    console.log(this.http.post('https://func-ykbb.azurewebsites.net/api/card/create?code=Cvux9kZKdDPlaG0IA5taD4gsFzO6ajU9TMlh5OzAparDg6fCOEw6Gg==', discoverCardJson));
     return this.http.post('https://func-ykbb.azurewebsites.net/api/card/create?code=Cvux9kZKdDPlaG0IA5taD4gsFzO6ajU9TMlh5OzAparDg6fCOEw6Gg==', discoverCardJson);
   }
 
 }
+/* 
+{
+CommentActions: ""
+CommentAnsvartagande: ""
+CommentFritid: ""
+CommentMarBra: ""
+CommentOmsorg: ""
+CommentRespekteras: ""
+CommentTillhorighet: ""
+CommentTrygghet: ""
+CommentUtvecklas: ""
+GradeActions: "1"
+GradeAnsvartagande: 1
+GradeFritid: 1
+GradeMarBra: 1
+GradeOmsorg: 1
+GradeRespekteras: 1
+GradeSamtycke1: 1
+GradeSamtycke2: 1
+GradeTillhorighet: 1
+GradeTrygghet: 1
+GradeUpprattats1: 1
+GradeUpprattats2: 1
+GradeUtvecklas: 1
+GuardianName1: "Lubna"
+GuardianName2: "Hasan"
+GuardianNbr1: "199308198762"
+GuardianNbr2: "199308198762"
+PersonFirstName: "Aml"
+PersonLastName: "Abbas"
+PersonNbr: "19930898765"
+Situation: "aswerfdsa"
+Status: 1
+Unit: "Backa förskola"
+UserID: 1
+} */
