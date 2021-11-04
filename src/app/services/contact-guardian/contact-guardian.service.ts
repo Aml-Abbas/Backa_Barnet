@@ -25,45 +25,47 @@ export class ContactGuardianService {
     return this.http.get<Unit[]>('https://func-ykbb.azurewebsites.net/api/unit?code=7od5M5/US4aBc4L61rBOQKHBv3CXO7sWhxxQtZXi43tDknxT2zuIzQ==');
   }
 
-  createCard(discoverCardJson: any): Observable<any> {
-    console.log(this.http.post('https://func-ykbb.azurewebsites.net/api/card/create?code=Cvux9kZKdDPlaG0IA5taD4gsFzO6ajU9TMlh5OzAparDg6fCOEw6Gg==', discoverCardJson));
-    return this.http.post('https://func-ykbb.azurewebsites.net/api/card/create?code=Cvux9kZKdDPlaG0IA5taD4gsFzO6ajU9TMlh5OzAparDg6fCOEw6Gg==', discoverCardJson);
+  createCard(discoverCardJson: any) {
+    this.http.post('https://func-ykbb.azurewebsites.net/api/card/create?code=Cvux9kZKdDPlaG0IA5taD4gsFzO6ajU9TMlh5OzAparDg6fCOEw6Gg==', discoverCardJson)
+    .toPromise().then(data=>{
+      console.log(data);
+    });;
   }
 
 }
 /* 
 {
-CommentActions: ""
-CommentAnsvartagande: ""
-CommentFritid: ""
-CommentMarBra: ""
-CommentOmsorg: ""
-CommentRespekteras: ""
-CommentTillhorighet: ""
-CommentTrygghet: ""
-CommentUtvecklas: ""
-GradeActions: "1"
-GradeAnsvartagande: 1
-GradeFritid: 1
-GradeMarBra: 1
-GradeOmsorg: 1
-GradeRespekteras: 1
+CommentActions: "0"
+CommentAnsvartagande: "0"
+CommentFritid: "0"
+CommentMarBra: "0"
+CommentOmsorg: "0"
+CommentRespekteras: "0"
+CommentTillhorighet: "0"
+CommentTrygghet: "0"
+CommentUtvecklas: "0"
+GradeActions: 1
+GradeAnsvartagande: 2
+GradeFritid: 3
+GradeMarBra: 3
+GradeOmsorg: 3
+GradeRespekteras: 2
 GradeSamtycke1: 1
 GradeSamtycke2: 1
-GradeTillhorighet: 1
-GradeTrygghet: 1
+GradeTillhorighet: 2
+GradeTrygghet: 3
 GradeUpprattats1: 1
 GradeUpprattats2: 1
 GradeUtvecklas: 1
-GuardianName1: "Lubna"
-GuardianName2: "Hasan"
-GuardianNbr1: "199308198762"
-GuardianNbr2: "199308198762"
+GuardianName1: "Hasan Nadir"
+GuardianName2: "Lubna Sara"
+GuardianNbr1: "199308197777"
+GuardianNbr2: "199308199999"
 PersonFirstName: "Aml"
-PersonLastName: "Abbas"
-PersonNbr: "19930898765"
-Situation: "aswerfdsa"
+PersonLastName: "Lama"
+PersonNbr: "199308198888"
+Situation: "Skolan "
 Status: 1
-Unit: "Backa förskola"
+Unit: "Källan förskola"
 UserID: 1
 } */

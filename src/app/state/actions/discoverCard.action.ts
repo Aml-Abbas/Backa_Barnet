@@ -28,8 +28,7 @@ export class LoadDiscoverCardFail implements Action {
 
 export class CreateDiscoverCard implements Action {
   readonly type = CREATE_DISCOVERCARD;
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 
 export class CreateDiscoverCardSuccess implements Action {

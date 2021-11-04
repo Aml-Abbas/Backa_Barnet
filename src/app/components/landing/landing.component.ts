@@ -34,8 +34,9 @@ export class LandingComponent implements OnInit {
  isDisabledConsent= true;
  isDisabledEvent= true;
  isDisabledGoal= true;
- isDisabledNeedCompassMenu= false;
- isDisabledGoalMenu= false;
+
+ isDisabledNeedCompassMenu= true;
+ isDisabledGoalMenu= true;
 
  constructor(private observer: BreakpointObserver,
     private store: Store<fromState.State>) {
@@ -154,24 +155,21 @@ changeShowFiller(){
     if(this.userRoleId==4 || this.userRoleId==2){
       this.isDisabledConversationMaterial= false;
       this.isDisabledEvent= false;
+      this.isDisabledGoalMenu= false;
+      this.isDisabledNeedCompassMenu= false;
     }
     if(this.userRoleId==4|| this.userRoleId==2|| this.userRoleId==3){
       this.isDisabledEstimate= false;
       this.isDisabledNeedCompass= false;
       this.isDisabledConsent= false;
       this.isDisabledGoal= false;
+      this.isDisabledGoalMenu= false;
+      this.isDisabledNeedCompassMenu= false;
     }
 
     if(this.userRoleId==4){
       this.isDisabledAdmin= false;
     }
-    if(this.isDisabledEstimate && this.isDisabledConversationMaterial &&
-       this.isDisabledNeedCompass){
-      this.isDisabledNeedCompassMenu= true;
-    }
-    if(this.isDisabledEvent && this.isDisabledGoal){
-     this.isDisabledGoalMenu= true;
-   }
 
   }
 

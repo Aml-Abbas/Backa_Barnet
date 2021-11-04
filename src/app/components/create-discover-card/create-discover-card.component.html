@@ -1,124 +1,125 @@
 <div class="container">
-    <h1>Skapa Upptäckarkort</h1>
- 
-    <button mat-raised-button class="discover-card-button" routerLink="/discover-card">Tidigare upptäckarkorten</button>
+  <h1>Skapa Upptäckarkort</h1>
 
-    <div class="form-container" [formGroup]="createDiscoveCardFormGroup">
-<!--         <mat-form-field appearance="fill">
+  <button mat-raised-button class="discover-card-button" routerLink="/discover-card">Tidigare upptäckarkorten</button>
+
+  <div class="form-container" [formGroup]="createDiscoveCardFormGroup">
+    <!--         <mat-form-field appearance="fill">
             <mat-label>Choose a date</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="dateControl">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker ></mat-datepicker>
           </mat-form-field>
  -->
+    <mat-form-field appearance="fill">
+      <mat-label>Barnets namn</mat-label>
+      <input matInput formControlName="nameControl">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Barnets personnummer</mat-label>
+      <input matInput formControlName="personNbrControl" type="number">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Antal Vårdnadshavare</mat-label>
+      <mat-select [(ngModel)]="selected" name="selected" [ngModelOptions]="{standalone: true}">
+        <mat-option (click)="changeGuardianNbr(1)" value="1">1</mat-option>
+        <mat-option (click)="changeGuardianNbr(2)" value="2">2</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <div *ngFor="let item of [].constructor(guardianNbr); let i = index">
       <mat-form-field appearance="fill">
-        <mat-label>Barnets namn</mat-label>
-        <input matInput formControlName="nameControl">
+        <mat-label>Vårdnadshavarens {{i+1}} namn</mat-label>
+        <input matInput name="name" [(ngModel)]="guardians[i].name" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>Barnets personnummer</mat-label>
-        <input matInput formControlName="personNbrControl" type="number">
+        <mat-label>Vårdnadshavarens {{i+1}} personnummer</mat-label>
+        <input matInput name="personNbr" [(ngModel)]="guardians[i].personNbr" type="number"
+          [ngModelOptions]="{standalone: true}">
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Antal Vårdnadshavare</mat-label>
-        <mat-select [(ngModel)]="selected" name="selected" [ngModelOptions]="{standalone: true}">
-          <mat-option (click)="changeGuardianNbr(1)" value="1">1</mat-option>
-          <mat-option (click)="changeGuardianNbr(2)" value="2">2</mat-option>
-        </mat-select>
-      </mat-form-field>
-      
+    </div>
 
-      <div *ngFor="let item of [].constructor(guardianNbr); let i = index">
-       <mat-form-field appearance="fill">
-          <mat-label>Vårdnadshavarens {{i+1}} namn</mat-label>
-          <input matInput name="name" [(ngModel)]="guardians[i][0]" [ngModelOptions]="{standalone: true}">
+    <mat-form-field appearance="fill" *ngIf="(units$ | async) as units">
+      <mat-label>BMM/ BvC/ Förskola/ Skola (Barnkontakt)</mat-label>
+      <mat-select formControlName="unitStringControl">
+        <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitID}}"
+          (click)="changeUnitNbr(unit.unitName, unit.unitID)">{{unit.unitName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Situationen där barnet uppmärksammats: ​</mat-label>
+      <textarea matInput formControlName="situationCommentControl"></textarea>
+    </mat-form-field>
+
+    <section class="section_margin-top">
+      <label>Åtgärder har vidtagits i egen organisation?</label>
+      <mat-radio-group (change)="radioChange($event)">
+        <mat-radio-button value="1">JA</mat-radio-button>
+        <mat-radio-button value="2">NEJ</mat-radio-button>
+      </mat-radio-group>
+    </section>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>kommentar: ​</mat-label>
+      <textarea matInput [(ngModel)]="isMeasureTakenComment" [ngModelOptions]="{standalone: true}"></textarea>
+    </mat-form-field>
+
+    <div class="grid-container">
+      <mat-card *ngFor="let item of ELEMENT_DATA; let i=index">
+        <div class="card-container" [style.background]="item.color">
+          <mat-card-title>{{item.type}}</mat-card-title>
+          <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
+        </div>
+
+        <section>
+          <mat-radio-group (change)="radioChangeThree($event,item)">
+            <mat-radio-button value="1">JA</mat-radio-button>
+            <mat-radio-button value="2">NEJ</mat-radio-button>
+            <mat-radio-button value="3">VET EJ</mat-radio-button>
+          </mat-radio-group>
+        </section>
+
+        <mat-form-field id="{{item.id}}" class="full-width" appearance="fill">
+          <mat-label>kommentar: ​</mat-label>
+          <textarea class="comment" matInput [(ngModel)]="comments[i]" [ngModelOptions]="{standalone: true}"></textarea>
         </mat-form-field>
-  
-        <mat-form-field appearance="fill">
-          <mat-label>Vårdnadshavarens {{i+1}} personnummer</mat-label>
-          <input matInput name="personNbr" [(ngModel)]="guardians[i][1]" type="number" [ngModelOptions]="{standalone: true}">
-        </mat-form-field>
-  
-      </div>
 
-      <mat-form-field appearance="fill" *ngIf="(units$ | async) as units">
-        <mat-label>BMM/ BvC/ Förskola/ Skola (Barnkontakt)</mat-label>
-        <mat-select formControlName="unitStringControl">
-          <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitID}}" (click)="changeUnitNbr(unit.unitName, unit.unitID)">{{unit.unitName}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+      </mat-card>
+    </div>
 
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Situationen där barnet uppmärksammats: ​</mat-label>
-        <textarea matInput formControlName="situationCommentControl"></textarea>
-      </mat-form-field>
 
-      <section class="section_margin-top">
-        <label>Åtgärder har vidtagits i egen organisation?</label>
-        <mat-radio-group (change)="radioChange($event)">
+    <div *ngFor="let item of [].constructor(guardianNbr); let i = index">
+
+      <section class="section">
+        <label>Vårdnadshavare {{i+1}} är informerad om att Upptäckarkort upprättas</label>
+        <mat-radio-group (change)="radioChangeInform($event, i)">
           <mat-radio-button value="1">JA</mat-radio-button>
           <mat-radio-button value="2">NEJ</mat-radio-button>
         </mat-radio-group>
       </section>
-           
-            <mat-form-field class="full-width" appearance="fill">
-                <mat-label>kommentar: ​</mat-label>
-                <textarea matInput [(ngModel)]="isMeasureTakenComment" [ngModelOptions]="{standalone: true}"></textarea>
-              </mat-form-field>
 
-                  <div class="grid-container">
-                        <mat-card *ngFor="let item of ELEMENT_DATA; let i=index">
-                          <div class="card-container" [style.background]="item.color">
-                        <mat-card-title>{{item.type}}</mat-card-title>
-                        <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
-                      </div>
-
-                        <section >
-                          <mat-radio-group (change)="radioChangeThree($event,item)">
-                            <mat-radio-button value="1" >JA</mat-radio-button>
-                            <mat-radio-button value="2">NEJ</mat-radio-button>
-                            <mat-radio-button value="3">VET EJ</mat-radio-button>
-                          </mat-radio-group>
-                        </section>
-                        
-                        <mat-form-field
-                        id="{{item.id}}"                        
-                          class="full-width" appearance="fill">
-                            <mat-label>kommentar: ​</mat-label>
-                            <textarea class="comment" matInput [(ngModel)]="comments[i]" [ngModelOptions]="{standalone: true}"></textarea>
-                          </mat-form-field>
-
-                    </mat-card>
-                  </div>
-
-
-              <div *ngFor="let item of [].constructor(guardianNbr); let i = index" >
-
-              <section class="section">
-          <label>Vårdnadshavare {{i+1}} är informerad om att Upptäckarkort upprättas</label>
-          <mat-radio-group (change)="radioChangefour($event, i, 2)">
-            <mat-radio-button value="1">JA</mat-radio-button>
-            <mat-radio-button value="2">NEJ</mat-radio-button>
-          </mat-radio-group>
-        </section>
-
-        <section class="section section-height">
-          <label>Vårdnadshavare {{i+1}} har gett samtycke till att information gällande upptäckarkorten delas mellan Upptäckare och Barnkontakt</label>
-          <mat-radio-group (change)="radioChangefour($event, i, 3)">
-            <mat-radio-button value="1">JA</mat-radio-button>
-            <mat-radio-button value="2">NEJ</mat-radio-button>
-          </mat-radio-group>
-        </section>
-
-              </div>
-
-        <p>{{saveError}}</p>
-
-        <button mat-raised-button (click)="send(1)">Skicka in</button>
-        <button mat-raised-button (click)="send(2)" class="save-button">Spara</button>
-        <button mat-raised-button class="cancel-button" (click)="goBack()">Avbryt</button>
+      <section class="section section-height">
+        <label>Vårdnadshavare {{i+1}} har gett samtycke till att information gällande upptäckarkorten delas mellan
+          Upptäckare och Barnkontakt</label>
+        <mat-radio-group (change)="radioChangeSamtycke($event, i)">
+          <mat-radio-button value="1">JA</mat-radio-button>
+          <mat-radio-button value="2">NEJ</mat-radio-button>
+        </mat-radio-group>
+      </section>
 
     </div>
+
+    <p>{{saveError}}</p>
+
+    <button mat-raised-button (click)="send(1)">Skicka in</button>
+    <button mat-raised-button (click)="send(2)" class="save-button">Spara</button>
+    <button mat-raised-button class="cancel-button" (click)="goBack()">Avbryt</button>
+
+  </div>
 </div>
