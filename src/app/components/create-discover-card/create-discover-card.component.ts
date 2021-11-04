@@ -234,15 +234,14 @@ export class CreateDiscoverCardComponent implements OnInit {
               card.GuardianNbr2 = '0';
 
             }
-            this.contactGuardianService.createCard(card);
-            //this.store.dispatch(new fromState.CreateDiscoverCard(card));
+            //this.contactGuardianService.createCard(card);
+            this.store.dispatch(new fromState.CreateDiscoverCard(card));
           }
         });
       }
     } else {
-      this.contactGuardianService.createCard(card);
-
-      //this.store.dispatch(new fromState.CreateDiscoverCard(card));
+     // this.contactGuardianService.createCard(card);
+            this.store.dispatch(new fromState.CreateDiscoverCard(card));
     }
   }
 }

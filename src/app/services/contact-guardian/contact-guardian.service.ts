@@ -26,46 +26,7 @@ export class ContactGuardianService {
   }
 
   createCard(discoverCardJson: any) {
-    this.http.post('https://func-ykbb.azurewebsites.net/api/card/create?code=Cvux9kZKdDPlaG0IA5taD4gsFzO6ajU9TMlh5OzAparDg6fCOEw6Gg==', discoverCardJson)
-    .toPromise().then(data=>{
-      console.log(data);
-    });;
+    return this.http.post('https://func-ykbb.azurewebsites.net/api/card/create?code=Cvux9kZKdDPlaG0IA5taD4gsFzO6ajU9TMlh5OzAparDg6fCOEw6Gg==', discoverCardJson);
   }
 
 }
-/* 
-{
-CommentActions: "0"
-CommentAnsvartagande: "0"
-CommentFritid: "0"
-CommentMarBra: "0"
-CommentOmsorg: "0"
-CommentRespekteras: "0"
-CommentTillhorighet: "0"
-CommentTrygghet: "0"
-CommentUtvecklas: "0"
-GradeActions: 1
-GradeAnsvartagande: 2
-GradeFritid: 3
-GradeMarBra: 3
-GradeOmsorg: 3
-GradeRespekteras: 2
-GradeSamtycke1: 1
-GradeSamtycke2: 1
-GradeTillhorighet: 2
-GradeTrygghet: 3
-GradeUpprattats1: 1
-GradeUpprattats2: 1
-GradeUtvecklas: 1
-GuardianName1: "Hasan Nadir"
-GuardianName2: "Lubna Sara"
-GuardianNbr1: "199308197777"
-GuardianNbr2: "199308199999"
-PersonFirstName: "Aml"
-PersonLastName: "Lama"
-PersonNbr: "199308198888"
-Situation: "Skolan "
-Status: 1
-Unit: "Källan förskola"
-UserID: 1
-} */

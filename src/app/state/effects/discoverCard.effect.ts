@@ -25,7 +25,7 @@ discoverCard$ = createEffect(() =>
     })
   )
 );
-/* 
+ 
 createDiscoverCard$ = createEffect(() =>
   this.actions$.pipe(
     ofType(discoverCardAction.CREATE_DISCOVERCARD),
@@ -46,6 +46,6 @@ createDiscoverCardSuccess$ = createEffect(() =>
       new fromRoot.Go({path: ['discover-card']}),
     ])
   )
-); */
+);
 
 }
