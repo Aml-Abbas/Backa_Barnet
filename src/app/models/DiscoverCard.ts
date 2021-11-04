@@ -12,7 +12,7 @@ export class DiscoverCard {
     guardian2: string;
     guardianPersonNbr2: string;
 
-    healthTeam: string;
+    unit: string;
     situation: string;
 
     questionID: string;
@@ -25,7 +25,7 @@ export class DiscoverCard {
         personName: string, personNbr: string,
         guardian1: string, guardianPersonNbr1: string,
         guardian2: string, guardianPersonNbr2: string,
-        healthTeam: string, situation: string,
+        unit: string, situation: string,
         questionID: string, grade: string, comment: string) {
             
       this.gradedOn = gradedOn;
@@ -41,7 +41,7 @@ export class DiscoverCard {
       this.guardian2 = guardian2;
       this.guardianPersonNbr2 = guardianPersonNbr2;
 
-      this.healthTeam= healthTeam;
+      this.unit= unit;
       this.situation= situation;
 
       this.questionID= questionID;

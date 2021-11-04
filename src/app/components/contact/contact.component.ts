@@ -44,10 +44,11 @@ export class ContactComponent implements OnInit {
         let changedOn = person.changedOn;
         let status= person.status;
 
-        
-        this.persons.push({personNbr, lastName, firstName,
-          guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
-          changedBy, changedOn, status});
+        if(status!='Anonymiserad'){
+          this.persons.push({personNbr, lastName, firstName,
+            guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
+            changedBy, changedOn, status});  
+        }
       })
   });
   }

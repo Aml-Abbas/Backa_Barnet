@@ -40,16 +40,6 @@ export class DiscoverCardDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.current_card$ = this.store.select(fromState.getCurrentCard);
-/*     this.current_card$.subscribe(data=>{
-      this.card= new Card(data?.id, data?.gradedOn, data?.userName, data?.userOrg, data?.userTitle,
-        data?.personName, data?.personNbr, data?.guardian1, data?.guardianPersonNbr1, data?.guardian2,
-        data?.guardianPersonNbr2, data?.healthTeam, data?.situation, data?.questions,
-        data?.grades, data?.comments);
-    }); */
-
   }
 
-  islessthan(i: number): boolean{
-    return true;
-  }
 }

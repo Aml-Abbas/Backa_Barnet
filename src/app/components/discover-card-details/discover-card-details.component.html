@@ -72,61 +72,8 @@
 
       </tbody>
       </table>
-      <!--        <mat-list-item>
-          <h4>Datum: </h4>
-          <p>{{current_card.gradedOn.slice(0, 10)}}</p>
-        </mat-list-item>
-
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Upptäckarens namn:</h4>
-          <p>{{current_card.userName}}</p></mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Upptackarens organisation:</h4>
-          <p>{{current_card.userOrg}}</p></mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Upptäckarens title:</h4>
-          <p>{{current_card.userTitle}}</p></mat-list-item>
-
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Barnets namn:</h4>
-          <p>{{current_card.personName}}</p></mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Barnets personnummer:</h4>
-          <p>{{current_card.personNbr}}</p></mat-list-item>
-
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Vårdnadshavare 1 namn:</h4>
-          <p>{{current_card.guardian1}}</p></mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Vårdnadshavare 1 personnummer:</h4>
-          <p>{{current_card.guardianPersonNbr1}}</p></mat-list-item>
-
+     
           <mat-divider></mat-divider>
-          <mat-list-item>
-            <h4>Vårdnadshavare 2 namn:</h4>
-            <p>{{current_card.guardian2}}</p></mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>
-            <h4>Vårdnadshavare 2 personnummer:</h4>
-            <p>{{current_card.guardianPersonNbr2}}</p></mat-list-item>
-  
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>healthTeam:</h4>
-          <p>{{current_card.healthTeam}}</p></mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4>Situationen där barnets upptäckts:</h4>
-          <p>{{current_card.situation}}</p></mat-list-item> -->
-          <mat-divider></mat-divider>
-
 
               <table role="table">
               <thead role="rowgroup">
@@ -143,8 +90,8 @@
               <td *ngIf="i < 8 " [style.color]="question.color"><strong>{{question.category}}</strong></td>
               <td *ngIf="i < 8 ">{{question.text}}</td>
               <td *ngIf="i < 8 ">
-                <p *ngIf="current_card.grades[i] == '0'">Ja</p>
-                <p *ngIf="current_card.grades[i] == '1'">Nej</p>
+                <p *ngIf="current_card.grades[i] == '1'">Ja</p>
+                <p *ngIf="current_card.grades[i] == '0'">Nej</p>
                 <p *ngIf="current_card.grades[i] == '2'">Vet ej</p>
               </td>
               <td *ngIf="i < 8 ">{{current_card.comments[i]}}</td>
@@ -156,7 +103,7 @@
             <div *ngFor="let question of QuestionTextData; let i= index;">
               <mat-list-item *ngIf="i == 8 " style="height: 80px !important;">
                 <h4 >{{question.text}}</h4>
-                <p *ngIf="current_card.grades[i] != '0'">Ja</p>
+                <p *ngIf="current_card.grades[i] == '1'">Ja</p>
                 <p *ngIf="current_card.grades[i] == '0'">Nej</p>
                 <p>{{current_card.comments[i]}}</p>
                 </mat-list-item>

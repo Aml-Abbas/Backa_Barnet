@@ -80,8 +80,8 @@
         <section>
           <mat-radio-group (change)="radioChangeThree($event,item)">
             <mat-radio-button value="1">JA</mat-radio-button>
-            <mat-radio-button value="2">NEJ</mat-radio-button>
-            <mat-radio-button value="3">VET EJ</mat-radio-button>
+            <mat-radio-button value="0">NEJ</mat-radio-button>
+            <mat-radio-button value="2">VET EJ</mat-radio-button>
           </mat-radio-group>
         </section>
 
@@ -100,7 +100,7 @@
         <label>Vårdnadshavare {{i+1}} är informerad om att Upptäckarkort upprättas</label>
         <mat-radio-group (change)="radioChangeInform($event, i)">
           <mat-radio-button value="1">JA</mat-radio-button>
-          <mat-radio-button value="2">NEJ</mat-radio-button>
+          <mat-radio-button value="0">NEJ</mat-radio-button>
         </mat-radio-group>
       </section>
 
@@ -109,7 +109,7 @@
           Upptäckare och Barnkontakt</label>
         <mat-radio-group (change)="radioChangeSamtycke($event, i)">
           <mat-radio-button value="1">JA</mat-radio-button>
-          <mat-radio-button value="2">NEJ</mat-radio-button>
+          <mat-radio-button value="0">NEJ</mat-radio-button>
         </mat-radio-group>
       </section>
 

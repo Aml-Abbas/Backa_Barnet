@@ -15,7 +15,7 @@ import * as fromStore from 'src/app/state';
   styleUrls: ['./discover-card.component.scss']
 })
 export class DiscoverCardComponent implements OnInit {
-  displayedColumns: string[] = ['gradedOn', 'userName', 'userOrg'];
+  displayedColumns: string[] = ['gradedOn', 'personName',  'userName', 'userOrg'];
   discoverCards$: Observable<DiscoverCard[]> = new Observable<DiscoverCard[]>();
   current_user$: Observable<User| null> = new Observable<User| null>();
   cards: Card[]= [];
@@ -33,25 +33,45 @@ export class DiscoverCardComponent implements OnInit {
       var index=1;
       data.map((discoverCard: DiscoverCard)=>{
         let gradedOn= discoverCard.gradedOn;
+
         let userName= discoverCard.userName;
         let userOrg= discoverCard.userOrg;
         let userTitle= discoverCard.userTitle;
 
-        let personName= discoverCard.personName;
-        let personNbr= discoverCard.personNbr;
+        let personName='Dolt';
+        if(discoverCard.personName !='0 0'){
+          personName= discoverCard.personName;
+        }
+        let personNbr='Dolt';
+        if(discoverCard.personNbr !='0'){
+          personNbr= discoverCard.personNbr;
+        }
+        let guardian1='Dolt';
+        if(discoverCard.guardian1 !='0'){
+          guardian1= discoverCard.guardian1;
+        }
+        let guardianPersonNbr1='Dolt';
+        if(discoverCard.guardianPersonNbr1 !='0'){
+          guardianPersonNbr1= discoverCard.guardianPersonNbr1;
+        }
+        let guardian2='Dolt';
+        if(discoverCard.guardian2 !='0'){
+          guardian2= discoverCard.guardian2;
+        }
+        let guardianPersonNbr2='Dolt';
+        if(discoverCard.guardianPersonNbr2 !='0'){
+          guardianPersonNbr2= discoverCard.guardianPersonNbr2;
+        }
 
-        let guardian1= discoverCard.guardian1;
-        let guardianPersonNbr1= discoverCard.guardianPersonNbr1;
-        let guardian2= discoverCard.guardian2;
-        let guardianPersonNbr2= discoverCard.guardianPersonNbr2;
-
-
-        let healthTeam = discoverCard.healthTeam;
+        let unit = discoverCard.unit;
         let situation = discoverCard.situation;
 
         let questionID= discoverCard.questionID;
         let grade= discoverCard.grade;
-        let comment= discoverCard.comment;
+        let comment='';
+        if(discoverCard.comment !='0'){
+          comment= discoverCard.comment;
+        }
 
         if(!this.containsCard(discoverCard.gradedOn)){
          this.questions.push(questionID);
@@ -59,7 +79,7 @@ export class DiscoverCardComponent implements OnInit {
          this.comments.push(comment);
           this.cards.push(new Card(String(index), gradedOn, userName, userOrg, userTitle,
             personName, personNbr, guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2,
-            healthTeam, situation, this.questions, this.grades, this.comments));
+            unit, situation, this.questions, this.grades, this.comments));
             this.questions= [];
             this.grades= [];
             this.comments= [];

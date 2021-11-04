@@ -31,14 +31,14 @@ export class CreateDiscoverCardComponent implements OnInit {
   ];
 
   choices = [
-    { type: 'OMSORG', choice: 0 },
-    { type: 'TRYGGHET', choice: 0 },
-    { type: 'MÅR BRA', choice: 0 },
-    { type: 'FRITID', choice: 0 },
-    { type: 'TILLHÖRIGHET', choice: 0 },
-    { type: 'ANSVARSTAGANDE', choice: 0 },
-    { type: 'RESPEKTERAS', choice: 0 },
-    { type: 'UTVECKLAS', choice: 0 }
+    { type: 'OMSORG', choice: 4 },
+    { type: 'TRYGGHET', choice: 4 },
+    { type: 'MÅR BRA', choice: 4 },
+    { type: 'FRITID', choice: 4 },
+    { type: 'TILLHÖRIGHET', choice: 4 },
+    { type: 'ANSVARSTAGANDE', choice: 4 },
+    { type: 'RESPEKTERAS', choice: 4 },
+    { type: 'UTVECKLAS', choice: 4 }
   ];
 
   createDiscoveCardFormGroup: FormGroup;
@@ -123,7 +123,7 @@ export class CreateDiscoverCardComponent implements OnInit {
   checkChoices(): boolean {
     var emptyChoice = true;
     this.choices.forEach(element => {
-      if (element.choice == 0) {
+      if (element.choice == 4) {
         emptyChoice = false;
       }
     });
@@ -221,9 +221,8 @@ export class CreateDiscoverCardComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
           if (result) {
             if (!this.isAnonyms()) {
-              // barnet namn och föräldrarnas namn inte med
-              // barnet personnummer och föräldrarnas personnummer inte med
               card.Status = 0;
+              
               card.PersonLastName = '0';
               card.PersonFirstName = '0';
               card.PersonNbr = '0';
@@ -234,13 +233,11 @@ export class CreateDiscoverCardComponent implements OnInit {
               card.GuardianNbr2 = '0';
 
             }
-            //this.contactGuardianService.createCard(card);
             this.store.dispatch(new fromState.CreateDiscoverCard(card));
           }
         });
       }
     } else {
-     // this.contactGuardianService.createCard(card);
             this.store.dispatch(new fromState.CreateDiscoverCard(card));
     }
   }
