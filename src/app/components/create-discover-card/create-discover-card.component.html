@@ -60,9 +60,10 @@
       <label>Åtgärder har vidtagits i egen organisation?</label>
       <mat-radio-group (change)="radioChange($event)">
         <mat-radio-button value="1">JA</mat-radio-button>
-        <mat-radio-button value="2">NEJ</mat-radio-button>
+        <mat-radio-button value="0">NEJ</mat-radio-button>
       </mat-radio-group>
     </section>
+    <p>{{measureError}}</p>
 
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>kommentar: ​</mat-label>

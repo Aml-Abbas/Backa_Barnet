@@ -47,6 +47,7 @@ export class CreateDiscoverCardComponent implements OnInit {
   saveError = '';
   nameError = '';
   personNbrError = '';
+  measureError = '';
 
   guardianNbr: number = 2;
   selected = '2';
@@ -67,7 +68,7 @@ export class CreateDiscoverCardComponent implements OnInit {
 
   situationComment: string;
 
-  isMeasureTaken: number = 0;
+  isMeasureTaken: number = 2;
   isMeasureTakenComment: string;
 
   units$: Observable<Unit[]> = new Observable<Unit[]>();
@@ -220,39 +221,43 @@ export class CreateDiscoverCardComponent implements OnInit {
     if (number == 1) {
       if(person_name.length <2){
         this.nameError = 'För och efternamn behövs, glöm inte mellan slag mellan dem.';
+        this.saveError = 'Du har missat att fylla i saker';
 
       }if(this.createDiscoveCardFormGroup.controls.personNbrControl.status== "INVALID"){
         this.personNbrError = 'Personnummer ska innehålla 12 siffror';
+        this.saveError = 'Du har missat att fylla i saker';
       }
-      if (this.createDiscoveCardFormGroup.status == "INVALID"
-        || this.isMeasureTaken == 0 || !this.checkChoices()) {
-
+      if (this.createDiscoveCardFormGroup.status == "INVALID" || !this.checkChoices()) {
         this.saveError = 'Du har missat att fylla i saker';
       }if(this.guardians[0].name==undefined){
         this.guardiansError[0].name= 'Vårdnadshavares namn ska vara med.'
-        
+        this.saveError = 'Du har missat att fylla i saker';
+
       }if(this.guardians[0].name!=undefined && String(this.guardians[0].name).split(' ').length<2){
         this.guardiansError[0].name= 'Vårdnadshavares för och efternamn ska vara med.'
+        this.saveError = 'Du har missat att fylla i saker';
 
       }if(this.guardians[1].name==undefined && this.guardianNbr==2){
         this.guardiansError[1].name= 'Vårdnadshavares namn ska vara med.'
-    
+        this.saveError = 'Du har missat att fylla i saker';
+
       }if(this.guardians[1].name!=undefined && this.guardianNbr==2 && String(this.guardians[1].name).split(' ').length<2){
         this.guardiansError[1].name= 'Vårdnadshavares för och efternamn ska vara med.'
+        this.saveError = 'Du har missat att fylla i saker';
 
-      } 
-      
-      
-      if(!this.isNumeric(this.guardians[0].personNbr)){
+      }if(!this.isNumeric(this.guardians[0].personNbr)){
         this.guardiansError[0].personNbr= 'Vårdnadshavares personnummer ska vara 12 siffror.'
-        
+        this.saveError = 'Du har missat att fylla i saker';
+
       }if(!this.isNumeric(this.guardians[1].personNbr && this.guardianNbr==2)){
         this.guardiansError[1].personNbr= 'Vårdnadshavares personnummer ska vara 12 siffor.'
+        this.saveError = 'Du har missat att fylla i saker';
 
-      } 
-      
-      
-      else {
+      } if(this.isMeasureTaken == 2){
+        this.measureError='Du måste välja nej eller ja';
+        this.saveError = 'Du har missat att fylla i saker';
+
+      }else {
         this.saveError = '';
         this.nameError = '';
         this.personNbrError = '';
