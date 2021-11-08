@@ -230,12 +230,11 @@ export class CreateDiscoverCardComponent implements OnInit {
     this.measureError='';
 
     if (number == 1) {
-      if(person_name.length <2){
+      if(person_name.length !=2){
         this.nameError = 'För och efternamn behövs, glöm inte mellan slag mellan dem.';
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
         console.log('isSendAvailable is false');
-
 
       }if(this.createDiscoveCardFormGroup.controls.personNbrControl.status== "INVALID" || this.personNbr.toString().length!=12){
         this.personNbrError = 'Personnummer ska innehålla 12 siffror';
