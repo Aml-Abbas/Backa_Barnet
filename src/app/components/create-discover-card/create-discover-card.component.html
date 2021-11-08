@@ -4,22 +4,19 @@
   <button mat-raised-button class="discover-card-button" routerLink="/discover-card">Tidigare upptäckarkorten</button>
 
   <div class="form-container" [formGroup]="createDiscoveCardFormGroup">
-    <!--         <mat-form-field appearance="fill">
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="dateControl">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker ></mat-datepicker>
-          </mat-form-field>
- -->
+
     <mat-form-field appearance="fill">
       <mat-label>Barnets namn</mat-label>
       <input matInput formControlName="nameControl">
     </mat-form-field>
+    <p>{{nameError}}</p>
+
 
     <mat-form-field appearance="fill">
       <mat-label>Barnets personnummer</mat-label>
       <input matInput formControlName="personNbrControl" type="number">
     </mat-form-field>
+    <p>{{personNbrError}}</p>
 
     <mat-form-field appearance="fill">
       <mat-label>Antal Vårdnadshavare</mat-label>
@@ -35,12 +32,14 @@
         <mat-label>Vårdnadshavarens {{i+1}} namn</mat-label>
         <input matInput name="name" [(ngModel)]="guardians[i].name" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
+      <p>{{guardiansError[i].name}}</p>
 
       <mat-form-field appearance="fill">
         <mat-label>Vårdnadshavarens {{i+1}} personnummer</mat-label>
         <input matInput name="personNbr" [(ngModel)]="guardians[i].personNbr" type="number"
           [ngModelOptions]="{standalone: true}">
       </mat-form-field>
+      <p>{{guardiansError[i].personNbr}}</p>
 
     </div>
 
@@ -117,9 +116,11 @@
 
     <p>{{saveError}}</p>
 
-    <button mat-raised-button (click)="send(1)">Skicka in</button>
-    <button mat-raised-button (click)="send(2)" class="save-button">Spara</button>
-    <button mat-raised-button class="cancel-button" (click)="goBack()">Avbryt</button>
+    <div class="buttons-container">
+      <button mat-raised-button (click)="send(1)">Skicka in</button>
+      <button mat-raised-button (click)="send(2)" class="save-button">Spara</button>
+      <button mat-raised-button class="cancel-button" (click)="goBack()">Avbryt</button>  
+    </div>
 
   </div>
 </div>

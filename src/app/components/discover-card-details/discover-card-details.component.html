@@ -105,7 +105,6 @@
                 <h4 >{{question.text}}</h4>
                 <p *ngIf="current_card.grades[i] == '1'">Ja</p>
                 <p *ngIf="current_card.grades[i] == '0'">Nej</p>
-                <p>{{current_card.comments[i]}}</p>
                 </mat-list-item>
 
                 <mat-list-item *ngIf="i > 8 " style="height: 90px !important;">
@@ -113,6 +112,7 @@
                   <p *ngIf="current_card.grades[i] == '2'">Ja, båda</p>
                   <p *ngIf="current_card.grades[i] == '1'">Ja, en av dem</p>
                   <p *ngIf="current_card.grades[i] == '0'">Nej</p>
+
                     </mat-list-item>
   
                 <mat-divider></mat-divider>

@@ -27,6 +27,7 @@ mat-form-field{
     color: black;
     margin-bottom: 10px;
     height: 55px;
+    display: inline-block;
 }
 
 mat-checkbox{
@@ -34,14 +35,19 @@ mat-checkbox{
     width: 10%;
     color: black;
 }
+.buttons-container{
+width: 100%;
+}
 
 input{
 color: black;
 }
 p{
-  margin-top: 15px;
+  margin-top: 12px;
   color: brown;
   font-size: 15px;
+  display: inline-block;
+  width: 40%;
 }
 mat-card-title, mat-card-subtitle{
     color: black;
@@ -112,7 +118,7 @@ mat-card-title{
     display: inline-block;
     /*  grid-template-columns: repeat(auto-fit, minmax(30rem, 2fr));
      grid-gap: 1em; */
-     width: 43%;
+    width: 43%;
     padding: 10px;
     margin-bottom: 15px;
     margin-right: 5%;
@@ -163,7 +169,14 @@ mat-card-title{
   padding: 5px 0px 0px 5px !important;
 }
 
-  @media screen and (max-width: 800px){
+@media screen and (max-width: 1332px){
+  mat-card{
+    width: 41%;
+  }
+
+}
+
+  @media screen and (max-width: 831px){
   
     .discover-card-button{
       margin-left: 15%;

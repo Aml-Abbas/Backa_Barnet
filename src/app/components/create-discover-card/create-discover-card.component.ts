@@ -10,6 +10,8 @@ import { ContactGuardianService } from '../../services/contact-guardian/contact-
 import { Observable } from 'rxjs';
 import { Unit } from 'src/app/models/Unit';
 import { User } from 'src/app/models/User';
+import { faLeaf } from '@fortawesome/free-solid-svg-icons';
+
 
 
 @Component({
@@ -43,6 +45,8 @@ export class CreateDiscoverCardComponent implements OnInit {
 
   createDiscoveCardFormGroup: FormGroup;
   saveError = '';
+  nameError = '';
+  personNbrError = '';
 
   guardianNbr: number = 2;
   selected = '2';
@@ -51,6 +55,11 @@ export class CreateDiscoverCardComponent implements OnInit {
   guardians = [
     { name: undefined, personNbr: undefined, inform: '0', samtycke: '0' },
     { name: undefined, personNbr: undefined, inform: '0', samtycke: '0' },
+  ];
+
+  guardiansError = [
+    { name: '', personNbr: ''},
+    { name: '', personNbr: '' },
   ];
 
   unitNbr: number = 0;
@@ -85,15 +94,25 @@ export class CreateDiscoverCardComponent implements OnInit {
       this.current_user = new User(userID, firstName, lastName,
         email, roleID, description);
     });
-
+    
+    this.store.dispatch(new fromState.LoadDiscoverCard(this.current_user.userID));
+    
     this.createDiscoveCardFormGroup = this._formBuilder.group({
       nameControl: ['', [Validators.required, Validators.minLength(2)]],
-      personNbrControl: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern("^[0-9]*$"),]],
+      personNbrControl: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern("^[0-9]*$")]],
       unitStringControl: [undefined, Validators.required],
       situationCommentControl: ['', Validators.required],
 
     });
 
+  }
+
+  isNumeric(str: any): boolean {
+    if(str== undefined){
+        return false;
+    }else{
+      return Number.isInteger(str) && str.toString().length==12;
+    }
   }
 
   changeGuardianNbr(nbr: number) {
@@ -150,14 +169,9 @@ export class CreateDiscoverCardComponent implements OnInit {
 
   send(number: number) {
 
-    /*     --status 0 = anonymisera
-          --status 1 = skicka in
-          --status 2 = spara
-     */
-
-    var names = this.createDiscoveCardFormGroup.value.nameControl.split(' ');
-    var firstName = names[0];
-    var lastName = names[1];
+    var person_name = this.createDiscoveCardFormGroup.value.nameControl.split(' ');
+    var firstName = person_name[0];
+    var lastName = person_name[1];
 
     var card = {
       UserID: parseInt(this.current_user.userID) ?? 0,
@@ -204,13 +218,44 @@ export class CreateDiscoverCardComponent implements OnInit {
     console.log(card);
 
     if (number == 1) {
+      if(person_name.length <2){
+        this.nameError = 'För och efternamn behövs, glöm inte mellan slag mellan dem.';
 
+      }if(this.createDiscoveCardFormGroup.controls.personNbrControl.status== "INVALID"){
+        this.personNbrError = 'Personnummer ska innehålla 12 siffror';
+      }
       if (this.createDiscoveCardFormGroup.status == "INVALID"
         || this.isMeasureTaken == 0 || !this.checkChoices()) {
 
         this.saveError = 'Du har missat att fylla i saker';
-      } else {
+      }if(this.guardians[0].name==undefined){
+        this.guardiansError[0].name= 'Vårdnadshavares namn ska vara med.'
+        
+      }if(this.guardians[0].name!=undefined && String(this.guardians[0].name).split(' ').length<2){
+        this.guardiansError[0].name= 'Vårdnadshavares för och efternamn ska vara med.'
+
+      }if(this.guardians[1].name==undefined && this.guardianNbr==2){
+        this.guardiansError[1].name= 'Vårdnadshavares namn ska vara med.'
+    
+      }if(this.guardians[1].name!=undefined && this.guardianNbr==2 && String(this.guardians[1].name).split(' ').length<2){
+        this.guardiansError[1].name= 'Vårdnadshavares för och efternamn ska vara med.'
+
+      } 
+      
+      
+      if(!this.isNumeric(this.guardians[0].personNbr)){
+        this.guardiansError[0].personNbr= 'Vårdnadshavares personnummer ska vara 12 siffror.'
+        
+      }if(!this.isNumeric(this.guardians[1].personNbr && this.guardianNbr==2)){
+        this.guardiansError[1].personNbr= 'Vårdnadshavares personnummer ska vara 12 siffor.'
+
+      } 
+      
+      
+      else {
         this.saveError = '';
+        this.nameError = '';
+        this.personNbrError = '';
 
         const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
           data: {
