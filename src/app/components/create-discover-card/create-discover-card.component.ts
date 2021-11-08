@@ -74,7 +74,7 @@ export class CreateDiscoverCardComponent implements OnInit {
   units$: Observable<Unit[]> = new Observable<Unit[]>();
   current_user$: Observable<User | null> = new Observable<User | null>();
   current_user: User;
-
+  personNbr: string;
 
   constructor(public dialog: MatDialog,
     private store: Store<fromState.State>,
@@ -100,7 +100,7 @@ export class CreateDiscoverCardComponent implements OnInit {
     
     this.createDiscoveCardFormGroup = this._formBuilder.group({
       nameControl: ['', [Validators.required, Validators.minLength(2)]],
-      personNbrControl: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern("^[0-9]*$")]],
+      personNbrControl: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       unitStringControl: [undefined, Validators.required],
       situationCommentControl: ['', Validators.required],
 
@@ -173,7 +173,7 @@ export class CreateDiscoverCardComponent implements OnInit {
     var person_name = this.createDiscoveCardFormGroup.value.nameControl.split(' ');
     var firstName = person_name[0];
     var lastName = person_name[1];
-
+    this.personNbr= this.createDiscoveCardFormGroup.value.personNbrControl;
     var card = {
       UserID: parseInt(this.current_user.userID) ?? 0,
       PersonLastName: lastName ?? '0',
@@ -219,17 +219,29 @@ export class CreateDiscoverCardComponent implements OnInit {
     console.log(card);
 
     var isSendAvailable= true;
+    console.log('isSendAvailable is true');
+    this.nameError='';
+    this.saveError='';
+    this.personNbrError='';
+    this.guardiansError[0].name='';
+    this.guardiansError[1].name='';
+    this.guardiansError[0].personNbr='';
+    this.guardiansError[1].personNbr='';
+    this.measureError='';
 
     if (number == 1) {
       if(person_name.length <2){
         this.nameError = 'För och efternamn behövs, glöm inte mellan slag mellan dem.';
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
+        console.log('isSendAvailable is false');
 
-      }if(this.createDiscoveCardFormGroup.controls.personNbrControl.status== "INVALID"){
+
+      }if(this.createDiscoveCardFormGroup.controls.personNbrControl.status== "INVALID" || this.personNbr.toString().length!=12){
         this.personNbrError = 'Personnummer ska innehålla 12 siffror';
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
+        console.log('isSendAvailable is false');
 
       }
       if (this.createDiscoveCardFormGroup.status == "INVALID" || !this.checkChoices()) {
@@ -238,38 +250,46 @@ export class CreateDiscoverCardComponent implements OnInit {
         this.guardiansError[0].name= 'Vårdnadshavares namn ska vara med.'
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
+        console.log('isSendAvailable is false');
 
       }if(this.guardians[0].name!=undefined && String(this.guardians[0].name).split(' ').length<2){
         this.guardiansError[0].name= 'Vårdnadshavares för och efternamn ska vara med.'
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
+        console.log('isSendAvailable is false');
 
       }if(this.guardians[1].name==undefined && this.guardianNbr==2){
         this.guardiansError[1].name= 'Vårdnadshavares namn ska vara med.'
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
+        console.log('isSendAvailable is false');
 
       }if(this.guardians[1].name!=undefined && this.guardianNbr==2 && String(this.guardians[1].name).split(' ').length<2){
         this.guardiansError[1].name= 'Vårdnadshavares för och efternamn ska vara med.'
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
+        console.log('isSendAvailable is false');
 
       }if(!this.isNumeric(this.guardians[0].personNbr)){
         this.guardiansError[0].personNbr= 'Vårdnadshavares personnummer ska vara 12 siffror.'
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
+        console.log('isSendAvailable is false');
 
-      }if(!this.isNumeric(this.guardians[1].personNbr && this.guardianNbr==2)){
+      }if((!this.isNumeric(this.guardians[1].personNbr) && this.guardianNbr==2)){
         this.guardiansError[1].personNbr= 'Vårdnadshavares personnummer ska vara 12 siffor.'
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
+        console.log('isSendAvailable is false');
 
       } if(this.isMeasureTaken == 2){
         this.measureError='Du måste välja nej eller ja';
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
+        console.log('isSendAvailable is false');
 
       }if(isSendAvailable) {
+        console.log('isSendAvailable is true, will send the request');
 
         const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
           data: {

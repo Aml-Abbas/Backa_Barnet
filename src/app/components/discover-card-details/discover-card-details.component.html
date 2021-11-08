@@ -50,17 +50,17 @@
         <td>{{current_card.guardianPersonNbr1}}</td>
        </tr>
 
-       <tr role="row">
+       <tr role="row" *ngIf="current_card.guardianPersonNbr2 != 'undefined'">
         <td>Vårdnadshavare 2 namn::</td>
         <td>{{current_card.guardian2}}</td>
        </tr>
 
-       <tr role="row">
+       <tr role="row" *ngIf="current_card.guardianPersonNbr2 != 'undefined'">
         <td>Vårdnadshavare 2 personnummer:</td>
         <td>{{current_card.guardianPersonNbr2}}</td>
        </tr>
 
-       <tr role="row">
+       <tr role="row" >
         <td>healthTeam:</td>
         <td>{{current_card.healthTeam}}</td>
        </tr>
