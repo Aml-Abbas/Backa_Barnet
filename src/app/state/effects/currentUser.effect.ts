@@ -5,6 +5,7 @@ import {catchError, map, switchMap} from 'rxjs/operators';
 import * as currentUserAction from '../actions/currentUser.action';
 import {SignInService} from '../../services/sign-in/sign-in.service';
 import { of } from 'rxjs';
+import * as fromRoot from '../../../app/state';
 
 @Injectable()
 export class CurrentUserEffect {
@@ -26,5 +27,12 @@ export class CurrentUserEffect {
     )
     );
     
-
+    updateCurrentUserSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(currentUserAction.LOAD_CURRENT_USER_SUCCESS),
+      switchMap((action: currentUserAction.LoadCurrentUserSuccess)=>[
+          new fromRoot.Go({path: ['/contact']})
+        ])
+      )
+      );
     }
