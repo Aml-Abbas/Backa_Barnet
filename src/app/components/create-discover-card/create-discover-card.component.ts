@@ -279,11 +279,13 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
         isSendAvailable= false;
         
 
-      }if(this.guardians[0].name!=undefined && String(this.guardians[0].name).split(' ').length<2){
-        this.guardiansError[0].name= 'Vårdnadshavares för och efternamn ska vara med.'
-        this.saveError = 'Du har missat att fylla i saker';
-        isSendAvailable= false;
-        
+      }if(this.guardians[0].name!=undefined){
+        var names1= String(this.guardians[0].name).split(' ');
+        if(names1[1]== '' || names1.length<2){
+          this.guardiansError[0].name= 'Vårdnadshavares för och efternamn ska vara med.'
+          this.saveError = 'Du har missat att fylla i saker';
+          isSendAvailable= false;
+        }        
 
       }if(this.guardians[1].name==undefined && this.guardianNbr==2){
         this.guardiansError[1].name= 'Vårdnadshavares namn ska vara med.'
@@ -291,11 +293,13 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
         isSendAvailable= false;
         
 
-      }if(this.guardians[1].name!=undefined && this.guardianNbr==2 && String(this.guardians[1].name).split(' ').length<2){
-        this.guardiansError[1].name= 'Vårdnadshavares för och efternamn ska vara med.'
-        this.saveError = 'Du har missat att fylla i saker';
-        isSendAvailable= false;
-        
+      }if(this.guardians[1].name!=undefined && this.guardianNbr==2){
+        var names2= String(this.guardians[1].name).split(' ');
+        if(names2[1]== '' || names2.length<2){
+          this.guardiansError[1].name= 'Vårdnadshavares för och efternamn ska vara med.'
+          this.saveError = 'Du har missat att fylla i saker';
+          isSendAvailable= false;  
+        }
 
       }if(!this.isNumeric(this.guardians[0].personNbr)){
         this.guardiansError[0].personNbr= 'Vårdnadshavares personnummer ska vara 12 siffror.'

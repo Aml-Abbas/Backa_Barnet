@@ -7,7 +7,6 @@ import { DiscoverCard } from 'src/app/models/DiscoverCard';
 import { User } from 'src/app/models/User';
 import { Card } from 'src/app/models/Card';
 import { Observable } from 'rxjs';
-import * as fromStore from 'src/app/state';
 
 @Component({
   selector: 'app-discover-card',
@@ -27,7 +26,13 @@ export class DiscoverCardComponent implements OnInit {
   constructor(private store: Store<fromState.State>) {}
 
   ngOnInit(): void {
-    
+    this.current_user$ = this.store.select(fromState.getCurrentUser);
+    this.current_user$.subscribe(data => {
+      let userID: string = data?.userID ?? '';
+      this.store.dispatch(new fromState.LoadDiscoverCard(userID));
+    });
+
+
     this.discoverCards$ = this.store.select(fromState.getDiscoverCards);
     this.discoverCards$.subscribe(data=>{
       var index=1;
