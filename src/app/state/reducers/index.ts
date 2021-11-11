@@ -1,7 +1,7 @@
 import * as fromLogin from './login.reducer';
 import * as fromRouter from '@ngrx/router-store';
 import * as fromCurrentPerson from './currentPerson.reducer';
-import * as fromCurrentUser from './currentUser.reducer';
+import * as fromPersons from './persons.reducer';
 import * as fromDiscoverCard from './discoverCard.reducer';
 import * as fromCurrentCard from './currentCard.reducer';
 
@@ -27,7 +27,7 @@ export interface State {
     Login: fromLogin.LoginState;
     routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
     currentPerson: fromCurrentPerson.CurrentPersonState;
-    currentUser: fromCurrentUser.CurrentUserState;
+    persons: fromPersons.PersonsState;
     discoverCard: fromDiscoverCard.DiscoverCardState;
     currentCard: fromCurrentCard.CurrentCardState;
 
@@ -53,7 +53,7 @@ export interface State {
     Login: fromLogin.reducer,
     routerReducer: fromRouter.routerReducer,
     currentPerson: fromCurrentPerson.reducer,
-    currentUser: fromCurrentUser.reducer,
+    persons: fromPersons.reducer,
     discoverCard: fromDiscoverCard.reducer,
     currentCard: fromCurrentCard.reducer,
 

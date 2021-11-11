@@ -14,8 +14,8 @@ export class SignInService {
 
   constructor(private http: HttpClient) { }
 
-  signIn(info: LoginInfo): Observable<Person[]> {
-    return this.http.get<Person[]>('https://func-ykbb.azurewebsites.net/api/login/' + info.email + '/' + info.password + '?code=UjWHWQAU5ymIdDfDGA3r9TPmbqjMsaiOSr812fke5kMDmD/uiouwxQ==');
+  signIn(info: LoginInfo): Observable<User> {
+    return this.http.get<User>('https://func-ykbb.azurewebsites.net/api/login/' + info.email + '/' + info.password + '?code=UjWHWQAU5ymIdDfDGA3r9TPmbqjMsaiOSr812fke5kMDmD/uiouwxQ==');
   }
 
   getCurrentUser(email: string):Observable<User>{

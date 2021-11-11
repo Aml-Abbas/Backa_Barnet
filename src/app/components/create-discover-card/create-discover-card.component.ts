@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
-import { ContactGuardianService } from '../../services/contact-guardian/contact-guardian.service';
+import { GetSetService } from '../../services/get-set/get-set.service';
 import { Observable } from 'rxjs';
 import { Unit } from 'src/app/models/Unit';
 import { User } from 'src/app/models/User';
@@ -89,10 +89,10 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
   constructor(public dialog: MatDialog,
     private store: Store<fromState.State>,
     private _formBuilder: FormBuilder,
-    private contactGuardianService: ContactGuardianService) { }
+    private getSetService: GetSetService) { }
 
   ngOnInit(): void {
-    this.units$ = this.contactGuardianService.getUnits();
+    this.units$ = this.getSetService.getUnits();
     this.current_user$ = this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data => {
       let userID: string = data?.userID ?? '';
@@ -111,7 +111,6 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
     this.createDiscoveCardFormGroup = this._formBuilder.group({
       nameControl: ['', [Validators.required, Validators.minLength(2)]],
       personNbrControl: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-      unitStringControl: [undefined, Validators.required],
       situationCommentControl: ['', Validators.required],
 
     });

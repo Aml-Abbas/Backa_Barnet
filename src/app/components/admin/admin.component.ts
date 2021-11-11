@@ -4,7 +4,7 @@ import * as fromStore from 'src/app/state';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Unit } from 'src/app/models/Unit';
-import { ContactGuardianService } from '../../services/contact-guardian/contact-guardian.service';
+import { GetSetService } from '../../services/get-set/get-set.service';
 
 @Component({
   selector: 'app-admin',
@@ -30,10 +30,10 @@ export class AdminComponent implements OnInit {
 
   constructor(private store: Store<fromStore.State>,
               private _formBuilder: FormBuilder,
-              private contactGuardianService: ContactGuardianService) { }
+              private getSetService: GetSetService) { }
 
   ngOnInit(): void {
-    this.units$= this.contactGuardianService.getUnits();
+    this.units$= this.getSetService.getUnits();
 
     this.createUserFormGroup = this._formBuilder.group({
       organisationControl:['', Validators.required],

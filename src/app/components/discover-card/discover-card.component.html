@@ -33,11 +33,11 @@
             <td mat-cell *matCellDef="let element"> {{element.userOrg}} </td>
           </ng-container>
 
-<!--           <ng-container matColumnDef="status">
+           <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef> Status </th>
             <td mat-cell *matCellDef="let element"> {{element.status}} </td>
           </ng-container>
- -->
+
           <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"
           (click)="moveToCard(row)"></tr>

@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./discover-card.component.scss']
 })
 export class DiscoverCardComponent implements OnInit {
-  displayedColumns: string[] = ['gradedOn', 'personName',  'userName', 'userOrg'];
+  displayedColumns: string[] = ['gradedOn', 'personName',  'userName', 'userOrg', 'status'];
   discoverCards$: Observable<DiscoverCard[]> = new Observable<DiscoverCard[]>();
   current_user$: Observable<User| null> = new Observable<User| null>();
   cards: Card[]= [];
@@ -77,6 +77,7 @@ export class DiscoverCardComponent implements OnInit {
         if(discoverCard.comment !='0'){
           comment= discoverCard.comment;
         }
+        let status =discoverCard.status;
 
         if(!this.containsCard(discoverCard.gradedOn)){
          this.questions.push(questionID);
@@ -84,7 +85,7 @@ export class DiscoverCardComponent implements OnInit {
          this.comments.push(comment);
           this.cards.push(new Card(String(index), gradedOn, userName, userOrg, userTitle,
             personName, personNbr, guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2,
-            unit, situation, this.questions, this.grades, this.comments));
+            unit, situation, this.questions, this.grades, this.comments, status));
             this.questions= [];
             this.grades= [];
             this.comments= [];

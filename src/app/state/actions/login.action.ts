@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Person } from 'src/app/models/Person';
+import { User } from 'src/app/models/User';
 
 
 export const LOGIN = '[Login] Login';
@@ -18,7 +18,7 @@ export class Login implements Action {
 
 export class LoginSuccess implements Action {
   readonly type = LOGIN_SUCCESS;
-  constructor(public payload: Person[]) {}
+  constructor(public payload: User) {}
 }
 
 export class LoginFail implements Action {

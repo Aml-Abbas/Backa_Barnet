@@ -5,7 +5,7 @@ import * as fromState from '../../state';
 import { Observable } from 'rxjs';
 import { Person } from 'src/app/models/Person';
 import { Contact } from 'src/app/models/Contact';
-import { ContactGuardianService } from 'src/app/services/contact-guardian/contact-guardian.service';
+import { GetSetService } from 'src/app/services/get-set/get-set.service';
 
 @Component({
   selector: 'app-edit-contact-guardian',
@@ -28,12 +28,12 @@ export class EditContactGuardianComponent implements OnInit {
   userRoleId: string;
 
   constructor(private store: Store<fromState.State>,
-    private contactGuardianService: ContactGuardianService) { }
+    private getSetService: GetSetService) { }
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data=>{
-      this.contacts$= this.contactGuardianService.getContacts(String(data?.personNbr));
+      this.contacts$= this.getSetService.getContacts(String(data?.personNbr));
     });
     var index=0;
 

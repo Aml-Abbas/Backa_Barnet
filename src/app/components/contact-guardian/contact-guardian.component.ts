@@ -3,7 +3,7 @@ import { Person } from 'src/app/models/Person';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
-import { ContactGuardianService } from 'src/app/services/contact-guardian/contact-guardian.service';
+import { GetSetService } from 'src/app/services/get-set/get-set.service';
 import { Contact } from 'src/app/models/Contact';
 
 @Component({
@@ -19,12 +19,12 @@ export class ContactGuardianComponent implements OnInit {
   userRoleId: string;
 
   constructor(private store: Store<fromState.State>,
-              private contactGuardianService: ContactGuardianService) { }
+              private getSetService: GetSetService) { }
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data =>{
-      this.contacts$= this.contactGuardianService.getContacts(String(data?.personNbr));
+      this.contacts$= this.getSetService.getContacts(String(data?.personNbr));
       var index=0;
       this.contacts$.subscribe(data=>{
         data.map((contact: Contact)=>{

@@ -1,51 +1,25 @@
 import {createSelector} from '@ngrx/store';
 import * as fromFeature from '../reducers';
-import * as fromCurrentUser from '../reducers/currentUser.reducer';
+import * as fromPersons from '../reducers/persons.reducer';
 
 
-export const getCurrentUserState = createSelector(
+export const getPersonsState = createSelector(
   fromFeature.getState,
-  (state: fromFeature.State) => state.currentUser
+  (state: fromFeature.State) => state.persons
 );
 
 export const getCurrentUserLoading = createSelector(
-  getCurrentUserState,
-  fromCurrentUser.getCurrentUserLoading
+  getPersonsState,
+  fromPersons.getPersonsLoading
 );
 
 
 export const getCurrentUserLoaded = createSelector(
-  getCurrentUserState,
-  fromCurrentUser.getCurrentUserLoaded
+  getPersonsState,
+  fromPersons.getPersonsLoaded
 );
 
-
-export const getCurrentUser = createSelector(
-  getCurrentUserState,
-  fromCurrentUser.getCurrentUser
-);
-export const getCurrentUserID = createSelector(
-  getCurrentUserState,
-  fromCurrentUser.getCurrentUserID
-);
-export const getCurrentUserRoleID= createSelector(
-  getCurrentUserState,
-  fromCurrentUser.getCurrentUserRoleID
-);
-export const getCurrentUserLastName = createSelector(
-  getCurrentUserState,
-  fromCurrentUser.getCurrentUserLastName
-);
-export const getCurrentUserFirstName = createSelector(
-  getCurrentUserState,
-  fromCurrentUser.getCurrentUserFirstName
-);
-export const getCurrentUserDescription = createSelector(
-  getCurrentUserState,
-  fromCurrentUser.getCurrentUserDescription
-);
-
-export const getCurrentUserEmail = createSelector(
-  getCurrentUserState,
-  fromCurrentUser.getCurrentUserEmail
+export const getPersons = createSelector(
+  getPersonsState,
+  fromPersons.getPersons
 );

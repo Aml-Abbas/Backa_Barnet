@@ -4,14 +4,18 @@ import { Observable } from 'rxjs';
 import { Contact } from 'src/app/models/Contact';
 import { DiscoverCard } from 'src/app/models/DiscoverCard';
 import { Unit } from 'src/app/models/Unit';
+import { Person } from 'src/app/models/Person';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContactGuardianService {
+export class GetSetService {
 
   constructor(private http: HttpClient) { }
 
+  getPersons(userId: string): Observable<Person[]> {
+    return this.http.get<Person[]>('https://func-ykbb.azurewebsites.net/api/person/'+userId+'?code=SkXpI51pgjWl6UVNjxKjKNUr3o2gmPdlOZ4EFMFwn0LR0KlyDlYu3w==');
+  }
   getContacts(personNbr: string): Observable<Contact[]> {
     return this.http.get<Contact[]>('https://func-ykbb.azurewebsites.net/api/contact/' + personNbr + '?code=tc2OJy49azMOIqZUVev09yLarIt8kQfg7gr6GGs3uG3daqLORwHPhg==');
   }
