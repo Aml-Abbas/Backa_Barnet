@@ -56,6 +56,8 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
   measureError = '';
   unitError='';
   situationError='';
+  categoryError='';
+  informMesg='';
 
   guardianNbr: number = 2;
   selected = '2';
@@ -158,10 +160,8 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
     return emptyChoice;
   }
 
-  isAnonyms(): boolean {
-    if (this.unitNbr == 7) {
-      return false;
-    } else if (this.guardianNbr == 2 &&
+  missCosent(): boolean{
+    if (this.guardianNbr == 2 &&
       (this.guardians[0].samtycke != '1' || this.guardians[1].samtycke != '1' ||
         this.guardians[0].inform != '1' || this.guardians[1].inform != '1')) {
       return false;
@@ -169,6 +169,22 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       (this.guardians[0].samtycke != '1' || this.guardians[0].inform != '1')) {
       return false;
     }
+    return true;
+  }
+
+  isAnonyms(): boolean {
+    if(this.unitNbr == 7 && !this.missCosent()){
+      this.informMesg='kortet kommer att anonymiseras för barnet tillhör annat enhet än Ystad och samtycke av föräldrar saknas';
+      return false;
+    }
+    else if (this.unitNbr == 7) {
+      this.informMesg='kortet kommer att anonymiseras för barnet tillhör annat enhet än Ystad';
+      return false;
+    } else if (!this.missCosent()) {
+      this.informMesg='kortet kommer att anonymiseras för samtycke av föräldrar saknas';
+      return false;
+    } 
+    this.informMesg='kortet kommer att skickas in';
     return true;
   }
 
@@ -217,11 +233,10 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       CommentUtvecklas: this.comments[7] ?? '0',
 
       GradeUpprattats1: parseInt(this.guardians[0].inform),
-      GradeUpprattats2: parseInt(this.guardians[0].samtycke),
-      GradeSamtycke1: parseInt(this.guardians[1].inform),
+      GradeUpprattats2: parseInt(this.guardians[1].inform),
+      GradeSamtycke1: parseInt(this.guardians[0].samtycke),
       GradeSamtycke2: parseInt(this.guardians[1].samtycke),
       Status: number,
-
     };
 
     console.log(card);
@@ -249,8 +264,15 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
       }
-      if (this.createDiscoveCardFormGroup.status == "INVALID" || !this.checkChoices()) {
+      if (this.createDiscoveCardFormGroup.status == "INVALID") {
         this.saveError = 'Du har missat att fylla i saker';
+        isSendAvailable= false;
+
+      }if(!this.checkChoices()){
+        this.categoryError= 'Du har missat att välja JA, NEJ eller VET EJ i någon av kategorierna';
+        isSendAvailable= false;
+        this.saveError = 'Du har missat att fylla i saker';
+
       }if(this.guardians[0].name==undefined){
         this.guardiansError[0].name= 'Vårdnadshavares namn ska vara med.'
         this.saveError = 'Du har missat att fylla i saker';
@@ -302,10 +324,11 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
       }if(isSendAvailable) {
+        this.isAnonyms();
 
         const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
           data: {
-            isAnonyms: this.isAnonyms(),
+            text: this.informMesg,          
           }
         });
 
