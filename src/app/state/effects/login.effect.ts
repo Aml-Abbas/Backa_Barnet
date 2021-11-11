@@ -31,16 +31,10 @@ login$ = createEffect(() =>
   loginSuccess$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginAction.LOGIN_SUCCESS),
-      switchMap((action: loadCurrentUserAction.LoadCurrentUserSuccess) => {
-
-        return this.signInService.getCurrentUser(action.payload.email).pipe(
-          map((response) => new loadCurrentUserAction.LoadCurrentUserSuccess(response)),
-          catchError((error: any) => of(new loadCurrentUserAction.LoadCurrentUserFail(error)))
-        );
-        
-       // new fromRoot.Go({path: ['/']}),
-        //new fromRoot.Go({path: ['/contact']})
-}),
+      switchMap((action: loadCurrentUserAction.LoadCurrentUserSuccess) => [
+        //new fromRoot.Go({path: ['/']}),
+        new fromRoot.Go({path: ['/contact']})
+      ]),
     )
   );
 

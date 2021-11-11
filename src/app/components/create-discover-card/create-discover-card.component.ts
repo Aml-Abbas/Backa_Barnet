@@ -54,6 +54,8 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
   nameError = '';
   personNbrError = '';
   measureError = '';
+  unitError='';
+  situationError='';
 
   guardianNbr: number = 2;
   selected = '2';
@@ -69,8 +71,8 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
     { name: '', personNbr: '' },
   ];
 
-  unitNbr: number = 0;
-  unitString = '0';
+  unitNbr: number = -1;
+  unitString = '-1';
 
   situationComment: string;
 
@@ -246,8 +248,6 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
         this.personNbrError = 'Personnummer ska innehålla 12 siffror';
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
-        
-
       }
       if (this.createDiscoveCardFormGroup.status == "INVALID" || !this.checkChoices()) {
         this.saveError = 'Du har missat att fylla i saker';
@@ -291,8 +291,16 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
         this.measureError='Du måste välja nej eller ja';
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
-        
 
+      }if(!(this.unitNbr<8 && this.unitNbr>=0)){
+        this.unitError='Du måste välja en enhet';
+        this.saveError = 'Du har missat att fylla i saker';
+        isSendAvailable= false;
+
+      }if(this.createDiscoveCardFormGroup.controls.situationCommentControl.status== "INVALID"){
+        this.situationError = 'Du måste beskriva situationen';
+        this.saveError = 'Du har missat att fylla i saker';
+        isSendAvailable= false;
       }if(isSendAvailable) {
 
         const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {

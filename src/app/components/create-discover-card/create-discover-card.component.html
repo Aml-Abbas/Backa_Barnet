@@ -50,11 +50,13 @@
           (click)="changeUnitNbr(unit.unitName, unit.unitID)">{{unit.unitName}}</mat-option>
       </mat-select>
     </mat-form-field>
+    <p>{{unitError}}</p>
 
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Situationen där barnet uppmärksammats: ​</mat-label>
       <textarea matInput formControlName="situationCommentControl"></textarea>
     </mat-form-field>
+    <p>{{situationError}}</p>
 
     <section class="section_margin-top">
       <label>Åtgärder har vidtagits i egen organisation?</label>
