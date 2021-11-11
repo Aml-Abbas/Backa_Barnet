@@ -36,6 +36,7 @@ import { ConsentGuard } from './guards/consent.guard';
 import { EventGuard } from './guards/event.guard';
 import { GoalGuard } from './guards/goal.guard';
 import { CreateEventGuard } from './guards/create-event.guard';
+import { DirtycheckGuard } from './guards/dirtycheck.guard';
 
 
 const routes: Routes = [
@@ -89,7 +90,7 @@ const routes: Routes = [
       },
       {
         path: 'create-discover-card',
-        component: CreateDiscoverCardComponent
+        component: CreateDiscoverCardComponent, canDeactivate:[DirtycheckGuard]
       },
       {
         path: 'deep-need-compass',

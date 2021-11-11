@@ -3,7 +3,7 @@
 
   <button mat-raised-button class="discover-card-button" routerLink="/discover-card">Tidigare upptäckarkorten</button>
 
-  <div class="form-container" [formGroup]="createDiscoveCardFormGroup">
+  <div class="form-container" [formGroup]="createDiscoveCardFormGroup" (change)= "isDirty= true">
 
     <mat-form-field appearance="fill">
       <mat-label>Barnets namn</mat-label>

@@ -10,7 +10,7 @@ import { ContactGuardianService } from '../../services/contact-guardian/contact-
 import { Observable } from 'rxjs';
 import { Unit } from 'src/app/models/Unit';
 import { User } from 'src/app/models/User';
-import { faLeaf } from '@fortawesome/free-solid-svg-icons';
+import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 
 
 
@@ -19,7 +19,13 @@ import { faLeaf } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './create-discover-card.component.html',
   styleUrls: ['./create-discover-card.component.scss']
 })
-export class CreateDiscoverCardComponent implements OnInit {
+export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactivate {
+  canDeactivate(): boolean{
+    return !this.isDirty;
+  }
+
+  isDirty= false;
+
   ELEMENT_DATA = [
     { color: '#ccd8ec', type: 'OMSORG', id: 'care', description: 'Barnet har vuxna i sin närhet som hen kan lita på och vända sig till.' },
     { color: '#dbd9e6', type: 'TRYGGHET', id: 'security', description: 'Barnet skyddas från sådant som kan skada hen i och utanför hemmet.' },
@@ -234,13 +240,13 @@ export class CreateDiscoverCardComponent implements OnInit {
         this.nameError = 'För och efternamn behövs, glöm inte mellan slag mellan dem.';
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
-        console.log('isSendAvailable is false');
+        
 
       }if(this.createDiscoveCardFormGroup.controls.personNbrControl.status== "INVALID" || this.personNbr.toString().length!=12){
         this.personNbrError = 'Personnummer ska innehålla 12 siffror';
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
-        console.log('isSendAvailable is false');
+        
 
       }
       if (this.createDiscoveCardFormGroup.status == "INVALID" || !this.checkChoices()) {
@@ -249,46 +255,45 @@ export class CreateDiscoverCardComponent implements OnInit {
         this.guardiansError[0].name= 'Vårdnadshavares namn ska vara med.'
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
-        console.log('isSendAvailable is false');
+        
 
       }if(this.guardians[0].name!=undefined && String(this.guardians[0].name).split(' ').length<2){
         this.guardiansError[0].name= 'Vårdnadshavares för och efternamn ska vara med.'
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
-        console.log('isSendAvailable is false');
+        
 
       }if(this.guardians[1].name==undefined && this.guardianNbr==2){
         this.guardiansError[1].name= 'Vårdnadshavares namn ska vara med.'
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
-        console.log('isSendAvailable is false');
+        
 
       }if(this.guardians[1].name!=undefined && this.guardianNbr==2 && String(this.guardians[1].name).split(' ').length<2){
         this.guardiansError[1].name= 'Vårdnadshavares för och efternamn ska vara med.'
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
-        console.log('isSendAvailable is false');
+        
 
       }if(!this.isNumeric(this.guardians[0].personNbr)){
         this.guardiansError[0].personNbr= 'Vårdnadshavares personnummer ska vara 12 siffror.'
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
-        console.log('isSendAvailable is false');
+        
 
       }if((!this.isNumeric(this.guardians[1].personNbr) && this.guardianNbr==2)){
         this.guardiansError[1].personNbr= 'Vårdnadshavares personnummer ska vara 12 siffor.'
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
-        console.log('isSendAvailable is false');
+        
 
       } if(this.isMeasureTaken == 2){
         this.measureError='Du måste välja nej eller ja';
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable= false;
-        console.log('isSendAvailable is false');
+        
 
       }if(isSendAvailable) {
-        console.log('isSendAvailable is true, will send the request');
 
         const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
           data: {
@@ -311,12 +316,14 @@ export class CreateDiscoverCardComponent implements OnInit {
               card.GuardianNbr2 = '0';
 
             }
+            this.isDirty= false;
             this.store.dispatch(new fromState.CreateDiscoverCard(card));
           }
         });
       }
     } else {
-            this.store.dispatch(new fromState.CreateDiscoverCard(card));
+      this.isDirty= false;
+      this.store.dispatch(new fromState.CreateDiscoverCard(card));
     }
   }
 }
