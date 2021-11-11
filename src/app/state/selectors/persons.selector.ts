@@ -8,13 +8,13 @@ export const getPersonsState = createSelector(
   (state: fromFeature.State) => state.persons
 );
 
-export const getCurrentUserLoading = createSelector(
+export const getPersonsLoading = createSelector(
   getPersonsState,
   fromPersons.getPersonsLoading
 );
 
 
-export const getCurrentUserLoaded = createSelector(
+export const getPersonsLoaded = createSelector(
   getPersonsState,
   fromPersons.getPersonsLoaded
 );

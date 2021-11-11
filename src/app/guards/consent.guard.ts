@@ -3,7 +3,6 @@ import { CanActivate} from '@angular/router';
 import { Observable } from 'rxjs';
 import * as fromState from '../state';
 import { Store } from '@ngrx/store';
-import { tap } from 'rxjs/operators';
 import * as fromRoot from '../../app/state';
 import { of } from 'rxjs';
 
