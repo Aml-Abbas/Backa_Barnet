@@ -13,14 +13,14 @@
       <mat-label>Barnets namn</mat-label>
       <input matInput [(ngModel)]="current_card.personName" name="current_card">
     </mat-form-field>
-    <!-- <p>{{nameError}}</p> -->
+    <p>{{nameError}}</p> 
 
 
     <mat-form-field appearance="fill">
       <mat-label>Barnets personnummer</mat-label>
       <input matInput [(ngModel)]="current_card.personNbr" name="current_card">
     </mat-form-field>
-    <!-- <p>{{personNbrError}}</p> -->
+    <p>{{personNbrError}}</p> 
 
     <mat-form-field appearance="fill">
       <mat-label>Antal Vårdnadshavare</mat-label>
@@ -36,13 +36,13 @@
         <mat-label>Vårdnadshavarens {{i+1}} namn</mat-label>
         <input matInput [(ngModel)]="guardians[i].name" name="current_card">
       </mat-form-field>
-      <!-- <p>{{guardiansError[i].name}}</p> -->
+      <p>{{guardiansError[i].name}}</p>
 
       <mat-form-field appearance="fill">
         <mat-label>Vårdnadshavarens {{i+1}} personnummer</mat-label>
         <input matInput [(ngModel)]="guardians[i].personNbr" name="current_card">
       </mat-form-field>
-      <!-- <p>{{guardiansError[i].personNbr}}</p> -->
+      <p>{{guardiansError[i].personNbr}}</p>
 
     </div>
 
@@ -53,13 +53,13 @@
           >{{unit.unitName}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <!-- <p>{{unitError}}</p> -->
+    <p>{{unitError}}</p>
 
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Situationen där barnet uppmärksammats: ​</mat-label>
       <textarea matInput [(ngModel)]="current_card.situation" name="current_card"></textarea>
     </mat-form-field>
-    <!-- <p>{{situationError}}</p> -->
+   <p>{{situationError}}</p> 
 
     <section class="section_margin-top">
       <label>Åtgärder har vidtagits i egen organisation?</label>
@@ -68,7 +68,7 @@
         <mat-radio-button [value]="0">NEJ</mat-radio-button>
       </mat-radio-group>
     </section>
-    <!-- <p>{{measureError}}</p> -->
+   <p>{{measureError}}</p>
 
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>kommentar: ​</mat-label>
@@ -97,8 +97,8 @@
 
       </mat-card>
     </div>
- <!--    <p>{{categoryError}}</p>
- -->
+   <p>{{categoryError}}</p>
+
 
     <div *ngFor="let item of [].constructor(guardianNbr); let i = index">
 
@@ -121,7 +121,7 @@
 
     </div>
 
-    <!-- <p>{{saveError}}</p> -->
+    <p>{{saveError}}</p>
 
     <div class="buttons-container">
       <button mat-raised-button (click)="send(1)">Skicka in</button>
