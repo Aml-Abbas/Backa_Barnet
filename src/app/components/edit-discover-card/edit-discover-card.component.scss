@@ -1,0 +1,213 @@
+h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+  h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+  
+.form-container{
+    background-color: whitesmoke;
+    color: black;
+    padding: 10px;
+    width: 90%;
+}
+mat-label{
+    color: black;
+}
+
+.full-width{
+    width: 100%;
+}
+
+mat-form-field{
+    margin-right: 10%;
+    width: 40%;
+    color: black;
+    margin-bottom: 10px;
+    height: 55px;
+    display: inline-block;
+}
+
+mat-checkbox{
+    padding: 5px;
+    width: 10%;
+    color: black;
+}
+.buttons-container{
+width: 100%;
+}
+
+input{
+color: black;
+}
+p{
+  margin-top: 12px;
+  color: brown;
+  font-size: 15px;
+  display: inline-block;
+  width: 40%;
+}
+mat-card-title, mat-card-subtitle{
+    color: black;
+}
+
+mat-card-title{
+    text-align: center;
+}
+
+::ng-deep .mat-select-value{
+  color: black !important;
+}
+
+::ng-deep .mat-select-panel{
+  background-color: #663399 !important;
+}
+
+::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
+  color: white !important;
+}
+
+::ng-deep .mat-datepicker-content {
+  background-color: #663399;
+}
+
+::ng-deep .mat-select-arrow{
+  color: #663399;
+}
+
+.card-container{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 15px;
+
+}
+
+.section_margin-top{
+  margin-top: 10px;
+}
+
+.section {
+    padding: 10px;
+    display: flex;
+    height: 60px;
+  }
+
+  label, mat-radio-button{
+      margin-right: 10px;
+  }
+
+  button{
+    margin-left: 12.5%;
+    width: 20%;
+    background-color: #cde7e6;
+    color: black;
+    margin-bottom: 15px;
+  }
+
+  .cancel-button{
+    background-color: #e83344;
+  }
+  .save-button{
+    background-color: lightgrey;
+  }
+
+  mat-card{
+    background-color: whitesmoke;
+    display: inline-block;
+    width: 43%;
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-right: 5%;
+  }
+
+    .card-container {
+      height: 100px;
+    }
+  
+
+  .discover-card-button{
+      width: 35%;
+      margin-left: 65%;
+      margin-bottom: 20px;;
+  }
+
+  mat-radio-button{
+    margin-bottom: 20px;
+  }
+
+
+#care{
+    border: 2px solid #ccd8ec !important;
+}
+#security{
+  border: 2px solid #dbd9e6 !important;
+}
+#feel_good{
+  border: 2px solid #ffdcee !important;
+}
+#free_time{
+  border: 2px solid #fbdae1 !important;
+}
+#beloning{
+  border: 2px solid #fee4d7 !important;
+}
+#responsibility{
+  border: 2px solid #fcedd6 !important;
+}
+#respect{
+  border: 2px solid #d9f2e4 !important;
+}
+#develop{
+  border: 2px solid #d1f3f3 !important;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex{
+  padding: 5px 0px 0px 5px !important;
+}
+
+.back-button{
+  color: #663399;
+  size: 16px;
+  margin-left: 0px;
+  background-color: white;
+  width: 10%;
+}
+
+@media screen and (max-width: 1332px){
+  mat-card{
+    width: 41%;
+  }
+
+}
+
+  @media screen and (max-width: 831px){
+  
+    .discover-card-button{
+      margin-left: 15%;
+      width: 70%;
+    }
+    mat-form-field{
+      width: 100%;
+    }
+    mat-card{
+      width: 100%;
+      padding: 0%;
+    }
+    .section {
+      padding: 10px;
+      display: flex;
+      height: 90px;
+    }
+    .section-height{
+      height: 110px;
+    }
+    button{
+      width: 40%;
+      margin-left: 30%;
+    }
+
+  }

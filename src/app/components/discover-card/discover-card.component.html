@@ -41,7 +41,7 @@
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-              <button class="edit-button" *ngIf="element.status=='Sparat'" (click)="moveToEditCard(element)">
+              <button mat-icon-button class="edit-button" *ngIf="element.status=='Sparat'" (click)="moveToEditCard(element)">
                 <span class="material-icons"> create </span>
                 Ändra
                 </button> 
