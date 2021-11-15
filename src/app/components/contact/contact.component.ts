@@ -15,7 +15,7 @@ import { User } from 'src/app/models/User';
 export class ContactComponent implements OnInit {
   persons$: Observable<Person[]> = new Observable<Person[]>();
   private persons:Person[]= [];
-  displayedColumns: string[] = ['personNbr', 'firstName','changedOn', 'status'];
+  displayedColumns: string[] = ['personNbr', 'name','changedOn', 'status'];
   current_user$: Observable<User| null> = new Observable<User| null>();
   dataSource = new MatTableDataSource<Person>();
 
@@ -31,13 +31,13 @@ export class ContactComponent implements OnInit {
     this.persons$ = this.store.select(fromState.getPersons);
    
     this.persons$.subscribe(data => {
-      this.dataSource.data = data;
 
       data.map((person:Person)=>{
         let personNbr= person.personNbr;
         let lastName= person.lastName;
         let firstName= person.firstName;
 
+        let name= person.firstName+' '+ person.lastName;
         let guardian1= person.guardian1;
         let guardianPersonNbr1= person.guardianPersonNbr1;
         let guardian2= person.guardian2;
@@ -48,12 +48,13 @@ export class ContactComponent implements OnInit {
         let status= person.status;
 
         if(status!='Anonymiserad'){
-          this.persons.push({personNbr, lastName, firstName,
+          this.persons.push({personNbr, lastName, firstName, name,
             guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
             changedBy, changedOn, status});  
         }
       })
   });
+  this.dataSource.data = this.persons;
 }
 
   setCurrentPerson(person: Person) {

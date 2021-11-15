@@ -37,6 +37,8 @@ import { EventGuard } from './guards/event.guard';
 import { GoalGuard } from './guards/goal.guard';
 import { CreateEventGuard } from './guards/create-event.guard';
 import { DirtycheckGuard } from './guards/dirtycheck.guard';
+import { EditDiscoverCardComponent } from './components/edit-discover-card/edit-discover-card.component';
+import { DiscoverCardEditGuard } from './guards/discover-card-edit.guard';
 
 
 const routes: Routes = [
@@ -123,6 +125,10 @@ const routes: Routes = [
       {
         path: 'create-event',
         component: CreateEventComponent, canActivate: [CreateEventGuard]
+      }, 
+      {
+        path: 'edit-discover-card/:discoverCardId',
+        component: EditDiscoverCardComponent, canActivate: [DiscoverCardEditGuard]
       },
     ]
   },

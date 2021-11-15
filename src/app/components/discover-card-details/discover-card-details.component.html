@@ -1,6 +1,11 @@
 <div class="container">
     <h1>Upptäckarkortet</h1>
 
+    <button class="back-button" mat-icon-button routerLink="/discover-card">
+      <span class="material-icons"> arrow_back </span>
+   Tillbaka
+</button>
+
     <mat-list *ngIf="(current_card$ | async) as current_card">
 
       <table role="table" class="table_white_background">

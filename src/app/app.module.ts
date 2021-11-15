@@ -69,6 +69,7 @@ import { ConversationMaterialDetailsComponent } from './components/conversation-
 import { EstimateOverviewComponent } from './components/estimate-overview/estimate-overview.component';
 import { SvgComponent } from './components/need-compass/svg.component';
 import { BBLogComponent } from './components/landing/bb-log.component';
+import { EditDiscoverCardComponent } from './components/edit-discover-card/edit-discover-card.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { BBLogComponent } from './components/landing/bb-log.component';
     DeepNeedCompassComponent, ConversationMaterialComponent,
     ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, 
     EditContactGuardianComponent, CreateDiscoverCardDialogComponent, DiscoverCardDetailsComponent, 
-    CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent, SvgComponent, BBLogComponent],
+    CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent,
+     SvgComponent, BBLogComponent, EditDiscoverCardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

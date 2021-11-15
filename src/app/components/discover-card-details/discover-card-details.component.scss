@@ -45,6 +45,14 @@ p{
     background-color: white;
   }
 
+  .material-icons { 
+    font-size: 30px;
+    color: #663399;
+}
+.back-button{
+  color: #663399;
+  size: 16px;
+}
   @media screen and (max-width: 900px){
     ::ng-deep .mat-list-item{
      // height: 85px !important;

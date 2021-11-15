@@ -295,19 +295,26 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
     } if (!(this.unitNbr < 8 && this.unitNbr >= 0)) {
-      this.unitError = 'Du måste välja en enhet';
-      this.saveError = 'Du har missat att fylla i saker';
       console.log('enhet is');
       console.log(this.unitNbr);
+
+      this.unitError = 'Du måste välja en enhet';
+      this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
     } if (isSendAvailable) {
+      console.log('isSendAvailable');
+      console.log(isSendAvailable);
+
       if (number == 1) {
+        console.log('will send kortet');
+        console.log(number);
+  
         if (!this.checkChoices()) {
           this.categoryError = 'Du har missat att välja JA, NEJ eller VET EJ i någon av kategorierna';
           isSendAvailable = false;
           this.saveError = 'Du har missat att fylla i saker';
 
-          if (this.isMeasureTaken == 2) {
+        }if (this.isMeasureTaken == 2) {
             this.measureError = 'Du måste välja nej eller ja';
             this.saveError = 'Du har missat att fylla i saker';
             isSendAvailable = false;
@@ -318,6 +325,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
             isSendAvailable = false;
           } if (isSendAvailable) {
             this.isAnonyms();
+            console.log('will open dialog');
 
             const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
               data: {
@@ -346,13 +354,27 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
             });
           }
         }
-      } else {
-        this.isDirty = false;
-        this.store.dispatch(new fromState.CreateDiscoverCard(card));
-      }
+        else {
+          console.log('will save kortet');
+          console.log(number);
+
+          const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
+            data: {
+              text: 'Kortet kommer att sparas',
+            }
+          });
+
+          dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+              this.isDirty = false;
+              this.store.dispatch(new fromState.CreateDiscoverCard(card));
+            }
+          });
+        }
+      } 
     }
 
-  }
+  
 }
 
 

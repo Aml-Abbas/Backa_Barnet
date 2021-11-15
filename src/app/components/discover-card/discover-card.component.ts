@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./discover-card.component.scss']
 })
 export class DiscoverCardComponent implements OnInit {
-  displayedColumns: string[] = ['gradedOn', 'personName',  'userName', 'userOrg', 'status'];
+  displayedColumns: string[] = ['gradedOn', 'personName',  'userName', 'userOrg', 'status','id'];
   discoverCards$: Observable<DiscoverCard[]> = new Observable<DiscoverCard[]>();
   current_user$: Observable<User| null> = new Observable<User| null>();
   cards: Card[]= [];
@@ -102,6 +102,7 @@ export class DiscoverCardComponent implements OnInit {
         }
       })
         });
+        this.dataSource.data = this.cards;
         this.store.dispatch(new fromState.UpdateCards(this.cards));
   }
 
@@ -109,7 +110,12 @@ export class DiscoverCardComponent implements OnInit {
     this.store.dispatch(new fromState.UpdateCard(card));
     this.store.dispatch(new fromRoot.Go({ path: ['/discover-card', card.id] }));
   }
-  
+
+  moveToEditCard(card: Card){
+    this.store.dispatch(new fromState.UpdateCard(card));
+    this.store.dispatch(new fromRoot.Go({ path: ['/edit-discover-card', card.id] }));
+  }
+
   containsCard(date: string): boolean{
     var found= false;
     this.cards.forEach(element => {

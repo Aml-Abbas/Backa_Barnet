@@ -4,7 +4,6 @@ import { Card } from 'src/app/models/Card';
 import { Observable } from 'rxjs';
 import * as fromState from '../../state';
 import { Store } from '@ngrx/store';
-import * as fromRoot from '../../../app/state';
 
 export interface QuestionText {
   id: number;

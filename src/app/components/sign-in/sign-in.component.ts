@@ -47,8 +47,10 @@ export class SignInComponent implements OnInit {
   }
 
   public signIn(): void{
-    this.loginInfo = {email: this.email, password: this.enteredPassword};
-    this.store.dispatch(new fromStore.Login(this.loginInfo));
+    if(this.emailFormControl.status!= 'INVALID'){
+      this.loginInfo = {email: this.email, password: this.enteredPassword};
+      this.store.dispatch(new fromStore.Login(this.loginInfo));  
+    }
   }
 
 }
