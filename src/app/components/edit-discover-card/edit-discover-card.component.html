@@ -34,47 +34,47 @@
     <div *ngFor="let item of [].constructor(guardianNbr); let i = index">
       <mat-form-field appearance="fill">
         <mat-label>Vårdnadshavarens {{i+1}} namn</mat-label>
-        <input matInput [(ngModel)]="current_card.guardian1" name="current_card">
+        <input matInput [(ngModel)]="guardians[i].name" name="current_card">
       </mat-form-field>
       <!-- <p>{{guardiansError[i].name}}</p> -->
 
       <mat-form-field appearance="fill">
         <mat-label>Vårdnadshavarens {{i+1}} personnummer</mat-label>
-        <input matInput [(ngModel)]="current_card.guardian2" name="current_card">
+        <input matInput [(ngModel)]="guardians[i].personNbr" name="current_card">
       </mat-form-field>
       <!-- <p>{{guardiansError[i].personNbr}}</p> -->
 
     </div>
 
-<!--     <mat-form-field appearance="fill" *ngIf="(units$ | async) as units">
+     <mat-form-field appearance="fill" *ngIf="(units$ | async) as units">
       <mat-label>BMM/ BvC/ Förskola/ Skola (Barnkontakt)</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitID}}"
-          (click)="changeUnitNbr(unit.unitName, unit.unitID)">{{unit.unitName}}</mat-option>
+      <mat-select [(value)]="current_card.healthTeam">
+        <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitName}}"
+          >{{unit.unitName}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <p>{{unitError}}</p>
+    <!-- <p>{{unitError}}</p> -->
 
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Situationen där barnet uppmärksammats: ​</mat-label>
-      <textarea matInput formControlName="situationCommentControl"></textarea>
+      <textarea matInput [(ngModel)]="current_card.situation" name="current_card"></textarea>
     </mat-form-field>
-    <p>{{situationError}}</p>
+    <!-- <p>{{situationError}}</p> -->
 
     <section class="section_margin-top">
       <label>Åtgärder har vidtagits i egen organisation?</label>
-      <mat-radio-group (change)="radioChange($event)">
-        <mat-radio-button value="1">JA</mat-radio-button>
-        <mat-radio-button value="0">NEJ</mat-radio-button>
+      <mat-radio-group [(ngModel)]="current_card.grades[8]">
+        <mat-radio-button [value]="1">JA</mat-radio-button>
+        <mat-radio-button [value]="0">NEJ</mat-radio-button>
       </mat-radio-group>
     </section>
-    <p>{{measureError}}</p>
+    <!-- <p>{{measureError}}</p> -->
 
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>kommentar: ​</mat-label>
-      <textarea matInput [(ngModel)]="isMeasureTakenComment" [ngModelOptions]="{standalone: true}"></textarea>
-    </mat-form-field> -->
-<!-- 
+      <textarea matInput [(ngModel)]="current_card.comments[8]" [ngModelOptions]="{standalone: true}"></textarea>
+    </mat-form-field> 
+
     <div class="grid-container">
       <mat-card *ngFor="let item of ELEMENT_DATA; let i=index">
         <div class="card-container" [style.background]="item.color">
@@ -82,29 +82,29 @@
           <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
         </div>
 
-        <section>
-          <mat-radio-group (change)="radioChangeThree($event,item)">
-            <mat-radio-button value="1">JA</mat-radio-button>
-            <mat-radio-button value="0">NEJ</mat-radio-button>
-            <mat-radio-button value="2">VET EJ</mat-radio-button>
+        <section >
+          <mat-radio-group [(ngModel)]="current_card.grades[i]">
+            <mat-radio-button [value]="1">JA</mat-radio-button>
+            <mat-radio-button [value]="0">NEJ</mat-radio-button>
+            <mat-radio-button [value]="2">VET EJ</mat-radio-button>
           </mat-radio-group>
         </section>
 
         <mat-form-field id="{{item.id}}" class="full-width" appearance="fill">
           <mat-label>kommentar: ​</mat-label>
-          <textarea class="comment" matInput [(ngModel)]="comments[i]" [ngModelOptions]="{standalone: true}"></textarea>
+          <textarea class="comment" matInput [(ngModel)]="current_card.comments[i]"></textarea>
         </mat-form-field>
 
       </mat-card>
     </div>
-    <p>{{categoryError}}</p>
+ <!--    <p>{{categoryError}}</p>
  -->
 
-<!--     <div *ngFor="let item of [].constructor(guardianNbr); let i = index">
+    <div *ngFor="let item of [].constructor(guardianNbr); let i = index">
 
       <section class="section">
         <label>Vårdnadshavare {{i+1}} är informerad om att Upptäckarkort upprättas</label>
-        <mat-radio-group (change)="radioChangeInform($event, i)">
+        <mat-radio-group [(ngModel)]="guardians[i].inform">
           <mat-radio-button value="1">JA</mat-radio-button>
           <mat-radio-button value="0">NEJ</mat-radio-button>
         </mat-radio-group>
@@ -113,21 +113,21 @@
       <section class="section section-height">
         <label>Vårdnadshavare {{i+1}} har gett samtycke till att information gällande upptäckarkorten delas mellan
           Upptäckare och Barnkontakt</label>
-        <mat-radio-group (change)="radioChangeSamtycke($event, i)">
+        <mat-radio-group [(ngModel)]="guardians[i].samtycke">
           <mat-radio-button value="1">JA</mat-radio-button>
           <mat-radio-button value="0">NEJ</mat-radio-button>
         </mat-radio-group>
       </section>
 
-    </div> -->
+    </div>
 
     <!-- <p>{{saveError}}</p> -->
 
-<!--     <div class="buttons-container">
+    <div class="buttons-container">
       <button mat-raised-button (click)="send(1)">Skicka in</button>
       <button mat-raised-button (click)="send(2)" class="save-button">Spara</button>
       <button mat-raised-button class="cancel-button" (click)="goBack()">Avbryt</button>  
-    </div> -->
+    </div>
 
   </div>
 

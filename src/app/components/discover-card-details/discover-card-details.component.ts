@@ -39,6 +39,12 @@ export class DiscoverCardDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.current_card$ = this.store.select(fromState.getCurrentCard);
+    this.current_card$.subscribe(data=>{
+      console.log(data?.questions[5]);
+      console.log(data?.comments[5]);
+      console.log(data?.grades[5]);
+
+    });
   }
 
 }
