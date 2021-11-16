@@ -181,53 +181,102 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
     this.store.dispatch(new fromRoot.Back());
   }
 
+  isNumeric(str: any): boolean {
+    if (str == undefined) {
+      return false;
+    } else {
+      return Number.isInteger(str) && str.toString().length == 12;
+    }
+  }
+
+  changeUnitNbr(nbr: number) {
+    this.unitNbr = nbr;
+  }
+
+  checkChoices(): boolean {
+    var emptyChoice = true;
+    this.card.grades.forEach(element => {
+      if (element != '0'&& element != '1' && element != '2') {
+        emptyChoice = false;
+      }
+    });
+    return emptyChoice;
+  }
+  
+  missCosent(): boolean {
+    if (this.guardianNbr == 2 &&
+      (this.guardians[0].samtycke != '1' || this.guardians[1].samtycke != '1' ||
+        this.guardians[0].inform != '1' || this.guardians[1].inform != '1')) {
+      return false;
+    } else if (this.guardianNbr == 1 &&
+      (this.guardians[0].samtycke != '1' || this.guardians[0].inform != '1')) {
+      return false;
+    }
+    return true;
+  }
+
+  isAnonyms(): boolean {
+    if (this.unitNbr == 7 && !this.missCosent()) {
+      this.informMesg = 'kortet kommer att anonymiseras för barnet tillhör annat enhet än Ystad och samtycke av föräldrar saknas';
+      return false;
+    }
+    else if (this.unitNbr == 7) {
+      this.informMesg = 'kortet kommer att anonymiseras för barnet tillhör annat enhet än Ystad';
+      return false;
+    } else if (!this.missCosent()) {
+      this.informMesg = 'kortet kommer att anonymiseras för samtycke av föräldrar saknas';
+      return false;
+    }
+    this.informMesg = 'kortet kommer att skickas in';
+    return true;
+  }
+
   send(number: number) {
 
 
 
-    var person_name = this.card.personName.split(' ');
+   var person_name = this.card.personName.split(' ');
     var firstName = person_name[0];
     var lastName = person_name[1];
-    var personNbr = this.card.personNbr;
+    /*  var personNbr = this.card.personNbr;
 
     this.card.guardian1= this.guardians[0].name ?? '0';
     this.card.guardianPersonNbr1= this.guardians[0].name ?? '0';
     this.card.guardian2= this.guardians[1].name ?? '0';
-    this.card.guardian1= this.guardians[0].name ?? '0';
-
-   /*  var card = {
+    this.card.guardian1= this.guardians[0].name ?? '0'; */
+  var card = {
       UserID: parseInt(this.current_user.userID) ?? 0,
       PersonLastName: lastName ?? '0',
       PersonFirstName: firstName ?? '0',
-      PersonNbr: String(this.createDiscoveCardFormGroup.value.personNbrControl) ?? '0',
+      PersonNbr: this.card.personNbr ?? '0',
 
       GuardianName1: this.guardians[0].name ?? '0',
       GuardianNbr1: String(this.guardians[0].personNbr) ?? '0',
       GuardianName2: this.guardians[1].name ?? '0',
       GuardianNbr2: String(this.guardians[1].personNbr) ?? '0',
 
-      Unit: this.unitString ?? '0',
-      Situation: this.createDiscoveCardFormGroup.value.situationCommentControl ?? '0',
+      Unit: this.card.healthTeam ?? '0',
+      Situation: this.card.situation ?? '0',
 
-      GradeActions: this.isMeasureTaken,
-      CommentActions: this.isMeasureTakenComment ?? '0',
+      GradeActions: this.card.grades[8],
+      CommentActions: this.card.comments[8] ?? '0',
 
-      GradeOmsorg: this.choices[0].choice,
-      CommentOmsorg: this.comments[0] ?? '0',
-      GradeTrygghet: this.choices[1].choice,
-      CommentTrygghet: this.comments[1] ?? '0',
-      GradeMarBra: this.choices[2].choice,
-      CommentMarBra: this.comments[2] ?? '0',
-      GradeFritid: this.choices[3].choice,
-      CommentFritid: this.comments[3] ?? '0',
-      GradeTillhorighet: this.choices[4].choice,
-      CommentTillhorighet: this.comments[4] ?? '0',
-      GradeAnsvarstagande: this.choices[5].choice,
-      CommentAnsvarstagande: this.comments[5] ?? '0',
-      GradeRespekteras: this.choices[6].choice,
-      CommentRespekteras: this.comments[6] ?? '0',
-      GradeUtvecklas: this.choices[7].choice,
-      CommentUtvecklas: this.comments[7] ?? '0',
+      GradeOmsorg: this.card.grades[0],
+      CommentOmsorg: this.card.comments[0] ?? '0',
+      GradeTrygghet: this.card.grades[1],
+      CommentTrygghet: this.card.comments[1] ?? '0',
+      GradeMarBra: this.card.grades[2],
+      CommentMarBra: this.card.comments[2] ?? '0',
+      GradeFritid: this.card.grades[3],
+      CommentFritid: this.card.comments[3] ?? '0',
+      GradeTillhorighet: this.card.grades[4],
+      CommentTillhorighet: this.card.comments[4] ?? '0',
+      GradeAnsvarstagande: this.card.grades[5],
+      CommentAnsvarstagande: this.card.comments[5] ?? '0',
+      GradeRespekteras: this.card.grades[6],
+      CommentRespekteras: this.card.comments[6] ?? '0',
+      GradeUtvecklas: this.card.grades[7],
+      CommentUtvecklas: this.card.comments[7] ?? '0',
 
       GradeUpprattats1: parseInt(this.guardians[0].inform),
       GradeUpprattats2: parseInt(this.guardians[1].inform),
@@ -238,8 +287,8 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
 
     console.log(card);
 
+   
     var isSendAvailable = true;
-    console.log('isSendAvailable is true');
     this.nameError = '';
     this.saveError = '';
     this.personNbrError = '';
@@ -253,16 +302,12 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
       this.nameError = 'För och efternamn behövs, glöm inte mellan slag mellan dem.';
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
-    } if (this.createDiscoveCardFormGroup.controls.personNbrControl.status == "INVALID" || this.personNbr.toString().length != 12) {
+    } if (!this.isNumeric(this.card.personNbr)) {
       this.personNbrError = 'Personnummer ska innehålla 12 siffror';
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
     }
-    if (this.createDiscoveCardFormGroup.status == "INVALID") {
-      this.saveError = 'Du har missat att fylla i saker';
-      isSendAvailable = false;
-
-    } if (this.guardians[0].name == undefined) {
+     if (this.guardians[0].name == undefined) {
       this.guardiansError[0].name = 'Vårdnadshavares namn ska vara med.'
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
@@ -293,31 +338,22 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
     } if (!(this.unitNbr < 8 && this.unitNbr >= 0)) {
-      console.log('enhet is');
-      console.log(this.unitNbr);
-
       this.unitError = 'Du måste välja en enhet';
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
-    } if (isSendAvailable) {
-      console.log('isSendAvailable');
-      console.log(isSendAvailable);
-
-      if (number == 1) {
-        console.log('will send kortet');
-        console.log(number);
-  
+    }  if (isSendAvailable) {
+      if (number == 1) {  
         if (!this.checkChoices()) {
           this.categoryError = 'Du har missat att välja JA, NEJ eller VET EJ i någon av kategorierna';
           isSendAvailable = false;
           this.saveError = 'Du har missat att fylla i saker';
 
-        }if (this.isMeasureTaken == 2) {
+        }if (this.card.grades[8] != '0' && this.card.grades[8] != '1') {
             this.measureError = 'Du måste välja nej eller ja';
             this.saveError = 'Du har missat att fylla i saker';
             isSendAvailable = false;
 
-          } if (this.createDiscoveCardFormGroup.controls.situationCommentControl.status == "INVALID") {
+          } if (this.card.situation == "") {
             this.situationError = 'Du måste beskriva situationen';
             this.saveError = 'Du har missat att fylla i saker';
             isSendAvailable = false;
@@ -347,15 +383,12 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
 
                 }
                 this.isDirty = false;
-                this.store.dispatch(new fromState.CreateDiscoverCard(card));
+               // this.store.dispatch(new fromState.CreateDiscoverCard(card));
               }
             });
           }
         }
         else {
-          console.log('will save kortet');
-          console.log(number);
-
           const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
             data: {
               text: 'Kortet kommer att sparas',
@@ -365,14 +398,12 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
           dialogRef.afterClosed().subscribe(result => {
             if (result) {
               this.isDirty = false;
-              this.store.dispatch(new fromState.CreateDiscoverCard(card));
+             // this.store.dispatch(new fromState.CreateDiscoverCard(card));
             }
           });
         }
       } 
     }
- */
 
 
-  }
 }

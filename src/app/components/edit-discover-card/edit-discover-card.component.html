@@ -7,18 +7,18 @@
 </button>
 
 
-<div class="form-container" (change)= "isDirty= true" *ngIf="(current_card$ | async) as current_card">
+<div class="form-container" (change)= "isDirty= true">
 
     <mat-form-field appearance="fill">
       <mat-label>Barnets namn</mat-label>
-      <input matInput [(ngModel)]="current_card.personName" name="current_card">
+      <input matInput [(ngModel)]="card.personName" name="current_card">
     </mat-form-field>
     <p>{{nameError}}</p> 
 
 
     <mat-form-field appearance="fill">
       <mat-label>Barnets personnummer</mat-label>
-      <input matInput [(ngModel)]="current_card.personNbr" name="current_card">
+      <input matInput [(ngModel)]="card.personNbr" name="current_card">
     </mat-form-field>
     <p>{{personNbrError}}</p> 
 
@@ -48,22 +48,22 @@
 
      <mat-form-field appearance="fill" *ngIf="(units$ | async) as units">
       <mat-label>BMM/ BvC/ Förskola/ Skola (Barnkontakt)</mat-label>
-      <mat-select [(value)]="current_card.healthTeam">
+      <mat-select [(value)]="card.healthTeam">
         <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitName}}"
-          >{{unit.unitName}}</mat-option>
+        (click)="changeUnitNbr(i)">{{unit.unitName}}</mat-option>
       </mat-select>
     </mat-form-field>
     <p>{{unitError}}</p>
 
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Situationen där barnet uppmärksammats: ​</mat-label>
-      <textarea matInput [(ngModel)]="current_card.situation" name="current_card"></textarea>
+      <textarea matInput [(ngModel)]="card.situation" name="current_card"></textarea>
     </mat-form-field>
    <p>{{situationError}}</p> 
 
     <section class="section_margin-top">
       <label>Åtgärder har vidtagits i egen organisation?</label>
-      <mat-radio-group [(ngModel)]="current_card.grades[8]">
+      <mat-radio-group [(ngModel)]="card.grades[8]">
         <mat-radio-button [value]="1">JA</mat-radio-button>
         <mat-radio-button [value]="0">NEJ</mat-radio-button>
       </mat-radio-group>
@@ -72,7 +72,7 @@
 
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>kommentar: ​</mat-label>
-      <textarea matInput [(ngModel)]="current_card.comments[8]" [ngModelOptions]="{standalone: true}"></textarea>
+      <textarea matInput [(ngModel)]="card.comments[8]" [ngModelOptions]="{standalone: true}"></textarea>
     </mat-form-field> 
 
     <div class="grid-container">
@@ -83,7 +83,7 @@
         </div>
 
         <section >
-          <mat-radio-group [(ngModel)]="current_card.grades[i]">
+          <mat-radio-group [(ngModel)]="card.grades[i]">
             <mat-radio-button [value]="1">JA</mat-radio-button>
             <mat-radio-button [value]="0">NEJ</mat-radio-button>
             <mat-radio-button [value]="2">VET EJ</mat-radio-button>
@@ -92,7 +92,7 @@
 
         <mat-form-field id="{{item.id}}" class="full-width" appearance="fill">
           <mat-label>kommentar: ​</mat-label>
-          <textarea class="comment" matInput [(ngModel)]="current_card.comments[i]"></textarea>
+          <textarea class="comment" matInput [(ngModel)]="card.comments[i]"></textarea>
         </mat-form-field>
 
       </mat-card>

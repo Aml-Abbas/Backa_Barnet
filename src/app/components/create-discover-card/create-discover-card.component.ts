@@ -238,10 +238,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       Status: number,
     };
 
-    console.log(card);
-
     var isSendAvailable = true;
-    console.log('isSendAvailable is true');
     this.nameError = '';
     this.saveError = '';
     this.personNbrError = '';
@@ -295,20 +292,11 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
     } if (!(this.unitNbr < 8 && this.unitNbr >= 0)) {
-      console.log('enhet is');
-      console.log(this.unitNbr);
-
       this.unitError = 'Du måste välja en enhet';
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
     } if (isSendAvailable) {
-      console.log('isSendAvailable');
-      console.log(isSendAvailable);
-
-      if (number == 1) {
-        console.log('will send kortet');
-        console.log(number);
-  
+      if (number == 1) {  
         if (!this.checkChoices()) {
           this.categoryError = 'Du har missat att välja JA, NEJ eller VET EJ i någon av kategorierna';
           isSendAvailable = false;
@@ -325,7 +313,6 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
             isSendAvailable = false;
           } if (isSendAvailable) {
             this.isAnonyms();
-            console.log('will open dialog');
 
             const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
               data: {
@@ -355,9 +342,6 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
           }
         }
         else {
-          console.log('will save kortet');
-          console.log(number);
-
           const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
             data: {
               text: 'Kortet kommer att sparas',
