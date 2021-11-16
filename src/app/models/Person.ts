@@ -22,7 +22,7 @@ export class Person {
       this.firstName = firstName;
       this.lastName = lastName;
 
-      this.name = firstName+' '+lastName;
+      this.name = name;
 
       this.guardian1 = guardian1;
       this.guardianPersonNbr1 = guardianPersonNbr1;

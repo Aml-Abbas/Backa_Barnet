@@ -149,6 +149,8 @@ changeShowFiller(){
     this.current_user$ = this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data=>{
       this.userRoleId= parseInt(String(data?.roleID));
+      let userID: string = data?.userID ?? '';
+      this.store.dispatch(new fromState.LoadPersons(userID));
     })
 
 

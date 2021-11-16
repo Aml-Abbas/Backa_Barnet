@@ -17,8 +17,7 @@ export class ContactComponent implements OnInit {
   private persons:Person[]= [];
   displayedColumns: string[] = ['personNbr', 'name','changedOn', 'status'];
   current_user$: Observable<User| null> = new Observable<User| null>();
-  dataSource = new MatTableDataSource<Person>();
-
+  dataSource;
   constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
@@ -47,14 +46,14 @@ export class ContactComponent implements OnInit {
         let changedBy = person.changedBy;
         let changedOn = person.changedOn;
         let status= person.status;
+        this.persons.push({personNbr, lastName, firstName, name,
+          guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
+          changedBy, changedOn, status});  
+      }
 
-        if(status!='Anonymiserad'){
-          this.persons.push({personNbr, lastName, firstName, name,
-            guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
-            changedBy, changedOn, status});  
-        }
-      })
+    )
  });
+    this.dataSource = new MatTableDataSource<Person>();
     this.dataSource.data = this.persons;
 }
 
