@@ -7,7 +7,7 @@
             close
         </mat-icon>
     </button>
-    Backa Barnet
+    Backa barnet
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -31,7 +31,7 @@
         <mat-button-toggle-group id='landing-sidebar' vertical="true">
 
             <mat-button-toggle (click)="changeShowFillerContact()">
-                <span>Barn & Kontakt</span>
+                <span>Barn & kontakt</span>
                 <span class="material-icons">{{showFillerContactIcon}}</span>
             </mat-button-toggle>
 
@@ -41,7 +41,7 @@
             </mat-button-toggle>
             <mat-divider *ngIf="showFillerContact"></mat-divider>
             <mat-button-toggle *ngIf="showFillerContact" class="under-button" routerLink="/contact-person">
-                <span>Kontaktuppgifter Barn</span>
+                <span>Kontaktuppgifter barn</span>
             </mat-button-toggle>
             <mat-divider *ngIf="showFillerContact"></mat-divider>
             <mat-button-toggle *ngIf="showFillerContact" class="under-button" routerLink="/contact-guardian">
@@ -102,7 +102,7 @@
                 <span>Tidslinje & händelser</span>
             </mat-button-toggle>
             <mat-divider *ngIf="goal"></mat-divider>
-            <mat-button-toggle *ngIf="goal" class="under-button" (click)="goToRoute($event, 'goal')" [disabled]="isDisabledGoal"><span>Barnets Mål</span>
+            <mat-button-toggle *ngIf="goal" class="under-button" (click)="goToRoute($event, 'goal')" [disabled]="isDisabledGoal"><span>Barnets mål</span>
             </mat-button-toggle>
 
 

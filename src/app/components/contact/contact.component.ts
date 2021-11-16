@@ -29,8 +29,9 @@ export class ContactComponent implements OnInit {
     });
 
     this.persons$ = this.store.select(fromState.getPersons);
-   
+
     this.persons$.subscribe(data => {
+     // this.dataSource.data = data;
 
       data.map((person:Person)=>{
         let personNbr= person.personNbr;

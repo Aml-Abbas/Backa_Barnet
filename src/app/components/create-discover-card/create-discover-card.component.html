@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Skapa Upptäckarkort</h1>
 
-  <button mat-raised-button class="discover-card-button" routerLink="/discover-card">Tidigare upptäckarkorten</button>
+  <button mat-raised-button class="discover-card-button" routerLink="/discover-card">Tidigare upptäckarkort</button>
 
   <div class="form-container" [formGroup]="createDiscoveCardFormGroup" (change)= "isDirty= true">
 
@@ -14,7 +14,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Barnets personnummer</mat-label>
-      <input matInput formControlName="personNbrControl" type="number">
+      <input matInput formControlName="personNbrControl">
     </mat-form-field>
     <p>{{personNbrError}}</p>
 
@@ -29,14 +29,14 @@
 
     <div *ngFor="let item of [].constructor(guardianNbr); let i = index">
       <mat-form-field appearance="fill">
-        <mat-label>Vårdnadshavarens {{i+1}} namn</mat-label>
+        <mat-label>Vårdnadshavare {{i+1}} namn</mat-label>
         <input matInput name="name" [(ngModel)]="guardians[i].name" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
       <p>{{guardiansError[i].name}}</p>
 
       <mat-form-field appearance="fill">
-        <mat-label>Vårdnadshavarens {{i+1}} personnummer</mat-label>
-        <input matInput name="personNbr" [(ngModel)]="guardians[i].personNbr" type="number"
+        <mat-label>Vårdnadshavare {{i+1}} personnummer</mat-label>
+        <input matInput name="personNbr" [(ngModel)]="guardians[i].personNbr"
           [ngModelOptions]="{standalone: true}">
       </mat-form-field>
       <p>{{guardiansError[i].personNbr}}</p>
@@ -68,7 +68,7 @@
     <p>{{measureError}}</p>
 
     <mat-form-field class="full-width" appearance="fill">
-      <mat-label>kommentar: ​</mat-label>
+      <mat-label>Kommentar: ​</mat-label>
       <textarea matInput [(ngModel)]="isMeasureTakenComment" [ngModelOptions]="{standalone: true}"></textarea>
     </mat-form-field>
 
@@ -88,7 +88,7 @@
         </section>
 
         <mat-form-field id="{{item.id}}" class="full-width" appearance="fill">
-          <mat-label>kommentar: ​</mat-label>
+          <mat-label>Kommentar: ​</mat-label>
           <textarea class="comment" matInput [(ngModel)]="comments[i]" [ngModelOptions]="{standalone: true}"></textarea>
         </mat-form-field>
 
