@@ -5,20 +5,20 @@
 
   <div class="form-container" [formGroup]="createDiscoveCardFormGroup" (change)= "isDirty= true">
 
-    <mat-form-field appearance="fill">
+    <mat-form-field class="fixed-length" class="fixed-length" appearance="fill">
       <mat-label>Barnets namn</mat-label>
       <input matInput formControlName="nameControl">
     </mat-form-field>
     <p>{{nameError}}</p>
 
 
-    <mat-form-field appearance="fill">
+    <mat-form-field class="fixed-length" appearance="fill">
       <mat-label>Barnets personnummer</mat-label>
       <input matInput formControlName="personNbrControl">
     </mat-form-field>
     <p>{{personNbrError}}</p>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field class="fixed-length" appearance="fill">
       <mat-label>Antal Vårdnadshavare</mat-label>
       <mat-select [(ngModel)]="selected" name="selected" [ngModelOptions]="{standalone: true}">
         <mat-option (click)="changeGuardianNbr(1)" value="1">1</mat-option>
@@ -28,13 +28,13 @@
 
 
     <div *ngFor="let item of [].constructor(guardianNbr); let i = index">
-      <mat-form-field appearance="fill">
+      <mat-form-field class="fixed-length" appearance="fill">
         <mat-label>Vårdnadshavare {{i+1}} namn</mat-label>
         <input matInput name="name" [(ngModel)]="guardians[i].name" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
       <p>{{guardiansError[i].name}}</p>
 
-      <mat-form-field appearance="fill">
+      <mat-form-field class="fixed-length" appearance="fill">
         <mat-label>Vårdnadshavare {{i+1}} personnummer</mat-label>
         <input matInput name="personNbr" [(ngModel)]="guardians[i].personNbr"
           [ngModelOptions]="{standalone: true}">
@@ -43,7 +43,7 @@
 
     </div>
 
-    <mat-form-field appearance="fill" *ngIf="(units$ | async) as units">
+    <mat-form-field class="fixed-length" appearance="fill" *ngIf="(units$ | async) as units">
       <mat-label>BMM/ BvC/ Förskola/ Skola (Barnkontakt)</mat-label>
       <mat-select>
         <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitID}}"
@@ -52,7 +52,7 @@
     </mat-form-field>
     <p>{{unitError}}</p>
 
-    <mat-form-field class="full-width" appearance="fill">
+    <mat-form-field class="fixed-length" class="full-width" appearance="fill">
       <mat-label>Situationen där barnet uppmärksammats: ​</mat-label>
       <textarea matInput formControlName="situationCommentControl"></textarea>
     </mat-form-field>
@@ -67,7 +67,7 @@
     </section>
     <p>{{measureError}}</p>
 
-    <mat-form-field class="full-width" appearance="fill">
+    <mat-form-field class="fixed-length" class="full-width" appearance="fill">
       <mat-label>Kommentar: ​</mat-label>
       <textarea matInput [(ngModel)]="isMeasureTakenComment" [ngModelOptions]="{standalone: true}"></textarea>
     </mat-form-field>

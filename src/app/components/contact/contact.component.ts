@@ -31,8 +31,8 @@ export class ContactComponent implements OnInit {
     this.persons$ = this.store.select(fromState.getPersons);
 
     this.persons$.subscribe(data => {
-     // this.dataSource.data = data;
-
+      // this.dataSource.data = data;
+    
       data.map((person:Person)=>{
         let personNbr= person.personNbr;
         let lastName= person.lastName;
@@ -54,8 +54,8 @@ export class ContactComponent implements OnInit {
             changedBy, changedOn, status});  
         }
       })
-  });
-  this.dataSource.data = this.persons;
+ });
+    this.dataSource.data = this.persons;
 }
 
   setCurrentPerson(person: Person) {

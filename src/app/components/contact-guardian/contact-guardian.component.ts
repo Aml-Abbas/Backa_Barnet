@@ -14,8 +14,8 @@ import { Contact } from 'src/app/models/Contact';
 export class ContactGuardianComponent implements OnInit {
   current_person$= new Observable<Person | null>();
   contacts$: Observable<Contact[]>=  new Observable<Contact[]>();
-  contacts: Contact[]= [new Contact('', '','','',''),
-                        new Contact('', '','','','')];
+  contacts: Contact[]= [new Contact('','','','', '', ''),
+                        new Contact('','','','','','')];
   userRoleId: string;
 
   constructor(private store: Store<fromState.State>,
@@ -31,10 +31,14 @@ export class ContactGuardianComponent implements OnInit {
         var contactPersonNbr= contact.contactPersonNbr;
         var lastName= contact.lastName;
         var firstName= contact.firstName;
+        var name='';
+        if(lastName!='' && firstName!=''){
+          name= contact.firstName + ' '+ contact.firstName; 
+        }
         var phoneNbr= contact.phoneNbr;
         var employer= contact.employer;
     
-        this.contacts[index]= new Contact(contactPersonNbr, lastName, firstName,
+        this.contacts[index]= new Contact(contactPersonNbr, lastName, firstName, name,
                                            phoneNbr, employer);
         index++;
         })

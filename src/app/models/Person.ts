@@ -14,8 +14,7 @@ export class Person {
     status: string;
 
   
-    constructor(personNbr: string, lastName: string, firstName: string, 
-        name: string, guardian1: string, guardianPersonNbr1: string,
+    constructor(personNbr: string, lastName: string, firstName: string, name: string, guardian1: string, guardianPersonNbr1: string,
         guardian2: string, guardianPersonNbr2: string,
         changedBy: string, changedOn: string, status: string) {
             
@@ -23,7 +22,7 @@ export class Person {
       this.firstName = firstName;
       this.lastName = lastName;
 
-      this.name = name;
+      this.name = firstName+' '+lastName;
 
       this.guardian1 = guardian1;
       this.guardianPersonNbr1 = guardianPersonNbr1;

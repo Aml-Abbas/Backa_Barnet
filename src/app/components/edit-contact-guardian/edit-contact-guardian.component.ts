@@ -15,8 +15,8 @@ import { GetSetService } from 'src/app/services/get-set/get-set.service';
 export class EditContactGuardianComponent implements OnInit {
   current_person$= new Observable<Person | null>();
   contacts$: Observable<Contact[]>=  new Observable<Contact[]>();
-  contacts: Contact[]= [new Contact('', '','','',''),
-                        new Contact('', '','','','')];
+  contacts: Contact[]= [new Contact('', '','','','',''),
+                        new Contact('', '','','','','')];
   contactName='H';
   supporterName='N';
 
@@ -45,8 +45,12 @@ export class EditContactGuardianComponent implements OnInit {
   
           let phoneNbr = contact.phoneNbr;
           let employer = contact.employer;  
-          
-          this.contacts[index]= new Contact(contactPersonNbr, lastName, firstName,
+          var name='';
+          if(lastName!='' && firstName!=''){
+            name= contact.firstName + ' '+ contact.firstName; 
+          }
+  
+          this.contacts[index]= new Contact(contactPersonNbr, lastName, firstName, name,
             phoneNbr, employer);
           index++;
           })

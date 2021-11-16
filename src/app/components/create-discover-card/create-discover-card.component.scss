@@ -22,8 +22,11 @@ mat-form-field{
     width: 40%;
     color: black;
     margin-bottom: 10px;
-    height: 55px;
     display: inline-block;
+}
+
+.fixed-length{
+  height: 55px;
 }
 
 mat-checkbox{
@@ -88,6 +91,12 @@ mat-card-title{
     padding: 10px;
     display: flex;
     height: 60px;
+    label{
+      width: 80%;
+    }
+    mat-radio-group{
+      width: 20%;
+    }
   }
 
   label, mat-radio-button{
@@ -95,7 +104,7 @@ mat-card-title{
   }
 
   button{
-    margin-left: 12.5%;
+    margin-left: 10%;
     width: 20%;
     background-color: #cde7e6;
     color: black;
@@ -112,10 +121,12 @@ mat-card-title{
   mat-card{
     background-color: whitesmoke;
     display: inline-block;
-    width: 43%;
+    width: 45%;
     padding: 10px;
     margin-bottom: 15px;
-    margin-right: 5%;
+    margin-right: 1%;
+    margin-left: 2%;
+    
   }
 
     .card-container {
@@ -133,8 +144,12 @@ mat-card-title{
     margin-bottom: 20px;
   }
 
+ .comment{
+   border: 2px solid transparent !important;
+ }
 
 #care{
+  
     border: 2px solid #ccd8ec !important;
 }
 #security{
@@ -176,16 +191,28 @@ mat-card-title{
       width: 70%;
     }
     mat-form-field{
-      width: 100%;
+      width: 90%;
     }
+    textarea{
+      width: 90%;
+    }
+    .full-width{
+      width: 90%;
+  }
     mat-card{
-      width: 100%;
+      width: 90%;
+      margin-left: 5%;
       padding: 0%;
+      mat-form-field{
+        margin-left: 5%;
+        margin-bottom: 20px !important;
+      }
     }
     .section {
       padding: 10px;
       display: flex;
       height: 90px;
+     
     }
     .section-height{
       height: 110px;
