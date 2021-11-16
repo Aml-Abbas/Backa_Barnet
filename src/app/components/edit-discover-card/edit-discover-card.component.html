@@ -11,20 +11,18 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Barnets namn</mat-label>
-      <input matInput [(ngModel)]="card.personName" name="current_card">
+      <input disabled matInput value="{{card.personName}}">
     </mat-form-field>
-    <p>{{nameError}}</p> 
 
 
     <mat-form-field appearance="fill">
       <mat-label>Barnets personnummer</mat-label>
-      <input matInput [(ngModel)]="card.personNbr" name="current_card">
+      <input disabled matInput value="{{card.personNbr}}">
     </mat-form-field>
-    <p>{{personNbrError}}</p> 
 
     <mat-form-field appearance="fill">
       <mat-label>Antal Vårdnadshavare</mat-label>
-      <mat-select [(ngModel)]="selected" name="selected" [ngModelOptions]="{standalone: true}">
+      <mat-select disabled [(ngModel)]="selected" name="selected" [ngModelOptions]="{standalone: true}">
         <mat-option (click)="changeGuardianNbr(1)" value="1">1</mat-option>
         <mat-option (click)="changeGuardianNbr(2)" value="2">2</mat-option>
       </mat-select>
@@ -34,15 +32,13 @@
     <div *ngFor="let item of [].constructor(guardianNbr); let i = index">
       <mat-form-field appearance="fill">
         <mat-label>Vårdnadshavarens {{i+1}} namn</mat-label>
-        <input matInput [(ngModel)]="guardians[i].name" name="current_card">
+        <input disabled matInput value="{{guardians[i].name}}">
       </mat-form-field>
-      <p>{{guardiansError[i].name}}</p>
 
       <mat-form-field appearance="fill">
         <mat-label>Vårdnadshavarens {{i+1}} personnummer</mat-label>
-        <input matInput [(ngModel)]="guardians[i].personNbr" name="current_card">
+        <input disabled matInput value="{{guardians[i].personNbr}}">
       </mat-form-field>
-      <p>{{guardiansError[i].personNbr}}</p>
 
     </div>
 

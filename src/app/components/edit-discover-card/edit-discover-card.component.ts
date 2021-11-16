@@ -37,21 +37,8 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
     { color: '#d1f3f3', type: 'UTVECKLAS', id: 'develop', description: 'Barnet utvecklas i fas med sin ålder och tar förmågor att klara av det vardagliga livet.' },
 
   ];
-
-  choices = [
-    { type: 'OMSORG', choice: 4 },
-    { type: 'TRYGGHET', choice: 4 },
-    { type: 'MÅR BRA', choice: 4 },
-    { type: 'FRITID', choice: 4 },
-    { type: 'TILLHÖRIGHET', choice: 4 },
-    { type: 'ANSVARSTAGANDE', choice: 4 },
-    { type: 'RESPEKTERAS', choice: 4 },
-    { type: 'UTVECKLAS', choice: 4 }
-  ];
   
-   saveError = '';
-  nameError = '';
-  personNbrError = '';
+  saveError = '';
   measureError = '';
   unitError = '';
   situationError = '';
@@ -61,24 +48,11 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
   guardianNbr: number = 2;
   selected = '2';
   units$: Observable<Unit[]> = new Observable<Unit[]>();
-
-  // comments: string[] = [];
   guardians = {};
  
-  guardiansError = [
-    { name: '', personNbr: '' },
-    { name: '', personNbr: '' },
-  ];
  
   unitNbr: number = -1;
   unitString = '-1';
-/* 
-  situationComment: string;
-
-  isMeasureTaken: number = 2;
-  isMeasureTakenComment: string;
-
-  personNbr: string; */
 
   current_user$: Observable<User | null> = new Observable<User | null>();
   current_user: User;
@@ -233,18 +207,10 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
 
   send(number: number) {
 
-
-
    var person_name = this.card.personName.split(' ');
     var firstName = person_name[0];
     var lastName = person_name[1];
-    /*  var personNbr = this.card.personNbr;
-
-    this.card.guardian1= this.guardians[0].name ?? '0';
-    this.card.guardianPersonNbr1= this.guardians[0].name ?? '0';
-    this.card.guardian2= this.guardians[1].name ?? '0';
-    this.card.guardian1= this.guardians[0].name ?? '0'; */
-  var card = {
+     var card = {
       UserID: parseInt(this.current_user.userID) ?? 0,
       PersonLastName: lastName ?? '0',
       PersonFirstName: firstName ?? '0',
@@ -289,55 +255,10 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
 
    
     var isSendAvailable = true;
-    this.nameError = '';
     this.saveError = '';
-    this.personNbrError = '';
-    this.guardiansError[0].name = '';
-    this.guardiansError[1].name = '';
-    this.guardiansError[0].personNbr = '';
-    this.guardiansError[1].personNbr = '';
     this.measureError = '';
-
-    if (person_name.length != 2) {
-      this.nameError = 'För och efternamn behövs, glöm inte mellan slag mellan dem.';
-      this.saveError = 'Du har missat att fylla i saker';
-      isSendAvailable = false;
-    } if (!this.isNumeric(this.card.personNbr)) {
-      this.personNbrError = 'Personnummer ska innehålla 12 siffror';
-      this.saveError = 'Du har missat att fylla i saker';
-      isSendAvailable = false;
-    }
-     if (this.guardians[0].name == undefined) {
-      this.guardiansError[0].name = 'Vårdnadshavares namn ska vara med.'
-      this.saveError = 'Du har missat att fylla i saker';
-      isSendAvailable = false;
-    } if (this.guardians[0].name != undefined) {
-      var names1 = String(this.guardians[0].name).split(' ');
-      if (names1[1] == '' || names1.length < 2) {
-        this.guardiansError[0].name = 'Vårdnadshavares för och efternamn ska vara med.'
-        this.saveError = 'Du har missat att fylla i saker';
-        isSendAvailable = false;
-      }
-    } if (this.guardians[1].name == undefined && this.guardianNbr == 2) {
-      this.guardiansError[1].name = 'Vårdnadshavares namn ska vara med.'
-      this.saveError = 'Du har missat att fylla i saker';
-      isSendAvailable = false;
-    } if (this.guardians[1].name != undefined && this.guardianNbr == 2) {
-      var names2 = String(this.guardians[1].name).split(' ');
-      if (names2[1] == '' || names2.length < 2) {
-        this.guardiansError[1].name = 'Vårdnadshavares för och efternamn ska vara med.'
-        this.saveError = 'Du har missat att fylla i saker';
-        isSendAvailable = false;
-      }
-    } if (!this.isNumeric(this.guardians[0].personNbr)) {
-      this.guardiansError[0].personNbr = 'Vårdnadshavares personnummer ska vara 12 siffror.'
-      this.saveError = 'Du har missat att fylla i saker';
-      isSendAvailable = false;
-    } if ((!this.isNumeric(this.guardians[1].personNbr) && this.guardianNbr == 2)) {
-      this.guardiansError[1].personNbr = 'Vårdnadshavares personnummer ska vara 12 siffor.'
-      this.saveError = 'Du har missat att fylla i saker';
-      isSendAvailable = false;
-    } if (!(this.unitNbr < 8 && this.unitNbr >= 0)) {
+   
+   if (!(this.unitNbr < 8 && this.unitNbr >= 0)) {
       this.unitError = 'Du måste välja en enhet';
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;

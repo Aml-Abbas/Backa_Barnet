@@ -18,7 +18,10 @@ h1{
 mat-label{
     color: black;
 }
+.mat-input-element:disabled{
+  color: black;
 
+}
 .full-width{
     width: 100%;
 }
