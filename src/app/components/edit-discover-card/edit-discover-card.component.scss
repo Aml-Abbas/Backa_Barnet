@@ -82,6 +82,10 @@ mat-card-title{
   color: #663399;
 }
 
+::ng-deep .mat-form-field-disabled{
+  border: 1px solid transparent !important;
+  }
+  
 .card-container{
     padding: 10px;
     margin: 10px;
