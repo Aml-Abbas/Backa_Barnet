@@ -119,11 +119,29 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
 
   isNumeric(str: any): boolean {
     if (str == undefined) {
+      console.log('it is not defiend');
       return false;
     } else {
-      return Number.isInteger(str) && str.toString().length == 12;
+      console.log('is integer');
+      console.log(Number.isInteger(str));
+      console.log('is length');
+      console.log(str.toString().length == 12);
+
+      return this.isInteger(str) && str.toString().length == 12;
     }
   }
+
+  isInteger(str: string){
+    var isNbr= true;
+        for (var i = 0; i < str.length; i++) {
+            if (str.charAt(i) < '0' || str.charAt(i) > '9') {
+                isNbr= false;
+            }
+      
+        }
+        return isNbr;
+    }
+  
 
   changeGuardianNbr(nbr: number) {
     this.guardianNbr = nbr;
@@ -238,6 +256,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       Status: number,
     };
 
+    console.log(card);
     var isSendAvailable = true;
     this.nameError = '';
     this.saveError = '';
@@ -284,6 +303,9 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
         isSendAvailable = false;
       }
     } if (!this.isNumeric(this.guardians[0].personNbr)) {
+      console.log('personnbr is not numrik');
+      console.log(this.guardians[0].personNbr);
+
       this.guardiansError[0].personNbr = 'Vårdnadshavares personnummer ska vara 12 siffror.'
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
@@ -356,6 +378,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
           });
         }
       } 
+
     }
 
   

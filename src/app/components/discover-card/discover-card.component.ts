@@ -23,7 +23,9 @@ export class DiscoverCardComponent implements OnInit {
   comments: string[]= [];
   dataSource = new MatTableDataSource(this.cards);
 
-  constructor(private store: Store<fromState.State>) {}
+  constructor(private store: Store<fromState.State>) {
+    
+  }
 
   ngOnInit(): void {
     this.current_user$ = this.store.select(fromState.getCurrentUser);
@@ -104,7 +106,7 @@ export class DiscoverCardComponent implements OnInit {
         });
         this.dataSource.data = this.cards;
         this.store.dispatch(new fromState.UpdateCards(this.cards));
-  }
+      }
 
   moveToCard(card: Card){
     this.store.dispatch(new fromState.UpdateCard(card));

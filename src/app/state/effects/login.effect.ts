@@ -33,7 +33,7 @@ login$ = createEffect(() =>
       ofType(loginAction.LOGIN_SUCCESS),
       switchMap((action: loginAction.LoginSuccess) => [
         new personsAction.LoadPersons(action.payload.userID),
-        new fromRoot.Go({path: ['/']}),
+        new fromRoot.Go({path: ['/contact']}),
       ]),
     )
   );

@@ -17,7 +17,7 @@ export class ContactComponent implements OnInit {
   private persons:Person[]= [];
   displayedColumns: string[] = ['personNbr', 'name','changedOn', 'status'];
   current_user$: Observable<User| null> = new Observable<User| null>();
-  dataSource;
+  dataSource= new MatTableDataSource<Person>();
   constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
@@ -30,9 +30,9 @@ export class ContactComponent implements OnInit {
     this.persons$ = this.store.select(fromState.getPersons);
 
     this.persons$.subscribe(data => {
-      // this.dataSource.data = data;
+       this.dataSource.data = data;
     
-      data.map((person:Person)=>{
+/*       data.map((person:Person)=>{
         let personNbr= person.personNbr;
         let lastName= person.lastName;
         let firstName= person.firstName;
@@ -51,10 +51,9 @@ export class ContactComponent implements OnInit {
           changedBy, changedOn, status});  
       }
 
-    )
+    ) */
  });
-    this.dataSource = new MatTableDataSource<Person>();
-    this.dataSource.data = this.persons;
+ //   this.dataSource.data = this.persons;
 }
 
   setCurrentPerson(person: Person) {

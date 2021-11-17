@@ -43,6 +43,7 @@ createDiscoverCardSuccess$ = createEffect(() =>
   this.actions$.pipe(
     ofType(discoverCardAction.CREATE_DISCOVERCARD_SUCCESS),
     switchMap((action: discoverCardAction.CreateDiscoverCardSuccess) =>[
+      
       new fromRoot.Go({path: ['discover-card']}),
     ])
   )
