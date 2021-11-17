@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Contact } from 'src/app/models/Contact';
 import { DiscoverCard } from 'src/app/models/DiscoverCard';
 import { Unit } from 'src/app/models/Unit';
@@ -22,7 +22,6 @@ export class GetSetService {
   }
 
   getCards(userId: string): Observable<DiscoverCard[]> {
-    console.log(userId);
     return this.http.get<DiscoverCard[]>('https://func-ykbb.azurewebsites.net/api/card/'+userId+'?code=bbdIBAbikn/AMydOBvxm69FyKFhRfS4fxUb55SaSz0TfK/cjnxiYEw==');
   }
 

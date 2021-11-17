@@ -44,7 +44,7 @@ createDiscoverCardSuccess$ = createEffect(() =>
     ofType(discoverCardAction.CREATE_DISCOVERCARD_SUCCESS),
     switchMap((action: discoverCardAction.CreateDiscoverCardSuccess) =>[
       
-      new fromRoot.Go({path: ['/create-discover-card']}),
+      new fromRoot.Go({path: ['/discover-card']}),
     ])
   )
 );
@@ -68,7 +68,7 @@ updateDiscoverCardSuccess$ = createEffect(() =>
   this.actions$.pipe(
     ofType(discoverCardAction.UPDATE_DISCOVERCARD_SUCCESS),
     switchMap((action: discoverCardAction.UpdateDiscoverCardSuccess) =>[
-      new fromRoot.Go({path: ['/create-discover-card']}),
+      new fromRoot.Go({path: ['/discover-card']}),
     ])
   )
 );

@@ -190,7 +190,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
   }
 
   isAnonyms(): boolean {
-    if (this.unitNbr == 7 && !this.missCosent()) {
+    if (this.unitNbr == 6 && !this.missCosent()) {
       this.informMesg = 'kortet kommer att anonymiseras för barnet tillhör annat enhet än Ystad och samtycke av föräldrar saknas';
       return false;
     }
@@ -313,7 +313,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       this.guardiansError[1].personNbr = 'Vårdnadshavares personnummer ska vara 12 siffor.'
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
-    } if (!(this.unitNbr < 8 && this.unitNbr >= 0)) {
+    } if (!(this.unitNbr < 7 && this.unitNbr >= 0)) {
       this.unitError = 'Du måste välja en enhet';
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;

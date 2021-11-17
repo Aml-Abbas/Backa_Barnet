@@ -37,7 +37,7 @@
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"   
-        (click)="setCurrentPerson(row)"></tr>
+        (click)="setCurrentPerson(row)" [class.demo-row-is-clicked]="clickedRows.has(row)"></tr>
         
         <tr class="mat-row" *matNoDataRow>
           <td class="mat-cell" colspan="4">Ingen data som matchar din sökning "{{input.value}}"</td>

@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
 import {MatTableDataSource} from '@angular/material/table';
-import * as fromStore from 'src/app/state';
 import { User } from 'src/app/models/User';
 
 @Component({
@@ -14,10 +13,12 @@ import { User } from 'src/app/models/User';
 })
 export class ContactComponent implements OnInit {
   persons$: Observable<Person[]> = new Observable<Person[]>();
-  private persons:Person[]= [];
   displayedColumns: string[] = ['personNbr', 'name','changedOn', 'status'];
   current_user$: Observable<User| null> = new Observable<User| null>();
   dataSource= new MatTableDataSource<Person>();
+  clickedRows = new Set<Person>();
+  persons: Person[]=[];
+
   constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
@@ -30,9 +31,8 @@ export class ContactComponent implements OnInit {
     this.persons$ = this.store.select(fromState.getPersons);
 
     this.persons$.subscribe(data => {
-       this.dataSource.data = data;
     
-/*       data.map((person:Person)=>{
+       data.map((person:Person)=>{
         let personNbr= person.personNbr;
         let lastName= person.lastName;
         let firstName= person.firstName;
@@ -51,13 +51,15 @@ export class ContactComponent implements OnInit {
           changedBy, changedOn, status});  
       }
 
-    ) */
+    ) 
  });
- //   this.dataSource.data = this.persons;
+    this.dataSource.data = this.persons;
 }
 
   setCurrentPerson(person: Person) {
     this.store.dispatch(new fromState.UpdatePerson(person));
+    this.clickedRows.clear();
+    this.clickedRows.add(person);
   }
 
   applyFilter(event: Event) {
