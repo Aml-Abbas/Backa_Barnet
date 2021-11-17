@@ -47,7 +47,7 @@
       <mat-label>BMM/ BvC/ Förskola/ Skola (Barnkontakt)</mat-label>
       <mat-select>
         <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitID}}"
-          (click)="changeUnitNbr(unit.unitName, unit.unitID)">{{unit.unitName}}</mat-option>
+          (click)="changeUnitNbr(unit.unitID, unit.unitName)">{{unit.unitName}}</mat-option>
       </mat-select>
     </mat-form-field>
     <p>{{unitError}}</p>

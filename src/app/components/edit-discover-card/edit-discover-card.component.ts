@@ -88,11 +88,12 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
       let grades: string[] = data?.grades ?? [];
       let comments: string[] = data?.comments ?? [];
       let status: string = data?.status ?? '';
-      
+      let personID: string = data?.personID ?? '';
+
       
       this.card = new Card(id, gradedOn, userName, userOrg, userTitle, personName, 
         personNbr, guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
-        healthTeam, situation, questions, grades, comments, status);
+        healthTeam, situation, questions, grades, comments, status, personID);
 
     });
 
@@ -172,9 +173,9 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
     }
   }
 
-  changeUnitNbr(nbr: number, str: string) {
-    this.unitNbr = nbr;
-    this.card.healthTeam= str;
+  changeUnitNbr(unitID: string, unitName: string) {
+    this.unitNbr = parseInt(unitID);
+    this.card.healthTeam= unitName;
     this.isDirty= true;
     console.log(this.unitNbr);
     console.log(this.card.healthTeam);
@@ -182,7 +183,7 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
 
   checkChoices(): boolean {
     var emptyChoice = true;
-    this.card.grades.forEach(element => {
+    this.grades.forEach(element => {
       if (element != '0'&& element != '1' && element != '2') {
         emptyChoice = false;
       }
@@ -203,11 +204,11 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
   }
 
   isAnonyms(): boolean {
-    if (this.unitNbr == 6 && !this.missCosent()) {
+    if (this.unitNbr == 7 && !this.missCosent()) {
       this.informMesg = 'kortet kommer att anonymiseras för barnet tillhör annat enhet än Ystad och samtycke av föräldrar saknas';
       return false;
     }
-    else if (this.unitNbr == 6) {
+    else if (this.unitNbr == 7) {
       this.informMesg = 'kortet kommer att anonymiseras för barnet tillhör annat enhet än Ystad';
       return false;
     } else if (!this.missCosent()) {
@@ -226,9 +227,7 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
 
       Unit: this.card.healthTeam ?? '0',
       GradedOn: this.card.gradedOn?? '0',
-
       Situation: this.card.situation ?? '0',
-
       GradeActions: this.grades[8],
       CommentActions : this.comments[8] ?? '0',
 
@@ -254,13 +253,14 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
       GradeSamtycke1: parseInt(this.guardians[0].samtycke),
       GradeSamtycke2: parseInt(this.guardians[1].samtycke),
       Status: number,
+      PersonID: parseInt(this.card.personID) ?? 0,
     };
 
     var isSendAvailable = true;
     this.saveError = '';
     this.measureError = '';
    
-   if (!(this.unitNbr < 7 && this.unitNbr >= 0)) {
+   if (this.unitNbr== -1) {
       this.unitError = 'Du måste välja en enhet';
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
@@ -271,7 +271,7 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
           isSendAvailable = false;
           this.saveError = 'Du har missat att fylla i saker';
 
-        }if (this.card.grades[8] != '0' && this.card.grades[8] != '1') {
+        }if (this.grades[8] != '0' && this.grades[8] != '1') {
             this.measureError = 'Du måste välja nej eller ja';
             this.saveError = 'Du har missat att fylla i saker';
             isSendAvailable = false;

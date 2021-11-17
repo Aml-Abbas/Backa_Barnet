@@ -19,7 +19,8 @@ export class DiscoverCard {
     grade: string;
     comment: string;
     status: string;
-  
+    personID: string;
+
     constructor(gradedOn: string, userName: string, 
         userOrg: string, userTitle: string,
         personName: string, personNbr: string,
@@ -27,7 +28,7 @@ export class DiscoverCard {
         guardian2: string, guardianPersonNbr2: string,
         unit: string, situation: string,
         questionID: string, grade: string, 
-        comment: string, status: string) {
+        comment: string, status: string, personID: string) {
             
       this.gradedOn = gradedOn;
       this.userName = userName;
@@ -50,5 +51,6 @@ export class DiscoverCard {
       this.comment= comment;
       this.status= status;
 
+      this.personID= personID;
     }
   }

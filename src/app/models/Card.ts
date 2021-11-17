@@ -20,7 +20,8 @@ export class Card {
     grades: string[];
     comments: string[];
     status: string;
-  
+    personID: string;
+
     constructor(id: string, gradedOn: string, userName: string, 
         userOrg: string, userTitle: string,
         personName: string, personNbr: string,
@@ -28,7 +29,7 @@ export class Card {
         guardian2: string, guardianPersonNbr2: string,
         healthTeam: string, situation: string,
         questions: string[], grades: string[], 
-        comments: string[], status: string) {
+        comments: string[], status: string, personID: string) {
 
       this.id = id;
 
@@ -53,5 +54,6 @@ export class Card {
       this.comments= comments;
       this.status= status;
 
+      this.personID= personID;
     }
   }

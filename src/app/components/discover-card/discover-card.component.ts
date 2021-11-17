@@ -80,6 +80,7 @@ export class DiscoverCardComponent implements OnInit {
           comment= discoverCard.comment;
         }
         let status =discoverCard.status;
+        let personID= discoverCard.personID;
 
         if(!this.containsCard(discoverCard.gradedOn)){
          this.questions.push(questionID);
@@ -87,7 +88,7 @@ export class DiscoverCardComponent implements OnInit {
          this.comments.push(comment);
           this.cards.push(new Card(String(index), gradedOn, userName, userOrg, userTitle,
             personName, personNbr, guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2,
-            unit, situation, this.questions, this.grades, this.comments, status));
+            unit, situation, this.questions, this.grades, this.comments, status, personID));
             this.questions= [];
             this.grades= [];
             this.comments= [];

@@ -46,9 +46,11 @@ export class ContactComponent implements OnInit {
         let changedBy = person.changedBy;
         let changedOn = person.changedOn;
         let status= person.status;
+        let personID= person.personID;
+
         this.persons.push({personNbr, lastName, firstName, name,
           guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
-          changedBy, changedOn, status});  
+          changedBy, changedOn, status, personID});  
       }
 
     ) 

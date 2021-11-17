@@ -12,11 +12,11 @@ export class Person {
     changedBy: string;
     changedOn: string;
     status: string;
-
+    personID: string;
   
     constructor(personNbr: string, lastName: string, firstName: string, name: string, guardian1: string, guardianPersonNbr1: string,
         guardian2: string, guardianPersonNbr2: string,
-        changedBy: string, changedOn: string, status: string) {
+        changedBy: string, changedOn: string, status: string, personID: string) {
             
       this.personNbr = personNbr;
       this.firstName = firstName;
@@ -32,6 +32,7 @@ export class Person {
       this.status= status;
       this.changedBy= changedBy;
       this.changedOn= changedOn;
+      this.personID= personID;
 
     }
   }

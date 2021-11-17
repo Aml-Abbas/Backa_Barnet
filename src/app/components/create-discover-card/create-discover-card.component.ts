@@ -146,9 +146,13 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
   changeGuardianNbr(nbr: number) {
     this.guardianNbr = nbr;
   }
-  changeUnitNbr(name: string, nbr: string) {
-    this.unitString = name;
-    this.unitNbr = parseInt(nbr);
+  changeUnitNbr(unitID: string, unitName: string) {
+    this.unitString = unitName;
+    this.unitNbr = parseInt(unitID);
+
+    console.log(this.unitNbr);
+    console.log(this.unitString);
+
   }
 
   radioChange(event: MatRadioChange) {
@@ -190,7 +194,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
   }
 
   isAnonyms(): boolean {
-    if (this.unitNbr == 6 && !this.missCosent()) {
+    if (this.unitNbr == 7 && !this.missCosent()) {
       this.informMesg = 'kortet kommer att anonymiseras för barnet tillhör annat enhet än Ystad och samtycke av föräldrar saknas';
       return false;
     }
@@ -280,6 +284,10 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
 
+    } if (this.createDiscoveCardFormGroup.controls.situationCommentControl.status == "INVALID") {
+      this.situationError = 'Du måste beskriva situationen';
+      this.saveError = 'Du har missat att fylla i saker';
+      isSendAvailable = false;
     } if (this.guardians[0].name == undefined) {
       this.guardiansError[0].name = 'Vårdnadshavares namn ska vara med.'
       this.saveError = 'Du har missat att fylla i saker';
@@ -313,7 +321,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       this.guardiansError[1].personNbr = 'Vårdnadshavares personnummer ska vara 12 siffor.'
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
-    } if (!(this.unitNbr < 7 && this.unitNbr >= 0)) {
+    } if (this.unitNbr == -1) {
       this.unitError = 'Du måste välja en enhet';
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
@@ -329,10 +337,6 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
             this.saveError = 'Du har missat att fylla i saker';
             isSendAvailable = false;
 
-          } if (this.createDiscoveCardFormGroup.controls.situationCommentControl.status == "INVALID") {
-            this.situationError = 'Du måste beskriva situationen';
-            this.saveError = 'Du har missat att fylla i saker';
-            isSendAvailable = false;
           } if (isSendAvailable) {
             this.isAnonyms();
 
