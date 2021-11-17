@@ -282,7 +282,6 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
             isSendAvailable = false;
           } if (isSendAvailable) {
             this.isAnonyms();
-            console.log('will open dialog');
 
             const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
               data: {
