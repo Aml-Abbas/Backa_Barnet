@@ -128,7 +128,8 @@ const routes: Routes = [
       }, 
       {
         path: 'edit-discover-card/:discoverCardId',
-        component: EditDiscoverCardComponent, canActivate: [DiscoverCardEditGuard]
+        component: EditDiscoverCardComponent, canDeactivate:[DirtycheckGuard],
+        canActivate: [DiscoverCardEditGuard]
       },
     ]
   },

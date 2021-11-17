@@ -23,8 +23,8 @@
     <mat-form-field appearance="fill">
       <mat-label>Antal Vårdnadshavare</mat-label>
       <mat-select disabled [(ngModel)]="selected" name="selected" [ngModelOptions]="{standalone: true}">
-        <mat-option (click)="changeGuardianNbr(1)" value="1">1</mat-option>
-        <mat-option (click)="changeGuardianNbr(2)" value="2">2</mat-option>
+        <mat-option value="1">1</mat-option>
+        <mat-option value="2">2</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -53,13 +53,13 @@
 
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Situationen där barnet uppmärksammats: ​</mat-label>
-      <textarea matInput [(ngModel)]="card.situation" name="current_card"></textarea>
+      <textarea matInput [(ngModel)]="card.situation"></textarea>
     </mat-form-field>
    <p>{{situationError}}</p> 
 
     <section class="section_margin-top">
       <label>Åtgärder har vidtagits i egen organisation?</label>
-      <mat-radio-group [(ngModel)]="card.grades[8]">
+      <mat-radio-group [(ngModel)]="grades[8]" (change)= "isDirty= true">
         <mat-radio-button [value]="1">JA</mat-radio-button>
         <mat-radio-button [value]="0">NEJ</mat-radio-button>
       </mat-radio-group>
@@ -68,7 +68,7 @@
 
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>kommentar: ​</mat-label>
-      <textarea matInput [(ngModel)]="card.comments[8]" [ngModelOptions]="{standalone: true}"></textarea>
+      <textarea matInput [(ngModel)]="comments[8]" [ngModelOptions]="{standalone: true}"></textarea>
     </mat-form-field> 
 
     <div class="grid-container">
@@ -79,7 +79,7 @@
         </div>
 
         <section >
-          <mat-radio-group [(ngModel)]="card.grades[i]">
+          <mat-radio-group [(ngModel)]="grades[i]" (change)= "isDirty= true">
             <mat-radio-button [value]="1">JA</mat-radio-button>
             <mat-radio-button [value]="0">NEJ</mat-radio-button>
             <mat-radio-button [value]="2">VET EJ</mat-radio-button>
@@ -88,7 +88,7 @@
 
         <mat-form-field id="{{item.id}}" class="full-width" appearance="fill">
           <mat-label>kommentar: ​</mat-label>
-          <textarea class="comment" matInput [(ngModel)]="card.comments[i]"></textarea>
+          <textarea class="comment" matInput [(ngModel)]="comments[i]"></textarea>
         </mat-form-field>
 
       </mat-card>
@@ -100,7 +100,7 @@
 
       <section class="section">
         <label>Vårdnadshavare {{i+1}} är informerad om att Upptäckarkort upprättas</label>
-        <mat-radio-group [(ngModel)]="guardians[i].inform">
+        <mat-radio-group [(ngModel)]="guardians[i].inform" (change)= "isDirty= true">
           <mat-radio-button value="1">JA</mat-radio-button>
           <mat-radio-button value="0">NEJ</mat-radio-button>
         </mat-radio-group>
@@ -109,7 +109,7 @@
       <section class="section section-height">
         <label>Vårdnadshavare {{i+1}} har gett samtycke till att information gällande upptäckarkorten delas mellan
           Upptäckare och Barnkontakt</label>
-        <mat-radio-group [(ngModel)]="guardians[i].samtycke">
+        <mat-radio-group [(ngModel)]="guardians[i].samtycke" (change)= "isDirty= true">
           <mat-radio-button value="1">JA</mat-radio-button>
           <mat-radio-button value="0">NEJ</mat-radio-button>
         </mat-radio-group>

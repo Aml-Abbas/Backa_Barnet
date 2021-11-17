@@ -48,4 +48,28 @@ createDiscoverCardSuccess$ = createEffect(() =>
   )
 );
 
+
+
+updateDiscoverCard$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(discoverCardAction.UPDATE_DISCOVERCARD),
+    switchMap((action: discoverCardAction.UpdateDiscoverCard) => {
+
+    return this.getSetService.updateCard(action.payload).pipe(
+      map((response) => new discoverCardAction.UpdateDiscoverCardSuccess(response)),
+      catchError((error: any) => of(new discoverCardAction.UpdateDiscoverCardFail(error)))
+    );
+    })
+  )
+);
+
+updateDiscoverCardSuccess$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(discoverCardAction.UPDATE_DISCOVERCARD_SUCCESS),
+    switchMap((action: discoverCardAction.UpdateDiscoverCardSuccess) =>[
+      new fromRoot.Go({path: ['discover-card']}),
+    ])
+  )
+);
+
 }

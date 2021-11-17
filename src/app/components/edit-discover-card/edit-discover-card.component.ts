@@ -57,6 +57,9 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
   current_user$: Observable<User | null> = new Observable<User | null>();
   current_user: User;
 
+  grades: string[] =  [];
+  comments: string[] = [];
+
   constructor(public dialog: MatDialog,
     private store: Store<fromState.State>,
     private getSetService: GetSetService) { }
@@ -81,12 +84,12 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
 
       let healthTeam: string = data?.healthTeam ?? '';
       let situation: string = data?.situation ?? '';
-
       let questions: string[] = data?.questions ?? [];
       let grades: string[] = data?.grades ?? [];
       let comments: string[] = data?.comments ?? [];
       let status: string = data?.status ?? '';
-
+      
+      
       this.card = new Card(id, gradedOn, userName, userOrg, userTitle, personName, 
         personNbr, guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
         healthTeam, situation, questions, grades, comments, status);
@@ -144,12 +147,18 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
         email, roleID, description);
     });
 
-  }
+    var index=0;
 
-  changeGuardianNbr(nbr: number) {
-    this.guardianNbr = nbr;
+    this.card.comments.forEach(element=>{
+      this.comments[index]= element;
+      index++;
+    });
+    index=0;
+    this.card.grades.forEach(element=>{
+      this.grades[index]= element;
+      index++;
+    });
   }
-
 
   public goBack(): void {
     this.store.dispatch(new fromRoot.Back());
@@ -165,6 +174,7 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
 
   changeUnitNbr(nbr: number) {
     this.unitNbr = nbr;
+    this.isDirty= true;
   }
 
   checkChoices(): boolean {
@@ -207,51 +217,43 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
 
   send(number: number) {
 
-   var person_name = this.card.personName.split(' ');
-    var firstName = person_name[0];
-    var lastName = person_name[1];
-     var card = {
+     var current_card = {
       UserID: parseInt(this.current_user.userID) ?? 0,
-      PersonLastName: lastName ?? '0',
-      PersonFirstName: firstName ?? '0',
       PersonNbr: this.card.personNbr ?? '0',
 
-      GuardianName1: this.guardians[0].name ?? '0',
-      GuardianNbr1: String(this.guardians[0].personNbr) ?? '0',
-      GuardianName2: this.guardians[1].name ?? '0',
-      GuardianNbr2: String(this.guardians[1].personNbr) ?? '0',
-
       Unit: this.card.healthTeam ?? '0',
+      GradedOn: this.card.gradedOn?? '0',
+
       Situation: this.card.situation ?? '0',
 
-      GradeActions: this.card.grades[8],
-      CommentActions: this.card.comments[8] ?? '0',
+      gradeActions: this.grades[8],
+      commentActions: this.comments[8] ?? '0',
 
-      GradeOmsorg: this.card.grades[0],
-      CommentOmsorg: this.card.comments[0] ?? '0',
-      GradeTrygghet: this.card.grades[1],
-      CommentTrygghet: this.card.comments[1] ?? '0',
-      GradeMarBra: this.card.grades[2],
-      CommentMarBra: this.card.comments[2] ?? '0',
-      GradeFritid: this.card.grades[3],
-      CommentFritid: this.card.comments[3] ?? '0',
-      GradeTillhorighet: this.card.grades[4],
-      CommentTillhorighet: this.card.comments[4] ?? '0',
-      GradeAnsvarstagande: this.card.grades[5],
-      CommentAnsvarstagande: this.card.comments[5] ?? '0',
-      GradeRespekteras: this.card.grades[6],
-      CommentRespekteras: this.card.comments[6] ?? '0',
-      GradeUtvecklas: this.card.grades[7],
-      CommentUtvecklas: this.card.comments[7] ?? '0',
+      gradeOmsorg: this.grades[0],
+      commentOmsorg: this.comments[0] ?? '0',
+      gradeTrygghet: this.grades[1],
+      commentTrygghet: this.comments[1] ?? '0',
+      gradeMarBra: this.grades[2],
+      commentMarBra: this.comments[2] ?? '0',
+      gradeFritid: this.grades[3],
+      commentFritid: this.comments[3] ?? '0',
+      gradeTillhorighet: this.grades[4],
+      commentTillhorighet: this.comments[4] ?? '0',
+      gradeAnsvarstagande: this.grades[5],
+      commentAnsvarstagande: this.comments[5] ?? '0',
+      gradeRespekteras: this.grades[6],
+      commentRespekteras: this.comments[6] ?? '0',
+      gradeUtvecklas: this.grades[7],
+      commentUtvecklas: this.comments[7] ?? '0',
 
-      GradeUpprattats1: parseInt(this.guardians[0].inform),
-      GradeUpprattats2: parseInt(this.guardians[1].inform),
-      GradeSamtycke1: parseInt(this.guardians[0].samtycke),
-      GradeSamtycke2: parseInt(this.guardians[1].samtycke),
+      gradeUpprattats1: parseInt(this.guardians[0].inform),
+      gradeUpprattats2: parseInt(this.guardians[1].inform),
+      gradeSamtycke1: parseInt(this.guardians[0].samtycke),
+      gradeSamtycke2: parseInt(this.guardians[1].samtycke),
       Status: number,
     };
 
-    console.log(card);
+    console.log(current_card);
 
    
     var isSendAvailable = true;
@@ -291,20 +293,12 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
             dialogRef.afterClosed().subscribe(result => {
               if (result) {
                 if (!this.isAnonyms()) {
-                  card.Status = 0;
-
-                  card.PersonLastName = '0';
-                  card.PersonFirstName = '0';
-                  card.PersonNbr = '0';
-
-                  card.GuardianName1 = '0';
-                  card.GuardianNbr1 = '0';
-                  card.GuardianName2 = '0';
-                  card.GuardianNbr2 = '0';
-
+                  current_card.Status = 0;
+                  current_card.PersonNbr = '0';
                 }
+
                 this.isDirty = false;
-               // this.store.dispatch(new fromState.CreateDiscoverCard(card));
+                this.store.dispatch(new fromState.UpdateDiscoverCard(current_card));
               }
             });
           }
@@ -319,7 +313,7 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
           dialogRef.afterClosed().subscribe(result => {
             if (result) {
               this.isDirty = false;
-             // this.store.dispatch(new fromState.CreateDiscoverCard(card));
+              this.store.dispatch(new fromState.UpdateDiscoverCard(current_card));
             }
           });
         }
