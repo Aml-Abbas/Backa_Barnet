@@ -31,7 +31,7 @@ export class ContactComponent implements OnInit {
     this.persons$ = this.store.select(fromState.getPersons);
 
     this.persons$.subscribe(data => {
-      this.dataSource.data = data;
+      //this.dataSource.data = data;
 
        data.map((person:Person)=>{
         let personNbr= person.personNbr;
@@ -48,7 +48,7 @@ export class ContactComponent implements OnInit {
         let changedOn = person.changedOn;
         let status= person.status;
         let personID= person.personID;
-
+        console.log(status);
         if(status!= 'Anonymiserad'){
           this.persons.push({personNbr, lastName, firstName, name,
             guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
