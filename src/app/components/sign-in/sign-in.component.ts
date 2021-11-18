@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+  import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import * as fromStore from 'src/app/state';
 import {LoginInfo} from '../../models/LoginInfo.model';
@@ -40,7 +40,7 @@ export class SignInComponent implements OnInit {
     this.actions$.pipe(
       ofType(loginAction.LOGIN_FAIL),
       tap(() => {
-        this.signinError= 'Fel e-post eller lösenord!';
+        this.signinError= 'Fel e-post eller lösenord';
             })
     ).subscribe();
 
