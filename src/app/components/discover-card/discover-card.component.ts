@@ -21,7 +21,9 @@ export class DiscoverCardComponent implements OnInit {
   questions: string []= [];
   grades: string[]= [];
   comments: string[]= [];
-  dataSource = new MatTableDataSource(this.cards);
+  searchCards: Card[]= [];
+
+ // dataSource = new MatTableDataSource(this.cards);
 
   constructor(private store: Store<fromState.State>) {
     
@@ -46,27 +48,27 @@ export class DiscoverCardComponent implements OnInit {
         let userTitle= discoverCard.userTitle;
 
         let personName='Dolt';
-        if(discoverCard.personName !='0 0'){
+        if(discoverCard.personName !=" "){
           personName= discoverCard.personName;
         }
         let personNbr='Dolt';
-        if(discoverCard.personNbr !='0'){
+        if(discoverCard.personNbr!=""){
           personNbr= discoverCard.personNbr;
         }
         let guardian1='Dolt';
-        if(discoverCard.guardian1 !='0'){
+        if(discoverCard.guardian1 !=''){
           guardian1= discoverCard.guardian1;
         }
         let guardianPersonNbr1='Dolt';
-        if(discoverCard.guardianPersonNbr1 !='0'){
+        if(discoverCard.guardianPersonNbr1 !=''){
           guardianPersonNbr1= discoverCard.guardianPersonNbr1;
         }
         let guardian2='Dolt';
-        if(discoverCard.guardian2 !='0'){
+        if(discoverCard.guardian2 !=''){
           guardian2= discoverCard.guardian2;
         }
         let guardianPersonNbr2='Dolt';
-        if(discoverCard.guardianPersonNbr2 !='0'){
+        if(discoverCard.guardianPersonNbr2 !=''){
           guardianPersonNbr2= discoverCard.guardianPersonNbr2;
         }
 
@@ -105,7 +107,7 @@ export class DiscoverCardComponent implements OnInit {
         }
       })
         });
-        this.dataSource.data = this.cards;
+      //  this.dataSource.data = this.cards;
         this.store.dispatch(new fromState.UpdateCards(this.cards));
       }
 
@@ -141,8 +143,15 @@ export class DiscoverCardComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
+    this.searchCards=[];
+    
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    console.log(this.searchCards);
+    this.cards.forEach(card=>{
+      if(card.personName.includes(filterValue) || card.userName.includes(filterValue)|| card.status.includes(filterValue)|| card.gradedOn.includes(filterValue)){
+        this.searchCards.push(card);
+      }
+   });
   }
 
 }

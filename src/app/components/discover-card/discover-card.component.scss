@@ -1,8 +1,119 @@
 h1{
-    font-size: 30px;
-    font-weight: bold;
+  font-size: 30px;
+  font-weight: bold;
 }
+
+
 table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: whitesmoke;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+button{
+  width: 15%;
+  background-color: #cde7e6;
+  color: black;
+}
+
+tr:hover td {
+  border-top: 1px solid #663399;
+  border-bottom: 1px solid #663399;
+}
+
+
+::ng-deep .mat-checkbox.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+border-radius: 45%;
+border: 4px black;
+padding: 8px;
+}
+
+.matInput{
+border:10px black;
+}
+
+
+mat-label{
+  color: black;
+  }
+
+  .mat-form-field {
+      font-size: 14px;
+      width: 60%;
+      margin-bottom: 15px;
+      height: 55px;
+    }
+
+    .edit-button{
+      color: #663399;
+      background-color: transparent;
+    }
+
+@media only screen and (max-width: 1000px) {
+  .search{
+    display: flex;
+    flex-direction: column;
+    }
+
+    .mat-form-field {
+    margin-left: 20%;
+    }
+
+button{
+width: 50%;
+margin-left: 25%;
+}
+
+table, thead, tbody, th, td, tr {
+display: block;
+}
+
+thead tr {
+position: absolute;
+top: -9999px;
+left: -9999px;
+}
+
+tr {
+margin: 0 0 1rem 0;
+}
+
+tr:nth-child(odd) {
+background: #ccc;
+}
+
+td {
+border: none;
+border-bottom: 1px solid #eee;
+position: relative;
+padding-left: 50%;
+margin-bottom: 20px;
+}
+
+td:before {
+position: absolute;
+top: 0;
+left: 6px;
+width: 50%;
+padding-right: 10px;
+white-space: nowrap;
+}
+
+td:nth-of-type(1):before { content: "Datum"; }
+td:nth-of-type(2):before { content: "Barn"; }
+td:nth-of-type(3):before { content: "Av"; }
+td:nth-of-type(4):before { content: "Organisation"; }
+td:nth-of-type(5):before { content: "Kortets status"; }
+}
+
+/* table {
     width: 100%;
     background-color: whitesmoke;
   }
@@ -21,16 +132,6 @@ table {
     overflow: auto;
   }
 
-  mat-label{
-    color: black;
-    }
-
-    .mat-form-field {
-        font-size: 14px;
-        width: 60%;
-        margin-bottom: 15px;
-        height: 55px;
-      }
 
       .edit-button{
         color: #663399;
@@ -39,15 +140,5 @@ table {
       .mat-row:hover .mat-cell {
         border-top: 1px solid #663399;
         border-bottom: 1px solid #663399;
-      }
+      } */
       
-      @media screen and (max-width: 900px){
-        .search{
-        display: flex;
-        flex-direction: column;
-        }
-    
-        .mat-form-field {
-        margin-left: 20%;
-        }
-      }
