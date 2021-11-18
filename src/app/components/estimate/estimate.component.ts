@@ -5,7 +5,9 @@ import * as fromRoot from '../../state';
 import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
 import { Observable } from 'rxjs';
-    
+import { ViewChild } from '@angular/core'
+import {MatSidenavModule} from '@angular/material/sidenav';
+
 @Component({
   selector: 'app-estimate',
   templateUrl: './estimate.component.html',
@@ -16,6 +18,8 @@ import { Observable } from 'rxjs';
 
 })
 export class EstimateComponent implements OnInit {
+ // @ViewChild('drawer') public drawer: MatDrawer;
+
   userRoleId: string;
 
   categories = [
