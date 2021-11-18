@@ -1,4 +1,53 @@
 <div class="container">
-    <p>conversation-material-details works!</p>
 
+    <h1>Samtalsunderlag</h1>
+
+    <button class="back-button" mat-icon-button routerLink="/conversation-material">
+      <span class="material-icons"> arrow_back </span>
+   Tillbaka
+    </button>
+
+    <table role="table">
+        <thead role="rowgroup">
+      <tr role="row">
+    
+      <th rowspan="2" role="columnheader">Kategori</th>
+      <th rowspan="2" role="columnheader">Frågan</th>
+      <th colspan="2" role="columnheader">Barnet</th>
+      <th colspan="2" role="columnheader">Vårdnadshavare 1</th>
+      <th *ngIf="selected=='2'" colspan="2" role="columnheader">Vårdnadshavare 2</th>
+    </tr>
+    <tr>
+      <th role="columnheader">Betyg</th>
+      <th role="columnheader">Kommentär</th>
+      <th role="columnheader">Betyg</th>
+      <th role="columnheader">Kommentär</th>
+      <th *ngIf="selected=='2'" role="columnheader">Betyg</th>
+      <th *ngIf="selected=='2'" role="columnheader">Kommentär</th>
+
+    </tr>
+  </thead>
+  <tbody role="rowgroup">
+
+    <tr role="row" id="{{card.id}}" *ngFor="let card of scores; let i=index">
+      <td role="cell" [style.color]='card.color'><strong>{{card.area}}</strong></td>
+      <td role="cell" >{{card.question}}</td>
+      <td role="cell">{{card.person_score}}</td>
+      <td role="cell">
+        {{card.person_comment}}
+          </td>
+      <td role="cell">{{card.guardian1_score}}</td>
+      <td role="cell">
+        {{card.person_comment}}
+      </td>
+      <td role="cell" *ngIf="selected=='2'">{{card.guardian1_score}}</td>
+      <td role="cell" *ngIf="selected=='2'">
+        {{card.person_comment}}
+      </td>
+
+    </tr>
+
+
+  </tbody>
+</table>
 </div>

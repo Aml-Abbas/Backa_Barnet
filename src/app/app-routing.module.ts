@@ -39,6 +39,7 @@ import { CreateEventGuard } from './guards/create-event.guard';
 import { DirtycheckGuard } from './guards/dirtycheck.guard';
 import { EditDiscoverCardComponent } from './components/edit-discover-card/edit-discover-card.component';
 import { DiscoverCardEditGuard } from './guards/discover-card-edit.guard';
+import { EditConversationMaterialComponent } from './components/edit-conversation-material/edit-conversation-material.component';
 
 
 const routes: Routes = [
@@ -108,7 +109,8 @@ const routes: Routes = [
       },
       {
         path: 'conversation-material/:conversationMaterialId',
-        component: ConversationMaterialDetailsComponent, canActivate: [ConversationMaterialDetailsGuard]
+        component: ConversationMaterialDetailsComponent
+        //, canActivate: [ConversationMaterialDetailsGuard]
       },
       {
         path: 'contact-person',
@@ -130,6 +132,10 @@ const routes: Routes = [
         path: 'edit-discover-card/:discoverCardId',
         component: EditDiscoverCardComponent, canDeactivate:[DirtycheckGuard],
         canActivate: [DiscoverCardEditGuard]
+      },
+      {
+        path: 'edit-conversation-material',
+        component: EditConversationMaterialComponent
       },
     ]
   },

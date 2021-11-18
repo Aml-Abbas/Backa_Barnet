@@ -29,7 +29,7 @@ export class ConversationMaterialComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  setCurrentPerson(id: string) {
+  setCurrentConversationMaterial(id: string) {
     this.store.dispatch(new fromRoot.Go({ path: ['/conversation-material', id] }));
   }
 

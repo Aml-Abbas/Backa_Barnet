@@ -70,6 +70,7 @@ import { EstimateOverviewComponent } from './components/estimate-overview/estima
 import { SvgComponent } from './components/need-compass/svg.component';
 import { BBLogComponent } from './components/landing/bb-log.component';
 import { EditDiscoverCardComponent } from './components/edit-discover-card/edit-discover-card.component';
+import { EditConversationMaterialComponent } from './components/edit-conversation-material/edit-conversation-material.component';
 
 
 @NgModule({
@@ -80,7 +81,7 @@ import { EditDiscoverCardComponent } from './components/edit-discover-card/edit-
     ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, 
     EditContactGuardianComponent, CreateDiscoverCardDialogComponent, DiscoverCardDetailsComponent, 
     CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent,
-     SvgComponent, BBLogComponent, EditDiscoverCardComponent],
+     SvgComponent, BBLogComponent, EditDiscoverCardComponent, EditConversationMaterialComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
