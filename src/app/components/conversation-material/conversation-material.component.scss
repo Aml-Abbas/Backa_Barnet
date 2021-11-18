@@ -58,6 +58,11 @@ td{
     text-align: left;
   }
 
+  .mat-row:hover .mat-cell {
+    border-top: 1px solid #663399;
+    border-bottom: 1px solid #663399;
+  }
+
   @media screen and (max-width: 800px){
     button{
       width: 50%;
