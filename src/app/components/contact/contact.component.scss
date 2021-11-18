@@ -8,27 +8,12 @@ h2{
   font-weight: bold;
   margin-top: 25px;;
 }
-/* 
-  table {
-    width: 100%;
-    background-color: whitesmoke;
-  }
-   */
+
   .mat-form-field {
     font-size: 14px;
     width: 55%;
     height: 55px;
   }
-
-/* 
-  td, th, tr{
-  color: black;
-}
-  
-td{
-  cursor: pointer;
-}
- */
   mat-label{
   color: black;
   }
@@ -42,26 +27,6 @@ td{
     width: 20%;
     background-color: #cde7e6;
     color: black;
-  }
-
-/*   .table-container {
-    position: relative;
-    min-height: 200px;
-    max-height: 600px;
-    overflow: auto;
-  } */
-
-  .choose-person {
-    background-color: transparent;
-    border: none;
-    width: 100%;
-    margin: 0px;
-    text-align: left;
-  }
-
-  .mat-row:hover .mat-cell {
-    border-top: 1px solid #663399;
-    border-bottom: 1px solid #663399;
   }
   
   .demo-row-is-clicked {
@@ -90,7 +55,7 @@ button{
 
 tr:hover td {
   border-top: 1px solid #663399;
-  border-bottom: 1px solid #663399;
+  border-bottom: 2px solid #663399;
 }
 
   @media screen and (max-width: 800px){
