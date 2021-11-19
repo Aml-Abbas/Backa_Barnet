@@ -5,11 +5,17 @@
 
   <div class="form-container" [formGroup]="createDiscoveCardFormGroup" (change)= "isDirty= true">
 
-    <mat-form-field class="fixed-length" class="fixed-length" appearance="fill">
-      <mat-label>Barnets namn</mat-label>
-      <input matInput formControlName="nameControl">
+    <mat-form-field class="fixed-length" cappearance="fill">
+      <mat-label>Barnets förnamn</mat-label>
+      <input matInput formControlName="firstNameControl">
     </mat-form-field>
-    <p>{{nameError}}</p>
+    <p>{{firstNameError}}</p>
+
+    <mat-form-field class="fixed-length" appearance="fill">
+      <mat-label>Barnets efternamn</mat-label>
+      <input matInput formControlName="lastNameControl">
+    </mat-form-field>
+    <p>{{lastNameError}}</p>
 
 
     <mat-form-field class="fixed-length" appearance="fill">

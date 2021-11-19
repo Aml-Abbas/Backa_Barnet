@@ -51,7 +51,8 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
 
   createDiscoveCardFormGroup: FormGroup;
   saveError = '';
-  nameError = '';
+  firstNameError = '';
+  lastNameError = '';
   personNbrError = '';
   measureError = '';
   unitError = '';
@@ -109,7 +110,8 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
     this.store.dispatch(new fromState.LoadDiscoverCard(this.current_user.userID));
 
     this.createDiscoveCardFormGroup = this._formBuilder.group({
-      nameControl: ['', [Validators.required, Validators.minLength(2)]],
+      firstNameControl: ['', [Validators.required, Validators.minLength(2)]],
+      lastNameControl: ['', [Validators.required, Validators.minLength(2)]],
       personNbrControl: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       situationCommentControl: ['', Validators.required],
 
@@ -215,14 +217,11 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
 
   send(number: number) {
 
-    var person_name = this.createDiscoveCardFormGroup.value.nameControl.trim().split(' ');
-    var firstName = person_name[0];
-    var lastName = person_name[1];
     this.personNbr = this.createDiscoveCardFormGroup.value.personNbrControl;
     var card = {
       UserID: parseInt(this.current_user.userID) ?? 0,
-      PersonLastName: lastName ?? '0',
-      PersonFirstName: firstName ?? '0',
+      PersonLastName: this.createDiscoveCardFormGroup.value.lastNameControl.trim() ?? '0',
+      PersonFirstName: this.createDiscoveCardFormGroup.value.firstNameControl.trim() ?? '0',
       PersonNbr: String(this.createDiscoveCardFormGroup.value.personNbrControl) ?? '0',
 
       GuardianName1: this.guardians[0].name ?? '0',
@@ -262,7 +261,8 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
 
     console.log(card);
     var isSendAvailable = true;
-    this.nameError = '';
+    this.firstNameError = '';
+    this.lastNameError = '';
     this.saveError = '';
     this.personNbrError = '';
     this.guardiansError[0].name = '';
@@ -275,11 +275,15 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
     this.categoryError = '';
     this.informMesg = '';
   
-    if (person_name.length < 2) {
-      this.nameError = 'För och efternamn behövs, glöm inte mellan slag mellan dem.';
+    if (this.createDiscoveCardFormGroup.controls.firstNameControl.status == "INVALID") {
+      this.firstNameError = 'Förnamn behövs, kan ej vara mondre än 2 bokstäver';
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
-    } if (this.createDiscoveCardFormGroup.controls.personNbrControl.status == "INVALID" || this.personNbr.toString().trim().length != 12) {
+    } if (this.createDiscoveCardFormGroup.controls.lastNameControl.status == "INVALID") {
+      this.lastNameError = 'efternamn behövs, kan ej vara mondre än 2 bokstäver';
+      this.saveError = 'Du har missat att fylla i saker';
+      isSendAvailable = false;
+    }  if (this.createDiscoveCardFormGroup.controls.personNbrControl.status == "INVALID" || this.personNbr.toString().trim().length != 12) {
       this.personNbrError = 'Personnummer ska innehålla 12 siffror';
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
