@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateDiscoverCardDialogComponent } from './create-discover-card-dialog/create-discover-card-dialog.component';
+import { DialogComponent } from '../dialog/dialog.component';
 import * as fromState from '../../state';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
@@ -340,8 +340,9 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
           } if (isSendAvailable) {
             this.isAnonyms();
 
-            const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
+            const dialogRef = this.dialog.open(DialogComponent, {
               data: {
+                title: 'Skapa upptäckarkort',
                 text: this.informMesg,
               }
             });
@@ -368,8 +369,9 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
           }
         }
         else {
-          const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
+          const dialogRef = this.dialog.open(DialogComponent, {
             data: {
+              title: 'Skapa upptäckarkort',
               text: 'Kortet kommer att sparas',
             }
           });

@@ -62,7 +62,7 @@ import {
 } from '@ngrx/router-store';
 import { EditContactGuardianComponent } from './components/edit-contact-guardian/edit-contact-guardian.component';
 import { ChartsModule } from 'ng2-charts';
-import { CreateDiscoverCardDialogComponent } from './components/create-discover-card/create-discover-card-dialog/create-discover-card-dialog.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 import { DiscoverCardDetailsComponent } from './components/discover-card-details/discover-card-details.component';
 import { CreateConversationMaterialComponent } from './components/create-conversation-material/create-conversation-material.component';
 import { ConversationMaterialDetailsComponent } from './components/conversation-material-details/conversation-material-details.component';
@@ -79,7 +79,7 @@ import { EditConversationMaterialComponent } from './components/edit-conversatio
     EventComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent,
     DeepNeedCompassComponent, ConversationMaterialComponent,
     ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, 
-    EditContactGuardianComponent, CreateDiscoverCardDialogComponent, DiscoverCardDetailsComponent, 
+    EditContactGuardianComponent, DialogComponent, DiscoverCardDetailsComponent, 
     CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent,
      SvgComponent, BBLogComponent, EditDiscoverCardComponent, EditConversationMaterialComponent],
   imports: [

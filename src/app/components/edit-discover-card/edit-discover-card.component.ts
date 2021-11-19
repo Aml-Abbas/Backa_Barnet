@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import * as fromState from '../../state';
 import { Store } from '@ngrx/store';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
-import { CreateDiscoverCardDialogComponent } from '../create-discover-card/create-discover-card-dialog/create-discover-card-dialog.component';
+import { DialogComponent } from '../dialog/dialog.component';
 import { GetSetService } from '../../services/get-set/get-set.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Unit } from 'src/app/models/Unit';
@@ -283,8 +283,9 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
           } if (isSendAvailable) {
             this.isAnonyms();
 
-            const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
+            const dialogRef = this.dialog.open(DialogComponent, {
               data: {
+                title: 'Ändra upptäckarkort',
                 text: this.informMesg,
               }
             });
@@ -303,8 +304,9 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
           }
         }
         else {
-          const dialogRef = this.dialog.open(CreateDiscoverCardDialogComponent, {
+          const dialogRef = this.dialog.open(DialogComponent, {
             data: {
+              title: 'Ändra upptäckarkort',
               text: 'Kortet kommer att sparas',
             }
           });
