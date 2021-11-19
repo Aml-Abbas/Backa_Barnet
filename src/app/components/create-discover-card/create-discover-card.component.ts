@@ -270,7 +270,11 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
     this.guardiansError[0].personNbr = '';
     this.guardiansError[1].personNbr = '';
     this.measureError = '';
-
+    this.unitError = '';
+    this.situationError = '';
+    this.categoryError = '';
+    this.informMesg = '';
+  
     if (person_name.length < 2) {
       this.nameError = 'För och efternamn behövs, glöm inte mellan slag mellan dem.';
       this.saveError = 'Du har missat att fylla i saker';

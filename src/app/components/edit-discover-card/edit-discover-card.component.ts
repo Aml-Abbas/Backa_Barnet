@@ -259,6 +259,10 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
     var isSendAvailable = true;
     this.saveError = '';
     this.measureError = '';
+    this.unitError = '';
+    this.situationError = '';
+    this.categoryError = '';
+    this.informMesg = '';
    
    if (this.unitNbr== -1) {
       this.unitError = 'Du måste välja en enhet';
