@@ -15,7 +15,6 @@ export class EditGuardianGuard implements CanActivate {
 constructor(private store: Store<fromState.State>) {}
 
 canActivate(): Observable<boolean> {
-  console.log('in the guardian');
   var currentUser= this.store.select(fromState.getCurrentUser);
   currentUser.subscribe(data=>{
     console.log(String(data?.roleID));

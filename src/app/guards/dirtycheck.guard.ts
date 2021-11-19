@@ -1,21 +1,32 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ComponentCanDeactivate } from '../interfaces/component-can-deactivate';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../components/dialog/dialog.component';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DirtycheckGuard implements CanDeactivate<ComponentCanDeactivate> {
+  constructor(public dialog: MatDialog){}
+
   canDeactivate(
-    component: ComponentCanDeactivate,
-    currentRoute: ActivatedRouteSnapshot,
-    currentState: RouterStateSnapshot,
-    nextState: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    component: ComponentCanDeactivate): Observable<boolean>{
       if(component.canDeactivate()){
-        return true;
+        return of(true);
       }else{
-        return confirm('Du har inte sparat dina ändringar, Är du säker att du vill lämna sidan?');
+        const dialogRef = this.dialog.open(DialogComponent, {
+          data: {
+            title: 'Lämna sidan',
+            text: "Du har inte sparat dina ändringar, Är du säker att du vill lämna sidan?",
+          }
+        });
+
+        return dialogRef.afterClosed().pipe(map(result => {
+          return result;
+        }));
       }
   }
   
