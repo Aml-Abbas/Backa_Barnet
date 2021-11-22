@@ -6,7 +6,7 @@
 
     <div *ngIf="(current_person$ | async) as current_person" (change)= "isDirty= true">
 
-    <h4>Bedömning av {{current_person.firstName}} situation</h4>
+    <h4>Bedömning av {{current_person.firstName}}s situation</h4>
 
     <mat-form-field id="matFormFieldGuardians" appearance="fill">
       <mat-label>Antal Vårdnadshavare som ska fylla formulär</mat-label>
