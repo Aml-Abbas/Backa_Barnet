@@ -1,8 +1,8 @@
 <div class="container">
     <h1>Samtalsunderlag</h1>
 
-   <!--  <h4 *ngIf=" !((current_person$ | async) as current_person)">
-      Välj ett barn innan du skapar ett samtalsunderlag</h4> -->
+   <h4 *ngIf=" !(current_person$ | async) as current_person">
+      Välj ett barn innan du skapar ett samtalsunderlag</h4>
 
     <div *ngIf="(current_person$ | async) as current_person" (change)= "isDirty= true">
 

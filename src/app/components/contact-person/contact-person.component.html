@@ -1,6 +1,10 @@
 <div class="container">
 
   <h1>Kontaktuppgifter</h1>
+  <h4 *ngIf=" !(current_person$ | async) as current_person">
+    Välj ett barn först</h4>
+
+    
   <div *ngIf="(current_person$ | async) as current_person">
 
   <h4>Information om {{current_person.firstName}}</h4>

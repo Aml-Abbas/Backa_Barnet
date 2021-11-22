@@ -2,6 +2,9 @@
     <h1>Kontaktuppgifter</h1>
     <h4>Barnkontakt och Stödsamordnare</h4>
 
+    <h4 *ngIf=" !(current_person$ | async) as current_person">
+      Välj ett barn först</h4>
+
 <div *ngIf="(current_person$ | async) as current_person">
 
 <div class="person-container">
