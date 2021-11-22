@@ -105,7 +105,8 @@ const routes: Routes = [
       },
       {
         path: 'create-conversation-material',
-        component: CreateConversationMaterialComponent, canActivate: [ConversationMaterialGuard]
+        component: CreateConversationMaterialComponent, canActivate: [ConversationMaterialGuard],
+        canDeactivate:[DirtycheckGuard]
       },
       {
         path: 'conversation-material/:conversationMaterialId',

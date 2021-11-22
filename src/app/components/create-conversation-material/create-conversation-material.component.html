@@ -1,7 +1,12 @@
 <div class="container">
     <h1>Samtalsunderlag</h1>
 
-    <h4>Bedömning av Kalles situation</h4>
+   <!--  <h4 *ngIf=" !((current_person$ | async) as current_person)">
+      Välj ett barn innan du skapar ett samtalsunderlag</h4> -->
+
+    <div *ngIf="(current_person$ | async) as current_person" (change)= "isDirty= true">
+
+    <h4>Bedömning av {{current_person.firstName}} situation</h4>
 
     <mat-form-field id="matFormFieldGuardians" appearance="fill">
       <mat-label>Antal Vårdnadshavare som ska fylla formulär</mat-label>
@@ -38,7 +43,7 @@
       <td role="cell" >{{card.question}}</td>
       <td role="cell">
         <!-- [style.border-color]='card.color' -->
-          <mat-select id="{{card.class}}" [(ngModel)]="card.person_score" name="{{card.person_score}}">
+          <mat-select id="{{card.class}}" [(ngModel)]="card.person_score" name="{{card.person_score}}" (selectionChange)="changeDirty()">
             <mat-option value="1">1</mat-option>
             <mat-option value="2">2</mat-option>
             <mat-option value="3">3</mat-option>
@@ -50,7 +55,7 @@
           <textarea matInput [(ngModel)]="card.person_comment" name="{{card.person_comment}}"></textarea>
       </td>
       <td role="cell">
-          <mat-select id="{{card.class}}" [(ngModel)]="card.guardian1_score" name="{{card.guardian1_score}}">
+          <mat-select id="{{card.class}}" [(ngModel)]="card.guardian1_score" name="{{card.guardian1_score}}" (selectionChange)="changeDirty()">
             <mat-option value="1">1</mat-option>
             <mat-option value="2">2</mat-option>
             <mat-option value="3">3</mat-option>
@@ -62,7 +67,7 @@
           <textarea matInput [(ngModel)]="card.guardian1_comment" name="{{card.guardian1_comment}}"></textarea>
       </td>
       <td role="cell" *ngIf="selected=='2'">
-          <mat-select id="{{card.class}}" [(ngModel)]="card.guardian2_score" name="{{card.guardian2_score}}">
+          <mat-select id="{{card.class}}" [(ngModel)]="card.guardian2_score" name="{{card.guardian2_score}}" (selectionChange)="changeDirty()">
             <mat-option value="1">1</mat-option>
             <mat-option value="2">2</mat-option>
             <mat-option value="3">3</mat-option>
@@ -80,76 +85,12 @@
   </tbody>
 </table>
     
-<!--     <div class="card_container" *ngFor="let card of scores; let i=index">
-
-      <mat-card id="{{card.id}}">
-        <mat-card-title>{{card.area}}</mat-card-title>
-        <mat-card-content>
-          <p>{{card.question}}</p>
-
-          <div class="answer">
-            <p>barn</p>
-
-            <mat-button-toggle-group (change)="changeScore($event.value, i)" aria-label="Font Style">
-            <mat-button-toggle value="1">1</mat-button-toggle>
-            <mat-button-toggle value="2">2</mat-button-toggle>
-            <mat-button-toggle value="3">3</mat-button-toggle>
-            <mat-button-toggle value="4">4</mat-button-toggle>
-            <mat-button-toggle value="5">5</mat-button-toggle>
-          </mat-button-toggle-group>
-
-          <mat-form-field appearance="fill">
-            <mat-label>kommentar: ​</mat-label>
-            <textarea matInput [(ngModel)]="card.comment"></textarea>
-          </mat-form-field>
-        </div>
-
-        <div class="answer">
-          <p>föräldrar 1</p>
-
-          <mat-button-toggle-group (change)="changeScore($event.value, i)" aria-label="Font Style">
-            <mat-button-toggle value="1">1</mat-button-toggle>
-            <mat-button-toggle value="2">2</mat-button-toggle>
-            <mat-button-toggle value="3">3</mat-button-toggle>
-            <mat-button-toggle value="4">4</mat-button-toggle>
-            <mat-button-toggle value="5">5</mat-button-toggle>
-          </mat-button-toggle-group>
-
-          <mat-form-field appearance="fill">
-            <mat-label>kommentar: ​</mat-label>
-            <textarea matInput [(ngModel)]="card.comment"></textarea>
-          </mat-form-field>
-        </div>
-
-        <div class="answer">
-          <p>föräldrar 2</p>
-
-          <mat-button-toggle-group (change)="changeScore($event.value, i)" aria-label="Font Style">
-            <mat-button-toggle value="1">1</mat-button-toggle>
-            <mat-button-toggle value="2">2</mat-button-toggle>
-            <mat-button-toggle value="3">3</mat-button-toggle>
-            <mat-button-toggle value="4">4</mat-button-toggle>
-            <mat-button-toggle value="5">5</mat-button-toggle>
-          </mat-button-toggle-group>
-
-          <mat-form-field appearance="fill">
-            <mat-label>kommentar: ​</mat-label>
-            <textarea matInput [(ngModel)]="card.comment"></textarea>
-          </mat-form-field>
-        </div>
-
-
-        </mat-card-content>
-      </mat-card>
-
-
-
-    </div>
- -->
     <button mat-raised-button (click)="send(1)">Spara</button>
     <button mat-raised-button (click)="send(2)">Behovet uppfyllt</button>
     <button mat-raised-button (click)="send(3)">Skicka till barnteam</button>
 
     <p class="error">{{saveError}}</p>
+
+  </div>
 
 </div>

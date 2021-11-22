@@ -5,6 +5,7 @@ import {HydrationEffect} from './hydration.effect';
 import {PersonsEffect} from './persons.effect';
 import {DiscoverCardEffect} from './discoverCard.effect';
 import {CurrentCardEffect} from './currentCard.effect';
+import {ConversationMaterialEffect} from './conversationMaterial.effect';
 
 export const effects: any[] = [
     LoginEffect,
@@ -13,7 +14,8 @@ export const effects: any[] = [
     HydrationEffect,
     PersonsEffect,
     DiscoverCardEffect,
-    CurrentCardEffect
+    CurrentCardEffect,
+    ConversationMaterialEffect
   ];
   
 
@@ -24,3 +26,4 @@ export * from './hydration.effect';
 export * from './persons.effect';
 export * from './discoverCard.effect';
 export * from './currentCard.effect';
+export * from './conversationMaterial.effect';
