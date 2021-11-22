@@ -1,12 +1,20 @@
 <div class="container">
     <h1>Upptäckarkortet</h1>
 
+    <div *ngIf="(current_card$ | async) as current_card">
+
     <button class="back-button" mat-icon-button routerLink="/discover-card">
       <span class="material-icons"> arrow_back </span>
    Tillbaka
 </button>
 
-    <mat-list *ngIf="(current_card$ | async) as current_card">
+<button mat-icon-button class="edit-button" *ngIf="current_card.status=='Sparat'" (click)="moveToEditCard(current_card)">
+  <span class="material-icons create"> create </span>
+  Ändra
+  </button>
+
+
+    <mat-list>
 
       <table role="table" class="table_white_background">
         <thead role="rowgroup">
@@ -125,5 +133,6 @@
             </div>
   
       </mat-list>
+    </div>
 
 </div>

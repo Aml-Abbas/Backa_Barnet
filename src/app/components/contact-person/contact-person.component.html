@@ -20,6 +20,17 @@
     <input matInput disabled value="{{current_person.personNbr}}">
   </mat-form-field>
 
+
+  <mat-form-field appearance="fill" *ngIf="userRoleId=='4' || userRoleId=='2'">
+    <mat-label>Barnets status</mat-label>
+    <mat-select *ngIf="(status$ | async) as status">
+      <mat-option *ngFor="let stat of status; let i= index" value="{{stat.unitID}}"
+      (click)="changeStatus(stat.unitID, stat.unitName)">{{stat.unitName}}</mat-option>
+</mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button (click)="save()" *ngIf="userRoleId=='4' || userRoleId=='2'">Spara</button>
+
 </div>
 
 </div>

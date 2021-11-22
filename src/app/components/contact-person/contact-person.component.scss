@@ -9,7 +9,8 @@ h4{
 button{
     background-color: #cde7e6;
     color: black;
-    width: 20%;;
+    width: 20%;
+    margin-right: 50%;
   }
 
   mat-form-field{
@@ -29,6 +30,22 @@ mat-label{
 color: black;
 }
 
+::ng-deep .mat-select-value{
+    color: black !important;
+  }
+  
+  ::ng-deep .mat-select-panel{
+    background-color: #663399 !important;
+  }
+  
+  ::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
+    color: white !important;
+  }
+  
+  ::ng-deep .mat-select-arrow{
+    color: #663399;
+  }
+  
 @media screen and (max-width: 800px){
     mat-form-field{
         width: 100%;

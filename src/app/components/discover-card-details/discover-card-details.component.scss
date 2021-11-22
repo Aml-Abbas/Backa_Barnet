@@ -49,10 +49,22 @@ p{
     font-size: 30px;
     color: #663399;
 }
+.create { 
+  font-size: 25px;
+  color: #663399;
+}
+
 .back-button{
   color: #663399;
   size: 16px;
 }
+
+.edit-button{
+  color: #663399;
+  background-color: transparent;
+  margin-left: 80%;
+}
+
   @media screen and (max-width: 900px){
     ::ng-deep .mat-list-item{
      // height: 85px !important;

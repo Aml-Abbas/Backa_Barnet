@@ -115,7 +115,7 @@ const routes: Routes = [
       },
       {
         path: 'contact-person',
-        component: ContactPersonComponent
+        component: ContactPersonComponent, canDeactivate:[DirtycheckGuard]
       },
       {
         path: 'contact-guardian',

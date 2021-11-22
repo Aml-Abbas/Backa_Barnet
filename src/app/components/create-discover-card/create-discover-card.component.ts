@@ -65,8 +65,8 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
 
   comments: string[] = [];
   guardians = [
-    { name: undefined, personNbr: undefined, inform: '0', samtycke: '0' },
-    { name: undefined, personNbr: undefined, inform: '0', samtycke: '0' },
+    { name: '0', personNbr: '0', inform: '0', samtycke: '0' },
+    { name: '0', personNbr: '0', inform: '0', samtycke: '0' },
   ];
 
   guardiansError = [
@@ -120,17 +120,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
   }
 
   isNumeric(str: any): boolean {
-    if (str == undefined) {
-      console.log('it is not defiend');
-      return false;
-    } else {
-      console.log('is integer');
-      console.log(Number.isInteger(str));
-      console.log('is length');
-      console.log(str.toString().length == 12);
-
       return this.isInteger(str) && str.trim().toString().length == 12;
-    }
   }
 
   isInteger(str: string){
@@ -139,7 +129,6 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
             if (str.charAt(i) < '0' || str.charAt(i) > '9') {
                 isNbr= false;
             }
-      
         }
         return isNbr;
     }
@@ -296,22 +285,22 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       this.situationError = 'Du måste beskriva situationen';
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
-    } if (this.guardians[0].name == undefined) {
+    } if (this.guardians[0].name == '') {
       this.guardiansError[0].name = 'Vårdnadshavares namn ska vara med.'
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
-    } if (this.guardians[0].name != undefined) {
+    } if (this.guardians[0].name != '') {
       var names1 = String(this.guardians[0].name).trim().split(' ');
       if (names1[1] == '' || names1.length < 2) {
         this.guardiansError[0].name = 'Vårdnadshavares för och efternamn ska vara med.'
         this.saveError = 'Du har missat att fylla i saker';
         isSendAvailable = false;
       }
-    } if (this.guardians[1].name == undefined && this.guardianNbr == 2) {
+    } if (this.guardians[1].name == '' && this.guardianNbr == 2) {
       this.guardiansError[1].name = 'Vårdnadshavares namn ska vara med.'
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
-    } if (this.guardians[1].name != undefined && this.guardianNbr == 2) {
+    } if (this.guardians[1].name != '' && this.guardianNbr == 2) {
       var names2 = String(this.guardians[1].name).trim().split(' ');
       if (names2[1] == '' || names2.length < 2) {
         this.guardiansError[1].name = 'Vårdnadshavares för och efternamn ska vara med.'

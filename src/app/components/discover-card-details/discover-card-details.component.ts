@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DiscoverCard } from 'src/app/models/DiscoverCard';
 import { Card } from 'src/app/models/Card';
 import { Observable } from 'rxjs';
 import * as fromState from '../../state';
 import { Store } from '@ngrx/store';
+import * as fromRoot from '../../../app/state';
 
 export interface QuestionText {
   id: number;
@@ -45,6 +45,9 @@ export class DiscoverCardDetailsComponent implements OnInit {
       console.log(data?.grades[5]);
 
     });
+  }
+  moveToEditCard(card: Card){
+    this.store.dispatch(new fromRoot.Go({ path: ['/edit-discover-card', card.id] }));
   }
 
 }

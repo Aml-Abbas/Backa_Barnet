@@ -68,10 +68,6 @@ mat-card-title{
   color: white !important;
 }
 
-::ng-deep .mat-datepicker-content {
-  background-color: #663399;
-}
-
 ::ng-deep .mat-select-arrow{
   color: #663399;
 }
@@ -80,7 +76,6 @@ mat-card-title{
     padding: 10px;
     margin: 10px;
     border-radius: 15px;
-
 }
 
 .section_margin-top{
@@ -126,14 +121,12 @@ mat-card-title{
     margin-bottom: 15px;
     margin-right: 1%;
     margin-left: 2%;
-    
   }
 
     .card-container {
       height: 100px;
     }
   
-
   .discover-card-button{
       width: 35%;
       margin-left: 65%;

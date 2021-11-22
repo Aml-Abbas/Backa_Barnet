@@ -21,7 +21,7 @@ export class ConversationMaterialEffect {
     ofType(conversationMaterialAction.CREATE_COVERSATION_MATERIAL),
     switchMap((action: conversationMaterialAction.CreateConversationMaterial) => {
 
-    return this.getSetService.createCard(action.payload).pipe(
+    return this.getSetService.createConversationMaterial(action.payload).pipe(
       map((response) => new conversationMaterialAction.CreateConversationMaterialSuccess(response)),
       catchError((error: any) => of(new conversationMaterialAction.CreateConversationMaterialFail(error)))
     );
