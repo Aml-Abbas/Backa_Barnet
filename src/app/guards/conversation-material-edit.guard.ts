@@ -6,33 +6,34 @@ import { Store } from '@ngrx/store';
 import { tap } from 'rxjs/operators';
 import * as fromRoot from '../../app/state';
 import { of } from 'rxjs';
-import { ConversationCard } from 'src/app/models/ConversationCard';
+import { ConversationCard } from '../models/ConversationCard';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ConversationMaterialDetailsGuard implements CanActivate {
+export class ConversationMaterialEditGuard implements CanActivate {
   constructor(private store: Store<fromState.State>) {}
 
+
   canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
-    var id= route.params.conversationMaterialId;
+    var id= route.params.discoverCardId;
     console.log(id);
 
     return this.checkConversationCard(id);
   }
   
   checkConversationCard(id: string): Observable<boolean>{
-    var found= false;
+     var found= false;
     this.store.select(fromState.getConversationCards).subscribe(data=>{
       data.map((card: ConversationCard)=>{
-      if(card.id== id){
+      if(card.id== id && card.status== 'Sparat'){
         this.store.dispatch(new fromState.UpdateCurrentConversationCard(card));
         found= true;
         }
       })
     });
     if(!found){
-    this.store.dispatch(new fromRoot.Go({ path: ['conversation-material'] }));
+    this.store.dispatch(new fromRoot.Go({ path: ['conversation-materail'] }));
     } 
 
     return of(found);

@@ -14,7 +14,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./discover-card.component.scss']
 })
 export class DiscoverCardComponent implements OnInit {
-  displayedColumns: string[] = ['gradedOn', 'personName',  'userName', 'userOrg', 'status','id'];
   discoverCards$: Observable<DiscoverCard[]> = new Observable<DiscoverCard[]>();
   current_user$: Observable<User| null> = new Observable<User| null>();
   cards: Card[]= [];
@@ -23,11 +22,7 @@ export class DiscoverCardComponent implements OnInit {
   comments: string[]= [];
   searchCards: Card[]= [];
 
- // dataSource = new MatTableDataSource(this.cards);
-
-  constructor(private store: Store<fromState.State>) {
-    
-  }
+  constructor(private store: Store<fromState.State>) {}
 
   ngOnInit(): void {
     this.current_user$ = this.store.select(fromState.getCurrentUser);
@@ -35,7 +30,6 @@ export class DiscoverCardComponent implements OnInit {
       let userID: string = data?.userID ?? '';
       this.store.dispatch(new fromState.LoadDiscoverCard(userID));
     });
-
 
     this.discoverCards$ = this.store.select(fromState.getDiscoverCards);
     this.discoverCards$.subscribe(data=>{

@@ -39,5 +39,33 @@ createConversationMaterialSuccess$ = createEffect(() =>
   )
 );
 
+conversationMaterial$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(conversationMaterialAction.LOAD_COVERSATION_MATERIAL),
+    switchMap((action: conversationMaterialAction.LoadConversationMaterial) => {
+
+    return this.getSetService.getConversationMaterial(action.payload).pipe(
+      map((response) => new conversationMaterialAction.LoadConversationMaterialSuccess(response)),
+      catchError((error: any) => of(new conversationMaterialAction.LoadConversationMaterialFail(error)))
+    );
+    })
+  )
+);
+
+
+updateCurrentConversationCard$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(conversationMaterialAction.UPDATE_CURRENT_CONVERSATION_CARD),
+  map((action: conversationMaterialAction.UpdateCurrentConversationCard) => {
+    return new conversationMaterialAction.UpdateCurrentConversationCardSuccess(action.payload);
+  })));
+
+  updateConversationCards$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(conversationMaterialAction.UPDATE_CONVERSATION_CARDS),
+    map((action: conversationMaterialAction.UpdateConversationCards) => {
+      return new conversationMaterialAction.UpdateConversationCardsSuccess(action.payload);
+    })));
+
 
 }

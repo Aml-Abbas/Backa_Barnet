@@ -9,70 +9,111 @@ h2{
   margin-top: 25px;;
 }
 
-  table {
-    width: 100%;
-    background-color: whitesmoke;
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: whitesmoke;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+button{
+  width: 20%;
+  background-color: #cde7e6;
+  color: black;
+  margin-left: 10%;
+}
+
+tr:hover td {
+  border-top: 1px solid #663399;
+  border-bottom: 1px solid #663399;
+}
+
+
+::ng-deep .mat-checkbox.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+border-radius: 45%;
+border: 4px black;
+padding: 8px;
+}
+
+.matInput{
+border:10px black;
+}
+
+
+mat-label{
+  color: black;
   }
-  
+
   .mat-form-field {
-    font-size: 14px;
-    width: 55%;
-    height: 55px;
-  }
+      font-size: 14px;
+      width: 60%;
+      margin-bottom: 15px;
+      height: 55px;
+    }
 
-td, th, tr{
-  color: black;
-}
-  
-td{
-  cursor: pointer;
-}
+    .edit-button{
+      color: #663399;
+      background-color: transparent;
+    }
 
-  mat-label{
-  color: black;
-  }
-
+@media only screen and (max-width: 1000px) {
   .search{
-    width: 100%;
-  }
-
-  button{
-    margin-left: 10%;
-    width: 30%;
-    background-color: #cde7e6;
-    color: black;
-  }
-
-  .table-container {
-    position: relative;
-    min-height: 200px;
-    max-height: 600px;
-    overflow: auto;
-  }
-
-  .choose-person {
-    background-color: transparent;
-    border: none;
-    width: 100%;
-    margin: 0px;
-    text-align: left;
-  }
-
-  .mat-row:hover .mat-cell {
-    border-top: 1px solid #663399;
-    border-bottom: 1px solid #663399;
-  }
-
-  @media screen and (max-width: 800px){
-    button{
-      width: 50%;
-      margin-top: 10px;
+    display: flex;
+    flex-direction: column;
     }
-    
+
     .mat-form-field {
-      width: 100%;
+    margin-left: 20%;
     }
-    td, th{
-      font-size: 8px;
-    }
-  }
+
+button{
+width: 50%;
+margin-left: 25%;
+}
+
+table, thead, tbody, th, td, tr {
+display: block;
+}
+
+thead tr {
+position: absolute;
+top: -9999px;
+left: -9999px;
+}
+
+tr {
+margin: 0 0 1rem 0;
+}
+
+tr:nth-child(odd) {
+background: #ccc;
+}
+
+td {
+border: none;
+border-bottom: 1px solid #eee;
+position: relative;
+padding-left: 50%;
+margin-bottom: 20px;
+}
+
+td:before {
+position: absolute;
+top: 0;
+left: 6px;
+width: 50%;
+padding-right: 10px;
+white-space: nowrap;
+}
+
+td:nth-of-type(1):before { content: "Id"; }
+td:nth-of-type(2):before { content: "Datum"; }
+td:nth-of-type(3):before { content: "Samtalsunderlagets status"; }
+td:nth-of-type(5):before { content: ""; }
+}

@@ -5,6 +5,7 @@ import { Contact } from 'src/app/models/Contact';
 import { DiscoverCard } from 'src/app/models/DiscoverCard';
 import { Unit } from 'src/app/models/Unit';
 import { Person } from 'src/app/models/Person';
+import { ConversationMaterial } from 'src/app/models/ConversationMaterial';
 
 
 @Injectable({
@@ -37,9 +38,9 @@ export class GetSetService {
     return this.http.post('https://func-ykbb.azurewebsites.net/api/card/edit?code=cCU4EzCLLZa4rtBjMG3eyeR6PnEnAZny88uJC7WXI2axOzTaeJfIJA==', discoverCardJson);
   }
 
-/*   getConversationMaterial(userId: string): Observable<DiscoverCard[]> {
-    return this.http.get<DiscoverCard[]>('https://func-ykbb.azurewebsites.net/api/card/'+userId+'?code=bbdIBAbikn/AMydOBvxm69FyKFhRfS4fxUb55SaSz0TfK/cjnxiYEw==');
-  } */
+   getConversationMaterial(personId: string): Observable<ConversationMaterial[]> {
+    return this.http.get<ConversationMaterial[]>('https://func-ykbb.azurewebsites.net/api/substrate/'+personId +'?code=ggX3h9u8RzHKyqnuNwDAdMdAMV6pceMAHuwRcHEt1UHw14gh1KFI5Q==');
+  }
 
   createConversationMaterial(coversationMaterial: any) {
     return this.http.post('https://func-ykbb.azurewebsites.net/api/substrate/create?code=GHuYJ59bBXGZ0p2gn/5iToaQCiKHp7ufdIH7ZicPDrbOK51coYK7YQ==', coversationMaterial);
