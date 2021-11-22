@@ -22,7 +22,7 @@ th, td {
 
 tr:nth-child(even) {background-color: #f2f2f2;}
 
-button{
+.search-button{
   width: 20%;
   background-color: #cde7e6;
   color: black;
@@ -72,7 +72,7 @@ mat-label{
     margin-left: 20%;
     }
 
-button{
+.search-button{
 width: 50%;
 margin-left: 25%;
 }

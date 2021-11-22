@@ -7,7 +7,7 @@
       <mat-label>Sök - Id, date eller status</mat-label>
       <input matInput (keyup)="applyFilter($event)" #input>
     </mat-form-field>
-    <button mat-raised-button routerLink="/create-conversation-material">Nytt samtalsunderlag</button>
+    <button class="search-button" mat-raised-button routerLink="/create-conversation-material">Nytt samtalsunderlag</button>
   </div>
     <h2>Barn Lista</h2>
        
@@ -22,12 +22,12 @@
         </tr>
       </thead>
       <tbody role="rowgroup" *ngIf="searchCards.length==0">
-        <tr role="row" *ngFor="let card of ConversationCards; let i= index" (click)="moveToCard(card)">
-          <td role="cell">{{card.id}}</td>
-          <td role="cell">{{card.gradedOn.slice(0, 10)}}</td>
-          <td role="cell">{{card.status}}</td>
-          <td role="cell">
-            <button mat-icon-button class="edit-button" *ngIf="card.status=='Sparat'" (click)="moveToEditCard(card)">
+        <tr role="row" *ngFor="let card of ConversationCards; let i= index">
+          <td role="cell" (click)="moveToCard(card)">{{card.id}}</td>
+          <td role="cell" (click)="moveToCard(card)">{{card.gradedOn.slice(0, 10)}}</td>
+          <td role="cell" (click)="moveToCard(card)">{{card.status}}</td>
+          <td role="cell" (click)="moveToEditCard(card)">
+            <button mat-icon-button class="edit-button" *ngIf="card.status=='Sparat'">
               <span class="material-icons"> create </span>
               Ändra
               </button>
@@ -35,12 +35,12 @@
         </tr>
       </tbody>
        <tbody *ngIf="searchCards.length!=0">
-        <tr role="row" *ngFor="let card of searchCards; let i= index" (click)="moveToCard(card)">
-          <td role="cell">{{card.id}}</td>
-          <td role="cell">{{card.gradedOn.slice(0, 10)}}</td>
-          <td role="cell">{{card.status}}</td>
-          <td role="cell">
-            <button mat-icon-button class="edit-button" *ngIf="card.status=='Sparat'" (click)="moveToEditCard(card)">
+        <tr role="row" *ngFor="let card of searchCards; let i= index">
+          <td role="cell" (click)="moveToCard(card)">{{card.id}}</td>
+          <td role="cell" (click)="moveToCard(card)">{{card.gradedOn.slice(0, 10)}}</td>
+          <td role="cell" (click)="moveToCard(card)">{{card.status}}</td>
+          <td role="cell" (click)="moveToEditCard(card)">
+            <button mat-icon-button class="edit-button" *ngIf="card.status=='Sparat'">
               <span class="material-icons"> create </span>
               Ändra
               </button>

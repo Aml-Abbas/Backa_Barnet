@@ -16,7 +16,7 @@ export class ConversationMaterialEditGuard implements CanActivate {
 
 
   canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
-    var id= route.params.discoverCardId;
+    var id= route.params.conversationMaterialId;
     console.log(id);
 
     return this.checkConversationCard(id);
