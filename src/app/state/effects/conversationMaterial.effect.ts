@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as conversationMaterialAction from '../actions/conversationMaterial.action';
-
+import { Store } from '@ngrx/store';
+import * as fromState from '../../state';
 import {map, switchMap, catchError, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
@@ -12,7 +13,8 @@ import * as fromRoot from '../../../app/state';
 @Injectable()
 export class ConversationMaterialEffect {
   constructor(private actions$: Actions,
-              private getSetService: GetSetService) {
+              private getSetService: GetSetService,
+              private store: Store<fromState.State>) {
   }
 
 
@@ -33,9 +35,12 @@ createConversationMaterialSuccess$ = createEffect(() =>
   this.actions$.pipe(
     ofType(conversationMaterialAction.CREATE_COVERSATION_MATERIAL_SUCCESS),
     switchMap((action: conversationMaterialAction.CreateConversationMaterialSuccess) =>[
-      
-      new fromRoot.Go({path: ['/']}),
-    ])
+
+/*     this.store.select(fromState.getCurrentPerson).subscribe(data=>{
+      this.store.dispatch(new fromState.LoadConversationMaterial(data?.personID ?? ''));
+    }),
+ */      new fromRoot.Go({path: ['/']}),
+])
   )
 );
 
