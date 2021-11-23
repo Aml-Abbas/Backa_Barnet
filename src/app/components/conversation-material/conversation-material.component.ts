@@ -96,7 +96,7 @@ export class ConversationMaterialComponent implements OnInit {
             index++;
           }else{
             this.ConversationCards.forEach(element => {
-              if(element.gradedOn== gradedOn && !this.containsQuestion(element, questionID)){
+              if(element.gradedOn== gradedOn){
                 element.questionsID.push(questionID);
                 if(gradeType=='Guardian2'){
                   element.guardian2_scores.push(grade);
@@ -128,7 +128,7 @@ export class ConversationMaterialComponent implements OnInit {
     return found;
   }
 
-  containsQuestion(card: ConversationCard, questionId: string): boolean{
+/*   containsQuestion(card: ConversationCard, questionId: string): boolean{
     var found= false;
 
     card.questionsID.forEach(question => {
@@ -138,7 +138,7 @@ export class ConversationMaterialComponent implements OnInit {
     });
     return found;
   }
-
+ */
   applyFilter(event: Event) {
     this.searchCards=[];
     
