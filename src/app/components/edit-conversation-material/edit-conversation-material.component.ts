@@ -35,7 +35,7 @@ export class EditConversationMaterialComponent implements OnInit, ComponentCanDe
   guardianNbr2: string='';
 
   grades: string[]= [];
-  comments: string[]= ['','','','','','','',''];
+  comments: string[]= [];
   grades1: string[]= [];
   comments1: string[]= [];
   grades2: string[]= [];
