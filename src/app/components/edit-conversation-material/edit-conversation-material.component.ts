@@ -35,7 +35,7 @@ export class EditConversationMaterialComponent implements OnInit, ComponentCanDe
   guardianNbr2: string='';
 
   grades: string[]= [];
-  comments: string[]= [];
+  comments: string[]= ['','','','','','','',''];
   grades1: string[]= [];
   comments1: string[]= [];
   grades2: string[]= [];
@@ -89,12 +89,27 @@ export class EditConversationMaterialComponent implements OnInit, ComponentCanDe
       if(data?.guardian2_scores[0]=='' ||data?.guardian2_scores[0]=='0' ){
         this.selected='1';
       }
-      this.grades= data?.person_scores??[];
-      this.comments= data?.person_comments??[];
-      this.grades1= data?.guardian1_scores??[];
-      this.comments1= data?.guardian1_comments??[];
-      this.grades2= data?.guardian2_scores??[];
-      this.comments2= data?.guardian2_comments??[];
+      data?.person_scores.forEach(element=>{
+        this.grades.push(element);
+      });
+      data?.person_comments.forEach(element=>{
+        this.comments.push(element);
+      });
+
+      data?.guardian1_scores.forEach(element=>{
+        this.grades1.push(element);
+      });
+      data?.guardian1_comments.forEach(element=>{
+        this.comments1.push(element);
+      });
+
+      data?.guardian2_scores.forEach(element=>{
+        this.grades2.push(element);
+      });
+
+      data?.guardian2_comments.forEach(element=>{
+        this.comments2.push(element);
+      });
 
       this.gradedOn= data?.gradedOn??'';
     });

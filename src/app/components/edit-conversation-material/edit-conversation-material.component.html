@@ -53,7 +53,7 @@
             </mat-select>
         </td>
         <td role="cell">
-            <textarea matInput [(ngModel)]="comments[i]" name="comments[i]"></textarea>
+            <textarea matInput [(ngModel)]="comments[i]"></textarea>
         </td>
         <td role="cell">
             <mat-select id="{{card.class}}" [(ngModel)]="grades1[i]" (selectionChange)="changeDirty()">
@@ -65,7 +65,7 @@
             </mat-select>
         </td>
         <td role="cell">
-            <textarea matInput [(ngModel)]="comments1[i]" name="comments1[i]"></textarea>
+            <textarea matInput [(ngModel)]="comments1[i]"></textarea>
         </td>
         <td role="cell" *ngIf="selected=='2'">
             <mat-select id="{{card.class}}" [(ngModel)]="grades2[i]" (selectionChange)="changeDirty()">
@@ -77,7 +77,7 @@
             </mat-select>
         </td>
         <td role="cell" *ngIf="selected=='2'">
-            <textarea matInput [(ngModel)]="comments2[i]" name="comments2[i]"></textarea>
+            <textarea matInput [(ngModel)]="comments2[i]"></textarea>
         </td>
   
       </tr>
