@@ -2,11 +2,13 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {map} from 'rxjs/operators';
 import * as currentPersonAction from '../actions/currentPerson.action';
+import {GetSetService} from '../../services/get-set/get-set.service';
 
 
 @Injectable()
 export class CurrentPersonEffect {
-  constructor(private actions$: Actions) {}
+  constructor(private actions$: Actions,
+    private getSetService: GetSetService) {}
 
 
   updateCurrentPerson$ = createEffect(() =>
@@ -15,5 +17,6 @@ export class CurrentPersonEffect {
     map((action: currentPersonAction.UpdatePerson) => {
       return new currentPersonAction.UpdatePersonSuccess(action.payload);
     })));
-
+  
   }
+

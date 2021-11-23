@@ -7,6 +7,7 @@ import { User } from 'src/app/models/User';
 import { Status } from 'src/app/models/Status';
 import { GetSetService } from '../../services/get-set/get-set.service';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
+import * as fromRoot from '../../../app/state';
 
 
 @Component({
@@ -55,14 +56,13 @@ export class ContactPersonComponent implements OnInit, ComponentCanDeactivate {
     this.statusNbr = parseInt(statusId);
   }
 
-  save(){
+  setPersonStatus(){
     this.isDirty= false;
     var info = {
       PersonID : this.personId,
       StatusID : this.statusNbr
     };
-    var response= this.getSetService.setStatus(info);
-   // this.store.dispatch(new fromRoot.Go({ path: ['/contact'] }));
+     this.store.dispatch(new fromRoot.UpdateStatus(info));
   }
 
 }
