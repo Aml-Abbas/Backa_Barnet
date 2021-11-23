@@ -68,4 +68,26 @@ this.actions$.pipe(
     })));
 
 
+  updateConversationCard$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(conversationMaterialAction.UPDATE_CONVERSATION_CARD),
+    switchMap((action: conversationMaterialAction.UpdateConversationCard) => {
+
+    return this.getSetService.updateConversationMaterial(action.payload).pipe(
+      map((response) => new conversationMaterialAction.UpdateConversationCardSuccess(response)),
+      catchError((error: any) => of(new conversationMaterialAction.UpdateCurrentConversationCardFail(error)))
+    );
+    })
+  )
+);
+
+updateConversationCardSuccess$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(conversationMaterialAction.UPDATE_CURRENT_CONVERSATION_CARD_SUCCESS),
+    switchMap((action: conversationMaterialAction.UpdateConversationCardSuccess) =>[
+      new fromRoot.Go({path: ['/']}),
+    ])
+  )
+);
+
 }

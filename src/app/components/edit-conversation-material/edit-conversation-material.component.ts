@@ -41,6 +41,8 @@ export class EditConversationMaterialComponent implements OnInit, ComponentCanDe
   grades2: string[]= [];
   comments2: string[]= [];
 
+  gradedOn: string;
+
    scores = [
     { area: "OMSORG", id: "care",class: "care-class", question:'Jag har någon som bryr sig om mig', 
     color: '#003686'},
@@ -93,6 +95,8 @@ export class EditConversationMaterialComponent implements OnInit, ComponentCanDe
       this.comments1= data?.guardian1_comments??[];
       this.grades2= data?.guardian2_scores??[];
       this.comments2= data?.guardian2_comments??[];
+
+      this.gradedOn= data?.gradedOn??'';
     });
  }
 
@@ -129,6 +133,8 @@ send(nbr: number): void{
     GuardianNbr1: this.guardianNbr1 ?? '0',
     GuardianNbr2: this.guardianNbr2 ?? '0',
   
+    GradedOn: this.gradedOn,
+
     GradeOmsorg: parseInt(this.grades[0]),
     CommentOmsorg: this.comments[0] ?? '0',
     GradeTrygghet: parseInt(this.grades[1])?? 0,
@@ -205,7 +211,7 @@ send(nbr: number): void{
   dialogRef.afterClosed().subscribe(result => {
     if (result) {
       this.isDirty = false;
-      this.store.dispatch(new fromState.CreateConversationMaterial(conversationMaterial));
+      this.store.dispatch(new fromState.UpdateConversationCard(conversationMaterial));
     }
   });
     }

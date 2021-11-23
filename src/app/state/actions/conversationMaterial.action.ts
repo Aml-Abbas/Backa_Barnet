@@ -18,6 +18,10 @@ export const UPDATE_CONVERSATION_CARDS = '[Conversation Material] Update Convers
 export const UPDATE_CONVERSATION_CARDS_SUCCESS = '[Conversation Material] Update Conversation Cards Success';
 export const UPDATE_CONVERSATION_CARDS_FAIL = '[Conversation Material] Update Conversation Cards Fail';
 
+export const UPDATE_CONVERSATION_CARD = '[Conversation Material] Update Conversation Card';
+export const UPDATE_CONVERSATION_CARD_SUCCESS = '[Conversation Material] Update Conversation Card Success';
+export const UPDATE_CONVERSATION_CARD_FAIL = '[Conversation Material] Update Conversation Card Fail';
+
 export class CreateConversationMaterial implements Action {
     readonly type = CREATE_COVERSATION_MATERIAL;
     constructor(public payload: any) {}
@@ -89,8 +93,28 @@ export class CreateConversationMaterial implements Action {
 
   }
 
+  export class UpdateConversationCard implements Action {
+    readonly type = UPDATE_CONVERSATION_CARD;
+  
+    constructor(public payload: any) {}
+  }
+  
+  export class UpdateConversationCardSuccess implements Action {
+    readonly type = UPDATE_CONVERSATION_CARD_SUCCESS;
+  
+    constructor(public payload: any) {}
+  }
+  
+  export class UpdateConversationCardFail implements Action {
+    readonly type = UPDATE_CONVERSATION_CARD_FAIL;
+
+    constructor(public payload: any) {}
+
+  }
+
 
   export type ConversationMaterialAction = CreateConversationMaterial | CreateConversationMaterialSuccess | CreateConversationMaterialFail|
   LoadConversationMaterial | LoadConversationMaterialSuccess | LoadConversationMaterialFail|
   UpdateCurrentConversationCard| UpdateCurrentConversationCardSuccess| UpdateCurrentConversationCardFail|
-  UpdateConversationCards| UpdateConversationCardsSuccess| UpdateConversationCardsFail;
+  UpdateConversationCards| UpdateConversationCardsSuccess| UpdateConversationCardsFail|
+  UpdateConversationCard| UpdateConversationCardSuccess| UpdateConversationCardFail;
