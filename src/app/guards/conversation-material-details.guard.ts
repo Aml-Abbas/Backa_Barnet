@@ -15,8 +15,6 @@ export class ConversationMaterialDetailsGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
     var id= route.params.conversationMaterialId;
-    console.log(id);
-
     return this.checkConversationCard(id);
   }
   
@@ -27,18 +25,14 @@ export class ConversationMaterialDetailsGuard implements CanActivate {
       if(card.id== id){
         this.store.dispatch(new fromState.UpdateCurrentConversationCard(card));
         found= true;
-        console.log('found the id');
-        console.log(card.id);
-
-        }
+        return of(true);
+      }
       })
     });
     if(!found){
-      this.store.dispatch(new fromRoot.Go({ path: ['conversation-materail'] }));
+      this.store.dispatch(new fromRoot.Go({ path: ['conversation-material'] }));
+      return of(true);
     } 
-    console.log('returning ');
-    console.log(found);
-
     return of(found);
   }
 }

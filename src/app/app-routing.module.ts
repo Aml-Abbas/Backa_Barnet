@@ -111,7 +111,7 @@ const routes: Routes = [
       {
         path: 'conversation-material/:conversationMaterialId',
         component: ConversationMaterialDetailsComponent,
-        //canActivate: [ConversationMaterialDetailsGuard]
+        canActivate: [ConversationMaterialDetailsGuard]
       },
       {
         path: 'contact-person',
@@ -137,7 +137,7 @@ const routes: Routes = [
       {
         path: 'edit-conversation-material/:conversationMaterialId',
         component: EditConversationMaterialComponent, canDeactivate:[DirtycheckGuard],
-       // canActivate: [ConversationMaterialEditGuard]
+        canActivate: [ConversationMaterialEditGuard]
       },
     ]
   },
