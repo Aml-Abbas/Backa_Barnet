@@ -83,7 +83,7 @@ this.actions$.pipe(
 
 updateConversationCardSuccess$ = createEffect(() =>
   this.actions$.pipe(
-    ofType(conversationMaterialAction.UPDATE_CURRENT_CONVERSATION_CARD_SUCCESS),
+    ofType(conversationMaterialAction.UPDATE_CONVERSATION_CARD_SUCCESS),
     switchMap((action: conversationMaterialAction.UpdateConversationCardSuccess) =>[
       new fromRoot.Go({path: ['/']}),
     ])
