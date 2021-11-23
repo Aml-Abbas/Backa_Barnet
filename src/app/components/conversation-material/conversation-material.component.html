@@ -9,7 +9,13 @@
     </mat-form-field>
     <button class="search-button" mat-raised-button routerLink="/create-conversation-material">Nytt samtalsunderlag</button>
   </div>
-    <h2>Barn Lista</h2>
+
+  <h2 *ngIf=" !(current_person$ | async) as current_person">
+    Välj ett barn först</h2>
+
+<div *ngIf="(current_person$ | async) as current_person">
+
+    <h2>Samtalsunderlags Lista</h2>
        
 
     <table role="table">
@@ -49,4 +55,5 @@
       </tbody>
     </table>
     
+</div>
   </div>

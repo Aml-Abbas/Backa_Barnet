@@ -16,7 +16,6 @@ export class EstimateGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     var currentUser= this.store.select(fromState.getCurrentUser);
     currentUser.subscribe(data=>{
-      console.log(String(data?.roleID));
       if(String(data?.roleID)!='2' && String(data?.roleID)!='3'){
         this.store.dispatch(new fromRoot.Back());
       }

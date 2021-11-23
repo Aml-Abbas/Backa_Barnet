@@ -51,7 +51,9 @@ export class ConversationMaterialComponent implements OnInit {
         if(conversationMaterial.comment!='0'){
           comment= conversationMaterial.comment;
         }
-        let grade1= conversationMaterial.grade1;
+        
+        let gradeType= conversationMaterial.gradeType;
+/*         let grade1= conversationMaterial.grade1;
 
         let comment1= '';
         if(conversationMaterial.comment1!='0'){
@@ -61,7 +63,7 @@ export class ConversationMaterialComponent implements OnInit {
         let comment2= '';
         if(conversationMaterial.comment2!='0'){
           comment2= conversationMaterial.comment2;
-        }
+        } */
 
         let gradedOn= conversationMaterial.gradedOn;
         let status= conversationMaterial.status;
@@ -69,13 +71,16 @@ export class ConversationMaterialComponent implements OnInit {
 
         if(!this.containsCard(conversationMaterial.gradedOn)){
          this.questionsID.push(questionID);
-         this.grades.push(grade);
-         this.comments.push(comment);
-
-         this.grades1.push(grade1);
-         this.comments1.push(comment1);
-         this.grades2.push(grade2);
-         this.comments2.push(comment2);
+         if(gradeType=='Guardian2'){
+          this.grades2.push(grade);
+          this.comments2.push(comment);
+         }else if(gradeType=='Guardian1'){
+          this.grades1.push(grade);
+          this.comments1.push(comment);
+         }else{
+          this.grades.push(grade);
+          this.comments.push(comment);
+         }
 
           this.ConversationCards.push(new ConversationCard(String(index), personID, this.questionsID, this.grades, this.comments,
             this.grades1, this.comments1, this.grades2, this.comments2, gradedOn, status));
@@ -93,19 +98,23 @@ export class ConversationMaterialComponent implements OnInit {
             this.ConversationCards.forEach(element => {
               if(element.gradedOn== gradedOn && !this.containsQuestion(element, questionID)){
                 element.questionsID.push(questionID);
-                element.person_scores.push(grade);
-                element.person_comments.push(comment);
-                element.guardian1_scores.push(grade1);
-                element.guardian1_comments.push(comment1);
-                element.guardian2_scores.push(grade2);
-                element.guardian2_comments.push(comment2);
-
+                if(gradeType=='Guardian2'){
+                  element.guardian2_scores.push(grade);
+                  element.guardian2_comments.push(comment);
+  
+                   }else if(gradeType=='Guardian1'){
+                    element.guardian1_scores.push(grade);
+                    element.guardian1_comments.push(comment);
+                     }else{
+                      element.person_scores.push(grade);
+                      element.person_comments.push(comment);
+                     }
               }      
             });
         }
       })
         });
-        this.store.dispatch(new fromState.UpdateConversationCardsSuccess(this.ConversationCards));
+        this.store.dispatch(new fromState.UpdateConversationCards(this.ConversationCards));
 
   }
 

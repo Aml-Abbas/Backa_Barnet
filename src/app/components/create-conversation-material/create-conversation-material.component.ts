@@ -135,7 +135,7 @@ export class CreateConversationMaterialComponent implements OnInit, ComponentCan
       
         GradeOmsorg: parseInt(this.scores[0].person_score),
         CommentOmsorg: this.scores[0].person_comment ?? '0',
-        GradeTrygghet: parseInt(this.scores[1].person_score)?? 0,
+        GradeTrygghet: parseInt(this.scores[1].person_score),
         CommentTrygghet: this.scores[1].person_comment ?? '0',
         GradeMarBra: parseInt(this.scores[2].person_score),
         CommentMarBra: this.scores[2].person_comment ?? '0',

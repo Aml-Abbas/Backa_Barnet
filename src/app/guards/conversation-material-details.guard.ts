@@ -28,12 +28,17 @@ export class ConversationMaterialDetailsGuard implements CanActivate {
       if(card.id== id){
         this.store.dispatch(new fromState.UpdateCurrentConversationCard(card));
         found= true;
+        console.log('found the id');
+        console.log(card.id);
+
         }
       })
     });
     if(!found){
-    this.store.dispatch(new fromRoot.Go({ path: ['conversation-material'] }));
+      this.store.dispatch(new fromRoot.Go({ path: ['conversation-materail'] }));
     } 
+    console.log('returning ');
+    console.log(found);
 
     return of(found);
   }

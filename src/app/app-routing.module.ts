@@ -106,12 +106,12 @@ const routes: Routes = [
       },
       {
         path: 'create-conversation-material',
-        component: CreateConversationMaterialComponent, canActivate: [ConversationMaterialGuard],
-        canDeactivate:[DirtycheckGuard]
+        component: CreateConversationMaterialComponent, canActivate: [ConversationMaterialGuard], canDeactivate:[DirtycheckGuard]
       },
       {
         path: 'conversation-material/:conversationMaterialId',
-        component: ConversationMaterialDetailsComponent, canActivate: [ConversationMaterialDetailsGuard]
+        component: ConversationMaterialDetailsComponent,
+        //canActivate: [ConversationMaterialDetailsGuard]
       },
       {
         path: 'contact-person',
@@ -137,7 +137,7 @@ const routes: Routes = [
       {
         path: 'edit-conversation-material/:conversationMaterialId',
         component: EditConversationMaterialComponent, canDeactivate:[DirtycheckGuard],
-        canActivate: [ConversationMaterialEditGuard]
+       // canActivate: [ConversationMaterialEditGuard]
       },
     ]
   },

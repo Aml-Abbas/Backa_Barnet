@@ -191,11 +191,9 @@ send(nbr: number): void{
   console.log(conversationMaterial);
 
   var title= 'Ändra samtalsunderlag';
-  var text= '';
+  var text= 'Kortet kommer att sparas';
 
-  if(nbr==1){
-    text= 'Kortet kommer att sparas';
-  }else if(nbr==2){
+ if(nbr==2){
     text= 'Barnet kommer delas status "behoveruppfylt"';
   }else{
     text= 'Barnet kommer skickas till barnteam';
