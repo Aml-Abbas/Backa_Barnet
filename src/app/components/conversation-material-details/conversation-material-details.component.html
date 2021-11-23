@@ -9,6 +9,11 @@
    Tillbaka
     </button>
 
+    <button mat-icon-button class="edit-button" *ngIf="conversation_card.status=='Sparat'" (click)="moveToEditCard(conversation_card)">
+      <span class="material-icons create"> create </span>
+      Ändra
+      </button>
+    
     <table role="table">
         <thead role="rowgroup">
       <tr role="row">

@@ -72,10 +72,10 @@ h1{
       }
   }
 
-::ng-deep .mat-select-value{
+  ::ng-deep .mat-select-value{
     color: black !important;
   }
-  
+    
   ::ng-deep #matselectGuardians-panel{
     background-color: #663399 !important;
   }
@@ -107,9 +107,26 @@ h1{
   color: gray;
 }
 
+.material-icons { 
+  font-size: 30px;
+  color: #663399;
+}
+
+.back-button{
+  color: #663399;
+  size: 16px;
+  background-color: transparent;
+  margin-left: 0%;
+  margin-right: 90%;
+  width: 10%;
+  }
 
 
 @media screen and (max-width: 1024px){
+  #matFormFieldGuardians{
+    width: 60%;
+    margin-left: 20%;
+  }
   button{
     width: 50%;
     margin-left: 25%;

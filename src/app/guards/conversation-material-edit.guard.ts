@@ -33,7 +33,7 @@ export class ConversationMaterialEditGuard implements CanActivate {
       })
     });
     if(!found){
-    this.store.dispatch(new fromRoot.Go({ path: ['conversation-materail'] }));
+    this.store.dispatch(new fromRoot.Go({ path: ['conversation-material'] }));
     } 
 
     return of(found);

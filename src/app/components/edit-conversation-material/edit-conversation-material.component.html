@@ -2,6 +2,13 @@
 
     <h1>Samtalsunderlag</h1>
 
+    <div *ngIf="(current_conversation_card$ | async) as conversation_card"  (change)= "isDirty= true">
+
+    <button class="back-button" mat-icon-button routerLink="/conversation-material">
+      <span class="material-icons"> arrow_back </span>
+   Tillbaka
+    </button>
+
     <mat-form-field id="matFormFieldGuardians" appearance="fill">
         <mat-label>Antal Vårdnadshavare som ska fylla formulär</mat-label>
         <mat-select id="matselectGuardians" [(ngModel)]="selected" name="selected">
@@ -37,40 +44,40 @@
         <td role="cell" >{{card.question}}</td>
         <td role="cell">
           <!-- [style.border-color]='card.color' -->
-            <mat-select id="{{card.class}}" [(ngModel)]="card.person_score" name="{{card.person_score}}">
-              <mat-option value="1">1</mat-option>
-              <mat-option value="2">2</mat-option>
-              <mat-option value="3">3</mat-option>
-              <mat-option value="4">4</mat-option>
-              <mat-option value="5">5</mat-option>
+            <mat-select id="{{card.class}}" [(ngModel)]="grades[i]" (selectionChange)="changeDirty()">
+              <mat-option [value]="1">1</mat-option>
+              <mat-option [value]="2">2</mat-option>
+              <mat-option [value]="3">3</mat-option>
+              <mat-option [value]="4">4</mat-option>
+              <mat-option [value]="5">5</mat-option>
             </mat-select>
         </td>
         <td role="cell">
-            <textarea matInput [(ngModel)]="card.person_comment" name="{{card.person_comment}}"></textarea>
+            <textarea matInput [(ngModel)]="comments[i]" name="comments[i]"></textarea>
         </td>
         <td role="cell">
-            <mat-select id="{{card.class}}" [(ngModel)]="card.guardian1_score" name="{{card.guardian1_score}}">
-              <mat-option value="1">1</mat-option>
-              <mat-option value="2">2</mat-option>
-              <mat-option value="3">3</mat-option>
-              <mat-option value="4">4</mat-option>
-              <mat-option value="5">5</mat-option>
+            <mat-select id="{{card.class}}" [(ngModel)]="grades1[i]" (selectionChange)="changeDirty()">
+              <mat-option [value]="1">1</mat-option>
+              <mat-option [value]="2">2</mat-option>
+              <mat-option [value]="3">3</mat-option>
+              <mat-option [value]="4">4</mat-option>
+              <mat-option [value]="5">5</mat-option>
             </mat-select>
         </td>
         <td role="cell">
-            <textarea matInput [(ngModel)]="card.guardian1_comment" name="{{card.guardian1_comment}}"></textarea>
+            <textarea matInput [(ngModel)]="comments1[i]" name="comments1[i]"></textarea>
         </td>
         <td role="cell" *ngIf="selected=='2'">
-            <mat-select id="{{card.class}}" [(ngModel)]="card.guardian2_score" name="{{card.guardian2_score}}">
-              <mat-option value="1">1</mat-option>
-              <mat-option value="2">2</mat-option>
-              <mat-option value="3">3</mat-option>
-              <mat-option value="4">4</mat-option>
-              <mat-option value="5">5</mat-option>
+            <mat-select id="{{card.class}}" [(ngModel)]="grades2[i]" (selectionChange)="changeDirty()">
+              <mat-option [value]="1">1</mat-option>
+              <mat-option [value]="2">2</mat-option>
+              <mat-option [value]="3">3</mat-option>
+              <mat-option [value]="4">4</mat-option>
+              <mat-option [value]="5">5</mat-option>
             </mat-select>
         </td>
         <td role="cell" *ngIf="selected=='2'">
-            <textarea matInput [(ngModel)]="card.guardian2_comment" name="{{card.guardian2_comment}}"></textarea>
+            <textarea matInput [(ngModel)]="comments2[i]" name="comments2[i]"></textarea>
         </td>
   
       </tr>
@@ -83,7 +90,8 @@
   <button mat-raised-button (click)="send(2)">Behovet uppfyllt</button>
   <button mat-raised-button (click)="send(3)">Skicka till barnteam</button>
 
-  <p class="error">{{saveError}}</p>
+ <p class="error">{{saveError}}</p>
 
+</div>
 
 </div>

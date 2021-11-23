@@ -177,8 +177,6 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
     this.unitNbr = parseInt(unitID);
     this.card.healthTeam= unitName;
     this.isDirty= true;
-    console.log(this.unitNbr);
-    console.log(this.card.healthTeam);
   }
 
   checkChoices(): boolean {

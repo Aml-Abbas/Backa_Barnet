@@ -46,6 +46,16 @@ export class ConversationMaterialDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.current_conversation_card$ = this.store.select(fromState.getCurrentConversationCard);
+    this.current_conversation_card$.subscribe(data=>{
+      if(data?.guardian2_scores[0]=='' ||data?.guardian2_scores[0]=='0' ){
+        this.selected='1';
+      }
+    });
+  }
+
+  moveToEditCard(card: ConversationCard){
+    this.store.dispatch(new fromState.UpdateCurrentConversationCard(card));
+    this.store.dispatch(new fromRoot.Go({ path: ['/edit-conversation-material', card.id] }));
   }
 
 }
