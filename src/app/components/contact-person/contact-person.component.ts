@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
 import { User } from 'src/app/models/User';
-import { Unit } from 'src/app/models/Unit';
+import { Status } from 'src/app/models/Status';
 import { GetSetService } from '../../services/get-set/get-set.service';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 
@@ -24,8 +24,9 @@ export class ContactPersonComponent implements OnInit, ComponentCanDeactivate {
   current_person$= new Observable<Person | null>();
   current_user$: Observable<User | null> = new Observable<User | null>();
   userRoleId: string='';
+  personId: string='';
 
-  status$: Observable<Unit[]> = new Observable<Unit[]>();
+  status$: Observable<Status[]> = new Observable<Status[]>();
   statusNbr: number = -1;
   statusString = '-1';
 
@@ -33,25 +34,35 @@ export class ContactPersonComponent implements OnInit, ComponentCanDeactivate {
     private getSetService: GetSetService) { }
 
   ngOnInit(): void {
-    this.status$ = this.getSetService.getUnits();
-
     this.current_user$ = this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data => {
       this.userRoleId = data?.roleID ?? '';
     });
 
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
+    this.current_person$.subscribe(data => {
+      this.personId = data?.personID ?? '';
+      this.statusString= data?.status ?? '';
+    });
+
+    this.status$ = this.getSetService.getStatus(this.personId);
   }
 
   changeStatus(statusId: string, statusName: string) {
     this.isDirty= true;
 
-    this.statusString = statusId;
-    this.statusNbr = parseInt(statusName);
+    this.statusString = statusName;
+    this.statusNbr = parseInt(statusId);
   }
 
   save(){
-
+    this.isDirty= false;
+    var info = {
+      PersonID : this.personId,
+      StatusID : this.statusNbr
+    };
+    var response= this.getSetService.setStatus(info);
+   // this.store.dispatch(new fromRoot.Go({ path: ['/contact'] }));
   }
 
 }

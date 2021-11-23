@@ -46,8 +46,6 @@ export class ContactComponent implements OnInit {
         let changedOn = person.changedOn;
         let status= person.status;
         let personID= person.personID;
-        console.log(status);
-        console.log(this.persons);
 
         if(status!= 'Anonymiserad'){
           this.persons.push({personNbr, lastName, firstName, name,
@@ -70,7 +68,6 @@ export class ContactComponent implements OnInit {
     this.searchPersons=[];
     
     const filterValue = (event.target as HTMLInputElement).value;
-    console.log(this.searchPersons);
     this.persons.forEach(person=>{
       if(person.personNbr.includes(filterValue) || person.name.includes(filterValue)|| person.status.includes(filterValue)|| person.changedOn.includes(filterValue)){
         this.searchPersons.push(person);

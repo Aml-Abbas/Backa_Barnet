@@ -6,6 +6,7 @@ import { DiscoverCard } from 'src/app/models/DiscoverCard';
 import { Unit } from 'src/app/models/Unit';
 import { Person } from 'src/app/models/Person';
 import { ConversationMaterial } from 'src/app/models/ConversationMaterial';
+import { Status } from 'src/app/models/Status';
 
 
 @Injectable({
@@ -50,5 +51,12 @@ export class GetSetService {
     return this.http.post('https://func-ykbb.azurewebsites.net/api/substrate/edit?code=PoXQacRit21YwOyOtFzvX7DKB8ex4pS47lRZwTNOQdB/XfDsN3N8eA==', coversationMaterial);
   } 
 
+  getStatus(personId: string): Observable<Status[]>{
+    return this.http.get<Status[]>('https://func-ykbb.azurewebsites.net/api/status/'+personId+'?code=cRLUN5Mei3Y67vDp3DjdlS9UKL3rE0rPIfkx7ywkJqpZQ398FjMR/w==');
+  }
 
+  setStatus(info: any){
+    console.log(info);
+    return this.http.post('https://func-ykbb.azurewebsites.net/api/status/edit?code=t0hLgeixqD5hP4bpYzoizDzuklX38U5/28BRLy1C5LJo4S5hzC3kyQ==', info);
+  }
 }
