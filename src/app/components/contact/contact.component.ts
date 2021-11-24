@@ -16,10 +16,19 @@ export class ContactComponent implements OnInit {
   clickedRows = new Set<Person>();
   persons: Person[]=[];
   searchPersons: Person[]= [];
-
+  current_person$= new Observable<Person | null>();
+  current_person: Person;
+  personID: string;
   constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
+    this.current_person$ = this.store.select(fromState.getCurrentPerson);
+    this.current_person$.subscribe(data => {
+      this.personID= data?.personID ?? '';
+          });
+
+    console.log(this.clickedRows);
+
     this.current_user$ = this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data => {
       let userID: string = data?.userID ?? '';
@@ -47,10 +56,15 @@ export class ContactComponent implements OnInit {
         let status= person.status;
         let personID= person.personID;
 
+        let current_per= new Person(personNbr, lastName, firstName, name,
+          guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
+          changedBy, changedOn, status, personID);
+
+        if(this.personID==personID){
+          this.clickedRows.add(current_per)
+        }
         if(status!= 'Anonymiserad'){
-          this.persons.push({personNbr, lastName, firstName, name,
-            guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
-            changedBy, changedOn, status, personID});  
+          this.persons.push(current_per);  
         }
       }
 
