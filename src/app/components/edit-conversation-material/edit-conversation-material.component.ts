@@ -8,6 +8,7 @@ import { Person } from 'src/app/models/Person';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import * as fromRoot from '../../../app/state';
 
 @Component({
   selector: 'app-edit-conversation-material',
@@ -30,9 +31,7 @@ export class EditConversationMaterialComponent implements OnInit, ComponentCanDe
   userId: string='';
 
   current_person$= new Observable<Person | null>();
-  personId: string='';
-  guardianNbr1: string='';
-  guardianNbr2: string='';
+  current_person: Person;
 
   grades: string[]= [];
   comments: string[]= [];
@@ -78,9 +77,24 @@ export class EditConversationMaterialComponent implements OnInit, ComponentCanDe
       this.userId= data?.userID ?? '';
     });
     this.current_person$.subscribe(data => {
-      this.personId=  data?.personID ?? '';
-      this.guardianNbr1= data?.guardianPersonNbr1??'';
-      this.guardianNbr2= data?.guardianPersonNbr2??'';
+      let personNbr:string= data?.personNbr ?? '';
+      let lastName: string= data?.lastName ?? '';
+      let firstName: string= data?.firstName ?? '';
+      let name: string= data?.name ?? '';
+  
+      let guardian1: string= data?.guardian1 ?? '';
+      let guardianPersonNbr1: string= data?.guardianPersonNbr1 ?? '';
+      let guardian2: string= data?.guardian2 ?? '';
+      let guardianPersonNbr2: string= data?.guardianPersonNbr2 ?? '';
+  
+      let changedBy: string= data?.changedBy ?? '';
+      let changedOn: string= data?.changedOn ?? '';
+      let status: string= data?.status ?? '';
+      let personID: string= data?.personID ?? '';
+
+      this.current_person= new Person(personNbr, lastName, firstName, name, guardian1, guardianPersonNbr1,
+                                      guardian2, guardianPersonNbr2, changedBy, changedOn, status, personID);
+                                      
 
         });
 
@@ -130,10 +144,10 @@ send(nbr: number): void{
       }
   var conversationMaterial = {
     UserID: parseInt(this.userId) ?? 0,
-    PersonId:  parseInt(this.personId)?? 0,
+    PersonId:  parseInt(this.current_person.personID)?? 0,
 
-    GuardianNbr1: this.guardianNbr1 ?? '0',
-    GuardianNbr2: this.guardianNbr2 ?? '0',
+    GuardianNbr1: this.current_person.guardianPersonNbr1 ?? '0',
+    GuardianNbr2: this.current_person.guardianPersonNbr2 ?? '0',
   
     GradedOn: this.gradedOn,
 
@@ -197,8 +211,10 @@ send(nbr: number): void{
 
  if(nbr==2){
     text= 'Barnet kommer delas status "behoveruppfylt"';
+    this.current_person.status= 'Behov uppfyllt';
   }else{
     text= 'Barnet kommer skickas till barnteam';
+    this.current_person.status= 'I barnteam';
   }
 
   const dialogRef = this.dialog.open(DialogComponent, {
@@ -211,6 +227,7 @@ send(nbr: number): void{
   dialogRef.afterClosed().subscribe(result => {
     if (result) {
       this.isDirty = false;
+      this.store.dispatch(new fromRoot.UpdatePerson(this.current_person));
       this.store.dispatch(new fromState.UpdateConversationCard(conversationMaterial));
     }
   });
