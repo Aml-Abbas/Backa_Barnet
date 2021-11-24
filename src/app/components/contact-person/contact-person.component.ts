@@ -23,9 +23,10 @@ export class ContactPersonComponent implements OnInit, ComponentCanDeactivate {
   isDirty = false;
 
   current_person$= new Observable<Person | null>();
+  current_person: Person;
+
   current_user$: Observable<User | null> = new Observable<User | null>();
   userRoleId: string='';
-  personId: string='';
 
   status$: Observable<Status[]> = new Observable<Status[]>();
   statusNbr: number = -1;
@@ -42,16 +43,33 @@ export class ContactPersonComponent implements OnInit, ComponentCanDeactivate {
 
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data => {
-      this.personId = data?.personID ?? '';
+      let personNbr:string= data?.personNbr ?? '';
+      let lastName: string= data?.lastName ?? '';
+      let firstName: string= data?.firstName ?? '';
+      let name: string= data?.name ?? '';
+  
+      let guardian1: string= data?.guardian1 ?? '';
+      let guardianPersonNbr1: string= data?.guardianPersonNbr1 ?? '';
+      let guardian2: string= data?.guardian2 ?? '';
+      let guardianPersonNbr2: string= data?.guardianPersonNbr2 ?? '';
+  
+      let changedBy: string= data?.changedBy ?? '';
+      let changedOn: string= data?.changedOn ?? '';
+      let status: string= data?.status ?? '';
+      let personID: string= data?.personID ?? '';
+
+      this.current_person= new Person(personNbr, lastName, firstName, name, guardian1, guardianPersonNbr1,
+                                      guardian2, guardianPersonNbr2, changedBy, changedOn, status, personID);
+                                      
       this.statusString= data?.status ?? '';
     });
 
-    this.status$ = this.getSetService.getStatus(this.personId);
+    this.status$ = this.getSetService.getStatus(this.current_person.personID);
   }
 
   changeStatus(statusId: string, statusName: string) {
     this.isDirty= true;
-
+    this.current_person.status= statusName;
     this.statusString = statusName;
     this.statusNbr = parseInt(statusId);
   }
@@ -59,9 +77,10 @@ export class ContactPersonComponent implements OnInit, ComponentCanDeactivate {
   setPersonStatus(){
     this.isDirty= false;
     var info = {
-      PersonID : this.personId,
+      PersonID : this.current_person.personID,
       StatusID : this.statusNbr
     };
+     this.store.dispatch(new fromRoot.UpdatePerson(this.current_person));
      this.store.dispatch(new fromRoot.UpdateStatus(info));
   }
 

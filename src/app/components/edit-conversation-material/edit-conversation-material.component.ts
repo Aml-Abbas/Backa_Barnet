@@ -86,7 +86,7 @@ export class EditConversationMaterialComponent implements OnInit, ComponentCanDe
 
     this.current_conversation_card$ = this.store.select(fromState.getCurrentConversationCard);
     this.current_conversation_card$.subscribe(data=>{
-      if(data?.guardian2_scores[0]=='' ||data?.guardian2_scores[0]=='0' ){
+      if(data?.guardian2_scores[0]=='0'){
         this.selected='1';
       }
       data?.person_scores.forEach(element=>{
@@ -113,26 +113,13 @@ export class EditConversationMaterialComponent implements OnInit, ComponentCanDe
 
       this.gradedOn= data?.gradedOn??'';
     });
+
  }
 
   changeDirty(){
     this.isDirty= true;
   }
 
-/*   checkErroes(): boolean{
-    var isMissed= false;
-    this.grades.forEach(element => {
-      if(element==''||
-      element==''){
-        isMissed= true;
-      }
-      if( element=='' && this.selected=='2'){
-        isMissed= true;
-      }
-    });
-    return !isMissed;
-  }
- */
 send(nbr: number): void{
   if (!this.checkErrors()) {
     this.saveError='Du har glömt att välja ett betyg';
@@ -233,18 +220,18 @@ send(nbr: number): void{
  checkErrors(): boolean{
   var isMissed= false;
   this.grades.forEach(element => {
-    if(element==''){
+    if(element=='0'){
       isMissed= true;
     }
   });
   this.grades1.forEach(element => {
-    if(element==''){
+    if(element=='0'){
       isMissed= true;
     }
   });
   if(this.selected=='2'){
     this.grades2.forEach(element => {
-      if(element==''){
+      if(element=='0'){
         isMissed= true;
       }
     });
