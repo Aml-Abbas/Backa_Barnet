@@ -65,8 +65,8 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
 
   comments: string[] = [];
   guardians = [
-    { name: '0', personNbr: '0', inform: '0', samtycke: '0' },
-    { name: '0', personNbr: '0', inform: '0', samtycke: '0' },
+    { name: '', personNbr: '', inform: '0', samtycke: '0' },
+    { name: '', personNbr: '', inform: '0', samtycke: '0' },
   ];
 
   guardiansError = [
@@ -106,8 +106,6 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       this.current_user = new User(userID, firstName, lastName,
         email, roleID, description);
     });
-
-    this.store.dispatch(new fromState.LoadDiscoverCard(this.current_user.userID));
 
     this.createDiscoveCardFormGroup = this._formBuilder.group({
       firstNameControl: ['', [Validators.required, Validators.minLength(2)]],
@@ -206,7 +204,18 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
 
   send(number: number) {
 
+
     this.personNbr = this.createDiscoveCardFormGroup.value.personNbrControl;
+
+    var GuardianName2= this.guardians[1].name;
+    if(this.guardians[1].name=''){
+      GuardianName2='0';
+    }
+    var GuardianNbr2= this.guardians[1].personNbr;
+    if(this.guardians[1].personNbr=''){
+      GuardianNbr2='0';
+    }
+
     var card = {
       UserID: parseInt(this.current_user.userID) ?? 0,
       PersonLastName: this.createDiscoveCardFormGroup.value.lastNameControl.trim() ?? '0',
@@ -215,8 +224,8 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
 
       GuardianName1: this.guardians[0].name ?? '0',
       GuardianNbr1: String(this.guardians[0].personNbr) ?? '0',
-      GuardianName2: this.guardians[1].name ?? '0',
-      GuardianNbr2: String(this.guardians[1].personNbr) ?? '0',
+      GuardianName2: GuardianName2 ?? '0',
+      GuardianNbr2: GuardianNbr2 ?? '0',
 
       Unit: this.unitString ?? '0',
       Situation: this.createDiscoveCardFormGroup.value.situationCommentControl ?? '0',

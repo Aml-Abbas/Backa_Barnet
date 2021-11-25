@@ -12,7 +12,7 @@ export const getDiscoverCardState = createSelector(
       getDiscoverCardState, fromDiscoverCard.getDiscoverCardLoading
       );
 
-  export const DiscoverLoaded = createSelector(
+  export const getDiscoverCardLoaded = createSelector(
       getDiscoverCardState, fromDiscoverCard.getDiscoverCardLoaded
       );
   
