@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './components/admin/admin.component';
 import { CommunicationMaterialComponent } from './components/communication-material/communication-material.component';
 import { ConsentComponent } from './components/consent/consent.component';
 import { ContactGuardianComponent } from './components/contact-guardian/contact-guardian.component';
@@ -43,6 +42,8 @@ import { EditConversationMaterialComponent } from './components/edit-conversatio
 import { ConversationMaterialEditGuard } from './guards/conversation-material-edit.guard';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { CreateBarnteamComponent } from './components/create-barnteam/create-barnteam.component';
+import { UsersComponent } from './components/users/users.component';
+import { BarnteamComponent } from './components/barnteam/barnteam.component';
 
 
 const routes: Routes = [
@@ -50,11 +51,6 @@ const routes: Routes = [
     path: '',
     component: LandingComponent, canActivate: [AuthGuard],
     children:[
-      {
-        path: 'admin',
-        component: AdminComponent
-        //, canActivate: [AdminGuard]
-      },
       {
         path: 'communication-material',
         component: CommunicationMaterialComponent
@@ -145,6 +141,16 @@ const routes: Routes = [
       {
         path: 'create-user',
         component: CreateUserComponent
+        //, canActivate: [AdminGuard]
+      },
+      {
+        path: 'users',
+        component: UsersComponent
+        //, canActivate: [AdminGuard]
+      },
+      {
+        path: 'barnteam',
+        component: BarnteamComponent
         //, canActivate: [AdminGuard]
       },
       {

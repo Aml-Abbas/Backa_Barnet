@@ -1,0 +1,38 @@
+<div class="container">
+    <h1>barnteam sida</h1>
+
+    <div class="search">
+      <mat-form-field appearance="standard">
+        <mat-label>Sök - namn eller datum
+        </mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>  
+      </mat-form-field>
+      <button mat-raised-button routerLink="/create-barnteam">Nytt barnteam</button>
+    </div>
+      <h2>Barnteam lista</h2>
+         
+  
+      
+  <table role="table">
+    <thead role="rowgroup">
+      <tr role="row">
+        <th role="columnheader">Datum</th>
+        <th role="columnheader">Namn</th>
+      </tr>
+    </thead>
+    <tbody role="rowgroup" *ngIf="searchPersons.length==0">
+      <tr role="row" *ngFor="let person of persons; let i= index">
+        <td role="cell">{{person.personNbr.slice(2, 12)}}</td>
+        <td role="cell">{{person.name}}</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="searchPersons.length!=0">
+      <tr role="row" *ngFor="let person of searchPersons; let i= index">
+        <td role="cell">{{person.personNbr.slice(2, 12)}}</td>
+        <td role="cell">{{person.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>

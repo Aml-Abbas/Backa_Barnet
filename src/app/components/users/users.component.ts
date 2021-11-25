@@ -6,17 +6,15 @@ import * as fromState from '../../state';
 import { User } from 'src/app/models/User';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class UsersComponent implements OnInit {
   persons$: Observable<Person[]> = new Observable<Person[]>();
   current_user$: Observable<User| null> = new Observable<User| null>();
-  clickedRows = new Set<Person>();
   persons: Person[]=[];
-  searchPersons1: Person[]= [];
-  searchPersons2: Person[]= [];
+  searchPersons: Person[]= [];
 
   current_person$= new Observable<Person | null>();
   current_person: Person;
@@ -55,9 +53,6 @@ export class AdminComponent implements OnInit {
           guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
           changedBy, changedOn, status, personID);
 
-        if(this.personID==personID){
-          this.clickedRows.add(current_per)
-        }
         if(status!= 'Anonymiserad'){
           this.persons.push(current_per);  
         }
@@ -67,27 +62,14 @@ export class AdminComponent implements OnInit {
  });
   }
 
-
-  applyFilter1(event: Event) {
-    this.searchPersons1=[];
+  applyFilter(event: Event) {
+    this.searchPersons=[];
     
     const filterValue = (event.target as HTMLInputElement).value;
     this.persons.forEach(person=>{
       if(person.personNbr.includes(filterValue) || person.name.includes(filterValue)|| person.status.includes(filterValue)|| person.changedOn.includes(filterValue)){
-        this.searchPersons1.push(person);
+        this.searchPersons.push(person);
       }
    });
   }
-
-  applyFilter2(event: Event) {
-    this.searchPersons2=[];
-    
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.persons.forEach(person=>{
-      if(person.personNbr.includes(filterValue) || person.name.includes(filterValue)|| person.status.includes(filterValue)|| person.changedOn.includes(filterValue)){
-        this.searchPersons2.push(person);
-      }
-   });
-  }
-
 }

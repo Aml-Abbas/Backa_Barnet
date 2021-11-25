@@ -22,6 +22,7 @@ export class LandingComponent implements OnInit {
  need_compass = false;
  deep_need_compass = false;
  goal= false;
+ admin= false;
 
  current_person$= new Observable<Person | null>();
  current_user$= new Observable<User | null>();
@@ -58,17 +59,20 @@ showFillerContactIcon = 'chevron_right';
 showFillerDeepCompassIcon = 'chevron_right'; 
 showFillerCompassIcon = 'chevron_right'; 
 showFillerGoalIcon= 'chevron_right';
+showFillerAdminIcon= 'chevron_right';
 
 public changeShowFillerContact(){
   this.need_compass = false;
   this.deep_need_compass = false;
   this.goal = false;
+  this.admin = false;
 
   this.showFillerContact = !this.showFillerContact;
 
   this.showFillerDeepCompassIcon = 'chevron_right'; 
   this.showFillerCompassIcon = 'chevron_right'; 
   this.showFillerGoalIcon = 'chevron_right'; 
+  this.showFillerAdminIcon = 'chevron_right'; 
 
   if(this.showFillerContactIcon == 'chevron_right'){
     this.showFillerContactIcon = 'expand_more' ;
@@ -81,12 +85,14 @@ public changeShowFillerGoal(){
   this.need_compass = false;
   this.deep_need_compass = false;
   this.showFillerContact = false;
+  this.admin = false;
 
   this.goal= !this.goal;
 
   this.showFillerDeepCompassIcon = 'chevron_right'; 
   this.showFillerCompassIcon = 'chevron_right'; 
-  this.showFillerGoalIcon = 'chevron_right'; 
+  this.showFillerAdminIcon = 'chevron_right'; 
+  this.showFillerContactIcon = 'chevron_right'; 
 
   if(this.showFillerGoalIcon == 'chevron_right'){
     this.showFillerGoalIcon = 'expand_more' ;
@@ -95,16 +101,40 @@ public changeShowFillerGoal(){
   }
 }
 
+public changeShowFillerAdmin(){
+  this.need_compass = false;
+  this.deep_need_compass = false;
+  this.showFillerContact = false;
+  this.goal= false;
+
+  this.admin= !this.admin;
+
+  this.showFillerContactIcon = 'chevron_right'; 
+  this.showFillerDeepCompassIcon = 'chevron_right'; 
+  this.showFillerCompassIcon = 'chevron_right'; 
+  this.showFillerGoalIcon = 'chevron_right'; 
+
+  if(this.showFillerAdminIcon == 'chevron_right'){
+    this.showFillerAdminIcon = 'expand_more' ;
+
+  }else{
+    this.showFillerAdminIcon = 'chevron_right' ;
+  }
+}
+
+
 public changeShowFillerDeepCompass(){
   this.showFillerContact = false;
   this.need_compass = false;
   this.goal = false;
+  this.admin = false;
 
   this.deep_need_compass = !this.deep_need_compass;
 
   this.showFillerContactIcon = 'chevron_right'; 
   this.showFillerCompassIcon = 'chevron_right'; 
   this.showFillerGoalIcon = 'chevron_right'; 
+  this.showFillerAdminIcon = 'chevron_right'; 
 
   if(this.showFillerDeepCompassIcon == 'chevron_right'){
     this.showFillerDeepCompassIcon = 'expand_more' ;
@@ -117,12 +147,14 @@ public changeShowFillerNeedCompass(){
   this.showFillerContact = false;
   this.deep_need_compass = false;
   this.goal = false;
+  this.admin = false;
 
   this.need_compass = !this.need_compass;
 
   this.showFillerContactIcon = 'chevron_right'; 
   this.showFillerDeepCompassIcon = 'chevron_right'; 
   this.showFillerGoalIcon = 'chevron_right'; 
+  this.showFillerAdminIcon = 'chevron_right'; 
 
   if(this.showFillerCompassIcon == 'chevron_right'){
     this.showFillerCompassIcon = 'expand_more' ;
@@ -136,11 +168,13 @@ changeShowFiller(){
   this.deep_need_compass = false;
   this.need_compass = false;
   this.goal = false;
+  this.admin = false;
 
   this.showFillerContactIcon = 'chevron_right'; 
   this.showFillerDeepCompassIcon = 'chevron_right'; 
   this.showFillerCompassIcon = 'chevron_right' ;
   this.showFillerGoalIcon = 'chevron_right'; 
+  this.showFillerAdminIcon = 'chevron_right'; 
 
 }
 
@@ -180,9 +214,7 @@ changeShowFiller(){
   }
 
   goToRoute(event, route: string){
-   if(route== 'admin' && this.isDisabledAdmin){
-        event.stopPropagation()
-    }else if(route== 'conversation-material' && this.isDisabledConversationMaterial){
+  if(route== 'conversation-material' && this.isDisabledConversationMaterial){
         event.stopPropagation()
     }else if(route== 'need-compass' && this.isDisabledNeedCompass){
         event.stopPropagation()
@@ -211,6 +243,12 @@ changeShowFiller(){
         event.stopPropagation()
       }else{
         this.changeShowFillerGoal();
+      }
+    } else if(type== 'admin-menu'){
+      if(this.isDisabledAdmin){
+        event.stopPropagation()
+      }else{
+        this.changeShowFillerAdmin();
       }
     }
   }

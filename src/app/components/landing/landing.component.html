@@ -111,11 +111,22 @@
             </mat-button-toggle>
 
             <mat-divider></mat-divider>
-            <mat-button-toggle (click)="goToRoute($event, 'admin')" [disabled]="isDisabledAdmin">Admin
+            <mat-button-toggle (click)="changeFiller($event, 'admin-menu')" [disabled]="isDisabledAdmin">
+                <span>Admin</span>
+                <span class="material-icons">{{showFillerAdminIcon}}</span>
             </mat-button-toggle>
 
-            <mat-divider></mat-divider>
+            <mat-button-toggle *ngIf="admin" class="under-button"
+            routerLink="/users">
+                <span>Användare</span>
+            </mat-button-toggle>
+            <mat-divider *ngIf="admin"></mat-divider>
+            <mat-button-toggle *ngIf="admin" class="under-button" routerLink="/barnteam">
+                <span>barnteam</span>
+            </mat-button-toggle>
 
+
+            <mat-divider></mat-divider>
             <mat-button-toggle (click)="logOut()">Logga ut</mat-button-toggle>
             <mat-divider></mat-divider>
 

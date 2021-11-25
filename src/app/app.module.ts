@@ -18,7 +18,6 @@ import { EstimateComponent } from './components/estimate/estimate.component';
 import { GoalComponent } from './components/goal/goal.component';
 import { NeedCompassComponent } from './components/need-compass/need-compass.component';
 import { EventComponent } from './components/event/event.component';
-import { AdminComponent } from './components/admin/admin.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { ConsentComponent } from './components/consent/consent.component';
 import { CreateDiscoverCardComponent } from './components/create-discover-card/create-discover-card.component';
@@ -73,17 +72,20 @@ import { EditDiscoverCardComponent } from './components/edit-discover-card/edit-
 import { EditConversationMaterialComponent } from './components/edit-conversation-material/edit-conversation-material.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { CreateBarnteamComponent } from './components/create-barnteam/create-barnteam.component';
+import { UsersComponent } from './components/users/users.component';
+import { BarnteamComponent } from './components/barnteam/barnteam.component';
 
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent,
     CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent,
-    EventComponent, AdminComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent,
+    EventComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent,
     DeepNeedCompassComponent, ConversationMaterialComponent,
     ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, 
     EditContactGuardianComponent, DialogComponent, DiscoverCardDetailsComponent, 
     CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent,
-     SvgComponent, BBLogComponent, EditDiscoverCardComponent, EditConversationMaterialComponent, CreateUserComponent, CreateBarnteamComponent],
+     SvgComponent, BBLogComponent, EditDiscoverCardComponent, EditConversationMaterialComponent, CreateUserComponent,
+      CreateBarnteamComponent, UsersComponent, BarnteamComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
