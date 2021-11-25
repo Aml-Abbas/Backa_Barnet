@@ -39,7 +39,7 @@ createConversationMaterialSuccess$ = createEffect(() =>
 /*     this.store.select(fromState.getCurrentPerson).subscribe(data=>{
       this.store.dispatch(new fromState.LoadConversationMaterial(data?.personID ?? ''));
     }),
- */      new fromRoot.Go({path: ['/']}),
+ */      new fromRoot.Go({path: ['/contact']}),
 ])
   )
 );
@@ -90,7 +90,7 @@ updateConversationCardSuccess$ = createEffect(() =>
   this.actions$.pipe(
     ofType(conversationMaterialAction.UPDATE_CONVERSATION_CARD_SUCCESS),
     switchMap((action: conversationMaterialAction.UpdateConversationCardSuccess) =>[
-      new fromRoot.Go({path: ['/']}),
+      new fromRoot.Go({path: ['/contact']}),
     ])
   )
 );

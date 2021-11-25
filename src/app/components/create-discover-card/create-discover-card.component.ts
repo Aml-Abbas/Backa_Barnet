@@ -102,6 +102,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       let email: string = data?.email ?? '';
       let roleID: string = data?.roleID ?? '';
       let description: string = data?.description ?? '';
+      this.store.dispatch(new fromState.LoadDiscoverCard(userID));
 
       this.current_user = new User(userID, firstName, lastName,
         email, roleID, description);
