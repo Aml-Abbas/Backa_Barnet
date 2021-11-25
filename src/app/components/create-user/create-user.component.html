@@ -1,0 +1,45 @@
+<div class="container">
+    <h1>Skapa användare</h1>
+
+    <div class="form-container" [formGroup]="createUserFormGroup">
+
+          <mat-form-field appearance="fill">
+            <mat-label>Användarens e-post</mat-label>
+            <input matInput placeholder="pat@example.com" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Användarens organisation</mat-label>
+            <input matInput formControlName="organisationControl">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Användarens role:</mat-label>
+            <mat-select [(ngModel)]="selectedRole" [ngModelOptions]="{standalone: true}">
+              <mat-option value="0">Upptäckare</mat-option>
+              <mat-option value="1">BarnKontakt</mat-option>
+              <mat-option value="2">BarnTeam</mat-option>
+            </mat-select>
+            </mat-form-field>
+
+          <button mat-raised-button (click)="increaseUnit()" *ngIf="selectedRole== '1'">lägg till enhet</button>
+
+          <div *ngIf="(units$ | async) as units">
+          <mat-form-field appearance="fill" *ngFor="let item of [].constructor(unit); let i = index">
+            <mat-label>Användarens enhet</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitID}}" (click)="addUnit(unit.unitName, unit.unitID)">{{unit.unitName}}</mat-option>
+            </mat-select>
+    
+          </mat-form-field>
+        </div>
+
+
+        </div>
+
+        <p>{{saveError}}</p>
+
+        <button mat-raised-button (click)="createUser()">Skapa</button>
+
+</div>

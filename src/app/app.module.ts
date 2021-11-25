@@ -71,6 +71,8 @@ import { SvgComponent } from './components/need-compass/svg.component';
 import { BBLogComponent } from './components/landing/bb-log.component';
 import { EditDiscoverCardComponent } from './components/edit-discover-card/edit-discover-card.component';
 import { EditConversationMaterialComponent } from './components/edit-conversation-material/edit-conversation-material.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
+import { CreateBarnteamComponent } from './components/create-barnteam/create-barnteam.component';
 
 
 @NgModule({
@@ -81,7 +83,7 @@ import { EditConversationMaterialComponent } from './components/edit-conversatio
     ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, 
     EditContactGuardianComponent, DialogComponent, DiscoverCardDetailsComponent, 
     CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent,
-     SvgComponent, BBLogComponent, EditDiscoverCardComponent, EditConversationMaterialComponent],
+     SvgComponent, BBLogComponent, EditDiscoverCardComponent, EditConversationMaterialComponent, CreateUserComponent, CreateBarnteamComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

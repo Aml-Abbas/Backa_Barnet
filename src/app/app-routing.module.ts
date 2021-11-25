@@ -41,6 +41,8 @@ import { EditDiscoverCardComponent } from './components/edit-discover-card/edit-
 import { DiscoverCardEditGuard } from './guards/discover-card-edit.guard';
 import { EditConversationMaterialComponent } from './components/edit-conversation-material/edit-conversation-material.component';
 import { ConversationMaterialEditGuard } from './guards/conversation-material-edit.guard';
+import { CreateUserComponent } from './components/create-user/create-user.component';
+import { CreateBarnteamComponent } from './components/create-barnteam/create-barnteam.component';
 
 
 const routes: Routes = [
@@ -50,7 +52,8 @@ const routes: Routes = [
     children:[
       {
         path: 'admin',
-        component: AdminComponent, canActivate: [AdminGuard]
+        component: AdminComponent
+        //, canActivate: [AdminGuard]
       },
       {
         path: 'communication-material',
@@ -139,7 +142,18 @@ const routes: Routes = [
         component: EditConversationMaterialComponent, canDeactivate:[DirtycheckGuard],
         canActivate: [ConversationMaterialEditGuard]
       },
+      {
+        path: 'create-user',
+        component: CreateUserComponent
+        //, canActivate: [AdminGuard]
+      },
+      {
+        path: 'create-barnteam',
+        component: CreateBarnteamComponent
+        //, canActivate: [AdminGuard]
+      },
     ]
+    
   },
   { 
     path: 'sign-in',

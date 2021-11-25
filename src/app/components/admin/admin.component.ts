@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Store} from '@ngrx/store';
-import * as fromStore from 'src/app/state';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import { Person } from 'src/app/models/Person';
 import { Observable } from 'rxjs';
-import { Unit } from 'src/app/models/Unit';
-import { GetSetService } from '../../services/get-set/get-set.service';
+import { Store } from '@ngrx/store';
+import * as fromState from '../../state';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-admin',
@@ -12,59 +11,83 @@ import { GetSetService } from '../../services/get-set/get-set.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  createUserFormGroup: FormGroup;
-  saveError='';
-  email = new FormControl('', [Validators.required, Validators.email]);
-  selectedRole= '0';
-  unit=0; 
-  added_units: string[]= [];
-  units$: Observable<Unit[]> = new Observable<Unit[]>();
+  persons$: Observable<Person[]> = new Observable<Person[]>();
+  current_user$: Observable<User| null> = new Observable<User| null>();
+  clickedRows = new Set<Person>();
+  persons: Person[]=[];
+  searchPersons1: Person[]= [];
+  searchPersons2: Person[]= [];
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'Du behöver skriva ett värde';
-    }
-
-    return this.email.hasError('email') ? 'Inte ett giltigt mejl' : '';
-  }
-
-  constructor(private store: Store<fromStore.State>,
-              private _formBuilder: FormBuilder,
-              private getSetService: GetSetService) { }
+  current_person$= new Observable<Person | null>();
+  current_person: Person;
+  personID: string;
+  constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
-    this.units$= this.getSetService.getUnits();
+    this.current_user$ = this.store.select(fromState.getCurrentUser);
+    this.current_user$.subscribe(data => {
+      let userID: string = data?.userID ?? '';
+      this.store.dispatch(new fromState.LoadPersons(userID));
+    });
 
-    this.createUserFormGroup = this._formBuilder.group({
-      organisationControl:['', Validators.required],
-      unitControl:['', Validators.required],
-    }); 
+    this.persons$ = this.store.select(fromState.getPersons);
 
+    this.persons$.subscribe(data => {
+      this.persons=[];
+
+       data.map((person:Person)=>{
+        let personNbr= person.personNbr;
+        let lastName= person.lastName;
+        let firstName= person.firstName;
+
+        let name= person.firstName+' '+ person.lastName;
+        let guardian1= person.guardian1;
+        let guardianPersonNbr1= person.guardianPersonNbr1;
+        let guardian2= person.guardian2;
+        let guardianPersonNbr2= person.guardianPersonNbr2;
+
+        let changedBy = person.changedBy;
+        let changedOn = person.changedOn;
+        let status= person.status;
+        let personID= person.personID;
+
+        let current_per= new Person(personNbr, lastName, firstName, name,
+          guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
+          changedBy, changedOn, status, personID);
+
+        if(this.personID==personID){
+          this.clickedRows.add(current_per)
+        }
+        if(status!= 'Anonymiserad'){
+          this.persons.push(current_per);  
+        }
+      }
+
+    ) 
+ });
   }
 
-  createUser(){
-    console.log(this.selectedRole);
-    console.log(this.unit);
-    console.log(this.added_units);
 
-    if(this.email.hasError('required') ){
-      this.saveError='Du behöver skriva ett värde i mejlet';
-    }else if( this.email.hasError('email')){
-      this.saveError='Inte ett giltigt mejl';
-    }
-    else if(this.createUserFormGroup.status== "INVALID"){
-      this.saveError='Du har missat att fylla i saker';
-    }else{
-      this.saveError='';
-    }
+  applyFilter1(event: Event) {
+    this.searchPersons1=[];
+    
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.persons.forEach(person=>{
+      if(person.personNbr.includes(filterValue) || person.name.includes(filterValue)|| person.status.includes(filterValue)|| person.changedOn.includes(filterValue)){
+        this.searchPersons1.push(person);
+      }
+   });
   }
 
-  increaseUnit(){
-    this.unit++;
-  }
-
-  addUnit(name: string, nbr: string){
-    this.added_units.push(nbr);
+  applyFilter2(event: Event) {
+    this.searchPersons2=[];
+    
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.persons.forEach(person=>{
+      if(person.personNbr.includes(filterValue) || person.name.includes(filterValue)|| person.status.includes(filterValue)|| person.changedOn.includes(filterValue)){
+        this.searchPersons2.push(person);
+      }
+   });
   }
 
 }
