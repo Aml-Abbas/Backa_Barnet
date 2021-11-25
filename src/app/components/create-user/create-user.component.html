@@ -7,6 +7,10 @@
 </button>
 
     <div class="form-container" [formGroup]="createUserFormGroup">
+      <mat-form-field appearance="fill">
+        <mat-label>Användarens namn</mat-label>
+        <input matInput formControlName="nameControl">
+      </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Användarens e-post</mat-label>
@@ -22,24 +26,33 @@
           <mat-form-field appearance="fill">
             <mat-label>Användarens role:</mat-label>
             <mat-select [(ngModel)]="selectedRole" [ngModelOptions]="{standalone: true}">
-              <mat-option value="0">Upptäckare</mat-option>
-              <mat-option value="1">BarnKontakt</mat-option>
-              <mat-option value="2">BarnTeam</mat-option>
+              <mat-option (click)="changeRole(0)" value="0">Upptäckare</mat-option>
+              <mat-option (click)="changeRole(1)" value="1">BarnKontakt</mat-option>
+              <mat-option (click)="changeRole(2)" value="2">BarnTeam</mat-option>
             </mat-select>
             </mat-form-field>
 
-          <button mat-raised-button (click)="increaseUnit()" *ngIf="selectedRole== '1'">lägg till enhet</button>
+          <button mat-raised-button (click)="increaseUnit()" *ngIf="selectedRole== '1' || selectedRole== '2'">lägg till enhet</button>
 
           <div *ngIf="(units$ | async) as units">
-          <mat-form-field appearance="fill" *ngFor="let item of [].constructor(unit); let i = index">
+          <mat-form-field appearance="fill" *ngFor="let item of [].constructor(unitNbr); let i = index">
             <mat-label>Användarens enhet</mat-label>
             <mat-select>
               <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitID}}" (click)="addUnit(unit.unitName, unit.unitID)">{{unit.unitName}}</mat-option>
             </mat-select>
-    
           </mat-form-field>
         </div>
+        <button mat-raised-button class="delete-button" (click)="decreaseUnit()" *ngIf="unitNbr>1">Ta bort enhet</button>
 
+        <mat-form-field appearance="fill" *ngIf="selectedRole== '1' || selectedRole== '2'">
+          <mat-label>Användarens telefon</mat-label>
+          <input matInput formControlName="numberControl">
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill" *ngIf="selectedRole== '1' || selectedRole== '2'">
+          <mat-label>Användarens jobbplats</mat-label>
+          <input matInput formControlName="workplaceControl">
+        </mat-form-field>
 
         </div>
 

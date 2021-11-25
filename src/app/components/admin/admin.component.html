@@ -3,7 +3,7 @@
 
     <div class="search">
       <mat-form-field appearance="standard">
-        <mat-label>Sök - personnummer, namn, senaste ändrad eller status
+        <mat-label>Sök - namn eller datum
         </mat-label>
         <input matInput (keyup)="applyFilter1($event)" #input>  
       </mat-form-field>
@@ -16,26 +16,20 @@
   <table role="table">
     <thead role="rowgroup">
       <tr role="row">
-        <th role="columnheader">Personnummer</th>
+        <th role="columnheader">Datum</th>
         <th role="columnheader">Namn</th>
-        <th role="columnheader">Senaste ändrad</th>
-        <th role="columnheader">Barnets status</th>
       </tr>
     </thead>
     <tbody role="rowgroup" *ngIf="searchPersons1.length==0">
       <tr role="row" *ngFor="let person of persons; let i= index">
         <td role="cell">{{person.personNbr.slice(2, 12)}}</td>
         <td role="cell">{{person.name}}</td>
-        <td role="cell">{{person.changedOn.slice(0, 10)}}</td>
-        <td role="cell">{{person.status}}</td>
       </tr>
     </tbody>
     <tbody *ngIf="searchPersons1.length!=0">
       <tr role="row" *ngFor="let person of searchPersons1; let i= index">
         <td role="cell">{{person.personNbr.slice(2, 12)}}</td>
         <td role="cell">{{person.name}}</td>
-        <td role="cell">{{person.changedOn.slice(0, 10)}}</td>
-        <td role="cell">{{person.status}}</td>
       </tr>
     </tbody>
   </table>
@@ -43,7 +37,7 @@
 
   <div class="search">
     <mat-form-field appearance="standard">
-      <mat-label>Sök - personnummer, namn, senaste ändrad eller status
+      <mat-label>Sök - E-post, namn, organisation eller role
       </mat-label>
       <input matInput (keyup)="applyFilter2($event)" #input>  
     </mat-form-field>
@@ -56,10 +50,10 @@
 <table role="table">
   <thead role="rowgroup">
     <tr role="row">
-      <th role="columnheader">Personnummer</th>
+      <th role="columnheader">E-post</th>
       <th role="columnheader">Namn</th>
-      <th role="columnheader">Senaste ändrad</th>
-      <th role="columnheader">Barnets status</th>
+      <th role="columnheader">Organisation</th>
+      <th role="columnheader">Role</th>
     </tr>
   </thead>
   <tbody role="rowgroup" *ngIf="searchPersons2.length==0">

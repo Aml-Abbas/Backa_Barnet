@@ -18,7 +18,7 @@ export class CreateUserComponent implements OnInit {
   saveError='';
   email = new FormControl('', [Validators.required, Validators.email]);
   selectedRole= '0';
-  unit=0; 
+  unitNbr=0; 
   added_units: string[]= [];
   units$: Observable<Unit[]> = new Observable<Unit[]>();
 
@@ -38,15 +38,18 @@ export class CreateUserComponent implements OnInit {
     this.units$= this.getSetService.getUnits();
 
     this.createUserFormGroup = this._formBuilder.group({
+      nameControl:['', Validators.required],
       organisationControl:['', Validators.required],
       unitControl:['', Validators.required],
+      numberControl:['', Validators.required],
+      workplaceControl:['', Validators.required],
     }); 
 
   }
 
   createUser(){
     console.log(this.selectedRole);
-    console.log(this.unit);
+    console.log(this.unitNbr);
     console.log(this.added_units);
 
     if(this.email.hasError('required') ){
@@ -62,7 +65,20 @@ export class CreateUserComponent implements OnInit {
   }
 
   increaseUnit(){
-    this.unit++;
+    this.unitNbr++;
+  }
+
+  decreaseUnit(){
+    this.unitNbr--;
+  }
+
+  changeRole(nbr: number){
+    if(nbr==0){
+      this.unitNbr=0;
+    }
+    else{
+      this.unitNbr=1;
+    }
   }
 
   addUnit(name: string, nbr: string){
