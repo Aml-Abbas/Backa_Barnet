@@ -11,6 +11,8 @@ import * as fromRoot from '../../../app/state';
   styleUrls: ['./barnteam-details.component.scss']
 })
 export class BarnteamDetailsComponent implements OnInit {
+  unitList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  medlemList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   constructor(private store: Store<fromState.State>) { }
 

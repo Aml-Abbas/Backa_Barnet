@@ -47,6 +47,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -120,6 +121,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     MatSelectModule,
     MatDialogModule,
     MatListModule,
+    MatAutocompleteModule,
     StoreModule.forRoot({}, { metaReducers }),
     StoreModule.forFeature('app', reducers),
     EffectsModule.forRoot(),
@@ -149,8 +151,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatListModule
-  ],
+    MatListModule,
+    MatAutocompleteModule],
   providers: [
     {
       provide: RouterStateSerializer,

@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>barnteams detaljer</h1>
+    <h1>Barnteams detaljer</h1>
 
     <button class="back-button" mat-icon-button routerLink="/barnteam">
         <span class="material-icons"> arrow_back </span>
@@ -14,35 +14,23 @@
 
   <mat-list>
 
-    <table role="table">
-      <thead role="rowgroup">
-        <tr role="row">
-        </tr>
-    </thead>
+    <mat-list-item>Namn:</mat-list-item>
+    <mat-divider></mat-divider>
 
-    <tbody role="rowgroup">
-     <tr role="row">
-      <td>Namn:</td>
-      <td></td>
-     </tr>
+    <mat-list-item>Enheter:</mat-list-item>
+    <ul>
+      <li *ngFor="let unit of unitList; let i= index;">{{unit}}</li>
+    </ul>  
+    <mat-divider></mat-divider>
 
-     <tr role="row">
-      <td>Enheter:</td>
-      <td></td>
-     </tr>
+    <mat-list-item>Medlemmer:</mat-list-item>
+    <ul>
+    <li *ngFor="let medlem of medlemList; let i= index;">{{medlem}}</li>
+    </ul>  
 
-     <tr role="row">
-      <td>Medlemmer:</td>
-      <td></td>
-     </tr>
+    <mat-divider></mat-divider>
 
-
-    </tbody>
-    </table>
-   
-        <mat-divider></mat-divider>
-
-
+    
     </mat-list>
 
 </div>
