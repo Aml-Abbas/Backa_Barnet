@@ -44,6 +44,8 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
 import { CreateBarnteamComponent } from './components/create-barnteam/create-barnteam.component';
 import { UsersComponent } from './components/users/users.component';
 import { BarnteamComponent } from './components/barnteam/barnteam.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { BarnteamDetailsComponent } from './components/barnteam-details/barnteam-details.component';
 
 
 const routes: Routes = [
@@ -157,6 +159,14 @@ const routes: Routes = [
         path: 'create-barnteam',
         component: CreateBarnteamComponent
         //, canActivate: [AdminGuard]
+      },
+      {
+        path: 'users/:userId',
+        component: UserDetailsComponent,
+      },
+      {
+        path: 'barnteam/:barnteamId',
+        component: BarnteamDetailsComponent,
       },
     ]
     

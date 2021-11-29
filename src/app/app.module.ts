@@ -74,6 +74,8 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
 import { CreateBarnteamComponent } from './components/create-barnteam/create-barnteam.component';
 import { UsersComponent } from './components/users/users.component';
 import { BarnteamComponent } from './components/barnteam/barnteam.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { BarnteamDetailsComponent } from './components/barnteam-details/barnteam-details.component';
 
 
 @NgModule({
@@ -85,7 +87,7 @@ import { BarnteamComponent } from './components/barnteam/barnteam.component';
     EditContactGuardianComponent, DialogComponent, DiscoverCardDetailsComponent, 
     CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent,
      SvgComponent, BBLogComponent, EditDiscoverCardComponent, EditConversationMaterialComponent, CreateUserComponent,
-      CreateBarnteamComponent, UsersComponent, BarnteamComponent],
+      CreateBarnteamComponent, UsersComponent, BarnteamComponent, UserDetailsComponent, BarnteamDetailsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
