@@ -34,7 +34,6 @@
               <mat-option (click)="changeRole(2)" value="2">BarnTeam</mat-option>
             </mat-select>
             </mat-form-field>
-            <p>{{roleError}}</p>
 
 <!--           <button mat-raised-button (click)="increaseUnit()" *ngIf="selectedRole== '1' || selectedRole== '2'">lägg till enhet</button>
 
@@ -73,14 +72,15 @@
         (+{{units.value.length - 1}} {{units.value?.length === 2 ? 'other' : 'others'}})
       </span>
     </mat-select-trigger>
-    <mat-option *ngFor="let unit of current_units" [value]="unit">{{unit.unitName}}</mat-option>
+    <mat-option *ngFor="let unit of current_units" [value]="unit.unitName">{{unit.unitName}}</mat-option>
   </mat-select>
 </mat-form-field>
+<p>{{unitError}}</p>
 
 
 
 
-        <p>{{saveError}}</p>
+<p>{{saveError}}</p>
 
         <button mat-raised-button (click)="createUser()">Skapa</button>
 

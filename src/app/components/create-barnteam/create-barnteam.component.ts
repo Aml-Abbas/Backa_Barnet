@@ -74,7 +74,6 @@ export class CreateBarnteamComponent implements OnInit {
     this.unitError='';
     this.memberError='';
   
-  
     console.log(this.units);
     console.log(this.medlems);
     if(this.createBarnteamFormGroup.status== "INVALID"){

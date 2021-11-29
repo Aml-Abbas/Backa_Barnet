@@ -15,7 +15,6 @@ import { GetSetService } from '../../services/get-set/get-set.service';
 export class CreateUserComponent implements OnInit {
 
   createUserFormGroup: FormGroup;
-  saveError='';
   email = new FormControl('', [Validators.required, Validators.email]);
   selectedRole= '0';
   unitNbr=0; 
@@ -23,6 +22,14 @@ export class CreateUserComponent implements OnInit {
   units$: Observable<Unit[]> = new Observable<Unit[]>();
 
   units = new FormControl();
+  
+  saveError='';
+  nameError='';
+  emailError='';
+  organisationError='';
+  nbrError='';
+  workError='';
+  unitError='';
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
@@ -49,28 +56,42 @@ export class CreateUserComponent implements OnInit {
   }
 
   createUser(){
-    console.log(this.selectedRole);
-    console.log(this.unitNbr);
-    console.log(this.added_units);
+    this.saveError='';
+    this.nameError='';
+    this.emailError='';
+    this.organisationError='';
+    this.nbrError='';
+    this.workError='';
+    this.unitError='';
+  
+    console.log();
 
     if(this.email.hasError('required') ){
-      this.saveError='Du behöver skriva ett värde i mejlet';
+      this.emailError='Du behöver skriva ett värde i mejlet';
+      this.saveError='Rätta felen först';
     }else if( this.email.hasError('email')){
-      this.saveError='Inte ett giltigt mejl';
+      this.saveError='Rätta felen först';
+      this.emailError='Inte ett giltigt mejl';
     }
-    else if(this.createUserFormGroup.status== "INVALID"){
-      this.saveError='Du har missat att fylla i saker';
-    }else{
-      this.saveError='';
+    if(this.createUserFormGroup.controls.nameControl.status== "INVALID"){
+      this.nameError='Namnet ska vara mist två bokstäver.';
+      this.saveError='Rätta felen först';
+    }if(this.createUserFormGroup.controls.organisationControl.status== "INVALID"){
+      this.organisationError='Organisationen behövs.';
+      this.saveError='Rätta felen först';
+    }if(this.selectedRole!='0'){
+      if(this.createUserFormGroup.controls.numberControl.status== "INVALID"){
+        this.nbrError='Numret ska vara 10 siffror.';
+        this.saveError='Rätta felen först';
+      }if(this.createUserFormGroup.controls.workplaceControl.status== "INVALID"){
+        this.workError='jobbplats behövs.';
+        this.saveError='Rätta felen först';
+      }if(this.units.value==null){
+        this.unitError='Du måste välja minst en enhet.';
+        this.saveError='Rätta felen först';
+      }
     }
-  }
-
-  increaseUnit(){
-    this.unitNbr++;
-  }
-
-  decreaseUnit(){
-    this.unitNbr--;
+    
   }
 
   changeRole(nbr: number){
@@ -82,7 +103,4 @@ export class CreateUserComponent implements OnInit {
     }
   }
 
-  addUnit(name: string, nbr: string){
-    this.added_units.push(nbr);
-  }
 }
