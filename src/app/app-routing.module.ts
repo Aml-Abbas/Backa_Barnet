@@ -46,6 +46,8 @@ import { UsersComponent } from './components/users/users.component';
 import { BarnteamComponent } from './components/barnteam/barnteam.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { BarnteamDetailsComponent } from './components/barnteam-details/barnteam-details.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { EditBarnteamComponent } from './components/edit-barnteam/edit-barnteam.component';
 
 
 const routes: Routes = [
@@ -167,6 +169,14 @@ const routes: Routes = [
       {
         path: 'barnteam/:barnteamId',
         component: BarnteamDetailsComponent,
+      },
+      {
+        path: 'edit-user/:userId',
+        component: EditUserComponent,
+      },
+      {
+        path: 'edit-barnteam/:barnteamId',
+        component: EditBarnteamComponent,
       },
     ]
     
