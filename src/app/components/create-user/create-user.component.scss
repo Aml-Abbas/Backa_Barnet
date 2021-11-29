@@ -75,3 +75,9 @@ margin-left: 0%;
 margin-right: 60%;
 color: white;
 }
+
+
+::ng-deep .mat-primary .mat-pseudo-checkbox-checked{
+  background-color: white !important;
+  }
+

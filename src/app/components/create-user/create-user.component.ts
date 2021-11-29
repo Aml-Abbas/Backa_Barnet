@@ -22,6 +22,8 @@ export class CreateUserComponent implements OnInit {
   added_units: string[]= [];
   units$: Observable<Unit[]> = new Observable<Unit[]>();
 
+  units = new FormControl();
+
   getErrorMessage() {
     if (this.email.hasError('required')) {
       return 'Du behöver skriva ett värde';
@@ -38,11 +40,10 @@ export class CreateUserComponent implements OnInit {
     this.units$= this.getSetService.getUnits();
 
     this.createUserFormGroup = this._formBuilder.group({
-      nameControl:['', Validators.required],
-      organisationControl:['', Validators.required],
-      unitControl:['', Validators.required],
-      numberControl:['', Validators.required],
-      workplaceControl:['', Validators.required],
+      nameControl:['', [Validators.required, Validators.minLength(2)]],
+      organisationControl:['', [Validators.required, Validators.minLength(2)]],
+      numberControl:['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      workplaceControl:['', [Validators.required, Validators.minLength(2)]],
     }); 
 
   }
