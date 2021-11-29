@@ -11,6 +11,7 @@ import * as fromRoot from '../../../app/state';
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent implements OnInit {
+  unitList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   constructor(private store: Store<fromState.State>) { }
 

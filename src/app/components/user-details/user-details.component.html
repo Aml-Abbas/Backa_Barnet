@@ -46,18 +46,18 @@
       <td>Arbetsplats:</td>
       <td></td>
      </tr>
-
-     <tr role="row">
-      <td>Enheter:</td>
-      <td></td>
-     </tr>
-
-
     </tbody>
     </table>
    
         <mat-divider></mat-divider>
 
-
+        <mat-list-item>Enheter:</mat-list-item>
+        <ul>
+          <li *ngFor="let unit of unitList; let i= index;">{{unit}}</li>
+        </ul>  
+    
+        <mat-divider></mat-divider>
+    
+    
     </mat-list>
 </div>
