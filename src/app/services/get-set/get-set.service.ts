@@ -7,6 +7,7 @@ import { Unit } from 'src/app/models/Unit';
 import { Person } from 'src/app/models/Person';
 import { ConversationMaterial } from 'src/app/models/ConversationMaterial';
 import { Status } from 'src/app/models/Status';
+import { Estimate } from 'src/app/models/estimate';
 
 
 @Injectable({
@@ -62,6 +63,10 @@ export class GetSetService {
 
   createEstimate(estimateJson: any) {
     return this.http.post('https://func-ykbb.azurewebsites.net/api/estimate/create?code=ZnNUlhrtXVvn3xAtzMbpBpqMxO5EvvAxkxnYqVa9jaIPixAqZ66BuQ==', estimateJson);
+  }
+
+  getEstimate(personId: string): Observable<Estimate[]> {
+    return this.http.get<Estimate[]>('https://func-ykbb.azurewebsites.net/api/estimate/'+personId+'?code=claTs5kzCfU60tGySXhvQbz3c01kADTGq2QT3nGWPfslBL7tbARORg==');
   }
 
 }
