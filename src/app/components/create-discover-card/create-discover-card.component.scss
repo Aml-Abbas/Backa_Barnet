@@ -180,8 +180,11 @@ mat-card-title{
   padding: 5px 0;
   position: absolute;
   z-index: 1;
-  background-color: lightgrey;
+  background-color: #ffffff;
+  border: 1px solid black;
+  opacity: 0.8;
 }
+
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
@@ -191,6 +194,7 @@ li{
   text-align: left;
   margin-left: 3px;
   padding: 5px;
+  font-weight: bold;
 }
 @media screen and (max-width: 1332px){
   mat-card{
