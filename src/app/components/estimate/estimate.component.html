@@ -3,7 +3,17 @@
     <h1>Skattningsformulär</h1>
     <h4>För personal</h4>
 
+    
+    <h2 *ngIf=" !(current_person$ | async) as current_person">
+      Välj ett barn först</h2>
+  
 
+  <div *ngIf="(current_person$ | async) as current_person">
+    
+    <h2 *ngIf="current_person.status != 'I barnteam'">
+      Barnet skickades inte till barnteam</h2>
+
+      <div *ngIf="current_person.status == 'I barnteam'">
     <mat-drawer-container class="mat-drawer-container" autosize  *ngFor="let category of categories; let index1= index">
     
         
@@ -95,5 +105,8 @@
     <button mat-raised-button (click)="save()">Spara</button>
 
     <button mat-raised-button routerLink="/estimate-overview" *ngIf=" userRoleId=='4' || userRoleId=='2'">Sammanställa</button>
+
+</div>
+</div>
 
 </div>
