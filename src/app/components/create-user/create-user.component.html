@@ -21,10 +21,13 @@
           <p>{{emailError}}</p>
 
           <mat-form-field appearance="fill">
-            <mat-label>Användarens organisation</mat-label>
-            <input matInput formControlName="organisationControl">
-          </mat-form-field>
-          <p>{{organisationError}}</p>
+            <mat-label>Användarens organisation:</mat-label>
+            <mat-select [(ngModel)]="selectedOrganisation" [ngModelOptions]="{standalone: true}">
+              <mat-option value="0">CGI</mat-option>
+              <mat-option value="1">Police</mat-option>
+              <mat-option value="2">Kommun</mat-option>
+            </mat-select>
+            </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Användarens role:</mat-label>
@@ -34,22 +37,6 @@
               <mat-option (click)="changeRole(2)" value="2">BarnTeam</mat-option>
             </mat-select>
             </mat-form-field>
-
-<!--           <button mat-raised-button (click)="increaseUnit()" *ngIf="selectedRole== '1' || selectedRole== '2'">lägg till enhet</button>
-
-          <div *ngIf="(units$ | async) as units">
-          <mat-form-field appearance="fill" *ngFor="let item of [].constructor(unitNbr); let i = index">
-            <mat-label>Användarens enhet</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitID}}" (click)="addUnit(unit.unitName, unit.unitID)">{{unit.unitName}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <button mat-raised-button class="delete-button" (click)="decreaseUnit()" *ngIf="unitNbr>1">Ta bort enhet</button>
-
-
-        </div>
- -->
 
  <mat-form-field appearance="fill" *ngIf="selectedRole== '1' || selectedRole== '2'">
   <mat-label>Användarens telefon</mat-label>

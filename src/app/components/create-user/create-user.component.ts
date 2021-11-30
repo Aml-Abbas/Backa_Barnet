@@ -17,6 +17,8 @@ export class CreateUserComponent implements OnInit {
   createUserFormGroup: FormGroup;
   email = new FormControl('', [Validators.required, Validators.email]);
   selectedRole= '0';
+  selectedOrganisation= '0';
+
   unitNbr=0; 
   added_units: string[]= [];
   units$: Observable<Unit[]> = new Observable<Unit[]>();
@@ -26,7 +28,6 @@ export class CreateUserComponent implements OnInit {
   saveError='';
   nameError='';
   emailError='';
-  organisationError='';
   nbrError='';
   workError='';
   unitError='';
@@ -48,7 +49,6 @@ export class CreateUserComponent implements OnInit {
 
     this.createUserFormGroup = this._formBuilder.group({
       nameControl:['', [Validators.required, Validators.minLength(2)]],
-      organisationControl:['', [Validators.required, Validators.minLength(2)]],
       numberControl:['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       workplaceControl:['', [Validators.required, Validators.minLength(2)]],
     }); 
@@ -59,13 +59,10 @@ export class CreateUserComponent implements OnInit {
     this.saveError='';
     this.nameError='';
     this.emailError='';
-    this.organisationError='';
     this.nbrError='';
     this.workError='';
     this.unitError='';
   
-    console.log();
-
     if(this.email.hasError('required') ){
       this.emailError='Du behöver skriva ett värde i mejlet';
       this.saveError='Rätta felen först';
@@ -75,9 +72,6 @@ export class CreateUserComponent implements OnInit {
     }
     if(this.createUserFormGroup.controls.nameControl.status== "INVALID"){
       this.nameError='Namnet ska vara mist två bokstäver.';
-      this.saveError='Rätta felen först';
-    }if(this.createUserFormGroup.controls.organisationControl.status== "INVALID"){
-      this.organisationError='Organisationen behövs.';
       this.saveError='Rätta felen först';
     }if(this.selectedRole!='0'){
       if(this.createUserFormGroup.controls.numberControl.status== "INVALID"){

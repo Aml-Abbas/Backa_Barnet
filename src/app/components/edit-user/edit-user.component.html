@@ -23,10 +23,14 @@
         <p>{{emailError}}</p>
 
         <mat-form-field appearance="fill">
-          <mat-label>Användarens organisation</mat-label>
-          <input matInput formControlName="organisationControl">
-        </mat-form-field>
-        <p>{{organisationError}}</p>
+          <mat-label>Användarens organisation:</mat-label>
+          <mat-select [(ngModel)]="selectedOrganisation" [ngModelOptions]="{standalone: true}">
+            <mat-option value="0">CGI</mat-option>
+            <mat-option value="1">Police</mat-option>
+            <mat-option value="2">Kommun</mat-option>
+          </mat-select>
+          </mat-form-field>
+
 
         <mat-form-field appearance="fill">
           <mat-label>Användarens role:</mat-label>
