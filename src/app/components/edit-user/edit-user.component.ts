@@ -63,8 +63,6 @@ export class EditUserComponent implements OnInit {
     this.workError='';
     this.unitError='';
   
-    console.log();
-
     if(this.email.hasError('required') ){
       this.emailError='Du behöver skriva ett värde i mejlet';
       this.saveError='Rätta felen först';

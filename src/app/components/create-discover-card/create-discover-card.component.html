@@ -81,8 +81,19 @@
     <div class="grid-container">
       <mat-card *ngFor="let item of ELEMENT_DATA; let i=index">
         <div class="card-container" [style.background]="item.color">
-          <mat-card-title>{{item.type}}</mat-card-title>
-          <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
+          <mat-card-title>{{item.type}}             
+          </mat-card-title>
+          <mat-card-subtitle>{{item.description}}
+            <div class="tooltip">
+              <span class="material-icons">
+                help
+                </span>
+              <span class="tooltiptext" [style.background]="item.color">
+                <li *ngFor="let text of item.helpText; let i=index">{{text}}</li>
+              </span>
+            </div>
+
+          </mat-card-subtitle>
         </div>
 
         <section>

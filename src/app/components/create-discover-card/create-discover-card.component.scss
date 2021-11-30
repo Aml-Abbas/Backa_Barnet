@@ -171,14 +171,37 @@ mat-card-title{
   padding: 5px 0px 0px 5px !important;
 }
 
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 500px;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+li{
+  text-align: left;
+  margin-left: 3px;
+  padding: 5px;
+}
 @media screen and (max-width: 1332px){
   mat-card{
     width: 41%;
   }
 }
 
-  @media screen and (max-width: 831px){
-  
+  @media screen and (max-width: 1059px){
+    .tooltip .tooltiptext {
+      width: 300px;
+    }    
     .discover-card-button{
       margin-left: 15%;
       width: 70%;
