@@ -36,11 +36,11 @@
               <td role="cell"><div style="width: 200px">{{question.text}}</div></td>
               <td role="cell">
                 <mat-select id="{{category.id}}" [(ngModel)]="question.score" name="{{question.score}}">
-                  <mat-option value="1">1</mat-option>
-                  <mat-option value="2">2</mat-option>
-                  <mat-option value="3">3</mat-option>
-                  <mat-option value="4">4</mat-option>
-                  <mat-option value="5">5</mat-option>
+                  <mat-option (click)="changeDirty()" value="1">1</mat-option>
+                  <mat-option (click)="changeDirty()" value="2">2</mat-option>
+                  <mat-option (click)="changeDirty()" value="3">3</mat-option>
+                  <mat-option (click)="changeDirty()" value="4">4</mat-option>
+                  <mat-option (click)="changeDirty()" value="5">5</mat-option>
                 </mat-select>  
               </td>
         </tr>
@@ -53,7 +53,7 @@
         
         </tbody>
         </table>
-        
+
         <button *ngIf="drawer.opened == false" mat-raised-button [style.background-color]="category.color" class="show-more" (click)="drawer.toggle()">
             Äldre Skattningar
         </button>
@@ -61,6 +61,8 @@
         <button  *ngIf="drawer.opened == true" mat-raised-button [style.background-color]="category.color" class="show-more" (click)="drawer.toggle()">
             Stäng
         </button>
+
+        <p>{{category.msgError}}</p>
 
         </div>
     
@@ -96,12 +98,12 @@
           
           </tbody>
           </table>
-  
+
 
         </mat-drawer>
     </mat-drawer-container>
 
-
+    <p>{{msgError}}</p>
     <button mat-raised-button (click)="save()">Spara</button>
 
     <button mat-raised-button routerLink="/estimate-overview" *ngIf=" userRoleId=='4' || userRoleId=='2'">Sammanställa</button>

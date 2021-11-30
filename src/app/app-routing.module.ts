@@ -65,7 +65,7 @@ const routes: Routes = [
       },
       {
         path: 'estimate',
-        component: EstimateComponent, canActivate: [EstimateGuard]
+        component: EstimateComponent, canActivate: [EstimateGuard], canDeactivate: [DirtycheckGuard]
       },
       {
         path: 'estimate-overview',

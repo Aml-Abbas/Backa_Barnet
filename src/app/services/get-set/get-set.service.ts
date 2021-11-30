@@ -59,4 +59,9 @@ export class GetSetService {
     console.log(info);
     return this.http.post('https://func-ykbb.azurewebsites.net/api/status/edit?code=t0hLgeixqD5hP4bpYzoizDzuklX38U5/28BRLy1C5LJo4S5hzC3kyQ==', info);
   }
+
+  createEstimate(estimateJson: any) {
+    return this.http.post('https://func-ykbb.azurewebsites.net/api/estimate/create?code=ZnNUlhrtXVvn3xAtzMbpBpqMxO5EvvAxkxnYqVa9jaIPixAqZ66BuQ==', estimateJson);
+  }
+
 }

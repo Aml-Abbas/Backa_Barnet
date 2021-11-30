@@ -6,6 +6,8 @@ import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
 import { Observable } from 'rxjs';
 import { Person } from 'src/app/models/Person';
+import { User } from 'src/app/models/User';
+import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 
 @Component({
   selector: 'app-estimate',
@@ -16,10 +18,21 @@ import { Person } from 'src/app/models/Person';
   }]
 
 })
-export class EstimateComponent implements OnInit {
+export class EstimateComponent implements OnInit, ComponentCanDeactivate {
+  canDeactivate(): boolean {
+    return !this.isDirty;
+  }
+
+  isDirty = false;
+
   current_person$= new Observable<Person | null>();
+  current_user$= new Observable<User | null>();
 
   userRoleId: string;
+  msgError:string='';
+
+  personID: string;
+  userID: string;
 
   categories = [
     { area: "OMSORG", id: "care",class: "care-class", 
@@ -31,7 +44,7 @@ export class EstimateComponent implements OnInit {
       {text:'Barnet har tillgängliga vuxna som uppmuntrar och uppmärksammar det', score:''},
       {text:'Barnet får kognitiv stimulans av vuxna i sin närhet', score:''}
     ],
-    comment:'', 
+    comment:'', msgError:'',
     oldScores:[{date:'2021', scores:['3','4','5'], comment:'zdhdrejuzejhhxztjruuxtyu,x m,ruyzty'},
     {date:'2020', scores:['6','7','8'], 
     comment:'zjzedjz<hzdhzdrkmhäl<räglömsdgmlö'},
@@ -60,7 +73,7 @@ export class EstimateComponent implements OnInit {
     {text:'Barnet visar förmåga att bedöma och hantera situationer som kan innebära en risk både för barnet själv och andra', score:''},
     {text: 'Barnet litar på de som finns i dess närhet, såväl barn som vuxna', score:''}, 
     ], 
-    comment:'', 
+    comment:'', msgError:'',
     oldScores:[{date:'2021', scores:['3','4','5']},
     {date:'2020', scores:['3','4','5'], comment:''},
     {date:'2019', scores:['3','4','5'], comment:''},
@@ -80,7 +93,7 @@ export class EstimateComponent implements OnInit {
     {text: 'Barnet mår bra och ser positivt på framtiden', score:''}, 
     {text:'Barnet uppvisar inte negativa eller destruktiva beteenden', score:''}
   ], 
-    comment:'', 
+    comment:'', msgError:'',
     oldScores:[{date:'2021', scores:['3','4','5'], comment:''},
     {date:'2020', scores:['3','4','5'], comment:''},
     {date:'2019', scores:['3','4','5'], comment:''},
@@ -96,7 +109,7 @@ export class EstimateComponent implements OnInit {
     {text:'Barnet och familjen är aktiva tillsammans och gör saker som barnet tycker är roligt', score:''},
     {text: 'Barnet uppmuntras att vara aktiv utifrån sin förmåga, tex deltar i  lek, friluftsliv och idrottsaktiviteter', score:''}, 
     {text: 'Barnet uppmuntras och ges förutsättningar för att utveckla egna intressen och att delta i aktiviteter som är stimulerande', score:''}], 
-    comment:'', 
+    comment:'', msgError:'',
     oldScores:[{date:'2021', scores:['3','4','5'], comment:''},
     {date:'2020', scores:['3','4','5'], comment:''},
     {date:'2019', scores:['3','4','5'], comment:''},
@@ -113,7 +126,7 @@ export class EstimateComponent implements OnInit {
     {text:'Barnet känner sig viktig och uppskattad av de som tar hand om hen', score:''},
     {text: 'Familjen har ett socialt nätverk som deltar aktivt i barnets liv', score:''}
   ],  
-    comment:'', 
+    comment:'', msgError:'',
     oldScores:[{date:'2021', scores:['3','4','5'], comment:''},
     {date:'2020', scores:['3','4','5'], comment:''},
     {date:'2019', scores:['3','4','5'], comment:''},
@@ -134,7 +147,7 @@ export class EstimateComponent implements OnInit {
       {text: 'Barnet vet vad som är rätt och fel och agerar utifrån det', score:''}, 
       {text: 'Barnet visar hänsyn och omtanke om andra',score:''}, 
     ], 
-    comment:'', 
+    comment:'', msgError:'',
     oldScores:[{date:'2021', scores:['3','4','5'], comment:''},
     {date:'2020', scores:['3','4','5'], comment:''},
     {date:'2019', scores:['3','4','5'], comment:''},
@@ -152,7 +165,7 @@ export class EstimateComponent implements OnInit {
       {text:  'Barnet känner att vänner och andra tror på dess förmåga och stöttar hen', score:''}, 
       {text:  'Barnet känner sig lyssnad till, tagen på allvar och är delaktig i viktiga vardagsbeslut', score:''},
     ], 
-    comment:'', 
+    comment:'', msgError:'',
     oldScores:[{date:'2021', scores:['3','4','5'], comment:''},
     {date:'2020', scores:['3','4','5'], comment:''},
     {date:'2019', scores:['3','4','5'], comment:''},
@@ -171,7 +184,7 @@ export class EstimateComponent implements OnInit {
       {text: 'Barnet uppnår kunskapskraven för sin åldern', score:''}, 
       {text:'Barnet utvecklas och lär sig nya saker i olika miljöer', score:''},
     ],  
-    comment:'', 
+    comment:'', msgError:'',
     oldScores:[{date:'2021', scores:['3','4','5'], comment:''},
     {date:'2020', scores:['3','4','5'], comment:''},
     {date:'2019', scores:['3','4','5'], comment:''},
@@ -187,15 +200,157 @@ export class EstimateComponent implements OnInit {
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data=>{
+      this.personID= data?.personID ?? '0'
     });
 
-    this.store.select(fromState.getCurrentUser).subscribe(data=>{
+    this.current_user$= this.store.select(fromState.getCurrentUser);
+    this.current_user$.subscribe(data=>{
       this.userRoleId= String(data?.roleID);
+      this.userID= data?.userID ?? '0'
 
     });
   }
+
+  changeDirty(){
+    this.isDirty= true;
+  }
 save() {
-  console.log(this.categories);
+  this.categories[0].msgError='';
+  this.categories[1].msgError='';
+  this.categories[2].msgError='';
+  this.categories[3].msgError='';
+  this.categories[4].msgError='';
+  this.categories[5].msgError='';
+  this.categories[6].msgError='';
+  this.categories[7].msgError='';
+
+  this.categories[0].questions.forEach(element=>{
+    console.log('in omsorg ');
+    if(element.score==''){
+      console.log('changing omsorg error');
+      this.categories[0].msgError='Missade betyg i Omsorg kategori.';
+      this.msgError='Rätta felen först';
+    }
+  });
+
+  this.categories[1].questions.forEach(element=>{
+    if(element.score==''){
+      this.categories[1].msgError='Missade betyg i TRYGGHET kategori.';
+      this.msgError='Rätta felen först';
+    }
+  });
+
+  this.categories[2].questions.forEach(element=>{
+    if(element.score==''){
+      this.categories[2].msgError='Missade betyg i MÅ BRA kategori.';
+      this.msgError='Rätta felen först';
+    }
+  });
+
+  this.categories[3].questions.forEach(element=>{
+    if(element.score==''){
+      this.categories[3].msgError='Missade betyg i FRITID kategori.';
+      this.msgError='Rätta felen först';
+    }
+  });
+
+  this.categories[4].questions.forEach(element=>{
+    if(element.score==''){
+      this.categories[4].msgError='Missade betyg i TILLHÖRIGHET kategori.';
+      this.msgError='Rätta felen först';
+    }
+  });
+
+  this.categories[5].questions.forEach(element=>{
+    if(element.score==''){
+      this.categories[5].msgError='Missade betyg i ANSVARSTAGANDE kategori.';
+      this.msgError='Rätta felen först';
+    }
+  });
+
+  this.categories[6].questions.forEach(element=>{
+    if(element.score==''){
+      this.categories[6].msgError='Missade betyg i RESPEKTERAS kategori.';
+      this.msgError='Rätta felen först';
+    }
+  });
+
+  this.categories[7].questions.forEach(element=>{
+    if(element.score==''){
+      this.categories[7].msgError='Missade betyg i UTVECKLAS kategori.';
+      this.msgError='Rätta felen först';
+    }
+  });
+
+  if(this.msgError==''){
+    var skattning={
+      PersonID: parseInt(this.personID),
+      UserID: parseInt(this.userID),
+
+      GradeOmsorg1:parseInt(this.categories[0].questions[0].score),
+      GradeOmsorg2:parseInt(this.categories[0].questions[1].score),
+      GradeOmsorg3:parseInt(this.categories[0].questions[2].score),
+      GradeOmsorg4:parseInt(this.categories[0].questions[3].score),
+      GradeOmsorg5:parseInt(this.categories[0].questions[4].score),
+      GradeOmsorg6:parseInt(this.categories[0].questions[5].score),
+      CommentOmsorg:this.categories[0].comment,
+
+      GradeTrygghet1: parseInt(this.categories[1].questions[0].score),
+      GradeTrygghet2: parseInt(this.categories[1].questions[1].score),
+      GradeTrygghet3: parseInt(this.categories[1].questions[2].score),
+      GradeTrygghet4: parseInt(this.categories[1].questions[3].score),
+      GradeTrygghet5: parseInt(this.categories[1].questions[4].score),
+      GradeTrygghet6: parseInt(this.categories[1].questions[5].score),
+      GradeTrygghet7: parseInt(this.categories[1].questions[6].score),
+      GradeTrygghet8: parseInt(this.categories[1].questions[7].score),
+      CommentTrygghet: this.categories[1].comment,
+
+      GradeMarBra1:parseInt(this.categories[2].questions[0].score),
+      GradeMarBra2:parseInt(this.categories[2].questions[1].score),
+      GradeMarBra3:parseInt(this.categories[2].questions[2].score),
+      GradeMarBra4:parseInt(this.categories[2].questions[3].score),
+      GradeMarBra5:parseInt(this.categories[2].questions[4].score),
+      GradeMarBra6:parseInt(this.categories[2].questions[5].score),
+      CommentMarBra: this.categories[2].comment,
+
+      GradeFritid1: parseInt(this.categories[3].questions[0].score),
+      GradeFritid2: parseInt(this.categories[3].questions[1].score),
+      GradeFritid3: parseInt(this.categories[3].questions[2].score),
+      CommentFritid: this.categories[3].comment,
+
+      GradeTillhorighet1: parseInt(this.categories[4].questions[0].score),
+      GradeTillhorighet2:parseInt(this.categories[4].questions[1].score),
+      GradeTillhorighet3:parseInt(this.categories[4].questions[2].score),
+      CommentTillhorighet: this.categories[4].comment,
+
+      GradeAnsvarstagande1: parseInt(this.categories[5].questions[0].score),
+      GradeAnsvarstagande2: parseInt(this.categories[5].questions[1].score),
+      GradeAnsvarstagande3: parseInt(this.categories[5].questions[2].score),
+      GradeAnsvarstagande4: parseInt(this.categories[5].questions[3].score),
+      GradeAnsvarstagande5: parseInt(this.categories[5].questions[4].score),
+      GradeAnsvarstagande6: parseInt(this.categories[5].questions[5].score),
+      GradeAnsvarstagande7: parseInt(this.categories[5].questions[6].score),
+      CommentAnsvarstagande: this.categories[5].comment,
+
+      GradeRespekteras1:parseInt(this.categories[6].questions[0].score),
+      GradeRespekteras2:parseInt(this.categories[6].questions[1].score),
+      GradeRespekteras3:parseInt(this.categories[6].questions[2].score),
+      GradeRespekteras4:parseInt(this.categories[6].questions[3].score),
+      CommentRespekteras: this.categories[6].comment,
+
+      GradeUtvecklas1:parseInt(this.categories[7].questions[0].score),
+      GradeUtvecklas2:parseInt(this.categories[7].questions[1].score),
+      GradeUtvecklas3:parseInt(this.categories[7].questions[2].score),
+      GradeUtvecklas4:parseInt(this.categories[7].questions[3].score),
+      GradeUtvecklas5:parseInt(this.categories[7].questions[4].score),
+      CommentUtvecklas: this.categories[7].comment,
+
+    }
+    console.log(this.personID);
+    console.log(skattning);
+    this.isDirty = false;
+    this.store.dispatch(new fromState.CreateEstimateCard(skattning));
+  }
 }
 
 }

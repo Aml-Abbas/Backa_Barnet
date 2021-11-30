@@ -62,11 +62,11 @@ h1{
   tr{
     border-bottom: 1px solid lightgray;
   }
-
-/* 
-thead{
-  border-bottom: 1px solid lightgray !important;
-} */
+  p{
+    margin-top: 15px;
+    color: brown;
+    font-size: 15px;
+  }
 
   textarea{
     border: 1px solid gray;
