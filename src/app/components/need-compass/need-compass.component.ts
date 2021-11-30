@@ -5,6 +5,9 @@ import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
 import { Observable } from 'rxjs';
 import { Person } from 'src/app/models/Person';
+import { ChartOptions } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
+import { ViewChild } from '@angular/core'
 
 @Component({
   selector: 'app-need-compass',
@@ -12,6 +15,8 @@ import { Person } from 'src/app/models/Person';
   styleUrls: ['./need-compass.component.scss']
 })
 export class NeedCompassComponent implements OnInit {
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
+
   current_person$= new Observable<Person | null>();
 
   selectedType='1';
@@ -65,7 +70,6 @@ export class NeedCompassComponent implements OnInit {
         boxWidth:20,
         fontSize: 15,
         usePointStyle: false,
-        
       }, 
     }
   };
@@ -89,6 +93,10 @@ export class NeedCompassComponent implements OnInit {
     { data: [3, 3, 1, 2, 1, 3, 4, 4], label: 'Dalia Lundberg', backgroundColor:'#eb612d'},
     { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Amina Lundberg', backgroundColor:'#f79c2e'},
 
+  ];
+
+  public data: ChartDataSets[]=[
+    
     { data: [0, 4, 0, 4, 1, 4, 5, 0], label: 'Karl Sundberg', backgroundColor:'#4ba562'},
     { data: [1, 3, 1, 3, 1, 3, 1, 3], label: 'Gustav Sundberg', backgroundColor:'#31acaf'},
     { data: [4, 1, 2, 1, 1, 2, 3, 3], label: 'Elin Sundberg', backgroundColor:'#2F4F4F'},
@@ -105,9 +113,12 @@ export class NeedCompassComponent implements OnInit {
     { data: [5, 4, 5, 4, 5, 4, 5, 5], label: 'Kalle Svensson', backgroundColor:'#D2691E'},
 
   ];
+
   public radarChartType: ChartType = 'radar';
 
   dates: string[]=[];
+
+  data_dates: string[]=['2015','2014','2013'];
 
   constructor(private store: Store<fromState.State>) {
     this.dates=['2021', '2020','2019'];
@@ -120,4 +131,21 @@ export class NeedCompassComponent implements OnInit {
 
   }
 
+  onTypeChange(){
+    console.log('typeChanged');
+    this.radarChartData=[];
+    
+    if(this.selectedType=='2'){
+      this.data.forEach(element=>{
+        console.log('pushing data');
+        this.radarChartData.push(element);
+      });
+    }
+  }
+
+  onDateChange(){
+
+  }
+
+  
 }

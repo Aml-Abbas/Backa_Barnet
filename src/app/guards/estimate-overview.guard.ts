@@ -15,13 +15,19 @@ export class EstimateOverviewGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
     var currentUser= this.store.select(fromState.getCurrentUser);
+    var current_person = this.store.select(fromState.getCurrentPerson);
+
     currentUser.subscribe(data=>{
-      console.log(String(data?.roleID));
-      if(String(data?.roleID)!='2'){
+      if(String(data?.roleID)!='2' && String(data?.roleID)!='4'){
         this.store.dispatch(new fromRoot.Back());
       }
     });
-  
+    current_person.subscribe(data=>{
+      if(data==null){
+        this.store.dispatch(new fromRoot.Back());
+      }
+    });
+
     return of(true);
   }  
   }

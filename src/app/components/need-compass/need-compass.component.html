@@ -10,7 +10,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Vilken typ av data:</mat-label>
-    <mat-select [(ngModel)]="selectedType" name="selectedType">
+    <mat-select [(ngModel)]="selectedType" name="selectedType" (selectionChange)="onTypeChange()">
       <mat-option value="1">Samtalsunderlag</mat-option>
       <mat-option value="2">Skattning</mat-option>
     </mat-select>
@@ -18,7 +18,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Vilket tillfälligt:</mat-label>
-    <mat-select [(ngModel)]="selectedDate" name="selectedDate">
+    <mat-select [(ngModel)]="selectedDate" name="selectedDate" (selectionChange)="onDateChange()">
       <mat-option value="0">Alla</mat-option>
       <mat-option *ngFor="let date of dates, let i= index" value="(i+1)">{{date}}</mat-option>
     </mat-select>
