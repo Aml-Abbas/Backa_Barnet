@@ -8,6 +8,7 @@ import { Person } from 'src/app/models/Person';
 import { ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ViewChild } from '@angular/core'
+import { __metadata } from 'tslib';
 
 @Component({
   selector: 'app-need-compass',
@@ -132,12 +133,10 @@ export class NeedCompassComponent implements OnInit {
   }
 
   onTypeChange(){
-    console.log('typeChanged');
     this.radarChartData=[];
     
     if(this.selectedType=='2'){
       this.data.forEach(element=>{
-        console.log('pushing data');
         this.radarChartData.push(element);
       });
     }
@@ -147,5 +146,15 @@ export class NeedCompassComponent implements OnInit {
 
   }
 
-  
+  toggle(){
+    console.log('in the disable');
+    this.chart.datasets.forEach(function(e,i){
+      e.hidden= !e.hidden;
+      console.log(e);
+      console.log(i);
+     
+    });
+    
+    this.chart.update();
+  }
 }

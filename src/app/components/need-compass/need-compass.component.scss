@@ -34,7 +34,6 @@ h1{
     position: relative;
     top: 0;
     left: 0;
-    //border: 1px blue solid;
     width:1030px !important;
     height:530px !important;
   }
@@ -42,13 +41,17 @@ h1{
   .chart-container {
     position: absolute;
     top: 30px;
-    left: 30px;
-    //border: 1px green solid;
-    
+    left: 30px;    
     width:1000px !important;
     height:500px !important;
   }
 
+  button{
+    background-color: #cde7e6;
+    color: black;
+    margin-right: 20%;
+
+  }
   @media screen and (max-width: 1024px){
     mat-form-field{
       width: 100%;
