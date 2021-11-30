@@ -1,7 +1,12 @@
 <div class="container">
   <h1>Behovskompassen</h1>
 
-  <h4>Bedömning av Kalles situation</h4>
+  <h2 *ngIf=" !(current_person$ | async) as current_person">
+    Välj ett barn först</h2>
+
+    <div *ngIf="(current_person$ | async) as current_person">
+
+  <h4>Bedömning av {{current_person.firstName}}s situation</h4>
 
   <mat-form-field appearance="fill">
     <mat-label>Vilken typ av data:</mat-label>
@@ -32,5 +37,5 @@
       </div>
     </div>
 
-
+  </div>
     </div>

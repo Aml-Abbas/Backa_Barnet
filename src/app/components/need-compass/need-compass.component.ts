@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartType, RadialChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { Store } from '@ngrx/store';
+import * as fromState from '../../state';
+import { Observable } from 'rxjs';
+import { Person } from 'src/app/models/Person';
 
 @Component({
   selector: 'app-need-compass',
@@ -8,6 +12,8 @@ import { Label } from 'ng2-charts';
   styleUrls: ['./need-compass.component.scss']
 })
 export class NeedCompassComponent implements OnInit {
+  current_person$= new Observable<Person | null>();
+
   selectedType='1';
   selectedDate= '0';
   
@@ -103,11 +109,15 @@ export class NeedCompassComponent implements OnInit {
 
   dates: string[]=[];
 
-  constructor() {
+  constructor(private store: Store<fromState.State>) {
     this.dates=['2021', '2020','2019'];
   }
 
   ngOnInit(): void {
+    this.current_person$ = this.store.select(fromState.getCurrentPerson);
+    this.current_person$.subscribe(data=>{
+    });
+
   }
 
 }
