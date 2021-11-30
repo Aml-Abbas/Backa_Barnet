@@ -181,6 +181,11 @@ export class EstimateComponent implements OnInit {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data=>{
     });
+
+    this.store.select(fromState.getCurrentUser).subscribe(data=>{
+      this.userRoleId= String(data?.roleID);
+
+    });
   }
 save() {
   console.log(this.categories);
