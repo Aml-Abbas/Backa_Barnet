@@ -1,21 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
+import { EstimateCard } from 'src/app/models/EstimateCard';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as fromState from '../../state';
 
 export interface PeriodicElement {
   status: string,
   name: string,
   date: string,
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {name: 'Kalle', status:'sparat', date:'2021-08-19'},
-  {name: 'Peter', status:'inte sparad', date:''},
-  {name: 'Deaa', status:'sparat', date:'2021-08-19'},
-  {name: 'Malak', status:'sparat', date:'2021-08-19'},
-  {name: 'Lars', status:'sparat', date:'2021-08-19'},
-  {name: 'Ludviq', status:'sparat', date:'2021-08-19'},
-  {name: 'Anetta', status:'inte sparad', date:''},
-];
+  personID: string,
+  userID : string,
+}
 
 @Component({
   selector: 'app-estimate-overview',
@@ -24,11 +21,28 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class EstimateOverviewComponent implements OnInit {
   displayedColumns: string[] = ['name','status', 'date'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  estimates$: Observable<EstimateCard[]> = new Observable<EstimateCard[]>();
+  estimates: PeriodicElement[] =[];
+  dataSource = new MatTableDataSource(this.estimates);
 
-  constructor() { }
+  constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
+    this.estimates$= this.store.select(fromState.getEstimateCards);
+    this.estimates$.subscribe(data=>{
+      data.map((estimate: EstimateCard)=>{
+        let name= estimate.userName;
+        let status= estimate.status;
+        let date= estimate.gradedOn;
+
+        let personID= estimate.personID;
+        let userID= estimate.userID;
+
+        if(status=='Sparat'){
+          this.estimates.push({name, status, date, personID, userID});
+        }
+      });
+    });
   }
 
   applyFilter(event: Event) {
@@ -37,6 +51,15 @@ export class EstimateOverviewComponent implements OnInit {
   }
 
   compile(){
-    //sammanställa alla skattningar
+    this.estimates.forEach(element=>{
+
+      var skattning={
+        PersonID: element.personID,
+        UserID : element.userID,
+        GradedOn: element.date,
+      }
+
+      this.store.dispatch(new fromState.LockEstimateCards(skattning));
+    });
   }
 }

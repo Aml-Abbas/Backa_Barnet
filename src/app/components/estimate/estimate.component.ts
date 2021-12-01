@@ -9,6 +9,7 @@ import { Person } from 'src/app/models/Person';
 import { User } from 'src/app/models/User';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 import { Estimate } from 'src/app/models/Estimate';
+import { EstimateCard } from 'src/app/models/EstimateCard';
 
 @Component({
   selector: 'app-estimate',
@@ -29,12 +30,64 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
   current_person$= new Observable<Person | null>();
   current_user$= new Observable<User | null>();
 
-  estimatecards: []= [];
+  estimatecards: EstimateCard[]= [];
   userRoleId: string;
   msgError:string='';
 
   personID: string;
   userID: string;
+
+   questionIndex = new Map([
+    [ '1', 0 ],
+    [ "2", 1 ],
+    [ "3", 2 ],
+    [ '4', 3 ],
+    [ "5", 4 ],
+    [ "6", 5 ],
+
+    [ '7', 0 ],
+    [ "8", 1 ],
+    [ "9", 2 ],
+    [ '10',3 ],
+    [ "11", 4 ],
+    [ "12", 5 ],
+    [ '59', 6 ],
+    [ "60", 7 ],
+
+    [ '13', 0 ],
+    [ "14", 1 ],
+    [ "15", 2 ],
+    [ '16', 3 ],
+    [ "17", 4 ],
+    [ "18", 5 ],
+
+    [ '19', 0 ],
+    [ "20", 1 ],
+    [ "21", 2 ],
+
+    [ '22', 0 ],
+    [ "23", 1 ],
+    [ "24", 2 ],
+
+    [ '25', 0 ],
+    [ "26", 1 ],
+    [ "27", 2 ],
+    [ '28', 3 ],
+    [ "29", 4 ],
+    [ "30", 5 ],
+    [ "61", 6 ],
+
+    [ '31', 0 ],
+    [ "32", 1 ],
+    [ "33", 2 ],
+    [ '34', 3 ],
+
+    [ "35", 0 ],
+    [ "36", 1 ],
+    [ '37', 2 ],
+    [ "38", 3 ],
+    [ "39", 4 ],
+]);
 
   categories = [
     { area: "OMSORG", id: "care",class: "care-class", 
@@ -214,20 +267,73 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
 
     this.estimates$ = this.store.select(fromState.getEstimates);
     this.estimates$.subscribe(data=>{
+      var index=1;
+
       data.map((estimate: Estimate)=>{
+
+        let categories_data: any[]=[
+          {scores: {}, comment:''},
+          {scores:{}, comment:''},
+          {scores:{}, comment:''},
+          {scores:{}, comment:''},
+          {scores: {}, comment:''},
+          {scores: {}, comment:''},
+          {scores: {}, comment:''},
+          {scores: {}, comment:''}
+        ];
+
         let questionID= estimate.questionID;
         let personID= estimate.personID;
-
         let userID= estimate.userID;
-        let grade= estimate.grade;
 
+        let grade= estimate.grade;
         let comment= estimate.comment;
+        
         let gradedOn= estimate.gradedOn;
         let changedOn= estimate.changedOn;
         let status= estimate.status;
 
+        let description= estimate.description;
+        let questionLevelID= parseInt(estimate.questionLevelID)-1;
+        let userName= estimate.userName;
+        let index= this.questionIndex.get(String(questionID))??0;
+
+        categories_data[questionLevelID].scores[0]= grade;
+        categories_data[questionLevelID].comment= comment;
+
+        console.log(questionLevelID);
+        console.log(index);
+        console.log(comment);
+        console.log(description);
+
+        if(this.containsCard(gradedOn)){
+          var found= false;
+          this.estimatecards.forEach(element => {
+            if(element.gradedOn== gradedOn && !false){
+              found= true;
+              element.grades[questionLevelID].scores[index]= grade;
+            }      
+          });
+      
+        }else{
+          this.estimatecards.push(new EstimateCard(personID, userID, categories_data, gradedOn, changedOn, status, userName));
+        }
+
       })
     });
+    console.log(this.estimatecards);
+    this.store.dispatch(new fromState.LoadEstimateCards(this.estimatecards));
+
+  }
+
+  containsCard(date: string): boolean{
+    var found= false;
+    this.estimatecards.forEach(element => {
+      if(element.gradedOn== date){
+        found= true;
+      }      
+    });
+    return found;
   }
 
   changeDirty(){

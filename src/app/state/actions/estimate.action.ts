@@ -15,6 +15,10 @@ export const LOAD_ESTIMATE_CARDS = '[Estimate Cards] Load Estimate Cards';
 export const LOAD_ESTIMATE_CARDS_SUCCESS = '[Estimate Cards] Load Estimate Cards Success';
 export const LOAD_ESTIMATE_CARDS_FAIL = '[Estimate Cards] Load Estimate Cards Fail';
 
+export const LOCK_ESTIMATE_CARDS = '[Estimate Cards] Lock Estimate Cards';
+export const LOCK_ESTIMATE_CARDS_SUCCESS = '[Estimate Cards] Lock Estimate Cards Success';
+export const LOCK_ESTIMATE_CARDS_FAIL = '[Estimate Cards] Lock Estimate Cards Fail';
+
 export class CreateEstimateCard implements Action {
     readonly type = CREATE_ESTIMATE;
     constructor(public payload: any) {}
@@ -65,6 +69,26 @@ export class CreateEstimateCard implements Action {
 
   }
   
+  export class LockEstimateCards implements Action {
+    readonly type = LOCK_ESTIMATE_CARDS;
+  
+    constructor(public payload: any) {}
+  }
+  
+  export class LockEstimateCardsSuccess implements Action {
+    readonly type = LOCK_ESTIMATE_CARDS_SUCCESS;
+  
+    constructor(public payload: any) {}
+  }
+  
+  export class LockEstimateCardsFail implements Action {
+    readonly type = LOCK_ESTIMATE_CARDS_FAIL;
+
+    constructor(public payload: any) {}
+
+  }
+
   export type EstimateAction =   LoadEstimate | LoadEstimateSuccess | LoadEstimateFail|
   LoadEstimateCards | LoadEstimateCardsSuccess | LoadEstimateCardsFail|
+  LockEstimateCards | LockEstimateCardsSuccess | LockEstimateCardsFail|
   CreateEstimateCard | CreateEstimateSuccess | CreateEstimateFail ;

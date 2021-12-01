@@ -9,22 +9,28 @@ export class Estimate {
     changedOn: string;
 
     status: string;
+    questionLevelID: string;
+    description:string; 
+    userName: string;
 
     constructor(questionID: string, personID: string, userID: string, 
-        grade: string, comment: string, changedOn: string,
-        gradedOn: string, status: string) {
+        grade: string, comment: string,
+        gradedOn: string, changedOn: string, status: string,
+        description: string, questionLevelID: string, userName: string) {
 
       this.questionID = questionID;
       this.personID = personID;
       this.userID = userID;
+
       this.grade = grade;
       this.comment= comment;
 
       this.gradedOn= gradedOn;
       this.changedOn= changedOn;
-
       this.status= status;
 
-      this.personID= personID;
+      this.description= description;
+      this.questionLevelID= questionLevelID;
+      this.userName= userName;
     }
   }

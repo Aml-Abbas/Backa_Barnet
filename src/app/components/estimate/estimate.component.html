@@ -73,8 +73,8 @@
             <tr role="row">
               <th role="columnheader" [style.color]="category.color">Frågan</th>
               <th role="columnheader" [style.color]="category.color" 
-              *ngFor="let oldScore of category.oldScores;">
-            {{oldScore.date}}</th>        
+              *ngFor="let oldScore of estimatecards;">
+            {{oldScore.gradedOn.slice(0, 10)}}</th>        
           </tr>
         </thead>
 
@@ -83,16 +83,16 @@
            <tr role="row" *ngFor="let question of category.questions; let i= index;">
             <td role="cell"><div style="width: 200px">{{question.text}}</div></td>
 
-               <td role="cell" *ngFor="let oldScore of category.oldScores;">
-                  {{oldScore.scores[i]}}
+               <td role="cell" *ngFor="let oldScore of estimatecards; let i= index;">
+                  {{oldScore.grades[index1].scores[i]}}
                 </td>
           </tr>
     
            <tr role="row">
             <td>Kommentar</td>
 
-            <td *ngFor="let oldScore of category.oldScores;">
-              {{oldScore.comment}}
+            <td *ngFor="let oldScore of estimatecards; let i= index;">
+              {{oldScore.grades[index1].comment}}
             </td>
            </tr>
           

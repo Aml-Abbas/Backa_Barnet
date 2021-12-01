@@ -60,4 +60,27 @@ this.actions$.pipe(
   })));
 
 
+
+  lockEstimate$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(estimateAction.LOCK_ESTIMATE_CARDS),
+    switchMap((action: estimateAction.LockEstimateCards)=>{
+
+      return this.getSetService.lockEstimate(action.payload).pipe(
+        map((response)=> new estimateAction.LockEstimateCardsSuccess(response)),
+        catchError((error: any)=> of(new estimateAction.LockEstimateCardsFail(error)))
+      );
+    })
+    )
+    );
+
+    lockEstimateSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(estimateAction.LOCK_ESTIMATE_CARDS_SUCCESS),
+      switchMap((action: estimateAction.LockEstimateCardsSuccess)=>[
+        new fromRoot.Go({path: ['/contact']}),
+      ])
+      )
+      );
+
 }

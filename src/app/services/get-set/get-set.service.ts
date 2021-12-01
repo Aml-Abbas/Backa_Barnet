@@ -69,4 +69,8 @@ export class GetSetService {
     return this.http.get<Estimate[]>('https://func-ykbb.azurewebsites.net/api/estimate/'+personId+'?code=claTs5kzCfU60tGySXhvQbz3c01kADTGq2QT3nGWPfslBL7tbARORg==');
   }
 
+  lockEstimate(estimateLockJson: any){
+    return this.http.post('https://func-ykbb.azurewebsites.net/api/estimate/lock?code=DP4LbC5ad7QLWG35L1lOWxidF8a54/qwKDrDhUw4D19LtfcCUvC6/Q==', estimateLockJson);
+  }
+  
 }
