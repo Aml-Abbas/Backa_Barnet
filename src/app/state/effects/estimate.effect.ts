@@ -37,4 +37,27 @@ this.actions$.pipe(
 )
 );
 
+
+Estimates$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(estimateAction.LOAD_ESTIMATE),
+    switchMap((action: estimateAction.LoadEstimate) => {
+
+    return this.getSetService.getEstimate(action.payload).pipe(
+      map((response) => new estimateAction.LoadEstimateSuccess(response)),
+      catchError((error: any) => of(new estimateAction.LoadEstimateFail(error)))
+    );
+    })
+  )
+);
+
+
+LoadEstimateCards$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(estimateAction.LOAD_ESTIMATE_CARDS),
+  map((action: estimateAction.LoadEstimateCards) => {
+    return new estimateAction.LoadEstimateCardsSuccess(action.payload);
+  })));
+
+
 }

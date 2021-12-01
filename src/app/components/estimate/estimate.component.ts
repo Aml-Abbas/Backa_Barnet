@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Person } from 'src/app/models/Person';
 import { User } from 'src/app/models/User';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
+import { Estimate } from 'src/app/models/Estimate';
 
 @Component({
   selector: 'app-estimate',
@@ -24,10 +25,11 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
   }
 
   isDirty = false;
-
+  estimates$: Observable<Estimate[]> = new Observable<Estimate[]>();
   current_person$= new Observable<Person | null>();
   current_user$= new Observable<User | null>();
 
+  estimatecards: []= [];
   userRoleId: string;
   msgError:string='';
 
@@ -207,7 +209,24 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
     this.current_user$.subscribe(data=>{
       this.userRoleId= String(data?.roleID);
       this.userID= data?.userID ?? '0'
+    });
+    this.store.dispatch(new fromState.LoadEstimate(this.personID));
 
+    this.estimates$ = this.store.select(fromState.getEstimates);
+    this.estimates$.subscribe(data=>{
+      data.map((estimate: Estimate)=>{
+        let questionID= estimate.questionID;
+        let personID= estimate.personID;
+
+        let userID= estimate.userID;
+        let grade= estimate.grade;
+
+        let comment= estimate.comment;
+        let gradedOn= estimate.gradedOn;
+        let changedOn= estimate.changedOn;
+        let status= estimate.status;
+
+      })
     });
   }
 

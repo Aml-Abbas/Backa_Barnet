@@ -5,6 +5,7 @@ import * as fromPersons from './persons.reducer';
 import * as fromDiscoverCard from './discoverCard.reducer';
 import * as fromCurrentCard from './currentCard.reducer';
 import * as fromConversationMaterial from './conversationMaterial.reducer';
+import * as fromEstimate from './estimate.reducer';
 
 import {hydrationMetaReducer} from './hydration.reducer';
 import {clearMetaReducer} from './clear.reducer';
@@ -32,6 +33,7 @@ export interface State {
     discoverCard: fromDiscoverCard.DiscoverCardState;
     currentCard: fromCurrentCard.CurrentCardState;
     conversationMaterial: fromConversationMaterial.ConversationMaterialSatet;
+    estimate: fromEstimate.EstimateSatet;
   }
   
   export class CustomSerializer
@@ -58,6 +60,7 @@ export interface State {
     discoverCard: fromDiscoverCard.reducer,
     currentCard: fromCurrentCard.reducer,
     conversationMaterial: fromConversationMaterial.reducer,
+    estimate: fromEstimate.reducer,
   };
   
   export const getRouterState = createFeatureSelector<

@@ -53,18 +53,6 @@ export class ConversationMaterialComponent implements OnInit {
         }
         
         let gradeType= conversationMaterial.gradeType;
-/*         let grade1= conversationMaterial.grade1;
-
-        let comment1= '';
-        if(conversationMaterial.comment1!='0'){
-          comment1= conversationMaterial.comment1;
-        }
-        let grade2= conversationMaterial.grade2;
-        let comment2= '';
-        if(conversationMaterial.comment2!='0'){
-          comment2= conversationMaterial.comment2;
-        } */
-
         let gradedOn= conversationMaterial.gradedOn;
         let status= conversationMaterial.status;
 
@@ -128,17 +116,6 @@ export class ConversationMaterialComponent implements OnInit {
     return found;
   }
 
-/*   containsQuestion(card: ConversationCard, questionId: string): boolean{
-    var found= false;
-
-    card.questionsID.forEach(question => {
-      if(question== questionId){
-        found= true;
-      }      
-    });
-    return found;
-  }
- */
   applyFilter(event: Event) {
     this.searchCards=[];
     

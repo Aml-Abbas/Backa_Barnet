@@ -7,7 +7,7 @@ import { Unit } from 'src/app/models/Unit';
 import { Person } from 'src/app/models/Person';
 import { ConversationMaterial } from 'src/app/models/ConversationMaterial';
 import { Status } from 'src/app/models/Status';
-import { Estimate } from 'src/app/models/estimate';
+import { Estimate } from 'src/app/models/Estimate';
 
 
 @Injectable({
