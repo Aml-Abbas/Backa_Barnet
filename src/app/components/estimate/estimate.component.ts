@@ -31,6 +31,8 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
   current_user$= new Observable<User | null>();
 
   estimatecards: EstimateCard[]= [];
+  savedEstimatecards: EstimateCard[]= [];
+
   userRoleId: string;
   msgError:string='';
 
@@ -228,14 +230,26 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
         categories_data[questionLevelID].scores[0]= grade;
         categories_data[questionLevelID].comment= comment;
         if(status=='Sparat'){
-          console.log(grade);
-          console.log(comment);
-          console.log('score is '+this.categories[questionLevelID].questions[index].score);
-          console.log('comment is '+this.categories[questionLevelID].comment);
-          this.categories[questionLevelID].questions[index].score= grade;
-          this.categories[questionLevelID].comment= comment;
+          if(this.containsSavedCard(gradedOn)){
+            var found= false;
+            this.savedEstimatecards.forEach(element => {
+              if(element.gradedOn== gradedOn && !false){
+                found= true;
+                element.grades[questionLevelID].scores[index]= grade;
+                element.grades[questionLevelID].comment= comment;
+  
+              }      
+            });
+        
+          }else{
+            this.savedEstimatecards.push(new EstimateCard(personID, userID, categories_data, gradedOn, changedOn, status, userName));
+          }
+          if(this.userID==userID){
+            this.categories[questionLevelID].questions[index].score= grade;
+            this.categories[questionLevelID].comment= comment;  
+          }
 
-        }else{
+        }else if(this.userID==userID){
           if(this.containsCard(gradedOn)){
             var found= false;
             this.estimatecards.forEach(element => {
@@ -254,14 +268,23 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
 
       })
     });
-    console.log(this.estimatecards);
-    this.store.dispatch(new fromState.LoadEstimateCards(this.estimatecards));
+    this.store.dispatch(new fromState.LoadEstimateCards(this.savedEstimatecards));
 
   }
 
   containsCard(date: string): boolean{
     var found= false;
     this.estimatecards.forEach(element => {
+      if(element.gradedOn== date){
+        found= true;
+      }      
+    });
+    return found;
+  }
+
+  containsSavedCard(date: string): boolean{
+    var found= false;
+    this.savedEstimatecards.forEach(element => {
       if(element.gradedOn== date){
         found= true;
       }      
