@@ -267,7 +267,6 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
 
     this.estimates$ = this.store.select(fromState.getEstimates);
     this.estimates$.subscribe(data=>{
-      var index=1;
 
       data.map((estimate: Estimate)=>{
 
@@ -293,7 +292,6 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
         let changedOn= estimate.changedOn;
         let status= estimate.status;
 
-        let description= estimate.description;
         let questionLevelID= parseInt(estimate.questionLevelID)-1;
         let userName= estimate.userName;
         let index= this.questionIndex.get(String(questionID))??0;
@@ -301,17 +299,14 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
         categories_data[questionLevelID].scores[0]= grade;
         categories_data[questionLevelID].comment= comment;
 
-        console.log(questionLevelID);
-        console.log(index);
-        console.log(comment);
-        console.log(description);
-
         if(this.containsCard(gradedOn)){
           var found= false;
           this.estimatecards.forEach(element => {
             if(element.gradedOn== gradedOn && !false){
               found= true;
               element.grades[questionLevelID].scores[index]= grade;
+              element.grades[questionLevelID].comment= comment;
+
             }      
           });
       
