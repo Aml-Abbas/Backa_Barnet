@@ -73,4 +73,8 @@ export class GetSetService {
     return this.http.post('https://func-ykbb.azurewebsites.net/api/estimate/lock?code=DP4LbC5ad7QLWG35L1lOWxidF8a54/qwKDrDhUw4D19LtfcCUvC6/Q==', estimateLockJson);
   }
   
+  getCompass(personId: string): Observable<any[]> {
+    return this.http.get<any[]>('https://func-ykbb.azurewebsites.net/api/compass/'+personId+'?code=hMDJFiOF9uAnN/maNMnw5dG8WZvt4zcOt9idQr7FGa4OEZ0XkHrYJQ==');
+  }
+
 }
