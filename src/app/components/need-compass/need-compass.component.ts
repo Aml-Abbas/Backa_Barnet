@@ -12,6 +12,8 @@ import { __metadata } from 'tslib';
 import { GetSetService } from '../../services/get-set/get-set.service';
 import { Card } from 'src/app/models/Card';
 import { EstimateCard } from 'src/app/models/EstimateCard';
+import { CompassDataConversation } from 'src/app/models/CompassDataConversation';
+import { CompassDataEstimate } from 'src/app/models/CompassDataEstimate';
 
 @Component({
   selector: 'app-need-compass',
@@ -122,16 +124,17 @@ export class NeedCompassComponent implements OnInit {
 
   public radarChartType: ChartType = 'radar';
 
-  dates: string[]=[];
+  conversationDates: string[]=[];
+  estimateDates: string[]=[];
+  dates: string[];
 
-  data_dates: string[]=['2015','2014','2013'];
-  cards: Card[]= [];
-  estimatecards: EstimateCard[]= [];
+  cards: CompassDataConversation[]= [];
+  estimatecards: CompassDataEstimate[]= [];
+
+  grades: number[]= [];
 
   constructor(private store: Store<fromState.State>,
-     private getSetService: GetSetService) {
-    this.dates=['2021', '2020','2019'];
-  }
+     private getSetService: GetSetService) { }
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
@@ -140,7 +143,7 @@ export class NeedCompassComponent implements OnInit {
     });
 
     this.getSetService.getCompass(this.personID).subscribe(data=>{
-      this.data_dates.map((card: any)=>{
+        this.data.map((card: any)=>{
         let questionID: string = card?.questionID ?? '';
         let questionTypeID: string = card?.questionTypeID ?? '';
         let questionLevelID: string = card?.questionLevelID ?? '';
@@ -152,23 +155,103 @@ export class NeedCompassComponent implements OnInit {
 
         //it is discovercard
         if(questionTypeID=='1'){
-
+          if(!this.containsCard(gradedOn)){
+            this.grades.push(parseInt(grade));
+             this.cards.push(new CompassDataConversation(gradedOn, userID, this.grades));
+               this.grades= [];
+               this.conversationDates.push(gradedOn.slice(0,10));
+          }else{
+               this.cards.forEach(element => {
+                 if(element.gradedOn== gradedOn){
+                   element.grades.push(parseInt(grade));
+                 }      
+               });
+           }
         }else{
-
+          let categories_data: any[]=[
+            {scores: {}},
+            {scores:{}},
+            {scores:{}},
+            {scores:{}},
+            {scores: {}},
+            {scores: {}},
+            {scores: {}},
+            {scores: {}}
+          ];
+          if(this.containsEstimate(gradedOn)){
+            var found= false;
+            this.estimatecards.forEach(element => {
+              if(element.gradedOn== gradedOn && !false){
+                found= true;
+                element.grades[questionLevelID].scores.push(grade);
+              }      
+            });
+          }else{
+            categories_data[questionLevelID].scores[0]= grade;
+            this.estimatecards.push(new CompassDataEstimate(gradedOn, userID, categories_data));
+            this.estimateDates.push(gradedOn.slice(0,10));
+          }  
         }
       })
     });
   }
 
+  containsCard(date: string): boolean{
+    var found= false;
+    this.cards.forEach(element => {
+      if(element.gradedOn== date){
+        found= true;
+      }      
+    });
+    return found;
+  }
+
+  containsEstimate(date: string): boolean{
+    var found= false;
+    this.estimatecards.forEach(element => {
+      if(element.gradedOn== date){
+        found= true;
+      }      
+    });
+    return found;
+  }
+
   onTypeChange(){
     this.radarChartData=[];
-    
+    var colorIndex=0;
+
     if(this.selectedType=='2'){
-      this.data.forEach(element=>{
-        this.radarChartData.push(element);
+      this.dates=[];
+      this.estimateDates.forEach(element=>{
+        this.dates.push(element);
       });
-    }
+
+      this.estimatecards.forEach(element=>{
+        var averageGrades: number[]=[];
+
+        element.grades.forEach(scores=>{
+          var nbr=0;
+          scores.forEach(number => {
+            nbr+= number;
+          });
+          averageGrades.push(nbr/scores.length);
+        });
+
+        this.radarChartData.push({data: averageGrades, label: element.userName, backgroundColor: this.colors[colorIndex]});
+        colorIndex++;
+    });
+    }else{
+      this.dates=[];
+      this.conversationDates.forEach(element=>{
+        this.dates.push(element);
+    });
+    this.cards.forEach(element=>{
+      this.radarChartData.push({data: element.grades, label: element.userName, backgroundColor: this.colors[colorIndex]});
+      colorIndex++;
+    });
+
   }
+}
 
   onDateChange(){
 
@@ -178,9 +261,6 @@ export class NeedCompassComponent implements OnInit {
     console.log('in the disable');
     this.chart.datasets.forEach(function(e,i){
       e.hidden= !e.hidden;
-      console.log(e);
-      console.log(i);
-     
     });
     
     this.chart.update();
