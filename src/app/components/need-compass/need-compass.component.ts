@@ -9,6 +9,9 @@ import { ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { ViewChild } from '@angular/core'
 import { __metadata } from 'tslib';
+import { GetSetService } from '../../services/get-set/get-set.service';
+import { Card } from 'src/app/models/Card';
+import { EstimateCard } from 'src/app/models/EstimateCard';
 
 @Component({
   selector: 'app-need-compass',
@@ -23,6 +26,8 @@ export class NeedCompassComponent implements OnInit {
   selectedType='1';
   selectedDate= '0';
   
+  personID: string;
+
   public radarChartOptions: RadialChartOptions = {
     responsive:true,
     maintainAspectRatio: false,
@@ -120,16 +125,39 @@ export class NeedCompassComponent implements OnInit {
   dates: string[]=[];
 
   data_dates: string[]=['2015','2014','2013'];
+  cards: Card[]= [];
+  estimatecards: EstimateCard[]= [];
 
-  constructor(private store: Store<fromState.State>) {
+  constructor(private store: Store<fromState.State>,
+     private getSetService: GetSetService) {
     this.dates=['2021', '2020','2019'];
   }
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data=>{
+      this.personID= data?.personID?? '';
     });
 
+    this.getSetService.getCompass(this.personID).subscribe(data=>{
+      this.data_dates.map((card: any)=>{
+        let questionID: string = card?.questionID ?? '';
+        let questionTypeID: string = card?.questionTypeID ?? '';
+        let questionLevelID: string = card?.questionLevelID ?? '';
+        let personID: string = card?.personID ?? '';
+        let userID: string = card?.userID ?? '';
+        let grade: string = card?.grade ?? '';
+        let comment: string = card?.comment ?? '';
+        let gradedOn: string = card?.gradedOn ?? '';
+
+        //it is discovercard
+        if(questionTypeID=='1'){
+
+        }else{
+
+        }
+      })
+    });
   }
 
   onTypeChange(){
