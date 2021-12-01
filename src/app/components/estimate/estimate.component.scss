@@ -100,112 +100,6 @@ h1{
   color: gray;
 }
 
-/* 
-::ng-deep #care{
-  td{
-    color: #003686;
-  }
-  .mat-select-arrow{
-    color: #003686;
-  }
-    }
-
-   ::ng-deep #care-panel{
-      background-color: #003686 !important;
-    }
-
-  
-::ng-deep #security{
-  td{
-    color: #353370;
-  }
-  .mat-select-arrow{
-    color: #353370;
-  }
-}
-
-::ng-deep #security-panel{
-  background-color: #353370 !important;
-}
-
-::ng-deep #feel_good{
-  td{
-    color: #e0448c;
-  }
-  .mat-select-arrow{
-    color: #e0448c;
-  }
-}
-
-::ng-deep #feel_good-panel{
-  background-color: #e0448c !important;
-}
-
-::ng-deep #free_time{
-  td{
-    color: #df2d5b;
-  }   
-  .mat-select-arrow{
-    color: #df2d5b;
-  }
-}
-
-::ng-deep #free_time-panel{
-  background-color: #df2d5b !important;
-}
-
-::ng-deep #beloning{
-  td{
-    color: #eb612d;
-  }   
-  .mat-select-arrow{
-    color: #eb612d;
-  }
-}
-
-::ng-deep #beloning-panel{
-  background-color: #eb612d !important;
-}
-
-::ng-deep #responsibility{
-  td{
-    color: #f79c2e;
-  }  
-  .mat-select-arrow{
-    color: #f79c2e;
-  }
-}
-
-::ng-deep #responsibility-panel{
-  background-color: #f79c2e !important;
-}
-
-::ng-deep #respekt{
-  td{
-    color: #4ba562;
-  }   
-  .mat-select-arrow{
-    color: #4ba562;
-  }
-}
-
-::ng-deep #respekt-panel{
-  background-color: #4ba562 !important;
-}
-
-::ng-deep #develop{
-  td{
-    color: #31acaf;
-  } 
-  .mat-select-arrow{
-    color: #31acaf;
-  } 
-}
-
-::ng-deep #develop-panel{
-  background-color: #31acaf !important;
-} */
-
 .show-more{
   color: white;
   width: 25%;
@@ -215,7 +109,7 @@ h1{
 
 @media screen and (max-width: 1024px){
   .show-more{
-    width: 100%;
+    width: 40%;
   }
   
 }
