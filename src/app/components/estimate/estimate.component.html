@@ -36,11 +36,11 @@
               <td role="cell"><div style="width: 200px">{{question.text}}</div></td>
               <td role="cell">
                 <mat-select id="{{category.id}}" [(ngModel)]="question.score" name="{{question.score}}">
-                  <mat-option (click)="changeDirty()" value="1">1</mat-option>
-                  <mat-option (click)="changeDirty()" value="2">2</mat-option>
-                  <mat-option (click)="changeDirty()" value="3">3</mat-option>
-                  <mat-option (click)="changeDirty()" value="4">4</mat-option>
-                  <mat-option (click)="changeDirty()" value="5">5</mat-option>
+                  <mat-option (click)="changeDirty()" [value]="1">1</mat-option>
+                  <mat-option (click)="changeDirty()" [value]="2">2</mat-option>
+                  <mat-option (click)="changeDirty()" [value]="3">3</mat-option>
+                  <mat-option (click)="changeDirty()" [value]="4">4</mat-option>
+                  <mat-option (click)="changeDirty()" [value]="5">5</mat-option>
                 </mat-select>  
               </td>
         </tr>
