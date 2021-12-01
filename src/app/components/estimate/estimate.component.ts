@@ -298,20 +298,29 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
 
         categories_data[questionLevelID].scores[0]= grade;
         categories_data[questionLevelID].comment= comment;
+        if(status=='Sparat'){
+          console.log(grade);
+          console.log(comment);
+          console.log('score is '+this.categories[questionLevelID].questions[index].score);
+          console.log('comment is '+this.categories[questionLevelID].comment);
+          this.categories[questionLevelID].questions[index].score= grade;
+          this.categories[questionLevelID].comment= comment;
 
-        if(this.containsCard(gradedOn)){
-          var found= false;
-          this.estimatecards.forEach(element => {
-            if(element.gradedOn== gradedOn && !false){
-              found= true;
-              element.grades[questionLevelID].scores[index]= grade;
-              element.grades[questionLevelID].comment= comment;
-
-            }      
-          });
-      
         }else{
-          this.estimatecards.push(new EstimateCard(personID, userID, categories_data, gradedOn, changedOn, status, userName));
+          if(this.containsCard(gradedOn)){
+            var found= false;
+            this.estimatecards.forEach(element => {
+              if(element.gradedOn== gradedOn && !false){
+                found= true;
+                element.grades[questionLevelID].scores[index]= grade;
+                element.grades[questionLevelID].comment= comment;
+  
+              }      
+            });
+        
+          }else{
+            this.estimatecards.push(new EstimateCard(personID, userID, categories_data, gradedOn, changedOn, status, userName));
+          }
         }
 
       })

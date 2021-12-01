@@ -38,9 +38,8 @@ export class EstimateOverviewComponent implements OnInit {
         let personID= estimate.personID;
         let userID= estimate.userID;
 
-        if(status=='Sparat'){
           this.estimates.push({name, status, date, personID, userID});
-        }
+        
       });
     });
   }
