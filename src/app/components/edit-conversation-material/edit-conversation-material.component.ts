@@ -207,9 +207,11 @@ send(nbr: number): void{
   console.log(conversationMaterial);
 
   var title= 'Ändra samtalsunderlag';
-  var text= 'Kortet kommer att sparas';
-
- if(nbr==2){
+  var text= '';
+  if(nbr==1){
+    text= 'Kortet kommer att sparas';
+  }
+ else if(nbr==2){
     text= 'Barnet kommer delas status "behoveruppfylt"';
     this.current_person.status= 'Behov uppfyllt';
   }else{
