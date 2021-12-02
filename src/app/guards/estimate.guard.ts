@@ -20,7 +20,6 @@ export class EstimateGuard implements CanActivate {
         this.store.dispatch(new fromRoot.Back());
       }
     });
-  
     return of(true);
   }  
   }

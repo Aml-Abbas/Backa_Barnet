@@ -17,8 +17,6 @@ export class DiscoverCardEditGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
     var id= route.params.discoverCardId;
-    console.log(id);
-
     return this.checkDiscoverCard(id);
   }
   

@@ -16,8 +16,6 @@ export class DiscoverCardDetailsGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
     var id= route.params.discoverCardId;
-    console.log(id);
-
     return this.checkDiscoverCard(id);
   }
   
@@ -37,9 +35,6 @@ export class DiscoverCardDetailsGuard implements CanActivate {
     if(!found){
     this.store.dispatch(new fromRoot.Go({ path: ['discover-card'] }));
     }
-    console.log('returning ');
-    console.log(found);
-
     return of(found);
   }
 }

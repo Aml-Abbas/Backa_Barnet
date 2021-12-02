@@ -25,9 +25,7 @@ export class DiscoverCardComponent implements OnInit {
   ngOnInit(): void {
     this.current_user$ = this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data => {
-      let userID: string = data?.userID ?? '';
-      this.store.dispatch(new fromState.LoadDiscoverCard(userID));
-       
+      let userID: string = data?.userID ?? '';       
        this.pcards= this.getSetService.getCards(userID);
     });
     let cards= this.cards;
@@ -41,6 +39,7 @@ export class DiscoverCardComponent implements OnInit {
     cards.forEach(element=>{
       this.cards.push(element);
     });
+    
       }
 
   moveToCard(card: Card){
