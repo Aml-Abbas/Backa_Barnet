@@ -39,12 +39,12 @@ createConversationMaterialSuccess$ = createEffect(() =>
 /*     this.store.select(fromState.getCurrentPerson).subscribe(data=>{
       this.store.dispatch(new fromState.LoadConversationMaterial(data?.personID ?? ''));
     }),
- */      new fromRoot.Go({path: ['/contact']}),
+ */      new fromRoot.Go({path: ['/conversation-material']}),
 ])
   )
 );
 
-conversationMaterial$ = createEffect(() =>
+/* conversationMaterial$ = createEffect(() =>
   this.actions$.pipe(
     ofType(conversationMaterialAction.LOAD_COVERSATION_MATERIAL),
     switchMap((action: conversationMaterialAction.LoadConversationMaterial) => {
@@ -55,7 +55,7 @@ conversationMaterial$ = createEffect(() =>
     );
     })
   )
-);
+); */
 
 
 updateCurrentConversationCard$ = createEffect(() =>
@@ -90,7 +90,7 @@ updateConversationCardSuccess$ = createEffect(() =>
   this.actions$.pipe(
     ofType(conversationMaterialAction.UPDATE_CONVERSATION_CARD_SUCCESS),
     switchMap((action: conversationMaterialAction.UpdateConversationCardSuccess) =>[
-      new fromRoot.Go({path: ['/contact']}),
+      new fromRoot.Go({path: ['/conversation-material']}),
     ])
   )
 );

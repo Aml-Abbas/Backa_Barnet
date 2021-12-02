@@ -10,6 +10,7 @@ import { Status } from 'src/app/models/Status';
 import { Estimate } from 'src/app/models/Estimate';
 import { Card } from 'src/app/models/Card';
 import axios from 'axios';
+import { ConversationCard } from 'src/app/models/ConversationCard';
 
 
 @Injectable({
@@ -26,7 +27,7 @@ export class GetSetService {
     return this.http.get<Contact[]>('https://func-ykbb.azurewebsites.net/api/contact/' + personNbr + '?code=tc2OJy49azMOIqZUVev09yLarIt8kQfg7gr6GGs3uG3daqLORwHPhg==');
   }
 
-  async  getCards(userId: string): Promise<Card[]> {
+  async getCards(userId: string): Promise<Card[]> {
     var cards: Card[]= [];
 
   await axios.get('https://func-ykbb.azurewebsites.net/api/card/'+userId+'?code=bbdIBAbikn/AMydOBvxm69FyKFhRfS4fxUb55SaSz0TfK/cjnxiYEw==')
@@ -111,8 +112,6 @@ export class GetSetService {
   })
   .then(function () {
   });
-
-    console.log('cards is '+ cards);
     return cards;
   }
 
@@ -128,8 +127,88 @@ export class GetSetService {
     return this.http.post('https://func-ykbb.azurewebsites.net/api/card/edit?code=cCU4EzCLLZa4rtBjMG3eyeR6PnEnAZny88uJC7WXI2axOzTaeJfIJA==', discoverCardJson);
   }
 
-   getConversationMaterial(personId: string): Observable<ConversationMaterial[]> {
-    return this.http.get<ConversationMaterial[]>('https://func-ykbb.azurewebsites.net/api/substrate/'+personId +'?code=ggX3h9u8RzHKyqnuNwDAdMdAMV6pceMAHuwRcHEt1UHw14gh1KFI5Q==');
+  async getConversationMaterial(personId: string): Promise<ConversationCard[]> {
+    var cards: ConversationCard[]= [];
+
+    await axios.get('https://func-ykbb.azurewebsites.net/api/substrate/'+personId +'?code=ggX3h9u8RzHKyqnuNwDAdMdAMV6pceMAHuwRcHEt1UHw14gh1KFI5Q==')
+    .then(function (response) {  
+      var questionsID: string []= [];
+      var grades: string[]= [];
+      var comments: string[]= [];
+      var grades1: string[]= [];
+      var comments1: string[]= [];
+      var grades2: string[]= [];
+      var comments2: string[]= [];
+    
+      console.log(response);
+        var index=1;
+        response.data.forEach((conversationMaterial: ConversationMaterial)=>{
+          let questionID= conversationMaterial.questionID;
+          let personID= conversationMaterial.personID;
+  
+          let grade= conversationMaterial.grade;
+  
+          let comment= '';
+          if(conversationMaterial.comment!='0'){
+            comment= conversationMaterial.comment;
+          }
+          
+          let gradeType= conversationMaterial.gradeType;
+          let gradedOn= conversationMaterial.gradedOn;
+          let status= conversationMaterial.status;
+  
+  
+          if(!containsCardDiscoverCard(cards, conversationMaterial.gradedOn)){
+           questionsID.push(questionID);
+           if(gradeType=='Guardian2'){
+            grades2.push(grade);
+            comments2.push(comment);
+           }else if(gradeType=='Guardian1'){
+            grades1.push(grade);
+            comments1.push(comment);
+           }else{
+            grades.push(grade);
+            comments.push(comment);
+           }
+  
+           cards.push(new ConversationCard(String(index), personID, questionsID, grades, comments,
+              grades1, comments1, grades2, comments2, gradedOn, status));
+              questionsID= [];
+  
+              grades= [];
+              comments= [];
+              grades1= [];
+              comments1= [];
+              grades2= [];
+              comments2= [];
+  
+              index++;
+            }else{
+              cards.forEach(element => {
+                if(element.gradedOn== gradedOn){
+                  element.questionsID.push(questionID);
+                  if(gradeType=='Guardian2'){
+                    element.guardian2_scores.push(grade);
+                    element.guardian2_comments.push(comment);
+    
+                     }else if(gradeType=='Guardian1'){
+                      element.guardian1_scores.push(grade);
+                      element.guardian1_comments.push(comment);
+                       }else{
+                        element.person_scores.push(grade);
+                        element.person_comments.push(comment);
+                       }
+                }      
+              });
+          }
+        })
+  })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .then(function () {
+    });
+        return cards;
   }
 
   createConversationMaterial(coversationMaterial: any) {
@@ -188,3 +267,12 @@ function containsCard(cards: Card[], gradedOn: string) {
   return found;
 }
 
+function containsCardDiscoverCard(cards: ConversationCard[], gradedOn: string) {
+  var found= false;
+  cards.forEach(element => {
+    if(element.gradedOn== gradedOn){
+      found= true;
+    }      
+  });
+  return found;
+}

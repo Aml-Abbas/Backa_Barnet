@@ -6,6 +6,7 @@ import { ConversationMaterial } from 'src/app/models/ConversationMaterial';
 import { Observable } from 'rxjs';
 import { ConversationCard } from 'src/app/models/ConversationCard';
 import { Person } from 'src/app/models/Person';
+import { GetSetService } from '../../services/get-set/get-set.service';
 
 @Component({
   selector: 'app-conversation-material',
@@ -16,27 +17,35 @@ export class ConversationMaterialComponent implements OnInit {
   conversationMaterial$: Observable<ConversationMaterial[]> = new Observable<ConversationMaterial[]>();
   
   ConversationCards: ConversationCard[]= [];
-  questionsID: string []= [];
-  grades: string[]= [];
-  comments: string[]= [];
-  grades1: string[]= [];
-  comments1: string[]= [];
-  grades2: string[]= [];
-  comments2: string[]= [];
+  pcards: Promise<ConversationCard[]>= new Promise((resolve, reject) => { });
 
   searchCards: ConversationCard[]= [];
   personID: string;
 
   current_person$= new Observable<Person | null>();
 
-  constructor(private store: Store<fromState.State>) {}
+  constructor(private store: Store<fromState.State>,
+    private getSetService: GetSetService) {}
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data=>{
       this.personID = data?.personID ?? '';
+      this.pcards= this.getSetService.getConversationMaterial(this.personID);
     });
-    this.store.dispatch(new fromState.LoadConversationMaterial(this.personID));
+    let cards= this.ConversationCards;
+
+    this.pcards.then(function (response) {
+      
+      response.forEach((card: ConversationCard)=>{
+        cards.push(card);
+    });
+    });
+    cards.forEach(element=>{
+      this.ConversationCards.push(element);
+    });
+
+/*     this.store.dispatch(new fromState.LoadConversationMaterial(this.personID));
 
     this.conversationMaterial$ = this.store.select(fromState.getConversationMaterial);
     this.conversationMaterial$.subscribe(data=>{
@@ -104,7 +113,7 @@ export class ConversationMaterialComponent implements OnInit {
         });
         this.store.dispatch(new fromState.UpdateConversationCards(this.ConversationCards));
 
-  }
+ */  }
 
   containsCard(date: string): boolean{
     var found= false;
@@ -129,11 +138,15 @@ export class ConversationMaterialComponent implements OnInit {
   }
 
   moveToCard(card: ConversationCard){
+    this.store.dispatch(new fromState.UpdateConversationCards(this.ConversationCards));
+
     this.store.dispatch(new fromState.UpdateCurrentConversationCard(card));
     this.store.dispatch(new fromRoot.Go({ path: ['/conversation-material', card.id] }));
   }
 
   moveToEditCard(card: ConversationCard){
+    this.store.dispatch(new fromState.UpdateConversationCards(this.ConversationCards));
+
     this.store.dispatch(new fromState.UpdateCurrentConversationCard(card));
     this.store.dispatch(new fromRoot.Go({ path: ['/edit-conversation-material', card.id] }));
   }
