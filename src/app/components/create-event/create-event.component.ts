@@ -14,11 +14,10 @@ export class CreateEventComponent implements OnInit {
 
   ngOnInit(): void {
     this.createPlanFormGroup = this._formBuilder.group({
-      dateControl: ['', Validators.required],
       nameControl: ['', [Validators.required, Validators.minLength(2)]],
-      proControl: ['', [Validators.required]],
-      eventControl: ['', [Validators.required]],
-      planControl: ['', [Validators.required]],
+      proControl: ['', [Validators.required, Validators.minLength(2)]],
+      eventControl: ['', [Validators.required, Validators.minLength(10)]],
+      planControl: ['', [Validators.required], Validators.minLength(10)],
 
     }); 
   }
