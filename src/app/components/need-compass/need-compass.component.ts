@@ -25,7 +25,7 @@ export class NeedCompassComponent implements OnInit {
 
   current_person$= new Observable<Person | null>();
 
-  selectedType='1';
+  selectedType='0';
   selectedDate= '0';
   
   personID: string;
@@ -94,7 +94,7 @@ export class NeedCompassComponent implements OnInit {
                            '#D2691E'];
 
   public radarChartData: ChartDataSets[] = [
-    { data: [0, 4, 0, 4, 1, 4, 5, 0], label: 'Anna Lundberg', backgroundColor:'#003686'},
+    { data: [], label: '', backgroundColor:''},
   ];
 
   questionIndex = new Map([
@@ -257,6 +257,7 @@ export class NeedCompassComponent implements OnInit {
 
     if(this.selectedType=='2'){
       this.dates.clear();
+      this.selectedDate= this.estimateDates[0];
       this.estimateDates.forEach(element=>{
         this.dates.add(element);
       });
@@ -272,17 +273,22 @@ export class NeedCompassComponent implements OnInit {
           
          averageGrades.push(Math.round(nbr/score.scores.length));
         });
+        if(element.gradedOn.slice(0,10)== this.selectedDate){
         this.radarChartData.push({data: averageGrades, label: element.userName, backgroundColor: this.colors[colorIndex]});
         colorIndex++;
+        }
     });
     }else{
       this.dates.clear();
+      this.selectedDate= this.conversationDates[0];
       this.conversationDates.forEach(element=>{
         this.dates.add(element);
     });
     this.cards.forEach(element=>{  
+      if(element.gradedOn.slice(0,10)== this.selectedDate){
       this.radarChartData.push({data: element.grades, label: element.userName, backgroundColor: this.colors[colorIndex]});
       colorIndex++;
+      }
     });
 
   }
