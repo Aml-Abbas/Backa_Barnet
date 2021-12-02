@@ -1,18 +1,13 @@
 button{
-  margin-left: 12.5%;
-  width: 20%;
+  width: 10%;
   background-color: #cde7e6;
   color: black;
   margin-bottom: 15px;
-  margin-right: 60%;
+  margin-right: 15px;
 }
 
 mat-label{
   color: black;
-}
-
-.full-width{
-  width: 100%;
 }
 
 mat-form-field{
@@ -39,8 +34,6 @@ mat-form-field{
   size: 16px;
   margin-right: 50%;
   background-color: transparent;
-  margin-left: 0%;
-  width: 10%;
 }
 
 ::ng-deep .mat-focused .mat-form-field-required-marker{

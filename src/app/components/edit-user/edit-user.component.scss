@@ -27,11 +27,11 @@ p{
 }
 
 button{
-  margin-left: 12.5%;
-  width: 20%;
+  width: 10%;
   background-color: #cde7e6;
   color: black;
   margin-bottom: 15px;
+  margin-right: 15px;
 }
 
 ::ng-deep .mat-focused .mat-form-field-required-marker{
@@ -66,16 +66,7 @@ color: #663399;
 size: 16px;
 background-color: transparent;
 margin-left: 0%;
-width: 10%;
 }
-
-.delete-button{
-background-color: brown;
-margin-left: 0%;
-margin-right: 60%;
-color: white;
-}
-
 
 ::ng-deep .mat-primary .mat-pseudo-checkbox-checked{
 background-color: white !important;

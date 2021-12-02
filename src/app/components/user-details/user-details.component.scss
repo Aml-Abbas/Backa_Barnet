@@ -1,6 +1,5 @@
 table {
     width: 100%;
-    background-color: whitesmoke;
     border-collapse: collapse;
     padding: 5px;
   }
@@ -45,4 +44,8 @@ table {
 
 li{
   margin-left: 40px;
+}
+
+mat-list{
+  background-color: whitesmoke;
 }

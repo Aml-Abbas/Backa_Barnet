@@ -72,4 +72,9 @@ export class EditBarnteamComponent implements OnInit {
 
     }
   }
+
+  delete(){
+
+  }
+  
 }

@@ -87,6 +87,10 @@ export class EditUserComponent implements OnInit {
     
   }
 
+  delete(){
+
+  }
+  
   changeRole(nbr: number){
     if(nbr==0){
       this.unitNbr=0;
