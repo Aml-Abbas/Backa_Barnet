@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
 import * as fromState from '../../state';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
-import { DiscoverCard } from 'src/app/models/DiscoverCard';
 import { User } from 'src/app/models/User';
 import { Card } from 'src/app/models/Card';
 import { Observable } from 'rxjs';
+import { GetSetService } from '../../services/get-set/get-set.service';
 
 @Component({
   selector: 'app-discover-card',
@@ -14,132 +13,57 @@ import { Observable } from 'rxjs';
   styleUrls: ['./discover-card.component.scss']
 })
 export class DiscoverCardComponent implements OnInit {
-  discoverCards$: Observable<DiscoverCard[]> = new Observable<DiscoverCard[]>();
+  discoverCards$: Observable<Card[]> = new Observable<Card[]>();
   current_user$: Observable<User| null> = new Observable<User| null>();
-  cards: Card[]= [];
+  pcards: Promise<Card[]>= new Promise((resolve, reject) => { });
   questions: string []= [];
   grades: string[]= [];
   comments: string[]= [];
   searchCards: Card[]= [];
+  cards : Card[]= [];
 
-  constructor(private store: Store<fromState.State>) {}
+  constructor(private store: Store<fromState.State>,
+    private getSetService: GetSetService) {}
 
   ngOnInit(): void {
     this.current_user$ = this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data => {
       let userID: string = data?.userID ?? '';
       this.store.dispatch(new fromState.LoadDiscoverCard(userID));
+       
+       this.pcards= this.getSetService.getCards(userID);
     });
+    let cards= this.cards;
 
-    this.discoverCards$ = this.store.select(fromState.getDiscoverCards);
-    this.discoverCards$.subscribe(data=>{
-      var index=1;
-      data.map((discoverCard: DiscoverCard)=>{
-        let gradedOn= discoverCard.gradedOn;
-
-        let userName= discoverCard.userName;
-        let userOrg= discoverCard.userOrg;
-        let userTitle= discoverCard.userTitle;
-
-        let personName='Dolt';
-        if(discoverCard.personName !=" "){
-          personName= discoverCard.personName;
-        }
-        let personNbr='Dolt';
-        if(discoverCard.personNbr!=""){
-          personNbr= discoverCard.personNbr;
-        }
-        let guardian1='Dolt';
-        if(discoverCard.guardian1 !=''){
-          guardian1= discoverCard.guardian1;
-        }
-        let guardianPersonNbr1='Dolt';
-        if(discoverCard.guardianPersonNbr1 !=''){
-          guardianPersonNbr1= discoverCard.guardianPersonNbr1;
-        }
-        let guardian2='Dolt';
-        if(discoverCard.guardian2 !=''){
-          guardian2= discoverCard.guardian2;
-        }
-        let guardianPersonNbr2='Dolt';
-        if(discoverCard.guardianPersonNbr2 !=''){
-          guardianPersonNbr2= discoverCard.guardianPersonNbr2;
-        }
-
-        let unit = discoverCard.unit;
-        let situation = discoverCard.situation;
-
-        let questionID= discoverCard.questionID;
-        let grade= discoverCard.grade;
-        let comment='';
-        if(discoverCard.comment !='0'){
-          comment= discoverCard.comment;
-        }
-        let status =discoverCard.status;
-        let personID= discoverCard.personID;
-
-        if(!this.containsCard(discoverCard.gradedOn)){
-         this.questions.push(questionID);
-         this.grades.push(grade);
-         this.comments.push(comment);
-          this.cards.push(new Card(String(index), gradedOn, userName, userOrg, userTitle,
-            personName, personNbr, guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2,
-            unit, situation, this.questions, this.grades, this.comments, status, personID));
-            this.questions= [];
-            this.grades= [];
-            this.comments= [];
-          
-            index++;
-          }else{
-            this.cards.forEach(element => {
-              if(element.gradedOn== gradedOn && !this.containsQuestion(element, questionID)){
-                element.questions.push(questionID);
-                element.grades.push(grade);
-                element.comments.push(comment);
-              }      
-            });
-        }
-      })
-        });
-      //  this.dataSource.data = this.cards;
-        this.store.dispatch(new fromState.UpdateCards(this.cards));
+    this.pcards.then(function (response) {
+      
+      response.forEach((card: Card)=>{
+        cards.push(card);
+    });
+    });
+    cards.forEach(element=>{
+      this.cards.push(element);
+    });
       }
 
   moveToCard(card: Card){
+    this.store.dispatch(new fromState.UpdateCards(this.cards));
+
     this.store.dispatch(new fromState.UpdateCard(card));
     this.store.dispatch(new fromRoot.Go({ path: ['/discover-card', card.id] }));
   }
 
   moveToEditCard(card: Card){
+    this.store.dispatch(new fromState.UpdateCards(this.cards));
+
     this.store.dispatch(new fromState.UpdateCard(card));
     this.store.dispatch(new fromRoot.Go({ path: ['/edit-discover-card', card.id] }));
-  }
-
-  containsCard(date: string): boolean{
-    var found= false;
-    this.cards.forEach(element => {
-      if(element.gradedOn== date){
-        found= true;
-      }      
-    });
-    return found;
-  }
-
-  containsQuestion(card: Card, questionId: string): boolean{
-    var found= false;
-
-    card.questions.forEach(question => {
-      if(question== questionId){
-        found= true;
-      }      
-    });
-    return found;
   }
 
   applyFilter(event: Event) {
     this.searchCards=[];
     
-    const filterValue = (event.target as HTMLInputElement).value;
+     const filterValue = (event.target as HTMLInputElement).value;
     console.log(this.searchCards);
     this.cards.forEach(card=>{
       if(card.personName.includes(filterValue) || card.userName.includes(filterValue)|| card.status.includes(filterValue)|| card.gradedOn.includes(filterValue)){
@@ -147,5 +71,4 @@ export class DiscoverCardComponent implements OnInit {
       }
    });
   }
-
 }

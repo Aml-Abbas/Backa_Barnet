@@ -13,7 +13,7 @@ export class DiscoverCardEffect {
               private getSetService: GetSetService) {
   }
 
-discoverCard$ = createEffect(() =>
+/* discoverCard$ = createEffect(() =>
   this.actions$.pipe(
     ofType(discoverCardAction.LOAD_DISCOVERCARD),
     switchMap((action: discoverCardAction.LoadDiscoverCard) => {
@@ -25,7 +25,7 @@ discoverCard$ = createEffect(() =>
     })
   )
 );
- 
+ */ 
 createDiscoverCard$ = createEffect(() =>
   this.actions$.pipe(
     ofType(discoverCardAction.CREATE_DISCOVERCARD),
@@ -44,7 +44,7 @@ createDiscoverCardSuccess$ = createEffect(() =>
     ofType(discoverCardAction.CREATE_DISCOVERCARD_SUCCESS),
     switchMap((action: discoverCardAction.CreateDiscoverCardSuccess) =>[
       
-      new fromRoot.Go({path: ['/contact']}),
+      new fromRoot.Go({path: ['/discover-card']}),
     ])
   )
 );
@@ -68,7 +68,7 @@ updateDiscoverCardSuccess$ = createEffect(() =>
   this.actions$.pipe(
     ofType(discoverCardAction.UPDATE_DISCOVERCARD_SUCCESS),
     switchMap((action: discoverCardAction.UpdateDiscoverCardSuccess) =>[
-      new fromRoot.Go({path: ['/contact']}),
+      new fromRoot.Go({path: ['/discover-card']}),
     ])
   )
 );

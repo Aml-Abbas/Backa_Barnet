@@ -1,10 +1,11 @@
 import {DiscoverCard} from '../../models/DiscoverCard';
 import * as discoverCardAction from '../actions/discoverCard.action';
+import {Card} from '../../models/Card';
 
 export interface DiscoverCardState {
   discoverCardLoading: boolean;
   discoverCardLoaded: boolean;
-  discoverCards: DiscoverCard[];
+  discoverCards: Card[];
 }
 
 export const initialState: DiscoverCardState = {

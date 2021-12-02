@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Contact } from 'src/app/models/Contact';
 import { DiscoverCard } from 'src/app/models/DiscoverCard';
 import { Unit } from 'src/app/models/Unit';
@@ -8,6 +8,8 @@ import { Person } from 'src/app/models/Person';
 import { ConversationMaterial } from 'src/app/models/ConversationMaterial';
 import { Status } from 'src/app/models/Status';
 import { Estimate } from 'src/app/models/Estimate';
+import { Card } from 'src/app/models/Card';
+import axios from 'axios';
 
 
 @Injectable({
@@ -24,8 +26,94 @@ export class GetSetService {
     return this.http.get<Contact[]>('https://func-ykbb.azurewebsites.net/api/contact/' + personNbr + '?code=tc2OJy49azMOIqZUVev09yLarIt8kQfg7gr6GGs3uG3daqLORwHPhg==');
   }
 
-  getCards(userId: string): Observable<DiscoverCard[]> {
-    return this.http.get<DiscoverCard[]>('https://func-ykbb.azurewebsites.net/api/card/'+userId+'?code=bbdIBAbikn/AMydOBvxm69FyKFhRfS4fxUb55SaSz0TfK/cjnxiYEw==');
+  async  getCards(userId: string): Promise<Card[]> {
+    var cards: Card[]= [];
+
+  await axios.get('https://func-ykbb.azurewebsites.net/api/card/'+userId+'?code=bbdIBAbikn/AMydOBvxm69FyKFhRfS4fxUb55SaSz0TfK/cjnxiYEw==')
+  .then(function (response) {
+    var questions: string []= [];
+    var grades: string[]= [];
+    var comments: string[]= [];
+
+    console.log(response);
+      var index=1;
+      response.data.forEach((discoverCard: DiscoverCard)=>{
+        let gradedOn= discoverCard.gradedOn;
+
+        let userName= discoverCard.userName;
+        let userOrg= discoverCard.userOrg;
+        let userTitle= discoverCard.userTitle;
+
+        let personName='Dolt';
+        if(discoverCard.personName !=" "){
+          personName= discoverCard.personName;
+        }
+        let personNbr='Dolt';
+        if(discoverCard.personNbr!=""){
+          personNbr= discoverCard.personNbr;
+        }
+        let guardian1='Dolt';
+        if(discoverCard.guardian1 !=''){
+          guardian1= discoverCard.guardian1;
+        }
+        let guardianPersonNbr1='Dolt';
+        if(discoverCard.guardianPersonNbr1 !=''){
+          guardianPersonNbr1= discoverCard.guardianPersonNbr1;
+        }
+        let guardian2='Dolt';
+        if(discoverCard.guardian2 !=''){
+          guardian2= discoverCard.guardian2;
+        }
+        let guardianPersonNbr2='Dolt';
+        if(discoverCard.guardianPersonNbr2 !=''){
+          guardianPersonNbr2= discoverCard.guardianPersonNbr2;
+        }
+
+        let unit = discoverCard.unit;
+        let situation = discoverCard.situation;
+
+        let questionID= discoverCard.questionID;
+        let grade= discoverCard.grade;
+        let comment='';
+        if(discoverCard.comment !='0'){
+          comment= discoverCard.comment;
+        }
+        let status =discoverCard.status;
+        let personID= discoverCard.personID;
+
+        if(!containsCard(cards, discoverCard.gradedOn)){
+          questions.push(questionID);
+          grades.push(grade);
+          comments.push(comment);
+          cards = Object.assign([], cards);
+          cards.push(new Card(String(index), gradedOn, userName, userOrg, userTitle,
+          personName, personNbr, guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2,
+          unit, situation, questions, grades, comments, status, personID));
+
+            questions= [];
+            grades= [];
+            comments= [];
+          
+            index++;
+          }else{
+            cards.forEach(element => {
+              if(element.gradedOn== gradedOn && !containsQuestion(element, questionID)){
+                element.questions.push(questionID);
+                element.grades.push(grade);
+                element.comments.push(comment);
+              }      
+            });
+        }
+      })
+})
+  .catch(function (error) {
+    console.log(error);
+  })
+  .then(function () {
+  });
+
+    console.log('cards is '+ cards);
+    return cards;
   }
 
   getUnits(): Observable<Unit[]> {
@@ -78,3 +166,25 @@ export class GetSetService {
   }
 
 }
+
+function containsQuestion(element: Card, questionID: string) {
+  var found= false;
+
+  element.questions.forEach(question => {
+    if(question== questionID){
+      found= true;
+    }      
+  });
+  return found;
+}
+
+function containsCard(cards: Card[], gradedOn: string) {
+  var found= false;
+  cards.forEach(element => {
+    if(element.gradedOn== gradedOn){
+      found= true;
+    }      
+  });
+  return found;
+}
+

@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { DiscoverCard } from 'src/app/models/DiscoverCard';
+import { Card } from 'src/app/models/Card';
 
 
 export const LOAD_DISCOVERCARD = '[DiscoverCard] Load DiscoverCard';
@@ -22,7 +23,7 @@ export class LoadDiscoverCard implements Action {
 
 export class LoadDiscoverCardSuccess implements Action {
   readonly type = LOAD_DISCOVERCARD_SUCCESS;
-  constructor(public payload: DiscoverCard[]) {}
+  constructor(public payload: Card[]) {}
 }
 
 export class LoadDiscoverCardFail implements Action {
