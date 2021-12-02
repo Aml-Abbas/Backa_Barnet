@@ -177,14 +177,13 @@ export class NeedCompassComponent implements OnInit {
         let questionLevelID= parseInt(card.questionLevelID)-1;
         let personID: string = card?.personID ?? '';
         let userID: string = card?.userID ?? '';
-        userID='Aml Nilsson Abbas';
-        let name= userID.split(' ');
-        let userName= name[0]+ ' '+ name[name.length-1];
+        let userName =card?.userName ?? '';;
+        let name= userName.split(' ');
+        userName= name[0]+ ' '+ name[name.length-1];
         while(userName.length<18){
           userName+=' ';
         }
         let grade: string = card?.grade ?? '';
-        let comment: string = card?.comment ?? '';
         let gradedOn: string = card?.gradedOn ?? '';
         let index= this.questionIndex.get(String(questionID))??0;
 
