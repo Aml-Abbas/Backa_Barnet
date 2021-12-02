@@ -38,7 +38,7 @@ this.actions$.pipe(
 );
 
 
-Estimates$ = createEffect(() =>
+/* Estimates$ = createEffect(() =>
   this.actions$.pipe(
     ofType(estimateAction.LOAD_ESTIMATE),
     switchMap((action: estimateAction.LoadEstimate) => {
@@ -50,7 +50,7 @@ Estimates$ = createEffect(() =>
     })
   )
 );
-
+ */
 
 LoadEstimateCards$ = createEffect(() =>
 this.actions$.pipe(

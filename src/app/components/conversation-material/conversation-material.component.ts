@@ -38,10 +38,12 @@ export class ConversationMaterialComponent implements OnInit {
     this.pcards.then(function (response) {
       
       response.forEach((card: ConversationCard)=>{
+        console.log('adding1 '+ card);
         cards.push(card);
     });
     });
     cards.forEach(element=>{
+      console.log('adding '+ element);
       this.ConversationCards.push(element);
     });
 

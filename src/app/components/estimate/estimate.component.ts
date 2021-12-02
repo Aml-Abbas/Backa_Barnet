@@ -10,6 +10,7 @@ import { User } from 'src/app/models/User';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 import { Estimate } from 'src/app/models/Estimate';
 import { EstimateCard } from 'src/app/models/EstimateCard';
+import { GetSetService } from '../../services/get-set/get-set.service';
 
 @Component({
   selector: 'app-estimate',
@@ -181,12 +182,31 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
     comment:'', msgError:'',
     color: '#31acaf'}
   ];
-  constructor(private store: Store<fromState.State>) {}
+
+  currentSavedEstimate: EstimateCard;
+  allEstimatecards: EstimateCard[]= [];
+  pcards: Promise<EstimateCard[]>= new Promise((resolve, reject) => { });
+
+  constructor(private store: Store<fromState.State>,
+    private getSetService: GetSetService) {}
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data=>{
-      this.personID= data?.personID ?? '0'
+      this.personID= data?.personID ?? '';
+      this.pcards= this.getSetService.getEstimate(this.personID);
+
+    });
+    let cards= this.allEstimatecards;
+
+    this.pcards.then(function (response) {
+      
+      response.forEach((card: EstimateCard)=>{
+        cards.push(card);
+    });
+    });
+    cards.forEach(element=>{
+      this.allEstimatecards.push(element);
     });
 
     this.current_user$= this.store.select(fromState.getCurrentUser);
@@ -194,7 +214,23 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
       this.userRoleId= String(data?.roleID);
       this.userID= data?.userID ?? '0'
     });
-    this.store.dispatch(new fromState.LoadEstimate(this.personID));
+
+    this.allEstimatecards.forEach((estimateCard: EstimateCard)=>{  
+
+      if(estimateCard.status=='Sparat' && this.userID==estimateCard.userID){ 
+
+        this.savedEstimatecards.push(estimateCard); 
+        this.currentSavedEstimate= estimateCard; 
+
+      }else if(estimateCard.status=='Sparat'){ 
+
+        this.savedEstimatecards.push(estimateCard); 
+
+      }else if(this.userID==estimateCard.userID){ 
+        this.estimatecards.push(estimateCard);    
+      } 
+    });
+/*     this.store.dispatch(new fromState.LoadEstimate(this.personID));
 
     this.estimates$ = this.store.select(fromState.getEstimates);
     this.estimates$.subscribe(data=>{
@@ -269,7 +305,7 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
       })
     });
     this.store.dispatch(new fromState.LoadEstimateCards(this.savedEstimatecards));
-
+ */
   }
 
   containsCard(date: string): boolean{

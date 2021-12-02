@@ -83,7 +83,7 @@
            <tr role="row" *ngFor="let question of category.questions; let i= index;">
             <td role="cell"><div style="width: 200px">{{question.text}}</div></td>
 
-               <td role="cell" *ngFor="let oldScore of estimatecards;">
+               <td role="cell" *ngFor="let oldScore of allEstimatecards;">
                   {{oldScore.grades[index1].scores[i]}}
                 </td>
           </tr>
@@ -91,7 +91,7 @@
            <tr role="row">
             <td>Kommentar</td>
 
-            <td *ngFor="let oldScore of estimatecards; let i= index;">
+            <td *ngFor="let oldScore of allEstimatecards; let i= index;">
               {{oldScore.grades[index1].comment}}
             </td>
            </tr>

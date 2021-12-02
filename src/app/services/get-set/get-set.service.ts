@@ -11,6 +11,7 @@ import { Estimate } from 'src/app/models/Estimate';
 import { Card } from 'src/app/models/Card';
 import axios from 'axios';
 import { ConversationCard } from 'src/app/models/ConversationCard';
+import { EstimateCard } from 'src/app/models/EstimateCard';
 
 
 @Injectable({
@@ -232,8 +233,66 @@ export class GetSetService {
     return this.http.post('https://func-ykbb.azurewebsites.net/api/estimate/create?code=ZnNUlhrtXVvn3xAtzMbpBpqMxO5EvvAxkxnYqVa9jaIPixAqZ66BuQ==', estimateJson);
   }
 
-  getEstimate(personId: string): Observable<Estimate[]> {
-    return this.http.get<Estimate[]>('https://func-ykbb.azurewebsites.net/api/estimate/'+personId+'?code=claTs5kzCfU60tGySXhvQbz3c01kADTGq2QT3nGWPfslBL7tbARORg==');
+  async getEstimate(personId: string): Promise<EstimateCard[]> {
+    var cards: EstimateCard[]= [];
+
+    await axios.get('https://func-ykbb.azurewebsites.net/api/estimate/'+personId+'?code=claTs5kzCfU60tGySXhvQbz3c01kADTGq2QT3nGWPfslBL7tbARORg==')
+    .then(function (response) {
+  
+      console.log(response);
+        response.data.forEach((estimate: Estimate)=>{
+          let categories_data: any[]=[
+            {scores: {}, comment:''},
+            {scores:{}, comment:''},
+            {scores:{}, comment:''},
+            {scores:{}, comment:''},
+            {scores: {}, comment:''},
+            {scores: {}, comment:''},
+            {scores: {}, comment:''},
+            {scores: {}, comment:''}
+          ];
+  
+          let questionID= estimate.questionID;
+          let personID= estimate.personID;
+          let userID= estimate.userID;
+  
+          let grade= estimate.grade;
+          let comment= estimate.comment;
+          
+          let gradedOn= estimate.gradedOn;
+          let changedOn= estimate.changedOn;
+          let status= estimate.status;
+  
+          let questionLevelID= parseInt(estimate.questionLevelID)-1;
+          let userName= estimate.userName;
+          let index= questionIndex.get(String(questionID))??0;
+  
+          categories_data[questionLevelID].scores[0]= grade;
+          categories_data[questionLevelID].comment= comment;
+
+          
+          if(containsEstimateCard(cards, gradedOn)){
+            var found= false;
+            cards.forEach(element => {
+              if(element.gradedOn== gradedOn && !found){
+                found= true;
+                element.grades[questionLevelID].scores[index]= grade;
+                element.grades[questionLevelID].comment= comment;
+  
+              }      
+            });
+        
+          }else{
+            cards.push(new EstimateCard(personID, userID, categories_data, gradedOn, changedOn, status, userName));
+          }
+        })
+  })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .then(function () {
+    });
+      return cards;
   }
 
   lockEstimate(estimateLockJson: any){
@@ -276,3 +335,64 @@ function containsCardDiscoverCard(cards: ConversationCard[], gradedOn: string) {
   });
   return found;
 }
+function containsEstimateCard(cards: EstimateCard[], gradedOn: string) {
+  var found= false;
+  cards.forEach(element => {
+    if(element.gradedOn== gradedOn){
+      found= true;
+    }      
+  });
+  return found;
+}
+
+var questionIndex = new Map([
+  [ '1', 0 ],
+  [ "2", 1 ],
+  [ "3", 2 ],
+  [ '4', 3 ],
+  [ "5", 4 ],
+  [ "6", 5 ],
+
+  [ '7', 0 ],
+  [ "8", 1 ],
+  [ "9", 2 ],
+  [ '10',3 ],
+  [ "11", 4 ],
+  [ "12", 5 ],
+  [ '59', 6 ],
+  [ "60", 7 ],
+
+  [ '13', 0 ],
+  [ "14", 1 ],
+  [ "15", 2 ],
+  [ '16', 3 ],
+  [ "17", 4 ],
+  [ "18", 5 ],
+
+  [ '19', 0 ],
+  [ "20", 1 ],
+  [ "21", 2 ],
+
+  [ '22', 0 ],
+  [ "23", 1 ],
+  [ "24", 2 ],
+
+  [ '25', 0 ],
+  [ "26", 1 ],
+  [ "27", 2 ],
+  [ '28', 3 ],
+  [ "29", 4 ],
+  [ "30", 5 ],
+  [ "61", 6 ],
+
+  [ '31', 0 ],
+  [ "32", 1 ],
+  [ "33", 2 ],
+  [ '34', 3 ],
+
+  [ "35", 0 ],
+  [ "36", 1 ],
+  [ '37', 2 ],
+  [ "38", 3 ],
+  [ "39", 4 ],
+]);
