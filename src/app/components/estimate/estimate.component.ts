@@ -40,62 +40,14 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
   personID: string;
   userID: string;
 
-   questionIndex = new Map([
-    [ '1', 0 ],
-    [ "2", 1 ],
-    [ "3", 2 ],
-    [ '4', 3 ],
-    [ "5", 4 ],
-    [ "6", 5 ],
-
-    [ '7', 0 ],
-    [ "8", 1 ],
-    [ "9", 2 ],
-    [ '10',3 ],
-    [ "11", 4 ],
-    [ "12", 5 ],
-    [ '59', 6 ],
-    [ "60", 7 ],
-
-    [ '13', 0 ],
-    [ "14", 1 ],
-    [ "15", 2 ],
-    [ '16', 3 ],
-    [ "17", 4 ],
-    [ "18", 5 ],
-
-    [ '19', 0 ],
-    [ "20", 1 ],
-    [ "21", 2 ],
-
-    [ '22', 0 ],
-    [ "23", 1 ],
-    [ "24", 2 ],
-
-    [ '25', 0 ],
-    [ "26", 1 ],
-    [ "27", 2 ],
-    [ '28', 3 ],
-    [ "29", 4 ],
-    [ "30", 5 ],
-    [ "61", 6 ],
-
-    [ '31', 0 ],
-    [ "32", 1 ],
-    [ "33", 2 ],
-    [ '34', 3 ],
-
-    [ "35", 0 ],
-    [ "36", 1 ],
-    [ '37', 2 ],
-    [ "38", 3 ],
-    [ "39", 4 ],
-]);
+  currentSavedEstimate: EstimateCard;
+  allEstimatecards: EstimateCard[]= [];
+  pcards: Promise<EstimateCard[]>= new Promise((resolve, reject) => { });
 
   categories = [
     { area: "OMSORG", id: "care",class: "care-class", 
     questions:[
-      {text:'Barnet bor i en miljö som är anpassad efter barnets behov samt främjar dess utveckling', score:''}, 
+      {text:'Barnet bor i en miljö som är anpassad efter barnets behov samt främjar dess utveckling', score: ''}, 
       {text:'Barnet får extra stöd och vård när det behövs', score:''}, 
       {text:'Barnet har någon att lita på och vända sig till när det behövs', score:''},
       {text:'Barnet har någon som ser till att hen är ren och lämpligt klädd efter årstid', score:''},
@@ -183,53 +135,55 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
     color: '#31acaf'}
   ];
 
-  currentSavedEstimate: EstimateCard;
-  allEstimatecards: EstimateCard[]= [];
-  pcards: Promise<EstimateCard[]>= new Promise((resolve, reject) => { });
 
   constructor(private store: Store<fromState.State>,
     private getSetService: GetSetService) {}
 
   ngOnInit(): void {
-    this.current_person$ = this.store.select(fromState.getCurrentPerson);
-    this.current_person$.subscribe(data=>{
-      this.personID= data?.personID ?? '';
-      this.pcards= this.getSetService.getEstimate(this.personID);
-
-    });
-    let cards= this.allEstimatecards;
-
-    this.pcards.then(function (response) {
-      
-      response.forEach((card: EstimateCard)=>{
-        cards.push(card);
-    });
-    });
-    cards.forEach(element=>{
-      this.allEstimatecards.push(element);
-    });
-
     this.current_user$= this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data=>{
       this.userRoleId= String(data?.roleID);
       this.userID= data?.userID ?? '0'
     });
 
-    this.allEstimatecards.forEach((estimateCard: EstimateCard)=>{  
+    this.current_person$ = this.store.select(fromState.getCurrentPerson);
+    this.current_person$.subscribe(data=>{
+      this.personID= data?.personID ?? '';
+      this.pcards= this.getSetService.getEstimate(this.personID);
 
-      if(estimateCard.status=='Sparat' && this.userID==estimateCard.userID){ 
-
-        this.savedEstimatecards.push(estimateCard); 
-        this.currentSavedEstimate= estimateCard; 
-
-      }else if(estimateCard.status=='Sparat'){ 
-
-        this.savedEstimatecards.push(estimateCard); 
-
-      }else if(this.userID==estimateCard.userID){ 
-        this.estimatecards.push(estimateCard);    
-      } 
     });
+    let savedEstimatecards= this.savedEstimatecards;
+    let currentSavedEstimate= this.currentSavedEstimate;
+    let estimatecards= this.estimatecards;
+    let userID= this.userID;
+    
+    this.pcards.then(function (response) {
+      
+      response.forEach((card: EstimateCard)=>{
+        if(card.status=='Sparat' && userID==card.userID){ 
+          savedEstimatecards.push(card); 
+          currentSavedEstimate= card; 
+        }else if(card.status=='Sparat'){ 
+          savedEstimatecards.push(card); 
+        }else if(userID==card.userID){ 
+          estimatecards.push(card);    
+        } 
+      });
+    });
+
+    savedEstimatecards.forEach(element=>{
+      this.savedEstimatecards.push(element);
+    });
+
+    this.currentSavedEstimate= currentSavedEstimate;
+
+    estimatecards.forEach(element=>{
+      this.estimatecards.push(element);
+
+    });
+
+    this.changeCurrent(this.currentSavedEstimate);
+
 /*     this.store.dispatch(new fromState.LoadEstimate(this.personID));
 
     this.estimates$ = this.store.select(fromState.getEstimates);
@@ -308,24 +262,8 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
  */
   }
 
-  containsCard(date: string): boolean{
-    var found= false;
-    this.estimatecards.forEach(element => {
-      if(element.gradedOn== date){
-        found= true;
-      }      
-    });
-    return found;
-  }
-
-  containsSavedCard(date: string): boolean{
-    var found= false;
-    this.savedEstimatecards.forEach(element => {
-      if(element.gradedOn== date){
-        found= true;
-      }      
-    });
-    return found;
+  changeCurrent(card: EstimateCard){
+    
   }
 
   changeDirty(){
@@ -468,6 +406,13 @@ save() {
     this.isDirty = false;
     this.store.dispatch(new fromState.CreateEstimateCard(skattning));
   }
+}
+
+
+moveToEstimateOverview(){
+  this.store.dispatch(new fromState.LoadEstimateCards(this.savedEstimatecards));
+
+  this.store.dispatch(new fromRoot.Go({ path: ['/estimate-overview'] }));
 }
 
 }

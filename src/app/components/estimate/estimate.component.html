@@ -83,7 +83,7 @@
            <tr role="row" *ngFor="let question of category.questions; let i= index;">
             <td role="cell"><div style="width: 200px">{{question.text}}</div></td>
 
-               <td role="cell" *ngFor="let oldScore of allEstimatecards;">
+               <td role="cell" *ngFor="let oldScore of estimatecards;">
                   {{oldScore.grades[index1].scores[i]}}
                 </td>
           </tr>
@@ -91,7 +91,7 @@
            <tr role="row">
             <td>Kommentar</td>
 
-            <td *ngFor="let oldScore of allEstimatecards; let i= index;">
+            <td *ngFor="let oldScore of estimatecards; let i= index;">
               {{oldScore.grades[index1].comment}}
             </td>
            </tr>
@@ -106,7 +106,7 @@
     <p>{{msgError}}</p>
     <button mat-raised-button (click)="save()">Spara</button>
 
-    <button mat-raised-button routerLink="/estimate-overview" *ngIf=" userRoleId=='4' || userRoleId=='2'">Sammanställa</button>
+    <button mat-raised-button (click)="moveToEstimateOverview()" *ngIf=" userRoleId=='4' || userRoleId=='2'">Sammanställa</button>
 
 </div>
 </div>
