@@ -273,7 +273,7 @@ export class NeedCompassComponent implements OnInit {
           
          averageGrades.push(Math.round(nbr/score.scores.length));
         });
-        if(element.gradedOn.slice(0,10)== this.selectedDate){
+        if(element.gradedOn.slice(0,10)== this.selectedDate && this.radarChartData.length<19){
         this.radarChartData.push({data: averageGrades, label: element.userName, backgroundColor: this.colors[colorIndex]});
         colorIndex++;
         }
@@ -285,7 +285,7 @@ export class NeedCompassComponent implements OnInit {
         this.dates.add(element);
     });
     this.cards.forEach(element=>{  
-      if(element.gradedOn.slice(0,10)== this.selectedDate){
+      if(element.gradedOn.slice(0,10)== this.selectedDate && this.radarChartData.length<19){
       this.radarChartData.push({data: element.grades, label: element.userName, backgroundColor: this.colors[colorIndex]});
       colorIndex++;
       }
@@ -310,14 +310,14 @@ export class NeedCompassComponent implements OnInit {
           
          averageGrades.push(Math.round(nbr/score.scores.length));
         });
-        if(element.gradedOn.slice(0,10)== this.selectedDate){
+        if(element.gradedOn.slice(0,10)== this.selectedDate && this.radarChartData.length<19){
           this.radarChartData.push({data: averageGrades, label: element.userName, backgroundColor: this.colors[colorIndex]});
           colorIndex++;  
         }
     });
     }else{
     this.cards.forEach(element=>{
-      if(element.gradedOn.slice(0,10)== this.selectedDate){
+      if(element.gradedOn.slice(0,10)== this.selectedDate && this.radarChartData.length<19){
       this.radarChartData.push({data: element.grades, label: element.userName, backgroundColor: this.colors[colorIndex]});
       colorIndex++;
       }
