@@ -180,6 +180,9 @@ export class NeedCompassComponent implements OnInit {
         let userName =card?.userName ?? '';;
         let name= userName.split(' ');
         userName= name[0]+ ' '+ name[name.length-1];
+        if(userName>19){
+          userName= name[name.length-1];
+        }
         while(userName.length<18){
           userName+=' ';
         }
