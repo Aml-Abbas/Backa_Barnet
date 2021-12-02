@@ -182,8 +182,6 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
 
     });
 
-    this.changeCurrent(this.currentSavedEstimate);
-
 /*     this.store.dispatch(new fromState.LoadEstimate(this.personID));
 
     this.estimates$ = this.store.select(fromState.getEstimates);
@@ -260,10 +258,6 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
     });
     this.store.dispatch(new fromState.LoadEstimateCards(this.savedEstimatecards));
  */
-  }
-
-  changeCurrent(card: EstimateCard){
-    
   }
 
   changeDirty(){
