@@ -78,7 +78,7 @@ this.actions$.pipe(
     this.actions$.pipe(
       ofType(estimateAction.LOCK_ESTIMATE_CARDS_SUCCESS),
       switchMap((action: estimateAction.LockEstimateCardsSuccess)=>[
-        new fromRoot.Go({path: ['/contact']}),
+        new fromRoot.Go({path: ['/estimate']}),
       ])
       )
       );
