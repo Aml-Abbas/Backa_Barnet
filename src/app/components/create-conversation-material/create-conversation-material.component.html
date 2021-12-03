@@ -4,8 +4,14 @@
    <h4 *ngIf=" !(current_person$ | async) as current_person">
       Välj ett barn innan du skapar ett samtalsunderlag</h4>
 
+      
     <div *ngIf="(current_person$ | async) as current_person" (change)= "isDirty= true">
 
+      <h2 *ngIf="current_person.status != 'Upptäckt'">
+        Barnet har inte status Upptäckt</h2>
+  
+        <div *ngIf="current_person.status == 'Upptäckt'">
+  
     <h4>Bedömning av {{current_person.firstName}}s situation</h4>
 
     <mat-form-field id="matFormFieldGuardians" appearance="fill">
@@ -92,5 +98,6 @@
     <p class="error">{{saveError}}</p>
 
   </div>
+</div>
 
 </div>

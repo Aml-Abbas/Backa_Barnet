@@ -294,6 +294,7 @@ export class NeedCompassComponent implements OnInit {
     });
 
   }
+  this.onDateChange();
 }
 
   onDateChange(){

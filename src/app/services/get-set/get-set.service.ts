@@ -238,9 +238,7 @@ export class GetSetService {
 
     await axios.get('https://func-ykbb.azurewebsites.net/api/estimate/'+personId+'?code=claTs5kzCfU60tGySXhvQbz3c01kADTGq2QT3nGWPfslBL7tbARORg==')
     .then(function (response) {
-  
-      console.log(response);
-        response.data.forEach((estimate: Estimate)=>{
+          response.data.forEach((estimate: Estimate)=>{
           let categories_data: any[]=[
             {scores: {}, comment:''},
             {scores:{}, comment:''},

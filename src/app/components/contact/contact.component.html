@@ -25,7 +25,7 @@
   </thead>
   <tbody role="rowgroup" *ngIf="searchPersons.length==0">
     <tr role="row" *ngFor="let person of persons; let i= index" (click)="setCurrentPerson(person)" [class.demo-row-is-clicked]="clickedRows.has(person)">
-      <td role="cell">{{person.personNbr.slice(2, 12)}}</td>
+      <td role="cell">{{person.personNbr}}</td>
       <td role="cell">{{person.name}}</td>
       <td role="cell">{{person.changedOn.slice(0, 10)}}</td>
       <td role="cell">{{person.status}}</td>
