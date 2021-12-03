@@ -51,23 +51,23 @@ export class GetSetService {
           personName= discoverCard.personName;
         }
         let personNbr='Dolt';
-        if(discoverCard.personNbr!=""){
+        if(discoverCard.personNbr!="" && discoverCard.personNbr!="0"){
           personNbr= discoverCard.personNbr;
         }
         let guardian1='Dolt';
-        if(discoverCard.guardian1 !=''){
+        if(discoverCard.guardian1 !=''&& discoverCard.personNbr!="0"){
           guardian1= discoverCard.guardian1;
         }
         let guardianPersonNbr1='Dolt';
-        if(discoverCard.guardianPersonNbr1 !=''){
+        if(discoverCard.guardianPersonNbr1 !=''&& discoverCard.personNbr!="0"){
           guardianPersonNbr1= discoverCard.guardianPersonNbr1;
         }
         let guardian2='Dolt';
-        if(discoverCard.guardian2 !=''){
+        if(discoverCard.guardian2 !=''&& discoverCard.personNbr!="0"){
           guardian2= discoverCard.guardian2;
         }
         let guardianPersonNbr2='Dolt';
-        if(discoverCard.guardianPersonNbr2 !=''){
+        if(discoverCard.guardianPersonNbr2 !=''&& discoverCard.personNbr!="0"){
           guardianPersonNbr2= discoverCard.guardianPersonNbr2;
         }
 
