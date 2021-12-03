@@ -141,7 +141,7 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
     private getSetService: GetSetService) {}
 
   ngOnInit(): void {
-/*     this.currentSavedEstimate[0]= new EstimateCard('','',[
+     this.currentSavedEstimate[0]= new EstimateCard('','',[
       {scores: {}, comment:''},
       {scores:{}, comment:''},
       {scores:{}, comment:''},
@@ -151,7 +151,7 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
       {scores: {}, comment:''},
       {scores: {}, comment:''}
     ],'','','','',);
- */
+ 
     this.current_user$= this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data=>{
       this.userRoleId= String(data?.roleID);
@@ -198,93 +198,6 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
 
     });
 
-/*     this.store.dispatch(new fromState.LoadEstimate(this.personID));
-
-    this.estimates$ = this.store.select(fromState.getEstimates);
-    this.estimates$.subscribe(data=>{
-
-      data.map((estimate: Estimate)=>{
-
-        let categories_data: any[]=[
-          {scores: {}, comment:''},
-          {scores:{}, comment:''},
-          {scores:{}, comment:''},
-          {scores:{}, comment:''},
-          {scores: {}, comment:''},
-          {scores: {}, comment:''},
-          {scores: {}, comment:''},
-          {scores: {}, comment:''}
-        ];
-
-        let questionID= estimate.questionID;
-        let personID= estimate.personID;
-        let userID= estimate.userID;
-
-        let grade= estimate.grade;
-        let comment= estimate.comment;
-        
-        let gradedOn= estimate.gradedOn;
-        let changedOn= estimate.changedOn;
-        let status= estimate.status;
-
-        let questionLevelID= parseInt(estimate.questionLevelID)-1;
-        let userName= estimate.userName;
-        let index= this.questionIndex.get(String(questionID))??0;
-
-        categories_data[questionLevelID].scores[0]??''= grade;
-        categories_data[questionLevelID].comment= comment;
-        if(status=='Sparat'){
-          if(this.containsSavedCard(gradedOn)){
-            var found= false;
-            this.savedEstimatecards.forEach(element => {
-              if(element.gradedOn== gradedOn && !false){
-                found= true;
-                element.grades[questionLevelID].scores[index]= grade;
-                element.grades[questionLevelID].comment= comment;
-  
-              }      
-            });
-        
-          }else{
-            this.savedEstimatecards.push(new EstimateCard(personID, userID, categories_data, gradedOn, changedOn, status, userName));
-          }
-          if(this.userID==userID){
-            this.categories[questionLevelID].questions[index].score= grade;
-            this.categories[questionLevelID].comment= comment;  
-          }
-
-        }else if(this.userID==userID){
-          if(this.containsCard(gradedOn)){
-            var found= false;
-            this.estimatecards.forEach(element => {
-              if(element.gradedOn== gradedOn && !false){
-                found= true;
-                element.grades[questionLevelID].scores[index]= grade;
-                element.grades[questionLevelID].comment= comment;
-  
-              }      
-            });
-        
-          }else{
-            this.estimatecards.push(new EstimateCard(personID, userID, categories_data, gradedOn, changedOn, status, userName));
-          }
-        }
-
-      })
-    });
-    this.store.dispatch(new fromState.LoadEstimateCards(this.savedEstimatecards));
- */
-
-    this.currentSavedEstimate.push(new EstimateCard('','',[
-      {scores: {}, comment:''},
-      {scores:{}, comment:''},
-      {scores:{}, comment:''},
-      {scores:{}, comment:''},
-      {scores: {}, comment:''},
-      {scores: {}, comment:''},
-      {scores: {}, comment:''},
-      {scores: {}, comment:''}
-    ],'','','','',));
   }
 
   changeDirty(){
@@ -304,71 +217,71 @@ save() {
   this.categories[7].msgError='';
   this.msgError='';
 
-  this.categories[0].questions[0].score= this.currentSavedEstimate[0].grades[0].scores[0]??'';
-  this.categories[0].questions[1].score= this.currentSavedEstimate[0].grades[0].scores[1]??'';
-  this.categories[0].questions[2].score= this.currentSavedEstimate[0].grades[0].scores[2]??'';
-  this.categories[0].questions[3].score= this.currentSavedEstimate[0].grades[0].scores[3]??'';
-  this.categories[0].questions[4].score= this.currentSavedEstimate[0].grades[0].scores[4]??'';
-  this.categories[0].questions[5].score= this.currentSavedEstimate[0].grades[0].scores[5]??'';
+  this.categories[0].questions[0].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[0].scores[0]??'';
+  this.categories[0].questions[1].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[0].scores[1]??'';
+  this.categories[0].questions[2].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[0].scores[2]??'';
+  this.categories[0].questions[3].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[0].scores[3]??'';
+  this.categories[0].questions[4].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[0].scores[4]??'';
+  this.categories[0].questions[5].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[0].scores[5]??'';
  
-  this.categories[0].comment= this.currentSavedEstimate[0].grades[0].comment;
+  this.categories[0].comment= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[0].comment;
 
-  this.categories[1].questions[0].score= this.currentSavedEstimate[0].grades[1].scores[0]??'';
-  this.categories[1].questions[1].score= this.currentSavedEstimate[0].grades[1].scores[1]??'';
-  this.categories[1].questions[2].score= this.currentSavedEstimate[0].grades[1].scores[2]??'';
-  this.categories[1].questions[3].score= this.currentSavedEstimate[0].grades[1].scores[3]??'';
-  this.categories[1].questions[4].score= this.currentSavedEstimate[0].grades[1].scores[4]??'';
-  this.categories[1].questions[5].score= this.currentSavedEstimate[0].grades[1].scores[5]??'';
-  this.categories[1].questions[6].score= this.currentSavedEstimate[0].grades[1].scores[6]??'';
-  this.categories[1].questions[7].score= this.currentSavedEstimate[0].grades[1].scores[7]??'';
+  this.categories[1].questions[0].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[1].scores[0]??'';
+  this.categories[1].questions[1].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[1].scores[1]??'';
+  this.categories[1].questions[2].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[1].scores[2]??'';
+  this.categories[1].questions[3].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[1].scores[3]??'';
+  this.categories[1].questions[4].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[1].scores[4]??'';
+  this.categories[1].questions[5].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[1].scores[5]??'';
+  this.categories[1].questions[6].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[1].scores[6]??'';
+  this.categories[1].questions[7].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[1].scores[7]??'';
 
-  this.categories[1].comment= this.currentSavedEstimate[0].grades[1].comment;
+  this.categories[1].comment= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[1].comment;
 
-  this.categories[2].questions[0].score= this.currentSavedEstimate[0].grades[2].scores[0]??'';
-  this.categories[2].questions[1].score= this.currentSavedEstimate[0].grades[2].scores[1]??'';
-  this.categories[2].questions[2].score= this.currentSavedEstimate[0].grades[2].scores[2]??'';
-  this.categories[2].questions[3].score= this.currentSavedEstimate[0].grades[2].scores[3]??'';
-  this.categories[2].questions[4].score= this.currentSavedEstimate[0].grades[2].scores[4]??'';
-  this.categories[2].questions[5].score= this.currentSavedEstimate[0].grades[2].scores[5]??'';
+  this.categories[2].questions[0].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[2].scores[0]??'';
+  this.categories[2].questions[1].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[2].scores[1]??'';
+  this.categories[2].questions[2].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[2].scores[2]??'';
+  this.categories[2].questions[3].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[2].scores[3]??'';
+  this.categories[2].questions[4].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[2].scores[4]??'';
+  this.categories[2].questions[5].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[2].scores[5]??'';
 
-  this.categories[2].comment= this.currentSavedEstimate[0].grades[2].comment;
+  this.categories[2].comment= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[2].comment;
 
-  this.categories[3].questions[0].score= this.currentSavedEstimate[0].grades[3].scores[0]??'';
-  this.categories[3].questions[1].score= this.currentSavedEstimate[0].grades[3].scores[1]??'';
-  this.categories[3].questions[2].score= this.currentSavedEstimate[0].grades[3].scores[2]??'';
+  this.categories[3].questions[0].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[3].scores[0]??'';
+  this.categories[3].questions[1].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[3].scores[1]??'';
+  this.categories[3].questions[2].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[3].scores[2]??'';
 
-  this.categories[3].comment= this.currentSavedEstimate[0].grades[3].comment;
+  this.categories[3].comment= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[3].comment;
 
-  this.categories[4].questions[0].score= this.currentSavedEstimate[0].grades[4].scores[0]??'';
-  this.categories[4].questions[1].score= this.currentSavedEstimate[0].grades[4].scores[1]??'';
-  this.categories[4].questions[2].score= this.currentSavedEstimate[0].grades[4].scores[2]??'';
+  this.categories[4].questions[0].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[4].scores[0]??'';
+  this.categories[4].questions[1].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[4].scores[1]??'';
+  this.categories[4].questions[2].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[4].scores[2]??'';
 
-  this.categories[4].comment= this.currentSavedEstimate[0].grades[4].comment;
+  this.categories[4].comment= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[4].comment;
 
-  this.categories[5].questions[0].score= this.currentSavedEstimate[0].grades[5].scores[0]??'';
-  this.categories[5].questions[1].score= this.currentSavedEstimate[0].grades[5].scores[1]??'';
-  this.categories[5].questions[2].score= this.currentSavedEstimate[0].grades[5].scores[2]??'';
-  this.categories[5].questions[3].score= this.currentSavedEstimate[0].grades[5].scores[3]??'';
-  this.categories[5].questions[4].score= this.currentSavedEstimate[0].grades[5].scores[4]??'';
-  this.categories[5].questions[5].score= this.currentSavedEstimate[0].grades[5].scores[5]??'';
-  this.categories[5].questions[6].score= this.currentSavedEstimate[0].grades[5].scores[6]??'';
+  this.categories[5].questions[0].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[5].scores[0]??'';
+  this.categories[5].questions[1].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[5].scores[1]??'';
+  this.categories[5].questions[2].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[5].scores[2]??'';
+  this.categories[5].questions[3].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[5].scores[3]??'';
+  this.categories[5].questions[4].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[5].scores[4]??'';
+  this.categories[5].questions[5].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[5].scores[5]??'';
+  this.categories[5].questions[6].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[5].scores[6]??'';
 
-  this.categories[5].comment= this.currentSavedEstimate[0].grades[5].comment;
+  this.categories[5].comment= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[5].comment;
 
-  this.categories[6].questions[0].score= this.currentSavedEstimate[0].grades[6].scores[0]??'';
-  this.categories[6].questions[1].score= this.currentSavedEstimate[0].grades[6].scores[1]??'';
-  this.categories[6].questions[2].score= this.currentSavedEstimate[0].grades[6].scores[2]??'';
-  this.categories[6].questions[3].score= this.currentSavedEstimate[0].grades[6].scores[3]??'';
+  this.categories[6].questions[0].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[6].scores[0]??'';
+  this.categories[6].questions[1].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[6].scores[1]??'';
+  this.categories[6].questions[2].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[6].scores[2]??'';
+  this.categories[6].questions[3].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[6].scores[3]??'';
 
-  this.categories[6].comment= this.currentSavedEstimate[0].grades[6].comment;
+  this.categories[6].comment= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[6].comment;
 
-  this.categories[7].questions[0].score= this.currentSavedEstimate[0].grades[7].scores[0]??'';
-  this.categories[7].questions[1].score= this.currentSavedEstimate[0].grades[7].scores[1]??'';
-  this.categories[7].questions[2].score= this.currentSavedEstimate[0].grades[7].scores[2]??'';
-  this.categories[7].questions[3].score= this.currentSavedEstimate[0].grades[7].scores[3]??'';
-  this.categories[7].questions[4].score= this.currentSavedEstimate[0].grades[7].scores[4]??'';
+  this.categories[7].questions[0].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[7].scores[0]??'';
+  this.categories[7].questions[1].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[7].scores[1]??'';
+  this.categories[7].questions[2].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[7].scores[2]??'';
+  this.categories[7].questions[3].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[7].scores[3]??'';
+  this.categories[7].questions[4].score= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[7].scores[4]??'';
 
-  this.categories[7].comment= this.currentSavedEstimate[0].grades[7].comment;
+  this.categories[7].comment= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[7].comment;
 
   this.categories[0].questions.forEach(element=>{
     if(element.score==''){
