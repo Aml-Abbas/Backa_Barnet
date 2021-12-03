@@ -279,6 +279,72 @@ save() {
   this.categories[6].msgError='';
   this.categories[7].msgError='';
 
+  this.categories[0].questions[0].score= this.currentSavedEstimate[0].grades[0].scores[0];
+  this.categories[0].questions[1].score= this.currentSavedEstimate[0].grades[0].scores[1];
+  this.categories[0].questions[2].score= this.currentSavedEstimate[0].grades[0].scores[2];
+  this.categories[0].questions[3].score= this.currentSavedEstimate[0].grades[0].scores[3];
+  this.categories[0].questions[4].score= this.currentSavedEstimate[0].grades[0].scores[4];
+  this.categories[0].questions[5].score= this.currentSavedEstimate[0].grades[0].scores[5];
+ 
+  this.categories[0].comment= this.currentSavedEstimate[0].grades[0].comment;
+
+  this.categories[1].questions[0].score= this.currentSavedEstimate[0].grades[1].scores[0];
+  this.categories[1].questions[1].score= this.currentSavedEstimate[0].grades[1].scores[1];
+  this.categories[1].questions[2].score= this.currentSavedEstimate[0].grades[1].scores[2];
+  this.categories[1].questions[3].score= this.currentSavedEstimate[0].grades[1].scores[3];
+  this.categories[1].questions[4].score= this.currentSavedEstimate[0].grades[1].scores[4];
+  this.categories[1].questions[5].score= this.currentSavedEstimate[0].grades[1].scores[5];
+  this.categories[1].questions[6].score= this.currentSavedEstimate[0].grades[1].scores[6];
+  this.categories[1].questions[7].score= this.currentSavedEstimate[0].grades[1].scores[7];
+
+  this.categories[1].comment= this.currentSavedEstimate[0].grades[1].comment;
+
+  this.categories[2].questions[0].score= this.currentSavedEstimate[0].grades[2].scores[0];
+  this.categories[2].questions[1].score= this.currentSavedEstimate[0].grades[2].scores[1];
+  this.categories[2].questions[2].score= this.currentSavedEstimate[0].grades[2].scores[2];
+  this.categories[2].questions[3].score= this.currentSavedEstimate[0].grades[2].scores[3];
+  this.categories[2].questions[4].score= this.currentSavedEstimate[0].grades[2].scores[4];
+  this.categories[2].questions[5].score= this.currentSavedEstimate[0].grades[2].scores[5];
+
+  this.categories[2].comment= this.currentSavedEstimate[0].grades[2].comment;
+
+  this.categories[3].questions[0].score= this.currentSavedEstimate[0].grades[3].scores[0];
+  this.categories[3].questions[1].score= this.currentSavedEstimate[0].grades[3].scores[1];
+  this.categories[3].questions[2].score= this.currentSavedEstimate[0].grades[3].scores[2];
+
+  this.categories[3].comment= this.currentSavedEstimate[0].grades[3].comment;
+
+  this.categories[4].questions[0].score= this.currentSavedEstimate[0].grades[4].scores[0];
+  this.categories[4].questions[1].score= this.currentSavedEstimate[0].grades[4].scores[1];
+  this.categories[4].questions[2].score= this.currentSavedEstimate[0].grades[4].scores[2];
+
+  this.categories[4].comment= this.currentSavedEstimate[0].grades[4].comment;
+
+  this.categories[5].questions[0].score= this.currentSavedEstimate[0].grades[5].scores[0];
+  this.categories[5].questions[1].score= this.currentSavedEstimate[0].grades[5].scores[0];
+  this.categories[5].questions[2].score= this.currentSavedEstimate[0].grades[5].scores[0];
+  this.categories[5].questions[3].score= this.currentSavedEstimate[0].grades[5].scores[0];
+  this.categories[5].questions[4].score= this.currentSavedEstimate[0].grades[5].scores[0];
+  this.categories[5].questions[5].score= this.currentSavedEstimate[0].grades[5].scores[0];
+  this.categories[5].questions[6].score= this.currentSavedEstimate[0].grades[5].scores[0];
+
+  this.categories[5].comment= this.currentSavedEstimate[0].grades[5].comment;
+
+  this.categories[6].questions[0].score= this.currentSavedEstimate[0].grades[6].scores[0];
+  this.categories[6].questions[1].score= this.currentSavedEstimate[0].grades[6].scores[1];
+  this.categories[6].questions[2].score= this.currentSavedEstimate[0].grades[6].scores[2];
+  this.categories[6].questions[3].score= this.currentSavedEstimate[0].grades[6].scores[3];
+
+  this.categories[6].comment= this.currentSavedEstimate[0].grades[6].comment;
+
+  this.categories[7].questions[0].score= this.currentSavedEstimate[0].grades[7].scores[0];
+  this.categories[7].questions[1].score= this.currentSavedEstimate[0].grades[7].scores[1];
+  this.categories[7].questions[2].score= this.currentSavedEstimate[0].grades[7].scores[2];
+  this.categories[7].questions[3].score= this.currentSavedEstimate[0].grades[7].scores[3];
+  this.categories[7].questions[4].score= this.currentSavedEstimate[0].grades[7].scores[4];
+
+  this.categories[7].comment= this.currentSavedEstimate[0].grades[7].comment;
+
   this.categories[0].questions.forEach(element=>{
     if(element.score==''){
       this.categories[0].msgError='Missade betyg i Omsorg kategori.';
