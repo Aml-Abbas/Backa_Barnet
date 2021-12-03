@@ -139,9 +139,8 @@ send(nbr: number): void{
     this.saveError='Du har glömt att välja ett betyg';
     }else{ 
       if(this.selected=='1'){
-        this.grades2=[];
-        this.comments2=[];
-      }
+        this.putZeros();
+            }
   var conversationMaterial = {
     UserID: parseInt(this.userId) ?? 0,
     PersonId:  parseInt(this.current_person.personID)?? 0,
@@ -258,4 +257,9 @@ send(nbr: number): void{
   return !isMissed;
 }
 
+putZeros(){
+  this.grades2.forEach(score=>{
+    score= '0';
+  });
+}
 }
