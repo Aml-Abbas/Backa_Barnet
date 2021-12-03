@@ -20,6 +20,7 @@ export interface QuestionText {
 export class DiscoverCardDetailsComponent implements OnInit {
   current_card$= new Observable<Card | null>();
   card: Card;
+  nbrGuardians=2;
 
   QuestionTextData: QuestionText[] = [
     {id: 40, text: 'Barnet har vuxna i sin närhet som hen kan lita på och vända sig till', category:'OMSORG', color: '#003686'},
@@ -39,6 +40,11 @@ export class DiscoverCardDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.current_card$ = this.store.select(fromState.getCurrentCard);
+    this.current_card$.subscribe(data=>{
+      if(data?.guardian1!='Dolt' && (data?.guardian2=='Dolt'||data?.guardian2=='0')){
+        this.nbrGuardians=1;
+      }
+    });
   }
   moveToEditCard(card: Card){
     this.store.dispatch(new fromRoot.Go({ path: ['/edit-discover-card', card.id] }));

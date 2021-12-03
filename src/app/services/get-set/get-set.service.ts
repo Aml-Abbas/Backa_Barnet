@@ -47,7 +47,7 @@ export class GetSetService {
         let userTitle= discoverCard.userTitle;
 
         let personName='Dolt';
-        if(discoverCard.personName !=" "){
+        if(discoverCard.personName !=" " && discoverCard.personName !="0 0" ){
           personName= discoverCard.personName;
         }
         let personNbr='Dolt';

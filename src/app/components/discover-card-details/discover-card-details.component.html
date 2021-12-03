@@ -63,12 +63,12 @@
         <td>{{current_card.guardianPersonNbr1}}</td>
        </tr>
 
-       <tr role="row" *ngIf="current_card.guardianPersonNbr2 != 'undefined'">
+       <tr role="row" *ngIf="nbrGuardians != 1">
         <td>Vårdnadshavare 2 namn:</td>
         <td>{{current_card.guardian2}}</td>
        </tr>
 
-       <tr role="row" *ngIf="current_card.guardianPersonNbr2 != 'undefined'">
+       <tr role="row" *ngIf="nbrGuardians != 1">
         <td>Vårdnadshavare 2 personnummer:</td>
         <td>{{current_card.guardianPersonNbr2}}</td>
        </tr>
