@@ -23,7 +23,7 @@
       <th role="columnheader">Barnets status</th>
     </tr>
   </thead>
-  <tbody role="rowgroup" *ngIf="searchPersons.length==0">
+  <tbody role="rowgroup" *ngIf="!filterStatus">
     <tr role="row" *ngFor="let person of persons; let i= index" (click)="setCurrentPerson(person)" [class.demo-row-is-clicked]="clickedRows.has(person)">
       <td role="cell">{{person.personNbr}}</td>
       <td role="cell">{{person.name}}</td>
@@ -31,7 +31,7 @@
       <td role="cell">{{person.status}}</td>
     </tr>
   </tbody>
-  <tbody *ngIf="searchPersons.length!=0">
+  <tbody *ngIf="filterStatus">
     <tr role="row" *ngFor="let person of searchPersons; let i= index" (click)="setCurrentPerson(person)" [class.demo-row-is-clicked]="clickedRows.has(person)">
       <td role="cell">{{person.personNbr.slice(2, 12)}}</td>
       <td role="cell">{{person.name}}</td>

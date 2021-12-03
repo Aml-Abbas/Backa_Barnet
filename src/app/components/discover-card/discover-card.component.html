@@ -24,7 +24,7 @@
 
     </tr>
   </thead>
-  <tbody role="rowgroup" *ngIf="searchCards.length==0">
+  <tbody role="rowgroup" *ngIf="!filterStatus">
     <tr role="row" *ngFor="let card of cards; let i= index" (click)="moveToCard(card)">
       <td role="cell">{{card.gradedOn.slice(0, 10)}}</td>
       <td role="cell">{{card.personName}}</td>
@@ -40,7 +40,7 @@
        
     </tr>
   </tbody>
-  <tbody *ngIf="searchCards.length!=0">
+  <tbody *ngIf="filterStatus">
     <tr role="row" *ngFor="let card of searchCards; let i= index" (click)="moveToCard(card)">
       <td role="cell">{{card.gradedOn.slice(0, 10)}}</td>
       <td role="cell">{{card.personName}}</td>

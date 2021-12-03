@@ -24,6 +24,8 @@ export class ConversationMaterialComponent implements OnInit {
 
   current_person$= new Observable<Person | null>();
 
+  filterStatus: boolean= false;
+
   constructor(private store: Store<fromState.State>,
     private getSetService: GetSetService) {}
 
@@ -46,76 +48,7 @@ export class ConversationMaterialComponent implements OnInit {
       console.log('adding '+ element);
       this.ConversationCards.push(element);
     });
-
-/*     this.store.dispatch(new fromState.LoadConversationMaterial(this.personID));
-
-    this.conversationMaterial$ = this.store.select(fromState.getConversationMaterial);
-    this.conversationMaterial$.subscribe(data=>{
-      var index=1;
-      data.map((conversationMaterial: ConversationMaterial)=>{
-        let questionID= conversationMaterial.questionID;
-        let personID= conversationMaterial.personID;
-
-        let grade= conversationMaterial.grade;
-
-        let comment= '';
-        if(conversationMaterial.comment!='0'){
-          comment= conversationMaterial.comment;
-        }
-        
-        let gradeType= conversationMaterial.gradeType;
-        let gradedOn= conversationMaterial.gradedOn;
-        let status= conversationMaterial.status;
-
-
-        if(!this.containsCard(conversationMaterial.gradedOn)){
-         this.questionsID.push(questionID);
-         if(gradeType=='Guardian2'){
-          this.grades2.push(grade);
-          this.comments2.push(comment);
-         }else if(gradeType=='Guardian1'){
-          this.grades1.push(grade);
-          this.comments1.push(comment);
-         }else{
-          this.grades.push(grade);
-          this.comments.push(comment);
-         }
-
-          this.ConversationCards.push(new ConversationCard(String(index), personID, this.questionsID, this.grades, this.comments,
-            this.grades1, this.comments1, this.grades2, this.comments2, gradedOn, status));
-            this.questionsID= [];
-
-            this.grades= [];
-            this.comments= [];
-            this.grades1= [];
-            this.comments1= [];
-            this.grades2= [];
-            this.comments2= [];
-
-            index++;
-          }else{
-            this.ConversationCards.forEach(element => {
-              if(element.gradedOn== gradedOn){
-                element.questionsID.push(questionID);
-                if(gradeType=='Guardian2'){
-                  element.guardian2_scores.push(grade);
-                  element.guardian2_comments.push(comment);
-  
-                   }else if(gradeType=='Guardian1'){
-                    element.guardian1_scores.push(grade);
-                    element.guardian1_comments.push(comment);
-                     }else{
-                      element.person_scores.push(grade);
-                      element.person_comments.push(comment);
-                     }
-              }      
-            });
-        }
-      })
-        });
-        this.store.dispatch(new fromState.UpdateConversationCards(this.ConversationCards));
-
- */  }
+   }
 
   containsCard(date: string): boolean{
     var found= false;
@@ -130,10 +63,13 @@ export class ConversationMaterialComponent implements OnInit {
   applyFilter(event: Event) {
     this.searchCards=[];
     
-    const filterValue = (event.target as HTMLInputElement).value;
-    console.log(this.searchCards);
+    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    if(filterValue!=''){
+      this.filterStatus= true;
+    }
     this.ConversationCards.forEach(card=>{
-      if(card.id.includes(filterValue) || card.gradedOn.includes(filterValue)|| card.status.includes(filterValue)){
+      if(card.id.toLowerCase().includes(filterValue) || card.gradedOn.toLowerCase().includes(filterValue)||
+       card.status.toLowerCase().includes(filterValue)){
         this.searchCards.push(card);
       }
    });

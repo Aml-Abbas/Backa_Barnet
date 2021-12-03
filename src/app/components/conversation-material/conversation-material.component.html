@@ -27,7 +27,7 @@
           <th role="columnheader"></th>     
         </tr>
       </thead>
-      <tbody role="rowgroup" *ngIf="searchCards.length==0">
+      <tbody role="rowgroup" *ngIf="!filterStatus">
         <tr role="row" *ngFor="let card of ConversationCards; let i= index">
           <td role="cell" (click)="moveToCard(card)">{{card.id}}</td>
           <td role="cell" (click)="moveToCard(card)">{{card.gradedOn.slice(0, 10)}}</td>
@@ -40,7 +40,7 @@
           </td>
         </tr>
       </tbody>
-       <tbody *ngIf="searchCards.length!=0">
+       <tbody *ngIf="filterStatus">
         <tr role="row" *ngFor="let card of searchCards; let i= index">
           <td role="cell" (click)="moveToCard(card)">{{card.id}}</td>
           <td role="cell" (click)="moveToCard(card)">{{card.gradedOn.slice(0, 10)}}</td>

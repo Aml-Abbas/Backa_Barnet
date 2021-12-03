@@ -18,6 +18,7 @@ export class DiscoverCardComponent implements OnInit {
   pcards: Promise<Card[]>= new Promise((resolve, reject) => { });
   searchCards: Card[]= [];
   cards : Card[]= [];
+  filterStatus: boolean= false;
 
   constructor(private store: Store<fromState.State>,
     private getSetService: GetSetService) {}
@@ -59,10 +60,13 @@ export class DiscoverCardComponent implements OnInit {
   applyFilter(event: Event) {
     this.searchCards=[];
     
-    const filterValue = (event.target as HTMLInputElement).value;
-    console.log(this.searchCards);
+    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    if(filterValue!=''){
+      this.filterStatus= true;
+    }
     this.cards.forEach(card=>{
-      if(card.personName.includes(filterValue) || card.userName.includes(filterValue)|| card.status.includes(filterValue)|| card.gradedOn.includes(filterValue)){
+      if(card.personName.toLowerCase().includes(filterValue) || card.userName.toLowerCase().includes(filterValue)||
+       card.status.toLowerCase().includes(filterValue)|| card.gradedOn.toLowerCase().includes(filterValue)){
         this.searchCards.push(card);
       }
    });
