@@ -137,6 +137,10 @@ export class CreateConversationMaterialComponent implements OnInit, ComponentCan
      if (!this.checkErroes()) {
     this.saveError='Du har glömt att välja ett betyg';
     }else{ 
+      if(this.selected=='1'){
+        this.putZeros();
+            }
+
       console.log(this.scores);
       this.saveError='';
 
@@ -232,6 +236,24 @@ export class CreateConversationMaterialComponent implements OnInit, ComponentCan
       });
 
      }
+}
+putZeros(){
+  this.scores[0].guardian2_score='0';
+  this.scores[0].guardian2_comment='0';
+  this.scores[1].guardian2_score='0';
+  this.scores[1].guardian2_comment='0';
+  this.scores[2].guardian2_score='0';
+  this.scores[2].guardian2_comment='0';
+  this.scores[3].guardian2_score='0';
+  this.scores[3].guardian2_comment='0';
+  this.scores[4].guardian2_score='0';
+  this.scores[4].guardian2_comment='0';
+  this.scores[5].guardian2_score='0';
+  this.scores[5].guardian2_comment='0';
+  this.scores[6].guardian2_score='0';
+  this.scores[6].guardian2_comment='0';
+  this.scores[7].guardian2_score='0';
+  this.scores[7].guardian2_comment='0';
 }
 
 }

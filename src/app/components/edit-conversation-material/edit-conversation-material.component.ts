@@ -258,8 +258,21 @@ send(nbr: number): void{
 }
 
 putZeros(){
-  this.grades2.forEach(score=>{
-    score= '0';
-  });
+  this.grades2[0]='0';
+  this.comments2[0]='0';
+  this.grades2[1]='0';
+  this.comments2[1]='0';
+  this.grades2[2]='0';
+  this.comments2[2]='0';
+  this.grades2[3]='0';
+  this.comments2[3]='0';
+  this.grades2[4]='0';
+  this.comments2[4]='0';
+  this.grades2[5]='0';
+  this.comments2[5]='0';
+  this.grades2[6]='0';
+  this.comments2[6]='0';
+  this.grades2[7]='0';
+  this.comments2[7]='0';
 }
 }
