@@ -40,7 +40,8 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
   personID: string;
   userID: string;
 
-  currentSavedEstimate: EstimateCard;
+  currentSavedEstimate: EstimateCard[]= [];
+
   allEstimatecards: EstimateCard[]= [];
   pcards: Promise<EstimateCard[]>= new Promise((resolve, reject) => { });
 
@@ -162,7 +163,7 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
       response.forEach((card: EstimateCard)=>{
         if(card.status=='Sparat' && userID==card.userID){ 
           savedEstimatecards.push(card); 
-          currentSavedEstimate= card; 
+          currentSavedEstimate.push(card); 
         }else if(card.status=='Sparat'){ 
           savedEstimatecards.push(card); 
         }else if(userID==card.userID){ 
@@ -175,7 +176,9 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
       this.savedEstimatecards.push(element);
     });
 
-    this.currentSavedEstimate= currentSavedEstimate;
+    currentSavedEstimate.forEach(element=>{
+      this.currentSavedEstimate.push(element);
+    });
 
     estimatecards.forEach(element=>{
       this.estimatecards.push(element);
@@ -264,6 +267,9 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
     this.isDirty= true;
   }
 save() {
+  console.log(this.currentSavedEstimate);
+
+
   this.categories[0].msgError='';
   this.categories[1].msgError='';
   this.categories[2].msgError='';
@@ -274,9 +280,7 @@ save() {
   this.categories[7].msgError='';
 
   this.categories[0].questions.forEach(element=>{
-    console.log('in omsorg ');
     if(element.score==''){
-      console.log('changing omsorg error');
       this.categories[0].msgError='Missade betyg i Omsorg kategori.';
       this.msgError='Rätta felen först';
     }
