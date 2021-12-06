@@ -43,15 +43,38 @@ mat-label{
     color: darkcyan;
 }
 
+
+.arrow_back { 
+    font-size: 30px;
+    color: #663399;
+  }
+  
+  .back-button{
+  color: #663399;
+  size: 16px;
+  background-color: transparent;
+  width: 10%;
+  margin-left: 0%;
+  }
+
+  p{
+    margin-top: 15px;
+    color: brown;
+    font-size: 15px;
+    text-align: left;
+  }
+  
 @media screen and (max-width: 800px){
     .person-container{
         width: 100%;
     }
-        button{
+    
+    .submit{
         width: 30%;
         margin-left: 35%;
     }
-    .material-icons { 
+
+    .person_icon { 
         font-size: 150px;
     }
 }

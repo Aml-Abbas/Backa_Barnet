@@ -1,23 +1,30 @@
 export class Contact {
-    contactPersonNbr: string;
+    userID: string;
     lastName: string;
     firstName: string;
+
+    email: string;
+
+    roleID: string;
+    description: string;
+    organisaton: string;
+
     name: string;
 
-    phoneNbr: string;
-    employer: string;
-
-  
-    constructor(contactPersonNbr: string, lastName: string, 
-        firstName: string, name: string, phoneNbr: string, employer: string) {
+    constructor(userID: string, lastName: string, 
+        firstName: string,  email: string, 
+        roleID: string, description: string, organisaton: string, name: string,) {
             
-      this.contactPersonNbr = contactPersonNbr;
+      this.userID = userID;
       this.firstName = firstName;
       this.lastName = lastName;
       this.name = name;
 
-      this.phoneNbr= phoneNbr;
-      this.employer= employer;
+      this.email= email;
+      this.roleID= roleID;
+
+      this.organisaton= organisaton;
+      this.description= description;
 
     }
   }

@@ -24,9 +24,9 @@ export class GetSetService {
   getPersons(userId: string): Observable<Person[]> {
     return this.http.get<Person[]>('https://func-ykbb.azurewebsites.net/api/person/'+userId+'?code=SkXpI51pgjWl6UVNjxKjKNUr3o2gmPdlOZ4EFMFwn0LR0KlyDlYu3w==');
   }
-  getContacts(personNbr: string): Observable<Contact[]> {
+ /*  getContacts(personNbr: string): Observable<Contact[]> {
     return this.http.get<Contact[]>('https://func-ykbb.azurewebsites.net/api/contact/' + personNbr + '?code=tc2OJy49azMOIqZUVev09yLarIt8kQfg7gr6GGs3uG3daqLORwHPhg==');
-  }
+  } */
 
   async getCards(userId: string): Promise<Card[]> {
     var cards: Card[]= [];
@@ -301,8 +301,11 @@ export class GetSetService {
     return this.http.get<any[]>('https://func-ykbb.azurewebsites.net/api/compass/'+personId+'?code=hMDJFiOF9uAnN/maNMnw5dG8WZvt4zcOt9idQr7FGa4OEZ0XkHrYJQ==');
   }
 
+  getBarnKontakt(personNbr: string): Observable<Contact[]> {
+    return this.http.get<Contact[]>('https://func-ykbb.azurewebsites.net/api/barnkontakt/'+personNbr+'?code=QfADHarQDEcNB2wvnwrsrZD2TrdwOf8leVdQsG3sFT/7YraveAu0dA==');
 }
 
+}
 function containsQuestion(element: Card, questionID: string) {
   var found= false;
 

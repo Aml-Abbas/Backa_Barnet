@@ -13,9 +13,12 @@ import { Contact } from 'src/app/models/Contact';
 })
 export class ContactGuardianComponent implements OnInit {
   current_person$= new Observable<Person | null>();
-  contacts$: Observable<Contact[]>=  new Observable<Contact[]>();
+
+  barnKontakt$= new Observable<Contact[] | null>();
+
+ /*  contacts$: Observable<Contact[]>=  new Observable<Contact[]>();
   contacts: Contact[]= [new Contact('','','','', '', ''),
-                        new Contact('','','','','','')];
+                        new Contact('','','','','','')]; */
   userRoleId: string;
 
   constructor(private store: Store<fromState.State>,
@@ -24,8 +27,16 @@ export class ContactGuardianComponent implements OnInit {
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data =>{
-      this.contacts$= this.getSetService.getContacts(String(data?.personNbr));
-      var index=0;
+      console.log(String(data?.personID));
+      this.barnKontakt$ = this.getSetService.getBarnKontakt(String(data?.personID));
+
+     });
+    this.store.select(fromState.getCurrentUser).subscribe(data=>{
+      this.userRoleId= String(data?.roleID);
+    });
+
+      //this.contacts$= this.getSetService.getContacts(String(data?.personNbr));
+/*       var index=0;
       this.contacts$.subscribe(data=>{
         data.map((contact: Contact)=>{
         var contactPersonNbr= contact.contactPersonNbr;
@@ -42,12 +53,7 @@ export class ContactGuardianComponent implements OnInit {
                                            phoneNbr, employer);
         index++;
         })
-      });
-    });
-    this.store.select(fromState.getCurrentUser).subscribe(data=>{
-      this.userRoleId= String(data?.roleID);
-
-    });
+      }); */
   }
 
 

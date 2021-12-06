@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Person } from 'src/app/models/Person';
 import { Contact } from 'src/app/models/Contact';
 import { GetSetService } from 'src/app/services/get-set/get-set.service';
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-edit-contact-guardian',
@@ -14,72 +15,74 @@ import { GetSetService } from 'src/app/services/get-set/get-set.service';
 })
 export class EditContactGuardianComponent implements OnInit {
   current_person$= new Observable<Person | null>();
-  contacts$: Observable<Contact[]>=  new Observable<Contact[]>();
-  contacts: Contact[]= [new Contact('', '','','','',''),
-                        new Contact('', '','','','','')];
-  contactName='H';
-  supporterName='N';
 
-  contactTask='';
-  supporterTask='';
+  barnKontakt$= new Observable<Contact[] | null>();
+  changeBarnKontaktFormGroup: FormGroup;
+  email = new FormControl('', [Validators.required, Validators.email]);
 
-  contactWorkPlace='';
-  supporterWorkPlace='';
   userRoleId: string;
+  saveError='';
+  nameError='';
+  emailError='';
+  organisationError='';
 
   constructor(private store: Store<fromState.State>,
-    private getSetService: GetSetService) { }
+    private getSetService: GetSetService,
+    private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+      this.changeBarnKontaktFormGroup = this._formBuilder.group({
+        nameControl:['', [Validators.required, Validators.minLength(2)]],
+        organisationControl:['', [Validators.required, Validators.minLength(3)]],
+      }); 
+
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data=>{
-      this.contacts$= this.getSetService.getContacts(String(data?.personNbr));
-    });
-    var index=0;
+       this.barnKontakt$ = this.getSetService.getBarnKontakt(String(data?.personID)); 
 
-    this.contacts$.subscribe(data => {
-        data.map((contact:Contact)=>{
-          let contactPersonNbr= contact.contactPersonNbr;
-          let lastName= contact.lastName;
-          let firstName= contact.firstName;
-  
-          let phoneNbr = contact.phoneNbr;
-          let employer = contact.employer;  
-          var name='';
-          if(lastName!='' && firstName!=''){
-            name= contact.firstName + ' '+ contact.firstName; 
-          }
-  
-          this.contacts[index]= new Contact(contactPersonNbr, lastName, firstName, name,
-            phoneNbr, employer);
-          index++;
-          })
-    
         });
           
         this.store.select(fromState.getCurrentUser).subscribe(data=>{
           this.userRoleId= String(data?.roleID);
     
         });
-    
-        this.contactName= this.contacts[0].firstName + this.contacts[0].lastName;
-        this.supporterName= this.contacts[1].firstName+ this.contacts[1].lastName;
-
-        this.contactTask= this.contacts[0].phoneNbr;
-        this.supporterTask= this.contacts[1].phoneNbr;
-
-        this.contactWorkPlace= this.contacts[0].employer;
-        this.supporterWorkPlace= this.contacts[1].employer;
-  }
+      }
 
   public save(): void {
-    if(this.userRoleId=='4'){
+    this.saveError='';
+    this.nameError='';
+    this.emailError='';
+    this.organisationError='';
 
-    }else{
+    console.log(this.changeBarnKontaktFormGroup.controls.nameControl.value);
+    console.log(this.changeBarnKontaktFormGroup.controls.organisationControl.value);
+
+    if(this.email.hasError('required') ){
+      this.emailError='Du behöver skriva ett värde i mejlet';
+      this.saveError='Rätta felen först';
+    }else if( this.email.hasError('email')){
+      this.saveError='Rätta felen först';
+      this.emailError='Inte ett giltigt mejl';
+    }
+   if(this.changeBarnKontaktFormGroup.controls.nameControl.status== "INVALID"){
+      this.nameError='Namnet är fel, mist två bokstäver';
+      this.saveError='Rätta felen först';
+    }if(this.changeBarnKontaktFormGroup.controls.organisationControl.status== "INVALID"){
+      this.organisationError='Organisation fel, minst tre boksäver.';
+      this.saveError='Rätta felen först';
+    }
+    if(this.saveError==''){
 
     }
-    this.store.dispatch(new fromRoot.Go({ path: ['contact-guardian'] }));
+    //this.store.dispatch(new fromRoot.Go({ path: ['contact-guardian'] }));
   }
 
+  getErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'Du behöver skriva ett värde';
+    }
+
+    return this.email.hasError('email') ? 'Inte ett giltigt mejl' : '';
+  }
 
 }
