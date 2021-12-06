@@ -16,7 +16,7 @@ export class CreateEventGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     var currentUser= this.store.select(fromState.getCurrentUser);
     currentUser.subscribe(data=>{
-      if(String(data?.roleID)!='2'){
+      if(String(data?.roleID)!='2' && String(data?.roleID)!='4'){
         this.store.dispatch(new fromRoot.Back());
       }
     });
