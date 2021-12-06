@@ -104,9 +104,9 @@
     </mat-drawer-container>
 
     <p>{{msgError}}</p>
-    <button mat-raised-button (click)="save()">Spara</button>
+    <button mat-raised-button class="formButton" (click)="save()">Spara</button>
 
-    <button mat-raised-button (click)="moveToEstimateOverview()" *ngIf=" userRoleId=='4' || userRoleId=='2'">Sammanställa</button>
+    <button mat-raised-button class="formButton" (click)="moveToEstimateOverview()" *ngIf=" userRoleId=='4' || userRoleId=='2'">Sammanställa</button>
 
 </div>
 </div>

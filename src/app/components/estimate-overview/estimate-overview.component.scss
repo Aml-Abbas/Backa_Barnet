@@ -55,3 +55,11 @@ table {
       margin-left: 0%;
       }
       
+      @media screen and (max-width: 600px){
+        table{
+          width: 95%;
+        }
+        .lockButton{
+          width: 40%;
+        }
+      }
