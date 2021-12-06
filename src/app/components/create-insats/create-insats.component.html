@@ -1,0 +1,46 @@
+<div class="container">
+    <h1>Min plan framåt</h1>
+
+    <h2 *ngIf=" !(current_person$ | async) as current_person">
+      Välj ett barn först</h2>
+
+
+    <div *ngIf="(current_person$ | async) as current_person">
+
+    <h4>Lägg till ny insats</h4>
+  
+    <button class="back-button" mat-icon-button routerLink="/event">
+      <span class="material-icons"> arrow_back </span>
+   Tillbaka
+    </button>
+  
+  
+    <div class="form-container" [formGroup]="createPlanFormGroup">
+  
+    <h5>Händelse</h5>
+        <textarea matInput formControlName="eventControl"></textarea>
+  
+      <h5>Planerad insats</h5>
+        <textarea matInput formControlName="planControl"></textarea>
+  
+      <div class="container-2">
+        <h5>Ansvariga för insatsen</h5>
+        <mat-form-field appearance="fill">
+          <mat-label>Namn</mat-label>
+          <input matInput formControlName="nameControl">
+        </mat-form-field>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Profession</mat-label>
+          <input matInput formControlName="proControl">
+        </mat-form-field>
+      </div>
+  
+  
+    </div>
+  <p>{{saveError}}</p>
+  
+      <button mat-raised-button (click)="save()">Spara</button>
+  
+  </div>
+</div>

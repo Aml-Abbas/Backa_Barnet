@@ -1,6 +1,13 @@
 <div class="container">
   <h1>Min plan framåt</h1>
-  <h4>Lägg till ny insats</h4>
+
+  <h2 *ngIf=" !(current_person$ | async) as current_person">
+    Välj ett barn först</h2>
+
+
+  <div *ngIf="(current_person$ | async) as current_person">
+
+  <h4>Lägg till ny händelse</h4>
 
   <button class="back-button" mat-icon-button routerLink="/event">
     <span class="material-icons"> arrow_back </span>
@@ -35,4 +42,5 @@
 
     <button mat-raised-button (click)="save()">Spara</button>
 
+</div>
 </div>

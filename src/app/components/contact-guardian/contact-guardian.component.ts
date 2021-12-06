@@ -48,7 +48,6 @@ export class ContactGuardianComponent implements OnInit {
       this.userRoleId= String(data?.roleID);
 
     });
-    console.log(this.userRoleId);  
   }
 
 

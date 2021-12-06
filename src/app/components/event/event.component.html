@@ -1,8 +1,16 @@
 <div class="container">
-    <h1>Tidigare händelser</h1>   
-    <h4>Insatser och viktiga händelser i Kalles liv</h4>
+    <h1>Tidigare händelser</h1> 
+    
+    <h2 *ngIf=" !(current_person$ | async) as current_person">
+      Välj ett barn först</h2>
 
-    <button mat-raised-button class="add-event" routerLink="/create-event">Lägg till<span class="material-icons">create</span></button>
+
+    <div *ngIf="(current_person$ | async) as current_person">
+
+    <h4>Insatser och viktiga händelser i {{current_person.firstName}}s liv</h4>
+
+    <button mat-raised-button class="add-event" routerLink="/create-event">Lägg till händelse<span class="material-icons">create</span></button>
+    <button mat-raised-button class="add-insats" routerLink="/create-insats">Lägg till insats<span class="material-icons">create</span></button>
 
     <div class="title-container">
       <div class="date-title"><h4><strong>Datum</strong></h4></div>
@@ -31,4 +39,6 @@
   </li>
 </ul>
 </div>
+</div>
+
 </div>

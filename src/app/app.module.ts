@@ -79,6 +79,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { BarnteamDetailsComponent } from './components/barnteam-details/barnteam-details.component';
 import { EditBarnteamComponent } from './components/edit-barnteam/edit-barnteam.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { CreateInsatsComponent } from './components/create-insats/create-insats.component';
 
 
 @NgModule({
@@ -90,7 +91,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     EditContactGuardianComponent, DialogComponent, DiscoverCardDetailsComponent, 
     CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent,
      SvgComponent, BBLogComponent, EditDiscoverCardComponent, EditConversationMaterialComponent, CreateUserComponent,
-      CreateBarnteamComponent, UsersComponent, BarnteamComponent, UserDetailsComponent, BarnteamDetailsComponent, EditBarnteamComponent, EditUserComponent],
+      CreateBarnteamComponent, UsersComponent, BarnteamComponent, UserDetailsComponent, BarnteamDetailsComponent, EditBarnteamComponent, EditUserComponent, CreateInsatsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

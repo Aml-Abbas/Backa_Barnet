@@ -196,10 +196,6 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
   changeUnitNbr(unitID: string, unitName: string) {
     this.unitString = unitName;
     this.unitNbr = parseInt(unitID);
-
-    console.log(this.unitNbr);
-    console.log(this.unitString);
-
   }
 
   radioChange(event: MatRadioChange) {
@@ -261,16 +257,14 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
   }
 
   send(number: number) {
-
-
     this.personNbr = this.createDiscoveCardFormGroup.value.personNbrControl;
 
     var GuardianName2= this.guardians[1].name;
-    if(this.guardians[1].name=''){
+    if(this.guardians[1].name==''){
       GuardianName2='0';
     }
     var GuardianNbr2= this.guardians[1].personNbr;
-    if(this.guardians[1].personNbr=''){
+    if(this.guardians[1].personNbr==''){
       GuardianNbr2='0';
     }
 
@@ -315,7 +309,6 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       Status: number,
     };
 
-    console.log(card);
     var isSendAvailable = true;
     this.firstNameError = '';
     this.lastNameError = '';
@@ -375,9 +368,6 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
         isSendAvailable = false;
       }
     } if (!this.isNumeric(this.guardians[0].personNbr)) {
-      console.log('personnbr is not numrik');
-      console.log(this.guardians[0].personNbr);
-
       this.guardiansError[0].personNbr = 'Vårdnadshavares personnummer ska vara 12 siffror.'
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;

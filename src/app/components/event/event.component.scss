@@ -11,12 +11,16 @@ h1{
     font-size: 17px;
     font-weight: bold;
   }
-  .add-event{
+  button{
     background-color: #cde7e6;
     color: black;
     width: 25%;
-    margin-left: 75%;
     margin-bottom: 20px;
+  }
+
+  .add-event{
+    margin-left: 48%;
+    margin-right: 2%;
   }
 
   .items-container {
@@ -190,8 +194,8 @@ h1{
   }
 
   @media screen and (max-width: 767px) {
-    .add-event{
-      width: 50%;
+    .add-event, .add-insats{
+      width: 53%;
       margin-left: 25%;
       }
 

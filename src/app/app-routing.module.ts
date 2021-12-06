@@ -48,6 +48,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { BarnteamDetailsComponent } from './components/barnteam-details/barnteam-details.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { EditBarnteamComponent } from './components/edit-barnteam/edit-barnteam.component';
+import { CreateInsatsComponent } from './components/create-insats/create-insats.component';
 
 
 const routes: Routes = [
@@ -131,6 +132,10 @@ const routes: Routes = [
       {
         path: 'create-event',
         component: CreateEventComponent, canActivate: [CreateEventGuard]
+      }, 
+      {
+        path: 'create-insats',
+        component: CreateInsatsComponent, canActivate: [CreateEventGuard]
       }, 
       {
         path: 'edit-discover-card/:discoverCardId',

@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Person } from 'src/app/models/Person';
+import * as fromRoot from '../../state';
+import { Store } from '@ngrx/store';
+import * as fromState from '../../state';
+import { GetSetService } from '../../services/get-set/get-set.service';
 
 export interface PeriodicElement {
   title: string;
@@ -41,9 +47,16 @@ export class EventComponent implements OnInit {
      responsible:'Sandra Per', role:'Medarbetare'}
   ];
   
-  constructor() { }
+  current_person$= new Observable<Person | null>();
+
+  constructor(private getSetService: GetSetService,
+    private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
+    this.current_person$ = this.store.select(fromState.getCurrentPerson);
+    this.current_person$.subscribe(data=>{
+    });
+
   }
 
 }

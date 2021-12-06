@@ -73,7 +73,6 @@ export class EditContactGuardianComponent implements OnInit {
   }
 
   public save(): void {
-    console.log(this.contacts);
     if(this.userRoleId=='4'){
 
     }else{

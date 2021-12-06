@@ -8,11 +8,11 @@ import { GetSetService } from '../../services/get-set/get-set.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-create-event',
-  templateUrl: './create-event.component.html',
-  styleUrls: ['./create-event.component.scss']
+  selector: 'app-create-insats',
+  templateUrl: './create-insats.component.html',
+  styleUrls: ['./create-insats.component.scss']
 })
-export class CreateEventComponent implements OnInit {
+export class CreateInsatsComponent implements OnInit {
   createPlanFormGroup: FormGroup;
   saveError='';
   current_person$= new Observable<Person | null>();
@@ -33,6 +33,7 @@ export class CreateEventComponent implements OnInit {
 
   }
 
+
   save(){
     if(this.createPlanFormGroup.status== "INVALID"){
       this.saveError='Du har missat att fylla i saker';
@@ -40,4 +41,5 @@ export class CreateEventComponent implements OnInit {
         this.saveError='';
       }
   }
+
 }
