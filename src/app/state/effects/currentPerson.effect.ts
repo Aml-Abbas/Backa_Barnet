@@ -25,6 +25,12 @@ export class CurrentPersonEffect {
         return new currentPersonAction.UpdateAdminUserSuccess(action.payload);
       })));
     
-  
+    updateUsers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(currentPersonAction.UPDATE_USERS),
+      map((action: currentPersonAction.UpdateUsers) => {
+        return new currentPersonAction.UpdateUsersSuccess(action.payload);
+      })));
+
   }
 

@@ -307,7 +307,7 @@ export class GetSetService {
 }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('https://func-ykbb.azurewebsites.net/api/barnkontakt/?code=QfADHarQDEcNB2wvnwrsrZD2TrdwOf8leVdQsG3sFT/7YraveAu0dA==');
+    return this.http.get<User[]>('https://func-ykbb.azurewebsites.net/api/users?code=vAbAl/ZrtgJ4A57sj7VMWVpLFNQxpcEha9h8ne/uVTCF8bGaNMvJTw==');
   }
 
 }

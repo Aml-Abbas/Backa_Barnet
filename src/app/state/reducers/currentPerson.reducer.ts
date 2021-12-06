@@ -8,6 +8,8 @@ export interface CurrentPersonState {
     currentPersonLoaded: boolean;
     currentPerson: Person | null;
     currentAdminUser: User | null;
+    users: User[];
+
   }
   
   export const initialState: CurrentPersonState = {
@@ -15,6 +17,7 @@ export interface CurrentPersonState {
     currentPersonLoaded: false,
     currentPerson: null,
     currentAdminUser: null,
+    users: [],
   };
   
   export function reducer(
@@ -43,6 +46,12 @@ export interface CurrentPersonState {
           currentAdminUser: action.payload,       
        };
       }
+      case currentPerson.UPDATE_USERS_SUCCESS: {
+        return {
+          ...state,
+          users: action.payload,       
+       };
+      }
       default:
         return state;
     }
@@ -59,3 +68,4 @@ export const getCurrentPersonChangedBy = (state: CurrentPersonState) => state.cu
 export const getCurrentPersonChangedOn = (state: CurrentPersonState) => state.currentPerson?.changedOn;
 
 export const getCurrentAdminUser = (state: CurrentPersonState) => state.currentAdminUser;
+export const getCurrentUsers = (state: CurrentPersonState) => state.users;

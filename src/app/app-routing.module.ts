@@ -170,7 +170,7 @@ const routes: Routes = [
         //, canActivate: [AdminGuard]
       },
       {
-        path: 'users/:userId',
+        path: 'users/:userid',
         component: UserDetailsComponent, canActivate:[UserDetailsGuard]
       },
       {

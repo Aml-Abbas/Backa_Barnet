@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
 import { User } from 'src/app/models/User';
 import { GetSetService } from 'src/app/services/get-set/get-set.service';
+import * as fromRoot from '../../../app/state';
 
 @Component({
   selector: 'app-users',
@@ -45,7 +46,10 @@ export class UsersComponent implements OnInit {
   }
 
   setCurrentAdminUser(user: User) {
+    this.store.dispatch(new fromState.UpdateUsers(this.users));
+
     this.store.dispatch(new fromState.UpdateAdminUser(user));
+    this.store.dispatch(new fromRoot.Go({ path: ['/users', user.userID] }));
   }
 
 }

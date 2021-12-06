@@ -26,9 +26,6 @@ export class DiscoverCardDetailsGuard implements CanActivate {
       if(card.id== id){
         this.store.dispatch(new fromState.UpdateCard(card));
         found= true;
-        console.log('found the id');
-        console.log(card.id);
-
         }
       })
     });
