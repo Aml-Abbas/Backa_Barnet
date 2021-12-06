@@ -18,23 +18,18 @@ export class UserDetailsGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
     var userID= route.params.userid;
-    console.log(userID);
     return this.checkUser(userID);
   }
   
   checkUser(id: string): Observable<boolean>{
     var found= false;
-    console.log('will check');
 
     var users = this.store.select(fromState.getCurrentUsers);
     users.subscribe(data=>{
       data.map((user: User)=>{
       if(user.userID== id){
-        console.log(user.userID);
-
         this.store.dispatch(new fromState.UpdateAdminUser(user));
         found= true;
-        console.log(found);
         }
       })
     });

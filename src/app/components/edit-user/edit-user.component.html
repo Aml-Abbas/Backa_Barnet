@@ -8,16 +8,16 @@
   </button>
 
 
-  <div class="form-container" [formGroup]="createUserFormGroup">
+  <div class="form-container" [formGroup]="createUserFormGroup" *ngIf="(user$ | async) as user">
     <mat-form-field appearance="fill">
       <mat-label>Användarens namn</mat-label>
-      <input matInput formControlName="nameControl">
+      <input matInput formControlName="nameControl" [(ngModel)]="user.firstName">
     </mat-form-field>
     <p>{{nameError}}</p>
 
         <mat-form-field appearance="fill">
           <mat-label>Användarens e-post</mat-label>
-          <input matInput placeholder="pat@example.com" [formControl]="email" required>
+          <input matInput placeholder="pat@example.com" [formControl]="email" required  [(ngModel)]="user.email">
           <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
         <p>{{emailError}}</p>
@@ -35,26 +35,13 @@
         <mat-form-field appearance="fill">
           <mat-label>Användarens role:</mat-label>
           <mat-select [(ngModel)]="selectedRole" [ngModelOptions]="{standalone: true}">
-            <mat-option (click)="changeRole(0)" value="0">Upptäckare</mat-option>
-            <mat-option (click)="changeRole(1)" value="1">BarnKontakt</mat-option>
-            <mat-option (click)="changeRole(2)" value="2">BarnTeam</mat-option>
+            <mat-option (click)="changeRole(0)" [value]="1">Upptäckare</mat-option>
+            <mat-option (click)="changeRole(1)" [value]="2">BarnKontakt</mat-option>
+            <mat-option (click)="changeRole(2)" [value]="3">BarnTeam</mat-option>
           </mat-select>
           </mat-form-field>
 
-
-<mat-form-field appearance="fill" *ngIf="selectedRole== '1' || selectedRole== '2'">
-<mat-label>Användarens telefon</mat-label>
-<input matInput formControlName="numberControl">
-</mat-form-field>
-<p>{{nbrError}}</p>
-
-<mat-form-field appearance="fill" *ngIf="selectedRole== '1' || selectedRole== '2'">
-<mat-label>Användarens jobbplats</mat-label>
-<input matInput formControlName="workplaceControl">
-</mat-form-field>
-<p>{{workError}}</p>
-
-<mat-form-field appearance="fill" *ngIf="selectedRole== '1' || selectedRole== '2'">
+<mat-form-field appearance="fill" *ngIf="selectedRole== '2' || selectedRole== '3'">
 <mat-label>Enheter</mat-label>
 <mat-select [formControl]="units" multiple *ngIf="(units$ | async) as current_units">
   <mat-select-trigger>

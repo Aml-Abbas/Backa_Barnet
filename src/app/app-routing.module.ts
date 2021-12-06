@@ -178,7 +178,7 @@ const routes: Routes = [
         component: BarnteamDetailsComponent, canActivate:[BarnteamDetailsGuard]
       },
       {
-        path: 'edit-user/:userId',
+        path: 'edit-user/:userid',
         component: EditUserComponent, canActivate:[UserDetailsGuard]
       },
       {

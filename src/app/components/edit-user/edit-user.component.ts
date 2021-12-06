@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Unit } from 'src/app/models/Unit';
 import { GetSetService } from '../../services/get-set/get-set.service';
+import { User } from 'src/app/models/User';
+import * as fromState from '../../state';
 
 @Component({
   selector: 'app-edit-user',
@@ -27,9 +29,10 @@ export class EditUserComponent implements OnInit {
   saveError='';
   nameError='';
   emailError='';
-  nbrError='';
-  workError='';
   unitError='';
+
+  user$= new Observable<User | null>();
+  userID: string;
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
@@ -47,9 +50,14 @@ export class EditUserComponent implements OnInit {
 
     this.createUserFormGroup = this._formBuilder.group({
       nameControl:['', [Validators.required, Validators.minLength(2)]],
-      numberControl:['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      workplaceControl:['', [Validators.required, Validators.minLength(2)]],
     }); 
+
+    this.user$= this.store.select(fromState.getCurrentAdminUser);
+    this.user$.subscribe(data=>{
+      this.userID= data?.userID ??'';
+      this.selectedRole= data?.roleID??'';
+      console.log(this.selectedRole);
+    });
 
   }
 
@@ -58,8 +66,6 @@ export class EditUserComponent implements OnInit {
     this.saveError='';
     this.nameError='';
     this.emailError='';
-    this.nbrError='';
-    this.workError='';
     this.unitError='';
   
     if(this.email.hasError('required') ){
@@ -73,13 +79,7 @@ export class EditUserComponent implements OnInit {
       this.nameError='Namnet ska vara mist två bokstäver.';
       this.saveError='Rätta felen först';
     }if(this.selectedRole!='0'){
-      if(this.createUserFormGroup.controls.numberControl.status== "INVALID"){
-        this.nbrError='Numret ska vara 10 siffror.';
-        this.saveError='Rätta felen först';
-      }if(this.createUserFormGroup.controls.workplaceControl.status== "INVALID"){
-        this.workError='jobbplats behövs.';
-        this.saveError='Rätta felen först';
-      }if(this.units.value==null){
+      if(this.units.value==null){
         this.unitError='Du måste välja minst en enhet.';
         this.saveError='Rätta felen först';
       }

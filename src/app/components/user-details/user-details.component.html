@@ -13,7 +13,7 @@
   
 
   
-  <mat-list>
+  <mat-list *ngIf="(user$ | async) as user">
 
     <table role="table">
       <thead role="rowgroup">
@@ -24,20 +24,20 @@
     <tbody role="rowgroup">
      <tr role="row">
       <td>Namn:</td>
-      <td></td>
+      <td>{{user.firstName}} {{user.lastName}}</td>
      </tr>
 
      <tr role="row">
       <td>E-post:</td>
-      <td></td>
+      <td>{{user.email}}</td>
      </tr>
 
      <tr role="row">
       <td>Organisation:</td>
-      <td></td>
+      <td>{{user.roleID}}</td>
      </tr>
 
-     <tr role="row">
+<!--      <tr role="row">
       <td>Nummer:</td>
       <td></td>
      </tr>
@@ -46,7 +46,7 @@
       <td>Arbetsplats:</td>
       <td></td>
      </tr>
-    </tbody>
+ -->    </tbody>
     </table>
    
         <mat-divider></mat-divider>
