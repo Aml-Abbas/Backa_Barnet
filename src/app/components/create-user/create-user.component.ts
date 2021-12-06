@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Unit } from 'src/app/models/Unit';
 import { GetSetService } from '../../services/get-set/get-set.service';
+import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 
 
 @Component({
@@ -12,8 +13,12 @@ import { GetSetService } from '../../services/get-set/get-set.service';
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.scss']
 })
-export class CreateUserComponent implements OnInit {
+export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
+  canDeactivate(): boolean {
+    return !this.isDirty;
+  }
 
+  isDirty = false;
   createUserFormGroup: FormGroup;
   email = new FormControl('', [Validators.required, Validators.email]);
   selectedRole= '0';

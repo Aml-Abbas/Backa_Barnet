@@ -45,3 +45,9 @@ export const getCurrentPersonChangedOn = createSelector(
   getCurrentPersonState,
   fromCurrentPerson.getCurrentPersonChangedOn
 );
+
+
+export const getCurrentAdminUser = createSelector(
+  getCurrentPersonState,
+  fromCurrentPerson.getCurrentAdminUser
+);

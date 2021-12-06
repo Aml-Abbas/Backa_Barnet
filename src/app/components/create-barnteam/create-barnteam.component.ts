@@ -5,13 +5,20 @@ import { Observable } from 'rxjs';
 import {FormControl} from '@angular/forms';
 import {map, startWith} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 
 @Component({
   selector: 'app-create-barnteam',
   templateUrl: './create-barnteam.component.html',
   styleUrls: ['./create-barnteam.component.scss']
 })
-export class CreateBarnteamComponent implements OnInit {
+export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate {
+  canDeactivate(): boolean {
+    return !this.isDirty;
+  }
+
+  isDirty = false;
+
   createBarnteamFormGroup: FormGroup;
 
   selectedRole= '0';
@@ -40,33 +47,7 @@ export class CreateBarnteamComponent implements OnInit {
     this.createBarnteamFormGroup = this._formBuilder.group({
       nameControl:['', [Validators.required, Validators.minLength(2)]],
     }); 
-
   }
-
-  increaseUnit(){
-    this.unitNbr++;
-  }
-
-  decreaseUnit(){
-    this.unitNbr--;
-  }
-
-  addUnit(name: string, nbr: string){
-    this.added_units.push(nbr);
-  }
-
-
-  increaseMedlem(){
-    this.medlemNbr++;
-  }
-
-  decreaseMedlem(){
-    this.medlemNbr--;
-  }
-  addMember(name: string, nbr: string){
-    this.added_members.push(nbr);
-  }
-
 
   create(){
     this.saveError='';

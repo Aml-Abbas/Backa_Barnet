@@ -49,6 +49,8 @@ import { BarnteamDetailsComponent } from './components/barnteam-details/barnteam
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { EditBarnteamComponent } from './components/edit-barnteam/edit-barnteam.component';
 import { CreateInsatsComponent } from './components/create-insats/create-insats.component';
+import { UserDetailsGuard } from './guards/user-details.guard';
+import { BarnteamDetailsGuard } from './guards/barnteam-details.guard';
 
 
 const routes: Routes = [
@@ -149,7 +151,7 @@ const routes: Routes = [
       },
       {
         path: 'create-user',
-        component: CreateUserComponent
+        component: CreateUserComponent, canDeactivate: [DirtycheckGuard]
         //, canActivate: [AdminGuard]
       },
       {
@@ -164,24 +166,24 @@ const routes: Routes = [
       },
       {
         path: 'create-barnteam',
-        component: CreateBarnteamComponent
+        component: CreateBarnteamComponent, canDeactivate: [DirtycheckGuard]
         //, canActivate: [AdminGuard]
       },
       {
         path: 'users/:userId',
-        component: UserDetailsComponent,
+        component: UserDetailsComponent, canActivate:[UserDetailsGuard]
       },
       {
         path: 'barnteam/:barnteamId',
-        component: BarnteamDetailsComponent,
+        component: BarnteamDetailsComponent, canActivate:[BarnteamDetailsGuard]
       },
       {
         path: 'edit-user/:userId',
-        component: EditUserComponent,
+        component: EditUserComponent, canActivate:[UserDetailsGuard]
       },
       {
         path: 'edit-barnteam/:barnteamId',
-        component: EditBarnteamComponent,
+        component: EditBarnteamComponent, canActivate:[BarnteamDetailsGuard]
       },
     ]
     

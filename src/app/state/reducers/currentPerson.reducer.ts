@@ -1,17 +1,20 @@
 import * as currentPerson from '../actions/currentPerson.action';
 import {Person} from '../../models/Person';
+import {User} from '../../models/User';
 
 
 export interface CurrentPersonState {
     currentPersonLoading: boolean;
     currentPersonLoaded: boolean;
     currentPerson: Person | null;
+    currentAdminUser: User | null;
   }
   
   export const initialState: CurrentPersonState = {
     currentPersonLoading: false,
     currentPersonLoaded: false,
     currentPerson: null,
+    currentAdminUser: null,
   };
   
   export function reducer(
@@ -34,6 +37,12 @@ export interface CurrentPersonState {
           currentPersonLoading: false
         };
       }
+      case currentPerson.UPDATE_ADMIN_USER_SUCCESS: {
+        return {
+          ...state,
+          currentAdminUser: action.payload,       
+       };
+      }
       default:
         return state;
     }
@@ -48,3 +57,5 @@ export const getCurrentPersonName = (state: CurrentPersonState) => ( state.curre
 export const getCurrentPersonStatus = (state: CurrentPersonState) => state.currentPerson?.status;
 export const getCurrentPersonChangedBy = (state: CurrentPersonState) => state.currentPerson?.changedBy;
 export const getCurrentPersonChangedOn = (state: CurrentPersonState) => state.currentPerson?.changedOn;
+
+export const getCurrentAdminUser = (state: CurrentPersonState) => state.currentAdminUser;

@@ -6,7 +6,7 @@
    Tillbaka
 </button>
 
-    <div class="form-container" [formGroup]="createUserFormGroup">
+    <div class="form-container" [formGroup]="createUserFormGroup" (change)= "isDirty= true">
       <mat-form-field appearance="fill">
         <mat-label>Användarens namn</mat-label>
         <input matInput formControlName="nameControl">

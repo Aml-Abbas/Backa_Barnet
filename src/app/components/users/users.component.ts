@@ -43,4 +43,9 @@ export class UsersComponent implements OnInit {
       }
    });
   }
+
+  setCurrentAdminUser(user: User) {
+    this.store.dispatch(new fromState.UpdateAdminUser(user));
+  }
+
 }

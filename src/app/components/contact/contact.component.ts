@@ -84,12 +84,10 @@ export class ContactComponent implements OnInit {
   applyFilter(event: Event) {
 
     this.searchPersons=[];
-    
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
     if(filterValue!=''){
       this.filterStatus= true;
     }
-
     this.persons.forEach(person=>{
       if(person.personNbr.toLowerCase().includes(filterValue) || person.name.toLowerCase().includes(filterValue)|| 
       person.status.toLowerCase().includes(filterValue)|| person.changedOn.toLowerCase().includes(filterValue)){
