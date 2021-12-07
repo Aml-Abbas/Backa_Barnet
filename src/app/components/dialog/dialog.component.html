@@ -5,6 +5,9 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-  <button mat-button  [mat-dialog-close]="false" mat-dialog-close>Avbryt</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Bekräfta</button>
+  <button mat-button *ngIf="!okButton" [mat-dialog-close]="false" mat-dialog-close>Avbryt</button>
+  <button mat-button *ngIf="!okButton" [mat-dialog-close]="true" cdkFocusInitial>Bekräfta</button>
+
+  <button mat-button *ngIf="okButton" [mat-dialog-close]="true" mat-dialog-close>Okej</button>
+
 </mat-dialog-actions>

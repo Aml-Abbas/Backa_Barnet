@@ -1,17 +1,19 @@
 
 import {Injectable} from '@angular/core';
 import * as estimateAction from '../actions/estimate.action';
-
+import { MatDialog } from '@angular/material/dialog';
 import {map, switchMap, catchError, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {GetSetService} from '../../services/get-set/get-set.service';
 import * as fromRoot from '../../../app/state';
+import { DialogComponent } from '../../components/dialog/dialog.component';
 
 @Injectable()
 export class EstimateEffect {
   constructor(private actions$: Actions,
-              private getSetService: GetSetService) {
+              private getSetService: GetSetService,
+              public dialog: MatDialog) {
   }
 
 createEstimate$ = createEffect(() =>
@@ -30,11 +32,17 @@ this.actions$.pipe(
 createEstimateSuccess$ = createEffect(() =>
 this.actions$.pipe(
   ofType(estimateAction.CREATE_ESTIMATE_SUCCESS),
-  switchMap((action: estimateAction.CreateEstimateSuccess) =>[
-    
-    new fromRoot.Go({path: ['/contact']}),
-  ])
-)
+  map((action: estimateAction.CreateEstimateSuccess) =>{
+    this.dialog.open(DialogComponent, {
+       data: {
+          title: 'Skapa skattning',
+          text: 'Din skattning har nu sparats och väntar på att bli sammanställs.',
+        }
+    });
+  })
+),
+{dispatch: false}
+
 );
 
 

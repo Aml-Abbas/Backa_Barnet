@@ -10,10 +10,14 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 export class DialogComponent implements OnInit {
   title: string;
   text:string;
+  okButton: boolean= false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {title: string, text: string}) {
     this.title= data.title;
     this.text= data.text;
+    if(this.title=='Skapa skattning'){
+      this.okButton= true;
+    }
   }
 
   ngOnInit(): void {}

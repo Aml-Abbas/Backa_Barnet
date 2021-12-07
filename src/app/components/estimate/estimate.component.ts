@@ -27,7 +27,6 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
   }
 
   isDirty = false;
-  estimates$: Observable<Estimate[]> = new Observable<Estimate[]>();
   current_person$= new Observable<Person | null>();
   current_user$= new Observable<User | null>();
 
@@ -41,8 +40,6 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
   userID: string;
 
   currentSavedEstimate: EstimateCard[]= [];
-
-  allEstimatecards: EstimateCard[]= [];
   pcards: Promise<EstimateCard[]>= new Promise((resolve, reject) => { });
 
   categories = [
@@ -403,8 +400,6 @@ save() {
       CommentUtvecklas: this.categories[7].comment,
 
     }
-    console.log(this.personID);
-    console.log(skattning);
     this.isDirty = false;
     this.store.dispatch(new fromState.CreateEstimateCard(skattning));
   }
@@ -412,8 +407,6 @@ save() {
 
 
 moveToEstimateOverview(){
-  console.log(this.currentSavedEstimate);
-
   this.store.dispatch(new fromState.LoadEstimateCards(this.savedEstimatecards));
 
   this.store.dispatch(new fromRoot.Go({ path: ['/estimate-overview'] }));

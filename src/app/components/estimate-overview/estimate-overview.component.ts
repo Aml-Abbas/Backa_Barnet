@@ -1,18 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
 import { EstimateCard } from 'src/app/models/EstimateCard';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
+import { GetSetService } from '../../services/get-set/get-set.service';
+import { Person } from 'src/app/models/Person';
 
-export interface PeriodicElement {
-  status: string,
-  name: string,
-  date: string,
-
-  personID: string,
-  userID : string,
-}
 
 @Component({
   selector: 'app-estimate-overview',
@@ -20,42 +13,60 @@ export interface PeriodicElement {
   styleUrls: ['./estimate-overview.component.scss']
 })
 export class EstimateOverviewComponent implements OnInit {
-  displayedColumns: string[] = ['name','status', 'date'];
-  estimates$: Observable<EstimateCard[]> = new Observable<EstimateCard[]>();
-  estimates: PeriodicElement[] =[];
-  dataSource = new MatTableDataSource(this.estimates);
+  searchEstimate: EstimateCard[]= [];
 
-  constructor(private store: Store<fromState.State>) { }
+  pcards: Promise<EstimateCard[]>= new Promise((resolve, reject) => { });
+  savedEstimatecards: EstimateCard[]= [];
+  current_person$= new Observable<Person | null>();
+  filterStatus: boolean= false;
+
+  constructor(private store: Store<fromState.State>,
+    private getSetService: GetSetService) { }
 
   ngOnInit(): void {
-    this.estimates$= this.store.select(fromState.getEstimateCards);
-    this.estimates$.subscribe(data=>{
-      data.map((estimate: EstimateCard)=>{
-        let name= estimate.userName;
-        let status= estimate.status;
-        let date= estimate.gradedOn;
+    this.current_person$ = this.store.select(fromState.getCurrentPerson);
+    this.current_person$.subscribe(data=>{
+      this.pcards= this.getSetService.getEstimate(data?.personID ?? '');
+    });
+    let savedEstimatecards= this.savedEstimatecards;
 
-        let personID= estimate.personID;
-        let userID= estimate.userID;
-
-          this.estimates.push({name, status, date, personID, userID});
-        
+    this.pcards.then(function (response) {
+      
+      response.forEach((card: EstimateCard)=>{
+        if(card.status=='Sparat'){ 
+          savedEstimatecards.push(card);
+        }
       });
     });
+
+    savedEstimatecards.forEach(element=>{
+      this.savedEstimatecards=[];
+      this.savedEstimatecards.push(element);
+    });
+
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.searchEstimate=[];
+    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    if(filterValue!=''){
+      this.filterStatus= true;
+    }
+    this.savedEstimatecards.forEach(estimate=>{
+      if(estimate.userName.toLowerCase().includes(filterValue) || estimate.status.toLowerCase().includes(filterValue)|| 
+      estimate.gradedOn.toLowerCase().includes(filterValue)){
+        this.searchEstimate.push(estimate);
+      }
+   });
   }
 
   compile(){
-    this.estimates.forEach(element=>{
+    this.savedEstimatecards.forEach(element=>{
 
       var skattning={
         PersonID: element.personID,
         UserID : element.userID,
-        GradedOn: element.date,
+        GradedOn: element.gradedOn,
       }
 
       this.store.dispatch(new fromState.LockEstimateCards(skattning));
