@@ -24,16 +24,19 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
   selectedRole= '0';
   unitNbr=1; 
   added_units: string[]= [];
-  units$: Observable<Unit[]> = new Observable<Unit[]>();
+  //units$: Observable<Unit[]> = new Observable<Unit[]>();
 /*   medlemNbr=1; 
   added_members: string[]= [];
  */
+  units$: Promise<Unit[]>= new Promise((resolve, reject) => { });
 
   units = new FormControl();
   // medlems = new FormControl();
 
-  unitList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato', 'cheese', 'Mush', 'On', 'Peroni', 'Sge', 'To'];
+/*   unitList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato', 'cheese', 'Mush', 'On', 'Peroni', 'Sge', 'To'];
   medlemList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato', 'cheese', 'Mush', 'On', 'Peroni', 'Sge', 'To'];
+ */  
+
   saveError='';
   nameError='';
   unitError='';
@@ -43,7 +46,7 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
     private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.units$= this.getSetService.getUnits();
+    this.units$= this.getSetService.getUnitsWithoutAnnat();
     this.createBarnteamFormGroup = this._formBuilder.group({
       nameControl:['', [Validators.required, Validators.minLength(2)]],
     }); 

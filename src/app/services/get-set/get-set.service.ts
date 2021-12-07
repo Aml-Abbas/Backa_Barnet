@@ -310,6 +310,26 @@ export class GetSetService {
     return this.http.get<User[]>('https://func-ykbb.azurewebsites.net/api/users?code=vAbAl/ZrtgJ4A57sj7VMWVpLFNQxpcEha9h8ne/uVTCF8bGaNMvJTw==');
   }
 
+  async getUnitsWithoutAnnat(): Promise<Unit[]> {
+    var units: Unit[]= [];
+
+    await axios.get('https://func-ykbb.azurewebsites.net/api/unit?code=7od5M5/US4aBc4L61rBOQKHBv3CXO7sWhxxQtZXi43tDknxT2zuIzQ==')
+    .then(function (response) {  
+    
+        response.data.forEach((unit: Unit)=>{  
+          if(unit.unitID!='7'){
+            units.push(unit);
+          }
+        })
+  })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .then(function () {
+    });
+        return units;
+      }
+
 }
 function containsQuestion(element: Card, questionID: string) {
   var found= false;

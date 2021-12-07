@@ -17,32 +17,36 @@ export class EditBarnteamComponent implements OnInit {
   selectedRole= '0';
   unitNbr=1; 
   added_units: string[]= [];
-  units$: Observable<Unit[]> = new Observable<Unit[]>();
-  medlemNbr=1; 
-  added_members: string[]= [];
+  //units$: Observable<Unit[]> = new Observable<Unit[]>();
+  units$: Promise<Unit[]>= new Promise((resolve, reject) => { });
 
+/*   medlemNbr=1; 
+  added_members: string[]= [];
+ */
 
   units = new FormControl();
-  medlems = new FormControl();
+  // medlems = new FormControl();
 
-  unitList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato', 'cheese', 'Mush', 'On', 'Peroni', 'Sge', 'To'];
+/*   unitList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato', 'cheese', 'Mush', 'On', 'Peroni', 'Sge', 'To'];
   medlemList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato', 'cheese', 'Mush', 'On', 'Peroni', 'Sge', 'To'];
+ */  
+
   saveError='';
   nameError='';
   unitError='';
-  memberError='';
+  // memberError='';
 
   constructor(private getSetService: GetSetService,
     private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.units$= this.getSetService.getUnits();
+    this.units$= this.getSetService.getUnitsWithoutAnnat();
     this.createBarnteamFormGroup = this._formBuilder.group({
       nameControl:['', [Validators.required, Validators.minLength(2)]],
     }); 
 
-    this.units.setValue(['Mushroom','To']);
-    this.medlems.setValue(['Extra cheese','Sausage']);
+    this.units.setValue(['Backaskolan']);
+    // this.medlems.setValue(['Extra cheese','Sausage']);
 
   }
 
@@ -50,11 +54,11 @@ export class EditBarnteamComponent implements OnInit {
     this.saveError='';
     this.nameError='';
     this.unitError='';
-    this.memberError='';
+    // this.memberError='';
   
   
     console.log(this.units);
-    console.log(this.medlems);
+    //console.log(this.medlems);
     if(this.createBarnteamFormGroup.status== "INVALID"){
       this.saveError='Rätta felen först';
       this.nameError='Namnet ska vara minst två bokstäver.';
@@ -66,11 +70,11 @@ export class EditBarnteamComponent implements OnInit {
 
     }
 
-    if(this.medlems.value==null){
+   /*  if(this.medlems.value==null){
       this.saveError='Rätta felen först';
       this.memberError='Välj minst ett medlem.';
 
-    }
+    } */
   }
 
   delete(){

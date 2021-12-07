@@ -22,7 +22,8 @@ export class EditUserComponent implements OnInit {
 
   unitNbr=0; 
   added_units: string[]= [];
-  units$: Observable<Unit[]> = new Observable<Unit[]>();
+  //units$: Observable<Unit[]> = new Observable<Unit[]>();
+  units$: Promise<Unit[]>= new Promise((resolve, reject) => { });
 
   units = new FormControl();
   
@@ -46,7 +47,7 @@ export class EditUserComponent implements OnInit {
     private getSetService: GetSetService) { }
 
   ngOnInit(): void {
-    this.units$= this.getSetService.getUnits();
+    this.units$= this.getSetService.getUnitsWithoutAnnat();
 
     this.createUserFormGroup = this._formBuilder.group({
       nameControl:['', [Validators.required, Validators.minLength(2)]],
