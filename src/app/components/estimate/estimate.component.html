@@ -68,11 +68,13 @@
     
       <mat-drawer #drawer class="mat-drawer-sidenav" mode="side" position="end">
         
+        <div class="example-container mat-elevation-z8">
+
         <table id="sidenav-table" role="table">
           <thead role="rowgroup">
             <tr role="row">
-              <th role="columnheader" [style.color]="category.color">Fråga</th>
-              <th role="columnheader" [style.color]="category.color" 
+              <th role="columnheader" [style.color]="category.color" sticky>Fråga</th>
+              <th role="columnheader" [style.color]="category.color"
               *ngFor="let oldScore of estimatecards;">
             {{oldScore.gradedOn.slice(0, 10)}}</th>        
           </tr>
@@ -81,10 +83,10 @@
           <tbody role="rowgroup">
              
            <tr role="row" *ngFor="let question of category.questions; let i= index;">
-            <td role="cell"><div style="width: 200px">{{question.text}}</div></td>
+            <td role="cell"><div style="width: 200px;">{{question.text}}</div></td>
 
                <td role="cell" *ngFor="let oldScore of estimatecards;">
-                  {{oldScore.grades[index1].scores[i]}}
+                <div style="width: 100px">{{oldScore.grades[index1].scores[i]}}</div>
                 </td>
           </tr>
     
@@ -98,6 +100,7 @@
           
           </tbody>
           </table>
+        </div>
 
 
         </mat-drawer>

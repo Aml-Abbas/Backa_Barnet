@@ -31,7 +31,7 @@ h1{
   }
 
   .table-container {
-    width: 98%;
+    width: 100%;
   }
     
   table {
@@ -41,15 +41,22 @@ h1{
     border-collapse: collapse;
     padding: 5px;
     margin-left: 10px;
+    text-align: left;
   }
 
-  #sidenav-table {
+  .example-container {
     width: 100%;
+    max-width: 100%;
+    overflow: auto;
+  }
+  
+  #sidenav-table {
+    width: 800px;
     overflow-x: scroll;
     margin-top: 24px;
   }
 
-  th{
+  td{
     text-align: left;
     font-size: 15px;
   }
@@ -62,6 +69,11 @@ h1{
   tr{
     border-bottom: 1px solid lightgray;
   }
+
+  .ng-star-inserted{
+    //width: 100px;
+  }
+
   p{
     margin-top: 15px;
     color: brown;

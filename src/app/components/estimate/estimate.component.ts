@@ -169,6 +169,8 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
     this.pcards.then(function (response) {
       
       response.forEach((card: EstimateCard)=>{
+        savedEstimatecards.push(card); 
+
         if(card.status=='Sparat' && userID==card.userID){ 
           savedEstimatecards.push(card); 
           currentSavedEstimate.push(card); 
@@ -182,7 +184,7 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
     });
 
     savedEstimatecards.forEach(element=>{
-      this.savedEstimatecards=[];
+      //this.savedEstimatecards=[];
       this.savedEstimatecards.push(element);
     });
 
@@ -194,7 +196,6 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
       this.estimatecards.push(element);
 
     });
-
   }
 
   changeDirty(){
