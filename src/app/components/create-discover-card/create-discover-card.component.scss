@@ -141,6 +141,11 @@ mat-card-title{
    border: 2px solid transparent !important;
  }
 
+ textarea{
+  min-height: 40px;
+  max-height: 80px;
+}
+
 #care{
   
     border: 2px solid #ccd8ec !important;
