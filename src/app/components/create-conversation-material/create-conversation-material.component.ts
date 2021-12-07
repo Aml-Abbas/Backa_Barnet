@@ -213,10 +213,10 @@ export class CreateConversationMaterialComponent implements OnInit, ComponentCan
       if(nbr==1){
         text= 'Kortet kommer att sparas';
       }else if(nbr==2){
-        text= 'Barnet kommer tilldelas statusen "behov uppfylt"';
+        text= 'Barnet kommer att tilldelas statusen "behov uppfyllt"';
         this.current_person.status= 'Behov uppfyllt';
       }else{
-        text= 'Barnet kommer skickas till barnteam';
+        text= 'Barnet kommer att skickas till barnteam';
         this.current_person.status= 'I barnteam';
       }
 

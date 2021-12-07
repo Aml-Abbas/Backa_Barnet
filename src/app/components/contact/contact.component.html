@@ -4,11 +4,11 @@
 
   <div class="search">
     <mat-form-field appearance="standard">
-      <mat-label>Sök - personnummer, namn, senaste ändrad eller status
+      <mat-label>Sök - personnummer, namn, senast ändrad eller status
       </mat-label>
       <input matInput (keyup)="applyFilter($event)" #input>  
     </mat-form-field>
-    <button mat-raised-button routerLink="/create-discover-card">Ny Upptäckt</button>
+    <button mat-raised-button routerLink="/create-discover-card">Ny upptäckt</button>
   </div>
     <h2>Barnlista</h2>
        
@@ -19,7 +19,7 @@
     <tr role="row">
       <th role="columnheader">Personnummer</th>
       <th role="columnheader">Namn</th>
-      <th role="columnheader">Senaste ändrad</th>
+      <th role="columnheader">Senast ändrad</th>
       <th role="columnheader">Barnets status</th>
     </tr>
   </thead>
@@ -37,6 +37,9 @@
       <td role="cell">{{person.name}}</td>
       <td role="cell">{{person.changedOn.slice(0, 10)}}</td>
       <td role="cell">{{person.status}}</td>
+    </tr>
+    <tr role="row" *ngIf="searchPersons.length==0">
+      Inga data som matchar din sökning "{{input.value}}"
     </tr>
   </tbody>
 </table>

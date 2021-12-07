@@ -285,56 +285,56 @@ save() {
 
   this.categories[0].questions.forEach(element=>{
     if(element.score==''){
-      this.categories[0].msgError='Missade betyg i Omsorg kategori.';
+      this.categories[0].msgError='Missade betyg i kategori OMSORG.';
       this.msgError='Rätta felen först';
     }
   });
 
   this.categories[1].questions.forEach(element=>{
     if(element.score==''){
-      this.categories[1].msgError='Missade betyg i TRYGGHET kategori.';
+      this.categories[1].msgError='Missade betyg i kategori TRYGGHET.';
       this.msgError='Rätta felen först';
     }
   });
 
   this.categories[2].questions.forEach(element=>{
     if(element.score==''){
-      this.categories[2].msgError='Missade betyg i MÅ BRA kategori.';
+      this.categories[2].msgError='Missade betyg i kategori MÅ BRA.';
       this.msgError='Rätta felen först';
     }
   });
 
   this.categories[3].questions.forEach(element=>{
     if(element.score==''){
-      this.categories[3].msgError='Missade betyg i FRITID kategori.';
+      this.categories[3].msgError='Missade betyg i kategori FRITID.';
       this.msgError='Rätta felen först';
     }
   });
 
   this.categories[4].questions.forEach(element=>{
     if(element.score==''){
-      this.categories[4].msgError='Missade betyg i TILLHÖRIGHET kategori.';
+      this.categories[4].msgError='Missade betyg i kategori TILLHÖRIGHET.';
       this.msgError='Rätta felen först';
     }
   });
 
   this.categories[5].questions.forEach(element=>{
     if(element.score==''){
-      this.categories[5].msgError='Missade betyg i ANSVARSTAGANDE kategori.';
+      this.categories[5].msgError='Missade betyg i kategori ANSVARSTAGANDE.';
       this.msgError='Rätta felen först';
     }
   });
 
   this.categories[6].questions.forEach(element=>{
     if(element.score==''){
-      this.categories[6].msgError='Missade betyg i RESPEKTERAS kategori.';
+      this.categories[6].msgError='Missade betyg i kategori RESPEKTERAS.';
       this.msgError='Rätta felen först';
     }
   });
 
   this.categories[7].questions.forEach(element=>{
     if(element.score==''){
-      this.categories[7].msgError='Missade betyg i UTVECKLAS kategori.';
+      this.categories[7].msgError='Missade betyg i kategori UTVECKLAS.';
       this.msgError='Rätta felen först';
     }
   });

@@ -4,7 +4,7 @@
 
   <div class="search">
     <mat-form-field appearance="standard">
-      <mat-label>Sök - Id, date eller status</mat-label>
+      <mat-label>Sök - id, datum eller status</mat-label>
       <input matInput (keyup)="applyFilter($event)" #input>
     </mat-form-field>
     <button class="search-button" mat-raised-button routerLink="/create-conversation-material">Nytt samtalsunderlag</button>
@@ -52,6 +52,9 @@
               </button>
           </td>           
         </tr>
+        <tr role="row" *ngIf="searchCards.length==0">
+          Inga data som matchar din sökning "{{input.value}}"
+        </tr>    
       </tbody>
     </table>
     

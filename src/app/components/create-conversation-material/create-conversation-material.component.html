@@ -27,18 +27,18 @@
       <tr role="row">
     
       <th rowspan="2" role="columnheader">Kategori</th>
-      <th rowspan="2" role="columnheader">Frågan</th>
+      <th rowspan="2" role="columnheader">Fråga</th>
       <th colspan="2" role="columnheader">Barnet</th>
       <th colspan="2" role="columnheader">Vårdnadshavare 1</th>
       <th *ngIf="selected=='2'" colspan="2" role="columnheader">Vårdnadshavare 2</th>
     </tr>
     <tr>
       <th role="columnheader">Betyg</th>
-      <th role="columnheader">Kommentär</th>
+      <th role="columnheader">Kommentar</th>
       <th role="columnheader">Betyg</th>
-      <th role="columnheader">Kommentär</th>
+      <th role="columnheader">Kommentar</th>
       <th *ngIf="selected=='2'" role="columnheader">Betyg</th>
-      <th *ngIf="selected=='2'" role="columnheader">Kommentär</th>
+      <th *ngIf="selected=='2'" role="columnheader">Kommentar</th>
 
     </tr>
   </thead>
@@ -92,7 +92,7 @@
 </table>
     
     <button mat-raised-button (click)="send(1)">Spara</button>
-    <button mat-raised-button (click)="send(2)">Behovet uppfyllt</button>
+    <button mat-raised-button (click)="send(2)">Behov uppfyllt</button>
     <button mat-raised-button (click)="send(3)">Skicka till barnteam</button>
 
     <p class="error">{{saveError}}</p>

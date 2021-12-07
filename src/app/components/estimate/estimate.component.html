@@ -25,8 +25,8 @@
           <thead role="rowgroup">
             <tr role="row">
         
-              <th role="columnheader" [style.color]="category.color">Frågan</th>
-            <th role="columnheader" [style.color]="category.color">Score</th>
+              <th role="columnheader" [style.color]="category.color">Fråga</th>
+            <th role="columnheader" [style.color]="category.color">Betyg</th>
         
           </tr>
         </thead>
@@ -55,7 +55,7 @@
         </table>
 
         <button *ngIf="drawer.opened == false" mat-raised-button [style.background-color]="category.color" class="show-more" (click)="drawer.toggle()">
-            Äldre Skattningar
+            Äldre skattningar
         </button>
 
         <button  *ngIf="drawer.opened == true" mat-raised-button [style.background-color]="category.color" class="show-more" (click)="drawer.toggle()">
@@ -71,7 +71,7 @@
         <table id="sidenav-table" role="table">
           <thead role="rowgroup">
             <tr role="row">
-              <th role="columnheader" [style.color]="category.color">Frågan</th>
+              <th role="columnheader" [style.color]="category.color">Fråga</th>
               <th role="columnheader" [style.color]="category.color" 
               *ngFor="let oldScore of estimatecards;">
             {{oldScore.gradedOn.slice(0, 10)}}</th>        
