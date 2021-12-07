@@ -25,19 +25,19 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
   unitNbr=1; 
   added_units: string[]= [];
   units$: Observable<Unit[]> = new Observable<Unit[]>();
-  medlemNbr=1; 
+/*   medlemNbr=1; 
   added_members: string[]= [];
-
+ */
 
   units = new FormControl();
-  medlems = new FormControl();
+  // medlems = new FormControl();
 
   unitList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato', 'cheese', 'Mush', 'On', 'Peroni', 'Sge', 'To'];
   medlemList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato', 'cheese', 'Mush', 'On', 'Peroni', 'Sge', 'To'];
   saveError='';
   nameError='';
   unitError='';
-  memberError='';
+  // memberError='';
 
   constructor(private getSetService: GetSetService,
     private _formBuilder: FormBuilder) { }
@@ -53,25 +53,24 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
     this.saveError='';
     this.nameError='';
     this.unitError='';
-    this.memberError='';
+    // this.memberError='';
   
     console.log(this.units);
-    console.log(this.medlems);
+   // console.log(this.medlems);
     if(this.createBarnteamFormGroup.status== "INVALID"){
       this.saveError='Rätta felen först';
       this.nameError='Namnet ska vara minst två bokstäver.';
     }
-
     if(this.units.value==null){
       this.saveError='Rätta felen först';
       this.unitError='Välj minst en enhet.';
 
     }
 
-    if(this.medlems.value==null){
+/*     if(this.medlems.value==null){
       this.saveError='Rätta felen först';
       this.memberError='Välj minst ett medlem.';
 
     }
-  }
+ */  }
 }

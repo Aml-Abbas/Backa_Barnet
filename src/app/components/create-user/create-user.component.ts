@@ -33,8 +33,8 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
   saveError='';
   nameError='';
   emailError='';
-  nbrError='';
-  workError='';
+/*   nbrError='';
+  workError=''; */
   unitError='';
 
   getErrorMessage() {
@@ -51,12 +51,11 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
 
   ngOnInit(): void {
     this.units$= this.getSetService.getUnits();
-
     this.createUserFormGroup = this._formBuilder.group({
       nameControl:['', [Validators.required, Validators.minLength(2)]],
-      numberControl:['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+/*       numberControl:['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       workplaceControl:['', [Validators.required, Validators.minLength(2)]],
-    }); 
+ */    }); 
 
   }
 
@@ -64,9 +63,9 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
     this.saveError='';
     this.nameError='';
     this.emailError='';
-    this.nbrError='';
+/*     this.nbrError='';
     this.workError='';
-    this.unitError='';
+ */    this.unitError='';
   
     if(this.email.hasError('required') ){
       this.emailError='Du behöver skriva ett värde i mejlet';
@@ -79,13 +78,13 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
       this.nameError='Namnet ska vara mist två bokstäver.';
       this.saveError='Rätta felen först';
     }if(this.selectedRole!='0'){
-      if(this.createUserFormGroup.controls.numberControl.status== "INVALID"){
+      /* if(this.createUserFormGroup.controls.numberControl.status== "INVALID"){
         this.nbrError='Numret ska vara 10 siffror.';
         this.saveError='Rätta felen först';
       }if(this.createUserFormGroup.controls.workplaceControl.status== "INVALID"){
         this.workError='jobbplats behövs.';
         this.saveError='Rätta felen först';
-      }if(this.units.value==null){
+      } */if(this.units.value==null){
         this.unitError='Du måste välja minst en enhet.';
         this.saveError='Rätta felen först';
       }

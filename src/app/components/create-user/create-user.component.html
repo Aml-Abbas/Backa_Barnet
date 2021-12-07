@@ -38,7 +38,7 @@
             </mat-select>
             </mat-form-field>
 
- <mat-form-field appearance="fill" *ngIf="selectedRole== '1' || selectedRole== '2'">
+<!--  <mat-form-field appearance="fill" *ngIf="selectedRole== '1' || selectedRole== '2'">
   <mat-label>Användarens telefon</mat-label>
   <input matInput formControlName="numberControl">
 </mat-form-field>
@@ -48,7 +48,7 @@
   <mat-label>Användarens jobbplats</mat-label>
   <input matInput formControlName="workplaceControl">
 </mat-form-field>
-<p>{{workError}}</p>
+<p>{{workError}}</p> -->
 
  <mat-form-field appearance="fill" *ngIf="selectedRole== '1' || selectedRole== '2'">
   <mat-label>Enheter</mat-label>
@@ -69,6 +69,6 @@
 
 <p>{{saveError}}</p>
 
-        <button mat-raised-button (click)="createUser()">Skapa</button>
+<button mat-raised-button (click)="createUser()">Skapa</button>
 
 </div>
