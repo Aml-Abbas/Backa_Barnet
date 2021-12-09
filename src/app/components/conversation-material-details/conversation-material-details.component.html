@@ -39,15 +39,18 @@
     <tr role="row" id="{{card.id}}" *ngFor="let card of scores; let i=index">
       <td role="cell" [style.color]='card.color'><strong>{{card.area}}</strong></td>
       <td role="cell" >{{card.question}}</td>
-      <td role="cell" >{{conversation_card.person_scores[i]}}</td>
+      <td role="cell" *ngIf="conversation_card.person_scores[i]=='0'">VET EJ</td>
+      <td role="cell" *ngIf="conversation_card.person_scores[i]!='0'">{{conversation_card.person_scores[i]}}</td>
       <td role="cell" >
         {{conversation_card.person_comments[i]}}
           </td>
-      <td role="cell">{{conversation_card.guardian1_scores[i]}}</td>
+      <td role="cell" *ngIf="conversation_card.guardian1_scores[i]=='0'">VET EJ</td>
+      <td role="cell" *ngIf="conversation_card.guardian1_scores[i]!='0'">{{conversation_card.guardian1_scores[i]}}</td>
       <td role="cell">
         {{conversation_card.guardian1_comments[i]}}
       </td>
-      <td role="cell" *ngIf="selected=='2'">{{conversation_card.guardian2_scores[i]}}</td>
+      <td role="cell" *ngIf="selected=='2' && conversation_card.guardian2_scores[i]=='0'">VET EJ</td>
+      <td role="cell" *ngIf="selected=='2' && conversation_card.guardian2_scores[i]!='0'">{{conversation_card.guardian2_scores[i]}}</td>
       <td role="cell" *ngIf="selected=='2'">
         {{conversation_card.guardian2_comments[i]}}
       </td>

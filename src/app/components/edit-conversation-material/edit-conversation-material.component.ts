@@ -100,9 +100,20 @@ export class EditConversationMaterialComponent implements OnInit, ComponentCanDe
 
     this.current_conversation_card$ = this.store.select(fromState.getCurrentConversationCard);
     this.current_conversation_card$.subscribe(data=>{
-      if(data?.guardian2_scores[0]=='0'){
+      var oneGuardian= true;
+
+      if(data?.guardian2_scores[0]==''){
         this.selected='1';
       }
+      data?.guardian2_scores.forEach(element=>{
+        if(element !='0'){
+          oneGuardian= false;
+        }
+        if(!oneGuardian){
+          this.selected= '2';
+        }
+      }); 
+
       data?.person_scores.forEach(element=>{
         this.grades.push(element);
       });
@@ -238,18 +249,18 @@ send(nbr: number): void{
  checkErrors(): boolean{
   var isMissed= false;
   this.grades.forEach(element => {
-    if(element=='0'){
+    if(!(element<'6' &&element>='0')){
       isMissed= true;
     }
   });
   this.grades1.forEach(element => {
-    if(element=='0'){
+    if(!(element<'6' &&element>='0')){
       isMissed= true;
     }
   });
   if(this.selected=='2'){
     this.grades2.forEach(element => {
-      if(element=='0'){
+      if(!(element<'6' &&element>='0')){
         isMissed= true;
       }
     });

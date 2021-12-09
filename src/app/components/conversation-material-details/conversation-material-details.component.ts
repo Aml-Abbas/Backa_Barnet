@@ -47,9 +47,19 @@ export class ConversationMaterialDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.current_conversation_card$ = this.store.select(fromState.getCurrentConversationCard);
     this.current_conversation_card$.subscribe(data=>{
-      if(data?.guardian2_scores[0]=='' ||data?.guardian2_scores[0]=='0' ){
+      var oneGuardian= true;
+
+      if(data?.guardian2_scores[0]==''){
         this.selected='1';
       }
+      data?.guardian2_scores.forEach(element=>{
+        if(element !='0'){
+          oneGuardian= false;
+        }
+        if(!oneGuardian){
+          this.selected= '2';
+        }
+      }); 
     });
   }
 

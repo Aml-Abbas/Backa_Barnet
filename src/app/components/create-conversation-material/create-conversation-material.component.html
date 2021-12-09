@@ -50,6 +50,7 @@
       <td role="cell">
         <!-- [style.border-color]='card.color' -->
           <mat-select id="{{card.class}}" [(ngModel)]="card.person_score" name="{{card.person_score}}" (selectionChange)="changeDirty()">
+            <mat-option value="0">VET EJ</mat-option>
             <mat-option value="1">1</mat-option>
             <mat-option value="2">2</mat-option>
             <mat-option value="3">3</mat-option>
@@ -62,6 +63,7 @@
       </td>
       <td role="cell">
           <mat-select id="{{card.class}}" [(ngModel)]="card.guardian1_score" name="{{card.guardian1_score}}" (selectionChange)="changeDirty()">
+            <mat-option value="0">VET EJ</mat-option>
             <mat-option value="1">1</mat-option>
             <mat-option value="2">2</mat-option>
             <mat-option value="3">3</mat-option>
@@ -74,6 +76,7 @@
       </td>
       <td role="cell" *ngIf="selected=='2'">
           <mat-select id="{{card.class}}" [(ngModel)]="card.guardian2_score" name="{{card.guardian2_score}}" (selectionChange)="changeDirty()">
+            <mat-option value="0">VET EJ</mat-option>
             <mat-option value="1">1</mat-option>
             <mat-option value="2">2</mat-option>
             <mat-option value="3">3</mat-option>
@@ -90,12 +93,11 @@
 
   </tbody>
 </table>
-    
+<p class="error">{{saveError}}</p>
+
     <button mat-raised-button (click)="send(1)">Spara</button>
     <button mat-raised-button (click)="send(2)">Behov uppfyllt</button>
     <button mat-raised-button (click)="send(3)">Skicka till barnteam</button>
-
-    <p class="error">{{saveError}}</p>
 
   </div>
 </div>
