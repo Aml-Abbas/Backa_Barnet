@@ -12,6 +12,14 @@ mat-label{
   color: black;
 }
 
+.mat-input-element:disabled{
+  color: black;
+}
+
+::ng-deep .mat-form-field-disabled{
+  border: 1px solid transparent !important;
+  }
+
 mat-form-field{
   margin-right: 10%;
   width: 40%;

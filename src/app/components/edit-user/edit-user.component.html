@@ -10,17 +10,15 @@
 
   <div class="form-container" [formGroup]="createUserFormGroup" *ngIf="(user$ | async) as user">
     <mat-form-field appearance="fill">
+      <mat-label>Användarens e-post</mat-label>
+      <input disabled matInput value="{{user.email}}">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
       <mat-label>Användarens namn</mat-label>
       <input matInput formControlName="nameControl" [(ngModel)]="user.firstName">
     </mat-form-field>
     <p>{{nameError}}</p>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Användarens e-post</mat-label>
-          <input matInput placeholder="pat@example.com" [formControl]="email" required  [(ngModel)]="user.email">
-          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        <p>{{emailError}}</p>
 
         <mat-form-field appearance="fill">
           <mat-label>Användarens organisation:</mat-label>

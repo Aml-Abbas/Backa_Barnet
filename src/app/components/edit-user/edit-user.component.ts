@@ -16,7 +16,6 @@ import * as fromState from '../../state';
 export class EditUserComponent implements OnInit {
 
   createUserFormGroup: FormGroup;
-  email = new FormControl('', [Validators.required, Validators.email]);
   selectedRole= '0';
   selectedOrganisation= '0';
 
@@ -29,19 +28,11 @@ export class EditUserComponent implements OnInit {
   
   saveError='';
   nameError='';
-  emailError='';
   unitError='';
 
   user$= new Observable<User | null>();
   userID: string;
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'Du behöver skriva ett värde';
-    }
-
-    return this.email.hasError('email') ? 'Inte ett giltigt mejl' : '';
-  }
   constructor(private store: Store<fromStore.State>,
     private _formBuilder: FormBuilder,
     private getSetService: GetSetService) { }
@@ -66,16 +57,8 @@ export class EditUserComponent implements OnInit {
   save(){
     this.saveError='';
     this.nameError='';
-    this.emailError='';
     this.unitError='';
   
-    if(this.email.hasError('required') ){
-      this.emailError='Du behöver skriva ett värde i mejlet';
-      this.saveError='Rätta felen först';
-    }else if( this.email.hasError('email')){
-      this.saveError='Rätta felen först';
-      this.emailError='Inte ett giltigt mejl';
-    }
     if(this.createUserFormGroup.controls.nameControl.status== "INVALID"){
       this.nameError='Namnet ska vara mist två bokstäver.';
       this.saveError='Rätta felen först';
