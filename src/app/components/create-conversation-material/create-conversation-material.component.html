@@ -7,10 +7,10 @@
       
     <div *ngIf="(current_person$ | async) as current_person" (change)= "isDirty= true">
 
-      <h2 *ngIf="current_person.status != 'Upptäckt'">
-        Barnet har inte status Upptäckt</h2>
+      <h2 *ngIf="current_person.status == 'Behov uppfyllt'">
+        Barnet har status Behov uppfyllt</h2>
   
-        <div *ngIf="current_person.status == 'Upptäckt'">
+        <div *ngIf="current_person.status != 'Behov uppfyllt'">
   
     <h4>Bedömning av {{current_person.firstName}}s situation</h4>
 
@@ -26,18 +26,18 @@
         <thead role="rowgroup">
       <tr role="row">
     
-      <th rowspan="2" role="columnheader">Kategori</th>
+      <th rowspan="2" role="columnheader">Behovsområde</th>
       <th rowspan="2" role="columnheader">Fråga</th>
       <th colspan="2" role="columnheader">Barnet</th>
       <th colspan="2" role="columnheader">Vårdnadshavare 1</th>
       <th *ngIf="selected=='2'" colspan="2" role="columnheader">Vårdnadshavare 2</th>
     </tr>
     <tr>
-      <th role="columnheader">Betyg</th>
+      <th role="columnheader">Skala</th>
       <th role="columnheader">Kommentar</th>
-      <th role="columnheader">Betyg</th>
+      <th role="columnheader">Skala</th>
       <th role="columnheader">Kommentar</th>
-      <th *ngIf="selected=='2'" role="columnheader">Betyg</th>
+      <th *ngIf="selected=='2'" role="columnheader">Skala</th>
       <th *ngIf="selected=='2'" role="columnheader">Kommentar</th>
 
     </tr>

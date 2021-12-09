@@ -271,7 +271,7 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
     }  if (isSendAvailable) {
       if (number == 1) {  
         if (!this.checkChoices()) {
-          this.categoryError = 'Du har missat att välja JA, NEJ eller VET EJ i någon av kategorierna';
+          this.categoryError = 'Du har missat att välja JA, NEJ eller VET EJ i någon av Behovsområden';
           isSendAvailable = false;
           this.saveError = 'Du har missat att fylla i saker';
 

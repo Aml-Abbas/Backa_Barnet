@@ -136,7 +136,7 @@ export class EditConversationMaterialComponent implements OnInit, ComponentCanDe
 
 send(nbr: number): void{
   if (!this.checkErrors()) {
-    this.saveError='Du har glömt att välja ett betyg';
+    this.saveError='Du har glömt att välja en Skala';
     }else{ 
       if(this.selected=='1'){
         this.putZeros();
