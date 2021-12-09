@@ -29,6 +29,9 @@ export class NeedCompassComponent implements OnInit {
   selectedDate= '0';
   
   personID: string;
+  personName: string;
+  guardian1: string;
+  guardian2: string;
 
   public radarChartOptions: RadialChartOptions = {
     responsive:true,
@@ -169,6 +172,38 @@ export class NeedCompassComponent implements OnInit {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data=>{
       this.personID= data?.personID?? '';
+
+      this.personName= data?.name?? '';
+      this.guardian1= data?.guardian1?? '';
+      this.guardian2= data?.guardian2?? '';
+
+      let name= this.personName.split(' ');
+      this.personName= name[0]+ ' '+ name[name.length-1];
+      if(this.personName.length>19){
+        this.personName= name[name.length-1];
+      }
+      while(this.personName.length<18){
+        this.personName+=' ';
+      }
+
+      name= this.guardian1.split(' ');
+      this.guardian1= name[0]+ ' '+ name[name.length-1];
+      if(this.guardian1.length>19){
+        this.guardian1= name[name.length-1];
+      }
+      while(this.guardian1.length<18){
+        this.guardian1+=' ';
+      }
+
+      name= this.guardian2.split(' ');
+      this.guardian2= name[0]+ ' '+ name[name.length-1];
+      if(this.guardian2.length>19){
+        this.guardian2= name[name.length-1];
+      }
+      while(this.guardian2.length<18){
+        this.guardian2+=' ';
+      }
+
     });
 
     this.getSetService.getCompass(this.personID).subscribe(response_data=>{
@@ -180,14 +215,6 @@ export class NeedCompassComponent implements OnInit {
         let personID: string = card?.personID ?? '';
         let userID: string = card?.userID ?? '';
         let userName =card?.userName ?? '';;
-        let name= userName.split(' ');
-        userName= name[0]+ ' '+ name[name.length-1];
-        if(userName>19){
-          userName= name[name.length-1];
-        }
-        while(userName.length<18){
-          userName+=' ';
-        }
         let grade: string = card?.grade ?? '';
         let gradedOn: string = card?.gradedOn ?? '';
         let index= this.questionIndex.get(String(questionID))??0;
@@ -196,7 +223,7 @@ export class NeedCompassComponent implements OnInit {
         if(questionTypeID=='1'){
           if(!this.containsCard(gradedOn)){
             this.grades.push(parseInt(grade));
-             this.cards.push(new CompassDataConversation(gradedOn, userName, 
+             this.cards.push(new CompassDataConversation(gradedOn, this.personName, 
               this.grades, this.grades, this.grades));
                this.grades= [];
                this.conversationDates.push(gradedOn.slice(0,10));
