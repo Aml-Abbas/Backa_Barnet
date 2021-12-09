@@ -45,6 +45,13 @@
                 </mat-select>  
               </td>
         </tr>
+        <tr role="row">
+          <td>Medelvärde</td>
+
+          <td>
+            {{currentSavedEstimate[currentSavedEstimate.length-1].average[index1]}}
+          </td>
+         </tr>
          <tr role="row">
           <td>Kommentar</td>
           <td>
@@ -91,7 +98,14 @@
                 <div style="width: 100px" *ngIf="oldScore.grades[index1].scores[i]!=0">{{oldScore.grades[index1].scores[i]}}</div>
                 </td>  
           </tr>
-    
+          <tr role="row">
+            <td>Medelvärde</td>
+
+            <td *ngFor="let oldScore of estimatecards; let i= index;">
+              {{oldScore.average[index1]}}
+            </td>
+           </tr>
+
            <tr role="row">
             <td>Kommentar</td>
 

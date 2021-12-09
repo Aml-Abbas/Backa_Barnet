@@ -159,6 +159,8 @@ export class NeedCompassComponent implements OnInit {
   estimatecards: CompassDataEstimate[]= [];
 
   grades: number[]= [];
+  guardian1_grades: number[]= [];
+  guardian2_grades: number[]= [];
 
   constructor(private store: Store<fromState.State>,
      private getSetService: GetSetService) { }
@@ -194,7 +196,8 @@ export class NeedCompassComponent implements OnInit {
         if(questionTypeID=='1'){
           if(!this.containsCard(gradedOn)){
             this.grades.push(parseInt(grade));
-             this.cards.push(new CompassDataConversation(gradedOn, userName, this.grades));
+             this.cards.push(new CompassDataConversation(gradedOn, userName, 
+              this.grades, this.grades, this.grades));
                this.grades= [];
                this.conversationDates.push(gradedOn.slice(0,10));
           }else{
@@ -269,11 +272,19 @@ export class NeedCompassComponent implements OnInit {
 
         element.grades.forEach(score=>{
           var nbr=0;
+          var length=0;
+
            for(var i=0; i<score.scores.length; i++){
             nbr+= parseInt(score.scores[i]);
+            if(score.scores[i]!=0){
+              length++;
+            }
+          }
+          if(length==0){
+            length=1;
           }
           
-         averageGrades.push(Math.round(nbr/score.scores.length));
+         averageGrades.push(Math.round(nbr/length));
         });
         if(element.gradedOn.slice(0,10)== this.selectedDate && this.radarChartData.length<19){
         this.radarChartData.push({data: averageGrades, label: element.userName, backgroundColor: this.colors[colorIndex]});

@@ -250,7 +250,8 @@ export class GetSetService {
             {scores: {}, comment:''},
             {scores: {}, comment:''}
           ];
-  
+          let average: number[]=[];
+
           let questionID= estimate.questionID;
           let personID= estimate.personID;
           let userID= estimate.userID;
@@ -269,22 +270,40 @@ export class GetSetService {
           categories_data[questionLevelID].scores[0]= grade;
           categories_data[questionLevelID].comment= comment;
 
-          
           if(containsEstimateCard(cards, gradedOn)){
             var found= false;
             cards.forEach(element => {
               if(element.gradedOn== gradedOn && !found){
                 found= true;
                 element.grades[questionLevelID].scores[index]= grade;
-                element.grades[questionLevelID].comment= comment;
-  
+                element.grades[questionLevelID].comment= comment;                
               }      
             });
         
           }else{
-            cards.push(new EstimateCard(personID, userID, categories_data, gradedOn, changedOn, status, userName));
+            cards.push(new EstimateCard(personID, userID, categories_data, average,
+               gradedOn, changedOn, status, userName));
           }
         })
+        cards.forEach(card=>{
+          card.grades.forEach(score=>{
+            var values: string[] = Object.values(score.scores);
+            var nbr=0;
+            var length=0;
+  
+             for(var i=0; i<values.length; i++){
+              nbr+= parseInt(values[i]);
+              if(parseInt(values[i])!=0){
+                length++;
+              }
+            }
+            if(length==0){
+              length=1;
+            }
+           card.average.push(Math.round(nbr/length));
+          });
+
+        });
   })
     .catch(function (error) {
       console.log(error);

@@ -5,6 +5,7 @@ export class EstimateCard {
     userID: string;
 
     grades: any[];
+    average: any[];
 
     gradedOn: string;
     changedOn: string;
@@ -13,7 +14,7 @@ export class EstimateCard {
     userName: string;
 
     constructor(personID: string, userID: string, 
-        grades: any[],
+        grades: any[], average: number[],
         gradedOn: string, changedOn: string, status: string,
         userName: string) {
 
@@ -21,7 +22,8 @@ export class EstimateCard {
       this.userID = userID;
 
       this.grades= grades;
-      
+      this.average= average;
+
       this.gradedOn= gradedOn;
       this.changedOn= changedOn;
 
