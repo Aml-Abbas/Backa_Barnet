@@ -40,13 +40,13 @@ export class PersonsEffect {
       )
       );
   
-      updateStatusSuccess$ = createEffect(() =>
+/*       updateStatusSuccess$ = createEffect(() =>
       this.actions$.pipe(
         ofType(personsAction.UPDATE_STATUS_SUCCESS),
         switchMap((action: personsAction.UpdateStatusSuccess)=>[
           new fromRoot.Go({path: ['/contact']}),
         ])
         )
-        );
+        ); */
   
     }

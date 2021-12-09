@@ -8,6 +8,11 @@ import { Status } from 'src/app/models/Status';
 import { GetSetService } from '../../services/get-set/get-set.service';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 import * as fromRoot from '../../../app/state';
+import {Actions, ofType} from '@ngrx/effects';
+import * as personsAction from '../../state/actions/persons.action';
+import { tap } from 'rxjs/operators';
+import { DialogComponent } from '../../components/dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -33,7 +38,9 @@ export class ContactPersonComponent implements OnInit, ComponentCanDeactivate {
   statusString = '-1';
 
   constructor(private store: Store<fromState.State>,
-    private getSetService: GetSetService) { }
+    private getSetService: GetSetService,
+    private actions$: Actions,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.current_user$ = this.store.select(fromState.getCurrentUser);
@@ -65,6 +72,25 @@ export class ContactPersonComponent implements OnInit, ComponentCanDeactivate {
     });
 
     this.status$ = this.getSetService.getStatus(this.current_person.personID);
+
+    this.actions$.pipe(
+      ofType(personsAction.UPDATE_STATUS_SUCCESS),
+      tap(() => {
+        const dialogRef =this.dialog.open(DialogComponent, {
+          data: {
+             title: 'Ändra status',
+             text: 'Statusen är sparad nu.',
+           }
+       });
+
+       dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          window.location.reload()
+                    }
+                    });
+                 })
+    ).subscribe();
+
   }
 
   changeStatus(statusId: string, statusName: string) {

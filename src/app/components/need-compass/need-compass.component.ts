@@ -276,17 +276,22 @@ export class NeedCompassComponent implements OnInit {
 
            for(var i=0; i<score.scores.length; i++){
             nbr+= parseInt(score.scores[i]);
-            if(score.scores[i]!=0){
+            console.log('score is '+score.scores[i]);
+            console.log('nbr is '+nbr);
+            if(parseInt(score.scores[i])!=0){
               length++;
+              console.log('length is '+length);
             }
           }
           if(length==0){
             length=1;
           }
           
+        console.log('averageGrades is '+Math.round(nbr/length));
          averageGrades.push(Math.round(nbr/length));
         });
         if(element.gradedOn.slice(0,10)== this.selectedDate && this.radarChartData.length<19){
+          console.log(averageGrades);
         this.radarChartData.push({data: averageGrades, label: element.userName, backgroundColor: this.colors[colorIndex]});
         colorIndex++;
         }

@@ -15,7 +15,7 @@ export class DialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {title: string, text: string}) {
     this.title= data.title;
     this.text= data.text;
-    if(this.title=='Skapa skattning'){
+    if(this.title=='Skapa skattning'||this.title=='Ändra status'){
       this.okButton= true;
     }
   }
