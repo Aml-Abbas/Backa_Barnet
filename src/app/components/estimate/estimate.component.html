@@ -36,6 +36,7 @@
               <td role="cell"><div style="width: 200px">{{question.text}}</div></td>
               <td role="cell">
                 <mat-select id="{{category.id}}" [(ngModel)]="currentSavedEstimate[currentSavedEstimate.length-1].grades[index1].scores[index2]" name="{{currentSavedEstimate[0].grades[index1].scores[index2]}}">
+                  <mat-option (click)="changeDirty()" [value]="0">VET EJ</mat-option>
                   <mat-option (click)="changeDirty()" [value]="1">1</mat-option>
                   <mat-option (click)="changeDirty()" [value]="2">2</mat-option>
                   <mat-option (click)="changeDirty()" [value]="3">3</mat-option>
@@ -86,8 +87,9 @@
             <td role="cell"><div style="width: 200px;">{{question.text}}</div></td>
 
                <td role="cell" *ngFor="let oldScore of estimatecards;">
-                <div style="width: 100px">{{oldScore.grades[index1].scores[i]}}</div>
-                </td>
+                <div style="width: 100px" *ngIf="oldScore.grades[index1].scores[i]==0">VET EJ</div>
+                <div style="width: 100px" *ngIf="oldScore.grades[index1].scores[i]!=0">{{oldScore.grades[index1].scores[i]}}</div>
+                </td>  
           </tr>
     
            <tr role="row">

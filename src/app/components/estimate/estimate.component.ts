@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import * as fromRoot from '../../state';
 import { Store } from '@ngrx/store';
@@ -8,7 +7,6 @@ import { Observable } from 'rxjs';
 import { Person } from 'src/app/models/Person';
 import { User } from 'src/app/models/User';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
-import { Estimate } from 'src/app/models/Estimate';
 import { EstimateCard } from 'src/app/models/EstimateCard';
 import { GetSetService } from '../../services/get-set/get-set.service';
 
@@ -184,7 +182,7 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
     });
 
     savedEstimatecards.forEach(element=>{
-      //this.savedEstimatecards=[];
+      this.savedEstimatecards=[];
       this.savedEstimatecards.push(element);
     });
 
@@ -282,56 +280,56 @@ save() {
   this.categories[7].comment= this.currentSavedEstimate[this.currentSavedEstimate.length-1].grades[7].comment;
 
   this.categories[0].questions.forEach(element=>{
-    if(element.score==''){
+    if(!(element.score<'6' &&element.score>='0')){
       this.categories[0].msgError='Missade Skala i Behovsområde OMSORG.';
       this.msgError='Rätta felen först';
     }
   });
 
   this.categories[1].questions.forEach(element=>{
-    if(element.score==''){
+    if(!(element.score<'6' &&element.score>='0')){
       this.categories[1].msgError='Missade Skala i Behovsområde TRYGGHET.';
       this.msgError='Rätta felen först';
     }
   });
 
   this.categories[2].questions.forEach(element=>{
-    if(element.score==''){
+    if(!(element.score<'6' &&element.score>='0')){
       this.categories[2].msgError='Missade Skala i Behovsområde MÅ BRA.';
       this.msgError='Rätta felen först';
     }
   });
 
   this.categories[3].questions.forEach(element=>{
-    if(element.score==''){
+    if(!(element.score<'6' &&element.score>='0')){
       this.categories[3].msgError='Missade Skala i Behovsområde FRITID.';
       this.msgError='Rätta felen först';
     }
   });
 
   this.categories[4].questions.forEach(element=>{
-    if(element.score==''){
+    if(!(element.score<'6' &&element.score>='0')){
       this.categories[4].msgError='Missade Skala i Behovsområde TILLHÖRIGHET.';
       this.msgError='Rätta felen först';
     }
   });
 
   this.categories[5].questions.forEach(element=>{
-    if(element.score==''){
+    if(!(element.score<'6' &&element.score>='0')){
       this.categories[5].msgError='Missade Skala i Behovsområde ANSVARSTAGANDE.';
       this.msgError='Rätta felen först';
     }
   });
 
   this.categories[6].questions.forEach(element=>{
-    if(element.score==''){
+    if(!(element.score<'6' &&element.score>='0')){
       this.categories[6].msgError='Missade Skala i Behovsområde RESPEKTERAS.';
       this.msgError='Rätta felen först';
     }
   });
 
   this.categories[7].questions.forEach(element=>{
-    if(element.score==''){
+    if(!(element.score<'6' &&element.score>='0')){
       this.categories[7].msgError='Missade Skala i Behovsområde UTVECKLAS.';
       this.msgError='Rätta felen först';
     }
