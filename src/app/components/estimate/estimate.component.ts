@@ -9,6 +9,11 @@ import { User } from 'src/app/models/User';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 import { EstimateCard } from 'src/app/models/EstimateCard';
 import { GetSetService } from '../../services/get-set/get-set.service';
+import {Actions, ofType} from '@ngrx/effects';
+import * as estimateAction from '../../state/actions/estimate.action';
+import { tap } from 'rxjs/operators';
+import { DialogComponent } from '../../components/dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-estimate',
@@ -133,7 +138,9 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
 
 
   constructor(private store: Store<fromState.State>,
-    private getSetService: GetSetService) {}
+    private getSetService: GetSetService,
+    private actions$: Actions,
+    public dialog: MatDialog) {}
 
   ngOnInit(): void {
      this.currentSavedEstimate[0]= new EstimateCard('','',[
@@ -196,6 +203,26 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
       this.estimatecards.push(element);
 
     });
+
+    this.actions$.pipe(
+      ofType(estimateAction.CREATE_ESTIMATE_SUCCESS),
+      tap(() => {
+        const dialogRef =this.dialog.open(DialogComponent, {
+          data: {
+             title: 'Skapa skattning',
+             text: 'Din skattning har nu sparats och väntar på att bli sammanställs.',
+           }
+       });
+
+       dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          window.location.reload()
+                    }
+                    });
+                 })
+    ).subscribe();
+
+  
   }
 
   changeDirty(){
