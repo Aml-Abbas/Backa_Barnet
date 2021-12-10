@@ -26,8 +26,9 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
   selectedOrganisation= '0';
 
   unitNbr=0; 
-  added_units: string[]= [];
+  //added_units: string[]= [];
   units$: Promise<Unit[]>= new Promise((resolve, reject) => { });
+  allUnits$: Observable<Unit[]> = new Observable<Unit[]>();
 
   units = new FormControl();
   
@@ -47,7 +48,8 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
 
   ngOnInit(): void {
     this.units$= this.getSetService.getUnitsWithoutAnnat();
-
+    this.allUnits$ = this.getSetService.getUnits();
+    var anotherList: any[] = [];
 
     this.user$= this.store.select(fromState.getCurrentAdminUser);
     this.user$.subscribe(data=>{
@@ -61,7 +63,23 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
       var name= data?.name ??'';
       var unitID= data?.unitID ??'';
 
-      this.user = new User(userID, lastName, firstName, email, roleID, description, 
+      this.allUnits$.subscribe(units=>{
+        units.map((unit:Unit)=>{
+          if(unit?.unitName!='Annat'){
+            anotherList.push({Name: unit?.unitName, ID: unit?.unitID});
+            // anotherList.push({Name: unit?.unitName, ID: unitID});
+            // console.log(this.units.value);
+           }
+ 
+          if(unit?.unitID==data?.unitID){
+           // anotherList.push({Name: unit?.unitName, ID: unitID});
+           // console.log(this.units.value);
+          }
+        });
+      });
+      this.units.setValue[0](anotherList[0]);
+      console.log(this.units.value);
+      this.user = new User(userID, firstName, lastName, email, roleID, description, 
         organisaton, name, unitID);
     });
 
@@ -122,7 +140,6 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
         var user = {
           UserID :this.user.userID,
         } 
-        console.log(user);
         this.isDirty= false;
         this.store.dispatch(new fromState.RemoveUser(user));
         }

@@ -13,7 +13,6 @@ import { GetSetService } from 'src/app/services/get-set/get-set.service';
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent implements OnInit {
-  //unitList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   units$: Observable<Unit[]> = new Observable<Unit[]>();
   user$= new Observable<User | null>();
   userID: string;
