@@ -3,10 +3,11 @@ import { Observable } from 'rxjs';
 import { Person } from 'src/app/models/Person';
 import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
-import { GetSetService } from '../../services/get-set/get-set.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { Unit } from 'src/app/models/Unit';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
+import { Status } from 'src/app/models/Status';
+import { Event } from 'src/app/models/event';
+import { EventService } from 'src/app/services/event/event.service';
 
 @Component({
   selector: 'app-create-insats',
@@ -29,27 +30,34 @@ export class CreateInsatsComponent implements OnInit , ComponentCanDeactivate {
   current_person$= new Observable<Person | null>();
   personID: string;
 
-  units$: Observable<Unit[]> = new Observable<Unit[]>();
-  event: string;
+  events$: Observable<Event[]> = new Observable<Event[]>();
+  eventID = '-1';
+  eventDescription = '-1';
 
   constructor(private _formBuilder: FormBuilder,
     private store: Store<fromState.State>,
-    private getSetService: GetSetService) { }
+    private eventService: EventService) { }
 
   ngOnInit(): void {
-    this.units$ = this.getSetService.getUnits();
-
     this.createPlanFormGroup = this._formBuilder.group({
       nameControl: ['', [Validators.required, Validators.minLength(2)]],
       proControl: ['', [Validators.required, Validators.minLength(2)]],
-      eventControl: ['', [Validators.required, Validators.minLength(10)]],
       planControl: ['', [Validators.required], Validators.minLength(10)],
     }); 
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data=>{
       this.personID = data?.personID ?? '';
     });
+    this.events$= this.eventService.getEvent(this.personID);
+    
+  }
 
+  changeEvent(eventId: string, eventDes: string) {
+    this.isDirty= true;
+    this.eventID = eventId;
+    this.eventDescription = eventDes;
+    console.log(this.eventDescription);
+    console.log(this.eventID);
   }
 
 
@@ -64,7 +72,7 @@ export class CreateInsatsComponent implements OnInit , ComponentCanDeactivate {
 
     if (this.createPlanFormGroup.status == "INVALID") {
       this.saveError = 'Du har missat att fylla i saker';
-    } if (this.createPlanFormGroup.controls.eventControl.status == "INVALID") {
+    } if (this.eventID=='-1') {
       this.eventError = 'Händelse beskrivning måste vara minst 10 bokstäver';
     } if (this.createPlanFormGroup.controls.planControl.status == "INVALID") {
       this.planError = 'Insats beskrivning måste vara minst 10 bokstäver';
@@ -75,15 +83,15 @@ export class CreateInsatsComponent implements OnInit , ComponentCanDeactivate {
     }
     else {
       this.saveError = '';
-      var event = {
+      var action = {
         PersonID: parseInt(this.personID) ?? 0,
         Action: this.createPlanFormGroup.value.planControl.trim() ?? '0',
-        Event: this.createPlanFormGroup.value.eventControl.trim() ?? '0',
+        EventID : this.eventID ?? 0,
         Responsible: this.createPlanFormGroup.value.nameControl.trim() ?? '0',
         Profession: this.createPlanFormGroup.value.proControl.trim() ?? '0',
       }
       this.isDirty = false;
-      this.store.dispatch(new fromState.CreateEvent(event));
+     this.store.dispatch(new fromState.CreateAction(action));
     }
   }
 

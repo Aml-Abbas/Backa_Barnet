@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { Event } from 'src/app/models/event';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +22,8 @@ export class EventService {
       return this.http.post('https://func-ykbb.azurewebsites.net/api/action/edit?code=2Td4p/VoekRtnBV5wXMDu8NnZOaXIrBWXPat1f7S6vOpORkGT7HRag==', actionIdJson);
     }
 
-/*   getEvent(personId: string): Observable<Unit[]> {
-    return this.http.get<Unit[]>('https://func-ykbb.azurewebsites.net/api/event/'+personId+'?code=4BSzbYC1YIm9Qxgocsd1A/Z9dwyuHw1SiGNRVEhIFD3LxbaoLAKV1g==');
-  } */
+   getEvent(personId: string): Observable<Event[]> {
+    return this.http.get<Event[]>('https://func-ykbb.azurewebsites.net/api/event/'+personId+'?code=4BSzbYC1YIm9Qxgocsd1A/Z9dwyuHw1SiGNRVEhIFD3LxbaoLAKV1g==');
+  }
   
 }

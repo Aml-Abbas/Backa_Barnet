@@ -17,10 +17,11 @@
   
     <div class="form-container" [formGroup]="createPlanFormGroup" (change)= "isDirty= true">
   
-      <mat-form-field style="width: 45%;" appearance="fill" *ngIf="(units$ | async) as units">
+      <mat-form-field style="width: 45%;" appearance="fill" *ngIf="(events$ | async) as events">
         <mat-label>Händelse</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitID}}" [(ngModel)]="event" name="event" >{{unit.unitName}}</mat-option>
+        <mat-select [(value)]="eventDescription">
+          <mat-option *ngFor="let event of events; let i= index" value="{{event.eventDescription}}"
+          (click)="changeEvent(event.eventID, event.eventDescription)">{{event.eventDescription}}</mat-option>
         </mat-select>
       </mat-form-field>
       <p>{{eventError}}</p>
