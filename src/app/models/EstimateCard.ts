@@ -5,7 +5,7 @@ export class EstimateCard {
     userID: string;
 
     grades: any[];
-    average: any[];
+    average: number[];
 
     gradedOn: string;
     changedOn: string;

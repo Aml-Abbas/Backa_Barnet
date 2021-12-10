@@ -142,7 +142,6 @@ export class GetSetService {
       var grades2: string[]= [];
       var comments2: string[]= [];
     
-      console.log(response);
         var index=1;
         response.data.forEach((conversationMaterial: ConversationMaterial)=>{
           let questionID= conversationMaterial.questionID;
