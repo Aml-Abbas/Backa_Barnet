@@ -26,7 +26,7 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
   selectedOrganisation= '0';
 
   unitNbr=0; 
-  //added_units: string[]= [];
+  added_units: any[]= [];
   units$: Promise<Unit[]>= new Promise((resolve, reject) => { });
   allUnits$: Observable<Unit[]> = new Observable<Unit[]>();
 
@@ -40,6 +40,7 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
 
   user$= new Observable<User | null>();
   user: User;
+  editUserFormGroup: FormGroup;
 
   constructor(private store: Store<fromStore.State>,
     private _formBuilder: FormBuilder,
@@ -47,10 +48,12 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.editUserFormGroup = this._formBuilder.group({
+      units: ['', [Validators.required, Validators.minLength(2)]],
+    });
+
     this.units$= this.getSetService.getUnitsWithoutAnnat();
     this.allUnits$ = this.getSetService.getUnits();
-    var anotherList: any[] = [];
-
     this.user$= this.store.select(fromState.getCurrentAdminUser);
     this.user$.subscribe(data=>{
       var userID= data?.userID ??'';
@@ -62,25 +65,16 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
       var organisaton= data?.organisaton ??'';
       var name= data?.name ??'';
       var unitID= data?.unitID ??'';
+      this.user = new User(userID, firstName, lastName, email, roleID, description, 
+        organisaton, name, unitID);
 
       this.allUnits$.subscribe(units=>{
         units.map((unit:Unit)=>{
-          if(unit?.unitName!='Annat'){
-            anotherList.push({Name: unit?.unitName, ID: unit?.unitID});
-            // anotherList.push({Name: unit?.unitName, ID: unitID});
-            // console.log(this.units.value);
-           }
- 
           if(unit?.unitID==data?.unitID){
-           // anotherList.push({Name: unit?.unitName, ID: unitID});
-           // console.log(this.units.value);
+            this.added_units.push({Name: unit.unitName, ID: unit.unitID});
           }
         });
       });
-      this.units.setValue[0](anotherList[0]);
-      console.log(this.units.value);
-      this.user = new User(userID, firstName, lastName, email, roleID, description, 
-        organisaton, name, unitID);
     });
 
   }

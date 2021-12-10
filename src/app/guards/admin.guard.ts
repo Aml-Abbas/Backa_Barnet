@@ -13,7 +13,6 @@ export class AdminGuard implements CanActivate {
   constructor(private store: Store<fromState.State>) {}
 
   canActivate(): Observable<boolean> {
-    console.log('in the guardian');
     var currentUser= this.store.select(fromState.getCurrentUser);
     currentUser.subscribe(data=>{
       if(String(data?.roleID)!='4'){
