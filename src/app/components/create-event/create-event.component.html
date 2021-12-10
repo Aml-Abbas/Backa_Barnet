@@ -15,13 +15,15 @@
   </button>
 
 
-  <div class="form-container" [formGroup]="createPlanFormGroup">
+  <div class="form-container" [formGroup]="createPlanFormGroup" (change)= "isDirty= true">
 
   <h5>Händelse</h5>
       <textarea matInput formControlName="eventControl"></textarea>
+      <p>{{eventError}}</p>
 
     <h5>Planerad insats</h5>
       <textarea matInput formControlName="planControl"></textarea>
+      <p>{{planError}}</p>
 
     <div class="container-2">
       <h5>Ansvariga för insatsen</h5>
@@ -29,11 +31,14 @@
         <mat-label>Namn</mat-label>
         <input matInput formControlName="nameControl">
       </mat-form-field>
+      <p>{{nameError}}</p>
 
       <mat-form-field appearance="fill">
         <mat-label>Profession</mat-label>
         <input matInput formControlName="proControl">
       </mat-form-field>
+      <p>{{proError}}</p>
+
     </div>
 
 

@@ -7,6 +7,7 @@ import {DiscoverCardEffect} from './discoverCard.effect';
 import {CurrentCardEffect} from './currentCard.effect';
 import {ConversationMaterialEffect} from './conversationMaterial.effect';
 import {EstimateEffect} from './estimate.effect';
+import {EventEffect} from './event.effect';
 
 export const effects: any[] = [
     LoginEffect,
@@ -17,7 +18,8 @@ export const effects: any[] = [
     DiscoverCardEffect,
     CurrentCardEffect,
     ConversationMaterialEffect,
-    EstimateEffect
+    EstimateEffect,
+    EventEffect
   ];
   
 
@@ -30,3 +32,4 @@ export * from './discoverCard.effect';
 export * from './currentCard.effect';
 export * from './conversationMaterial.effect';
 export * from './estimate.effect';
+export * from './event.effect';

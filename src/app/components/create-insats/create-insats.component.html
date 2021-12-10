@@ -15,25 +15,34 @@
     </button>
   
   
-    <div class="form-container" [formGroup]="createPlanFormGroup">
+    <div class="form-container" [formGroup]="createPlanFormGroup" (change)= "isDirty= true">
   
-    <h5>Händelse</h5>
-        <textarea matInput formControlName="eventControl"></textarea>
-  
+      <mat-form-field style="width: 45%;" appearance="fill" *ngIf="(units$ | async) as units">
+        <mat-label>Händelse</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitID}}" [(ngModel)]="event" name="event" >{{unit.unitName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>{{eventError}}</p>
+    
       <h5>Planerad insats</h5>
         <textarea matInput formControlName="planControl"></textarea>
-  
+        <p>{{planError}}</p>
+
       <div class="container-2">
         <h5>Ansvariga för insatsen</h5>
         <mat-form-field appearance="fill">
           <mat-label>Namn</mat-label>
           <input matInput formControlName="nameControl">
         </mat-form-field>
-  
+        <p>{{nameError}}</p>
+
         <mat-form-field appearance="fill">
           <mat-label>Profession</mat-label>
           <input matInput formControlName="proControl">
         </mat-form-field>
+        <p>{{proError}}</p>
+
       </div>
   
   

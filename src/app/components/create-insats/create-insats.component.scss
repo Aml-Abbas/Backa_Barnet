@@ -56,6 +56,7 @@ h1{
   textarea{
     border: 1px solid #663399;
     height: 60px;
+    width: 90%;
   }
   
   textarea.mat-input-element{
@@ -75,6 +76,22 @@ h1{
   }
   
   
+::ng-deep .mat-select-value{
+  color: black !important;
+}
+
+::ng-deep .mat-select-panel{
+  background-color: #663399 !important;
+}
+
+::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
+  color: white !important;
+}
+
+::ng-deep .mat-select-arrow{
+  color: #663399;
+}
+
   @media only screen and (max-width: 800px) {
     button{
       width: 50%;

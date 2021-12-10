@@ -133,11 +133,11 @@ const routes: Routes = [
       },
       {
         path: 'create-event',
-        component: CreateEventComponent, canActivate: [CreateEventGuard]
+        component: CreateEventComponent, canActivate: [CreateEventGuard], canDeactivate: [DirtycheckGuard]
       }, 
       {
         path: 'create-insats',
-        component: CreateInsatsComponent, canActivate: [CreateEventGuard]
+        component: CreateInsatsComponent, canActivate: [CreateEventGuard], canDeactivate: [DirtycheckGuard]
       }, 
       {
         path: 'edit-discover-card/:discoverCardId',
