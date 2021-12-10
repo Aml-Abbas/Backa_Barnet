@@ -7,7 +7,8 @@
 
     <div *ngIf="(current_person$ | async) as current_person">
 
-    <h4>Insatser och viktiga händelser i {{current_person.firstName}}s liv</h4>
+    <h4 *ngIf="current_person.firstName.endsWith('s')">Insatser och viktiga händelser i {{current_person.firstName}} liv</h4>
+    <h4 *ngIf="!current_person.firstName.endsWith('s')">Insatser och viktiga händelser i {{current_person.firstName}}s liv</h4>
 
     <button mat-raised-button class="add-event" routerLink="/create-event">Lägg till händelse<span class="material-icons">create</span></button>
     <button mat-raised-button class="add-insats" routerLink="/create-insats">Lägg till insats<span class="material-icons">create</span></button>

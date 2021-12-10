@@ -151,23 +151,19 @@ const routes: Routes = [
       },
       {
         path: 'create-user',
-        component: CreateUserComponent, canDeactivate: [DirtycheckGuard]
-        //, canActivate: [AdminGuard]
+        component: CreateUserComponent, canDeactivate: [DirtycheckGuard], canActivate: [AdminGuard]
       },
       {
         path: 'users',
-        component: UsersComponent
-        //, canActivate: [AdminGuard]
+        component: UsersComponent, canActivate: [AdminGuard]
       },
       {
         path: 'barnteam',
-        component: BarnteamComponent
-        //, canActivate: [AdminGuard]
+        component: BarnteamComponent, canActivate: [AdminGuard]
       },
       {
         path: 'create-barnteam',
-        component: CreateBarnteamComponent, canDeactivate: [DirtycheckGuard]
-        //, canActivate: [AdminGuard]
+        component: CreateBarnteamComponent, canDeactivate: [DirtycheckGuard], canActivate: [AdminGuard]
       },
       {
         path: 'users/:userid',

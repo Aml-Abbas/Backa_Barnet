@@ -6,7 +6,8 @@
 
     <div *ngIf="(current_person$ | async) as current_person">
 
-  <h4>Bedömning av {{current_person.firstName}}s situation</h4>
+  <h4 *ngIf="current_person.firstName.endsWith('s')">Bedömning av {{current_person.firstName}} situation</h4>
+  <h4 *ngIf="!current_person.firstName.endsWith('s')">Bedömning av {{current_person.firstName}}s situation</h4>
 
   <mat-form-field appearance="fill">
     <mat-label>Vilken typ av data:</mat-label>

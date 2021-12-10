@@ -3,7 +3,8 @@
 
 <div *ngIf="(current_person$ | async) as current_person">
 
-<h3>{{current_person.firstName}}s mål</h3>
+<h3 *ngIf="current_person.firstName.endsWith('s')">{{current_person.firstName}} mål</h3>
+<h3 *ngIf="!current_person.firstName.endsWith('s')">{{current_person.firstName}}s mål</h3>
 
 </div>
 </div>
