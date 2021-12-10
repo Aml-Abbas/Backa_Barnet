@@ -8,47 +8,51 @@
   </button>
 
 
-  <div class="form-container" [formGroup]="createUserFormGroup" *ngIf="(user$ | async) as user">
+  <div class="form-container">
     <mat-form-field appearance="fill">
       <mat-label>Användarens e-post</mat-label>
       <input disabled matInput value="{{user.email}}">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Användarens namn</mat-label>
-      <input matInput formControlName="nameControl" [(ngModel)]="user.firstName">
+      <mat-label>Användarens förnamn:</mat-label>
+      <input matInput [(ngModel)]="user.firstName" name="user.firstName">
     </mat-form-field>
-    <p>{{nameError}}</p>
+    <p>{{firstNameError}}</p>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Användarens organisation:</mat-label>
-          <mat-select [(ngModel)]="selectedOrganisation" [ngModelOptions]="{standalone: true}">
-            <mat-option value="0">CGI</mat-option>
-            <mat-option value="1">Police</mat-option>
-            <mat-option value="2">Kommun</mat-option>
-          </mat-select>
-          </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Användarens efternamn:</mat-label>
+      <input matInput [(ngModel)]="user.lastName" name="user.lastName">
+    </mat-form-field>
+    <p>{{lastNameError}}</p>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Användarens organisation:</mat-label>
+      <input matInput [(ngModel)]="user.organisaton" name="user.organisaton">
+    </mat-form-field>
+    <p>{{organisationError}}</p>
 
 
         <mat-form-field appearance="fill">
           <mat-label>Användarens role:</mat-label>
-          <mat-select [(ngModel)]="selectedRole" [ngModelOptions]="{standalone: true}">
-            <mat-option (click)="changeRole(0)" [value]="1">Upptäckare</mat-option>
-            <mat-option (click)="changeRole(1)" [value]="2">BarnKontakt</mat-option>
-            <mat-option (click)="changeRole(2)" [value]="3">BarnTeam</mat-option>
+          <mat-select [(ngModel)]="user.roleID" [ngModelOptions]="{standalone: true}">
+            <mat-option [value]="1">Upptäckare</mat-option>
+            <mat-option [value]="2">BarnKontakt</mat-option>
+            <mat-option [value]="3">BarnTeam</mat-option>
+            <mat-option [value]="4">Admin</mat-option>
           </mat-select>
           </mat-form-field>
 
-<mat-form-field appearance="fill" *ngIf="selectedRole== '2' || selectedRole== '3'">
+<mat-form-field appearance="fill" *ngIf="user.roleID== '2' || user.roleID== '3'">
 <mat-label>Enheter</mat-label>
 <mat-select [formControl]="units" multiple *ngIf="(units$ | async) as current_units">
   <mat-select-trigger>
-    {{units.value ? units.value[0] : ''}}
+    {{units.value ? units.value[0].Name : ''}}
     <span *ngIf="units.value?.length > 1">
       (+{{units.value.length - 1}} {{units.value?.length === 2 ? 'other' : 'others'}})
     </span>
   </mat-select-trigger>
-  <mat-option *ngFor="let unit of current_units" [value]="unit.unitName">{{unit.unitName}}</mat-option>
+  <mat-option *ngFor="let unit of current_units" [value]="{Name: unit.unitName, ID: unit.unitID}">{{unit.unitName}}</mat-option>
 </mat-select>
 </mat-form-field>
 <p>{{unitError}}</p>

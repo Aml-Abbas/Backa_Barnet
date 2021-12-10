@@ -71,7 +71,7 @@ this.actions$.pipe(
 
 removeUserSuccess$ = createEffect(() =>
 this.actions$.pipe(
-  ofType(adminAction.CREATE_USER_SUCCESS),
+  ofType(adminAction.REMOVE_USER_SUCCESS),
   switchMap((action: adminAction.RemoveUserSuccess) =>[
     new fromRoot.Go({path: ['/users']}),
   ])

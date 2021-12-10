@@ -83,7 +83,7 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
     }if(this.createUserFormGroup.controls.organisationControl.status== "INVALID"){
       this.organisationError='Organisationen ska vara minst två bokstäver.';
       this.saveError='Rätta felen först';
-    }if(this.selectedRole!='1'){
+    }if(this.selectedRole!='1' && this.selectedRole!='4'){
       if(this.units.value==null){
         this.unitError='Du måste välja minst en enhet.';
         this.saveError='Rätta felen först';

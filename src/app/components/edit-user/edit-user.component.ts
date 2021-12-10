@@ -7,48 +7,62 @@ import { Unit } from 'src/app/models/Unit';
 import { GetSetService } from '../../services/get-set/get-set.service';
 import { User } from 'src/app/models/User';
 import * as fromState from '../../state';
+import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss']
 })
-export class EditUserComponent implements OnInit {
+export class EditUserComponent implements OnInit , ComponentCanDeactivate {
+  canDeactivate(): boolean {
+    return !this.isDirty;
+  }
 
-  createUserFormGroup: FormGroup;
+  isDirty = false;
   selectedRole= '0';
   selectedOrganisation= '0';
 
   unitNbr=0; 
   added_units: string[]= [];
-  //units$: Observable<Unit[]> = new Observable<Unit[]>();
   units$: Promise<Unit[]>= new Promise((resolve, reject) => { });
 
   units = new FormControl();
   
   saveError='';
-  nameError='';
+  firstNameError='';
+  lastNameError='';
   unitError='';
+  organisationError='';
 
   user$= new Observable<User | null>();
-  userID: string;
+  user: User;
 
   constructor(private store: Store<fromStore.State>,
     private _formBuilder: FormBuilder,
-    private getSetService: GetSetService) { }
+    private getSetService: GetSetService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.units$= this.getSetService.getUnitsWithoutAnnat();
 
-    this.createUserFormGroup = this._formBuilder.group({
-      nameControl:['', [Validators.required, Validators.minLength(2)]],
-    }); 
 
     this.user$= this.store.select(fromState.getCurrentAdminUser);
     this.user$.subscribe(data=>{
-      this.userID= data?.userID ??'';
-      this.selectedRole= data?.roleID??'';
-      console.log(this.selectedRole);
+      var userID= data?.userID ??'';
+      var lastName= data?.lastName ??'';
+      var firstName= data?.firstName ??'';
+      var email= data?.email ??'';
+      var roleID= data?.roleID ??'';
+      var description= data?.description ??'';
+      var organisaton= data?.organisaton ??'';
+      var name= data?.name ??'';
+      var unitID= data?.unitID ??'';
+
+      this.user = new User(userID, lastName, firstName, email, roleID, description, 
+        organisaton, name, unitID);
     });
 
   }
@@ -56,32 +70,64 @@ export class EditUserComponent implements OnInit {
 
   save(){
     this.saveError='';
-    this.nameError='';
+    this.firstNameError='';
+    this.lastNameError='';
     this.unitError='';
-  
-    if(this.createUserFormGroup.controls.nameControl.status== "INVALID"){
-      this.nameError='Namnet ska vara mist två bokstäver.';
+    this.organisationError='';
+
+    if(this.user.firstName.trim().length<2){
+      this.firstNameError='Förnamn ska vara mist två bokstäver.';
       this.saveError='Rätta felen först';
-    }if(this.selectedRole!='0'){
+    }if(this.user.lastName.trim().length<2){
+      this.lastNameError='Efternamn ska vara mist två bokstäver.';
+      this.saveError='Rätta felen först';
+    }if(this.user.organisaton.trim().length<2){
+      this.organisationError='Organisationen ska vara minst två bokstäver.';
+      this.saveError='Rätta felen först';
+    }if(this.user.roleID!='1' && this.user.roleID!='4'){
       if(this.units.value==null){
         this.unitError='Du måste välja minst en enhet.';
         this.saveError='Rätta felen först';
       }
     }
-    
+    if(this.saveError==''){
+      var unitID=0;
+      if(this.units.value!=null){
+        unitID= this.units.value[0].ID;
+      }
+      var user = {
+        LastName :  this.user.lastName.trim()?? '0',
+        FirstName : this.user.firstName.trim() ?? '0',
+        Organisation : this.user.organisaton.trim() ?? '0',
+        RoleID : parseInt(this.user.roleID) ?? 0,
+        UnitID : unitID,
+        UserID :this.user.userID,
+      } 
+      this.isDirty= false;
+      this.store.dispatch(new fromState.UpdateUser(user));
+
+    }
   }
 
   delete(){
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: {
+        title: 'Ta bort användare',
+        text: 'Är du säker att du vill ta bort användaren?',
+      }
+    });
 
-  }
-  
-  changeRole(nbr: number){
-    if(nbr==0){
-      this.unitNbr=0;
-    }
-    else{
-      this.unitNbr=1;
-    }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        var user = {
+          UserID :this.user.userID,
+        } 
+        console.log(user);
+        this.isDirty= false;
+        this.store.dispatch(new fromState.RemoveUser(user));
+        }
+    });
+
   }
 
 }
