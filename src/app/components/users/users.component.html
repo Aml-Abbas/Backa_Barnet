@@ -28,7 +28,7 @@
     <tr role="row" *ngFor="let user of users; let i= index" (click)="setCurrentAdminUser(user)">
       <td role="cell">{{user.email}}</td>
       <td role="cell">{{user.firstName}} {{user.lastName}}</td>
-      <td role="cell">{{user.roleID}}</td>
+      <td role="cell">{{user.organisaton}}</td>
       <td role="cell">{{user.description}}</td>
     </tr>
   </tbody>
@@ -36,7 +36,7 @@
     <tr role="row" *ngFor="let user of searchUsers; let i= index" (click)="setCurrentAdminUser(user)">
       <td role="cell">{{user.email}}</td>
       <td role="cell">{{user.firstName}} {{user.lastName}}</td>
-      <td role="cell">{{user.roleID}}</td>
+      <td role="cell">{{user.organisaton}}</td>
       <td role="cell">{{user.description}}</td>
     </tr>
   </tbody>
