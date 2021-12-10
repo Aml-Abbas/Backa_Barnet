@@ -91,7 +91,8 @@ import { CreateInsatsComponent } from './components/create-insats/create-insats.
     EditContactGuardianComponent, DialogComponent, DiscoverCardDetailsComponent, 
     CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent,
      SvgComponent, BBLogComponent, EditDiscoverCardComponent, EditConversationMaterialComponent, CreateUserComponent,
-      CreateBarnteamComponent, UsersComponent, BarnteamComponent, UserDetailsComponent, BarnteamDetailsComponent, EditBarnteamComponent, EditUserComponent, CreateInsatsComponent],
+      CreateBarnteamComponent, UsersComponent, BarnteamComponent, UserDetailsComponent, BarnteamDetailsComponent,
+       EditBarnteamComponent, EditUserComponent, CreateInsatsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

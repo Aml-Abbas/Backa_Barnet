@@ -8,7 +8,7 @@
   </button>
 
 
-  <div class="form-container" [formGroup]="editUserFormGroup">
+  <div class="form-container">
     <mat-form-field appearance="fill">
       <mat-label>Användarens e-post</mat-label>
       <input disabled matInput value="{{user.email}}">
@@ -16,19 +16,19 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Användarens förnamn:</mat-label>
-      <input matInput [(ngModel)]="user.firstName" name="user.firstName">
+      <input matInput [(ngModel)]="user.firstName" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
     <p>{{firstNameError}}</p>
 
     <mat-form-field appearance="fill">
       <mat-label>Användarens efternamn:</mat-label>
-      <input matInput [(ngModel)]="user.lastName" name="user.lastName">
+      <input matInput [(ngModel)]="user.lastName" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
     <p>{{lastNameError}}</p>
 
     <mat-form-field appearance="fill">
       <mat-label>Användarens organisation:</mat-label>
-      <input matInput [(ngModel)]="user.organisaton" name="user.organisaton">
+      <input matInput [(ngModel)]="user.organisaton" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
     <p>{{organisationError}}</p>
 
@@ -42,7 +42,7 @@
             <mat-option [value]="4">Admin</mat-option>
           </mat-select>
           </mat-form-field>
-
+<!-- 
         <mat-form-field appearance="fill" *ngIf="user.roleID== '2' || user.roleID== '3'">
         <mat-label>Enheter</mat-label>
         <mat-select [formControl]="units" multiple *ngIf="(units$ | async) as current_units">
@@ -55,7 +55,7 @@
           <mat-option *ngFor="let unit of current_units" [value]="{Name: unit.unitName, ID: unit.unitID}">{{unit.unitName}}</mat-option>
         </mat-select>
         </mat-form-field>
-        <p>{{unitError}}</p>
+        <p>{{unitError}}</p> -->
 
 
 

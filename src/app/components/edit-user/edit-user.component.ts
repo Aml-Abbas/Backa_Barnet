@@ -40,7 +40,6 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
 
   user$= new Observable<User | null>();
   user: User;
-  editUserFormGroup: FormGroup;
 
   constructor(private store: Store<fromStore.State>,
     private _formBuilder: FormBuilder,
@@ -48,9 +47,6 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.editUserFormGroup = this._formBuilder.group({
-      units: ['', [Validators.required, Validators.minLength(2)]],
-    });
 
     this.units$= this.getSetService.getUnitsWithoutAnnat();
     this.allUnits$ = this.getSetService.getUnits();
