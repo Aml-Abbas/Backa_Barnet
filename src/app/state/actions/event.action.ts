@@ -8,6 +8,9 @@ export const CREATE_ACTION = '[Action] Create Action';
 export const CREATE_ACTION_SUCCESS = '[Action] Create Action Success';
 export const CREATE_ACTION_FAIL = '[Action] Create Action Fail';
 
+export const UPDATE_EVENT = '[Update Event] Update Event';
+export const UPDATE_EVENT_SUCCESS = '[Update Event] Update Event Success';
+export const UPDATE_EVENT_FAIL = '[Update Event] Update Event Fail';
 
 export class CreateEvent implements Action {
     readonly type = CREATE_EVENT;
@@ -39,5 +42,22 @@ export class CreateEvent implements Action {
     constructor(public payload: any) {}
   }
 
+  export class UpdateEvent implements Action {
+    readonly type = UPDATE_EVENT;
+    constructor(public payload: any) {}
+  }
+  
+  export class UpdateEventSuccess implements Action {
+    readonly type = UPDATE_EVENT_SUCCESS;
+    constructor(public payload: any) {}
+  }
+  
+  export class UpdateEventFail implements Action {
+    readonly type = UPDATE_EVENT_FAIL;
+    constructor(public payload: any) {}
+  }
+
   export type EventAction = CreateEvent | CreateEventSuccess | CreateEventFail |
-  CreateAction | CreateActionSuccess | CreateActionFail;
+  CreateAction | CreateActionSuccess | CreateActionFail |
+  UpdateEvent | UpdateEventSuccess | UpdateEventFail;
+

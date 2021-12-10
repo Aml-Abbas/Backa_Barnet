@@ -6,7 +6,7 @@ import * as fromState from '../../state';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 import { Status } from 'src/app/models/Status';
-import { Event } from 'src/app/models/event';
+import { Event } from 'src/app/models/Event';
 import { EventService } from 'src/app/services/event/event.service';
 
 @Component({

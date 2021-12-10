@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Unit } from 'src/app/models/Unit';
 import { GetSetService } from '../../services/get-set/get-set.service';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
+import * as fromState from '../../state';
 
 
 @Component({
@@ -21,21 +22,19 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
   isDirty = false;
   createUserFormGroup: FormGroup;
   email = new FormControl('', [Validators.required, Validators.email]);
-  selectedRole= '0';
-  selectedOrganisation= '0';
+  selectedRole= '1';
+  //selectedOrganisation= '0';
 
-  unitNbr=0; 
   added_units: string[]= [];
-  //units$: Observable<Unit[]> = new Observable<Unit[]>();
   units$: Promise<Unit[]>= new Promise((resolve, reject) => { });
 
   units = new FormControl();
   
   saveError='';
-  nameError='';
+  firstNameError='';
+  lastNameError='';
+  organisationError='';
   emailError='';
-/*   nbrError='';
-  workError=''; */
   unitError='';
 
   getErrorMessage() {
@@ -53,21 +52,21 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
   ngOnInit(): void {
     this.units$= this.getSetService.getUnitsWithoutAnnat();
     this.createUserFormGroup = this._formBuilder.group({
-      nameControl:['', [Validators.required, Validators.minLength(2)]],
-/*       numberControl:['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      workplaceControl:['', [Validators.required, Validators.minLength(2)]],
- */    }); 
+      lastNameControl:['', [Validators.required, Validators.minLength(2)]],
+      firstNameControl:['', [Validators.required, Validators.minLength(2)]],
+      organisationControl:['', [Validators.required, Validators.minLength(2)]],
+    }); 
 
   }
 
   createUser(){
     this.saveError='';
-    this.nameError='';
+    this.firstNameError='';
+    this.lastNameError='';
     this.emailError='';
-/*     this.nbrError='';
-    this.workError='';
- */    this.unitError='';
-  
+    this.unitError='';
+    this.organisationError='';
+
     if(this.email.hasError('required') ){
       this.emailError='Du behöver skriva ett värde i mejlet';
       this.saveError='Rätta felen först';
@@ -75,31 +74,39 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
       this.saveError='Rätta felen först';
       this.emailError='Inte ett giltigt mejl';
     }
-    if(this.createUserFormGroup.controls.nameControl.status== "INVALID"){
-      this.nameError='Namnet ska vara mist två bokstäver.';
+    if(this.createUserFormGroup.controls.firstNameControl.status== "INVALID"){
+      this.firstNameError='Förnamn ska vara mist två bokstäver.';
       this.saveError='Rätta felen först';
-    }if(this.selectedRole!='0'){
-      /* if(this.createUserFormGroup.controls.numberControl.status== "INVALID"){
-        this.nbrError='Numret ska vara 10 siffror.';
-        this.saveError='Rätta felen först';
-      }if(this.createUserFormGroup.controls.workplaceControl.status== "INVALID"){
-        this.workError='jobbplats behövs.';
-        this.saveError='Rätta felen först';
-      } */if(this.units.value==null){
+    }if(this.createUserFormGroup.controls.lastNameControl.status== "INVALID"){
+      this.lastNameError='Efternamn ska vara mist två bokstäver.';
+      this.saveError='Rätta felen först';
+    }if(this.createUserFormGroup.controls.organisationControl.status== "INVALID"){
+      this.organisationError='Organisationen ska vara minst två bokstäver.';
+      this.saveError='Rätta felen först';
+    }if(this.selectedRole!='1'){
+      if(this.units.value==null){
         this.unitError='Du måste välja minst en enhet.';
         this.saveError='Rätta felen först';
       }
     }
-    
-  }
+    if(this.saveError==''){
+      var unitID=0;
+      if(this.units.value!=null){
+        unitID= this.units.value[0].ID;
+      }
+      var user = {
+        LastName :  this.createUserFormGroup.value.lastNameControl.trim()?? '0',
+        FirstName : this.createUserFormGroup.value.firstNameControl.trim() ?? '0',
+        Email  : this.email.value.trim() ?? '0',
+        Organisation : this.createUserFormGroup.value.organisationControl.trim() ?? '0',
+        RoleID : parseInt(this.selectedRole) ?? 0,
+        UnitID : unitID,
+      } 
+      this.isDirty= false;
+      this.store.dispatch(new fromState.CreateUser(user));
 
-  changeRole(nbr: number){
-    if(nbr==0){
-      this.unitNbr=0;
     }
-    else{
-      this.unitNbr=1;
-    }
+    
   }
 
 }

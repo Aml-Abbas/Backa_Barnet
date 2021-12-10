@@ -8,6 +8,7 @@ import {CurrentCardEffect} from './currentCard.effect';
 import {ConversationMaterialEffect} from './conversationMaterial.effect';
 import {EstimateEffect} from './estimate.effect';
 import {EventEffect} from './event.effect';
+import {AdminEffect} from './admin.effect';
 
 export const effects: any[] = [
     LoginEffect,
@@ -19,7 +20,8 @@ export const effects: any[] = [
     CurrentCardEffect,
     ConversationMaterialEffect,
     EstimateEffect,
-    EventEffect
+    EventEffect,
+    AdminEffect
   ];
   
 
@@ -33,3 +35,4 @@ export * from './currentCard.effect';
 export * from './conversationMaterial.effect';
 export * from './estimate.effect';
 export * from './event.effect';
+export * from './admin.effect';

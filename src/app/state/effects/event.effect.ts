@@ -59,5 +59,26 @@ this.actions$.pipe(
 )
 );
 
+updateEvent$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(eventAction.UPDATE_EVENT),
+  switchMap((action: eventAction.UpdateEvent) => {
+
+  return this.eventService.editAction(action.payload).pipe(
+    map((response) => new eventAction.UpdateEventSuccess(response)),
+    catchError((error: any) => of(new eventAction.UpdateEventFail(error)))
+  );
+  })
+)
+);
+
+/* updateEventSuccess$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(eventAction.UPDATE_EVENT_SUCCESS),
+  switchMap((action: eventAction.UpdateEventSuccess) =>[
+    new fromRoot.Go({path: ['/event']}),
+  ])
+)
+); */
 
 }
