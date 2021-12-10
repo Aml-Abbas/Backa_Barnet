@@ -21,16 +21,18 @@
 
  <div class="timeline-continer" >
 <ul id='timeline'>
-  <li class='work' *ngFor="let elemet of ELEMENT_DATA;  let i = index">
+  <li class='work' *ngFor="let elemet of actions;  let i = index">
     <input class='radio' id='work{{i+1}}' name='works' type='radio' checked>
     <div class="relative">
       <label for='work{{i+1}}'>{{elemet.title}}</label>
-      <span class='date'>{{elemet.date}}</span>
+      <span class='date'>{{elemet.date.slice(0,10)}}</span>
       <span class='circle'></span>
     </div>
     <div class='content'>
       <div class="text-container">
-      <p>{{elemet.description}}</p>
+      <p>Insats beskrivning: {{elemet.actionDescription}}</p>
+      <p>Händelse beskrivning: {{elemet.eventDescription}}</p>
+      <p><button *ngIf="elemet.status=='Pågående'" mat-raised-button (click)="endAction(elemet)">Avsluta</button></p>
     </div>
   </div>
     <div class="responsible">

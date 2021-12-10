@@ -5,13 +5,21 @@ import * as fromRoot from '../../state';
 import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
 import { GetSetService } from '../../services/get-set/get-set.service';
+import { Event } from 'src/app/models/Event';
+import { EventService } from 'src/app/services/event/event.service';
+import {Actions, ofType} from '@ngrx/effects';
+import * as eventAction from '../../state/actions/event.action';
+import { tap } from 'rxjs/operators';
 
-export interface PeriodicElement {
+export interface Action {
   title: string;
   date: string;
-  description: string;
+  actionDescription: string;
+  eventDescription: string;
   responsible: string;
   role:string;
+  actionId: string;
+  status:string;
 }
 
 @Component({
@@ -20,43 +28,48 @@ export interface PeriodicElement {
   styleUrls: ['./event.component.scss']
 })
 export class EventComponent implements OnInit {
-    ELEMENT_DATA: PeriodicElement[] = [
-    {title: 'work1', date:'12 May 2013', 
-    description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.'
-    +'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.',
-     responsible:'Nina Lundberg', role:'Medarbetare'},
-  
-    {title: 'work2', date:'12 May 2014',
-    description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.'
-    +'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.',
-     responsible:'Ludviq Almqvist', role:'Medarbetare'},
-  
-    {title: 'work3', date:'12 May 2015', 
-    description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.'
-    +'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.',
-     responsible:'Lukas Lundberg', role:'Medarbetare'},
-  
-    {title: 'work4', date:'12 May 2016', 
-    description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.'
-    +'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.',
-     responsible:'Gustav Sundberg', role:'Medarbetare'},
-  
-    {title: 'work5', date:'12 May 2017', 
-    description:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.'
-    +'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio ea necessitatibus quo velit natus cupiditate qui alias possimus ab praesentium nostrum quidem obcaecati nesciunt! Molestiae officiis voluptate excepturi rem veritatis eum aliquam qui laborum non ipsam ullam tempore reprehenderit illum eligendi cumque mollitia temporibus! Natus dicta qui est optio rerum.',
-     responsible:'Sandra Per', role:'Medarbetare'}
-  ];
+
+  actions: Action[] = [];
   
   current_person$= new Observable<Person | null>();
+  events$: Observable<Event[]> = new Observable<Event[]>();
+  personID:string;
 
   constructor(private getSetService: GetSetService,
-    private store: Store<fromState.State>) { }
+    private store: Store<fromState.State>,
+    private eventService: EventService,
+    private actions$: Actions) { }
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data=>{
+      this.personID = data?.personID ?? '';
     });
+
+    this.events$= this.eventService.getEvent(this.personID);
+    this.events$.subscribe(data=>{
+      data.map((action: Event)=>{
+        this.actions.push({title: 'Create insats', date: action.createdOn ,
+        actionDescription: action.actionDescription, eventDescription: action.eventDescription,
+        responsible: action.responsible, role: action.profession,
+        actionId: action.actionID ,status: action.status});
+      });
+    });
+
+    this.actions$.pipe(
+      ofType(eventAction.UPDATE_EVENT_SUCCESS),
+      tap(() => {
+        window.location.reload()
+      })
+    ).subscribe();
 
   }
 
+  endAction(action: Action){
+    var actionID = {
+      ActionID : parseInt(action.actionId) ?? 0,
+    }
+   this.store.dispatch(new fromState.UpdateEvent(actionID));
+
+    }
 }
