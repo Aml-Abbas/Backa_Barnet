@@ -38,7 +38,6 @@ export class GetSetService {
     var grades: string[]= [];
     var comments: string[]= [];
 
-    console.log(response);
       var index=1;
       response.data.forEach((discoverCard: DiscoverCard)=>{
         let gradedOn= discoverCard.gradedOn;
@@ -225,7 +224,6 @@ export class GetSetService {
   }
 
   setStatus(info: any){
-    console.log(info);
     return this.http.post('https://func-ykbb.azurewebsites.net/api/status/edit?code=t0hLgeixqD5hP4bpYzoizDzuklX38U5/28BRLy1C5LJo4S5hzC3kyQ==', info);
   }
 
