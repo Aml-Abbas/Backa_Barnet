@@ -26,7 +26,7 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
   selectedOrganisation= '0';
 
   unitNbr=0; 
-  added_units: any[]= [];
+  added_units: string[]= [];
   units$: Promise<Unit[]>= new Promise((resolve, reject) => { });
   allUnits$: Observable<Unit[]> = new Observable<Unit[]>();
 
@@ -67,7 +67,12 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
       this.allUnits$.subscribe(units=>{
         units.map((unit:Unit)=>{
           if(unit?.unitID==data?.unitID){
-            this.added_units.push({Name: unit.unitName, ID: unit.unitID});
+            this.added_units.push(unit.unitName);
+            var anotherList: string[] = [
+              this.added_units[0],
+          ]
+  
+          this.units.setValue(anotherList);
           }
         });
       });
