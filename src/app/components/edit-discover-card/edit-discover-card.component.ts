@@ -202,10 +202,10 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
       let description: string = data?.description ?? '';
       let organisation: string = data?.organisaton ?? '';
       let name: string = data?.name ?? '';
-      let unitID: string = data?.unitID ?? '';
+      let units: Unit[] = data?.units ?? [];
 
       this.current_user = new User(userID, firstName, lastName,
-        email, roleID, description, organisation, name, unitID,[]);
+        email, roleID, description, organisation, name, units);
     });
 
     var index=0;

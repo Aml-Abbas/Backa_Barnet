@@ -68,24 +68,13 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
       var description= data?.description ??'';
       var organisaton= data?.organisaton ??'';
       var name= data?.name ??'';
-      var unitID= data?.unitID ??'';
-      var unitName= data?.unitName ??[];
-
+      var units= data?.units ??[];
+      //this.units.setValue(units);
       this.user = new User(userID, firstName, lastName, email, roleID, description, 
-        organisaton, name, unitID, unitName);
+        organisaton, name, units);
     });
 
 }
-  containsUnitName(unitName: string): boolean {
-    var found= false;
-    this.user.unitName.forEach(element=>{
-      if(element==unitName){
-        found=true;
-      }
-    });
-    return found;
-    }
-
 
   save(){
     this.saveError='';

@@ -1,3 +1,5 @@
+import { Unit } from 'src/app/models/Unit';
+
 export class User {
     userID: string;
     lastName: string;
@@ -7,12 +9,11 @@ export class User {
     description: string;
     organisaton: string;
     name: string;
-    unitID: string;
-    unitName: string[];
+    units: Unit[];
 
     constructor(userID: string, firstName: string, lastName: string,
         email: string, roleID: string, description: string,
-        organisaton: string, name: string, unitID: string, unitName: string[]) {
+        organisaton: string, name: string, units: Unit[]) {
             
       this.userID = userID;
       this.firstName = firstName;
@@ -24,8 +25,7 @@ export class User {
       this.email= email;
       this.organisaton= organisaton;
       this.name= name;
-      this.unitID= unitID;
-      this.unitName= unitName;
+      this.units= units;
 
     }
   }

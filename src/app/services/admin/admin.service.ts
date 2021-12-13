@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from 'src/app/models/User';
 import axios from 'axios';
+import { Unit } from 'src/app/models/Unit';
 
 
 @Injectable({
@@ -27,7 +28,7 @@ export class AdminService {
 
     await axios.get('https://func-ykbb.azurewebsites.net/api/users?code=vAbAl/ZrtgJ4A57sj7VMWVpLFNQxpcEha9h8ne/uVTCF8bGaNMvJTw==')
     .then(function (response) {
-      var units: string[]= [];
+      var units: Unit[]= [];
   
         response.data.forEach(user=>{
           let userID: string = user?.userID ?? '';
@@ -42,14 +43,14 @@ export class AdminService {
           let unitName: string = user?.unitName ?? '';
 
           if(!containsUser(users, userID)){
-            units.push(unitName);
+            units.push(new Unit(unitID, unitName));
             users.push(new User(userID, lastName, firstName, email, roleID, description,
-              organisation, name, unitID, units));
+              organisation, name, units));
             units= [];
             }else{
               users.forEach(element => {
                 if(element.userID== userID){
-                  element.unitName.push(unitName);
+                  element.units.push(new Unit(unitID, unitName));
                 }      
               });
           }
@@ -68,7 +69,7 @@ export class AdminService {
 function containsUser(users: User[], userID: string): boolean {
   var found= false;
   users.forEach(element=>{
-    if(element.unitID== userID){
+    if(element.userID== userID){
       found= true;
     }
   });
