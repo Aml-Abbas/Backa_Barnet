@@ -10,9 +10,10 @@ import { ViewChild } from '@angular/core'
 import { __metadata } from 'tslib';
 import { GetSetService } from '../../services/get-set/get-set.service';
 import { CompassDataConversation } from 'src/app/models/CompassDataConversation';
-import { CompassDataEstimate } from 'src/app/models/CompassDataEstimate';
 import { ConversationCard } from 'src/app/models/ConversationCard';
 import { EstimateCard } from 'src/app/models/EstimateCard';
+import * as fromRouter from '../../state/reducers/index';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-need-compass',
@@ -116,10 +117,17 @@ export class NeedCompassComponent implements OnInit {
   ecards: Promise<EstimateCard[]>= new Promise((resolve, reject) => { });
   estimatecards: EstimateCard[]= [];
 
+  state$: Observable<any> = new Observable<any>();
+
   constructor(private store: Store<fromState.State>,
-     private getSetService: GetSetService) { }
+     private getSetService: GetSetService,
+     private route: ActivatedRoute) { 
+     }
 
   ngOnInit(): void {
+      this.selectedType= this.route.snapshot.queryParams[0];
+      this.selectedDate= this.route.snapshot.queryParams[1];
+      
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data=>{
       this.personID= data?.personID?? '';
@@ -185,18 +193,21 @@ export class NeedCompassComponent implements OnInit {
       });
   
     });
+    this.onTypeChange();
+
   }
 
   onTypeChange(){
     this.radarChartData=[];
     this.dates.clear();
 
-    if(this.selectedType=='2'){
+    if(this.selectedType=='2' && this.selectedDate=='0'){
       this.selectedDate= this.estimatecards[0].gradedOn.slice(0,10);
     }else{
-      this.selectedDate= this.ConversationCards[0].gradedOn.slice(0,10);
+      if(this.selectedDate=='0'){
+        this.selectedDate= this.ConversationCards[0].gradedOn.slice(0,10);
+      }
   }
-  this.onDateChange();
 }
 
   onDateChange(){

@@ -30,9 +30,11 @@
     </div>
     <div class='content'>
       <div class="text-container">
-      <p>Insats beskrivning: {{elemet.actionDescription}}</p>
-      <p>Händelse beskrivning: {{elemet.eventDescription}}</p>
-      <p><button *ngIf="elemet.status=='Pågående'" mat-raised-button (click)="endAction(elemet)">Avsluta</button></p>
+      <p>{{elemet.description[0]}}</p>
+      <p *ngIf="elemet.title=='Insats'">{{elemet.description[1]}}</p>
+      <p><button *ngIf="elemet.status=='Pågående' && elemet.title=='Insats'" mat-raised-button (click)="endAction(elemet)">Avsluta</button></p>
+      <p><button *ngIf="elemet.title!='Insats'" mat-raised-button (click)="moveTo(elemet)">Till kortet</button></p>
+
     </div>
   </div>
     <div class="responsible">

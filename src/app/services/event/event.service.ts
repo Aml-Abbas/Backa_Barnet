@@ -8,17 +8,8 @@ import { ConversationCard } from 'src/app/models/ConversationCard';
 import { EstimateCard } from 'src/app/models/EstimateCard';
 import { Card } from 'src/app/models/Card';
 import {map} from "rxjs/operators";
+import { Action } from 'src/app/models/Action';
 
-export interface Action {
-  title: string;
-  date: string;
-  actionDescription: string;
-  eventDescription: string;
-  responsible: string;
-  role:string;
-  actionId: string;
-  status:string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -72,10 +63,11 @@ export class EventService {
 
       events.then(function (response) {
         response.forEach((action: Event)=>{
-          eventsCard.push({title: 'Skapa insats', date: action.createdOn ,
-          actionDescription: action.actionDescription, eventDescription: action.eventDescription,
+          eventsCard.push({title: 'Insats', date: action.createdOn,
+          description: ['Insats beskrivning: '+action.eventDescription, 
+          'Händelse beskrivning: '+action.actionDescription],
           responsible: action.responsible, role: action.profession,
-          actionId: action.actionID ,status: action.status});
+          id: action.actionID ,status: action.status});
       });
       });
 
@@ -87,10 +79,10 @@ export class EventService {
       pcards.then(function (response) {
         
         response.forEach((card: ConversationCard)=>{
-          cards.push({title: 'Skapa samtalsunderlag', date: card.gradedOn ,
-          actionDescription: card.person_scores.toString(), eventDescription: card.person_comments.toString(),
+          cards.push({title: 'Samtalsunderlag', date: card.gradedOn,
+          description: ['Ett samtalsunderlag har skapats för barnet'],
           responsible: card.personID, role: card.personID,
-          actionId: card.id ,status: card.status});
+          id: card.id ,status: card.status});
       });
       });
   
@@ -102,10 +94,10 @@ export class EventService {
       ecards.then(function (response) {
         
         response.forEach((card: EstimateCard)=>{
-            estimatecards.push({title: 'Skapa skattning', date: card.gradedOn ,
-            actionDescription: card.grades.toString(), eventDescription: card.grades.toString(),
+            estimatecards.push({title: 'Skattning', date: card.gradedOn ,
+            description: ['En skattning har skapats för barnet'],
             responsible: card.userName, role: card.userID,
-            actionId: card.userID ,status: card.status});    
+            id: card.userID ,status: card.status});    
         });
       });
   
@@ -119,10 +111,10 @@ export class EventService {
       dcards.then(function (response) {
         
         response.forEach((card: Card)=>{
-          discoverCards.push({title: 'Skapa upptäckarkort', date: card.gradedOn ,
-          actionDescription: card.grades.toString(), eventDescription: card.grades.toString(),
+          discoverCards.push({title: 'Upptäckarkort', date: card.gradedOn ,
+          description: ['Ett upptäckarkort har skapats för barnet'],
           responsible: card.userName, role: card.userTitle,
-          actionId: card.id ,status: card.status});
+          id: card.id ,status: card.status});
       });
       });
       discoverCards.forEach(element=>{

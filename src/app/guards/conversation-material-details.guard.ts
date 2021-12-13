@@ -14,15 +14,15 @@ export class ConversationMaterialDetailsGuard implements CanActivate {
   constructor(private store: Store<fromState.State>) {}
 
   canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
-    var id= route.params.conversationMaterialId;
-    return this.checkConversationCard(id);
+    var gradedOn= route.params.conversationMaterialId;
+    return this.checkConversationCard(gradedOn);
   }
   
-  checkConversationCard(id: string): Observable<boolean>{
+  checkConversationCard(gradedOn: string): Observable<boolean>{
     var found= false;
     this.store.select(fromState.getConversationCards).subscribe(data=>{
       data.map((card: ConversationCard)=>{
-      if(card.id== id){
+      if(card.gradedOn== gradedOn){
         this.store.dispatch(new fromState.UpdateCurrentConversationCard(card));
         found= true;
         return of(true);

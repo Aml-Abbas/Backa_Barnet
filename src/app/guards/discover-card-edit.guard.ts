@@ -16,15 +16,15 @@ export class DiscoverCardEditGuard implements CanActivate {
 
 
   canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
-    var id= route.params.discoverCardId;
-    return this.checkDiscoverCard(id);
+    var gradedOn= route.params.discoverCardId;
+    return this.checkDiscoverCard(gradedOn);
   }
   
-  checkDiscoverCard(id: string): Observable<boolean>{
+  checkDiscoverCard(gradedOn: string): Observable<boolean>{
     var found= false;
     this.store.select(fromState.getCurrentCards).subscribe(data=>{
       data.map((card: Card)=>{
-      if(card.id== id && card.status== 'Sparat'){
+      if(card.gradedOn== gradedOn && card.status== 'Sparat'){
         this.store.dispatch(new fromState.UpdateCard(card));
         found= true;
         }

@@ -47,14 +47,14 @@ export class DiscoverCardComponent implements OnInit {
     this.store.dispatch(new fromState.UpdateCards(this.cards));
 
     this.store.dispatch(new fromState.UpdateCard(card));
-    this.store.dispatch(new fromRoot.Go({ path: ['/discover-card', card.id] }));
+    this.store.dispatch(new fromRoot.Go({ path: ['/discover-card', card.gradedOn] }));
   }
 
   moveToEditCard(card: Card){
     this.store.dispatch(new fromState.UpdateCards(this.cards));
 
     this.store.dispatch(new fromState.UpdateCard(card));
-    this.store.dispatch(new fromRoot.Go({ path: ['/edit-discover-card', card.id] }));
+    this.store.dispatch(new fromRoot.Go({ path: ['/edit-discover-card', card.gradedOn] }));
   }
 
   applyFilter(event: Event) {

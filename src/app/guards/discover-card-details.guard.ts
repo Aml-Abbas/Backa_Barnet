@@ -15,15 +15,15 @@ export class DiscoverCardDetailsGuard implements CanActivate {
   constructor(private store: Store<fromState.State>) {}
 
   canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
-    var id= route.params.discoverCardId;
-    return this.checkDiscoverCard(id);
+    var gradedOn= route.params.discoverCardId;
+    return this.checkDiscoverCard(gradedOn);
   }
   
-  checkDiscoverCard(id: string): Observable<boolean>{
+  checkDiscoverCard(gradedOn: string): Observable<boolean>{
     var found= false;
     this.store.select(fromState.getCurrentCards).subscribe(data=>{
       data.map((card: Card)=>{
-      if(card.id== id){
+      if(card.gradedOn== gradedOn){
         this.store.dispatch(new fromState.UpdateCard(card));
         found= true;
         }

@@ -77,14 +77,14 @@ export class ConversationMaterialComponent implements OnInit {
     this.store.dispatch(new fromState.UpdateConversationCards(this.ConversationCards));
 
     this.store.dispatch(new fromState.UpdateCurrentConversationCard(card));
-    this.store.dispatch(new fromRoot.Go({ path: ['/conversation-material', card.id] }));
+    this.store.dispatch(new fromRoot.Go({ path: ['/conversation-material', card.gradedOn] }));
   }
 
   moveToEditCard(card: ConversationCard){
     this.store.dispatch(new fromState.UpdateConversationCards(this.ConversationCards));
 
     this.store.dispatch(new fromState.UpdateCurrentConversationCard(card));
-    this.store.dispatch(new fromRoot.Go({ path: ['/edit-conversation-material', card.id] }));
+    this.store.dispatch(new fromRoot.Go({ path: ['/edit-conversation-material', card.gradedOn] }));
   }
 
 }

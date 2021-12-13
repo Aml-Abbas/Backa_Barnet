@@ -92,7 +92,7 @@ const routes: Routes = [
       },
       {
         path: 'need-compass',
-        component: NeedCompassComponent, canActivate: [NeedCompassGuard]
+        component: NeedCompassComponent, canActivate: [NeedCompassGuard],
       },
       {
         path: 'consent',

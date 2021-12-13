@@ -15,15 +15,15 @@ export class ConversationMaterialEditGuard implements CanActivate {
 
 
   canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
-    var id= route.params.conversationMaterialId;
-    return this.checkConversationCard(id);
+    var gradedOn= route.params.conversationMaterialId;
+    return this.checkConversationCard(gradedOn);
   }
   
-  checkConversationCard(id: string): Observable<boolean>{
+  checkConversationCard(gradedOn: string): Observable<boolean>{
     var found= false;
     this.store.select(fromState.getConversationCards).subscribe(data=>{
       data.map((card: ConversationCard)=>{
-      if(card.id== id && card.status=='Sparat'){
+      if(card.gradedOn== gradedOn && card.status=='Sparat'){
         this.store.dispatch(new fromState.UpdateCurrentConversationCard(card));
         found= true;
         return of(true);

@@ -10,17 +10,8 @@ import {Actions, ofType} from '@ngrx/effects';
 import * as eventAction from '../../state/actions/event.action';
 import { tap } from 'rxjs/operators';
 import { User } from 'src/app/models/User';
-
-export interface Action {
-  title: string;
-  date: string;
-  actionDescription: string;
-  eventDescription: string;
-  responsible: string;
-  role:string;
-  actionId: string;
-  status:string;
-}
+import { Action } from 'src/app/models/Action';
+import * as fromRoot from '../../../app/state';
 
 
 @Component({
@@ -79,9 +70,20 @@ export class EventComponent implements OnInit {
 
   endAction(action: Action){
     var actionID = {
-      ActionID : parseInt(action.actionId) ?? 0,
+      ActionID : parseInt(action.id) ?? 0,
     }
    this.store.dispatch(new fromState.UpdateEvent(actionID));
 
     }
+
+    moveTo(action: Action){
+      if(action.title=='Skattning'){
+        this.store.dispatch(new fromRoot.Go({ path: ['/need-compass'], query:['2', action.date] }));
+      }else if(action.title=='Samtalsunderlag'){
+        this.store.dispatch(new fromRoot.Go({ path: ['/conversation-material', action.date] }));
+      }else if(action.title=='Upptäckarkort'){
+        this.store.dispatch(new fromRoot.Go({ path: ['/discover-card', action.date] }));
+      }
+    }
+  
     }
