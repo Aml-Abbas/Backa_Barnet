@@ -39,28 +39,11 @@
 
      <tr role="row">
       <td>Enhet:</td>
-      <td>{{unitName}}</td>
+      <td *ngFor="let unit of user.unitName;">{{unit}}</td>
      </tr>
-
-<!--      <tr role="row">
-      <td>Nummer:</td>
-      <td></td>
-     </tr>
-
-     <tr role="row">
-      <td>Arbetsplats:</td>
-      <td></td>
-     </tr>
- -->    </tbody>
+    </tbody>
     </table>
    
-       <!--  <mat-divider></mat-divider>
-
-        <mat-list-item>Enheter:</mat-list-item>
-        <ul>
-          <li *ngFor="let unit of unitList; let i= index;">{{unit}}</li>
-        </ul>   -->
-    
         <mat-divider></mat-divider>
     
     

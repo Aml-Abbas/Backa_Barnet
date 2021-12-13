@@ -166,7 +166,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       this.store.dispatch(new fromState.LoadDiscoverCard(userID));
 
       this.current_user = new User(userID, firstName, lastName,
-        email, roleID, description, organisation, name, unitID);
+        email, roleID, description, organisation, name, unitID,[]);
     });
 
     this.createDiscoveCardFormGroup = this._formBuilder.group({

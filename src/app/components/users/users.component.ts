@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
 import { User } from 'src/app/models/User';
-import { GetSetService } from 'src/app/services/get-set/get-set.service';
+import { AdminService } from 'src/app/services/admin/admin.service';
 import * as fromRoot from '../../../app/state';
 
 @Component({
@@ -12,22 +12,29 @@ import * as fromRoot from '../../../app/state';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  users$: Observable<User[]> = new Observable<User[]>();
+  pusers: Promise<User[]>= new Promise((resolve, reject) => { });
   users: User[] = [];
 
   searchUsers: User[]= [];
   filterStatus: boolean= false;
 
   constructor(private store: Store<fromState.State>,
-    private getSetService: GetSetService) { }
+    private adminService: AdminService) { }
 
   ngOnInit(): void {
-    this.users$ = this.getSetService.getUsers();
-    this.users$.subscribe(data => {
-      data.map((user: User)=>{
-        this.users.push(user);
-      });
+    this.pusers= this.adminService.getUsers();
+    let users= this.users;
+
+    this.pusers.then(function (response) {
+      
+      response.forEach((user: User)=>{
+        users.push(user);
     });
+    });
+    users.forEach(element=>{
+      this.users.push(element);
+    });
+
   }
 
   applyFilter(event: Event) {

@@ -12,7 +12,6 @@ import { Card } from 'src/app/models/Card';
 import axios from 'axios';
 import { ConversationCard } from 'src/app/models/ConversationCard';
 import { EstimateCard } from 'src/app/models/EstimateCard';
-import { User } from 'src/app/models/User';
 
 
 @Injectable({
@@ -321,10 +320,6 @@ export class GetSetService {
   getBarnKontakt(personNbr: string): Observable<Contact[]> {
     return this.http.get<Contact[]>('https://func-ykbb.azurewebsites.net/api/barnkontakt/'+personNbr+'?code=QfADHarQDEcNB2wvnwrsrZD2TrdwOf8leVdQsG3sFT/7YraveAu0dA==');
 }
-
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('https://func-ykbb.azurewebsites.net/api/users?code=vAbAl/ZrtgJ4A57sj7VMWVpLFNQxpcEha9h8ne/uVTCF8bGaNMvJTw==');
-  }
 
   async getUnitsWithoutAnnat(): Promise<Unit[]> {
     var units: Unit[]= [];

@@ -61,8 +61,10 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
       var organisaton= data?.organisaton ??'';
       var name= data?.name ??'';
       var unitID= data?.unitID ??'';
+      var unitName= data?.unitName ??[];
+
       this.user = new User(userID, firstName, lastName, email, roleID, description, 
-        organisaton, name, unitID);
+        organisaton, name, unitID, unitName);
 
       this.allUnits$.subscribe(units=>{
         units.map((unit:Unit)=>{
