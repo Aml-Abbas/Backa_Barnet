@@ -31,7 +31,8 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
   unitsList : Unit[]= [];
 
   units = new FormControl();
-  
+  unitList: any[] = [];
+
   saveError='';
   firstNameError='';
   lastNameError='';
@@ -69,7 +70,14 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
       var organisaton= data?.organisaton ??'';
       var name= data?.name ??'';
       var units= data?.units ??[];
-      //this.units.setValue(units);
+
+        this.unitList=[
+          {unitID :units[0].unitID, unitName: units[0].unitName}
+        ];
+
+      //this.units.patchValue(this.unitList); 
+      //console.log(this.units.value);
+
       this.user = new User(userID, firstName, lastName, email, roleID, description, 
         organisaton, name, units);
     });
