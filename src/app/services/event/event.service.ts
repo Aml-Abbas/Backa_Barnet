@@ -56,7 +56,8 @@ export class EventService {
     .then(function (response) {
       events$.subscribe(data=>{
         data.map((action: Event)=>{
-          actions.push({title: 'Create insats', date: action.createdOn ,
+          actions.push({title: 'Skapa insats', date: action.createdOn 
+          ,
           actionDescription: action.actionDescription, eventDescription: action.eventDescription,
           responsible: action.responsible, role: action.profession,
           actionId: action.actionID ,status: action.status});
@@ -67,7 +68,7 @@ export class EventService {
       pcards.then(function (response) {
         
         response.forEach((card: ConversationCard)=>{
-          cards.push({title: 'Create samtalsunderlag', date: card.gradedOn ,
+          cards.push({title: 'Skapa samtalsunderlag', date: card.gradedOn ,
           actionDescription: card.person_scores.toString(), eventDescription: card.person_comments.toString(),
           responsible: 'Aml Abbas', role: 'Barnkontakt',
           actionId: card.id ,status: card.status});
@@ -82,7 +83,7 @@ export class EventService {
       ecards.then(function (response) {
         
         response.forEach((card: EstimateCard)=>{
-            estimatecards.push({title: 'Create skattning', date: card.gradedOn ,
+            estimatecards.push({title: 'Skapa skattning', date: card.gradedOn ,
             actionDescription: card.grades.toString(), eventDescription: card.grades.toString(),
             responsible: card.userName, role: card.userID,
             actionId: card.userID ,status: card.status});    
@@ -99,7 +100,7 @@ export class EventService {
       dcards.then(function (response) {
         
         response.forEach((card: Card)=>{
-          discoverCards.push({title: 'Create upptäckarkort', date: card.gradedOn ,
+          discoverCards.push({title: 'Skapa upptäckarkort', date: card.gradedOn ,
           actionDescription: card.grades.toString(), eventDescription: card.grades.toString(),
           responsible: card.userName, role: card.userTitle,
           actionId: card.id ,status: card.status});
