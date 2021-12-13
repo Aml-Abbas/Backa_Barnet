@@ -7,7 +7,7 @@ import { GetSetService } from '../../services/get-set/get-set.service';
 import { ConversationCard } from 'src/app/models/ConversationCard';
 import { EstimateCard } from 'src/app/models/EstimateCard';
 import { Card } from 'src/app/models/Card';
-import { Contact } from 'src/app/models/Contact';
+import {map} from "rxjs/operators";
 
 export interface Action {
   title: string;
@@ -40,37 +40,56 @@ export class EventService {
       return this.http.post('https://func-ykbb.azurewebsites.net/api/action/edit?code=2Td4p/VoekRtnBV5wXMDu8NnZOaXIrBWXPat1f7S6vOpORkGT7HRag==', actionIdJson);
     }
 
-   getEvent(personId: string): Observable<Event[]> {
-    return this.http.get<Event[]>('https://func-ykbb.azurewebsites.net/api/event/'+personId+'?code=4BSzbYC1YIm9Qxgocsd1A/Z9dwyuHw1SiGNRVEhIFD3LxbaoLAKV1g==');
-  }
+    async getEvent(personId: string): Promise<Event[]> {
+      var events: Event[] = [];
+      await axios.get('https://func-ykbb.azurewebsites.net/api/event/'+personId+'?code=4BSzbYC1YIm9Qxgocsd1A/Z9dwyuHw1SiGNRVEhIFD3LxbaoLAKV1g==')
+      .then(function (response) {
+        response.data.forEach((event: Event)=>{
+          events.push(event);
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .then(function () {
+      });
+       return events;
+      
+      }
   
   async getAllEvents(personId: string, userId: string): Promise<Action[]> {
 
    var actions: Action[] = [];
    var pcards= this.getSetService.getConversationMaterial(personId);
    var ecards= this.getSetService.getEstimate(personId);
-   var events$= this.getEvent(personId);
+   var events: Promise<Event[]>= this.getEvent(personId);
    var dcards= this.getSetService.getCards(userId);
 
     await axios.get('https://func-ykbb.azurewebsites.net/api/card/'+userId+'?code=bbdIBAbikn/AMydOBvxm69FyKFhRfS4fxUb55SaSz0TfK/cjnxiYEw==')
     .then(function (response) {
-      events$.subscribe(data=>{
-        data.map((action: Event)=>{
-          actions.push({title: 'Skapa insats', date: action.createdOn 
-          ,
+
+      let eventsCard= actions;
+
+      events.then(function (response) {
+        response.forEach((action: Event)=>{
+          eventsCard.push({title: 'Skapa insats', date: action.createdOn ,
           actionDescription: action.actionDescription, eventDescription: action.eventDescription,
           responsible: action.responsible, role: action.profession,
           actionId: action.actionID ,status: action.status});
-        });
+      });
       });
 
+      eventsCard.forEach(element=>{
+        actions.push(element);
+      });
+  
       let cards= actions;
       pcards.then(function (response) {
         
         response.forEach((card: ConversationCard)=>{
           cards.push({title: 'Skapa samtalsunderlag', date: card.gradedOn ,
           actionDescription: card.person_scores.toString(), eventDescription: card.person_comments.toString(),
-          responsible: 'Aml Abbas', role: 'Barnkontakt',
+          responsible: card.personID, role: card.personID,
           actionId: card.id ,status: card.status});
       });
       });

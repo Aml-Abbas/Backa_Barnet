@@ -30,7 +30,9 @@ export class CreateInsatsComponent implements OnInit , ComponentCanDeactivate {
   current_person$= new Observable<Person | null>();
   personID: string;
 
-  events$: Observable<Event[]> = new Observable<Event[]>();
+  pevents: Promise<Event[]>= new Promise((resolve, reject) => { });
+  events: Event[]= [];
+
   eventID = '-1';
   eventDescription = '-1';
 
@@ -48,8 +50,19 @@ export class CreateInsatsComponent implements OnInit , ComponentCanDeactivate {
     this.current_person$.subscribe(data=>{
       this.personID = data?.personID ?? '';
     });
-    this.events$= this.eventService.getEvent(this.personID);
     
+    this.pevents= this.eventService.getEvent(this.personID);
+    let cards= this.events;
+
+    this.pevents.then(function (response) {
+      response.forEach((event: Event)=>{
+        cards.push(event);
+    });
+    });
+    cards.forEach(element=>{
+      this.events.push(element);
+    });
+
   }
 
   changeEvent(eventId: string, eventDes: string) {

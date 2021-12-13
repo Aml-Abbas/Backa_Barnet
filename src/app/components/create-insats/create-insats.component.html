@@ -17,7 +17,7 @@
   
     <div class="form-container" [formGroup]="createPlanFormGroup" (change)= "isDirty= true">
   
-      <mat-form-field style="width: 45%;" appearance="fill" *ngIf="(events$ | async) as events">
+      <mat-form-field style="width: 45%;" appearance="fill">
         <mat-label>Händelse</mat-label>
         <mat-select [(value)]="eventDescription">
           <mat-option *ngFor="let event of events; let i= index" value="{{event.eventDescription}}"
