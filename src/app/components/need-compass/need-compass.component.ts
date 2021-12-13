@@ -12,7 +12,6 @@ import { GetSetService } from '../../services/get-set/get-set.service';
 import { CompassDataConversation } from 'src/app/models/CompassDataConversation';
 import { ConversationCard } from 'src/app/models/ConversationCard';
 import { EstimateCard } from 'src/app/models/EstimateCard';
-import * as fromRouter from '../../state/reducers/index';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -96,14 +95,14 @@ export class NeedCompassComponent implements OnInit {
                            '#D2691E'];
 
   public radarChartData: ChartDataSets[] = [
-    { data: [], label: '', backgroundColor:''},
+    { data: [], label: ''},
   ];
 
   public radarChartType: ChartType = 'radar';
 
   conversationDates: string[]=[];
   estimateDates: string[]=[];
-  dates = new Set()
+  dates = new Set();
 
   cards: CompassDataConversation[]= [];
 
@@ -117,17 +116,16 @@ export class NeedCompassComponent implements OnInit {
   ecards: Promise<EstimateCard[]>= new Promise((resolve, reject) => { });
   estimatecards: EstimateCard[]= [];
 
-  state$: Observable<any> = new Observable<any>();
-
   constructor(private store: Store<fromState.State>,
      private getSetService: GetSetService,
      private route: ActivatedRoute) { 
      }
 
   ngOnInit(): void {
-      this.selectedType= this.route.snapshot.queryParams[0];
-      this.selectedDate= this.route.snapshot.queryParams[1];
-      
+    var colorIndex=0;
+    this.selectedType= this.route.snapshot.queryParams[0];
+    this.selectedDate= this.route.snapshot.queryParams[1].slice(0,10);
+
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data=>{
       this.personID= data?.personID?? '';
@@ -181,19 +179,38 @@ export class NeedCompassComponent implements OnInit {
       });
   
       this.ecards= this.getSetService.getEstimate(this.personID);
+
       let estimatecards= this.estimatecards;
+      let dates= this.dates;
+      let radarChartData= this.radarChartData;
+      let selectedDate= this.selectedDate;
+      let colors= this.colors;
+
       this.ecards.then(function (response) {
         response.forEach((card: EstimateCard)=>{
           estimatecards.push(card); 
+          dates.add(card.gradedOn.slice(0,10));
+          if(card.gradedOn.slice(0,10)== selectedDate && radarChartData.length<19){
+            radarChartData.push({data: card.average, label: getName(card.userName), borderColor: colors[colorIndex], pointBackgroundColor: colors[colorIndex]});
+            colorIndex++;
+          }
         });
       });
-    
+
       estimatecards.forEach(element=>{
         this.estimatecards.push(element);
       });
-  
+      dates.forEach(element=>{
+        this.dates.add(element);
+      });
+
+      radarChartData.forEach(element=>{
+        if(element.label!=''){
+          this.radarChartData.push(element);
+        }
+      });
+
     });
-    this.onTypeChange();
 
   }
 
@@ -201,13 +218,12 @@ export class NeedCompassComponent implements OnInit {
     this.radarChartData=[];
     this.dates.clear();
 
-    if(this.selectedType=='2' && this.selectedDate=='0'){
+    if(this.selectedType=='2'){
       this.selectedDate= this.estimatecards[0].gradedOn.slice(0,10);
     }else{
-      if(this.selectedDate=='0'){
         this.selectedDate= this.ConversationCards[0].gradedOn.slice(0,10);
-      }
   }
+    this.onDateChange();
 }
 
   onDateChange(){
@@ -218,7 +234,7 @@ export class NeedCompassComponent implements OnInit {
       this.estimatecards.forEach(element=>{  
         this.dates.add(element.gradedOn.slice(0,10));
         if(element.gradedOn.slice(0,10)== this.selectedDate && this.radarChartData.length<19){
-          this.radarChartData.push({data: element.average, label: this.getName(element.userName), backgroundColor: this.colors[colorIndex], pointBackgroundColor: this.colors[colorIndex]});
+          this.radarChartData.push({data: element.average, label: this.getName(element.userName), borderColor: this.colors[colorIndex], pointBackgroundColor: this.colors[colorIndex]});
           colorIndex++;
         }
       });
@@ -270,4 +286,16 @@ export class NeedCompassComponent implements OnInit {
 }
 
 
+
+function getName(userName: any): string | undefined {
+  let name= userName.split(' ');
+  var pName= name[0]+ ' '+ name[name.length-1];
+  if(pName.length>19){
+    pName= name[name.length-1];
+  }
+  while(pName.length<18){
+    pName+=' ';
+  }
+  return pName;
+}
 
