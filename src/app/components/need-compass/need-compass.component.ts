@@ -137,6 +137,8 @@ export class NeedCompassComponent implements OnInit {
         this.personName+=' ';
       }
 
+
+/* 
       name= this.guardian1.split(' ');
       this.guardian1= name[0]+ ' '+ name[name.length-1];
       if(this.guardian1.length>19){
@@ -156,7 +158,7 @@ export class NeedCompassComponent implements OnInit {
       }
       while(this.guardian2.length<18){
         this.guardian2+=' ';
-      }
+      } */
 
       this.pcards= this.getSetService.getConversationMaterial(this.personID);
       let cards= this.ConversationCards;
@@ -205,7 +207,7 @@ export class NeedCompassComponent implements OnInit {
       this.estimatecards.forEach(element=>{  
         this.dates.add(element.gradedOn.slice(0,10));
         if(element.gradedOn.slice(0,10)== this.selectedDate && this.radarChartData.length<19){
-          this.radarChartData.push({data: element.average, label: element.userName, backgroundColor: this.colors[colorIndex], pointBackgroundColor: this.colors[colorIndex]});
+          this.radarChartData.push({data: element.average, label: this.getName(element.userName), backgroundColor: this.colors[colorIndex], pointBackgroundColor: this.colors[colorIndex]});
           colorIndex++;
         }
       });
@@ -223,13 +225,13 @@ export class NeedCompassComponent implements OnInit {
         element.guardian1_scores.forEach(score=>{
           grades.push(parseInt(score));
         });
-        this.radarChartData.push({data: grades, label: this.guardian1, borderColor: this.colors[colorIndex], pointBackgroundColor: this.colors[colorIndex]});
+        this.radarChartData.push({data: grades, label: 'Vårdnadshavare 1 ', borderColor: this.colors[colorIndex], pointBackgroundColor: this.colors[colorIndex]});
         colorIndex++;
         var grades: number[]=[];
         element.guardian2_scores.forEach(score=>{
           grades.push(parseInt(score));
         });
-        this.radarChartData.push({data: grades, label: this.guardian2, borderColor: this.colors[colorIndex], pointBackgroundColor: this.colors[colorIndex]});
+        this.radarChartData.push({data: grades, label: 'Vårdnadshavare 2 ', borderColor: this.colors[colorIndex], pointBackgroundColor: this.colors[colorIndex]});
         colorIndex++;
       }
   });
@@ -242,4 +244,19 @@ export class NeedCompassComponent implements OnInit {
     });
     this.chart.update();
   }
+
+  getName(userName: string): string {
+    let name= userName.split(' ');
+    var pName= name[0]+ ' '+ name[name.length-1];
+    if(pName.length>19){
+      pName= name[name.length-1];
+    }
+    while(pName.length<18){
+      pName+=' ';
+    }
+    return pName;
 }
+}
+
+
+
