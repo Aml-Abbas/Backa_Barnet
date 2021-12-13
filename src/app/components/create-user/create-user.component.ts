@@ -23,7 +23,6 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
   createUserFormGroup: FormGroup;
   email = new FormControl('', [Validators.required, Validators.email]);
   selectedRole= '1';
-  //selectedOrganisation= '0';
 
   added_units: string[]= [];
   units$: Promise<Unit[]>= new Promise((resolve, reject) => { });

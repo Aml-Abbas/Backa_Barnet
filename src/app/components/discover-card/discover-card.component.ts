@@ -30,9 +30,7 @@ export class DiscoverCardComponent implements OnInit {
        this.pcards= this.getSetService.getCards(userID);
     });
     let cards= this.cards;
-
     this.pcards.then(function (response) {
-      
       response.forEach((card: Card)=>{
         cards.push(card);
     });

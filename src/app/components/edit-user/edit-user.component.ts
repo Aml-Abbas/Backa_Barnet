@@ -27,8 +27,8 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
 
   unitNbr=0; 
   added_units: string[]= [];
-  units$: Promise<Unit[]>= new Promise((resolve, reject) => { });
-  allUnits$: Observable<Unit[]> = new Observable<Unit[]>();
+  punits: Promise<Unit[]>= new Promise((resolve, reject) => { });
+  unitsList : Unit[]= [];
 
   units = new FormControl();
   
@@ -42,14 +42,22 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
   user: User;
 
   constructor(private store: Store<fromStore.State>,
-    private _formBuilder: FormBuilder,
     private getSetService: GetSetService,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
-    this.units$= this.getSetService.getUnitsWithoutAnnat();
-    this.allUnits$ = this.getSetService.getUnits();
+    this.punits= this.getSetService.getUnitsWithoutAnnat();
+    let unitsList= this.unitsList;
+    this.punits.then(function (response) {
+      response.forEach((unit: Unit)=>{
+        unitsList.push(unit);
+    });
+    });
+    unitsList.forEach(element=>{
+      this.unitsList.push(element);
+    });
+
     this.user$= this.store.select(fromState.getCurrentAdminUser);
     this.user$.subscribe(data=>{
       var userID= data?.userID ??'';
@@ -65,22 +73,18 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
 
       this.user = new User(userID, firstName, lastName, email, roleID, description, 
         organisaton, name, unitID, unitName);
-
-      this.allUnits$.subscribe(units=>{
-        units.map((unit:Unit)=>{
-          if(unit?.unitID==data?.unitID){
-            this.added_units.push(unit.unitName);
-            var anotherList: string[] = [
-              this.added_units[0],
-          ]
-  
-          this.units.setValue(anotherList);
-          }
-        });
-      });
     });
 
-  }
+}
+  containsUnitName(unitName: string): boolean {
+    var found= false;
+    this.user.unitName.forEach(element=>{
+      if(element==unitName){
+        found=true;
+      }
+    });
+    return found;
+    }
 
 
   save(){
@@ -89,6 +93,8 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
     this.lastNameError='';
     this.unitError='';
     this.organisationError='';
+
+    console.log(this.units.value);
 
     if(this.user.firstName.trim().length<2){
       this.firstNameError='Förnamn ska vara mist två bokstäver.';

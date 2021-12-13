@@ -43,16 +43,16 @@
           </mat-select>
           </mat-form-field>
  
-        <mat-form-field appearance="fill" *ngIf="(user.roleID== '2' || user.roleID== '3') && (units$ | async) as current_units">
+        <mat-form-field appearance="fill" *ngIf="(user.roleID== '2' || user.roleID== '3')">
         <mat-label>Enheter</mat-label>
         <mat-select [formControl]="units" multiple>
           <mat-select-trigger>
-            {{units.value ? units.value[0] : ''}}
+            {{units.value ? units.value[0].unitName : ''}}
             <span *ngIf="units.value?.length > 1">
               (+{{units.value.length - 1}} {{units.value?.length === 2 ? 'other' : 'others'}})
             </span>
           </mat-select-trigger>
-          <mat-option *ngFor="let unit of current_units" [value]="unit.unitName">{{unit.unitName}}</mat-option>
+          <mat-option *ngFor="let unit of unitsList" [value]="unit">{{unit.unitName}}</mat-option>
         </mat-select>
         </mat-form-field>
         <p>{{unitError}}</p>

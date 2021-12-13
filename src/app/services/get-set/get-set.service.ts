@@ -328,7 +328,7 @@ export class GetSetService {
     .then(function (response) {  
     
         response.data.forEach((unit: Unit)=>{  
-          if(unit.unitID!='7'){
+          if(unit.unitID!='7' && unit.unitID!='8'){
             units.push(unit);
           }
         })
