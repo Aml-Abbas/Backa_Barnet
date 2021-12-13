@@ -24,9 +24,7 @@ export class ContactGuardianComponent implements OnInit {
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data =>{
-      console.log(String(data?.personID));
       this.barnKontakt$ = this.getSetService.getBarnKontakt(String(data?.personID));
-
      });
     this.store.select(fromState.getCurrentUser).subscribe(data=>{
       this.userRoleId= String(data?.roleID);

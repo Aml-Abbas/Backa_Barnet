@@ -7,7 +7,7 @@ import { GetSetService } from '../../services/get-set/get-set.service';
 import { ConversationCard } from 'src/app/models/ConversationCard';
 import { EstimateCard } from 'src/app/models/EstimateCard';
 import { Card } from 'src/app/models/Card';
-import {map} from "rxjs/operators";
+import { Contact } from 'src/app/models/Contact';
 
 export interface Action {
   title: string;
@@ -62,14 +62,14 @@ export class EventService {
           actionId: action.actionID ,status: action.status});
         });
       });
-  
+
       let cards= actions;
       pcards.then(function (response) {
         
         response.forEach((card: ConversationCard)=>{
           cards.push({title: 'Create samtalsunderlag', date: card.gradedOn ,
           actionDescription: card.person_scores.toString(), eventDescription: card.person_comments.toString(),
-          responsible: card.personID, role: card.personID,
+          responsible: 'Aml Abbas', role: 'Barnkontakt',
           actionId: card.id ,status: card.status});
       });
       });
