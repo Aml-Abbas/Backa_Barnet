@@ -76,11 +76,8 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
         units.forEach(unit=>{
           this.unitNameList.push(unit.unitName);
         });
-
         this.units = new FormControl(this.unitNameList);
-        console.log(this.units.value);
     });
-
 }
 
   save(){
@@ -108,10 +105,22 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
       }
     }
     if(this.saveError==''){
+      var unitIdList: number[]=[];
       var unitID=0;
+
       if(this.units.value!=null){
         unitID= 3;
+        this.units.value.forEach(unitName => {
+
+          this.unitsList.forEach(unit=>{
+            if(unit.unitName==unitName){
+              unitIdList.push(parseInt(unit.unitID));
+            }
+          });      
+        });
+        console.log(unitIdList);
       }
+
       var user = {
         LastName :  this.user.lastName.trim()?? '0',
         FirstName : this.user.firstName.trim() ?? '0',
@@ -124,6 +133,7 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
       this.store.dispatch(new fromState.UpdateUser(user));
     }
   }
+
 
   delete(){
     const dialogRef = this.dialog.open(DialogComponent, {
