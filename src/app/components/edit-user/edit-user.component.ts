@@ -31,7 +31,7 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
   unitsList : Unit[]= [];
 
   units = new FormControl();
-  unitList: any[] = [];
+  unitList: string[] = [];
 
   saveError='';
   firstNameError='';
@@ -70,16 +70,15 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
       var organisaton= data?.organisaton ??'';
       var name= data?.name ??'';
       var units= data?.units ??[];
-
-        this.unitList=[
-          {unitID :units[0].unitID, unitName: units[0].unitName}
-        ];
-
-      //this.units.patchValue(this.unitList); 
-      //console.log(this.units.value);
-
       this.user = new User(userID, firstName, lastName, email, roleID, description, 
         organisaton, name, units);
+   
+        this.unitList=[
+          units[0].unitName
+        ];
+
+        this.units = new FormControl(this.unitList);
+        console.log(this.units.value);
     });
 
 }
@@ -111,7 +110,7 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
     if(this.saveError==''){
       var unitID=0;
       if(this.units.value!=null){
-        unitID= this.units.value[0].ID;
+        unitID= 3;
       }
       var user = {
         LastName :  this.user.lastName.trim()?? '0',
@@ -123,7 +122,6 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
       } 
       this.isDirty= false;
       this.store.dispatch(new fromState.UpdateUser(user));
-
     }
   }
 
