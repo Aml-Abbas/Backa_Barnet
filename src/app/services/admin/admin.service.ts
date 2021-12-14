@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { User } from 'src/app/models/User';
 import axios from 'axios';
 import { Unit } from 'src/app/models/Unit';
+import { Barnteam } from 'src/app/models/Barnteam';
 
 
 @Injectable({
@@ -62,7 +63,58 @@ export class AdminService {
     .then(function () {
     });
       return users;
+  }
+
+
+  createBarnteam(BarnteamJson: any) {
+    return this.http.post('https://func-ykbb.azurewebsites.net/api/user/create?code=h6mNFr9PwcAYrkfqVh4XZCGhdCx6qGjxDHdoatd4XQmmRraZJFqqFQ==', BarnteamJson);
+  }
+  editBarnteam(BarnteamJson: any) {
+    return this.http.post('https://func-ykbb.azurewebsites.net/api/user/edit?code=Ycskc1dCm6umJWdESOOWzy6GcBVFXm1n7U1DHZwwijPUGaqjDPX87g==', BarnteamJson);
+  }
+  removeBarnteam(BarnteamJson: any) {
+    return this.http.post('https://func-ykbb.azurewebsites.net/api/user/remove?code=ruc6sEqCzEqavF3llZyD6GQ8Z4D4YsBXlVx9MkccTTznPSmjiqwS9A==', BarnteamJson);
+  }
+
+  async getBarnteams(): Promise<Barnteam[]> {
+    var barnteams: Barnteam[]= [];
+
+    await axios.get('https://func-ykbb.azurewebsites.net/api/users?code=vAbAl/ZrtgJ4A57sj7VMWVpLFNQxpcEha9h8ne/uVTCF8bGaNMvJTw==')
+    .then(function (response) {
+      var units: Unit[]= [];
   
+        response.data.forEach(barnteam=>{
+          let userID: string = barnteam?.userID ?? '';
+          let lastName: string = barnteam?.lastName ?? '';
+          let firstName: string = barnteam?.firstName ?? '';
+          let email: string = barnteam?.email ?? '';
+          let roleID: string = barnteam?.roleID ?? '';
+          let description: string = barnteam?.description ?? '';
+          let organisation: string = barnteam?.organisaton ?? '';
+          let name: string = barnteam?.name ?? '';
+          let unitID: string = barnteam?.unitID ?? '';
+          let unitName: string = barnteam?.unitName ?? '';
+
+          if(!containsBarnteam(barnteams, userID)){
+            units.push(new Unit(unitID, unitName));
+            barnteams.push(new User(userID, lastName, firstName, email, roleID, description,
+              organisation, name, units));
+            units= [];
+            }else{
+              barnteams.forEach(element => {
+                if(element.userID== userID){
+                  element.units.push(new Unit(unitID, unitName));
+                }      
+              });
+          }
+        })
+  })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .then(function () {
+    });
+      return barnteams;
   }
 
 }
@@ -76,3 +128,12 @@ function containsUser(users: User[], userID: string): boolean {
   return found;
 }
 
+function containsBarnteam(barnteams: Barnteam[], userID: string): boolean {
+  var found= false;
+  barnteams.forEach(element=>{
+    if(element.userID== userID){
+      found= true;
+    }
+  });
+  return found;
+}

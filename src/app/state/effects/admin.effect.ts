@@ -78,4 +78,72 @@ this.actions$.pipe(
 )
 );
 
+
+
+createBarnteam$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(adminAction.CREATE_BARNTEAM),
+  switchMap((action: adminAction.CreateBarnteam) => {
+
+  return this.adminService.createBarnteam(action.payload).pipe(
+    map((response) => new adminAction.CreateBarnteamSuccess(response)),
+    catchError((error: any) => of(new adminAction.CreateBarnteamFail(error)))
+  );
+  })
+)
+);
+
+createBarnteamSuccess$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(adminAction.CREATE_BARNTEAM_SUCCESS),
+  switchMap((action: adminAction.CreateBarnteamSuccess) =>[
+    new fromRoot.Go({path: ['/barnteam']}),
+  ])
+)
+);
+
+updateBarnteam$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(adminAction.UPDATE_BARNTEAM),
+  switchMap((action: adminAction.UpdateBarnteam) => {
+
+  return this.adminService.editBarnteam(action.payload).pipe(
+    map((response) => new adminAction.UpdateBarnteamSuccess(response)),
+    catchError((error: any) => of(new adminAction.UpdateBarnteamFail(error)))
+  );
+  })
+)
+);
+
+updateBarnteamSuccess$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(adminAction.UPDATE_BARNTEAM_SUCCESS),
+  switchMap((action: adminAction.UpdateBarnteamSuccess) =>[
+    new fromRoot.Go({path: ['/barnteam']}),
+  ])
+)
+);
+
+removeBarnteam$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(adminAction.REMOVE_BARNTEAM),
+  switchMap((action: adminAction.RemoveBarnteam) => {
+
+  return this.adminService.removeBarnteam(action.payload).pipe(
+    map((response) => new adminAction.RemoveBarnteamSuccess(response)),
+    catchError((error: any) => of(new adminAction.RemoveBarnteamFail(error)))
+  );
+  })
+)
+);
+
+removeBarnteamSuccess$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(adminAction.REMOVE_BARNTEAM_SUCCESS),
+  switchMap((action: adminAction.RemoveBarnteamSuccess) =>[
+    new fromRoot.Go({path: ['/barnteam']}),
+  ])
+)
+);
+
 }
