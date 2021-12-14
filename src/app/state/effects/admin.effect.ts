@@ -78,6 +78,12 @@ this.actions$.pipe(
 )
 );
 
+updateCurrentAdminUser$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(adminAction.UPDATE_ADMIN_USER),
+  map((action: adminAction.UpdateAdminUser) => {
+    return new adminAction.UpdateAdminUserSuccess(action.payload);
+  })));
 
 
 createBarnteam$ = createEffect(() =>
@@ -145,5 +151,13 @@ this.actions$.pipe(
   ])
 )
 );
+
+updateCurrentAdminBarnteam$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(adminAction.UPDATE_ADMIN_BARNTEAM),
+  map((action: adminAction.UpdateAdminBarnteam) => {
+    return new adminAction.UpdateAdminBarnteamSuccess(action.payload);
+  })));
+
 
 }

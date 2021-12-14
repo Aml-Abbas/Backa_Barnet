@@ -7,7 +7,6 @@ export interface CurrentPersonState {
     currentPersonLoading: boolean;
     currentPersonLoaded: boolean;
     currentPerson: Person | null;
-    currentAdminUser: User | null;
     users: User[];
 
   }
@@ -16,7 +15,6 @@ export interface CurrentPersonState {
     currentPersonLoading: false,
     currentPersonLoaded: false,
     currentPerson: null,
-    currentAdminUser: null,
     users: [],
   };
   
@@ -40,12 +38,6 @@ export interface CurrentPersonState {
           currentPersonLoading: false
         };
       }
-      case currentPerson.UPDATE_ADMIN_USER_SUCCESS: {
-        return {
-          ...state,
-          currentAdminUser: action.payload,       
-       };
-      }
       case currentPerson.UPDATE_USERS_SUCCESS: {
         return {
           ...state,
@@ -67,5 +59,4 @@ export const getCurrentPersonStatus = (state: CurrentPersonState) => state.curre
 export const getCurrentPersonChangedBy = (state: CurrentPersonState) => state.currentPerson?.changedBy;
 export const getCurrentPersonChangedOn = (state: CurrentPersonState) => state.currentPerson?.changedOn;
 
-export const getCurrentAdminUser = (state: CurrentPersonState) => state.currentAdminUser;
 export const getCurrentUsers = (state: CurrentPersonState) => state.users;

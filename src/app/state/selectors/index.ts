@@ -5,3 +5,4 @@ export * from './discoverCard.selector';
 export * from './currentCard.selector';
 export * from './conversationMaterial.selector';
 export * from './estimate.selector';
+export * from './admin.selector';
