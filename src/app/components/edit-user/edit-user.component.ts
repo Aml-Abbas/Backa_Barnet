@@ -73,9 +73,9 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
       this.user = new User(userID, firstName, lastName, email, roleID, description, 
         organisaton, name, units);
    
-        this.unitList=[
-          units[0].unitName
-        ];
+        units.forEach(unit=>{
+          this.unitList.push(unit.unitName);
+        });
 
         this.units = new FormControl(this.unitList);
         console.log(this.units.value);
