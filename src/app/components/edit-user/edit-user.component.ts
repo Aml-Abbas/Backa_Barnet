@@ -31,7 +31,7 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
   unitsList : Unit[]= [];
 
   units = new FormControl();
-  unitList: string[] = [];
+  unitNameList: string[] = [];
 
   saveError='';
   firstNameError='';
@@ -74,10 +74,10 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
         organisaton, name, units);
    
         units.forEach(unit=>{
-          this.unitList.push(unit.unitName);
+          this.unitNameList.push(unit.unitName);
         });
 
-        this.units = new FormControl(this.unitList);
+        this.units = new FormControl(this.unitNameList);
         console.log(this.units.value);
     });
 
