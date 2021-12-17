@@ -19,7 +19,7 @@
 
     <mat-list-item>Medlemmer:</mat-list-item>
     <ul *ngIf="(memberList$ | async) as memberList">
-    <li *ngFor="let medlem of memberList; let i= index;">{{medlem}}</li>
+    <li *ngFor="let medlem of memberList; let i= index;">{{medlem.firstName}} {{medlem.lastName}}</li>
     </ul>  
 
     <mat-divider></mat-divider>
