@@ -3,9 +3,11 @@ import { Unit } from 'src/app/models/Unit';
 import { GetSetService } from '../../services/get-set/get-set.service';
 import { Observable } from 'rxjs';
 import {FormControl} from '@angular/forms';
-import {map, startWith} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import * as fromStore from 'src/app/state';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
+import * as fromState from '../../state';
 
 @Component({
   selector: 'app-create-barnteam',
@@ -24,25 +26,16 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
   selectedRole= '0';
   unitNbr=1; 
   added_units: string[]= [];
-  //units$: Observable<Unit[]> = new Observable<Unit[]>();
-/*   medlemNbr=1; 
-  added_members: string[]= [];
- */
   units$: Promise<Unit[]>= new Promise((resolve, reject) => { });
 
   units = new FormControl();
-  // medlems = new FormControl();
-
-/*   unitList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato', 'cheese', 'Mush', 'On', 'Peroni', 'Sge', 'To'];
-  medlemList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato', 'cheese', 'Mush', 'On', 'Peroni', 'Sge', 'To'];
- */  
 
   saveError='';
   nameError='';
   unitError='';
-  // memberError='';
 
-  constructor(private getSetService: GetSetService,
+  constructor(private store: Store<fromStore.State>,
+    private getSetService: GetSetService,
     private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -56,24 +49,30 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
     this.saveError='';
     this.nameError='';
     this.unitError='';
-    // this.memberError='';
   
     console.log(this.units);
-   // console.log(this.medlems);
     if(this.createBarnteamFormGroup.status== "INVALID"){
       this.saveError='Rätta felen först';
       this.nameError='Namnet ska vara minst två bokstäver.';
     }
-    if(this.units.value==null){
+    if(this.units.value==null || this.units.value.length==0){
       this.saveError='Rätta felen först';
       this.unitError='Välj minst en enhet.';
 
     }
+    if(this.saveError==""){
+      this.isDirty= false;
+          this.units.value.forEach(unit => {
+            var user = {
+              TeamName:  this.createBarnteamFormGroup.value.nameControl.trim()?? '0',
+              UnitID: unit.unitID,
+            } 
+            this.store.dispatch(new fromState.CreateBarnteam(user));   
+            console.log(user); 
+          });
+          this.store.dispatch(new fromState.Go({ path: ['/barnteam'] }));
 
-/*     if(this.medlems.value==null){
-      this.saveError='Rätta felen först';
-      this.memberError='Välj minst ett medlem.';
-
-    }
- */  }
+        }
+      }
+ 
 }

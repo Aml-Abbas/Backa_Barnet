@@ -99,7 +99,7 @@ this.actions$.pipe(
 )
 );
 
-createBarnteamSuccess$ = createEffect(() =>
+/* createBarnteamSuccess$ = createEffect(() =>
 this.actions$.pipe(
   ofType(adminAction.CREATE_BARNTEAM_SUCCESS),
   switchMap((action: adminAction.CreateBarnteamSuccess) =>[
@@ -107,19 +107,7 @@ this.actions$.pipe(
   ])
 )
 );
-
-updateBarnteam$ = createEffect(() =>
-this.actions$.pipe(
-  ofType(adminAction.UPDATE_BARNTEAM),
-  switchMap((action: adminAction.UpdateBarnteam) => {
-
-  return this.adminService.editBarnteam(action.payload).pipe(
-    map((response) => new adminAction.UpdateBarnteamSuccess(response)),
-    catchError((error: any) => of(new adminAction.UpdateBarnteamFail(error)))
-  );
-  })
-)
-);
+ */
 
 updateBarnteamSuccess$ = createEffect(() =>
 this.actions$.pipe(

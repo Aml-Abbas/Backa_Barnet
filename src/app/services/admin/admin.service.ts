@@ -67,42 +67,35 @@ export class AdminService {
 
 
   createBarnteam(BarnteamJson: any) {
-    return this.http.post('https://func-ykbb.azurewebsites.net/api/user/create?code=h6mNFr9PwcAYrkfqVh4XZCGhdCx6qGjxDHdoatd4XQmmRraZJFqqFQ==', BarnteamJson);
+    return this.http.post('https://func-ykbb.azurewebsites.net/api/team/create?code=xjvaiKiao349qgf3p/EQoqSgbt6cjXQxBil587qbBWpaV3HpMzZx7Q==', BarnteamJson);
   }
-  editBarnteam(BarnteamJson: any) {
-    return this.http.post('https://func-ykbb.azurewebsites.net/api/user/edit?code=Ycskc1dCm6umJWdESOOWzy6GcBVFXm1n7U1DHZwwijPUGaqjDPX87g==', BarnteamJson);
-  }
+
   removeBarnteam(BarnteamJson: any) {
-    return this.http.post('https://func-ykbb.azurewebsites.net/api/user/remove?code=ruc6sEqCzEqavF3llZyD6GQ8Z4D4YsBXlVx9MkccTTznPSmjiqwS9A==', BarnteamJson);
+    return this.http.post('https://func-ykbb.azurewebsites.net/api/team/remove?code=vYW5WKhcMuT8Pjq4amDBuyJNpuaiHaTEgN8YdamLeH0jjo93AnAYxw==', BarnteamJson);
   }
 
   async getBarnteams(): Promise<Barnteam[]> {
     var barnteams: Barnteam[]= [];
 
-    await axios.get('https://func-ykbb.azurewebsites.net/api/users?code=vAbAl/ZrtgJ4A57sj7VMWVpLFNQxpcEha9h8ne/uVTCF8bGaNMvJTw==')
+    await axios.get('https://func-ykbb.azurewebsites.net/api/teams?code=MT2SNUMJlN6/5UAgMDLpCKIj7W/rbDRAzoG9n36PMiMn8/Mzv4j3Lg==')
     .then(function (response) {
       var units: Unit[]= [];
   
         response.data.forEach(barnteam=>{
-          let userID: string = barnteam?.userID ?? '';
-          let lastName: string = barnteam?.lastName ?? '';
-          let firstName: string = barnteam?.firstName ?? '';
-          let email: string = barnteam?.email ?? '';
-          let roleID: string = barnteam?.roleID ?? '';
-          let description: string = barnteam?.description ?? '';
-          let organisation: string = barnteam?.organisaton ?? '';
-          let name: string = barnteam?.name ?? '';
+          let teamID: string = barnteam?.teamID ?? '';
+          let teamName: string = barnteam?.teamName ?? '';
+          let createdOn: string = barnteam?.createdOn ?? '';
+
           let unitID: string = barnteam?.unitID ?? '';
           let unitName: string = barnteam?.unitName ?? '';
 
-          if(!containsBarnteam(barnteams, userID)){
+          if(!containsBarnteam(barnteams, teamID)){
             units.push(new Unit(unitID, unitName));
-            barnteams.push(new User(userID, lastName, firstName, email, roleID, description,
-              organisation, name, units));
+            barnteams.push(new Barnteam(teamID, teamName, createdOn, units));
             units= [];
             }else{
               barnteams.forEach(element => {
-                if(element.userID== userID){
+                if(element.teamID== teamID){
                   element.units.push(new Unit(unitID, unitName));
                 }      
               });
@@ -128,10 +121,10 @@ function containsUser(users: User[], userID: string): boolean {
   return found;
 }
 
-function containsBarnteam(barnteams: Barnteam[], userID: string): boolean {
+function containsBarnteam(barnteams: Barnteam[], teamID: string): boolean {
   var found= false;
   barnteams.forEach(element=>{
-    if(element.userID== userID){
+    if(element.teamID== teamID){
       found= true;
     }
   });

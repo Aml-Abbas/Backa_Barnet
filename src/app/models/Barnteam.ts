@@ -1,30 +1,18 @@
 import { Unit } from 'src/app/models/Unit';
 
 export class Barnteam {
-    userID: string;
-    lastName: string;
-    firstName: string;
-    email: string;
-    roleID: string;
-    description: string;
-    organisaton: string;
-    name: string;
+    teamID: string;
+    teamName: string;
+    createdOn: string;
     units: Unit[];
 
-    constructor(userID: string, firstName: string, lastName: string,
-        email: string, roleID: string, description: string,
-        organisaton: string, name: string, units: Unit[]) {
+    constructor(teamID: string, teamName: string, createdOn: string,
+      units: Unit[]) {
             
-      this.userID = userID;
-      this.firstName = firstName;
-      this.lastName = lastName;
+      this.teamID = teamID;
+      this.teamName = teamName;
+      this.createdOn = createdOn;
 
-      this.roleID= roleID;
-      this.description= description;
-
-      this.email= email;
-      this.organisaton= organisaton;
-      this.name= name;
       this.units= units;
     }
   }
