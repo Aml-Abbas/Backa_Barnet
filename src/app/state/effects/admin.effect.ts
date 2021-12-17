@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import * as adminAction from '../actions/admin.action';
 import {map, switchMap, catchError, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {act, Actions, createEffect, ofType} from '@ngrx/effects';
 import * as fromRoot from '../../../app/state';
 import { AdminService } from 'src/app/services/admin/admin.service';
 
@@ -17,7 +17,8 @@ this.actions$.pipe(
   ofType(adminAction.CREATE_USER),
   switchMap((action: adminAction.CreateUser) => {
 
-  return this.adminService.createUser(action.payload).pipe(
+  return this.adminService.createUser(action.LastName, action.FirstName, action.Email,
+    action.Organisation, action.RoleID, action.unitIDs).pipe(
     map((response) => new adminAction.CreateUserSuccess(response)),
     catchError((error: any) => of(new adminAction.CreateUserFail(error)))
   );

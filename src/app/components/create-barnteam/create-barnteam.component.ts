@@ -65,7 +65,7 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
       this.isDirty= false;
 
       var unitIDs: string[]=[];
-
+      var teamNName= this.createBarnteamFormGroup.value.nameControl.trim()?? '0';
       this.units.value.forEach(unit => {
         unitIDs.push(unit.unitID);
 /*             var user = {
@@ -76,7 +76,7 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
             console.log(user);  */
           }); 
 
-          this.store.dispatch(new fromState.CreateBarnteam(this.createBarnteamFormGroup.value.nameControl.trim()?? '0', unitIDs));
+          this.store.dispatch(new fromState.CreateBarnteam(teamNName, unitIDs));
 
           //this.store.dispatch(new fromState.Go({ path: ['/barnteam'] }));
 

@@ -91,32 +91,33 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
     }
     if(this.saveError==''){
       this.isDirty= false;
+      var unitIDs: string[]=[];
+      var LastName =  this.createUserFormGroup.value.lastNameControl.trim()?? '0';
+      var FirstName = this.createUserFormGroup.value.firstNameControl.trim() ?? '0';
+      var Email  = this.email.value.trim() ?? '0';
+      var Organisation = this.createUserFormGroup.value.organisationControl.trim() ?? '0';
+      var RoleID = parseInt(this.selectedRole) ?? 0;
 
       if(this.selectedRole=='1' || this.selectedRole=='4'){
-        var user = {
-          LastName :  this.createUserFormGroup.value.lastNameControl.trim()?? '0',
-          FirstName : this.createUserFormGroup.value.firstNameControl.trim() ?? '0',
-          Email  : this.email.value.trim() ?? '0',
-          Organisation : this.createUserFormGroup.value.organisationControl.trim() ?? '0',
-          RoleID : parseInt(this.selectedRole) ?? 0,
-          UnitID : 0,
-        } 
-        this.store.dispatch(new fromState.CreateUser(user));
+        unitIDs.push('0');
 
       }else{
+
         this.units.value.forEach(unit => {
-          var user = {
+          unitIDs.push(unit.unitID);
+/*           var user = {
             LastName :  this.createUserFormGroup.value.lastNameControl.trim()?? '0',
             FirstName : this.createUserFormGroup.value.firstNameControl.trim() ?? '0',
             Email  : this.email.value.trim() ?? '0',
             Organisation : this.createUserFormGroup.value.organisationControl.trim() ?? '0',
             RoleID : parseInt(this.selectedRole) ?? 0,
             UnitID : unit.unitID,
-          } 
-          this.store.dispatch(new fromState.CreateUser(user));
-    
+          }  */
+
         });
-      }
+      }        
+      this.store.dispatch(new fromState.CreateUser(LastName, FirstName, Email, Organisation, RoleID, unitIDs));
+
     }
     
   }

@@ -40,7 +40,9 @@ export const UPDATE_TEAMS_FAIL = '[Teams] Update Teams Fail';
 
 export class CreateUser implements Action {
     readonly type = CREATE_USER;
-    constructor(public payload: any) {}
+    constructor(public LastName: string, public FirstName: string,
+      public Email: string, public Organisation: string,
+      public RoleID: number, public unitIDs: string[]) {}
   }
   
   export class CreateUserSuccess implements Action {

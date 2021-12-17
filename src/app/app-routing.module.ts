@@ -150,11 +150,13 @@ const routes: Routes = [
       },
       {
         path: 'create-user',
-        component: CreateUserComponent, canDeactivate: [DirtycheckGuard], canActivate: [AdminGuard]
+        component: CreateUserComponent, canDeactivate: [DirtycheckGuard], 
+        //canActivate: [AdminGuard]
       },
       {
         path: 'users',
-        component: UsersComponent, canActivate: [AdminGuard]
+        component: UsersComponent, 
+        //canActivate: [AdminGuard]
       },
       {
         path: 'barnteam',
@@ -177,7 +179,8 @@ const routes: Routes = [
       },
       {
         path: 'edit-user/:userid',
-        component: EditUserComponent, canActivate:[UserDetailsGuard]
+        component: EditUserComponent, 
+        //canActivate:[UserDetailsGuard]
       },
     ]
     

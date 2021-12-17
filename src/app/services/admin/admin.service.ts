@@ -14,8 +14,29 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  createUser(userJson: any) {
-    return this.http.post('https://func-ykbb.azurewebsites.net/api/user/create?code=h6mNFr9PwcAYrkfqVh4XZCGhdCx6qGjxDHdoatd4XQmmRraZJFqqFQ==', userJson);
+  createUser(LastName: string, FirstName: string, Email: string, Organisation: string, RoleID: number,  unitIDs: string[]) {
+    unitIDs.forEach(unitID=>{
+      axios.post('https://func-ykbb.azurewebsites.net/api/user/create?code=h6mNFr9PwcAYrkfqVh4XZCGhdCx6qGjxDHdoatd4XQmmRraZJFqqFQ==', {
+        LastName: LastName,
+        FirstName: FirstName,
+        Email: Email,
+        Organisation: Organisation,
+        RoleID: RoleID,
+        UnitID: unitID,
+      })
+      .then(function (response) {
+        console.log(response);
+        console.log('sending: '+ unitID);
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  
+    });
+    return of(true);
+    
+    //return this.http.post('https://func-ykbb.azurewebsites.net/api/user/create?code=h6mNFr9PwcAYrkfqVh4XZCGhdCx6qGjxDHdoatd4XQmmRraZJFqqFQ==', userJson);
   }
   editUser(userJson: any) {
     return this.http.post('https://func-ykbb.azurewebsites.net/api/user/edit?code=Ycskc1dCm6umJWdESOOWzy6GcBVFXm1n7U1DHZwwijPUGaqjDPX87g==', userJson);
