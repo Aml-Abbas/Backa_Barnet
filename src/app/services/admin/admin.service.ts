@@ -38,8 +38,29 @@ export class AdminService {
     
     //return this.http.post('https://func-ykbb.azurewebsites.net/api/user/create?code=h6mNFr9PwcAYrkfqVh4XZCGhdCx6qGjxDHdoatd4XQmmRraZJFqqFQ==', userJson);
   }
-  editUser(userJson: any) {
-    return this.http.post('https://func-ykbb.azurewebsites.net/api/user/edit?code=Ycskc1dCm6umJWdESOOWzy6GcBVFXm1n7U1DHZwwijPUGaqjDPX87g==', userJson);
+  editUser(LastName: string, FirstName: string, Organisation: string, RoleID: number,  unitIDs: string[], UserID: string) {
+    unitIDs.forEach(unitID=>{
+      axios.post('https://func-ykbb.azurewebsites.net/api/user/edit?code=Ycskc1dCm6umJWdESOOWzy6GcBVFXm1n7U1DHZwwijPUGaqjDPX87g==', {
+        LastName: LastName,
+        FirstName: FirstName,
+        Organisation: Organisation,
+        RoleID: RoleID,
+        UnitID: unitID,
+        UserID: UserID
+      })
+      .then(function (response) {
+        console.log(response);
+        console.log('sending: '+ unitID);
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  
+    });
+    return of(true);
+    
+    //return this.http.post('https://func-ykbb.azurewebsites.net/api/user/edit?code=Ycskc1dCm6umJWdESOOWzy6GcBVFXm1n7U1DHZwwijPUGaqjDPX87g==', userJson);
   }
   removeUser(userJson: any) {
     return this.http.post('https://func-ykbb.azurewebsites.net/api/user/remove?code=ruc6sEqCzEqavF3llZyD6GQ8Z4D4YsBXlVx9MkccTTznPSmjiqwS9A==', userJson);

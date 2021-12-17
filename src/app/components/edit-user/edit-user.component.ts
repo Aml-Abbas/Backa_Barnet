@@ -105,7 +105,7 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
       }
     }
     if(this.saveError==''){
-      var unitIdList: number[]=[];
+/*       var unitIdList: number[]=[];
       var unitID=0;
 
       if(this.units.value!=null){
@@ -129,8 +129,29 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
         UnitID : unitID,
         UserID :this.user.userID,
       } 
+ */      
       this.isDirty= false;
-      this.store.dispatch(new fromState.UpdateUser(user));
+      var unitIDs: string[]=[];
+      var LastName =  this.user.lastName.trim()?? '0';
+      var FirstName = this.user.firstName.trim() ?? '0';
+      var Organisation = this.user.organisaton.trim() ?? '0';
+      var RoleID = parseInt(this.user.roleID) ?? 0;
+      var UserID =this.user.userID;
+
+      if(this.selectedRole=='1' || this.selectedRole=='4'){
+        unitIDs.push('0');
+      }else{
+        this.units.value.forEach(unitName => {
+          this.unitsList.forEach(unit=>{
+            if(unit.unitName== unitName){
+              unitIDs.push(unit.unitID);
+            }
+          });
+        });
+      }        
+      console.log(unitIDs);
+      this.store.dispatch(new fromState.UpdateUser(LastName, FirstName, Organisation, RoleID, unitIDs, UserID));
+     // this.store.dispatch(new fromState.UpdateUser(user));
     }
   }
 

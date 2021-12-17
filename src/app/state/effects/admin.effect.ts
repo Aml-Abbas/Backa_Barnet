@@ -40,7 +40,8 @@ this.actions$.pipe(
   ofType(adminAction.UPDATE_USER),
   switchMap((action: adminAction.UpdateUser) => {
 
-  return this.adminService.editUser(action.payload).pipe(
+  return this.adminService.editUser(action.LastName, action.FirstName,
+    action.Organisation, action.RoleID, action.unitIDs, action.UserID).pipe(
     map((response) => new adminAction.UpdateUserSuccess(response)),
     catchError((error: any) => of(new adminAction.UpdateUserFail(error)))
   );

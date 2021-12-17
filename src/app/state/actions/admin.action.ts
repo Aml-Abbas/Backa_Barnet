@@ -57,7 +57,9 @@ export class CreateUser implements Action {
 
   export class UpdateUser implements Action {
     readonly type = UPDATE_USER;
-    constructor(public payload: any) {}
+    constructor(public LastName: string, public FirstName: string,
+      public Organisation: string, public RoleID: number, 
+      public unitIDs: string[], public UserID: string) {}
   }
   
   export class UpdateUserSuccess implements Action {
