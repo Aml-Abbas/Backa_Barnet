@@ -147,5 +147,11 @@ this.actions$.pipe(
     return new adminAction.UpdateAdminBarnteamSuccess(action.payload);
   })));
 
+  updateTeams$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(adminAction.UPDATE_TEAMS),
+    map((action: adminAction.UpdateTeams) => {
+      return new adminAction.UpdateTeamsSuccess(action.payload);
+    })));
 
 }

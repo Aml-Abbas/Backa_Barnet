@@ -12,7 +12,6 @@
       <h2>Barnteam lista</h2>
          
   
-      
   <table role="table">
     <thead role="rowgroup">
       <tr role="row">
@@ -20,16 +19,16 @@
         <th role="columnheader">Namn</th>
       </tr>
     </thead>
-    <tbody role="rowgroup" *ngIf="searchPersons.length==0">
-      <tr role="row" *ngFor="let person of persons; let i= index">
-        <td role="cell">{{person.personNbr.slice(2, 12)}}</td>
-        <td role="cell">{{person.name}}</td>
+    <tbody role="rowgroup" *ngIf="searchteams.length==0">
+      <tr role="row" *ngFor="let team of teams; let i= index" (click)="setCurrentAdminTeam(team)">
+        <td role="cell">{{team.createdOn.slice(0, 10)}}</td>
+        <td role="cell">{{team.teamName}}</td>
       </tr>
     </tbody>
-    <tbody *ngIf="searchPersons.length!=0">
-      <tr role="row" *ngFor="let person of searchPersons; let i= index">
-        <td role="cell">{{person.personNbr.slice(2, 12)}}</td>
-        <td role="cell">{{person.name}}</td>
+    <tbody *ngIf="searchteams.length!=0">
+      <tr role="row" *ngFor="let team of searchteams; let i= index" (click)="setCurrentAdminTeam(team)">
+        <td role="cell">{{team.createdOn.slice(2, 12)}}</td>
+        <td role="cell">{{team.teamName}}</td>
       </tr>
     </tbody>
   </table>

@@ -3,7 +3,10 @@ import { Person } from 'src/app/models/Person';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
+import { Barnteam } from 'src/app/models/Barnteam';
+import { AdminService } from 'src/app/services/admin/admin.service';
 import { User } from 'src/app/models/User';
+import * as fromRoot from '../../../app/state';
 
 @Component({
   selector: 'app-barnteam',
@@ -11,16 +14,19 @@ import { User } from 'src/app/models/User';
   styleUrls: ['./barnteam.component.scss']
 })
 export class BarnteamComponent implements OnInit {
+  pteams: Promise<Barnteam[]>= new Promise((resolve, reject) => { });
+  teams: Barnteam[] = [];
 
-  persons$: Observable<Person[]> = new Observable<Person[]>();
+
   current_user$: Observable<User| null> = new Observable<User| null>();
-  persons: Person[]=[];
-  searchPersons: Person[]= [];
+  searchteams: Barnteam[]= [];
 
   current_person$= new Observable<Person | null>();
   current_person: Person;
   personID: string;
-  constructor(private store: Store<fromState.State>) { }
+
+  constructor(private store: Store<fromState.State>,
+    private adminService: AdminService) { }
 
   ngOnInit(): void {
     this.current_user$ = this.store.select(fromState.getCurrentUser);
@@ -29,49 +35,36 @@ export class BarnteamComponent implements OnInit {
       this.store.dispatch(new fromState.LoadPersons(userID));
     });
 
-    this.persons$ = this.store.select(fromState.getPersons);
+    this.pteams= this.adminService.getBarnteams();
+    let teams= this.teams;
 
-    this.persons$.subscribe(data => {
-      this.persons=[];
-
-       data.map((person:Person)=>{
-        let personNbr= person.personNbr;
-        let lastName= person.lastName;
-        let firstName= person.firstName;
-
-        let name= person.firstName+' '+ person.lastName;
-        let guardian1= person.guardian1;
-        let guardianPersonNbr1= person.guardianPersonNbr1;
-        let guardian2= person.guardian2;
-        let guardianPersonNbr2= person.guardianPersonNbr2;
-
-        let changedBy = person.changedBy;
-        let changedOn = person.changedOn;
-        let status= person.status;
-        let personID= person.personID;
-
-        let current_per= new Person(personNbr, lastName, firstName, name,
-          guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2, 
-          changedBy, changedOn, status, personID);
-        if(status!= 'Anonymiserad'){
-          this.persons.push(current_per);  
-        }
-      }
-
-    ) 
- });
-
+    this.pteams.then(function (response) {
+      
+      response.forEach((team: Barnteam)=>{
+        teams.push(team);
+    });
+    });
+    teams.forEach(element=>{
+      this.teams.push(element);
+    });
   }
 
   applyFilter(event: Event) {
-    this.searchPersons=[];
+    this.searchteams=[];
     
     const filterValue = (event.target as HTMLInputElement).value;
-    this.persons.forEach(person=>{
-      if(person.personNbr.includes(filterValue) || person.name.includes(filterValue)|| person.status.includes(filterValue)|| person.changedOn.includes(filterValue)){
-        this.searchPersons.push(person);
+    this.teams.forEach(team=>{
+      if(team.teamName.includes(filterValue) || team.createdOn.includes(filterValue)){
+        this.searchteams.push(team);
       }
    });
   }
 
+  setCurrentAdminTeam(team: Barnteam){
+    this.store.dispatch(new fromState.UpdateTeams(this.teams));
+
+    this.store.dispatch(new fromState.UpdateAdminBarnteam(team));
+    this.store.dispatch(new fromRoot.Go({ path: ['/barnteam', team.teamID] }));
+
+  }
 }

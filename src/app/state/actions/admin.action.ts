@@ -34,6 +34,10 @@ export const UPDATE_ADMIN_BARNTEAM = '[Current Admin Barnteam] Update Admin Barn
 export const UPDATE_ADMIN_BARNTEAM_SUCCESS = '[Current Admin Barnteam] Update Admin Barnteam Success';
 export const UPDATE_ADMIN_BARNTEAM_FAIL = '[Current Admin Barnteam] Update Admin Barnteam Fail';
 
+export const UPDATE_TEAMS = '[Teams] Update Teams';
+export const UPDATE_TEAMS_SUCCESS = '[Teams] Update Teams Success';
+export const UPDATE_TEAMS_FAIL = '[Teams] Update Teams Fail';
+
 export class CreateUser implements Action {
     readonly type = CREATE_USER;
     constructor(public payload: any) {}
@@ -154,6 +158,20 @@ export class CreateUser implements Action {
     constructor(public payload: any) {}
   }
 
+  export class UpdateTeams implements Action {
+    readonly type = UPDATE_TEAMS;
+    constructor(public payload: Barnteam[]) {}
+  }
+  
+  export class UpdateTeamsSuccess implements Action {
+    readonly type = UPDATE_TEAMS_SUCCESS;
+    constructor(public payload: Barnteam[]) {}
+  }
+  
+  export class UpdateTeamsFail implements Action {
+    readonly type = UPDATE_TEAMS_FAIL;
+    constructor(public payload: any) {}
+  }
 
   export type AdminAction = 
   CreateUser | CreateUserSuccess | CreateUserFail |
@@ -164,5 +182,6 @@ export class CreateUser implements Action {
   CreateBarnteam | CreateBarnteamSuccess | CreateBarnteamFail |
   UpdateBarnteam | UpdateBarnteamSuccess | UpdateBarnteamFail |
   RemoveBarnteam | RemoveBarnteamSuccess | RemoveBarnteamFail |
-  UpdateAdminBarnteam | UpdateAdminBarnteamSuccess | UpdateAdminBarnteamFail;
+  UpdateAdminBarnteam | UpdateAdminBarnteamSuccess | UpdateAdminBarnteamFail |
+  UpdateTeams | UpdateTeamsSuccess | UpdateTeamsFail;
 

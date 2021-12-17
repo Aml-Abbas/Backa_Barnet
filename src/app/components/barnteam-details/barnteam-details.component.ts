@@ -5,6 +5,7 @@ import * as fromState from '../../state';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
 import { Barnteam } from 'src/app/models/Barnteam';
+import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
   selector: 'app-barnteam-details',
@@ -12,24 +13,25 @@ import { Barnteam } from 'src/app/models/Barnteam';
   styleUrls: ['./barnteam-details.component.scss']
 })
 export class BarnteamDetailsComponent implements OnInit {
-  unitList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-  medlemList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-  barnteam$= new Observable<Barnteam | null>();
+  memberList$= new Observable<any[]| null>();
+  team$= new Observable<Barnteam | null>();
   barnteamID: string;
 
-  constructor(private store: Store<fromState.State>) { }
+  constructor(private store: Store<fromState.State>,
+    private adminService: AdminService) { }
 
   ngOnInit(): void {
-    this.barnteam$= this.store.select(fromState.getCurrentAdminBarnteam);
-    this.barnteam$.subscribe(data=>{
+    this.team$= this.store.select(fromState.getCurrentAdminBarnteam);
+    this.team$.subscribe(data=>{
       this.barnteamID= data?.teamID ??'';
+      this.memberList$= this.adminService.getUnitUsers(this.barnteamID);
     });
 
   }
 
   delete(){
     var user = {
-      TeamID:  0,
+      TeamID:  this.barnteamID,
     } 
     this.store.dispatch(new fromState.RemoveBarnteam(user));
   }

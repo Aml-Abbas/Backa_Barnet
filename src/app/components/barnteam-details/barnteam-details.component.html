@@ -6,20 +6,20 @@
      Tillbaka
   </button>
   
-  <mat-list>
+  <mat-list *ngIf="(team$ | async) as team">
 
-    <mat-list-item>Namn:</mat-list-item>
+    <mat-list-item>Namn: {{team.teamName}}</mat-list-item> 
     <mat-divider></mat-divider>
 
     <mat-list-item>Enheter:</mat-list-item>
     <ul>
-      <li *ngFor="let unit of unitList; let i= index;">{{unit}}</li>
+      <li *ngFor="let unit of team.units; let i= index;">{{unit.unitName}}</li>
     </ul>  
     <mat-divider></mat-divider>
 
     <mat-list-item>Medlemmer:</mat-list-item>
-    <ul>
-    <li *ngFor="let medlem of medlemList; let i= index;">{{medlem}}</li>
+    <ul *ngIf="(memberList$ | async) as memberList">
+    <li *ngFor="let medlem of memberList; let i= index;">{{medlem}}</li>
     </ul>  
 
     <mat-divider></mat-divider>

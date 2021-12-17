@@ -6,11 +6,13 @@ import { Barnteam } from 'src/app/models/Barnteam';
 export interface CurrentAdminState {
     currentAdminUser: User | null;
     currentAdminBarnteam: Barnteam | null;
+    teams: Barnteam[];
   }
   
   export const initialState: CurrentAdminState = {
     currentAdminUser: null,
     currentAdminBarnteam: null,
+    teams:[],
   };
   
   export function reducer(
@@ -29,8 +31,12 @@ export interface CurrentAdminState {
           ...state,
           currentAdminBarnteam: action.payload,       
        };
+      }case admin.UPDATE_TEAMS_SUCCESS: {
+        return {
+          ...state,
+          teams: action.payload,       
+       };
       }
-
       default:
         return state;
     }
@@ -38,3 +44,4 @@ export interface CurrentAdminState {
   
 export const getCurrentAdminUser = (state: CurrentAdminState) => state.currentAdminUser;
 export const getCurrentAdminBarnteam = (state: CurrentAdminState) => state.currentAdminBarnteam;
+export const getCurrentTeams = (state: CurrentAdminState) => state.teams;

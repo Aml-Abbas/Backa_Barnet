@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Unit } from 'src/app/models/Unit';
-import { GetSetService } from '../../services/get-set/get-set.service';
+import { AdminService } from '../../services/admin/admin.service';
 import { Observable } from 'rxjs';
 import {FormControl} from '@angular/forms';
 import {Store} from '@ngrx/store';
@@ -8,6 +8,7 @@ import * as fromStore from 'src/app/state';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 import * as fromState from '../../state';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-create-barnteam',
@@ -26,20 +27,21 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
   selectedRole= '0';
   unitNbr=1; 
   added_units: string[]= [];
-  units$: Promise<Unit[]>= new Promise((resolve, reject) => { });
+  units$: Observable<Unit[]> = new Observable<Unit[]>();
 
   units = new FormControl();
+  ChoosenUnits: Unit[]= [];
 
   saveError='';
   nameError='';
   unitError='';
 
   constructor(private store: Store<fromStore.State>,
-    private getSetService: GetSetService,
+    private adminService: AdminService,
     private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.units$= this.getSetService.getUnitsWithoutAnnat();
+    this.units$= this.adminService.getUnits();
     this.createBarnteamFormGroup = this._formBuilder.group({
       nameControl:['', [Validators.required, Validators.minLength(2)]],
     }); 
@@ -50,7 +52,6 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
     this.nameError='';
     this.unitError='';
   
-    console.log(this.units);
     if(this.createBarnteamFormGroup.status== "INVALID"){
       this.saveError='Rätta felen först';
       this.nameError='Namnet ska vara minst två bokstäver.';
@@ -62,16 +63,22 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
     }
     if(this.saveError==""){
       this.isDirty= false;
-          this.units.value.forEach(unit => {
+      this.ChoosenUnits= this.units.value;
+      console.log(this.ChoosenUnits); 
+
+           this.ChoosenUnits.forEach(unit => {
             var user = {
               TeamName:  this.createBarnteamFormGroup.value.nameControl.trim()?? '0',
               UnitID: unit.unitID,
             } 
-            this.store.dispatch(new fromState.CreateBarnteam(user));   
-            console.log(user); 
-          });
-          this.store.dispatch(new fromState.Go({ path: ['/barnteam'] }));
+            setTimeout(() => {
+              this.store.dispatch(new fromState.CreateBarnteam(user));                
+           }, 30000);
 
+            console.log(user); 
+          }); 
+
+          this.store.dispatch(new fromState.Go({ path: ['/barnteam'] }));
         }
       }
  

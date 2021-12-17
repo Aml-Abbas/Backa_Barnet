@@ -13,8 +13,7 @@ import { User } from '../models/User';
   providedIn: 'root'
 })
 export class UserDetailsGuard implements CanActivate {
-  constructor(private store: Store<fromState.State>,
-    private getSetService: GetSetService) {}
+  constructor(private store: Store<fromState.State>) {}
 
   canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
     var userID= route.params.userid;

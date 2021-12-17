@@ -90,21 +90,33 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
       }
     }
     if(this.saveError==''){
-      var unitID=0;
-      if(this.units.value!=null){
-        unitID= this.units.value[0].ID;
-      }
-      var user = {
-        LastName :  this.createUserFormGroup.value.lastNameControl.trim()?? '0',
-        FirstName : this.createUserFormGroup.value.firstNameControl.trim() ?? '0',
-        Email  : this.email.value.trim() ?? '0',
-        Organisation : this.createUserFormGroup.value.organisationControl.trim() ?? '0',
-        RoleID : parseInt(this.selectedRole) ?? 0,
-        UnitID : unitID,
-      } 
       this.isDirty= false;
-      this.store.dispatch(new fromState.CreateUser(user));
 
+      if(this.selectedRole=='1' || this.selectedRole=='4'){
+        var user = {
+          LastName :  this.createUserFormGroup.value.lastNameControl.trim()?? '0',
+          FirstName : this.createUserFormGroup.value.firstNameControl.trim() ?? '0',
+          Email  : this.email.value.trim() ?? '0',
+          Organisation : this.createUserFormGroup.value.organisationControl.trim() ?? '0',
+          RoleID : parseInt(this.selectedRole) ?? 0,
+          UnitID : 0,
+        } 
+        this.store.dispatch(new fromState.CreateUser(user));
+
+      }else{
+        this.units.value.forEach(unit => {
+          var user = {
+            LastName :  this.createUserFormGroup.value.lastNameControl.trim()?? '0',
+            FirstName : this.createUserFormGroup.value.firstNameControl.trim() ?? '0',
+            Email  : this.email.value.trim() ?? '0',
+            Organisation : this.createUserFormGroup.value.organisationControl.trim() ?? '0',
+            RoleID : parseInt(this.selectedRole) ?? 0,
+            UnitID : unit.unitID,
+          } 
+          this.store.dispatch(new fromState.CreateUser(user));
+    
+        });
+      }
     }
     
   }

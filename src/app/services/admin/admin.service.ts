@@ -110,6 +110,14 @@ export class AdminService {
       return barnteams;
   }
 
+  getUnits(): Observable<Unit[]> {
+    return this.http.get<Unit[]>('https://func-ykbb.azurewebsites.net/api/units?code=dxXy9WjiX7GNKIIrYZEv0GL7h0tXLX3KKsqZhey1z8Ec1Uf6rz22ZQ==');
+  }
+
+  getUnitUsers(teamid: string): Observable<any[]> {
+    return this.http.get<any[]>('https://func-ykbb.azurewebsites.net/api/users/'+teamid+'?code=rwLlFo20K5fSeJ0Bab4oZXY6nga7V8eIVZbldaEO9jVIxHjLb4urVg==');
+  }
+
 }
 function containsUser(users: User[], userID: string): boolean {
   var found= false;

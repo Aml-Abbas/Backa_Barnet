@@ -18,3 +18,8 @@ export const getCurrentAdminBarnteam = createSelector(
   getAdminState,
   fromAdmin.getCurrentAdminBarnteam
 );
+
+export const getCurrentTeams = createSelector(
+  getAdminState,
+  fromAdmin.getCurrentTeams
+);
