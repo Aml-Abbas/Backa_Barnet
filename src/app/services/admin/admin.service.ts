@@ -66,8 +66,24 @@ export class AdminService {
   }
 
 
-  createBarnteam(BarnteamJson: any) {
-    return this.http.post('https://func-ykbb.azurewebsites.net/api/team/create?code=xjvaiKiao349qgf3p/EQoqSgbt6cjXQxBil587qbBWpaV3HpMzZx7Q==', BarnteamJson);
+  createBarnteam(teamName: string, unitIDs: string[]) {
+    unitIDs.forEach(unitID=>{
+      axios.post('https://func-ykbb.azurewebsites.net/api/team/create?code=xjvaiKiao349qgf3p/EQoqSgbt6cjXQxBil587qbBWpaV3HpMzZx7Q==', {
+        TeamName: teamName,
+        UnitID: parseInt(unitID)
+      })
+      .then(function (response) {
+        console.log(response);
+        console.log('sending: '+teamName+' '+ unitID);
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  
+    });
+    return of(true);
+   // return this.http.post('https://func-ykbb.azurewebsites.net/api/team/create?code=xjvaiKiao349qgf3p/EQoqSgbt6cjXQxBil587qbBWpaV3HpMzZx7Q==', BarnteamJson);
   }
 
   removeBarnteam(BarnteamJson: any) {

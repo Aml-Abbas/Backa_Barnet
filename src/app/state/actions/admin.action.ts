@@ -100,7 +100,7 @@ export class CreateUser implements Action {
 
   export class CreateBarnteam implements Action {
     readonly type = CREATE_BARNTEAM;
-    constructor(public payload: any) {}
+    constructor(public teamName: string, public unitIDs: string[]) {}
   }
   
   export class CreateBarnteamSuccess implements Action {

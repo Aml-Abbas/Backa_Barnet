@@ -63,22 +63,23 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
     }
     if(this.saveError==""){
       this.isDirty= false;
-      this.ChoosenUnits= this.units.value;
-      console.log(this.ChoosenUnits); 
 
-           this.ChoosenUnits.forEach(unit => {
-            var user = {
+      var unitIDs: string[]=[];
+
+      this.units.value.forEach(unit => {
+        unitIDs.push(unit.unitID);
+/*             var user = {
               TeamName:  this.createBarnteamFormGroup.value.nameControl.trim()?? '0',
               UnitID: unit.unitID,
             } 
-            setTimeout(() => {
-              this.store.dispatch(new fromState.CreateBarnteam(user));                
-           }, 30000);
-
-            console.log(user); 
+            
+            console.log(user);  */
           }); 
 
-          this.store.dispatch(new fromState.Go({ path: ['/barnteam'] }));
+          this.store.dispatch(new fromState.CreateBarnteam(this.createBarnteamFormGroup.value.nameControl.trim()?? '0', unitIDs));
+
+          //this.store.dispatch(new fromState.Go({ path: ['/barnteam'] }));
+
         }
       }
  
