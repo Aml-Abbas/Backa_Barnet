@@ -38,7 +38,9 @@ export class EventService {
       await axios.get('https://func-ykbb.azurewebsites.net/api/event/'+personId+'?code=4BSzbYC1YIm9Qxgocsd1A/Z9dwyuHw1SiGNRVEhIFD3LxbaoLAKV1g==')
       .then(function (response) {
         response.data.forEach((event: Event)=>{
-          events.push(event);
+          if(!containsEvent(events, event)){
+            events.push(event);
+          }
         })
       })
       .catch(function (error) {
@@ -87,7 +89,7 @@ export class EventService {
         response.forEach((card: ConversationCard)=>{
           cards.push({title: 'Samtalsunderlag', date: card.gradedOn,
           description: ['Ett samtalsunderlag har skapats för barnet'],
-          responsible: card.personID, role: card.personID,
+          responsible: card.userName, role: card.userRole,
           id: card.id ,status: card.status});
           conversationCards.push(card);
       });
@@ -106,7 +108,7 @@ export class EventService {
         response.forEach((card: EstimateCard)=>{
             estimatecards.push({title: 'Skattning', date: card.gradedOn ,
             description: ['En skattning har skapats för barnet'],
-            responsible: card.userName, role: card.userID,
+            responsible: card.userName, role: card.userRole,
             id: card.userID ,status: card.status});    
         });
       });
@@ -159,5 +161,15 @@ function compare(a: Action, b: Action): number {
     return 1;
   }
   return 0;
+}
+
+function containsEvent(events: Event[], event: Event): boolean {
+  var found= false;
+  events.forEach(element=>{
+    if(element.eventID== event.eventID){
+      found= true;
+    }
+  });
+  return found;
 }
 

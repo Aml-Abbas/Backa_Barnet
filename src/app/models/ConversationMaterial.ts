@@ -12,13 +12,16 @@ export class ConversationMaterial {
 
     gradedOn: string;
     status: string;
+    userName: string;
+    userRole: string;
 
     constructor(questionID: string, personID: string, 
       grade: string, comment: string,
       /* grade1: string, comment1: string, 
       grade2: string, comment2: string, */
       gradeType: string,
-      gradedOn: string, status: string) {
+      gradedOn: string, status: string,
+      userName: string, userRole: string) {
 
       this.questionID = questionID;
       this.personID = personID;
@@ -34,6 +37,8 @@ export class ConversationMaterial {
 
       this.gradedOn = gradedOn;
       this.status = status;
+      this.userName= userName;
+      this.userRole= userRole;
 
     }
   }

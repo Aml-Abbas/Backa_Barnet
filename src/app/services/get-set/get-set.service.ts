@@ -155,7 +155,9 @@ export class GetSetService {
           let gradeType= conversationMaterial.gradeType;
           let gradedOn= conversationMaterial.gradedOn;
           let status= conversationMaterial.status;
-  
+          let userName= conversationMaterial.userName;
+          let userRole= conversationMaterial.userRole;
+
   
           if(!containsCardDiscoverCard(cards, conversationMaterial.gradedOn)){
            questionsID.push(questionID);
@@ -171,7 +173,7 @@ export class GetSetService {
            }
   
            cards.push(new ConversationCard(String(index), personID, questionsID, grades, comments,
-              grades1, comments1, grades2, comments2, gradedOn, status));
+              grades1, comments1, grades2, comments2, gradedOn, status, userName, userRole));
               questionsID= [];
   
               grades= [];
@@ -258,7 +260,8 @@ export class GetSetService {
           let gradedOn= estimate.gradedOn;
           let changedOn= estimate.changedOn;
           let status= estimate.status;
-  
+          let userRole= estimate.userRole;
+
           let questionLevelID= parseInt(estimate.questionLevelID)-1;
           let userName= estimate.userName;
           let index= questionIndex.get(String(questionID))??0;
@@ -278,7 +281,7 @@ export class GetSetService {
         
           }else{
             cards.push(new EstimateCard(personID, userID, categories_data, average,
-               gradedOn, changedOn, status, userName));
+               gradedOn, changedOn, status, userName, userRole));
           }
         })
         cards.forEach(card=>{
