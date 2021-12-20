@@ -35,10 +35,17 @@ export class AdminService {
   
     });
     return of(true);
-    
-    //return this.http.post('https://func-ykbb.azurewebsites.net/api/user/create?code=h6mNFr9PwcAYrkfqVh4XZCGhdCx6qGjxDHdoatd4XQmmRraZJFqqFQ==', userJson);
   }
+
   editUser(LastName: string, FirstName: string, Organisation: string, RoleID: number,  unitIDs: string[], UserID: string) {
+    axios.post('https://func-ykbb.azurewebsites.net/api/user/edit/'+UserID+'?code=dLALQcGaa8CBvNC045V5Ss87N1AKWTt2inKKYyS5rEOSjJbTUYAugw==')
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
     unitIDs.forEach(unitID=>{
       axios.post('https://func-ykbb.azurewebsites.net/api/user/edit?code=Ycskc1dCm6umJWdESOOWzy6GcBVFXm1n7U1DHZwwijPUGaqjDPX87g==', {
         LastName: LastName,
@@ -50,8 +57,6 @@ export class AdminService {
       })
       .then(function (response) {
         console.log(response);
-        console.log('sending: '+ unitID);
-
       })
       .catch(function (error) {
         console.log(error);
@@ -59,9 +64,8 @@ export class AdminService {
   
     });
     return of(true);
-    
-    //return this.http.post('https://func-ykbb.azurewebsites.net/api/user/edit?code=Ycskc1dCm6umJWdESOOWzy6GcBVFXm1n7U1DHZwwijPUGaqjDPX87g==', userJson);
   }
+
   removeUser(userJson: any) {
     return this.http.post('https://func-ykbb.azurewebsites.net/api/user/remove?code=ruc6sEqCzEqavF3llZyD6GQ8Z4D4YsBXlVx9MkccTTznPSmjiqwS9A==', userJson);
   }
@@ -87,7 +91,7 @@ export class AdminService {
 
           if(!containsUser(users, userID)){
             units.push(new Unit(unitID, unitName));
-            users.push(new User(userID, lastName, firstName, email, roleID, description,
+            users.push(new User(userID,firstName, lastName, email, roleID, description,
               organisation, name, units));
             units= [];
             }else{
@@ -125,7 +129,6 @@ export class AdminService {
   
     });
     return of(true);
-   // return this.http.post('https://func-ykbb.azurewebsites.net/api/team/create?code=xjvaiKiao349qgf3p/EQoqSgbt6cjXQxBil587qbBWpaV3HpMzZx7Q==', BarnteamJson);
   }
 
   removeBarnteam(BarnteamJson: any) {

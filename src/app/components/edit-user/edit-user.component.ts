@@ -138,7 +138,7 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
       var RoleID = parseInt(this.user.roleID) ?? 0;
       var UserID =this.user.userID;
 
-      if(this.selectedRole=='1' || this.selectedRole=='4'){
+      if(this.user.roleID=='1' || this.user.roleID=='4'){
         unitIDs.push('0');
       }else{
         this.units.value.forEach(unitName => {
@@ -149,7 +149,9 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
           });
         });
       }        
+      console.log('roleid: '+ RoleID);
       console.log(unitIDs);
+
       this.store.dispatch(new fromState.UpdateUser(LastName, FirstName, Organisation, RoleID, unitIDs, UserID));
      // this.store.dispatch(new fromState.UpdateUser(user));
     }
