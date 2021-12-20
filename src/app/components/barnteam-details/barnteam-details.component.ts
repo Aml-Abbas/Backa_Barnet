@@ -6,6 +6,8 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
 import { Barnteam } from 'src/app/models/Barnteam';
 import { AdminService } from '../../services/admin/admin.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-barnteam-details',
@@ -18,7 +20,8 @@ export class BarnteamDetailsComponent implements OnInit {
   barnteamID: string;
 
   constructor(private store: Store<fromState.State>,
-    private adminService: AdminService) { }
+    private adminService: AdminService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.team$= this.store.select(fromState.getCurrentAdminBarnteam);
@@ -30,9 +33,23 @@ export class BarnteamDetailsComponent implements OnInit {
   }
 
   delete(){
-    var user = {
-      TeamID:  this.barnteamID,
-    } 
-    this.store.dispatch(new fromState.RemoveBarnteam(user));
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: {
+        title: 'Ta bort barnteam',
+        text: 'Är du säker att du vill ta bort barnteamet?',
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        var user = {
+          TeamID:  this.barnteamID,
+        } 
+        this.store.dispatch(new fromState.RemoveBarnteam(user));
+            
+      }
+    });
+
+
   }
 }

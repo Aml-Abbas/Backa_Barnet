@@ -179,7 +179,7 @@ const routes: Routes = [
       },
       {
         path: 'edit-user/:userid',
-        component: EditUserComponent, 
+        component: EditUserComponent, canDeactivate: [DirtycheckGuard],
         //canActivate:[UserDetailsGuard]
       },
     ]

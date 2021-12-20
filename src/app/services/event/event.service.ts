@@ -52,11 +52,28 @@ export class EventService {
       
       }
   
+      async getEvents(personId: string): Promise<Event[]> {
+        var events: Event[] = [];
+        await axios.get('https://func-ykbb.azurewebsites.net/api/event/'+personId+'?code=4BSzbYC1YIm9Qxgocsd1A/Z9dwyuHw1SiGNRVEhIFD3LxbaoLAKV1g==')
+        .then(function (response) {
+          response.data.forEach((event: Event)=>{
+              events.push(event);
+          })
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .then(function () {
+        });
+         return events;
+        
+        }
+
   async getAllEvents(personId: string, userId: string): Promise<Action[]> {
    var actions: Action[] = [];
    var pcards= this.getSetService.getConversationMaterial(personId);
    var ecards= this.getSetService.getEstimate(personId);
-   var events: Promise<Event[]>= this.getEvent(personId);
+   var events: Promise<Event[]>= this.getEvents(personId);
    var dcards= this.getSetService.getCards(userId);
    var conversation: ConversationCard[] = [];
    var discover : Card[]= [];

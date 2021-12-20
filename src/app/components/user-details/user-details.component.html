@@ -36,16 +36,16 @@
       <td>Organisation:</td>
       <td>{{user.organisaton}}</td>
      </tr>
-
-     <tr role="row">
-      <td>Enhet:</td>
-      <td *ngFor="let unit of user.units;">{{unit.unitName}}</td>
-     </tr>
     </tbody>
     </table>
    
         <mat-divider></mat-divider>
-    
+        <mat-list-item>Enheter:</mat-list-item>
+    <ul>
+      <li *ngFor="let unit of user.units;">{{unit.unitName}}</li>
+    </ul>  
+    <mat-divider></mat-divider>
+
     
     </mat-list>
 </div>

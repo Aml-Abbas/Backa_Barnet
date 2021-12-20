@@ -154,7 +154,7 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
       {scores: {}, comment:''}
     ],
     []
-    ,'','','','',);
+    ,'','','','','');
  
     this.current_user$= this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data=>{
