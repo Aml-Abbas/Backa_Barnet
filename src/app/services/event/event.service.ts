@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as fromState from '../../state';
 import { Event } from 'src/app/models/Event';
 import axios from 'axios';
 import { GetSetService } from '../../services/get-set/get-set.service';
@@ -17,7 +18,8 @@ import { Action } from 'src/app/models/Action';
 export class EventService {
 
   constructor(private http: HttpClient,
-    private getSetService: GetSetService) { }
+    private getSetService: GetSetService,
+    private store: Store<fromState.State>) { }
 
   createEvent(eventJson: any) {
     return this.http.post('https://func-ykbb.azurewebsites.net/api/event/create?code=zH/btVHzaGqpESkmr3SCic2B4CBLIvGRTXaJu7z/vVsYDb1t1Mw61Q==', eventJson);
@@ -49,12 +51,14 @@ export class EventService {
       }
   
   async getAllEvents(personId: string, userId: string): Promise<Action[]> {
-
    var actions: Action[] = [];
    var pcards= this.getSetService.getConversationMaterial(personId);
    var ecards= this.getSetService.getEstimate(personId);
    var events: Promise<Event[]>= this.getEvent(personId);
    var dcards= this.getSetService.getCards(userId);
+   var conversation: ConversationCard[] = [];
+   var discover : Card[]= [];
+
 
     await axios.get('https://func-ykbb.azurewebsites.net/api/card/'+userId+'?code=bbdIBAbikn/AMydOBvxm69FyKFhRfS4fxUb55SaSz0TfK/cjnxiYEw==')
     .then(function (response) {
@@ -76,6 +80,8 @@ export class EventService {
       });
   
       let cards= actions;
+      let conversationCards= conversation;
+
       pcards.then(function (response) {
         
         response.forEach((card: ConversationCard)=>{
@@ -83,13 +89,17 @@ export class EventService {
           description: ['Ett samtalsunderlag har skapats för barnet'],
           responsible: card.personID, role: card.personID,
           id: card.id ,status: card.status});
+          conversationCards.push(card);
       });
       });
   
       cards.forEach(element=>{
         actions.push(element);
       });
-  
+      conversationCards.forEach(element=>{
+        conversation.push(element);
+      });
+
       let estimatecards= actions;
       ecards.then(function (response) {
         
@@ -107,7 +117,8 @@ export class EventService {
       });
   
       let discoverCards= actions;
-  
+      let discoverCardsToUpdate= discover;
+
       dcards.then(function (response) {
         
         response.forEach((card: Card)=>{
@@ -115,17 +126,27 @@ export class EventService {
           description: ['Ett upptäckarkort har skapats för barnet'],
           responsible: card.userName, role: card.userTitle,
           id: card.id ,status: card.status});
+          discoverCardsToUpdate.push(card);
       });
       });
+
       discoverCards.forEach(element=>{
         actions.push(element);
       });
+      discoverCardsToUpdate.forEach(element=>{
+        discover.push(element);
+      });
+
     })
     .catch(function (error) {
       console.log(error);
     })
     .then(function () {
     });
+
+    this.store.dispatch(new fromState.UpdateConversationCards(conversation));
+    this.store.dispatch(new fromState.UpdateCards(discover));
+
      return actions.sort((a,b) => compare(a, b));
   }
 
