@@ -35,7 +35,7 @@ export class CreateEventComponent implements OnInit , ComponentCanDeactivate {
       nameControl: ['', [Validators.required, Validators.minLength(2)]],
       proControl: ['', [Validators.required, Validators.minLength(2)]],
       eventControl: ['', [Validators.required, Validators.minLength(10)]],
-      planControl: ['', [Validators.required], Validators.minLength(10)],
+      planControl: ['', [Validators.required, Validators.minLength(10)]],
     });
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data => {
@@ -61,11 +61,11 @@ export class CreateEventComponent implements OnInit , ComponentCanDeactivate {
       this.planError = 'Insats beskrivning måste vara minst 10 bokstäver';
     } if (name.length <2 || name[0].length<2 || name[1].length<2 ) {
       this.nameError = 'För och efternamn ska vara med. Minst två bokstäver i för och efternamn.';
+      this.saveError = 'Du har missat att fylla i saker';
     } if (this.createPlanFormGroup.controls.proControl.status == "INVALID") {
       this.proError = 'Profession måste vara minst två boksäver';
     }
-    else {
-      this.saveError = '';
+    if(this.saveError=='') {
       var event = {
         PersonID: parseInt(this.personID) ?? 0,
         Action: this.createPlanFormGroup.value.planControl.trim() ?? '0',
