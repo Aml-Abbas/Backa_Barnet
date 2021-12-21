@@ -5,8 +5,6 @@ import { User } from 'src/app/models/User';
 import axios from 'axios';
 import { Unit } from 'src/app/models/Unit';
 import { Barnteam } from 'src/app/models/Barnteam';
-import {Store} from '@ngrx/store';
-import * as fromStore from 'src/app/state';
 
 
 @Injectable({
@@ -37,7 +35,7 @@ export class AdminService {
     return of(true);
   }
 
-  editUser(LastName: string, FirstName: string, Organisation: string, RoleID: number,  unitIDs: string[], UserID: string) {
+  removeUserUnits(LastName: string, FirstName: string, Organisation: string, RoleID: number,  unitIDs: string[], UserID: string) {
     axios.post('https://func-ykbb.azurewebsites.net/api/user/edit/'+UserID+'?code=dLALQcGaa8CBvNC045V5Ss87N1AKWTt2inKKYyS5rEOSjJbTUYAugw==')
     .then(function (response) {
       console.log(response);
@@ -45,25 +43,27 @@ export class AdminService {
     .catch(function (error) {
       console.log(error);
     });
-
-    unitIDs.forEach(unitID=>{
-      axios.post('https://func-ykbb.azurewebsites.net/api/user/edit?code=Ycskc1dCm6umJWdESOOWzy6GcBVFXm1n7U1DHZwwijPUGaqjDPX87g==', {
-        LastName: LastName,
-        FirstName: FirstName,
-        Organisation: Organisation,
-        RoleID: RoleID,
-        UnitID: unitID,
-        UserID: UserID
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  
-    });
     return of(true);
+  }
+
+  editUser(LastName: string, FirstName: string, Organisation: string, RoleID: number,  unitIDs: string[], UserID: string) {    
+    axios.all([
+      unitIDs.forEach(unitID=>{
+        axios.post('https://func-ykbb.azurewebsites.net/api/user/edit?code=Ycskc1dCm6umJWdESOOWzy6GcBVFXm1n7U1DHZwwijPUGaqjDPX87g==', {
+          LastName: LastName,
+          FirstName: FirstName,
+          Organisation: Organisation,
+          RoleID: RoleID,
+          UnitID: unitID,
+          UserID: UserID
+        })
+      })
+    ])
+    .then(axios.spread((obj1, obj2) => {
+      return of(true);
+
+    }));
+    return of(false);
   }
 
   removeUser(userJson: any) {

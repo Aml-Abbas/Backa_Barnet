@@ -12,6 +12,8 @@ export class AdminEffect {
               private adminService: AdminService) {
   }
 
+
+
 createUser$ = createEffect(() =>
 this.actions$.pipe(
   ofType(adminAction.CREATE_USER),
@@ -37,8 +39,8 @@ this.actions$.pipe(
 
 updateUser$ = createEffect(() =>
 this.actions$.pipe(
-  ofType(adminAction.UPDATE_USER),
-  switchMap((action: adminAction.UpdateUser) => {
+  ofType(adminAction.REMOVE_USER_UNITS_SUCCESS),
+  switchMap((action: adminAction.RemoveUserUnitsSuccess) => {
 
   return this.adminService.editUser(action.LastName, action.FirstName,
     action.Organisation, action.RoleID, action.unitIDs, action.UserID).pipe(
@@ -49,14 +51,29 @@ this.actions$.pipe(
 )
 );
 
-/* updateUserSuccess$ = createEffect(() =>
+removeUserUnits$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(adminAction.REMOVE_USER_UNITS),
+  switchMap((action: adminAction.RemoveUserUnits) => {
+
+  return this.adminService.removeUserUnits(action.LastName, action.FirstName,
+    action.Organisation, action.RoleID, action.unitIDs, action.UserID).pipe(
+    map((response) => new adminAction.RemoveUserUnitsSuccess(action.LastName, action.FirstName,
+      action.Organisation, action.RoleID, action.unitIDs, action.UserID)),
+    catchError((error: any) => of(new adminAction.RemoveUserUnitsFail(error)))
+  );
+  })
+)
+);
+
+/*  updateUserSuccess$ = createEffect(() =>
 this.actions$.pipe(
   ofType(adminAction.UPDATE_USER_SUCCESS),
   switchMap((action: adminAction.UpdateUserSuccess) =>[
     new fromRoot.Go({path: ['/users']}),
   ])
 )
-); */
+); */ 
 
 removeUser$ = createEffect(() =>
 this.actions$.pipe(

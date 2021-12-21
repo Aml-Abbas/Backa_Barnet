@@ -97,7 +97,6 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
         if (result) {
           
           this.store.dispatch(new fromStore.Go({ path: ['/users'] }));
-          //window.location.reload();
         }
                     });
                  })
@@ -177,7 +176,7 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
       console.log('roleid: '+ RoleID);
       console.log(unitIDs);
 
-      this.store.dispatch(new fromState.UpdateUser(LastName, FirstName, Organisation, RoleID, unitIDs, UserID));
+      this.store.dispatch(new fromState.RemoveUserUnits(LastName, FirstName, Organisation, RoleID, unitIDs, UserID));
      // this.store.dispatch(new fromState.UpdateUser(user));
     }
   }

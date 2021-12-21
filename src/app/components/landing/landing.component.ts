@@ -8,6 +8,8 @@ import { User } from 'src/app/models/User';
 import * as fromState from '../../state';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-landing',
@@ -40,7 +42,8 @@ export class LandingComponent implements OnInit {
  isDisabledGoalMenu= true;
 
  constructor(private observer: BreakpointObserver,
-    private store: Store<fromState.State>) {
+    private store: Store<fromState.State>,
+    public dialog: MatDialog) {
     }
 
   ngAfterViewInit() {
@@ -210,7 +213,18 @@ changeShowFiller(){
   }
 
   delete_current_person(): void{
-    this.store.dispatch(new fromState.UpdatePerson(null));
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: {
+        title: 'Avmarkera barnet',
+        text: 'Är du säker att du vill avmarkera barnet? Du kan inte skapa samtalsunderlag eller skattning om du inte väljer ett barn först. Se till att har sparat innan du klickar på bekräfta.',
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.store.dispatch(new fromState.UpdatePerson(null));
+      }
+    });
   }
 
   goToRoute(event, route: string){

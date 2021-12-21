@@ -125,7 +125,9 @@ export class NeedCompassComponent implements OnInit {
   ngOnInit(): void {
     var colorIndex=0;
     this.selectedType= this.route.snapshot.queryParams[0];
-    this.selectedDate= this.route.snapshot.queryParams[1].slice(0,10);
+    if(this.route.snapshot.queryParams[1]!= undefined){
+      this.selectedDate= this.route.snapshot.queryParams[1].slice(0,10);
+    }
 
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_person$.subscribe(data=>{
@@ -136,6 +138,8 @@ export class NeedCompassComponent implements OnInit {
       this.guardian2= data?.guardian2?? '';
 
       let name= this.personName.split(' ');
+
+      console.log(this.personID);
       this.personName= name[0]+ ' '+ name[name.length-1];
       if(this.personName.length>19){
         this.personName= name[name.length-1];

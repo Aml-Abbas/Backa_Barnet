@@ -10,6 +10,10 @@ export const UPDATE_USER = '[User] Update User';
 export const UPDATE_USER_SUCCESS = '[User] Update User Success';
 export const UPDATE_USER_FAIL = '[User] Update User Fail';
 
+export const REMOVE_USER_UNITS = '[User] Remove User Units';
+export const REMOVE_USER_UNITS_SUCCESS = '[User] Remove User Units Success';
+export const REMOVE_USER_UNITS_FAIL = '[User] Remove User Units Fail';
+
 export const REMOVE_USER = '[User] Remove User';
 export const REMOVE_USER_SUCCESS = '[User] Remove User Success';
 export const REMOVE_USER_FAIL = '[User] Remove User Fail';
@@ -69,6 +73,25 @@ export class CreateUser implements Action {
   
   export class UpdateUserFail implements Action {
     readonly type = UPDATE_USER_FAIL;
+    constructor(public payload: any) {}
+  }
+
+  export class RemoveUserUnits implements Action {
+    readonly type = REMOVE_USER_UNITS;
+    constructor(public LastName: string, public FirstName: string,
+      public Organisation: string, public RoleID: number, 
+      public unitIDs: string[], public UserID: string) {}
+  }
+  
+  export class RemoveUserUnitsSuccess implements Action {
+    readonly type = REMOVE_USER_UNITS_SUCCESS;
+    constructor(public LastName: string, public FirstName: string,
+      public Organisation: string, public RoleID: number, 
+      public unitIDs: string[], public UserID: string) {}
+  }
+  
+  export class RemoveUserUnitsFail implements Action {
+    readonly type = REMOVE_USER_UNITS_FAIL;
     constructor(public payload: any) {}
   }
 
@@ -180,6 +203,7 @@ export class CreateUser implements Action {
   export type AdminAction = 
   CreateUser | CreateUserSuccess | CreateUserFail |
   UpdateUser | UpdateUserSuccess | UpdateUserFail |
+  RemoveUserUnits | RemoveUserUnitsSuccess | RemoveUserUnitsFail |
   RemoveUser | RemoveUserSuccess | RemoveUserFail |
   UpdateAdminUser | UpdateAdminUserSuccess | UpdateAdminUserFail|
 
