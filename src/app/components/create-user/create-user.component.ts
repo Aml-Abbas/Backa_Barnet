@@ -46,7 +46,7 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
       return 'Du behöver skriva ett värde';
     }
 
-    return this.email.hasError('email') ? 'Inte ett giltigt mejl' : '';
+    return this.email.hasError('email') ? 'Inte en giltig e-post' : '';
   }
 
   constructor(private store: Store<fromStore.State>,
@@ -94,24 +94,24 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
 
     if(this.email.hasError('required') ){
       this.emailError='Du behöver skriva ett värde i mejlet';
-      this.saveError='Rätta felen först';
+      this.saveError='Du har missat att fylla i saker';
     }else if( this.email.hasError('email')){
-      this.saveError='Rätta felen först';
-      this.emailError='Inte ett giltigt mejl';
+      this.saveError='Du har missat att fylla i saker';
+      this.emailError='Inte en giltig e-post';
     }
     if(this.createUserFormGroup.controls.firstNameControl.status== "INVALID"){
       this.firstNameError='Förnamn ska vara mist två bokstäver.';
-      this.saveError='Rätta felen först';
+      this.saveError='Du har missat att fylla i saker';
     }if(this.createUserFormGroup.controls.lastNameControl.status== "INVALID"){
       this.lastNameError='Efternamn ska vara mist två bokstäver.';
-      this.saveError='Rätta felen först';
+      this.saveError='Du har missat att fylla i saker';
     }if(this.createUserFormGroup.controls.organisationControl.status== "INVALID"){
       this.organisationError='Organisationen ska vara minst två bokstäver.';
-      this.saveError='Rätta felen först';
+      this.saveError='Du har missat att fylla i saker';
     }if(this.selectedRole!='1' && this.selectedRole!='4'){
       if(this.units.value==null){
         this.unitError='Du måste välja minst en enhet.';
-        this.saveError='Rätta felen först';
+        this.saveError='Du har missat att fylla i saker';
       }
     }
     if(this.saveError==''){

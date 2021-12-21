@@ -78,11 +78,11 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
     this.unitError='';
   
     if(this.createBarnteamFormGroup.status== "INVALID"){
-      this.saveError='Rätta felen först';
+      this.saveError='Du har missat att fylla i saker';
       this.nameError='Namnet ska vara minst två bokstäver.';
     }
     if(this.units.value==null || this.units.value.length==0){
-      this.saveError='Rätta felen först';
+      this.saveError='Du har missat att fylla i saker';
       this.unitError='Välj minst en enhet.';
 
     }

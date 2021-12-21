@@ -59,17 +59,17 @@ export class EditContactGuardianComponent implements OnInit {
 
     if(this.email.hasError('required') ){
       this.emailError='Du behöver skriva ett värde i mejlet';
-      this.saveError='Rätta felen först';
+      this.saveError='Du har missat att fylla i saker';
     }else if( this.email.hasError('email')){
-      this.saveError='Rätta felen först';
-      this.emailError='Inte ett giltigt mejl';
+      this.saveError='Du har missat att fylla i saker';
+      this.emailError='Inte en giltig e-post';
     }
    if(this.changeBarnKontaktFormGroup.controls.nameControl.status== "INVALID"){
       this.nameError='Namnet är fel, mist två bokstäver';
-      this.saveError='Rätta felen först';
+      this.saveError='Du har missat att fylla i saker';
     }if(this.changeBarnKontaktFormGroup.controls.organisationControl.status== "INVALID"){
       this.organisationError='Organisation fel, minst tre boksäver.';
-      this.saveError='Rätta felen först';
+      this.saveError='Du har missat att fylla i saker';
     }
     if(this.saveError==''){
 
@@ -82,7 +82,7 @@ export class EditContactGuardianComponent implements OnInit {
       return 'Du behöver skriva ett värde';
     }
 
-    return this.email.hasError('email') ? 'Inte ett giltigt mejl' : '';
+    return this.email.hasError('email') ? 'Inte en giltig e-post' : '';
   }
 
 }

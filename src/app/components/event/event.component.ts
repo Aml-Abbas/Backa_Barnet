@@ -12,6 +12,8 @@ import { tap } from 'rxjs/operators';
 import { User } from 'src/app/models/User';
 import { Action } from 'src/app/models/Action';
 import * as fromRoot from '../../../app/state';
+import { DialogComponent } from '../../components/dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -33,7 +35,8 @@ export class EventComponent implements OnInit {
   constructor(private getSetService: GetSetService,
     private store: Store<fromState.State>,
     private eventService: EventService,
-    private actions$: Actions) { }
+    private actions$: Actions,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
@@ -69,10 +72,27 @@ export class EventComponent implements OnInit {
   }
 
   endAction(action: Action){
-    var actionID = {
+/*     var actionID = {
       ActionID : parseInt(action.id) ?? 0,
     }
    this.store.dispatch(new fromState.UpdateEvent(actionID));
+ */
+
+   const dialogRef = this.dialog.open(DialogComponent, {
+    data: {
+      title: 'Avsluta insats',
+      text: 'Är du säker att du vill avsluta insatsen?',
+    }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      var actionID = {
+        ActionID : parseInt(action.id) ?? 0,
+      }
+     this.store.dispatch(new fromState.UpdateEvent(actionID));
+      }
+  });
 
     }
 

@@ -17,7 +17,7 @@ export class DialogComponent implements OnInit {
     this.text= data.text;
     if(this.title=='Skapa skattning'||this.title=='Ändra status' 
     ||this.title=='Skapa användare' ||this.title=='Skapa barnteam'
-    ||this.title=='Ändra användare'){
+    ||this.title=='Ändra användare' || this.title=='Avsluta insats'){
       this.okButton= true;
     }
   }

@@ -116,17 +116,17 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
 
     if(this.user.firstName.trim().length<2){
       this.firstNameError='Förnamn ska vara mist två bokstäver.';
-      this.saveError='Rätta felen först';
+      this.saveError='Du har missat att fylla i saker';
     }if(this.user.lastName.trim().length<2){
       this.lastNameError='Efternamn ska vara mist två bokstäver.';
-      this.saveError='Rätta felen först';
+      this.saveError='Du har missat att fylla i saker';
     }if(this.user.organisaton.trim().length<2){
       this.organisationError='Organisationen ska vara minst två bokstäver.';
-      this.saveError='Rätta felen först';
+      this.saveError='Du har missat att fylla i saker';
     }if(this.user.roleID!='1' && this.user.roleID!='4'){
       if(this.units.value==null){
         this.unitError='Du måste välja minst en enhet.';
-        this.saveError='Rätta felen först';
+        this.saveError='Du har missat att fylla i saker';
       }
     }
     if(this.saveError==''){
