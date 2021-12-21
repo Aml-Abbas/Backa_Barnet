@@ -3,7 +3,7 @@ import { Card } from 'src/app/models/Card';
 import { Observable } from 'rxjs';
 import * as fromState from '../../state';
 import { Store } from '@ngrx/store';
-import * as fromRoot from '../../../app/state';
+import { User } from 'src/app/models/User';
 import { Barnteam } from 'src/app/models/Barnteam';
 import { AdminService } from '../../services/admin/admin.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,6 +19,9 @@ export class BarnteamDetailsComponent implements OnInit {
   team$= new Observable<Barnteam | null>();
   barnteamID: string;
 
+  pusers: Promise<User[]>= new Promise((resolve, reject) => { });
+  users: User[] = [];
+
   constructor(private store: Store<fromState.State>,
     private adminService: AdminService,
     public dialog: MatDialog) { }
@@ -27,7 +30,19 @@ export class BarnteamDetailsComponent implements OnInit {
     this.team$= this.store.select(fromState.getCurrentAdminBarnteam);
     this.team$.subscribe(data=>{
       this.barnteamID= data?.teamID ??'';
-      this.memberList$= this.adminService.getUnitUsers(this.barnteamID);
+      this.pusers= this.adminService.getUnitUsers(this.barnteamID);
+    });
+
+    let users= this.users;
+
+    this.pusers.then(function (response) {
+      
+      response.forEach((user: User)=>{
+        users.push(user);
+    });
+    });
+    users.forEach(element=>{
+      this.users.push(element);
     });
 
   }

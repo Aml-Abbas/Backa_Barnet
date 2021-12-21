@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CommunicationMaterialComponent } from './components/communication-material/communication-material.component';
 import { ConsentComponent } from './components/consent/consent.component';
 import { ContactGuardianComponent } from './components/contact-guardian/contact-guardian.component';
 import { ContactPersonComponent } from './components/contact-person/contact-person.component';
@@ -57,10 +56,6 @@ const routes: Routes = [
     path: '',
     component: LandingComponent, canActivate: [AuthGuard],
     children:[
-      {
-        path: 'communication-material',
-        component: CommunicationMaterialComponent
-      },  
       {
         path: 'contact',
         component: ContactComponent
@@ -151,22 +146,22 @@ const routes: Routes = [
       {
         path: 'create-user',
         component: CreateUserComponent, canDeactivate: [DirtycheckGuard], 
-        //canActivate: [AdminGuard]
+        canActivate: [AdminGuard]
       },
       {
         path: 'users',
         component: UsersComponent, 
-        //canActivate: [AdminGuard]
+        canActivate: [AdminGuard]
       },
       {
         path: 'barnteam',
         component: BarnteamComponent,
-        // canActivate: [AdminGuard]
+        canActivate: [AdminGuard]
       },
       {
         path: 'create-barnteam',
         component: CreateBarnteamComponent, canDeactivate: [DirtycheckGuard],
-        // canActivate: [AdminGuard]
+        canActivate: [AdminGuard]
       },
       {
         path: 'users/:userid',
@@ -175,12 +170,12 @@ const routes: Routes = [
       {
         path: 'barnteam/:barnteamId',
         component: BarnteamDetailsComponent,
-        // canActivate:[BarnteamDetailsGuard]
+        canActivate:[BarnteamDetailsGuard]
       },
       {
         path: 'edit-user/:userid',
         component: EditUserComponent, canDeactivate: [DirtycheckGuard],
-        //canActivate:[UserDetailsGuard]
+        canActivate:[UserDetailsGuard]
       },
     ]
     

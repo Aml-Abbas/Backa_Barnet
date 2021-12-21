@@ -13,7 +13,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { LandingComponent } from './components/landing/landing.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DiscoverCardComponent } from './components/discover-card/discover-card.component';
-import { CommunicationMaterialComponent } from './components/communication-material/communication-material.component';
 import { EstimateComponent } from './components/estimate/estimate.component';
 import { GoalComponent } from './components/goal/goal.component';
 import { NeedCompassComponent } from './components/need-compass/need-compass.component';
@@ -83,7 +82,7 @@ import { CreateInsatsComponent } from './components/create-insats/create-insats.
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent,
-    CommunicationMaterialComponent, EstimateComponent, GoalComponent, NeedCompassComponent,
+     EstimateComponent, GoalComponent, NeedCompassComponent,
     EventComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent,
     DeepNeedCompassComponent, ConversationMaterialComponent,
     ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, 

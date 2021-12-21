@@ -8,7 +8,11 @@ import * as fromStore from 'src/app/state';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 import * as fromState from '../../state';
-import { ThrowStmt } from '@angular/compiler';
+import {Actions, ofType} from '@ngrx/effects';
+import * as adminAction from '../../state/actions/admin.action';
+import { tap } from 'rxjs/operators';
+import { DialogComponent } from '../../components/dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-barnteam',
@@ -38,13 +42,34 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
 
   constructor(private store: Store<fromStore.State>,
     private adminService: AdminService,
-    private _formBuilder: FormBuilder) { }
+    private _formBuilder: FormBuilder,
+    private actions$: Actions,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.units$= this.adminService.getUnits();
     this.createBarnteamFormGroup = this._formBuilder.group({
       nameControl:['', [Validators.required, Validators.minLength(2)]],
     }); 
+
+    this.actions$.pipe(
+      ofType(adminAction.CREATE_BARNTEAM_SUCCESS),
+      tap(() => {
+        const dialogRef =this.dialog.open(DialogComponent, {
+          data: {
+             title: 'Skapa barnteam',
+             text: 'Du har lyckats skapa ett nytt barnteam.',
+           }
+       });
+
+       dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.store.dispatch(new fromStore.Go({ path: ['/barnteam'] }));
+        }
+                    });
+                 })
+    ).subscribe();
+
   }
 
   create(){

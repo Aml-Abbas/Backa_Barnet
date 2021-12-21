@@ -5,6 +5,8 @@ import { User } from 'src/app/models/User';
 import axios from 'axios';
 import { Unit } from 'src/app/models/Unit';
 import { Barnteam } from 'src/app/models/Barnteam';
+import {Store} from '@ngrx/store';
+import * as fromStore from 'src/app/state';
 
 
 @Injectable({
@@ -26,8 +28,6 @@ export class AdminService {
       })
       .then(function (response) {
         console.log(response);
-        console.log('sending: '+ unitID);
-
       })
       .catch(function (error) {
         console.log(error);
@@ -175,8 +175,35 @@ export class AdminService {
     return this.http.get<Unit[]>('https://func-ykbb.azurewebsites.net/api/units?code=dxXy9WjiX7GNKIIrYZEv0GL7h0tXLX3KKsqZhey1z8Ec1Uf6rz22ZQ==');
   }
 
-  getUnitUsers(teamid: string): Observable<any[]> {
-    return this.http.get<any[]>('https://func-ykbb.azurewebsites.net/api/users/'+teamid+'?code=rwLlFo20K5fSeJ0Bab4oZXY6nga7V8eIVZbldaEO9jVIxHjLb4urVg==');
+  async getUnitUsers(teamid: string): Promise<User[]> {
+    var users: User[]= [];
+
+    await axios.get('https://func-ykbb.azurewebsites.net/api/users/'+teamid+'?code=rwLlFo20K5fSeJ0Bab4oZXY6nga7V8eIVZbldaEO9jVIxHjLb4urVg==')
+    .then(function (response) {  
+        response.data.forEach(user=>{
+          let userID: string = user?.userID ?? '';
+          let lastName: string = user?.lastName ?? '';
+          let firstName: string = user?.firstName ?? '';
+          let email: string = user?.email ?? '';
+          let roleID: string = user?.roleID ?? '';
+          let description: string = user?.description ?? '';
+          let organisation: string = user?.organisaton ?? '';
+          let name: string = user?.name ?? '';
+          let unitID: string = user?.unitID ?? '';
+          let unitName: string = user?.unitName ?? '';
+
+          if(!containsUser(users, userID)){
+            users.push(new User(userID,firstName, lastName, email, roleID, description,
+              organisation, name, []));
+            }
+        })
+  })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .then(function () {
+    });
+      return users;
   }
 
 }

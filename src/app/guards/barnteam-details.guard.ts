@@ -18,7 +18,7 @@ export class BarnteamDetailsGuard implements CanActivate {
     private getSetService: GetSetService) {}
 
   canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
-    var userID= route.params.userid;
+    var userID= route.params.barnteamId;
     return this.checkUser(userID);
   }
   

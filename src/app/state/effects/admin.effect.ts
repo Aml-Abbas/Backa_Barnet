@@ -26,14 +26,14 @@ this.actions$.pipe(
 )
 );
 
-createUserSuccess$ = createEffect(() =>
+/* createUserSuccess$ = createEffect(() =>
 this.actions$.pipe(
   ofType(adminAction.CREATE_USER_SUCCESS),
   switchMap((action: adminAction.CreateUserSuccess) =>[
     new fromRoot.Go({path: ['/users']}),
   ])
 )
-);
+); */
 
 updateUser$ = createEffect(() =>
 this.actions$.pipe(
@@ -101,14 +101,14 @@ this.actions$.pipe(
 )
 );
 
- createBarnteamSuccess$ = createEffect(() =>
+/*  createBarnteamSuccess$ = createEffect(() =>
 this.actions$.pipe(
   ofType(adminAction.CREATE_BARNTEAM_SUCCESS),
   switchMap((action: adminAction.CreateBarnteamSuccess) =>[
     new fromRoot.Go({path: ['/barnteam']}),
   ])
 )
-);
+); */
 
 updateBarnteamSuccess$ = createEffect(() =>
 this.actions$.pipe(

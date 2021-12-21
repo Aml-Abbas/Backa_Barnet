@@ -7,6 +7,11 @@ import { Unit } from 'src/app/models/Unit';
 import { GetSetService } from '../../services/get-set/get-set.service';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 import * as fromState from '../../state';
+import {Actions, ofType} from '@ngrx/effects';
+import * as adminAction from '../../state/actions/admin.action';
+import { tap } from 'rxjs/operators';
+import { DialogComponent } from '../../components/dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -46,7 +51,9 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
 
   constructor(private store: Store<fromStore.State>,
               private _formBuilder: FormBuilder,
-              private getSetService: GetSetService) { }
+              private getSetService: GetSetService,
+              private actions$: Actions,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.units$= this.getSetService.getUnitsWithoutAnnat();
@@ -55,6 +62,24 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
       firstNameControl:['', [Validators.required, Validators.minLength(2)]],
       organisationControl:['', [Validators.required, Validators.minLength(2)]],
     }); 
+
+    this.actions$.pipe(
+      ofType(adminAction.CREATE_USER_SUCCESS),
+      tap(() => {
+        const dialogRef =this.dialog.open(DialogComponent, {
+          data: {
+             title: 'Skapa användare',
+             text: 'Du har lyckats skapa en ny användare.',
+           }
+       });
+
+       dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.store.dispatch(new fromStore.Go({ path: ['/users'] }));
+        }
+                    });
+                 })
+    ).subscribe();
 
   }
 
