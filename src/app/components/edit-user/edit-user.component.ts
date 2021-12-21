@@ -10,6 +10,9 @@ import * as fromState from '../../state';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import {Actions, ofType} from '@ngrx/effects';
+import * as adminAction from '../../state/actions/admin.action';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-user',
@@ -44,7 +47,8 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
 
   constructor(private store: Store<fromStore.State>,
     private getSetService: GetSetService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private actions$: Actions) { }
 
   ngOnInit(): void {
 
@@ -78,6 +82,27 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
         });
         this.units = new FormControl(this.unitNameList);
     });
+
+    this.actions$.pipe(
+      ofType(adminAction.UPDATE_USER_SUCCESS),
+      tap(() => {
+        const dialogRef =this.dialog.open(DialogComponent, {
+          data: {
+             title: 'Ändra användare',
+             text: 'Du har lyckats ändra användaren.',
+           }
+       });
+
+       dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          
+          this.store.dispatch(new fromStore.Go({ path: ['/users'] }));
+          //window.location.reload();
+        }
+                    });
+                 })
+    ).subscribe();
+
 }
 
   save(){

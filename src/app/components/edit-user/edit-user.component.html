@@ -34,7 +34,7 @@
 
 
         <mat-form-field appearance="fill">
-          <mat-label>Användarens role:</mat-label>
+          <mat-label>Användarens roll:</mat-label>
           <mat-select [(ngModel)]="user.roleID" [ngModelOptions]="{standalone: true}"
            (selectionChange)="isDirty= true">
             <mat-option [value]="1">Upptäckare</mat-option>
@@ -51,7 +51,7 @@
         <mat-select-trigger>
             {{units.value ? units.value[0] : ''}}
             <span *ngIf="units.value?.length > 1">
-              (+{{units.value.length - 1}} {{units.value?.length === 2 ? 'other' : 'others'}})
+              (+{{units.value.length - 1}} {{units.value?.length === 2 ? 'till' : 'till'}})
             </span>
           </mat-select-trigger>
             <mat-option *ngFor="let unit of unitsList" [value]="unit.unitName" >{{unit.unitName}}</mat-option>

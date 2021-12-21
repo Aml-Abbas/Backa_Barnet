@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Barnteam sida</h1>
+    <h1>Barnteam</h1>
 
     <div class="search">
       <mat-form-field appearance="standard">
@@ -9,7 +9,7 @@
       </mat-form-field>
       <button mat-raised-button routerLink="/create-barnteam">Nytt barnteam</button>
     </div>
-      <h2>Barnteam lista</h2>
+      <h2>Lista med barnteam</h2>
          
   
   <table role="table">
@@ -19,15 +19,15 @@
         <th role="columnheader">Namn</th>
       </tr>
     </thead>
-    <tbody role="rowgroup" *ngIf="searchteams.length==0">
+    <tbody role="rowgroup" *ngIf="!filterStatus">
       <tr role="row" *ngFor="let team of teams; let i= index" (click)="setCurrentAdminTeam(team)">
         <td role="cell">{{team.createdOn.slice(0, 10)}}</td>
         <td role="cell">{{team.teamName}}</td>
       </tr>
     </tbody>
-    <tbody *ngIf="searchteams.length!=0">
+    <tbody *ngIf="filterStatus">
       <tr role="row" *ngFor="let team of searchteams; let i= index" (click)="setCurrentAdminTeam(team)">
-        <td role="cell">{{team.createdOn.slice(2, 12)}}</td>
+        <td role="cell">{{team.createdOn.slice(0, 10)}}</td>
         <td role="cell">{{team.teamName}}</td>
       </tr>
     </tbody>

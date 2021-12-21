@@ -46,7 +46,7 @@ export class UsersComponent implements OnInit {
     }
     this.users.forEach(user=>{
       var name= (user.firstName+' '+ user.lastName).toLowerCase();
-      if(user.email.toLowerCase().includes(filterValue) || name.includes(filterValue)|| user.description.toLocaleLowerCase().includes(filterValue)){
+      if(user.email.toLowerCase().includes(filterValue) || name.includes(filterValue)|| user.description.toLowerCase().includes(filterValue)){
         this.searchUsers.push(user);
       }
    });

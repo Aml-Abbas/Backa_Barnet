@@ -20,6 +20,7 @@ export class BarnteamComponent implements OnInit {
 
   current_user$: Observable<User| null> = new Observable<User| null>();
   searchteams: Barnteam[]= [];
+  filterStatus: boolean= false;
 
   current_person$= new Observable<Person | null>();
   current_person: Person;
@@ -52,9 +53,12 @@ export class BarnteamComponent implements OnInit {
   applyFilter(event: Event) {
     this.searchteams=[];
     
-    const filterValue = (event.target as HTMLInputElement).value;
+    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    if(filterValue!=''){
+      this.filterStatus= true;
+    }
     this.teams.forEach(team=>{
-      if(team.teamName.includes(filterValue) || team.createdOn.includes(filterValue)){
+      if(team.teamName.toLowerCase().includes(filterValue) || team.createdOn.includes(filterValue)){
         this.searchteams.push(team);
       }
    });

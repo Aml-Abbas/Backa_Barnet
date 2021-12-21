@@ -48,7 +48,7 @@
     <mat-select-trigger>
       {{units.value ? units.value[0].unitName : ''}}
       <span *ngIf="units.value?.length > 1">
-        (+{{units.value.length - 1}} {{units.value?.length === 2 ? 'other' : 'others'}})
+        (+{{units.value.length - 1}} {{units.value?.length === 2 ? 'till' : 'till'}})
       </span>
     </mat-select-trigger>
     <mat-option *ngFor="let unit of current_units" [value]="unit">{{unit.unitName}}</mat-option>

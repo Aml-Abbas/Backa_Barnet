@@ -1,17 +1,17 @@
 <div class="container">
-    <h1>Användare sida</h1>
+    <h1>Användare</h1>
   
 
   <div class="search">
     <mat-form-field appearance="standard">
-      <mat-label>Sök - E-post, namn, organisation eller role
+      <mat-label>Sök - E-post, namn, organisation eller roll
       </mat-label>
       <input matInput (keyup)="applyFilter($event)" #input>  
     </mat-form-field>
     <button mat-raised-button routerLink="/create-user">Ny användare</button>
   </div>
 
-    <h2>Användare lista</h2>
+    <h2>Användarlista</h2>
        
 
     
@@ -21,7 +21,7 @@
       <th role="columnheader">E-post</th>
       <th role="columnheader">Namn</th>
       <th role="columnheader">Organisation</th>
-      <th role="columnheader">Role</th>
+      <th role="columnheader">Roll</th>
     </tr>
   </thead>
   <tbody role="rowgroup" *ngIf="!filterStatus">

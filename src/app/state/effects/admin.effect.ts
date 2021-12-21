@@ -49,14 +49,14 @@ this.actions$.pipe(
 )
 );
 
-updateUserSuccess$ = createEffect(() =>
+/* updateUserSuccess$ = createEffect(() =>
 this.actions$.pipe(
   ofType(adminAction.UPDATE_USER_SUCCESS),
   switchMap((action: adminAction.UpdateUserSuccess) =>[
     new fromRoot.Go({path: ['/users']}),
   ])
 )
-);
+); */
 
 removeUser$ = createEffect(() =>
 this.actions$.pipe(
