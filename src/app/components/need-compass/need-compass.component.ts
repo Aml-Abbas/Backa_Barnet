@@ -31,6 +31,7 @@ export class NeedCompassComponent implements OnInit {
   personName: string;
   guardian1: string;
   guardian2: string;
+  showData = true;
 
   public radarChartOptions: RadialChartOptions = {
     responsive:true,
@@ -266,6 +267,8 @@ export class NeedCompassComponent implements OnInit {
   }
 
   toggle(){
+    this.showData=!this.showData;
+
     this.chart.datasets.forEach(function(e,i){
       e.hidden= !e.hidden;
     });

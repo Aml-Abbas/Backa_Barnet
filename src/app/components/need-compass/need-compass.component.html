@@ -24,7 +24,8 @@
     </mat-select>
   </mat-form-field>
 
-  <button mat-raised-button (click)="toggle()">Växla kompassen</button>
+  <button mat-raised-button *ngIf="showData" (click)="toggle()">Avmarkera alla</button>
+  <button mat-raised-button *ngIf="!showData" (click)="toggle()">markera alla</button>
 
   <div class="parent">
         <app-svg></app-svg>
