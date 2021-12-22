@@ -1,5 +1,5 @@
-import {Action, ActionReducer, INIT} from '@ngrx/store';
-import {State} from './index';
+import { Action, ActionReducer, INIT } from '@ngrx/store';
+import { State } from './index';
 import * as HydrationAction from '../actions/hydration.action';
 
 function isHydrateSuccess(

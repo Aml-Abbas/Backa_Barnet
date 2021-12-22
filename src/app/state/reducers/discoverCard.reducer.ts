@@ -1,6 +1,6 @@
-import {DiscoverCard} from '../../models/DiscoverCard';
+import { DiscoverCard } from '../../models/DiscoverCard';
 import * as discoverCardAction from '../actions/discoverCard.action';
-import {Card} from '../../models/Card';
+import { Card } from '../../models/Card';
 
 export interface DiscoverCardState {
   discoverCardLoading: boolean;
@@ -9,9 +9,9 @@ export interface DiscoverCardState {
 }
 
 export const initialState: DiscoverCardState = {
-    discoverCardLoading: false,
-    discoverCardLoaded: false,
-    discoverCards: [],
+  discoverCardLoading: false,
+  discoverCardLoaded: false,
+  discoverCards: [],
 };
 
 export function reducer(

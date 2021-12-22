@@ -20,75 +20,75 @@ export const LOCK_ESTIMATE_CARDS_SUCCESS = '[Estimate Cards] Lock Estimate Cards
 export const LOCK_ESTIMATE_CARDS_FAIL = '[Estimate Cards] Lock Estimate Cards Fail';
 
 export class CreateEstimateCard implements Action {
-    readonly type = CREATE_ESTIMATE;
-    constructor(public payload: any) {}
-  }
-  
-  export class CreateEstimateSuccess implements Action {
-    readonly type = CREATE_ESTIMATE_SUCCESS;
-    constructor(public payload: any) {}
-  }
-  
-  export class CreateEstimateFail implements Action {
-    readonly type = CREATE_ESTIMATE_FAIL;
-    constructor(public payload: any) {}
-  }
+  readonly type = CREATE_ESTIMATE;
+  constructor(public payload: any) { }
+}
 
-  export class LoadEstimate implements Action {
-    readonly type = LOAD_ESTIMATE;
-    constructor(public payload: string) {
-    }
-  }
-  
-  export class LoadEstimateSuccess implements Action {
-    readonly type = LOAD_ESTIMATE_SUCCESS;
-    constructor(public payload: Estimate[]) {}
-  }
-  
-  export class LoadEstimateFail implements Action {
-    readonly type = LOAD_ESTIMATE_FAIL;
-    constructor(public payload: any) {}
-  }
+export class CreateEstimateSuccess implements Action {
+  readonly type = CREATE_ESTIMATE_SUCCESS;
+  constructor(public payload: any) { }
+}
 
-  export class LoadEstimateCards implements Action {
-    readonly type = LOAD_ESTIMATE_CARDS;
-  
-    constructor(public payload: EstimateCard[]) {}
-  }
-  
-  export class LoadEstimateCardsSuccess implements Action {
-    readonly type = LOAD_ESTIMATE_CARDS_SUCCESS;
-  
-    constructor(public payload: EstimateCard []) {}
-  }
-  
-  export class LoadEstimateCardsFail implements Action {
-    readonly type = LOAD_ESTIMATE_CARDS_FAIL;
+export class CreateEstimateFail implements Action {
+  readonly type = CREATE_ESTIMATE_FAIL;
+  constructor(public payload: any) { }
+}
 
-    constructor(public payload: any) {}
-
+export class LoadEstimate implements Action {
+  readonly type = LOAD_ESTIMATE;
+  constructor(public payload: string) {
   }
-  
-  export class LockEstimateCards implements Action {
-    readonly type = LOCK_ESTIMATE_CARDS;
-  
-    constructor(public payload: any) {}
-  }
-  
-  export class LockEstimateCardsSuccess implements Action {
-    readonly type = LOCK_ESTIMATE_CARDS_SUCCESS;
-  
-    constructor(public payload: any) {}
-  }
-  
-  export class LockEstimateCardsFail implements Action {
-    readonly type = LOCK_ESTIMATE_CARDS_FAIL;
+}
 
-    constructor(public payload: any) {}
+export class LoadEstimateSuccess implements Action {
+  readonly type = LOAD_ESTIMATE_SUCCESS;
+  constructor(public payload: Estimate[]) { }
+}
 
-  }
+export class LoadEstimateFail implements Action {
+  readonly type = LOAD_ESTIMATE_FAIL;
+  constructor(public payload: any) { }
+}
 
-  export type EstimateAction =   LoadEstimate | LoadEstimateSuccess | LoadEstimateFail|
-  LoadEstimateCards | LoadEstimateCardsSuccess | LoadEstimateCardsFail|
-  LockEstimateCards | LockEstimateCardsSuccess | LockEstimateCardsFail|
-  CreateEstimateCard | CreateEstimateSuccess | CreateEstimateFail ;
+export class LoadEstimateCards implements Action {
+  readonly type = LOAD_ESTIMATE_CARDS;
+
+  constructor(public payload: EstimateCard[]) { }
+}
+
+export class LoadEstimateCardsSuccess implements Action {
+  readonly type = LOAD_ESTIMATE_CARDS_SUCCESS;
+
+  constructor(public payload: EstimateCard[]) { }
+}
+
+export class LoadEstimateCardsFail implements Action {
+  readonly type = LOAD_ESTIMATE_CARDS_FAIL;
+
+  constructor(public payload: any) { }
+
+}
+
+export class LockEstimateCards implements Action {
+  readonly type = LOCK_ESTIMATE_CARDS;
+
+  constructor(public payload: any) { }
+}
+
+export class LockEstimateCardsSuccess implements Action {
+  readonly type = LOCK_ESTIMATE_CARDS_SUCCESS;
+
+  constructor(public payload: any) { }
+}
+
+export class LockEstimateCardsFail implements Action {
+  readonly type = LOCK_ESTIMATE_CARDS_FAIL;
+
+  constructor(public payload: any) { }
+
+}
+
+export type EstimateAction = LoadEstimate | LoadEstimateSuccess | LoadEstimateFail |
+  LoadEstimateCards | LoadEstimateCardsSuccess | LoadEstimateCardsFail |
+  LockEstimateCards | LockEstimateCardsSuccess | LockEstimateCardsFail |
+  CreateEstimateCard | CreateEstimateSuccess | CreateEstimateFail;

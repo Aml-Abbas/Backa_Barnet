@@ -8,8 +8,8 @@ import * as fromConversationMaterial from './conversationMaterial.reducer';
 import * as fromEstimate from './estimate.reducer';
 import * as fromAdmin from './admin.reducer';
 
-import {hydrationMetaReducer} from './hydration.reducer';
-import {clearMetaReducer} from './clear.reducer';
+import { hydrationMetaReducer } from './hydration.reducer';
+import { clearMetaReducer } from './clear.reducer';
 
 import {
   ActivatedRouteSnapshot,
@@ -17,7 +17,7 @@ import {
   Params,
 } from '@angular/router';
 
-import {ActionReducerMap, createFeatureSelector, MetaReducer} from '@ngrx/store';
+import { ActionReducerMap, createFeatureSelector, MetaReducer } from '@ngrx/store';
 
 export interface RouterStateUrl {
   url: string;
@@ -27,18 +27,18 @@ export interface RouterStateUrl {
 
 
 export interface State {
-    Login: fromLogin.LoginState;
-    routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
-    currentPerson: fromCurrentPerson.CurrentPersonState;
-    persons: fromPersons.PersonsState;
-    discoverCard: fromDiscoverCard.DiscoverCardState;
-    currentCard: fromCurrentCard.CurrentCardState;
-    conversationMaterial: fromConversationMaterial.ConversationMaterialSatet;
-    estimate: fromEstimate.EstimateSatet;
-    admin: fromAdmin.CurrentAdminState;
-  }
-  
-  export class CustomSerializer
+  Login: fromLogin.LoginState;
+  routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
+  currentPerson: fromCurrentPerson.CurrentPersonState;
+  persons: fromPersons.PersonsState;
+  discoverCard: fromDiscoverCard.DiscoverCardState;
+  currentCard: fromCurrentCard.CurrentCardState;
+  conversationMaterial: fromConversationMaterial.ConversationMaterialSatet;
+  estimate: fromEstimate.EstimateSatet;
+  admin: fromAdmin.CurrentAdminState;
+}
+
+export class CustomSerializer
   implements fromRouter.RouterStateSerializer<RouterStateUrl> {
   serialize(routerState: RouterStateSnapshot): RouterStateUrl {
     const { url } = routerState;
@@ -54,21 +54,21 @@ export interface State {
   }
 }
 
-  export const reducers: ActionReducerMap<State, any> = {
-    Login: fromLogin.reducer,
-    routerReducer: fromRouter.routerReducer,
-    currentPerson: fromCurrentPerson.reducer,
-    persons: fromPersons.reducer,
-    discoverCard: fromDiscoverCard.reducer,
-    currentCard: fromCurrentCard.reducer,
-    conversationMaterial: fromConversationMaterial.reducer,
-    estimate: fromEstimate.reducer,
-    admin: fromAdmin.reducer,
-  };
-  
-  export const getRouterState = createFeatureSelector<
+export const reducers: ActionReducerMap<State, any> = {
+  Login: fromLogin.reducer,
+  routerReducer: fromRouter.routerReducer,
+  currentPerson: fromCurrentPerson.reducer,
+  persons: fromPersons.reducer,
+  discoverCard: fromDiscoverCard.reducer,
+  currentCard: fromCurrentCard.reducer,
+  conversationMaterial: fromConversationMaterial.reducer,
+  estimate: fromEstimate.reducer,
+  admin: fromAdmin.reducer,
+};
+
+export const getRouterState = createFeatureSelector<
   fromRouter.RouterReducerState<RouterStateUrl>>('routerReducer');
 
 
-  export const getState = createFeatureSelector<State>('app');
-  export const metaReducers: MetaReducer[] = [hydrationMetaReducer, clearMetaReducer];
+export const getState = createFeatureSelector<State>('app');
+export const metaReducers: MetaReducer[] = [hydrationMetaReducer, clearMetaReducer];

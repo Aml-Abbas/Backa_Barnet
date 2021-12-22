@@ -1,10 +1,10 @@
-import {Person} from '../../models/Person';
+import { Person } from '../../models/Person';
 import * as pesonsAction from '../actions/persons.action';
 
 export interface PersonsState {
   personsLoading: boolean;
   personsLoaded: boolean;
-  persons: Person [];
+  persons: Person[];
 }
 
 export const initialState: PersonsState = {

@@ -13,7 +13,7 @@ export class Go implements Action {
       query?: object;
       extras?: NavigationExtras;
     }
-  ) {}
+  ) { }
 }
 
 export class Back implements Action {

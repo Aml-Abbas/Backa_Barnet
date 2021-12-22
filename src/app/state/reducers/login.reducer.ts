@@ -1,5 +1,5 @@
 
-import {User} from '../../models/User';
+import { User } from '../../models/User';
 import * as fromLogin from '../actions/login.action';
 
 
@@ -25,14 +25,14 @@ export function reducer(
         ...state,
         pending: true,
         loggedIn: false,
-    };
+      };
     }
     case fromLogin.LOGIN_SUCCESS: {
       return {
         ...state,
         pending: false,
         loggedIn: true,
-      currentUser: action.payload[0]
+        currentUser: action.payload[0]
       };
     }
     case fromLogin.LOGOUT_SUCCESS:

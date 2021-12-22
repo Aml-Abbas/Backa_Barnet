@@ -1,22 +1,22 @@
-import {ConversationMaterial} from '../../models/ConversationMaterial';
-import {ConversationCard} from '../../models/ConversationCard';
+import { ConversationMaterial } from '../../models/ConversationMaterial';
+import { ConversationCard } from '../../models/ConversationCard';
 import * as conversationMaterial from '../actions/conversationMaterial.action';
 
 export interface ConversationMaterialSatet {
-conversationMaterialLoading: boolean;
-conversationMaterialLoaded: boolean;
-conversationMaterial: ConversationMaterial[];
-currentConversationcard: ConversationCard| null;
-currentConversationcards: ConversationCard[];
+  conversationMaterialLoading: boolean;
+  conversationMaterialLoaded: boolean;
+  conversationMaterial: ConversationMaterial[];
+  currentConversationcard: ConversationCard | null;
+  currentConversationcards: ConversationCard[];
 
 }
 
 export const initialState: ConversationMaterialSatet = {
-    conversationMaterialLoading: false,
-    conversationMaterialLoaded: false,
-    conversationMaterial: [],
-    currentConversationcard: null,
-    currentConversationcards: [],
+  conversationMaterialLoading: false,
+  conversationMaterialLoaded: false,
+  conversationMaterial: [],
+  currentConversationcard: null,
+  currentConversationcards: [],
 };
 
 export function reducer(
@@ -47,7 +47,7 @@ export function reducer(
         conversationMaterial: [],
       };
     }
-    case conversationMaterial.UPDATE_CURRENT_CONVERSATION_CARD:{
+    case conversationMaterial.UPDATE_CURRENT_CONVERSATION_CARD: {
       return {
         ...state,
       };
@@ -58,7 +58,7 @@ export function reducer(
         currentConversationcard: action.payload,
       };
     }
-    case conversationMaterial.UPDATE_CONVERSATION_CARDS:{
+    case conversationMaterial.UPDATE_CONVERSATION_CARDS: {
       return {
         ...state,
       };

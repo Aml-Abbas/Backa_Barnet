@@ -1,4 +1,4 @@
-import {createSelector} from '@ngrx/store';
+import { createSelector } from '@ngrx/store';
 import * as fromFeature from '../reducers';
 import * as fromCurrentCard from '../reducers/currentCard.reducer';
 
@@ -14,13 +14,13 @@ export const getCurrentCardLoading = createSelector(
 
 
 export const getCurrentCardLoaded = createSelector(
-    getCurrentCardState,
+  getCurrentCardState,
   fromCurrentCard.getCurrentCardLoaded
 );
 
 
 export const getCurrentCard = createSelector(
-    getCurrentCardState,
+  getCurrentCardState,
   fromCurrentCard.getCurrentCard
 );
 
@@ -31,13 +31,13 @@ export const getCurrentCardsLoading = createSelector(
 
 
 export const getCurrentCardsLoaded = createSelector(
-    getCurrentCardState,
+  getCurrentCardState,
   fromCurrentCard.getCurrentCardsLoaded
 );
 
 
 export const getCurrentCards = createSelector(
-    getCurrentCardState,
+  getCurrentCardState,
   fromCurrentCard.getCurrentCards
 );
 

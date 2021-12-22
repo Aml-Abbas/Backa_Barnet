@@ -1,20 +1,20 @@
-import {Estimate} from '../../models/Estimate';
+import { Estimate } from '../../models/Estimate';
 import * as estimate from '../actions/estimate.action';
-import {EstimateCard} from '../../models/EstimateCard';
+import { EstimateCard } from '../../models/EstimateCard';
 
 export interface EstimateSatet {
-estimateLoading: boolean;
-estimateLoaded: boolean;
-estimates: Estimate[];
-estimateCards: EstimateCard[];
+  estimateLoading: boolean;
+  estimateLoaded: boolean;
+  estimates: Estimate[];
+  estimateCards: EstimateCard[];
 
 }
 
 export const initialState: EstimateSatet = {
-    estimateLoading: false,
-    estimateLoaded: false,
-    estimates: [],
-    estimateCards: []
+  estimateLoading: false,
+  estimateLoaded: false,
+  estimates: [],
+  estimateCards: []
 };
 
 export function reducer(

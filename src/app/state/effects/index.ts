@@ -1,29 +1,29 @@
-import {LoginEffect} from './login.effect';
-import {RouterEffect} from './router.effect';
-import {CurrentPersonEffect} from './currentPerson.effect';
-import {HydrationEffect} from './hydration.effect';
-import {PersonsEffect} from './persons.effect';
-import {DiscoverCardEffect} from './discoverCard.effect';
-import {CurrentCardEffect} from './currentCard.effect';
-import {ConversationMaterialEffect} from './conversationMaterial.effect';
-import {EstimateEffect} from './estimate.effect';
-import {EventEffect} from './event.effect';
-import {AdminEffect} from './admin.effect';
+import { LoginEffect } from './login.effect';
+import { RouterEffect } from './router.effect';
+import { CurrentPersonEffect } from './currentPerson.effect';
+import { HydrationEffect } from './hydration.effect';
+import { PersonsEffect } from './persons.effect';
+import { DiscoverCardEffect } from './discoverCard.effect';
+import { CurrentCardEffect } from './currentCard.effect';
+import { ConversationMaterialEffect } from './conversationMaterial.effect';
+import { EstimateEffect } from './estimate.effect';
+import { EventEffect } from './event.effect';
+import { AdminEffect } from './admin.effect';
 
 export const effects: any[] = [
-    LoginEffect,
-    RouterEffect,
-    CurrentPersonEffect,
-    HydrationEffect,
-    PersonsEffect,
-    DiscoverCardEffect,
-    CurrentCardEffect,
-    ConversationMaterialEffect,
-    EstimateEffect,
-    EventEffect,
-    AdminEffect
-  ];
-  
+  LoginEffect,
+  RouterEffect,
+  CurrentPersonEffect,
+  HydrationEffect,
+  PersonsEffect,
+  DiscoverCardEffect,
+  CurrentCardEffect,
+  ConversationMaterialEffect,
+  EstimateEffect,
+  EventEffect,
+  AdminEffect
+];
+
 
 export * from './login.effect';
 export * from './router.effect';

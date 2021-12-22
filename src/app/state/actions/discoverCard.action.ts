@@ -23,44 +23,44 @@ export class LoadDiscoverCard implements Action {
 
 export class LoadDiscoverCardSuccess implements Action {
   readonly type = LOAD_DISCOVERCARD_SUCCESS;
-  constructor(public payload: Card[]) {}
+  constructor(public payload: Card[]) { }
 }
 
 export class LoadDiscoverCardFail implements Action {
   readonly type = LOAD_DISCOVERCARD_FAIL;
-  constructor(public payload: any) {}
+  constructor(public payload: any) { }
 }
 
 export class CreateDiscoverCard implements Action {
   readonly type = CREATE_DISCOVERCARD;
-  constructor(public payload: any) {}
+  constructor(public payload: any) { }
 }
 
 export class CreateDiscoverCardSuccess implements Action {
   readonly type = CREATE_DISCOVERCARD_SUCCESS;
-  constructor(public payload: any) {}
+  constructor(public payload: any) { }
 }
 
 export class CreateDiscoverCardFail implements Action {
   readonly type = CREATE_DISCOVERCARD_FAIL;
-  constructor(public payload: any) {}
+  constructor(public payload: any) { }
 }
 
 export class UpdateDiscoverCard implements Action {
   readonly type = UPDATE_DISCOVERCARD;
-  constructor(public payload: any) {}
+  constructor(public payload: any) { }
 }
 
 export class UpdateDiscoverCardSuccess implements Action {
   readonly type = UPDATE_DISCOVERCARD_SUCCESS;
-  constructor(public payload: any) {}
+  constructor(public payload: any) { }
 }
 
 export class UpdateDiscoverCardFail implements Action {
   readonly type = UPDATE_DISCOVERCARD_FAIL;
-  constructor(public payload: any) {}
+  constructor(public payload: any) { }
 }
 
 export type DiscoverCardAction = LoadDiscoverCard | LoadDiscoverCardSuccess | LoadDiscoverCardFail |
-                                CreateDiscoverCard | CreateDiscoverCardSuccess | CreateDiscoverCardFail|
-                                UpdateDiscoverCard | UpdateDiscoverCardSuccess | UpdateDiscoverCardFail;
+  CreateDiscoverCard | CreateDiscoverCardSuccess | CreateDiscoverCardFail |
+  UpdateDiscoverCard | UpdateDiscoverCardSuccess | UpdateDiscoverCardFail;

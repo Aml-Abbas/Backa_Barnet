@@ -1,5 +1,5 @@
 
-import {createSelector} from '@ngrx/store';
+import { createSelector } from '@ngrx/store';
 import * as fromFeature from '../reducers';
 import * as fromAdmin from '../reducers/admin.reducer';
 

@@ -12,18 +12,18 @@ export const LOGOUT_FAIL = '[Logout] Logout Fail';
 
 export class Login implements Action {
   readonly type = LOGIN;
-  constructor(public payload: {email: string; password: string}) {
+  constructor(public payload: { email: string; password: string }) {
   }
 }
 
 export class LoginSuccess implements Action {
   readonly type = LOGIN_SUCCESS;
-  constructor(public payload: User) {}
+  constructor(public payload: User) { }
 }
 
 export class LoginFail implements Action {
   readonly type = LOGIN_FAIL;
-  constructor(public payload: any) {}
+  constructor(public payload: any) { }
 }
 
 export class Logout implements Action {
@@ -39,5 +39,5 @@ export class LogoutFail implements Action {
 }
 
 
-export type LoginAction = Login | LoginSuccess | LoginFail 
-                            | Logout | LogoutSuccess | LogoutFail;
+export type LoginAction = Login | LoginSuccess | LoginFail
+  | Logout | LogoutSuccess | LogoutFail;

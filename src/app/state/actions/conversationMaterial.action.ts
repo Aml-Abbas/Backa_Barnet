@@ -23,98 +23,98 @@ export const UPDATE_CONVERSATION_CARD_SUCCESS = '[Conversation Material] Update 
 export const UPDATE_CONVERSATION_CARD_FAIL = '[Conversation Material] Update Conversation Card Fail';
 
 export class CreateConversationMaterial implements Action {
-    readonly type = CREATE_COVERSATION_MATERIAL;
-    constructor(public payload: any) {}
-  }
-  
-  export class CreateConversationMaterialSuccess implements Action {
-    readonly type = CREATE_COVERSATION_MATERIAL_SUCCESS;
-    constructor(public payload: any) {}
-  }
-  
-  export class CreateConversationMaterialFail implements Action {
-    readonly type = CREATE_COVERSATION_MATERIAL_FAIL;
-    constructor(public payload: any) {}
-  }
-  
+  readonly type = CREATE_COVERSATION_MATERIAL;
+  constructor(public payload: any) { }
+}
 
-  export class LoadConversationMaterial implements Action {
-    readonly type = LOAD_COVERSATION_MATERIAL;
-    constructor(public payload: string) {
-    }
-  }
-  
-  export class LoadConversationMaterialSuccess implements Action {
-    readonly type = LOAD_COVERSATION_MATERIAL_SUCCESS;
-    constructor(public payload: ConversationMaterial[]) {}
-  }
-  
-  export class LoadConversationMaterialFail implements Action {
-    readonly type = LOAD_COVERSATION_MATERIAL_FAIL;
-    constructor(public payload: any) {}
-  }
-  
+export class CreateConversationMaterialSuccess implements Action {
+  readonly type = CREATE_COVERSATION_MATERIAL_SUCCESS;
+  constructor(public payload: any) { }
+}
 
-  export class UpdateCurrentConversationCard implements Action {
-    readonly type = UPDATE_CURRENT_CONVERSATION_CARD;
-  
-    constructor(public payload: ConversationCard | null) {}
-  }
-  
-  export class UpdateCurrentConversationCardSuccess implements Action {
-    readonly type = UPDATE_CURRENT_CONVERSATION_CARD_SUCCESS;
-  
-    constructor(public payload: ConversationCard | null) {}
-  }
-  
-  export class UpdateCurrentConversationCardFail implements Action {
-    readonly type = UPDATE_CURRENT_CONVERSATION_CARD_FAIL;
-
-    constructor(public payload: any) {}
-
-  }
-
-  export class UpdateConversationCards implements Action {
-    readonly type = UPDATE_CONVERSATION_CARDS;
-  
-    constructor(public payload: ConversationCard[]) {}
-  }
-  
-  export class UpdateConversationCardsSuccess implements Action {
-    readonly type = UPDATE_CONVERSATION_CARDS_SUCCESS;
-  
-    constructor(public payload: ConversationCard []) {}
-  }
-  
-  export class UpdateConversationCardsFail implements Action {
-    readonly type = UPDATE_CONVERSATION_CARDS_FAIL;
-
-    constructor(public payload: any) {}
-
-  }
-
-  export class UpdateConversationCard implements Action {
-    readonly type = UPDATE_CONVERSATION_CARD;
-  
-    constructor(public payload: any) {}
-  }
-  
-  export class UpdateConversationCardSuccess implements Action {
-    readonly type = UPDATE_CONVERSATION_CARD_SUCCESS;
-  
-    constructor(public payload: any) {}
-  }
-  
-  export class UpdateConversationCardFail implements Action {
-    readonly type = UPDATE_CONVERSATION_CARD_FAIL;
-
-    constructor(public payload: any) {}
-
-  }
+export class CreateConversationMaterialFail implements Action {
+  readonly type = CREATE_COVERSATION_MATERIAL_FAIL;
+  constructor(public payload: any) { }
+}
 
 
-  export type ConversationMaterialAction = CreateConversationMaterial | CreateConversationMaterialSuccess | CreateConversationMaterialFail|
-  LoadConversationMaterial | LoadConversationMaterialSuccess | LoadConversationMaterialFail|
-  UpdateCurrentConversationCard| UpdateCurrentConversationCardSuccess| UpdateCurrentConversationCardFail|
-  UpdateConversationCards| UpdateConversationCardsSuccess| UpdateConversationCardsFail|
-  UpdateConversationCard| UpdateConversationCardSuccess| UpdateConversationCardFail;
+export class LoadConversationMaterial implements Action {
+  readonly type = LOAD_COVERSATION_MATERIAL;
+  constructor(public payload: string) {
+  }
+}
+
+export class LoadConversationMaterialSuccess implements Action {
+  readonly type = LOAD_COVERSATION_MATERIAL_SUCCESS;
+  constructor(public payload: ConversationMaterial[]) { }
+}
+
+export class LoadConversationMaterialFail implements Action {
+  readonly type = LOAD_COVERSATION_MATERIAL_FAIL;
+  constructor(public payload: any) { }
+}
+
+
+export class UpdateCurrentConversationCard implements Action {
+  readonly type = UPDATE_CURRENT_CONVERSATION_CARD;
+
+  constructor(public payload: ConversationCard | null) { }
+}
+
+export class UpdateCurrentConversationCardSuccess implements Action {
+  readonly type = UPDATE_CURRENT_CONVERSATION_CARD_SUCCESS;
+
+  constructor(public payload: ConversationCard | null) { }
+}
+
+export class UpdateCurrentConversationCardFail implements Action {
+  readonly type = UPDATE_CURRENT_CONVERSATION_CARD_FAIL;
+
+  constructor(public payload: any) { }
+
+}
+
+export class UpdateConversationCards implements Action {
+  readonly type = UPDATE_CONVERSATION_CARDS;
+
+  constructor(public payload: ConversationCard[]) { }
+}
+
+export class UpdateConversationCardsSuccess implements Action {
+  readonly type = UPDATE_CONVERSATION_CARDS_SUCCESS;
+
+  constructor(public payload: ConversationCard[]) { }
+}
+
+export class UpdateConversationCardsFail implements Action {
+  readonly type = UPDATE_CONVERSATION_CARDS_FAIL;
+
+  constructor(public payload: any) { }
+
+}
+
+export class UpdateConversationCard implements Action {
+  readonly type = UPDATE_CONVERSATION_CARD;
+
+  constructor(public payload: any) { }
+}
+
+export class UpdateConversationCardSuccess implements Action {
+  readonly type = UPDATE_CONVERSATION_CARD_SUCCESS;
+
+  constructor(public payload: any) { }
+}
+
+export class UpdateConversationCardFail implements Action {
+  readonly type = UPDATE_CONVERSATION_CARD_FAIL;
+
+  constructor(public payload: any) { }
+
+}
+
+
+export type ConversationMaterialAction = CreateConversationMaterial | CreateConversationMaterialSuccess | CreateConversationMaterialFail |
+  LoadConversationMaterial | LoadConversationMaterialSuccess | LoadConversationMaterialFail |
+  UpdateCurrentConversationCard | UpdateCurrentConversationCardSuccess | UpdateCurrentConversationCardFail |
+  UpdateConversationCards | UpdateConversationCardsSuccess | UpdateConversationCardsFail |
+  UpdateConversationCard | UpdateConversationCardSuccess | UpdateConversationCardFail;
