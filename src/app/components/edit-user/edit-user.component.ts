@@ -111,8 +111,6 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
     this.unitError='';
     this.organisationError='';
 
-    console.log(this.units.value);
-
     if(this.user.firstName.trim().length<2){
       this.firstNameError='Förnamn ska vara mist två bokstäver.';
       this.saveError='Du har missat att fylla i saker';
@@ -128,32 +126,7 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
         this.saveError='Du har missat att fylla i saker';
       }
     }
-    if(this.saveError==''){
-/*       var unitIdList: number[]=[];
-      var unitID=0;
-
-      if(this.units.value!=null){
-        unitID= 3;
-        this.units.value.forEach(unitName => {
-
-          this.unitsList.forEach(unit=>{
-            if(unit.unitName==unitName){
-              unitIdList.push(parseInt(unit.unitID));
-            }
-          });      
-        });
-        console.log(unitIdList);
-      }
-
-      var user = {
-        LastName :  this.user.lastName.trim()?? '0',
-        FirstName : this.user.firstName.trim() ?? '0',
-        Organisation : this.user.organisaton.trim() ?? '0',
-        RoleID : parseInt(this.user.roleID) ?? 0,
-        UnitID : unitID,
-        UserID :this.user.userID,
-      } 
- */      
+    if(this.saveError==''){   
       this.isDirty= false;
       var unitIDs: string[]=[];
       var LastName =  this.user.lastName.trim()?? '0';
@@ -173,11 +146,7 @@ export class EditUserComponent implements OnInit , ComponentCanDeactivate {
           });
         });
       }        
-      console.log('roleid: '+ RoleID);
-      console.log(unitIDs);
-
       this.store.dispatch(new fromState.RemoveUserUnits(LastName, FirstName, Organisation, RoleID, unitIDs, UserID));
-     // this.store.dispatch(new fromState.UpdateUser(user));
     }
   }
 

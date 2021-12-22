@@ -20,8 +20,8 @@
     <input matInput disabled value="{{current_person.personNbr}}">
   </mat-form-field>
 
-
-  <mat-form-field appearance="fill" *ngIf="userRoleId=='4' || userRoleId=='2'">
+<div *ngIf="userRoleId=='4' || userRoleId=='2'">
+  <mat-form-field appearance="fill" >
     <mat-label>Barnets status</mat-label>
     <mat-select *ngIf="(status$ | async) as status" [(value)]="statusString">
       <mat-option *ngFor="let stat of status; let i= index" value="{{stat.statusName}}"
@@ -29,7 +29,9 @@
 </mat-select>
   </mat-form-field>
 
-  <button mat-raised-button (click)="setPersonStatus()" *ngIf="userRoleId=='4' || userRoleId=='2'">Spara</button>
+  <button mat-raised-button (click)="setPersonStatus()" *ngIf="isDirty">Spara</button>
+
+</div>
 
 </div>
 

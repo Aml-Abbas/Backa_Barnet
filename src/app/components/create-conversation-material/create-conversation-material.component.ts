@@ -140,8 +140,6 @@ export class CreateConversationMaterialComponent implements OnInit, ComponentCan
       if(this.selected=='1'){
         this.putZeros();
             }
-
-      console.log(this.scores);
       this.saveError='';
 
       var conversationMaterial = {
@@ -204,8 +202,6 @@ export class CreateConversationMaterialComponent implements OnInit, ComponentCan
 
         Status: nbr,
       };
-
-      console.log(conversationMaterial);
 
       var title= 'Skapa samtalsunderlag';
       var text= '';

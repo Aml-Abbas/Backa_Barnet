@@ -102,12 +102,15 @@ export class ContactPersonComponent implements OnInit, ComponentCanDeactivate {
 
   setPersonStatus(){
     this.isDirty= false;
-    var info = {
-      PersonID : this.current_person.personID,
-      StatusID : this.statusNbr
-    };
-     this.store.dispatch(new fromRoot.UpdatePerson(this.current_person));
-     this.store.dispatch(new fromRoot.UpdateStatus(info));
+    if(this.statusNbr!= -1){
+      var info = {
+        PersonID : this.current_person.personID,
+        StatusID : this.statusNbr
+      };
+       this.store.dispatch(new fromRoot.UpdatePerson(this.current_person));
+       this.store.dispatch(new fromRoot.UpdateStatus(info));
+  
+    }
   }
 
 }

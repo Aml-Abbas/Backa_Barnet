@@ -214,8 +214,6 @@ send(nbr: number): void{
     Status: nbr,
   };
 
-  console.log(conversationMaterial);
-
   var title= 'Ändra samtalsunderlag';
   var text= '';
   if(nbr==1){

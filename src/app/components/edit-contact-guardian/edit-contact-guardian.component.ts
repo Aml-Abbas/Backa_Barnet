@@ -54,9 +54,6 @@ export class EditContactGuardianComponent implements OnInit {
     this.emailError='';
     this.organisationError='';
 
-    console.log(this.changeBarnKontaktFormGroup.controls.nameControl.value);
-    console.log(this.changeBarnKontaktFormGroup.controls.organisationControl.value);
-
     if(this.email.hasError('required') ){
       this.emailError='Du behöver skriva ett värde i mejlet';
       this.saveError='Du har missat att fylla i saker';

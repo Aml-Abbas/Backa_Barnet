@@ -102,8 +102,6 @@ export class CreateInsatsComponent implements OnInit , ComponentCanDeactivate {
         Responsible: this.createPlanFormGroup.value.nameControl.trim() ?? '0',
         Profession: this.createPlanFormGroup.value.proControl.trim() ?? '0',
       }
-      console.log(action);
-
       this.isDirty = false;
      this.store.dispatch(new fromState.CreateAction(action));
     }

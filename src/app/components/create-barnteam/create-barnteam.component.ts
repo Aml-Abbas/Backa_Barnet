@@ -93,18 +93,9 @@ export class CreateBarnteamComponent implements OnInit , ComponentCanDeactivate 
       var teamNName= this.createBarnteamFormGroup.value.nameControl.trim()?? '0';
       this.units.value.forEach(unit => {
         unitIDs.push(unit.unitID);
-/*             var user = {
-              TeamName:  this.createBarnteamFormGroup.value.nameControl.trim()?? '0',
-              UnitID: unit.unitID,
-            } 
-            
-            console.log(user);  */
           }); 
 
           this.store.dispatch(new fromState.CreateBarnteam(teamNName, unitIDs));
-
-          //this.store.dispatch(new fromState.Go({ path: ['/barnteam'] }));
-
         }
       }
  

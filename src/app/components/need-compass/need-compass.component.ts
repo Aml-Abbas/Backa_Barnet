@@ -139,7 +139,6 @@ export class NeedCompassComponent implements OnInit {
 
       let name= this.personName.split(' ');
 
-      console.log(this.personID);
       this.personName= name[0]+ ' '+ name[name.length-1];
       if(this.personName.length>19){
         this.personName= name[name.length-1];

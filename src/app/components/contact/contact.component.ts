@@ -30,7 +30,6 @@ export class ContactComponent implements OnInit {
       this.personID= data?.personID ?? '';
           });
 
-    console.log(this.clickedRows);
 
     this.current_user$ = this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data => {

@@ -120,8 +120,6 @@ export class AdminService {
       })
       .then(function (response) {
         console.log(response);
-        console.log('sending: '+teamName+' '+ unitID);
-
       })
       .catch(function (error) {
         console.log(error);

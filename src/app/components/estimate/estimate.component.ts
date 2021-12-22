@@ -229,8 +229,6 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
     this.isDirty= true;
   }
 save() {
-  console.log(this.currentSavedEstimate);
-
 
   this.categories[0].msgError='';
   this.categories[1].msgError='';

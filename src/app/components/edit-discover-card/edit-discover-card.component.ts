@@ -356,7 +356,6 @@ export class EditDiscoverCardComponent implements OnInit , ComponentCanDeactivat
               if (result) {
                 if (!this.isAnonyms()) {
                   current_card.Status = 0;
-                  console.log(current_card);
                 }
 
                 this.isDirty = false;

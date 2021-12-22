@@ -90,7 +90,6 @@ export class CreateUserComponent implements OnInit , ComponentCanDeactivate {
     this.emailError='';
     this.unitError='';
     this.organisationError='';
-    console.log(this.units.value);
 
     if(this.email.hasError('required') ){
       this.emailError='Du behöver skriva ett värde i mejlet';
