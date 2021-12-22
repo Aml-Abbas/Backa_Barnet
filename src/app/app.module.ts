@@ -45,8 +45,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatListModule} from '@angular/material/list';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatListModule } from '@angular/material/list';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -82,15 +82,15 @@ import { CreateInsatsComponent } from './components/create-insats/create-insats.
 
 @NgModule({
   declarations: [AppComponent, LandingComponent, ContactComponent, DiscoverCardComponent,
-     EstimateComponent, GoalComponent, NeedCompassComponent,
+    EstimateComponent, GoalComponent, NeedCompassComponent,
     EventComponent, SignInComponent, ConsentComponent, CreateDiscoverCardComponent,
     DeepNeedCompassComponent, ConversationMaterialComponent,
-    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent, 
-    EditContactGuardianComponent, DialogComponent, DiscoverCardDetailsComponent, 
+    ContactPersonComponent, ContactGuardianComponent, CreateEventComponent,
+    EditContactGuardianComponent, DialogComponent, DiscoverCardDetailsComponent,
     CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent,
-     SvgComponent, BBLogComponent, EditDiscoverCardComponent, EditConversationMaterialComponent, CreateUserComponent,
-      CreateBarnteamComponent, UsersComponent, BarnteamComponent, UserDetailsComponent, BarnteamDetailsComponent,
-      EditUserComponent, CreateInsatsComponent],
+    SvgComponent, BBLogComponent, EditDiscoverCardComponent, EditConversationMaterialComponent, CreateUserComponent,
+    CreateBarnteamComponent, UsersComponent, BarnteamComponent, UserDetailsComponent, BarnteamDetailsComponent,
+    EditUserComponent, CreateInsatsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate} from '@angular/router';
+import { CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as fromState from '../state';
 import { Store } from '@ngrx/store';
@@ -10,17 +10,17 @@ import { of } from 'rxjs';
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-  constructor(private store: Store<fromState.State>) {}
+  constructor(private store: Store<fromState.State>) { }
 
+  // only the user with admin role can  enter the admin pages like users and barnteam
   canActivate(): Observable<boolean> {
-    var currentUser= this.store.select(fromState.getCurrentUser);
-    currentUser.subscribe(data=>{
-      if(String(data?.roleID)!='4'){
+    var currentUser = this.store.select(fromState.getCurrentUser);
+    currentUser.subscribe(data => {
+      if (String(data?.roleID) != '4') {
         this.store.dispatch(new fromRoot.Back());
-  
       }
     });
-  
+
     return of(true);
-  }    
+  }
 }

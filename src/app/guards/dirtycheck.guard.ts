@@ -10,24 +10,25 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DirtycheckGuard implements CanDeactivate<ComponentCanDeactivate> {
-  constructor(public dialog: MatDialog){}
+  constructor(public dialog: MatDialog) { }
 
+  //warn the user about unsaved changes
   canDeactivate(
-    component: ComponentCanDeactivate): Observable<boolean>{
-      if(component.canDeactivate()){
-        return of(true);
-      }else{
-        const dialogRef = this.dialog.open(DialogComponent, {
-          data: {
-            title: 'Lämna sidan',
-            text: "Du har inte sparat dina ändringar, Är du säker att du vill lämna sidan?",
-          }
-        });
+    component: ComponentCanDeactivate): Observable<boolean> {
+    if (component.canDeactivate()) {
+      return of(true);
+    } else {
+      const dialogRef = this.dialog.open(DialogComponent, {
+        data: {
+          title: 'Lämna sidan',
+          text: "Du har inte sparat dina ändringar, Är du säker att du vill lämna sidan?",
+        }
+      });
 
-        return dialogRef.afterClosed().pipe(map(result => {
-          return result;
-        }));
-      }
+      return dialogRef.afterClosed().pipe(map(result => {
+        return result;
+      }));
+    }
   }
-  
+
 }

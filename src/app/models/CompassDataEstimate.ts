@@ -1,16 +1,16 @@
 export class CompassDataEstimate {
-    gradedOn: string;
+  gradedOn: string;
 
-    userName: string;
+  userName: string;
 
-    grades: any[];
+  grades: any[];
 
-    constructor(gradedOn: string, userName: string, 
-        grades: string[]) {
+  constructor(gradedOn: string, userName: string,
+    grades: string[]) {
 
-      this.gradedOn = gradedOn;
-      this.userName = userName;
-      
-      this.grades= grades;
-    }
+    this.gradedOn = gradedOn;
+    this.userName = userName;
+
+    this.grades = grades;
   }
+}

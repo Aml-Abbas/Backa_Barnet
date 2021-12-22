@@ -13,27 +13,28 @@ import { User } from '../models/User';
   providedIn: 'root'
 })
 export class UserDetailsGuard implements CanActivate {
-  constructor(private store: Store<fromState.State>) {}
+  constructor(private store: Store<fromState.State>) { }
 
-  canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
-    var userID= route.params.userid;
+  // check if there is a user with the same id before send the user to the user's details page
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
+    var userID = route.params.userid;
     return this.checkUser(userID);
   }
-  
-  checkUser(id: string): Observable<boolean>{
-    var found= false;
+
+  checkUser(id: string): Observable<boolean> {
+    var found = false;
 
     var users = this.store.select(fromState.getCurrentUsers);
-    users.subscribe(data=>{
-      data.map((user: User)=>{
-      if(user.userID== id){
-        this.store.dispatch(new fromState.UpdateAdminUser(user));
-        found= true;
+    users.subscribe(data => {
+      data.map((user: User) => {
+        if (user.userID == id) {
+          this.store.dispatch(new fromState.UpdateAdminUser(user));
+          found = true;
         }
       })
     });
-    if(!found){
-    this.store.dispatch(new fromRoot.Go({ path: ['users'] }));
+    if (!found) {
+      this.store.dispatch(new fromRoot.Go({ path: ['users'] }));
     }
     return of(found);
   }

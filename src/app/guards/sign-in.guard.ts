@@ -10,14 +10,15 @@ import { of } from 'rxjs';
   providedIn: 'root'
 })
 export class SignInGuard implements CanActivate {
-  constructor(private store: Store<fromState.State>) {}
+  constructor(private store: Store<fromState.State>) { }
 
-  canActivate(): Observable<boolean>{
+  // check the user's status, user with status "loged in" can't enter this page
+  canActivate(): Observable<boolean> {
     const storageValue = localStorage.getItem('state');
-    if(storageValue){
+    if (storageValue) {
       this.store.dispatch(new fromRoot.Back());
     }
     return of(true);
   }
-  
+
 }

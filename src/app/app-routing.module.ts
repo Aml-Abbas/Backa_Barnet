@@ -55,7 +55,7 @@ const routes: Routes = [
   {
     path: '',
     component: LandingComponent, canActivate: [AuthGuard],
-    children:[
+    children: [
       {
         path: 'contact',
         component: ContactComponent
@@ -94,7 +94,7 @@ const routes: Routes = [
       },
       {
         path: 'create-discover-card',
-        component: CreateDiscoverCardComponent, canDeactivate:[DirtycheckGuard]
+        component: CreateDiscoverCardComponent, canDeactivate: [DirtycheckGuard]
       },
       {
         path: 'deep-need-compass',
@@ -106,7 +106,7 @@ const routes: Routes = [
       },
       {
         path: 'create-conversation-material',
-        component: CreateConversationMaterialComponent, canActivate: [ConversationMaterialGuard], canDeactivate:[DirtycheckGuard]
+        component: CreateConversationMaterialComponent, canActivate: [ConversationMaterialGuard], canDeactivate: [DirtycheckGuard]
       },
       {
         path: 'conversation-material/:conversationMaterialId',
@@ -115,7 +115,7 @@ const routes: Routes = [
       },
       {
         path: 'contact-person',
-        component: ContactPersonComponent, canDeactivate:[DirtycheckGuard]
+        component: ContactPersonComponent, canDeactivate: [DirtycheckGuard]
       },
       {
         path: 'contact-guardian',
@@ -128,29 +128,29 @@ const routes: Routes = [
       {
         path: 'create-event',
         component: CreateEventComponent, canActivate: [CreateEventGuard], canDeactivate: [DirtycheckGuard]
-      }, 
+      },
       {
         path: 'create-insats',
         component: CreateInsatsComponent, canActivate: [CreateEventGuard], canDeactivate: [DirtycheckGuard]
-      }, 
+      },
       {
         path: 'edit-discover-card/:discoverCardId',
-        component: EditDiscoverCardComponent, canDeactivate:[DirtycheckGuard],
+        component: EditDiscoverCardComponent, canDeactivate: [DirtycheckGuard],
         canActivate: [DiscoverCardEditGuard]
       },
       {
         path: 'edit-conversation-material/:conversationMaterialId',
-        component: EditConversationMaterialComponent, canDeactivate:[DirtycheckGuard],
+        component: EditConversationMaterialComponent, canDeactivate: [DirtycheckGuard],
         canActivate: [ConversationMaterialEditGuard]
       },
       {
         path: 'create-user',
-        component: CreateUserComponent, canDeactivate: [DirtycheckGuard], 
+        component: CreateUserComponent, canDeactivate: [DirtycheckGuard],
         canActivate: [AdminGuard]
       },
       {
         path: 'users',
-        component: UsersComponent, 
+        component: UsersComponent,
         canActivate: [AdminGuard]
       },
       {
@@ -165,25 +165,25 @@ const routes: Routes = [
       },
       {
         path: 'users/:userid',
-        component: UserDetailsComponent, canActivate:[UserDetailsGuard]
+        component: UserDetailsComponent, canActivate: [UserDetailsGuard]
       },
       {
         path: 'barnteam/:barnteamId',
         component: BarnteamDetailsComponent,
-        canActivate:[BarnteamDetailsGuard]
+        canActivate: [BarnteamDetailsGuard]
       },
       {
         path: 'edit-user/:userid',
         component: EditUserComponent, canDeactivate: [DirtycheckGuard],
-        canActivate:[UserDetailsGuard]
+        canActivate: [UserDetailsGuard]
       },
     ]
-    
+
   },
-  { 
+  {
     path: 'sign-in',
-  component: SignInComponent, canActivate: [SignInGuard]
-}
+    component: SignInComponent, canActivate: [SignInGuard]
+  }
 
 ];
 @NgModule({

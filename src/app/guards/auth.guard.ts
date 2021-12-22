@@ -12,16 +12,17 @@ import { Observable } from 'rxjs';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private store: Store<fromState.State>) {}
+  constructor(private store: Store<fromState.State>) { }
 
-canActivate(): Observable<boolean> {
-  return this.store.select(fromState.getLoggedIn).pipe(
-    tap((loggedIn) => {
-      if (!loggedIn) {
-        this.store.dispatch(new fromRoot.Go({ path: ['sign-in'] }));
-      }
-    })
-  );
+  // only the user with log in status can enter the pages
+  canActivate(): Observable<boolean> {
+    return this.store.select(fromState.getLoggedIn).pipe(
+      tap((loggedIn) => {
+        if (!loggedIn) {
+          this.store.dispatch(new fromRoot.Go({ path: ['sign-in'] }));
+        }
+      })
+    );
 
-}
+  }
 }

@@ -15,27 +15,28 @@ import { Barnteam } from '../models/Barnteam';
 })
 export class BarnteamDetailsGuard implements CanActivate {
   constructor(private store: Store<fromState.State>,
-    private getSetService: GetSetService) {}
+    private getSetService: GetSetService) { }
 
-  canActivate(route: ActivatedRouteSnapshot):  Observable<boolean>{
-    var userID= route.params.barnteamId;
+  // check if there is a team with the same id before send the user to the team details page
+  canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
+    var userID = route.params.barnteamId;
     return this.checkUser(userID);
   }
-  
-  checkUser(id: string): Observable<boolean>{
-    var found= false;
+
+  checkUser(id: string): Observable<boolean> {
+    var found = false;
 
     var teams = this.store.select(fromState.getCurrentTeams);
-    teams.subscribe(data=>{
-      data.map((team: Barnteam)=>{
-      if(team.teamID== id){
-        this.store.dispatch(new fromState.UpdateAdminBarnteam(team));
-        found= true;
+    teams.subscribe(data => {
+      data.map((team: Barnteam) => {
+        if (team.teamID == id) {
+          this.store.dispatch(new fromState.UpdateAdminBarnteam(team));
+          found = true;
         }
       })
     });
-    if(!found){
-    this.store.dispatch(new fromRoot.Go({ path: ['barnteam'] }));
+    if (!found) {
+      this.store.dispatch(new fromRoot.Go({ path: ['barnteam'] }));
     }
     return of(found);
   }
