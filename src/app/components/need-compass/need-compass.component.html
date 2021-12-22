@@ -4,40 +4,37 @@
   <h2 *ngIf=" !(current_person$ | async) as current_person">
     Välj ett barn först</h2>
 
-    <div *ngIf="(current_person$ | async) as current_person">
+  <div *ngIf="(current_person$ | async) as current_person">
 
-  <h4 *ngIf="current_person.firstName.endsWith('s')">Bedömning av {{current_person.firstName}} situation</h4>
-  <h4 *ngIf="!current_person.firstName.endsWith('s')">Bedömning av {{current_person.firstName}}s situation</h4>
+    <h4 *ngIf="current_person.firstName.endsWith('s')">Bedömning av {{current_person.firstName}} situation</h4>
+    <h4 *ngIf="!current_person.firstName.endsWith('s')">Bedömning av {{current_person.firstName}}s situation</h4>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Vilken typ av data:</mat-label>
-    <mat-select [(ngModel)]="selectedType" name="selectedType" (selectionChange)="onTypeChange()">
-      <mat-option value="1">Samtalsunderlag</mat-option>
-      <mat-option value="2">Skattning</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Vilken typ av data:</mat-label>
+      <mat-select [(ngModel)]="selectedType" name="selectedType" (selectionChange)="onTypeChange()">
+        <mat-option value="1">Samtalsunderlag</mat-option>
+        <mat-option value="2">Skattning</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Vilket tillfälle:</mat-label>
-    <mat-select [(ngModel)]="selectedDate" name="selectedDate" (selectionChange)="onDateChange()">
-      <mat-option *ngFor="let date of dates, let i= index" value="{{date}}">{{date}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Vilket tillfälle:</mat-label>
+      <mat-select [(ngModel)]="selectedDate" name="selectedDate" (selectionChange)="onDateChange()">
+        <mat-option *ngFor="let date of dates, let i= index" value="{{date}}">{{date}}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <button mat-raised-button *ngIf="showData" (click)="toggle()">Avmarkera alla</button>
-  <button mat-raised-button *ngIf="!showData" (click)="toggle()">Markera alla</button>
+    <button mat-raised-button *ngIf="showData" (click)="toggle()">Avmarkera alla</button>
+    <button mat-raised-button *ngIf="!showData" (click)="toggle()">Markera alla</button>
 
-  <div class="parent">
-        <app-svg></app-svg>
-        <div class="chart-container">
-        <canvas baseChart 
-          [datasets]="radarChartData"
-          [options]="radarChartOptions"
-          [labels]="radarChartLabels"
+    <div class="parent">
+      <app-svg></app-svg>
+      <div class="chart-container">
+        <canvas baseChart [datasets]="radarChartData" [options]="radarChartOptions" [labels]="radarChartLabels"
           [chartType]="radarChartType">
         </canvas>
       </div>
     </div>
 
   </div>
-    </div>
+</div>

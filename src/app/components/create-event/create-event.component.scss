@@ -1,87 +1,85 @@
-h1{
+h1 {
   font-size: 30px;
   font-weight: bold;
 }
-h4{
+h4 {
   font-size: 20px;
   margin-bottom: 30px;
 }
-h5{
+h5 {
   font-size: 15px;
   font-weight: bold;
   margin-top: 10px;
 }
 
-button{
+button {
   width: 15%;
   background-color: #cde7e6;
   color: black;
 }
 
-
-mat-form-field{
+mat-form-field {
   width: 90%;
   color: black;
   margin-bottom: 10px;
   height: 55px;
 }
 
-mat-label{
+mat-label {
   color: black;
 }
 
-input{
+input {
   color: black;
-  }
-  
-.container-2{
+}
+
+.container-2 {
   display: inline-block;
   width: 45%;
   margin-right: 5%;
   margin-top: 15px;
 }
 
-.mat-datepicker-toggle{
+.mat-datepicker-toggle {
   color: #663399;
 }
 ::ng-deep .mat-datepicker-content {
   background-color: #663399;
 }
 
-p{
+p {
   margin-top: 15px;
   color: brown;
   font-size: 15px;
 }
-textarea{
+textarea {
   border: 1px solid #663399;
   height: 60px;
   width: 90%;
 }
 
-textarea.mat-input-element{
+textarea.mat-input-element {
   padding: 5px;
 }
 
-.material-icons { 
+.material-icons {
   font-size: 30px;
   color: #663399;
 }
 
-.back-button{
-color: #663399;
-size: 16px;
-background-color: transparent;
-width: 10%;
+.back-button {
+  color: #663399;
+  size: 16px;
+  background-color: transparent;
+  width: 10%;
 }
 
-
 @media only screen and (max-width: 800px) {
-  button{
+  button {
     width: 50%;
     margin-left: 25%;
-    }
-    .container-2{
-      width: 100%;
-    }
+  }
+  .container-2 {
+    width: 100%;
+  }
 }

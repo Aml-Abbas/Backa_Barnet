@@ -1,14 +1,13 @@
 <div class="container">
 
-    <h1>Ändra användaren</h1>
+  <h1>Ändra användaren</h1>
 
-    <button class="back-button" mat-icon-button routerLink="/users">
-        <span class="material-icons"> arrow_back </span>
-     Tillbaka
+  <button class="back-button" mat-icon-button routerLink="/users">
+    <span class="material-icons"> arrow_back </span>
+    Tillbaka
   </button>
 
-
-  <div class="form-container" (change)= "isDirty= true">
+  <div class="form-container" (change)="isDirty= true">
     <mat-form-field appearance="fill">
       <mat-label>Användarens e-post</mat-label>
       <input disabled matInput value="{{user.email}}">
@@ -32,40 +31,34 @@
     </mat-form-field>
     <p>{{organisationError}}</p>
 
+    <mat-form-field appearance="fill">
+      <mat-label>Användarens roll:</mat-label>
+      <mat-select [(ngModel)]="user.roleID" [ngModelOptions]="{standalone: true}" (selectionChange)="isDirty= true">
+        <mat-option [value]="1">Upptäckare</mat-option>
+        <mat-option [value]="2">BarnKontakt</mat-option>
+        <mat-option [value]="3">BarnTeam</mat-option>
+        <mat-option [value]="4">Admin</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Användarens roll:</mat-label>
-          <mat-select [(ngModel)]="user.roleID" [ngModelOptions]="{standalone: true}"
-           (selectionChange)="isDirty= true">
-            <mat-option [value]="1">Upptäckare</mat-option>
-            <mat-option [value]="2">BarnKontakt</mat-option>
-            <mat-option [value]="3">BarnTeam</mat-option>
-            <mat-option [value]="4">Admin</mat-option>
-          </mat-select>
-          </mat-form-field>
- 
-        <mat-form-field appearance="fill" *ngIf="(user.roleID== '2' || user.roleID== '3')">
-        <mat-label>Enheter</mat-label>
-        <mat-select [formControl]="units" multiple 
-        (selectionChange)="isDirty= true">
+    <mat-form-field appearance="fill" *ngIf="(user.roleID== '2' || user.roleID== '3')">
+      <mat-label>Enheter</mat-label>
+      <mat-select [formControl]="units" multiple (selectionChange)="isDirty= true">
         <mat-select-trigger>
-            {{units.value ? units.value[0] : ''}}
-            <span *ngIf="units.value?.length > 1">
-              (+{{units.value.length - 1}} {{units.value?.length === 2 ? 'till' : 'till'}})
-            </span>
-          </mat-select-trigger>
-            <mat-option *ngFor="let unit of unitsList" [value]="unit.unitName" >{{unit.unitName}}</mat-option>
-        </mat-select>
+          {{units.value ? units.value[0] : ''}}
+          <span *ngIf="units.value?.length > 1">
+            (+{{units.value.length - 1}} {{units.value?.length === 2 ? 'till' : 'till'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let unit of unitsList" [value]="unit.unitName">{{unit.unitName}}</mat-option>
+      </mat-select>
 
-        </mat-form-field>
-        <p>{{unitError}}</p>
+    </mat-form-field>
+    <p>{{unitError}}</p>
 
+    <p>{{saveError}}</p>
 
+    <button mat-raised-button (click)="save()">Spara</button>
+    <button mat-raised-button style="background-color: brown;" (click)="delete()">Ta bort</button>
 
-
-<p>{{saveError}}</p>
-
-      <button mat-raised-button (click)="save()">Spara</button>
-      <button mat-raised-button style="background-color: brown;" (click)="delete()">Ta bort</button>
-
-</div>
+  </div>

@@ -1,45 +1,42 @@
 <div class="container">
-    <h1>Användare</h1>
-  
+  <h1>Användare</h1>
 
   <div class="search">
     <mat-form-field appearance="standard">
       <mat-label>Sök - E-post, namn, organisation eller roll
       </mat-label>
-      <input matInput (keyup)="applyFilter($event)" #input>  
+      <input matInput (keyup)="applyFilter($event)" #input>
     </mat-form-field>
     <button mat-raised-button routerLink="/create-user">Ny användare</button>
   </div>
 
-    <h2>Användarlista</h2>
-       
+  <h2>Användarlista</h2>
 
-    
-<table role="table">
-  <thead role="rowgroup">
-    <tr role="row">
-      <th role="columnheader">E-post</th>
-      <th role="columnheader">Namn</th>
-      <th role="columnheader">Organisation</th>
-      <th role="columnheader">Roll</th>
-    </tr>
-  </thead>
-  <tbody role="rowgroup" *ngIf="!filterStatus">
-    <tr role="row" *ngFor="let user of users; let i= index" (click)="setCurrentAdminUser(user)">
-      <td role="cell">{{user.email}}</td>
-      <td role="cell">{{user.firstName}} {{user.lastName}}</td>
-      <td role="cell">{{user.organisaton}}</td>
-      <td role="cell">{{user.description}}</td>
-    </tr>
-  </tbody>
-  <tbody *ngIf="filterStatus">
-    <tr role="row" *ngFor="let user of searchUsers; let i= index" (click)="setCurrentAdminUser(user)">
-      <td role="cell">{{user.email}}</td>
-      <td role="cell">{{user.firstName}} {{user.lastName}}</td>
-      <td role="cell">{{user.organisaton}}</td>
-      <td role="cell">{{user.description}}</td>
-    </tr>
-  </tbody>
-</table>
+  <table role="table">
+    <thead role="rowgroup">
+      <tr role="row">
+        <th role="columnheader">E-post</th>
+        <th role="columnheader">Namn</th>
+        <th role="columnheader">Organisation</th>
+        <th role="columnheader">Roll</th>
+      </tr>
+    </thead>
+    <tbody role="rowgroup" *ngIf="!filterStatus">
+      <tr role="row" *ngFor="let user of users; let i= index" (click)="setCurrentAdminUser(user)">
+        <td role="cell">{{user.email}}</td>
+        <td role="cell">{{user.firstName}} {{user.lastName}}</td>
+        <td role="cell">{{user.organisaton}}</td>
+        <td role="cell">{{user.description}}</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="filterStatus">
+      <tr role="row" *ngFor="let user of searchUsers; let i= index" (click)="setCurrentAdminUser(user)">
+        <td role="cell">{{user.email}}</td>
+        <td role="cell">{{user.firstName}} {{user.lastName}}</td>
+        <td role="cell">{{user.organisaton}}</td>
+        <td role="cell">{{user.description}}</td>
+      </tr>
+    </tbody>
+  </table>
 
 </div>

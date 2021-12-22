@@ -9,8 +9,10 @@ import * as fromState from '../../state';
   templateUrl: './goal.component.html',
   styleUrls: ['./goal.component.scss']
 })
+
+//This component is not implemented, to be implemented in the next development phase
 export class GoalComponent implements OnInit {
-  current_person$= new Observable<Person | null>();
+  current_person$ = new Observable<Person | null>();
 
   constructor(private store: Store<fromState.State>) { }
 

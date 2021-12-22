@@ -8,9 +8,9 @@ describe('EstimateOverviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EstimateOverviewComponent ]
+      declarations: [EstimateOverviewComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

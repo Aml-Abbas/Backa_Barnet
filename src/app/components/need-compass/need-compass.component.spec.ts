@@ -8,9 +8,9 @@ describe('NeedCompassComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NeedCompassComponent ]
+      declarations: [NeedCompassComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -32,7 +32,7 @@ export class BarnteamComponent implements OnInit {
     private adminService: AdminService) { }
 
   // get the currentuser from the storage
-  // get the user list fom admin service
+  // get the barnteam list fom admin service
   ngOnInit(): void {
     this.current_user$ = this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data => {
@@ -70,9 +70,9 @@ export class BarnteamComponent implements OnInit {
     });
   }
 
-  // this function is called when choosing a user from the list
-  // update the users and then update the choosen user 
-  // move to the user's detail page
+  // this function is called when choosing a barnteam from the list
+  // update the teams and then update the choosen barnteam 
+  // move to the barnteam's detail page
   setCurrentAdminTeam(team: Barnteam) {
     this.store.dispatch(new fromState.UpdateTeams(this.teams));
 

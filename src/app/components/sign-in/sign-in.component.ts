@@ -1,11 +1,11 @@
-  import { Component, OnInit } from '@angular/core';
-import {Store} from '@ngrx/store';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import * as fromStore from 'src/app/state';
-import {LoginInfo} from '../../models/LoginInfo.model';
-import {Actions, ofType} from '@ngrx/effects';
+import { LoginInfo } from '../../models/LoginInfo.model';
+import { Actions, ofType } from '@ngrx/effects';
 import * as loginAction from '../../state/actions/login.action';
 import { tap } from 'rxjs/operators';
-import {FormControl, Validators} from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -15,41 +15,37 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class SignInComponent implements OnInit {
   hide = true;
-  signinError='';
+  signinError = '';
   email: string;
   enteredPassword: string;
-  
-  //email = 'adnan.karahmetovic@cgi.com';
-  //email = 'aml.abbas@cgi.com';
-  //email = 'tony.jonsson@cgi.com';
 
-  //enteredPassword = 'pw123';
-
-
-  public loginInfo: LoginInfo = {email: '', password: ''};
+  public loginInfo: LoginInfo = { email: '', password: '' };
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
   constructor(private store: Store<fromStore.State>,
-    private actions$: Actions) {}
+    private actions$: Actions) { }
 
   ngOnInit(): void {
 
+    // Listen to the LOGIN_FAIL action and display a fail msg
     this.actions$.pipe(
       ofType(loginAction.LOGIN_FAIL),
       tap(() => {
-        this.signinError= 'Fel e-post eller lösenord';
-            })
+        this.signinError = 'Fel e-post eller lösenord';
+      })
     ).subscribe();
 
   }
 
-  public signIn(): void{
-    if(this.emailFormControl.status!= 'INVALID'){
-      this.loginInfo = {email: this.email, password: this.enteredPassword};
-      this.store.dispatch(new fromStore.Login(this.loginInfo));  
+  // This function is called when clicking on log in button
+  // call the log in action to request login to the site
+  public signIn(): void {
+    if (this.emailFormControl.status != 'INVALID') {
+      this.loginInfo = { email: this.email, password: this.enteredPassword };
+      this.store.dispatch(new fromStore.Login(this.loginInfo));
     }
   }
 

@@ -8,9 +8,9 @@ describe('CreateInsatsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateInsatsComponent ]
+      declarations: [CreateInsatsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

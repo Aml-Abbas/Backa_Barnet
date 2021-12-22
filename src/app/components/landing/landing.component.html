@@ -55,7 +55,8 @@
 
             <mat-divider></mat-divider>
 
-            <mat-button-toggle (click)="changeFiller($event, 'need-compass-menu')" [disabled]="isDisabledNeedCompassMenu">
+            <mat-button-toggle (click)="changeFiller($event, 'need-compass-menu')"
+                [disabled]="isDisabledNeedCompassMenu">
                 <span>Behovskompass</span>
                 <span class="material-icons">{{showFillerCompassIcon}}</span>
             </mat-button-toggle>
@@ -74,8 +75,8 @@
                 <span>Behovskompassen</span>
             </mat-button-toggle>
 
-
-<!--             <mat-divider></mat-divider>
+            <!-- to be uncommented in the next phase -->
+            <!--<mat-divider></mat-divider>
             <mat-button-toggle (click)="changeShowFillerDeepCompass()">
                 <span>Fördjupat Behovskompass</span>
                 <span class="material-icons">{{showFillerDeepCompassIcon}}</span>
@@ -96,12 +97,13 @@
                 <span class="material-icons">{{showFillerGoalIcon}}</span>
             </mat-button-toggle>
 
-            <mat-button-toggle *ngIf="goal" class="under-button"
-            (click)="goToRoute($event, 'event')" [disabled]="isDisabledEvent">
+            <mat-button-toggle *ngIf="goal" class="under-button" (click)="goToRoute($event, 'event')"
+                [disabled]="isDisabledEvent">
                 <span>Tidslinje & händelser</span>
             </mat-button-toggle>
             <mat-divider *ngIf="goal"></mat-divider>
-            <mat-button-toggle *ngIf="goal" class="under-button" (click)="goToRoute($event, 'goal')" [disabled]="isDisabledGoal"><span>Barnets mål</span>
+            <mat-button-toggle *ngIf="goal" class="under-button" (click)="goToRoute($event, 'goal')"
+                [disabled]="isDisabledGoal"><span>Barnets mål</span>
             </mat-button-toggle>
 
 
@@ -116,8 +118,7 @@
                 <span class="material-icons">{{showFillerAdminIcon}}</span>
             </mat-button-toggle>
 
-            <mat-button-toggle *ngIf="admin" class="under-button"
-            routerLink="/users">
+            <mat-button-toggle *ngIf="admin" class="under-button" routerLink="/users">
                 <span>Användare</span>
             </mat-button-toggle>
             <mat-divider *ngIf="admin"></mat-divider>

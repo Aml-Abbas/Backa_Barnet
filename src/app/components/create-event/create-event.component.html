@@ -7,45 +7,45 @@
 
   <div *ngIf="(current_person$ | async) as current_person">
 
-  <h4>Lägg till ny händelse</h4>
+    <h4>Lägg till ny händelse</h4>
 
-  <button class="back-button" mat-icon-button routerLink="/event">
-    <span class="material-icons"> arrow_back </span>
- Tillbaka
-  </button>
+    <button class="back-button" mat-icon-button routerLink="/event">
+      <span class="material-icons"> arrow_back </span>
+      Tillbaka
+    </button>
 
 
-  <div class="form-container" [formGroup]="createPlanFormGroup" (change)= "isDirty= true">
+    <div class="form-container" [formGroup]="createPlanFormGroup" (change)="isDirty= true">
 
-  <h5>Händelse</h5>
+      <h5>Händelse</h5>
       <textarea matInput formControlName="eventControl"></textarea>
       <p>{{eventError}}</p>
 
-    <h5>Planerad insats</h5>
+      <h5>Planerad insats</h5>
       <textarea matInput formControlName="planControl"></textarea>
       <p>{{planError}}</p>
 
-    <div class="container-2">
-      <h5>Ansvariga för insatsen</h5>
-      <mat-form-field appearance="fill">
-        <mat-label>Namn</mat-label>
-        <input matInput formControlName="nameControl">
-      </mat-form-field>
-      <p>{{nameError}}</p>
+      <div class="container-2">
+        <h5>Ansvariga för insatsen</h5>
+        <mat-form-field appearance="fill">
+          <mat-label>Namn</mat-label>
+          <input matInput formControlName="nameControl">
+        </mat-form-field>
+        <p>{{nameError}}</p>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Profession</mat-label>
-        <input matInput formControlName="proControl">
-      </mat-form-field>
-      <p>{{proError}}</p>
+        <mat-form-field appearance="fill">
+          <mat-label>Profession</mat-label>
+          <input matInput formControlName="proControl">
+        </mat-form-field>
+        <p>{{proError}}</p>
+
+      </div>
+
 
     </div>
-
-
-  </div>
-<p>{{saveError}}</p>
+    <p>{{saveError}}</p>
 
     <button mat-raised-button (click)="save()">Spara</button>
 
-</div>
+  </div>
 </div>

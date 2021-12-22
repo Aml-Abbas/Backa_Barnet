@@ -1,51 +1,52 @@
 table {
-    width: 100%;
-    border-collapse: collapse;
-    padding: 5px;
-  }
-  th{
-    text-align: left;
-    font-size: 15px;
-  }
-
-  td, th, tr{
-    color: black;
-    padding: 8px;
-  }
-
-  tr{
-    border-bottom: 1px solid lightgray;
-  }
-  
-
-  .material-icons { 
-    font-size: 30px;
-    color: #663399;
+  width: 100%;
+  border-collapse: collapse;
+  padding: 5px;
 }
-.create { 
+th {
+  text-align: left;
+  font-size: 15px;
+}
+
+td,
+th,
+tr {
+  color: black;
+  padding: 8px;
+}
+
+tr {
+  border-bottom: 1px solid lightgray;
+}
+
+.material-icons {
+  font-size: 30px;
+  color: #663399;
+}
+.create {
   font-size: 25px;
   color: #663399;
 }
 
-.back-button{
+.back-button {
   color: #663399;
   size: 16px;
 }
 
-.edit-button{
+.edit-button {
   color: #663399;
   background-color: transparent;
   margin-left: 80%;
 }
 
-.mat-list-item{
+.mat-list-item {
   color: black;
 }
 
-li{
+li {
   margin-left: 40px;
 }
 
-mat-list{
+mat-list {
   background-color: whitesmoke;
 }

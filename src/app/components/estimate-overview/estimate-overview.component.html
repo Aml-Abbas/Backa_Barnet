@@ -1,72 +1,44 @@
 <div class="container">
-    <h1>Sammanställa skattningar</h1>
-    <button class="back-button" mat-icon-button routerLink="/estimate">
-      <span class="material-icons"> arrow_back </span>
-   Tillbaka
-    </button>
+  <h1>Sammanställa skattningar</h1>
+  <button class="back-button" mat-icon-button routerLink="/estimate">
+    <span class="material-icons"> arrow_back </span>
+    Tillbaka
+  </button>
 
-    <div class="search">
-        <mat-form-field appearance="standard">
-          <mat-label>Sök - namn, status eller datum</mat-label>
-          <input matInput (keyup)="applyFilter($event)" #input>
-        </mat-form-field>
-      </div>
-    
+  <div class="search">
+    <mat-form-field appearance="standard">
+      <mat-label>Sök - namn, status eller datum</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+  </div>
 
-      <table role="table">
-        <thead role="rowgroup">
-          <tr role="row">
-            <th role="columnheader">Namn</th>
-            <th role="columnheader">Status</th>
-            <th role="columnheader">Datum</th>
-          </tr>
-        </thead>
-        <tbody role="rowgroup" *ngIf="!filterStatus">
-          <tr role="row" *ngFor="let estimate of savedEstimatecards; let i= index">
-            <td role="cell">{{estimate.userName}}</td>
-            <td role="cell">{{estimate.status}}</td>
-            <td role="cell">{{estimate.gradedOn.slice(0, 10)}}</td>
-          </tr>
-        </tbody>
-        <tbody *ngIf="filterStatus">
-          <tr role="row" *ngFor="let estimate of searchEstimate; let i= index">
-            <td role="cell">{{estimate.userName}}</td>
-            <td role="cell">{{estimate.status}}</td>
-            <td role="cell">{{estimate.gradedOn.slice(0, 10)}}</td>
-          </tr>
-          <tr role="row" *ngIf="searchEstimate.length==0">
-            Inga data som matchar din sökning "{{input.value}}"
-          </tr>
-        </tbody>
-      </table>
-      
-<!--       <div class="table-container">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Namn </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-          </ng-container>
 
-          <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef> Status </th>
-            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-          </ng-container>
+  <table role="table">
+    <thead role="rowgroup">
+      <tr role="row">
+        <th role="columnheader">Namn</th>
+        <th role="columnheader">Status</th>
+        <th role="columnheader">Datum</th>
+      </tr>
+    </thead>
+    <tbody role="rowgroup" *ngIf="!filterStatus">
+      <tr role="row" *ngFor="let estimate of savedEstimatecards; let i= index">
+        <td role="cell">{{estimate.userName}}</td>
+        <td role="cell">{{estimate.status}}</td>
+        <td role="cell">{{estimate.gradedOn.slice(0, 10)}}</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="filterStatus">
+      <tr role="row" *ngFor="let estimate of searchEstimate; let i= index">
+        <td role="cell">{{estimate.userName}}</td>
+        <td role="cell">{{estimate.status}}</td>
+        <td role="cell">{{estimate.gradedOn.slice(0, 10)}}</td>
+      </tr>
+      <tr role="row" *ngIf="searchEstimate.length==0">
+        Inga data som matchar din sökning "{{input.value}}"
+      </tr>
+    </tbody>
+  </table>
 
-          <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef> Datum </th>
-            <td mat-cell *matCellDef="let element"> {{element.date.slice(0,10)}} </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          
-          <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4">Inga data som matchar din sökning "{{input.value}}"</td>
-          </tr>
-        </table>
-        </div>
- -->
-
-      <button mat-raised-button class="lockButton" (click)="compile()">Lås skattningar</button>
+  <button mat-raised-button class="lockButton" (click)="compile()">Lås skattningar</button>
 </div>

@@ -1,252 +1,252 @@
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+h4 {
+  font-size: 20px;
+}
+h3 {
+  font-size: 17px;
+  font-weight: bold;
+}
+button {
+  background-color: #cde7e6;
+  color: black;
+  width: 25%;
+  margin-bottom: 20px;
+}
 
+.add-event {
+  margin-left: 48%;
+  margin-right: 2%;
+}
 
-h1{
-    font-size: 30px;
-    font-weight: bold;
+.items-container {
+  display: flex;
+}
+.item {
+  padding: 10px;
+}
+
+.title-container {
+  width: 100%;
+  display: flex;
+}
+.date-title {
+  width: 20%;
+}
+.effort-title {
+  width: 66%;
+}
+.aide-title {
+  width: 14%;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+
+.timeline-continer {
+  height: 420px;
+  overflow-y: scroll;
+}
+
+#timeline {
+  list-style: none;
+  margin: 50px 0 30px 120px;
+  padding-left: 30px;
+  border-left: 8px solid #eee9dc;
+}
+#timeline li {
+  margin: 40px 0;
+  position: relative;
+}
+#timeline p {
+  margin: 0 0 15px;
+}
+
+.date {
+  margin-top: -10px;
+  top: 50%;
+  left: -158px;
+  font-size: 0.95em;
+  line-height: 20px;
+  position: absolute;
+}
+
+.responsible {
+  margin-top: -10px;
+  top: 50%;
+  right: 15px;
+  font-size: 0.95em;
+  line-height: 20px;
+  position: absolute;
+}
+
+.circle {
+  margin-top: -10px;
+  top: 50%;
+  left: -44px;
+  width: 10px;
+  height: 10px;
+  background: #48b379;
+  border: 5px solid #eee9dc;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+}
+
+.content {
+  max-height: 20px;
+  padding: 50px 20px 0;
+  border-color: transparent;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 0.5em;
+  position: relative;
+  width: 70%;
+}
+
+.content:before,
+.content:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: solid transparent;
+  position: absolute;
+  pointer-events: none;
+  right: 100%;
+}
+
+.content:before {
+  border-right-color: inherit;
+  border-width: 20px;
+  top: 50%;
+  margin-top: -20px;
+}
+.content:after {
+  border-right-color: white;
+  border-width: 17px;
+  top: 50%;
+  margin-top: -17px;
+}
+.content p,
+.responsible p {
+  max-height: 0;
+  color: transparent;
+  text-align: justify;
+  word-break: break-word;
+  hyphens: auto;
+  overflow: hidden;
+}
+
+label {
+  font-size: 1.3em;
+  position: absolute;
+  z-index: 100;
+  cursor: pointer;
+  top: 20px;
+  transition: transform 0.2s linear;
+}
+
+.radio {
+  display: none;
+}
+
+.radio:checked + .relative label {
+  cursor: auto;
+  transform: translateX(42px);
+}
+.radio:checked + .relative .circle {
+  background: #f98262;
+}
+.radio:checked ~ .content {
+  max-height: 180px;
+  border-color: #eee9dc;
+  margin-right: 20px;
+  transform: translateX(20px);
+  transition: max-height 0.4s linear, border-color 0.5s linear, transform 0.2s linear;
+}
+.radio:checked ~ .content p {
+  max-height: 200px;
+  color: black;
+  transition: color 0.3s linear 0.3s;
+}
+
+.radio:checked ~ .responsible p {
+  max-height: 200px;
+  color: black;
+  transition: color 0.3s linear 0.3s;
+}
+.radio:checked ~ .text-container {
+  max-height: 150px;
+  overflow-y: scroll;
+}
+
+@media screen and (max-width: 1030px) and (min-width: 767px) {
+  .content {
+    width: 60%;
   }
-  h4{
-    font-size: 20px;
+  .responsible {
+    right: 15px;
   }
-  h3{
-    font-size: 17px;
-    font-weight: bold;
-  }
-  button{
-    background-color: #cde7e6;
-    color: black;
-    width: 25%;
-    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .add-event,
+  .add-insats {
+    width: 53%;
+    margin-left: 25%;
   }
 
-  .add-event{
-    margin-left: 48%;
-    margin-right: 2%;
-  }
-
-  .items-container {
-    display: flex;
-  }
-  .item {
-    padding: 10px;
-  }
-
-  .title-container{
-    width: 100%;
-    display: flex;
-  }
-  .date-title{
-    width: 20%;
-  }
-  .effort-title{
-    width: 66%;
-  }
-  .aide-title{
-    width:14%;
-  }
-
-
-  @import url(http://fonts.googleapis.com/css?family=Noto+Sans);
-  
-  .timeline-continer{
-    height: 420px;
-    overflow-y: scroll;
+  .circle,
+  .date,
+  .title-container,
+  .responsible {
+    display: none;
   }
 
   #timeline {
-    list-style: none;
-    margin: 50px 0 30px 120px;
-    padding-left: 30px;
-    border-left: 8px solid #eee9dc;
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
   }
   #timeline li {
-    margin: 40px 0;
-    position: relative;
-  }
-  #timeline p {
-    margin: 0 0 15px;
-  }
-  
-  .date {
-    margin-top: -10px;
-    top: 50%;
-    left: -158px;
-    font-size: 0.95em;
-    line-height: 20px;
-    position: absolute;
-  }
-  
-  .responsible {
-    margin-top: -10px;
-    top: 50%;
-    right: 15px;
-    font-size: 0.95em;
-    line-height: 20px;
-    position: absolute;
+    margin: 50px 0;
   }
 
-  .circle {
-    margin-top: -10px;
-    top: 50%;
-    left: -44px;
-    width: 10px;
-    height: 10px;
-    background: #48b379;
-    border: 5px solid #eee9dc;
-    border-radius: 50%;
-    display: block;
-    position: absolute;
-  }
-  
-  .content{
-    max-height: 20px;
-    padding: 50px 20px 0;
-    border-color: transparent;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 0.5em;
-    position: relative;
-    width: 70%;
-  }
-  
-  .content:before, .content:after {
-    content: "";
-    width: 0;
-    height: 0;
-    border: solid transparent;
-    position: absolute;
-    pointer-events: none;
-    right: 100%;
-  }
-
-  .content:before {
-    border-right-color: inherit;
-    border-width: 20px;
-    top: 50%;
-    margin-top: -20px;
-  }
-  .content:after {
-    border-right-color: white;
-    border-width: 17px;
-    top: 50%;
-    margin-top: -17px;
-  }
-  .content p, .responsible p {
-    max-height: 0;
-    color: transparent;
-    text-align: justify;
-    word-break: break-word;
-    hyphens: auto;
-    overflow: hidden;
-  }
-  
   label {
-    font-size: 1.3em;
-    position: absolute;
-    z-index: 100;
-    cursor: pointer;
-    top: 20px;
-    transition: transform 0.2s linear;
+    width: 85%;
+    font-size: 1.1em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    transform: translateX(18px);
   }
-  
-  .radio {
-    display: none;
-  }
-  
-  .radio:checked + .relative label {
-    cursor: auto;
-    transform: translateX(42px);
-  }
-  .radio:checked + .relative .circle {
-    background: #f98262;
-  }
-  .radio:checked ~ .content {
-    max-height: 180px;
+
+  .content {
+    padding-top: 45px;
     border-color: #eee9dc;
-    margin-right: 20px;
-    transform: translateX(20px);
-    transition: max-height 0.4s linear, border-color 0.5s linear, transform 0.2s linear;
   }
-  .radio:checked ~ .content p{
-    max-height: 200px;
-    color: black;
-    transition: color 0.3s linear 0.3s;
+  .content:before,
+  .content:after {
+    border: solid transparent;
+    bottom: 100%;
   }
-  
-  .radio:checked ~  .responsible p{
-    max-height: 200px;
-    color: black;
-    transition: color 0.3s linear 0.3s;
+  .content:before {
+    border-bottom-color: inherit;
+    border-width: 17px;
+    top: -16px;
+    left: 50px;
+    margin-left: -17px;
   }
-  .radio:checked ~ .text-container{
+
+  .content p {
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+
+  .text-container {
     max-height: 150px;
     overflow-y: scroll;
   }
-
-
-  @media screen and (max-width: 1030px) and (min-width: 767px) {
-    .content{
-      width: 60%;
-    }
-    .responsible {
-      right: 15px;
-    }
-  
-  }
-
-  @media screen and (max-width: 767px) {
-    .add-event, .add-insats{
-      width: 53%;
-      margin-left: 25%;
-      }
-
-      .circle, .date, .title-container, .responsible{
-        display: none;
-      }
-
-    #timeline {
-      margin-left: 0;
-      padding-left: 0;
-      border-left: none;
-    }
-    #timeline li {
-      margin: 50px 0;
-    }
-  
-    label {
-      width: 85%;
-      font-size: 1.1em;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      display: block;
-      transform: translateX(18px);
-    }
-  
-    .content {
-      padding-top: 45px;
-      border-color: #eee9dc;
-    }
-    .content:before, .content:after {
-      border: solid transparent;
-      bottom: 100%;
-    }
-    .content:before {
-      border-bottom-color: inherit;
-      border-width: 17px;
-      top: -16px;
-      left: 50px;
-      margin-left: -17px;
-    }
-
-    .content p {
-      font-size: 0.9em;
-      line-height: 1.4;
-    }
-
-    .text-container{
-      max-height: 150px;
-      overflow-y: scroll;
-    }
-  
-    }
-  
+}

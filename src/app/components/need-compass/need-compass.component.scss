@@ -1,60 +1,57 @@
-
-h1{
-    font-size: 30px;
-    font-weight: bold;
-  }
-  h4{
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  mat-form-field{
-    width: 35%;
-    height: 45px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-      mat-label{
-          color: black;
-      }
-  }
-  ::ng-deep .mat-select-panel{
-    background-color: #663399 !important;
-  }
-  ::ng-deep.mat-select-arrow{
-    color: #663399;
-  }
-
-  ::ng-deep .mat-select-value{
-    color: black !important;
-  }
-  ::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
-    color: white !important;
-  }
-
-  .parent {
-    position: relative;
-    top: 0;
-    left: 0;
-    width:1030px !important;
-    height:530px !important;
-  }
-
-  .chart-container {
-    position: absolute;
-    top: 30px;
-    left: 30px;    
-    width:1000px !important;
-    height:500px !important;
-  }
-
-  button{
-    background-color: #cde7e6;
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+h4 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+mat-form-field {
+  width: 35%;
+  height: 45px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  mat-label {
     color: black;
-    margin-right: 20%;
-
   }
-  @media screen and (max-width: 1024px){
-    mat-form-field{
-      width: 100%;
-    }
+}
+::ng-deep .mat-select-panel {
+  background-color: #663399 !important;
+}
+::ng-deep.mat-select-arrow {
+  color: #663399;
+}
 
+::ng-deep .mat-select-value {
+  color: black !important;
+}
+::ng-deep .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: white !important;
+}
+
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 1030px !important;
+  height: 530px !important;
+}
+
+.chart-container {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 1000px !important;
+  height: 500px !important;
+}
+
+button {
+  background-color: #cde7e6;
+  color: black;
+  margin-right: 20%;
+}
+@media screen and (max-width: 1024px) {
+  mat-form-field {
+    width: 100%;
   }
+}

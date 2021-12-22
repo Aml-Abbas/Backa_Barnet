@@ -151,7 +151,7 @@ export class CreateConversationMaterialComponent implements OnInit, ComponentCan
     this.isDirty = true;
   }
 
-  // craete the samtalsunderlag card
+  // create the samtalsunderlag card
   send(nbr: number): void {
 
     if (!this.checkErroes()) {

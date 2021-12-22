@@ -1,57 +1,54 @@
 <div class="container">
-    <h1>Användarens detaljer</h1>
+  <h1>Användarens detaljer</h1>
 
-    <button class="back-button" mat-icon-button routerLink="/users">
-        <span class="material-icons"> arrow_back </span>
-     Tillbaka
+  <button class="back-button" mat-icon-button routerLink="/users">
+    <span class="material-icons"> arrow_back </span>
+    Tillbaka
   </button>
-  
+
   <button mat-icon-button class="edit-button" (click)="moveToEdit()">
     <span class="material-icons create"> create </span>
     Ändra
-    </button>
-  
+  </button>
 
-  
   <mat-list *ngIf="(user$ | async) as user">
 
     <table role="table">
       <thead role="rowgroup">
         <tr role="row">
         </tr>
-    </thead>
+      </thead>
 
-    <tbody role="rowgroup">
-     <tr role="row">
-      <td>Namn:</td>
-      <td>{{user.firstName}} {{user.lastName}}</td>
-     </tr>
+      <tbody role="rowgroup">
+        <tr role="row">
+          <td>Namn:</td>
+          <td>{{user.firstName}} {{user.lastName}}</td>
+        </tr>
 
-     <tr role="row">
-      <td>E-post:</td>
-      <td>{{user.email}}</td>
-     </tr>
+        <tr role="row">
+          <td>E-post:</td>
+          <td>{{user.email}}</td>
+        </tr>
 
-     <tr role="row">
-      <td>Organisation:</td>
-      <td>{{user.organisaton}}</td>
-     </tr>
+        <tr role="row">
+          <td>Organisation:</td>
+          <td>{{user.organisaton}}</td>
+        </tr>
 
-     <tr role="row">
-      <td>Roll:</td>
-      <td>{{user.description}}</td>
-     </tr>
+        <tr role="row">
+          <td>Roll:</td>
+          <td>{{user.description}}</td>
+        </tr>
 
-    </tbody>
+      </tbody>
     </table>
-   
-        <mat-divider></mat-divider>
-        <mat-list-item>Enheter:</mat-list-item>
+
+    <mat-divider></mat-divider>
+    <mat-list-item>Enheter:</mat-list-item>
     <ul>
       <li *ngFor="let unit of user.units;">{{unit.unitName}}</li>
-    </ul>  
+    </ul>
     <mat-divider></mat-divider>
 
-    
-    </mat-list>
+  </mat-list>
 </div>

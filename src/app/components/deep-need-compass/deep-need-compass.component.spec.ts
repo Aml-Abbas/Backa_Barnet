@@ -8,9 +8,9 @@ describe('DeepNeedCompassComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeepNeedCompassComponent ]
+      declarations: [DeepNeedCompassComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

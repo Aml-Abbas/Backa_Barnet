@@ -47,8 +47,8 @@ export class BarnteamDetailsComponent implements OnInit {
 
   }
 
-  // This function is called when clicking in the delete  button to delete the current user
-  // Show a confirm window and after delete confirmation call the delete action which delete the user
+  // This function is called when clicking in the delete  button to delete the current barnteam
+  // Show a confirm window and after delete confirmation call the delete action which delete the barnteam
   // send teamId as json object with the delete action to be used in the request
   delete() {
     const dialogRef = this.dialog.open(DialogComponent, {

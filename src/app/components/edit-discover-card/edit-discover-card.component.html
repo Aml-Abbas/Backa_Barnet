@@ -1,13 +1,13 @@
 <div class="container">
-    <h1>Upptäckarkortet</h1>
+  <h1>Upptäckarkortet</h1>
 
-    <button class="back-button" mat-icon-button routerLink="/discover-card">
-      <span class="material-icons"> arrow_back </span>
-   Tillbaka
-</button>
+  <button class="back-button" mat-icon-button routerLink="/discover-card">
+    <span class="material-icons"> arrow_back </span>
+    Tillbaka
+  </button>
 
 
-<div class="form-container" (change)= "isDirty= true">
+  <div class="form-container" (change)="isDirty= true">
 
     <mat-form-field appearance="fill">
       <mat-label>Barnets namn</mat-label>
@@ -42,11 +42,11 @@
 
     </div>
 
-     <mat-form-field appearance="fill" *ngIf="(units$ | async) as units">
+    <mat-form-field appearance="fill" *ngIf="(units$ | async) as units">
       <mat-label>BMM/ BvC/ Förskola/ Skola (Barnkontakt)</mat-label>
       <mat-select [(value)]="card.healthTeam">
         <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitName}}"
-        (click)="changeUnitNbr(unit.unitID, unit.unitName)">{{unit.unitName}}</mat-option>
+          (click)="changeUnitNbr(unit.unitID, unit.unitName)">{{unit.unitName}}</mat-option>
       </mat-select>
     </mat-form-field>
     <p>{{unitError}}</p>
@@ -55,21 +55,21 @@
       <mat-label>Situationen där barnet uppmärksammats: ​</mat-label>
       <textarea matInput [(ngModel)]="card.situation"></textarea>
     </mat-form-field>
-   <p>{{situationError}}</p> 
+    <p>{{situationError}}</p>
 
     <section class="section_margin-top">
       <label>Åtgärder har vidtagits i egen organisation?</label>
-      <mat-radio-group [(ngModel)]="grades[8]" (change)= "isDirty= true">
+      <mat-radio-group [(ngModel)]="grades[8]" (change)="isDirty= true">
         <mat-radio-button [value]="1">JA</mat-radio-button>
         <mat-radio-button [value]="0">NEJ</mat-radio-button>
       </mat-radio-group>
     </section>
-   <p>{{measureError}}</p>
+    <p>{{measureError}}</p>
 
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>kommentar: ​</mat-label>
       <textarea matInput [(ngModel)]="comments[8]" [ngModelOptions]="{standalone: true}"></textarea>
-    </mat-form-field> 
+    </mat-form-field>
 
     <div class="grid-container">
       <mat-card *ngFor="let item of ELEMENT_DATA; let i=index">
@@ -79,17 +79,17 @@
             <div class="tooltip">
               <span class="material-icons">
                 help
-                </span>
+              </span>
               <span class="tooltiptext">
-              <!-- </span> [style.background]="item.color"> -->
+                <!-- </span> [style.background]="item.color"> -->
                 <li *ngFor="let text of item.helpText; let i=index">{{text}}</li>
               </span>
             </div>
           </mat-card-subtitle>
         </div>
 
-        <section >
-          <mat-radio-group [(ngModel)]="grades[i]" (change)= "isDirty= true">
+        <section>
+          <mat-radio-group [(ngModel)]="grades[i]" (change)="isDirty= true">
             <mat-radio-button [value]="1">JA</mat-radio-button>
             <mat-radio-button [value]="0">NEJ</mat-radio-button>
             <mat-radio-button [value]="2">VET EJ</mat-radio-button>
@@ -103,14 +103,14 @@
 
       </mat-card>
     </div>
-   <p>{{categoryError}}</p>
+    <p>{{categoryError}}</p>
 
 
     <div *ngFor="let item of [].constructor(guardianNbr); let i = index">
 
       <section class="section">
         <label>Vårdnadshavare {{i+1}} är informerad om att Upptäckarkort upprättas</label>
-        <mat-radio-group [(ngModel)]="guardians[i].inform" (change)= "isDirty= true">
+        <mat-radio-group [(ngModel)]="guardians[i].inform" (change)="isDirty= true">
           <mat-radio-button value="1">JA</mat-radio-button>
           <mat-radio-button value="0">NEJ</mat-radio-button>
         </mat-radio-group>
@@ -119,7 +119,7 @@
       <section class="section section-height">
         <label>Vårdnadshavare {{i+1}} har gett samtycke till att information gällande upptäckarkorten delas mellan
           Upptäckare och Barnkontakt</label>
-        <mat-radio-group [(ngModel)]="guardians[i].samtycke" (change)= "isDirty= true">
+        <mat-radio-group [(ngModel)]="guardians[i].samtycke" (change)="isDirty= true">
           <mat-radio-button value="1">JA</mat-radio-button>
           <mat-radio-button value="0">NEJ</mat-radio-button>
         </mat-radio-group>
@@ -132,7 +132,7 @@
     <div class="buttons-container">
       <button mat-raised-button (click)="send(1)">Skicka in</button>
       <button mat-raised-button (click)="send(2)" class="save-button">Spara</button>
-      <button mat-raised-button class="cancel-button" (click)="goBack()">Avbryt</button>  
+      <button mat-raised-button class="cancel-button" (click)="goBack()">Avbryt</button>
     </div>
 
   </div>

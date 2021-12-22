@@ -1,49 +1,61 @@
 <div class="container">
-    <h1>Tidigare händelser</h1> 
-    
-    <h2 *ngIf=" !(current_person$ | async) as current_person">
-      Välj ett barn först</h2>
+  <h1>Tidigare händelser</h1>
+
+  <h2 *ngIf=" !(current_person$ | async) as current_person">
+    Välj ett barn först</h2>
 
 
-    <div *ngIf="(current_person$ | async) as current_person">
+  <div *ngIf="(current_person$ | async) as current_person">
 
-    <h4 *ngIf="current_person.firstName.endsWith('s')">Insatser och viktiga händelser i {{current_person.firstName}} liv</h4>
-    <h4 *ngIf="!current_person.firstName.endsWith('s')">Insatser och viktiga händelser i {{current_person.firstName}}s liv</h4>
+    <h4 *ngIf="current_person.firstName.endsWith('s')">Insatser och viktiga händelser i {{current_person.firstName}} liv
+    </h4>
+    <h4 *ngIf="!current_person.firstName.endsWith('s')">Insatser och viktiga händelser i {{current_person.firstName}}s
+      liv</h4>
 
-    <button mat-raised-button class="add-event" routerLink="/create-event">Lägg till händelse<span class="material-icons">create</span></button>
-    <button mat-raised-button class="add-insats" routerLink="/create-insats">Lägg till insats<span class="material-icons">create</span></button>
+    <button mat-raised-button class="add-event" routerLink="/create-event">Lägg till händelse<span
+        class="material-icons">create</span></button>
+    <button mat-raised-button class="add-insats" routerLink="/create-insats">Lägg till insats<span
+        class="material-icons">create</span></button>
 
     <div class="title-container">
-      <div class="date-title"><h4><strong>Datum</strong></h4></div>
-      <div class="effort-title"><h4><strong>Händelse</strong></h4></div>
-      <div class="aide-title"><h4><strong>Medhjälpare</strong></h4></div>
+      <div class="date-title">
+        <h4><strong>Datum</strong></h4>
+      </div>
+      <div class="effort-title">
+        <h4><strong>Händelse</strong></h4>
+      </div>
+      <div class="aide-title">
+        <h4><strong>Medhjälpare</strong></h4>
+      </div>
     </div>
 
- <div class="timeline-continer">
-<ul id='timeline'>
-  <li class='work' *ngFor="let elemet of actions;  let i = index">
-    <input class='radio' id='work{{i+1}}' name='works' type='radio' checked>
-    <div class="relative">
-      <label for='work{{i+1}}'>{{elemet.title}}</label>
-      <span class='date'>{{elemet.date.slice(0,10)}}</span>
-      <span class='circle'></span>
-    </div>
-    <div class='content'>
-      <div class="text-container">
-      <p>{{elemet.description[0]}}</p>
-      <p *ngIf="elemet.title=='Insats'">{{elemet.description[1]}}</p>
-      <p><button *ngIf="elemet.status=='Pågående' && elemet.title=='Insats'" mat-raised-button (click)="endAction(elemet)">Avsluta</button></p>
-      <p><button *ngIf="elemet.title!='Insats'" mat-raised-button (click)="moveTo(elemet)">Till kortet</button></p>
+    <div class="timeline-continer">
+      <ul id='timeline'>
+        <li class='work' *ngFor="let elemet of actions;  let i = index">
+          <input class='radio' id='work{{i+1}}' name='works' type='radio' checked>
+          <div class="relative">
+            <label for='work{{i+1}}'>{{elemet.title}}</label>
+            <span class='date'>{{elemet.date.slice(0,10)}}</span>
+            <span class='circle'></span>
+          </div>
+          <div class='content'>
+            <div class="text-container">
+              <p>{{elemet.description[0]}}</p>
+              <p *ngIf="elemet.title=='Insats'">{{elemet.description[1]}}</p>
+              <p><button *ngIf="elemet.status=='Pågående' && elemet.title=='Insats'" mat-raised-button
+                  (click)="endAction(elemet)">Avsluta</button></p>
+              <p><button *ngIf="elemet.title!='Insats'" mat-raised-button (click)="moveTo(elemet)">Till kortet</button>
+              </p>
 
+            </div>
+          </div>
+          <div class="responsible">
+            <p><strong>{{elemet.responsible}}</strong></p>
+            <p>{{elemet.role}}</p>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
-    <div class="responsible">
-    <p><strong>{{elemet.responsible}}</strong></p>
-    <p>{{elemet.role}}</p>
-    </div>
-  </li>
-</ul>
-</div>
-</div>
 
 </div>

@@ -1,18 +1,18 @@
 <div class="container">
-    <h1>Upptäckarkortet</h1>
+  <h1>Upptäckarkortet</h1>
 
-    <div *ngIf="(current_card$ | async) as current_card">
+  <div *ngIf="(current_card$ | async) as current_card">
 
     <button class="back-button" mat-icon-button routerLink="/discover-card">
       <span class="material-icons"> arrow_back </span>
-   Tillbaka
-</button>
+      Tillbaka
+    </button>
 
-<button mat-icon-button class="edit-button" *ngIf="current_card.status=='Sparat'" (click)="moveToEditCard(current_card)">
-  <span class="material-icons create"> create </span>
-  Ändra
-  </button>
-
+    <button mat-icon-button class="edit-button" *ngIf="current_card.status=='Sparat'"
+      (click)="moveToEditCard(current_card)">
+      <span class="material-icons create"> create </span>
+      Ändra
+    </button>
 
     <mat-list>
 
@@ -20,119 +20,119 @@
         <thead role="rowgroup">
           <tr role="row">
           </tr>
-      </thead>
+        </thead>
 
-      <tbody role="rowgroup">
-       <tr role="row">
-        <td>Datum:</td>
-        <td>{{current_card.gradedOn.slice(0, 10)}}</td>
-       </tr>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <td>Datum:</td>
+            <td>{{current_card.gradedOn.slice(0, 10)}}</td>
+          </tr>
 
-       <tr role="row">
-        <td>Upptäckarens namn:</td>
-        <td>{{current_card.userName}}</td>
-       </tr>
+          <tr role="row">
+            <td>Upptäckarens namn:</td>
+            <td>{{current_card.userName}}</td>
+          </tr>
 
-       <tr role="row">
-        <td>Upptäckarens organisation:</td>
-        <td>{{current_card.userOrg}}</td>
-       </tr>
+          <tr role="row">
+            <td>Upptäckarens organisation:</td>
+            <td>{{current_card.userOrg}}</td>
+          </tr>
 
-       <tr role="row">
-        <td>Upptäckarens titel:</td>
-        <td>{{current_card.userTitle}}</td>
-       </tr>
+          <tr role="row">
+            <td>Upptäckarens titel:</td>
+            <td>{{current_card.userTitle}}</td>
+          </tr>
 
-       <tr role="row">
-        <td>Barnets namn:</td>
-        <td>{{current_card.personName}}</td>
-       </tr>
+          <tr role="row">
+            <td>Barnets namn:</td>
+            <td>{{current_card.personName}}</td>
+          </tr>
 
-       <tr role="row">
-        <td>Barnets personnummer:</td>
-        <td>{{current_card.personNbr}}</td>
-       </tr>
+          <tr role="row">
+            <td>Barnets personnummer:</td>
+            <td>{{current_card.personNbr}}</td>
+          </tr>
 
-       <tr role="row">
-        <td>Vårdnadshavare 1 namn:</td>
-        <td>{{current_card.guardian1}}</td>
-       </tr>
+          <tr role="row">
+            <td>Vårdnadshavare 1 namn:</td>
+            <td>{{current_card.guardian1}}</td>
+          </tr>
 
-       <tr role="row">
-        <td>Vårdnadshavare 1 personnummer:</td>
-        <td>{{current_card.guardianPersonNbr1}}</td>
-       </tr>
+          <tr role="row">
+            <td>Vårdnadshavare 1 personnummer:</td>
+            <td>{{current_card.guardianPersonNbr1}}</td>
+          </tr>
 
-       <tr role="row" *ngIf="nbrGuardians != 1">
-        <td>Vårdnadshavare 2 namn:</td>
-        <td>{{current_card.guardian2}}</td>
-       </tr>
+          <tr role="row" *ngIf="nbrGuardians != 1">
+            <td>Vårdnadshavare 2 namn:</td>
+            <td>{{current_card.guardian2}}</td>
+          </tr>
 
-       <tr role="row" *ngIf="nbrGuardians != 1">
-        <td>Vårdnadshavare 2 personnummer:</td>
-        <td>{{current_card.guardianPersonNbr2}}</td>
-       </tr>
+          <tr role="row" *ngIf="nbrGuardians != 1">
+            <td>Vårdnadshavare 2 personnummer:</td>
+            <td>{{current_card.guardianPersonNbr2}}</td>
+          </tr>
 
-       <tr role="row" >
-        <td>Barnkontakt:</td>
-        <td>{{current_card.healthTeam}}</td>
-       </tr>
+          <tr role="row">
+            <td>Barnkontakt:</td>
+            <td>{{current_card.healthTeam}}</td>
+          </tr>
 
-       <tr role="row">
-        <td>Situationen där barnets upptäckts:</td>
-        <td>{{current_card.situation}}</td>
-       </tr>
+          <tr role="row">
+            <td>Situationen där barnets upptäckts:</td>
+            <td>{{current_card.situation}}</td>
+          </tr>
 
-      </tbody>
+        </tbody>
       </table>
-     
-          <mat-divider></mat-divider>
 
-              <table role="table">
-              <thead role="rowgroup">
-                <tr role="row">
-                  <th role="columnheader">Behovsområde</th>
-                <th role="columnheader">Fråga</th>
-                <th role="columnheader">Svar</th>
-                <th role="columnheader">Kommentar</th>
-              </tr>
-            </thead>
+      <mat-divider></mat-divider>
 
-            <tbody role="rowgroup">
-             <tr role="row" *ngFor="let question of QuestionTextData; let i= index;">
-              <td *ngIf="i < 8 " [style.color]="question.color"><strong>{{question.category}}</strong></td>
-              <td *ngIf="i < 8 ">{{question.text}}</td>
-              <td *ngIf="i < 8 ">
-                <p *ngIf="current_card.grades[i] == '1'">Ja</p>
-                <p *ngIf="current_card.grades[i] == '0'">Nej</p>
-                <p *ngIf="current_card.grades[i] == '2'">Vet ej</p>
-              </td>
-              <td *ngIf="i < 8 ">{{current_card.comments[i]}}</td>
-             </tr>
-            </tbody>
-            </table>
-            <mat-divider></mat-divider>  
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th role="columnheader">Behovsområde</th>
+            <th role="columnheader">Fråga</th>
+            <th role="columnheader">Svar</th>
+            <th role="columnheader">Kommentar</th>
+          </tr>
+        </thead>
 
-            <div *ngFor="let question of QuestionTextData; let i= index;">
-              <mat-list-item *ngIf="i == 8 " style="height: 80px !important;">
-                <h4 >{{question.text}}</h4>
-                <p *ngIf="current_card.grades[i] == '1'">Ja</p>
-                <p *ngIf="current_card.grades[i] == '0'">Nej</p>
-                </mat-list-item>
+        <tbody role="rowgroup">
+          <tr role="row" *ngFor="let question of QuestionTextData; let i= index;">
+            <td *ngIf="i < 8 " [style.color]="question.color"><strong>{{question.category}}</strong></td>
+            <td *ngIf="i < 8 ">{{question.text}}</td>
+            <td *ngIf="i < 8 ">
+              <p *ngIf="current_card.grades[i] == '1'">Ja</p>
+              <p *ngIf="current_card.grades[i] == '0'">Nej</p>
+              <p *ngIf="current_card.grades[i] == '2'">Vet ej</p>
+            </td>
+            <td *ngIf="i < 8 ">{{current_card.comments[i]}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-divider></mat-divider>
 
-                <mat-list-item *ngIf="i > 8 " style="height: 90px !important;">
-                  <h4>{{question.text}}</h4>
-                  <p *ngIf="current_card.grades[i] == '2'">Ja, båda</p>
-                  <p *ngIf="current_card.grades[i] == '1'">Ja, en av dem</p>
-                  <p *ngIf="current_card.grades[i] == '0'">Nej</p>
+      <div *ngFor="let question of QuestionTextData; let i= index;">
+        <mat-list-item *ngIf="i == 8 " style="height: 80px !important;">
+          <h4>{{question.text}}</h4>
+          <p *ngIf="current_card.grades[i] == '1'">Ja</p>
+          <p *ngIf="current_card.grades[i] == '0'">Nej</p>
+        </mat-list-item>
 
-                    </mat-list-item>
-  
-                <mat-divider></mat-divider>
-    
-            </div>
-  
-      </mat-list>
-    </div>
+        <mat-list-item *ngIf="i > 8 " style="height: 90px !important;">
+          <h4>{{question.text}}</h4>
+          <p *ngIf="current_card.grades[i] == '2'">Ja, båda</p>
+          <p *ngIf="current_card.grades[i] == '1'">Ja, en av dem</p>
+          <p *ngIf="current_card.grades[i] == '0'">Nej</p>
+
+        </mat-list-item>
+
+        <mat-divider></mat-divider>
+
+      </div>
+
+    </mat-list>
+  </div>
 
 </div>

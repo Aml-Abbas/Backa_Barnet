@@ -1,46 +1,49 @@
 <div class="container">
-    <h1>Kontaktuppgifter</h1>
-<h4>Barnkontakt och Stödsamordnare</h4>
+  <h1>Kontaktuppgifter</h1>
+  <h4>Barnkontakt och Stödsamordnare</h4>
 
 
-<h4 *ngIf=" !(current_person$ | async) as current_person">
-  Välj ett barn först</h4>
+  <h4 *ngIf=" !(current_person$ | async) as current_person">
+    Välj ett barn först</h4>
 
   <button class="back-button" mat-icon-button routerLink="/estimate">
     <span class="material-icons arrow_back"> arrow_back </span>
- Tillbaka
+    Tillbaka
   </button>
 
-<div *ngIf="(current_person$ | async) as current_person">
+  <div *ngIf="(current_person$ | async) as current_person">
 
-<div class="person-container" *ngIf="(barnKontakt$ | async) as barnKontakt" [formGroup]="changeBarnKontaktFormGroup">
-    <span class="material-icons person_icon">person</span>
-    <h4>Barnkontakt</h4>
+    <!--     <div class="person-container" *ngIf="(barnKontakt$ | async) as barnKontakt"
+      [formGroup]="changeBarnKontaktFormGroup">
+      <span class="material-icons person_icon">person</span>
+      <h4>Barnkontakt</h4>
 
-<mat-form-field appearance="fill">
-    <mat-label>Namn</mat-label>
-    <input matInput name="contactName" [(ngModel)]="barnKontakt[0].name" formControlName="nameControl">
-  </mat-form-field>
-  <p>{{nameError}}</p>
-
-
-  <mat-form-field appearance="fill">
-    <mat-label>Användarens e-post</mat-label>
-    <input matInput placeholder="pat@example.com" name="contactTask" [(ngModel)]="barnKontakt[0].email" [formControl]="email" required>
-    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-  </mat-form-field>
-  <p>{{emailError}}</p>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Arbetsplats</mat-label>
-    <input matInput name="contactWorkPlace" [(ngModel)]="barnKontakt[0].organisaton" formControlName="organisationControl">
-  </mat-form-field>
-  <p>{{organisationError}}</p>
-
-</div>
+      <mat-form-field appearance="fill">
+        <mat-label>Namn</mat-label>
+        <input matInput name="contactName" [(ngModel)]="barnKontakt[0].name" formControlName="nameControl">
+      </mat-form-field>
+      <p>{{nameError}}</p>
 
 
-<!-- <div class="person-container" *ngIf="userRoleId=='4'">
+      <mat-form-field appearance="fill">
+        <mat-label>Användarens e-post</mat-label>
+        <input matInput placeholder="pat@example.com" name="contactTask" [(ngModel)]="barnKontakt[0].email"
+          [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <p>{{emailError}}</p>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Arbetsplats</mat-label>
+        <input matInput name="contactWorkPlace" [(ngModel)]="barnKontakt[0].organisaton"
+          formControlName="organisationControl">
+      </mat-form-field>
+      <p>{{organisationError}}</p>
+
+    </div> -->
+
+
+    <!-- <div class="person-container" *ngIf="userRoleId=='4'">
     <span class="material-icons">person</span>
     <h4>Stödsamordnare</h4>
 
@@ -60,9 +63,9 @@
   </mat-form-field>
 </div>
  -->
- <p>{{saveError}}</p>
+    <p>{{saveError}}</p>
 
-  <button class="submit" mat-raised-button (click)="save()">Spara</button>
-</div>
+    <button class="submit" mat-raised-button (click)="save()">Spara</button>
+  </div>
 
 </div>

@@ -68,7 +68,6 @@ export class ConversationMaterialComponent implements OnInit {
   // this function is called when clicking on a row from the list 
   // update the samtalsunderlag and then update the choosen samtalsunderlag 
   // move to the samtalsunderlag's detail page
-
   moveToCard(card: ConversationCard) {
     this.store.dispatch(new fromState.UpdateConversationCards(this.ConversationCards));
 
@@ -79,7 +78,6 @@ export class ConversationMaterialComponent implements OnInit {
   // this function is called when clicking in the edit button 
   // update the samtalsunderlag and then update the choosen samtalsunderlag 
   // move to the edit samtalsunderlag page
-
   moveToEditCard(card: ConversationCard) {
     this.store.dispatch(new fromState.UpdateConversationCards(this.ConversationCards));
 

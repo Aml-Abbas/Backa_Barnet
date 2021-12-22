@@ -12,46 +12,54 @@ import * as fromRoot from '../../../app/state';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  pusers: Promise<User[]>= new Promise((resolve, reject) => { });
-  users: User[] = [];
 
-  searchUsers: User[]= [];
-  filterStatus: boolean= false;
+  pusers: Promise<User[]> = new Promise((resolve, reject) => { });
+  users: User[] = [];
+  searchUsers: User[] = [];
+
+  filterStatus: boolean = false;
 
   constructor(private store: Store<fromState.State>,
     private adminService: AdminService) { }
 
+  // get the current user from the storage
+  // get the user list fom admin service
   ngOnInit(): void {
-    this.pusers= this.adminService.getUsers();
-    let users= this.users;
+    this.pusers = this.adminService.getUsers();
+    let users = this.users;
 
     this.pusers.then(function (response) {
-      
-      response.forEach((user: User)=>{
+
+      response.forEach((user: User) => {
         users.push(user);
+      });
     });
-    });
-    users.forEach(element=>{
+    users.forEach(element => {
       this.users.push(element);
     });
 
   }
 
+  // this function is called when the user writes something in the search input
+  // the function searches for a match user in the user list and display it in the user list
   applyFilter(event: Event) {
-    this.searchUsers=[];
-    
+    this.searchUsers = [];
+
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-    if(filterValue!=''){
-      this.filterStatus= true;
+    if (filterValue != '') {
+      this.filterStatus = true;
     }
-    this.users.forEach(user=>{
-      var name= (user.firstName+' '+ user.lastName).toLowerCase();
-      if(user.email.toLowerCase().includes(filterValue) || name.includes(filterValue)|| user.description.toLowerCase().includes(filterValue)){
+    this.users.forEach(user => {
+      var name = (user.firstName + ' ' + user.lastName).toLowerCase();
+      if (user.email.toLowerCase().includes(filterValue) || name.includes(filterValue) || user.description.toLowerCase().includes(filterValue)) {
         this.searchUsers.push(user);
       }
-   });
+    });
   }
 
+  // this function is called when choosing a user from the list
+  // update the users and then update the choosen user 
+  // move to the user's detail page
   setCurrentAdminUser(user: User) {
     this.store.dispatch(new fromState.UpdateUsers(this.users));
 

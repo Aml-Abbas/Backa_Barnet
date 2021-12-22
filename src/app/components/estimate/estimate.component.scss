@@ -1,131 +1,131 @@
-h1{
-    font-size: 30px;
-    font-weight: bold;
-  }
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
 
-  h4{
-    font-size: 20px;
-  }
+h4 {
+  font-size: 20px;
+}
 
-  .mat-drawer-container {
-    width: 98%;
-    background-color: whitesmoke;
-    margin-bottom: 30px;
-  }
-  
-  .example-sidenav-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .mat-drawer-sidenav {
-    padding: 20px;
-    width: 60%;
-    background-color: whitesmoke;
-  }
-  
-  .category{
-    margin-top: 5px;
-    margin-left: 15px;
-  }
+.mat-drawer-container {
+  width: 98%;
+  background-color: whitesmoke;
+  margin-bottom: 30px;
+}
 
-  .table-container {
-    width: 100%;
-  }
-    
-  table {
-    width: 60%;
-    background-color: whitesmoke;
-    margin-bottom: 30px;
-    border-collapse: collapse;
-    padding: 5px;
-    margin-left: 10px;
-    text-align: left;
-  }
+.example-sidenav-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .example-container {
-    width: 100%;
-    max-width: 100%;
-    overflow: auto;
-  }
-  
-  #sidenav-table {
-    width: 800px;
-    overflow-x: scroll;
-    margin-top: 24px;
-  }
+.mat-drawer-sidenav {
+  padding: 20px;
+  width: 60%;
+  background-color: whitesmoke;
+}
 
-  td{
-    text-align: left;
-    font-size: 15px;
-  }
+.category {
+  margin-top: 5px;
+  margin-left: 15px;
+}
 
-  td, th, tr{
-    color: black;
-    padding: 8px;
-  }
+.table-container {
+  width: 100%;
+}
 
-  tr{
-    border-bottom: 1px solid lightgray;
-  }
+table {
+  width: 60%;
+  background-color: whitesmoke;
+  margin-bottom: 30px;
+  border-collapse: collapse;
+  padding: 5px;
+  margin-left: 10px;
+  text-align: left;
+}
 
-  p{
-    margin-top: 15px;
-    color: brown;
-    font-size: 15px;
-  }
+.example-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+}
 
-  textarea{
-    border: 1px solid gray;
-    color: black;
-    width: 100%;
-    background-color: whitesmoke;
-  }
+#sidenav-table {
+  width: 800px;
+  overflow-x: scroll;
+  margin-top: 24px;
+}
 
-  mat-select{
-    border: 1px solid gray;
-    width: 40px;
-  }
+td {
+  text-align: left;
+  font-size: 15px;
+}
 
-  button{
-    background-color: #cde7e6;
-    width: 15%;
-    margin-left: 5%;
-    margin-top: 10px;
-    color: black;
-  }
-  
-::ng-deep .mat-select-value{
+td,
+th,
+tr {
+  color: black;
+  padding: 8px;
+}
+
+tr {
+  border-bottom: 1px solid lightgray;
+}
+
+p {
+  margin-top: 15px;
+  color: brown;
+  font-size: 15px;
+}
+
+textarea {
+  border: 1px solid gray;
+  color: black;
+  width: 100%;
+  background-color: whitesmoke;
+}
+
+mat-select {
+  border: 1px solid gray;
+  width: 40px;
+}
+
+button {
+  background-color: #cde7e6;
+  width: 15%;
+  margin-left: 5%;
+  margin-top: 10px;
+  color: black;
+}
+
+::ng-deep .mat-select-value {
   color: black !important;
 }
 
-::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
+::ng-deep .mat-option.mat-selected:not(.mat-option-disabled) {
   color: white !important;
 }
 
-::ng-deep .mat-select-arrow{
+::ng-deep .mat-select-arrow {
   color: gray;
 }
 
-.show-more{
+.show-more {
   color: white;
   width: 15%;
   margin-bottom: 30px;
   margin-left: 10px;
 }
 
-@media screen and (max-width: 1024px){
-  .show-more{
+@media screen and (max-width: 1024px) {
+  .show-more {
     width: 40%;
   }
-  
 }
 
-@media screen and (max-width: 1000px){
-  .formButton{
+@media screen and (max-width: 1000px) {
+  .formButton {
     width: 40%;
     margin-left: 6.5%;
   }
-  
 }

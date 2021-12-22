@@ -1,103 +1,101 @@
-h1{
-    font-size: 30px;
-    font-weight: bold;
-  }
-  h4{
-    font-size: 20px;
-    margin-bottom: 30px;
-  }
-  h5{
-    font-size: 15px;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
-  button{
-    width: 15%;
-    background-color: #cde7e6;
-    color: black;
-  }
-  
-  
-  mat-form-field{
-    width: 100%;
-    color: black;
-    margin-bottom: 10px;
-    height: 55px;
-  }
-  
-  mat-label{
-    color: black;
-  }
-  
-  input{
-    color: black;
-    }
-    
-  .container-2{
-    display: inline-block;
-    width: 45%;
-    margin-right: 5%;
-    margin-top: 15px;
-  }
-  
-  .mat-datepicker-toggle{
-    color: #663399;
-  }
-  ::ng-deep .mat-datepicker-content {
-    background-color: #663399;
-  }
-  
-  p{
-    margin-top: 15px;
-    color: brown;
-    font-size: 15px;
-  }
-  textarea{
-    border: 1px solid #663399;
-    height: 60px;
-    width: 90%;
-  }
-  
-  textarea.mat-input-element{
-    padding: 5px;
-  }
-  
-  .material-icons { 
-    font-size: 30px;
-    color: #663399;
-  }
-  
-  .back-button{
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+h4 {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+h5 {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+button {
+  width: 15%;
+  background-color: #cde7e6;
+  color: black;
+}
+
+mat-form-field {
+  width: 100%;
+  color: black;
+  margin-bottom: 10px;
+  height: 55px;
+}
+
+mat-label {
+  color: black;
+}
+
+input {
+  color: black;
+}
+
+.container-2 {
+  display: inline-block;
+  width: 45%;
+  margin-right: 5%;
+  margin-top: 15px;
+}
+
+.mat-datepicker-toggle {
+  color: #663399;
+}
+::ng-deep .mat-datepicker-content {
+  background-color: #663399;
+}
+
+p {
+  margin-top: 15px;
+  color: brown;
+  font-size: 15px;
+}
+textarea {
+  border: 1px solid #663399;
+  height: 60px;
+  width: 90%;
+}
+
+textarea.mat-input-element {
+  padding: 5px;
+}
+
+.material-icons {
+  font-size: 30px;
+  color: #663399;
+}
+
+.back-button {
   color: #663399;
   size: 16px;
   background-color: transparent;
   width: 10%;
-  }
-  
-  
-::ng-deep .mat-select-value{
+}
+
+::ng-deep .mat-select-value {
   color: black !important;
 }
 
-::ng-deep .mat-select-panel{
+::ng-deep .mat-select-panel {
   background-color: #663399 !important;
 }
 
-::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
+::ng-deep .mat-option.mat-selected:not(.mat-option-disabled) {
   color: white !important;
 }
 
-::ng-deep .mat-select-arrow{
+::ng-deep .mat-select-arrow {
   color: #663399;
 }
 
-  @media only screen and (max-width: 800px) {
-    button{
-      width: 50%;
-      margin-left: 25%;
-      }
-      .container-2{
-        width: 100%;
-      }
+@media only screen and (max-width: 800px) {
+  button {
+    width: 50%;
+    margin-left: 25%;
   }
+  .container-2 {
+    width: 100%;
+  }
+}

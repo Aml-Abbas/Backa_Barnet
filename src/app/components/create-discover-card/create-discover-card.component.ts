@@ -182,9 +182,6 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       let name: string = data?.name ?? '';
       let units: Unit[] = data?.units ?? [];
 
-      // a raw to be deleted 
-      //this.store.dispatch(new fromState.LoadDiscoverCard(userID));
-
       this.current_user = new User(userID, firstName, lastName,
         email, roleID, description, organisation, name, units);
     });

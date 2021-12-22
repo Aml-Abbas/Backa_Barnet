@@ -1,35 +1,34 @@
-h1{
+h1 {
     font-size: 30px;
     font-weight: bold;
 }
-h4{
+h4 {
     font-size: 20px;
 }
 
-button{
+button {
     background-color: #e83344;
     color: black;
     width: 20%;
     margin-right: 40%;
-  }
+}
 
-  mat-form-field{
+mat-form-field {
     width: 100%;
     color: black;
     margin-bottom: 10px;
     height: 55px;
 }
 
-
-mat-label{
+mat-label {
     color: black;
 }
 
-.mat-input-element:disabled{
+.mat-input-element:disabled {
     color: black;
-    }
-    
-.person-container{
+}
+
+.person-container {
     display: inline-block;
     width: 45%;
     margin-right: 5%;
@@ -38,43 +37,42 @@ mat-label{
     text-align: center;
 }
 
-.material-icons { 
+.material-icons {
     font-size: 230px;
     color: darkcyan;
 }
 
-
-.arrow_back { 
+.arrow_back {
     font-size: 30px;
     color: #663399;
-  }
-  
-  .back-button{
-  color: #663399;
-  size: 16px;
-  background-color: transparent;
-  width: 10%;
-  margin-left: 0%;
-  }
+}
 
-  p{
+.back-button {
+    color: #663399;
+    size: 16px;
+    background-color: transparent;
+    width: 10%;
+    margin-left: 0%;
+}
+
+p {
     margin-top: 15px;
     color: brown;
     font-size: 15px;
     text-align: left;
-  }
-  
-@media screen and (max-width: 800px){
-    .person-container{
+}
+
+@media screen and (max-width: 800px) {
+    .person-container {
         width: 100%;
     }
-    
-    .submit{
+
+    .submit {
         width: 30%;
         margin-left: 35%;
     }
 
-    .person_icon { 
+    .person_icon {
         font-size: 150px;
     }
 }

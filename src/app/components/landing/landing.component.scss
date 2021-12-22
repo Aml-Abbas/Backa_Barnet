@@ -9,7 +9,7 @@ mat-sidenav {
     background: #663399;
 }
 
-mat-sidenav-container{
+mat-sidenav-container {
     background-color: white;
     width: 100%;
     height: 100%;
@@ -24,7 +24,6 @@ mat-sidenav-container{
     margin-left: 10px;
 }
 
-
 mat-divider {
     background-color: rgba(255, 255, 255, 0.5);
 }
@@ -36,7 +35,7 @@ h4 {
 
 #landing-sidebar {
     border: none;
-    width: 100%; 
+    width: 100%;
 }
 
 .mat-button-toggle {
@@ -46,33 +45,30 @@ h4 {
     height: 48px;
 }
 
- .mat-button-toggle.mat-button-toggle-checked {
+.mat-button-toggle.mat-button-toggle-checked {
     background-color: white;
-    color:  #663399;
+    color: #663399;
 }
 
-.under-button{
-    background-color: rgb(179,154,204);
+.under-button {
+    background-color: rgb(179, 154, 204);
     text-indent: 18px;
-
 }
 
 .mat-button-toggle.mat-button-toggle-disabled {
-    background-color: #E8E8E8;
-    color: #A9A9A9;
-  }
+    background-color: #e8e8e8;
+    color: #a9a9a9;
+}
 
 ::ng-deep .mat-button-toggle-label-content {
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-        text-align: left;
-        text-indent: 12px;
-    }
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    text-align: left;
+    text-indent: 12px;
+}
 
-  
 @media only screen and (min-width: 800px) {
     mat-toolbar {
         display: none;
-      }
-  }
-
+    }
+}

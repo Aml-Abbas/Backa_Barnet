@@ -4,8 +4,6 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
-import { Unit } from 'src/app/models/Unit';
-import { GetSetService } from 'src/app/services/get-set/get-set.service';
 
 @Component({
   selector: 'app-user-details',
@@ -13,19 +11,21 @@ import { GetSetService } from 'src/app/services/get-set/get-set.service';
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent implements OnInit {
-  user$= new Observable<User | null>();
+  user$ = new Observable<User | null>();
   userID: string;
 
   constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
-    this.user$= this.store.select(fromState.getCurrentAdminUser);
-    this.user$.subscribe(data=>{
-      this.userID= data?.userID ??'';
+    // get the choosen user to display it on the page
+    this.user$ = this.store.select(fromState.getCurrentAdminUser);
+    this.user$.subscribe(data => {
+      this.userID = data?.userID ?? '';
     });
   }
 
-  moveToEdit(){
+  // this function is called when clicking on the edit button to move to the edit user page 
+  moveToEdit() {
     this.store.dispatch(new fromRoot.Go({ path: ['/edit-user', this.userID] }));
   }
 }

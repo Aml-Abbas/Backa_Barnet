@@ -1,7 +1,6 @@
 <div class="container">
-    <h1>Upptäckarkort</h1>
+  <h1>Upptäckarkort</h1>
 
-    
   <div class="search">
     <mat-form-field appearance="standard">
       <mat-label> Sök - Datum, namn, Av, Organisation eller status</mat-label>
@@ -9,57 +8,54 @@
     </mat-form-field>
   </div>
 
+  <table role="table">
+    <thead role="rowgroup">
+      <tr role="row">
+        <th role="columnheader">Datum</th>
+        <th role="columnheader">Barn</th>
+        <th role="columnheader">Av</th>
+        <th role="columnheader">Organisation</th>
+        <th role="columnheader">Upptäckarkortets status</th>
+        <th role="columnheader"></th>
 
-  
-
-<table role="table">
-  <thead role="rowgroup">
-    <tr role="row">
-      <th role="columnheader">Datum</th>
-      <th role="columnheader">Barn</th>
-      <th role="columnheader">Av</th>
-      <th role="columnheader">Organisation</th>
-      <th role="columnheader">Upptäckarkortets status</th>     
-      <th role="columnheader"></th>     
-
-    </tr>
-  </thead>
-  <tbody role="rowgroup" *ngIf="!filterStatus">
-    <tr role="row" *ngFor="let card of cards; let i= index" (click)="moveToCard(card)">
-      <td role="cell">{{card.gradedOn.slice(0, 10)}}</td>
-      <td role="cell">{{card.personName}}</td>
-      <td role="cell">{{card.userName}}</td>
-      <td role="cell">{{card.userOrg}}</td>
-      <td role="cell">{{card.status}}</td>
-      <td role="cell">
-        <button mat-icon-button class="edit-button" *ngIf="card.status=='Sparat'" (click)="moveToEditCard(card)">
-          <span class="material-icons"> create </span>
-          Ändra
+      </tr>
+    </thead>
+    <tbody role="rowgroup" *ngIf="!filterStatus">
+      <tr role="row" *ngFor="let card of cards; let i= index" (click)="moveToCard(card)">
+        <td role="cell">{{card.gradedOn.slice(0, 10)}}</td>
+        <td role="cell">{{card.personName}}</td>
+        <td role="cell">{{card.userName}}</td>
+        <td role="cell">{{card.userOrg}}</td>
+        <td role="cell">{{card.status}}</td>
+        <td role="cell">
+          <button mat-icon-button class="edit-button" *ngIf="card.status=='Sparat'" (click)="moveToEditCard(card)">
+            <span class="material-icons"> create </span>
+            Ändra
           </button>
-      </td>
-       
-    </tr>
-  </tbody>
-  <tbody *ngIf="filterStatus">
-    <tr role="row" *ngFor="let card of searchCards; let i= index" (click)="moveToCard(card)">
-      <td role="cell">{{card.gradedOn.slice(0, 10)}}</td>
-      <td role="cell">{{card.personName}}</td>
-      <td role="cell">{{card.userName}}</td>
-      <td role="cell">{{card.userOrg}}</td>
-      <td role="cell">{{card.status}}</td>
-      <td role="cell">
-        <button mat-icon-button class="edit-button" *ngIf="card.status=='Sparat'" (click)="moveToEditCard(card)">
-          <span class="material-icons"> create </span>
-          Ändra
-          </button>
-      </td>
-       
-    </tr>
-    <tr role="row" *ngIf="searchCards.length==0">
-      Inga data som matchar din sökning "{{input.value}}"
-    </tr>
+        </td>
 
-  </tbody>
-</table>
+      </tr>
+    </tbody>
+    <tbody *ngIf="filterStatus">
+      <tr role="row" *ngFor="let card of searchCards; let i= index" (click)="moveToCard(card)">
+        <td role="cell">{{card.gradedOn.slice(0, 10)}}</td>
+        <td role="cell">{{card.personName}}</td>
+        <td role="cell">{{card.userName}}</td>
+        <td role="cell">{{card.userOrg}}</td>
+        <td role="cell">{{card.status}}</td>
+        <td role="cell">
+          <button mat-icon-button class="edit-button" *ngIf="card.status=='Sparat'" (click)="moveToEditCard(card)">
+            <span class="material-icons"> create </span>
+            Ändra
+          </button>
+        </td>
+
+      </tr>
+      <tr role="row" *ngIf="searchCards.length==0">
+        Inga data som matchar din sökning "{{input.value}}"
+      </tr>
+
+    </tbody>
+  </table>
 
 </div>

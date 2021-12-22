@@ -1,34 +1,34 @@
 <div class="container">
-    <h1>Min plan framåt</h1>
+  <h1>Min plan framåt</h1>
 
-    <h2 *ngIf=" !(current_person$ | async) as current_person">
-      Välj ett barn först</h2>
+  <h2 *ngIf=" !(current_person$ | async) as current_person">
+    Välj ett barn först</h2>
 
 
-    <div *ngIf="(current_person$ | async) as current_person">
+  <div *ngIf="(current_person$ | async) as current_person">
 
     <h4>Lägg till ny insats</h4>
-  
+
     <button class="back-button" mat-icon-button routerLink="/event">
       <span class="material-icons"> arrow_back </span>
-   Tillbaka
+      Tillbaka
     </button>
-  
-  
-    <div class="form-container" [formGroup]="createPlanFormGroup" (change)= "isDirty= true">
-  
+
+
+    <div class="form-container" [formGroup]="createPlanFormGroup" (change)="isDirty= true">
+
       <mat-form-field style="width: 45%;" appearance="fill">
         <mat-label>Händelse</mat-label>
         <mat-select [(value)]="eventDescription">
           <mat-option *ngFor="let event of events; let i= index" value="{{event.eventDescription}}"
-          (click)="changeEvent(event.eventID, event.eventDescription)">{{event.eventDescription}}</mat-option>
+            (click)="changeEvent(event.eventID, event.eventDescription)">{{event.eventDescription}}</mat-option>
         </mat-select>
       </mat-form-field>
       <p>{{eventError}}</p>
-    
+
       <h5>Planerad insats</h5>
-        <textarea matInput formControlName="planControl"></textarea>
-        <p>{{planError}}</p>
+      <textarea matInput formControlName="planControl"></textarea>
+      <p>{{planError}}</p>
 
       <div class="container-2">
         <h5>Ansvariga för insatsen</h5>
@@ -45,12 +45,12 @@
         <p>{{proError}}</p>
 
       </div>
-  
-  
+
+
     </div>
-  <p>{{saveError}}</p>
-  
-      <button mat-raised-button (click)="save()">Spara</button>
-  
+    <p>{{saveError}}</p>
+
+    <button mat-raised-button (click)="save()">Spara</button>
+
   </div>
 </div>

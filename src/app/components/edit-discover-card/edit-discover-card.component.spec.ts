@@ -8,9 +8,9 @@ describe('EditDiscoverCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditDiscoverCardComponent ]
+      declarations: [EditDiscoverCardComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

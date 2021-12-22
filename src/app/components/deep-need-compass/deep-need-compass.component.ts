@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeepNeedCompassComponent implements OnInit {
 
+  //This component is not implemented, to be implemented in the next development phase
   constructor() { }
 
   ngOnInit(): void {

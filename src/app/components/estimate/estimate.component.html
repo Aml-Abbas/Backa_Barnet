@@ -1,133 +1,145 @@
 <div class="container">
 
-    <h1>Skattningsformulär</h1>
-    <h4>För personal</h4>
+  <h1>Skattningsformulär</h1>
+  <h4>För personal</h4>
 
-    
-    <h2 *ngIf=" !(current_person$ | async) as current_person">
-      Välj ett barn först</h2>
-  
+
+  <h2 *ngIf=" !(current_person$ | async) as current_person">
+    Välj ett barn först</h2>
+
 
   <div *ngIf="(current_person$ | async) as current_person">
-    
+
     <h2 *ngIf="current_person.status != 'I barnteam'">
       Barnet skickades inte till barnteam</h2>
 
-      <div *ngIf="current_person.status == 'I barnteam'">
-    <mat-drawer-container class="mat-drawer-container" autosize  *ngFor="let category of categories; let index1= index">
-    
-        
+    <div *ngIf="current_person.status == 'I barnteam'">
+      <mat-drawer-container class="mat-drawer-container" autosize
+        *ngFor="let category of categories; let index1= index">
+
+
         <div class="table-container">
           <h4 class="category" [style.color]="category.color">
-        <strong>{{category.area}}</strong>
-        </h4>
-            <table role="table">
-          <thead role="rowgroup">
-            <tr role="row">
-        
-              <th role="columnheader" [style.color]="category.color">Fråga</th>
-            <th role="columnheader" [style.color]="category.color">Skala</th>
-        
-          </tr>
-        </thead>
-        <tbody role="rowgroup">
-        
-          <tr role="row" *ngFor="let question of category.questions; let index2= index;">
-              <td role="cell"><div style="width: 200px">{{question.text}}</div></td>
-              <td role="cell">
-                <mat-select id="{{category.id}}" [(ngModel)]="currentSavedEstimate[currentSavedEstimate.length-1].grades[index1].scores[index2]" name="{{currentSavedEstimate[0].grades[index1].scores[index2]}}">
-                  <mat-option (click)="changeDirty()" [value]="0">VET EJ</mat-option>
-                  <mat-option (click)="changeDirty()" [value]="1">1</mat-option>
-                  <mat-option (click)="changeDirty()" [value]="2">2</mat-option>
-                  <mat-option (click)="changeDirty()" [value]="3">3</mat-option>
-                  <mat-option (click)="changeDirty()" [value]="4">4</mat-option>
-                  <mat-option (click)="changeDirty()" [value]="5">5</mat-option>
-                </mat-select>  
-              </td>
-        </tr>
-        <tr role="row">
-          <td>Medelvärde</td>
+            <strong>{{category.area}}</strong>
+          </h4>
+          <table role="table">
+            <thead role="rowgroup">
+              <tr role="row">
 
-          <td>
-            {{currentSavedEstimate[currentSavedEstimate.length-1].average[index1]}}
-          </td>
-         </tr>
-         <tr role="row">
-          <td>Kommentar</td>
-          <td>
-            <textarea matInput [(ngModel)]="currentSavedEstimate[currentSavedEstimate.length-1].grades[index1].comment" name="{{currentSavedEstimate[0].grades[index1].comment}}"></textarea>
-          </td>
-         </tr>
-        
-        </tbody>
-        </table>
+                <th role="columnheader" [style.color]="category.color">Fråga</th>
+                <th role="columnheader" [style.color]="category.color">Skala</th>
 
-        <button *ngIf="drawer.opened == false" mat-raised-button [style.background-color]="category.color" class="show-more" (click)="drawer.toggle()">
-            Äldre skattningar
-        </button>
+              </tr>
+            </thead>
+            <tbody role="rowgroup">
 
-        <button  *ngIf="drawer.opened == true" mat-raised-button [style.background-color]="category.color" class="show-more" (click)="drawer.toggle()">
-            Stäng
-        </button>
+              <tr role="row" *ngFor="let question of category.questions; let index2= index;">
+                <td role="cell">
+                  <div style="width: 200px">{{question.text}}</div>
+                </td>
+                <td role="cell">
+                  <mat-select id="{{category.id}}"
+                    [(ngModel)]="currentSavedEstimate[currentSavedEstimate.length-1].grades[index1].scores[index2]"
+                    name="{{currentSavedEstimate[0].grades[index1].scores[index2]}}">
+                    <mat-option (click)="changeDirty()" [value]="0">VET EJ</mat-option>
+                    <mat-option (click)="changeDirty()" [value]="1">1</mat-option>
+                    <mat-option (click)="changeDirty()" [value]="2">2</mat-option>
+                    <mat-option (click)="changeDirty()" [value]="3">3</mat-option>
+                    <mat-option (click)="changeDirty()" [value]="4">4</mat-option>
+                    <mat-option (click)="changeDirty()" [value]="5">5</mat-option>
+                  </mat-select>
+                </td>
+              </tr>
+              <tr role="row">
+                <td>Medelvärde</td>
 
-        <p>{{category.msgError}}</p>
+                <td>
+                  {{currentSavedEstimate[currentSavedEstimate.length-1].average[index1]}}
+                </td>
+              </tr>
+              <tr role="row">
+                <td>Kommentar</td>
+                <td>
+                  <textarea matInput
+                    [(ngModel)]="currentSavedEstimate[currentSavedEstimate.length-1].grades[index1].comment"
+                    name="{{currentSavedEstimate[0].grades[index1].comment}}"></textarea>
+                </td>
+              </tr>
 
-        </div>
-    
-      <mat-drawer #drawer class="mat-drawer-sidenav" mode="side" position="end">
-        
-        <div class="example-container mat-elevation-z8">
-
-        <table id="sidenav-table" role="table">
-          <thead role="rowgroup">
-            <tr role="row">
-              <th role="columnheader" [style.color]="category.color" sticky>Fråga</th>
-              <th role="columnheader" [style.color]="category.color"
-              *ngFor="let oldScore of estimatecards;">
-            {{oldScore.gradedOn.slice(0, 10)}}</th>        
-          </tr>
-        </thead>
-
-          <tbody role="rowgroup">
-             
-           <tr role="row" *ngFor="let question of category.questions; let i= index;">
-            <td role="cell"><div style="width: 200px;">{{question.text}}</div></td>
-
-               <td role="cell" *ngFor="let oldScore of estimatecards;">
-                <div style="width: 100px" *ngIf="oldScore.grades[index1].scores[i]==0">VET EJ</div>
-                <div style="width: 100px" *ngIf="oldScore.grades[index1].scores[i]!=0">{{oldScore.grades[index1].scores[i]}}</div>
-                </td>  
-          </tr>
-          <tr role="row">
-            <td>Medelvärde</td>
-
-            <td *ngFor="let oldScore of estimatecards; let i= index;">
-              {{oldScore.average[index1]}}
-            </td>
-           </tr>
-
-           <tr role="row">
-            <td>Kommentar</td>
-
-            <td *ngFor="let oldScore of estimatecards; let i= index;">
-              {{oldScore.grades[index1].comment}}
-            </td>
-           </tr>
-          
-          </tbody>
+            </tbody>
           </table>
+
+          <button *ngIf="drawer.opened == false" mat-raised-button [style.background-color]="category.color"
+            class="show-more" (click)="drawer.toggle()">
+            Äldre skattningar
+          </button>
+
+          <button *ngIf="drawer.opened == true" mat-raised-button [style.background-color]="category.color"
+            class="show-more" (click)="drawer.toggle()">
+            Stäng
+          </button>
+
+          <p>{{category.msgError}}</p>
+
         </div>
+
+        <mat-drawer #drawer class="mat-drawer-sidenav" mode="side" position="end">
+
+          <div class="example-container mat-elevation-z8">
+
+            <table id="sidenav-table" role="table">
+              <thead role="rowgroup">
+                <tr role="row">
+                  <th role="columnheader" [style.color]="category.color" sticky>Fråga</th>
+                  <th role="columnheader" [style.color]="category.color" *ngFor="let oldScore of estimatecards;">
+                    {{oldScore.gradedOn.slice(0, 10)}}</th>
+                </tr>
+              </thead>
+
+              <tbody role="rowgroup">
+
+                <tr role="row" *ngFor="let question of category.questions; let i= index;">
+                  <td role="cell">
+                    <div style="width: 200px;">{{question.text}}</div>
+                  </td>
+
+                  <td role="cell" *ngFor="let oldScore of estimatecards;">
+                    <div style="width: 100px" *ngIf="oldScore.grades[index1].scores[i]==0">VET EJ</div>
+                    <div style="width: 100px" *ngIf="oldScore.grades[index1].scores[i]!=0">
+                      {{oldScore.grades[index1].scores[i]}}</div>
+                  </td>
+                </tr>
+                <tr role="row">
+                  <td>Medelvärde</td>
+
+                  <td *ngFor="let oldScore of estimatecards; let i= index;">
+                    {{oldScore.average[index1]}}
+                  </td>
+                </tr>
+
+                <tr role="row">
+                  <td>Kommentar</td>
+
+                  <td *ngFor="let oldScore of estimatecards; let i= index;">
+                    {{oldScore.grades[index1].comment}}
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
 
 
         </mat-drawer>
-    </mat-drawer-container>
+      </mat-drawer-container>
 
-    <p>{{msgError}}</p>
-    <button mat-raised-button class="formButton" (click)="save()">Spara</button>
+      <p>{{msgError}}</p>
+      <button mat-raised-button class="formButton" (click)="save()">Spara</button>
 
-    <button mat-raised-button class="formButton" (click)="moveToEstimateOverview()" *ngIf=" userRoleId=='4' || userRoleId=='2'">Sammanställa</button>
+      <button mat-raised-button class="formButton" (click)="moveToEstimateOverview()"
+        *ngIf=" userRoleId=='4' || userRoleId=='2'">Sammanställa</button>
 
-</div>
-</div>
+    </div>
+  </div>
 
 </div>
