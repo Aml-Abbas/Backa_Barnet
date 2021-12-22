@@ -1,35 +1,38 @@
 <div class="container">
-    <h1>Kontaktuppgifter</h1>
-    <h4>Barnkontakt och Stödsamordnare</h4>
+  <h1>Kontaktuppgifter</h1>
+  <h4>Barnkontakt och Stödsamordnare</h4>
 
-    <h4 *ngIf=" !(current_person$ | async) as current_person">
-      Välj ett barn först</h4>
+  <h4 *ngIf=" !(current_person$ | async) as current_person">
+    Välj ett barn först</h4>
 
-<div *ngIf="(current_person$ | async) as current_person">
+  <div *ngIf="(current_person$ | async) as current_person">
 
-<div class="person-container" *ngIf="(barnKontakt$ | async) as barnKontakt">
-    <span class="material-icons">person</span>
-    <h4>Barnkontakt</h4>
+    <div class="person-container" *ngIf="(barnKontakt$ | async) as barnKontakt">
+      <span class="material-icons">person</span>
+      <h4>Barnkontakt</h4>
 
-<mat-form-field appearance="fill">
-    <mat-label>Namn</mat-label>
-    <input matInput disabled value="{{barnKontakt[0].name}}">
-  </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Namn</mat-label>
+        <input matInput disabled value="{{barnKontakt[0].name}}">
+      </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Kontaktuppgifter</mat-label>
-    <input matInput disabled value="{{barnKontakt[0].email}}">
-  </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Kontaktuppgifter</mat-label>
+        <input matInput disabled value="{{barnKontakt[0].email}}">
+      </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Arbetsplats</mat-label>
-    <input matInput disabled value="{{barnKontakt[0].organisaton}}">
-  </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Arbetsplats</mat-label>
+        <input matInput disabled value="{{barnKontakt[0].organisaton}}">
+      </mat-form-field>
 
-</div>
+    </div>
 
 
-<!-- <div class="person-container">
+
+    <!-- To be implemented in the next phase "Stödsamordnare" -->
+
+    <!-- <div class="person-container">
     <span class="material-icons">person</span>
     <h4>Stödsamordnare</h4>
 
@@ -50,8 +53,8 @@
 </div> -->
 
 
-<!-- <button *ngIf="userRoleId== '2' ||userRoleId== '4'" mat-raised-button routerLink="/edit-contact-guardian">Ändra</button>
+    <!-- <button *ngIf="userRoleId== '2' ||userRoleId== '4'" mat-raised-button routerLink="/edit-contact-guardian">Ändra</button>
  -->
 
-</div>
-<div>
+  </div>
+  <div>

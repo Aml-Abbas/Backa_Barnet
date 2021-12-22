@@ -4,51 +4,50 @@ table {
   border-collapse: collapse;
   padding: 5px;
 }
-th{
+th {
   text-align: left;
   font-size: 15px;
 }
 
-td, th, tr{
+td,
+th,
+tr {
   color: black;
   padding: 8px;
 }
 
-tr{
+tr {
   border-bottom: 1px solid lightgray;
 }
 
-
-.material-icons { 
+.material-icons {
   font-size: 30px;
   color: #663399;
 }
-.create { 
-font-size: 25px;
-color: #663399;
+.create {
+  font-size: 25px;
+  color: #663399;
 }
 
-.back-button{
-color: #663399;
-size: 16px;
+.back-button {
+  color: #663399;
+  size: 16px;
 }
 
-.delete-button{
-color: black;
-background-color: brown;
-margin-top: 15px;
-
+.delete-button {
+  color: black;
+  background-color: brown;
+  margin-top: 15px;
 }
 
-.mat-list-item{
+.mat-list-item {
   color: black;
 }
 
-
-li{
+li {
   margin-left: 40px;
 }
 
-mat-list{
+mat-list {
   background-color: whitesmoke;
 }

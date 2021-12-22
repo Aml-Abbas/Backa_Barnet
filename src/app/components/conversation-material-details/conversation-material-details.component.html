@@ -1,66 +1,69 @@
 <div class="container">
 
-    <h1>Samtalsunderlag</h1>
+  <h1>Samtalsunderlag</h1>
 
-    <div *ngIf="(current_conversation_card$ | async) as conversation_card">
+  <div *ngIf="(current_conversation_card$ | async) as conversation_card">
 
     <button class="back-button" mat-icon-button routerLink="/conversation-material">
       <span class="material-icons"> arrow_back </span>
-   Tillbaka
+      Tillbaka
     </button>
 
-    <button mat-icon-button class="edit-button" *ngIf="conversation_card.status=='Sparat'" (click)="moveToEditCard(conversation_card)">
+    <button mat-icon-button class="edit-button" *ngIf="conversation_card.status=='Sparat'"
+      (click)="moveToEditCard(conversation_card)">
       <span class="material-icons create"> create </span>
       Ändra
-      </button>
-    
+    </button>
+
     <table role="table">
-        <thead role="rowgroup">
-      <tr role="row">
-    
-      <th rowspan="2" role="columnheader">Behovsområde</th>
-      <th rowspan="2" role="columnheader">Fråga</th>
-      <th colspan="2" role="columnheader">Barnet</th>
-      <th colspan="2" role="columnheader">Vårdnadshavare 1</th>
-      <th *ngIf="selected=='2'" colspan="2" role="columnheader">Vårdnadshavare 2</th>
-    </tr>
-    <tr>
-      <th role="columnheader">Skala</th>
-      <th role="columnheader">Kommentar</th>
-      <th role="columnheader">Skala</th>
-      <th role="columnheader">Kommentar</th>
-      <th *ngIf="selected=='2'" role="columnheader">Skala</th>
-      <th *ngIf="selected=='2'" role="columnheader">Kommentar</th>
+      <thead role="rowgroup">
+        <tr role="row">
 
-    </tr>
-  </thead>
-  <tbody role="rowgroup">
+          <th rowspan="2" role="columnheader">Behovsområde</th>
+          <th rowspan="2" role="columnheader">Fråga</th>
+          <th colspan="2" role="columnheader">Barnet</th>
+          <th colspan="2" role="columnheader">Vårdnadshavare 1</th>
+          <th *ngIf="selected=='2'" colspan="2" role="columnheader">Vårdnadshavare 2</th>
+        </tr>
+        <tr>
+          <th role="columnheader">Skala</th>
+          <th role="columnheader">Kommentar</th>
+          <th role="columnheader">Skala</th>
+          <th role="columnheader">Kommentar</th>
+          <th *ngIf="selected=='2'" role="columnheader">Skala</th>
+          <th *ngIf="selected=='2'" role="columnheader">Kommentar</th>
 
-    <tr role="row" id="{{card.id}}" *ngFor="let card of scores; let i=index">
-      <td role="cell" [style.color]='card.color'><strong>{{card.area}}</strong></td>
-      <td role="cell" >{{card.question}}</td>
-      <td role="cell" *ngIf="conversation_card.person_scores[i]=='0'">VET EJ</td>
-      <td role="cell" *ngIf="conversation_card.person_scores[i]!='0'">{{conversation_card.person_scores[i]}}</td>
-      <td role="cell" >
-        {{conversation_card.person_comments[i]}}
+        </tr>
+      </thead>
+      <tbody role="rowgroup">
+
+        <tr role="row" id="{{card.id}}" *ngFor="let card of scores; let i=index">
+          <td role="cell" [style.color]='card.color'><strong>{{card.area}}</strong></td>
+          <td role="cell">{{card.question}}</td>
+          <td role="cell" *ngIf="conversation_card.person_scores[i]=='0'">VET EJ</td>
+          <td role="cell" *ngIf="conversation_card.person_scores[i]!='0'">{{conversation_card.person_scores[i]}}</td>
+          <td role="cell">
+            {{conversation_card.person_comments[i]}}
           </td>
-      <td role="cell" *ngIf="conversation_card.guardian1_scores[i]=='0'">VET EJ</td>
-      <td role="cell" *ngIf="conversation_card.guardian1_scores[i]!='0'">{{conversation_card.guardian1_scores[i]}}</td>
-      <td role="cell">
-        {{conversation_card.guardian1_comments[i]}}
-      </td>
-      <td role="cell" *ngIf="selected=='2' && conversation_card.guardian2_scores[i]=='0'">VET EJ</td>
-      <td role="cell" *ngIf="selected=='2' && conversation_card.guardian2_scores[i]!='0'">{{conversation_card.guardian2_scores[i]}}</td>
-      <td role="cell" *ngIf="selected=='2'">
-        {{conversation_card.guardian2_comments[i]}}
-      </td>
+          <td role="cell" *ngIf="conversation_card.guardian1_scores[i]=='0'">VET EJ</td>
+          <td role="cell" *ngIf="conversation_card.guardian1_scores[i]!='0'">{{conversation_card.guardian1_scores[i]}}
+          </td>
+          <td role="cell">
+            {{conversation_card.guardian1_comments[i]}}
+          </td>
+          <td role="cell" *ngIf="selected=='2' && conversation_card.guardian2_scores[i]=='0'">VET EJ</td>
+          <td role="cell" *ngIf="selected=='2' && conversation_card.guardian2_scores[i]!='0'">
+            {{conversation_card.guardian2_scores[i]}}</td>
+          <td role="cell" *ngIf="selected=='2'">
+            {{conversation_card.guardian2_comments[i]}}
+          </td>
 
-    </tr>
+        </tr>
 
 
-  </tbody>
-</table>
+      </tbody>
+    </table>
 
-</div>
+  </div>
 
 </div>

@@ -8,9 +8,9 @@ describe('BarnteamComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BarnteamComponent ]
+      declarations: [BarnteamComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -9,6 +9,10 @@ import * as fromState from '../../state';
   templateUrl: './consent.component.html',
   styleUrls: ['./consent.component.scss']
 })
+
+
+//This component is not implemented, to be implemented in the next development phase
+//It is just the html and the css in place
 export class ConsentComponent implements OnInit {
   userRoleId: string;
 
@@ -16,14 +20,14 @@ export class ConsentComponent implements OnInit {
   constructor(private store: Store<fromState.State>) { }
 
   ngOnInit(): void {
-    this.store.select(fromState.getCurrentUser).subscribe(data=>{
-      this.userRoleId= String(data?.roleID);
+    this.store.select(fromState.getCurrentUser).subscribe(data => {
+      this.userRoleId = String(data?.roleID);
 
     });
 
   }
-    
-  save(){
-    
+
+  save() {
+
   }
 }

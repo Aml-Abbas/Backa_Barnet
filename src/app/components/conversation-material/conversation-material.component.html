@@ -7,16 +7,17 @@
       <mat-label>Sök - id, datum eller status</mat-label>
       <input matInput (keyup)="applyFilter($event)" #input>
     </mat-form-field>
-    <button class="search-button" mat-raised-button routerLink="/create-conversation-material">Nytt samtalsunderlag</button>
+    <button class="search-button" mat-raised-button routerLink="/create-conversation-material">Nytt
+      samtalsunderlag</button>
   </div>
 
   <h2 *ngIf=" !(current_person$ | async) as current_person">
     Välj ett barn först</h2>
 
-<div *ngIf="(current_person$ | async) as current_person">
+  <div *ngIf="(current_person$ | async) as current_person">
 
     <h2>Samtalsunderlags Lista</h2>
-       
+
 
     <table role="table">
       <thead role="rowgroup">
@@ -24,7 +25,7 @@
           <th role="columnheader">Id</th>
           <th role="columnheader">Datum</th>
           <th role="columnheader">Samtalsunderlagets status</th>
-          <th role="columnheader"></th>     
+          <th role="columnheader"></th>
         </tr>
       </thead>
       <tbody role="rowgroup" *ngIf="!filterStatus">
@@ -36,11 +37,11 @@
             <button mat-icon-button class="edit-button" *ngIf="card.status=='Sparat'">
               <span class="material-icons"> create </span>
               Ändra
-              </button>
+            </button>
           </td>
         </tr>
       </tbody>
-       <tbody *ngIf="filterStatus">
+      <tbody *ngIf="filterStatus">
         <tr role="row" *ngFor="let card of searchCards; let i= index">
           <td role="cell" (click)="moveToCard(card)">{{card.id}}</td>
           <td role="cell" (click)="moveToCard(card)">{{card.gradedOn.slice(0, 10)}}</td>
@@ -49,14 +50,14 @@
             <button mat-icon-button class="edit-button" *ngIf="card.status=='Sparat'">
               <span class="material-icons"> create </span>
               Ändra
-              </button>
-          </td>           
+            </button>
+          </td>
         </tr>
         <tr role="row" *ngIf="searchCards.length==0">
           Inga data som matchar din sökning "{{input.value}}"
-        </tr>    
+        </tr>
       </tbody>
     </table>
-    
-</div>
+
   </div>
+</div>

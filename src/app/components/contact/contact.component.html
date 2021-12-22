@@ -1,47 +1,49 @@
 <div class="container">
-    
+
   <h1>Backa barnet</h1>
 
   <div class="search">
     <mat-form-field appearance="standard">
       <mat-label>Sök - personnummer, namn, senast ändrad eller status
       </mat-label>
-      <input matInput (keyup)="applyFilter($event)" #input>  
+      <input matInput (keyup)="applyFilter($event)" #input>
     </mat-form-field>
     <button mat-raised-button routerLink="/create-discover-card">Ny upptäckt</button>
   </div>
-    <h2>Barnlista</h2>
-       
+  <h2>Barnlista</h2>
 
-    
-<table role="table">
-  <thead role="rowgroup">
-    <tr role="row">
-      <th role="columnheader">Personnummer</th>
-      <th role="columnheader">Namn</th>
-      <th role="columnheader">Senast ändrad</th>
-      <th role="columnheader">Barnets status</th>
-    </tr>
-  </thead>
-  <tbody role="rowgroup" *ngIf="!filterStatus">
-    <tr role="row" *ngFor="let person of persons; let i= index" (click)="setCurrentPerson(person)" [class.demo-row-is-clicked]="clickedRows.has(person)">
-      <td role="cell">{{person.personNbr}}</td>
-      <td role="cell">{{person.name}}</td>
-      <td role="cell">{{person.changedOn.slice(0, 10)}}</td>
-      <td role="cell">{{person.status}}</td>
-    </tr>
-  </tbody>
-  <tbody *ngIf="filterStatus">
-    <tr role="row" *ngFor="let person of searchPersons; let i= index" (click)="setCurrentPerson(person)" [class.demo-row-is-clicked]="clickedRows.has(person)">
-      <td role="cell">{{person.personNbr.slice(2, 12)}}</td>
-      <td role="cell">{{person.name}}</td>
-      <td role="cell">{{person.changedOn.slice(0, 10)}}</td>
-      <td role="cell">{{person.status}}</td>
-    </tr>
-    <tr role="row" *ngIf="searchPersons.length==0">
-      Inga data som matchar din sökning "{{input.value}}"
-    </tr>
-  </tbody>
-</table>
+
+
+  <table role="table">
+    <thead role="rowgroup">
+      <tr role="row">
+        <th role="columnheader">Personnummer</th>
+        <th role="columnheader">Namn</th>
+        <th role="columnheader">Senast ändrad</th>
+        <th role="columnheader">Barnets status</th>
+      </tr>
+    </thead>
+    <tbody role="rowgroup" *ngIf="!filterStatus">
+      <tr role="row" *ngFor="let person of persons; let i= index" (click)="setCurrentPerson(person)"
+        [class.demo-row-is-clicked]="clickedRows.has(person)">
+        <td role="cell">{{person.personNbr}}</td>
+        <td role="cell">{{person.name}}</td>
+        <td role="cell">{{person.changedOn.slice(0, 10)}}</td>
+        <td role="cell">{{person.status}}</td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="filterStatus">
+      <tr role="row" *ngFor="let person of searchPersons; let i= index" (click)="setCurrentPerson(person)"
+        [class.demo-row-is-clicked]="clickedRows.has(person)">
+        <td role="cell">{{person.personNbr.slice(2, 12)}}</td>
+        <td role="cell">{{person.name}}</td>
+        <td role="cell">{{person.changedOn.slice(0, 10)}}</td>
+        <td role="cell">{{person.status}}</td>
+      </tr>
+      <tr role="row" *ngIf="searchPersons.length==0">
+        Inga data som matchar din sökning "{{input.value}}"
+      </tr>
+    </tbody>
+  </table>
 
 </div>

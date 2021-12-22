@@ -3,7 +3,7 @@
 
   <button mat-raised-button class="discover-card-button" routerLink="/discover-card">Tidigare upptäckarkort</button>
 
-  <div class="form-container" [formGroup]="createDiscoveCardFormGroup" (change)= "isDirty= true">
+  <div class="form-container" [formGroup]="createDiscoveCardFormGroup" (change)="isDirty= true">
 
     <mat-form-field class="fixed-length" appearance="fill">
       <mat-label>Barnets förnamn</mat-label>
@@ -42,8 +42,7 @@
 
       <mat-form-field class="fixed-length" appearance="fill">
         <mat-label>Vårdnadshavare {{i+1}} personnummer</mat-label>
-        <input matInput name="personNbr" [(ngModel)]="guardians[i].personNbr"
-          [ngModelOptions]="{standalone: true}">
+        <input matInput name="personNbr" [(ngModel)]="guardians[i].personNbr" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
       <p>{{guardiansError[i].personNbr}}</p>
 
@@ -81,15 +80,14 @@
     <div class="grid-container">
       <mat-card *ngFor="let item of ELEMENT_DATA; let i=index">
         <div class="card-container" [style.background]="item.color">
-          <mat-card-title>{{item.type}}             
+          <mat-card-title>{{item.type}}
           </mat-card-title>
           <mat-card-subtitle>{{item.description}}
             <div class="tooltip">
               <span class="material-icons">
                 help
-                </span>
+              </span>
               <span class="tooltiptext">
-              <!-- </span> [style.background]="item.color"> -->
                 <li *ngFor="let text of item.helpText; let i=index">{{text}}</li>
               </span>
             </div>
@@ -141,7 +139,7 @@
     <div class="buttons-container">
       <button mat-raised-button (click)="send(1)">Skicka in</button>
       <button mat-raised-button (click)="send(2)" class="save-button">Spara</button>
-      <button mat-raised-button class="cancel-button" (click)="goBack()">Avbryt</button>  
+      <button mat-raised-button class="cancel-button" (click)="goBack()">Avbryt</button>
     </div>
 
   </div>

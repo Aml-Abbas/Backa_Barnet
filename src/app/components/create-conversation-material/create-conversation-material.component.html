@@ -1,106 +1,108 @@
 <div class="container">
-    <h1>Samtalsunderlag</h1>
+  <h1>Samtalsunderlag</h1>
 
-   <h4 *ngIf=" !(current_person$ | async) as current_person">
-      Välj ett barn innan du skapar ett samtalsunderlag</h4>
+  <h4 *ngIf=" !(current_person$ | async) as current_person">
+    Välj ett barn innan du skapar ett samtalsunderlag</h4>
 
-      
-    <div *ngIf="(current_person$ | async) as current_person" (change)= "isDirty= true">
 
-      <h2 *ngIf="current_person.status == 'Behov uppfyllt'">
-        Barnet har status Behov uppfyllt</h2>
-  
-        <div *ngIf="current_person.status != 'Behov uppfyllt'">
-  
-          <h4 *ngIf="current_person.firstName.endsWith('s')">Bedömning av {{current_person.firstName}} situation</h4>
-          <h4 *ngIf="!current_person.firstName.endsWith('s')">Bedömning av {{current_person.firstName}}s situation</h4>
-    
-    <mat-form-field id="matFormFieldGuardians" appearance="fill">
-      <mat-label>Antal Vårdnadshavare som ska fylla formulär</mat-label>
-      <mat-select id="matselectGuardians" [(ngModel)]="selected" name="selected">
-        <mat-option value="1">1</mat-option>
-        <mat-option value="2">2</mat-option>
-      </mat-select>
-    </mat-form-field>
+  <div *ngIf="(current_person$ | async) as current_person" (change)="isDirty= true">
+
+    <h2 *ngIf="current_person.status == 'Behov uppfyllt'">
+      Barnet har status Behov uppfyllt</h2>
+
+    <div *ngIf="current_person.status != 'Behov uppfyllt'">
+
+      <h4 *ngIf="current_person.firstName.endsWith('s')">Bedömning av {{current_person.firstName}} situation</h4>
+      <h4 *ngIf="!current_person.firstName.endsWith('s')">Bedömning av {{current_person.firstName}}s situation</h4>
+
+      <mat-form-field id="matFormFieldGuardians" appearance="fill">
+        <mat-label>Antal Vårdnadshavare som ska fylla formulär</mat-label>
+        <mat-select id="matselectGuardians" [(ngModel)]="selected" name="selected">
+          <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option>
+        </mat-select>
+      </mat-form-field>
 
       <table role="table">
         <thead role="rowgroup">
-      <tr role="row">
-    
-      <th rowspan="2" role="columnheader">Behovsområde</th>
-      <th rowspan="2" role="columnheader">Fråga</th>
-      <th colspan="2" role="columnheader">Barnet</th>
-      <th colspan="2" role="columnheader">Vårdnadshavare 1</th>
-      <th *ngIf="selected=='2'" colspan="2" role="columnheader">Vårdnadshavare 2</th>
-    </tr>
-    <tr>
-      <th role="columnheader">Skala</th>
-      <th role="columnheader">Kommentar</th>
-      <th role="columnheader">Skala</th>
-      <th role="columnheader">Kommentar</th>
-      <th *ngIf="selected=='2'" role="columnheader">Skala</th>
-      <th *ngIf="selected=='2'" role="columnheader">Kommentar</th>
+          <tr role="row">
 
-    </tr>
-  </thead>
-  <tbody role="rowgroup">
+            <th rowspan="2" role="columnheader">Behovsområde</th>
+            <th rowspan="2" role="columnheader">Fråga</th>
+            <th colspan="2" role="columnheader">Barnet</th>
+            <th colspan="2" role="columnheader">Vårdnadshavare 1</th>
+            <th *ngIf="selected=='2'" colspan="2" role="columnheader">Vårdnadshavare 2</th>
+          </tr>
+          <tr>
+            <th role="columnheader">Skala</th>
+            <th role="columnheader">Kommentar</th>
+            <th role="columnheader">Skala</th>
+            <th role="columnheader">Kommentar</th>
+            <th *ngIf="selected=='2'" role="columnheader">Skala</th>
+            <th *ngIf="selected=='2'" role="columnheader">Kommentar</th>
 
-    <tr role="row" id="{{card.id}}" *ngFor="let card of scores; let i=index">
-      <td role="cell" [style.color]='card.color'><strong>{{card.area}}</strong></td>
-      <td role="cell" >{{card.question}}</td>
-      <td role="cell">
-        <!-- [style.border-color]='card.color' -->
-          <mat-select id="{{card.class}}" [(ngModel)]="card.person_score" name="{{card.person_score}}" (selectionChange)="changeDirty()">
-            <mat-option value="0">VET EJ</mat-option>
-            <mat-option value="1">1</mat-option>
-            <mat-option value="2">2</mat-option>
-            <mat-option value="3">3</mat-option>
-            <mat-option value="4">4</mat-option>
-            <mat-option value="5">5</mat-option>
-          </mat-select>
-      </td>
-      <td role="cell">
-          <textarea matInput [(ngModel)]="card.person_comment" name="{{card.person_comment}}"></textarea>
-      </td>
-      <td role="cell">
-          <mat-select id="{{card.class}}" [(ngModel)]="card.guardian1_score" name="{{card.guardian1_score}}" (selectionChange)="changeDirty()">
-            <mat-option value="0">VET EJ</mat-option>
-            <mat-option value="1">1</mat-option>
-            <mat-option value="2">2</mat-option>
-            <mat-option value="3">3</mat-option>
-            <mat-option value="4">4</mat-option>
-            <mat-option value="5">5</mat-option>
-          </mat-select>
-      </td>
-      <td role="cell">
-          <textarea matInput [(ngModel)]="card.guardian1_comment" name="{{card.guardian1_comment}}"></textarea>
-      </td>
-      <td role="cell" *ngIf="selected=='2'">
-          <mat-select id="{{card.class}}" [(ngModel)]="card.guardian2_score" name="{{card.guardian2_score}}" (selectionChange)="changeDirty()">
-            <mat-option value="0">VET EJ</mat-option>
-            <mat-option value="1">1</mat-option>
-            <mat-option value="2">2</mat-option>
-            <mat-option value="3">3</mat-option>
-            <mat-option value="4">4</mat-option>
-            <mat-option value="5">5</mat-option>
-          </mat-select>
-      </td>
-      <td role="cell" *ngIf="selected=='2'">
-          <textarea matInput [(ngModel)]="card.guardian2_comment" name="{{card.guardian2_comment}}"></textarea>
-      </td>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
 
-    </tr>
+          <tr role="row" id="{{card.id}}" *ngFor="let card of scores; let i=index">
+            <td role="cell" [style.color]='card.color'><strong>{{card.area}}</strong></td>
+            <td role="cell">{{card.question}}</td>
+            <td role="cell">
+              <mat-select id="{{card.class}}" [(ngModel)]="card.person_score" name="{{card.person_score}}"
+                (selectionChange)="changeDirty()">
+                <mat-option value="0">VET EJ</mat-option>
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="3">3</mat-option>
+                <mat-option value="4">4</mat-option>
+                <mat-option value="5">5</mat-option>
+              </mat-select>
+            </td>
+            <td role="cell">
+              <textarea matInput [(ngModel)]="card.person_comment" name="{{card.person_comment}}"></textarea>
+            </td>
+            <td role="cell">
+              <mat-select id="{{card.class}}" [(ngModel)]="card.guardian1_score" name="{{card.guardian1_score}}"
+                (selectionChange)="changeDirty()">
+                <mat-option value="0">VET EJ</mat-option>
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="3">3</mat-option>
+                <mat-option value="4">4</mat-option>
+                <mat-option value="5">5</mat-option>
+              </mat-select>
+            </td>
+            <td role="cell">
+              <textarea matInput [(ngModel)]="card.guardian1_comment" name="{{card.guardian1_comment}}"></textarea>
+            </td>
+            <td role="cell" *ngIf="selected=='2'">
+              <mat-select id="{{card.class}}" [(ngModel)]="card.guardian2_score" name="{{card.guardian2_score}}"
+                (selectionChange)="changeDirty()">
+                <mat-option value="0">VET EJ</mat-option>
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="3">3</mat-option>
+                <mat-option value="4">4</mat-option>
+                <mat-option value="5">5</mat-option>
+              </mat-select>
+            </td>
+            <td role="cell" *ngIf="selected=='2'">
+              <textarea matInput [(ngModel)]="card.guardian2_comment" name="{{card.guardian2_comment}}"></textarea>
+            </td>
+
+          </tr>
 
 
-  </tbody>
-</table>
-<p class="error">{{saveError}}</p>
+        </tbody>
+      </table>
+      <p class="error">{{saveError}}</p>
 
-    <button mat-raised-button (click)="send(1)">Spara</button>
-    <button mat-raised-button (click)="send(2)">Behov uppfyllt</button>
-    <button mat-raised-button (click)="send(3)">Skicka till barnteam</button>
+      <button mat-raised-button (click)="send(1)">Spara</button>
+      <button mat-raised-button (click)="send(2)">Behov uppfyllt</button>
+      <button mat-raised-button (click)="send(3)">Skicka till barnteam</button>
 
+    </div>
   </div>
-</div>
 
 </div>

@@ -1,36 +1,36 @@
 <div class="container">
-    <h1>Barnteams detaljer</h1>
+  <h1>Barnteams detaljer</h1>
 
-    <button class="back-button" mat-icon-button routerLink="/barnteam">
-        <span class="material-icons"> arrow_back </span>
-     Tillbaka
+  <button class="back-button" mat-icon-button routerLink="/barnteam">
+    <span class="material-icons"> arrow_back </span>
+    Tillbaka
   </button>
-  
+
   <mat-list *ngIf="(team$ | async) as team">
 
-    <mat-list-item>Namn: {{team.teamName}}</mat-list-item> 
+    <mat-list-item>Namn: {{team.teamName}}</mat-list-item>
     <mat-divider></mat-divider>
 
     <mat-list-item>Enheter:</mat-list-item>
     <ul>
       <li *ngFor="let unit of team.units; let i= index;">{{unit.unitName}}</li>
-    </ul>  
+    </ul>
     <mat-divider></mat-divider>
 
     <mat-list-item>Medlemmar:</mat-list-item>
     <ul>
-    <li *ngFor="let medlem of users; let i= index;">{{medlem.firstName}} {{medlem.lastName}}</li>
-    </ul>  
+      <li *ngFor="let medlem of users; let i= index;">{{medlem.firstName}} {{medlem.lastName}}</li>
+    </ul>
 
     <mat-divider></mat-divider>
 
-    
-    </mat-list>
+
+  </mat-list>
 
 
-    <button mat-raised-button class="delete-button" (click)="delete()">
-      Ta bort
-      </button>
-    
-    
+  <button mat-raised-button class="delete-button" (click)="delete()">
+    Ta bort
+  </button>
+
+
 </div>

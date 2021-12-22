@@ -12,8 +12,6 @@ import { Unit } from 'src/app/models/Unit';
 import { User } from 'src/app/models/User';
 import { ComponentCanDeactivate } from 'src/app/interfaces/component-can-deactivate';
 
-
-
 @Component({
   selector: 'app-create-discover-card',
   templateUrl: './create-discover-card.component.html',
@@ -26,75 +24,94 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
 
   isDirty = false;
 
+  // an array with the information about the different categores and questions
+  // to be displayed on the page
   ELEMENT_DATA = [
-    { color: '#ccd8ec', type: 'OMSORG', id: 'care', 
-    description: 'Barnet har vuxna i sin närhet som hen kan lita på och vända sig till.',  
-    helpText:['Barnet har någon att lita på och vända sig till när det behövs',
-      'Barnet har tillgängliga vuxna som uppmuntrar och uppmärksammar det',
-     'Barnet får kognitiv stimulans av vuxna i sin närhet',
-      'Barnet får extra stöd och vård när det behövs',
-      'Barnet bor i en miljö som är anpassad efter barnets behov samt främjar dess utveckling',
-      'Barnet har någon som ser till att hen är ren och lämpligt klädd efter årstid']},  
+    {
+      color: '#ccd8ec', type: 'OMSORG', id: 'care',
+      description: 'Barnet har vuxna i sin närhet som hen kan lita på och vända sig till.',
+      helpText: ['Barnet har någon att lita på och vända sig till när det behövs',
+        'Barnet har tillgängliga vuxna som uppmuntrar och uppmärksammar det',
+        'Barnet får kognitiv stimulans av vuxna i sin närhet',
+        'Barnet får extra stöd och vård när det behövs',
+        'Barnet bor i en miljö som är anpassad efter barnets behov samt främjar dess utveckling',
+        'Barnet har någon som ser till att hen är ren och lämpligt klädd efter årstid']
+    },
 
-    { color: '#dbd9e6', type: 'TRYGGHET', id: 'security', 
-    description: 'Barnet skyddas från sådant som kan skada hen i och utanför hemmet.', 
-    helpText:['Barnet känner sig trygg hemma, i skolan, på nätet och i sin närmiljö',
-      'Barnet skyddas från kränkningar',
-     'Barnet skyddas från fysiska faror och hälsofaror i och utanför hemmet',
-      'Barnet visar förmåga att bedöma och hantera situationer som kan innebära en risk både för barnet själv och andra',
-      'Barnet litar på de som finns i dess närhet, såväl barn som vuxna',
-      'Barnet skyddas från att bli utnyttjat av andra',
-      'Barnet skyddas från kriminalitet och olaglig verksamhet',
-      'Barnet lever i en hemmiljö som är fri från missbruk, våld, försummelse och utnyttjande']},
+    {
+      color: '#dbd9e6', type: 'TRYGGHET', id: 'security',
+      description: 'Barnet skyddas från sådant som kan skada hen i och utanför hemmet.',
+      helpText: ['Barnet känner sig trygg hemma, i skolan, på nätet och i sin närmiljö',
+        'Barnet skyddas från kränkningar',
+        'Barnet skyddas från fysiska faror och hälsofaror i och utanför hemmet',
+        'Barnet visar förmåga att bedöma och hantera situationer som kan innebära en risk både för barnet själv och andra',
+        'Barnet litar på de som finns i dess närhet, såväl barn som vuxna',
+        'Barnet skyddas från att bli utnyttjat av andra',
+        'Barnet skyddas från kriminalitet och olaglig verksamhet',
+        'Barnet lever i en hemmiljö som är fri från missbruk, våld, försummelse och utnyttjande']
+    },
 
-    { color: '#ffdcee', type: 'MÅR BRA', id: 'feel_good', 
-    description: 'Barnet har hälsosamma matvanor, god hygien och ett liv fritt från tobak, alkohol och narkotika.', 
-    helpText:['Barnet är frisk och upprätthåller god fysisk och psykisk hälsa',
-      'Barnet deltar vid kontroller/besök som ska ge barnet stöd/hjälp',
-      'Barnet har en hälsosam livsstil',
-      'Barnet mår bra och ser positivt på framtiden',
-      'Barnet kan hantera svårigheter och problem',
-      'Barnet uppvisar inte negativt eller destruktivt beteende']},
+    {
+      color: '#ffdcee', type: 'MÅR BRA', id: 'feel_good',
+      description: 'Barnet har hälsosamma matvanor, god hygien och ett liv fritt från tobak, alkohol och narkotika.',
+      helpText: ['Barnet är frisk och upprätthåller god fysisk och psykisk hälsa',
+        'Barnet deltar vid kontroller/besök som ska ge barnet stöd/hjälp',
+        'Barnet har en hälsosam livsstil',
+        'Barnet mår bra och ser positivt på framtiden',
+        'Barnet kan hantera svårigheter och problem',
+        'Barnet uppvisar inte negativt eller destruktivt beteende']
+    },
 
-    { color: '#fbdae1', type: 'FRITID', id: 'free_time', 
-    description: 'Barnet har fritidsintresse med delaktighet från vårdnadshavare eller annan trygg person i dess närhet.', 
-    helpText:['Barnet och familjen är aktiva tillsammans och gör saker som barnet tycker är roligt',
-      'Barnet uppmuntras att vara aktiv utifrån sin förmåga, t ex deltar i lek, friluftsliv och idrottsaktiviteter',
-      'Barnet uppmuntras och ges förutsättningar för att utveckla egna intressen och att delta i aktiviteter som är stimulerande']},
+    {
+      color: '#fbdae1', type: 'FRITID', id: 'free_time',
+      description: 'Barnet har fritidsintresse med delaktighet från vårdnadshavare eller annan trygg person i dess närhet.',
+      helpText: ['Barnet och familjen är aktiva tillsammans och gör saker som barnet tycker är roligt',
+        'Barnet uppmuntras att vara aktiv utifrån sin förmåga, t ex deltar i lek, friluftsliv och idrottsaktiviteter',
+        'Barnet uppmuntras och ges förutsättningar för att utveckla egna intressen och att delta i aktiviteter som är stimulerande']
+    },
 
-    { color: '#fee4d7', type: 'TILLHÖRIGHET', id: 'beloning', 
-    description: 'Barnet känner tillhörighet och uppskattning av personer som barnet möter i sin vardag.', 
-    helpText:['Barnet känner sig viktig och uppskattad av de som tar hand om hen',
-      'Barnet känner sig viktig och uppskattad av barn och vuxna som finns i dess närhet',
-     'Familjen har ett socialt nätverk som deltar aktivt i barnets liv'] },
+    {
+      color: '#fee4d7', type: 'TILLHÖRIGHET', id: 'beloning',
+      description: 'Barnet känner tillhörighet och uppskattning av personer som barnet möter i sin vardag.',
+      helpText: ['Barnet känner sig viktig och uppskattad av de som tar hand om hen',
+        'Barnet känner sig viktig och uppskattad av barn och vuxna som finns i dess närhet',
+        'Familjen har ett socialt nätverk som deltar aktivt i barnets liv']
+    },
 
-    { color: '#fcedd6', type: 'ANSVARSTAGANDE', id: 'responsibility', 
-    description: 'Barnet förstår vad som förväntas av hen i sin vardag, visar hänsyn och omtanke inför andra och följer givna regler.', 
-    helpText:['Barnet deltar i undervisningen i skolan',
-      'Barnet vet vad som är rätt och fel och agerar utifrån det',
-      'Barnet tar ansvar för sina handlingar',
-      'Barnet förstår vad som förväntas av hen och tar ansvar hemma, i skolan och i närmiljön',
-      'Barnet visar hänsyn och omtanke om andra',
-      'Barnet kan förstå och följa regler',
-      'Barnet har bra förebilder i sin närhet'] },
+    {
+      color: '#fcedd6', type: 'ANSVARSTAGANDE', id: 'responsibility',
+      description: 'Barnet förstår vad som förväntas av hen i sin vardag, visar hänsyn och omtanke inför andra och följer givna regler.',
+      helpText: ['Barnet deltar i undervisningen i skolan',
+        'Barnet vet vad som är rätt och fel och agerar utifrån det',
+        'Barnet tar ansvar för sina handlingar',
+        'Barnet förstår vad som förväntas av hen och tar ansvar hemma, i skolan och i närmiljön',
+        'Barnet visar hänsyn och omtanke om andra',
+        'Barnet kan förstå och följa regler',
+        'Barnet har bra förebilder i sin närhet']
+    },
 
-    { color: '#d9f2e4', type: 'RESPEKTERAS', id: 'respect', 
-    description: 'Barnet känner sig sedd, hörd och bekräftad av viktiga personer i sin vardag.', 
-    helpText:['Barnet känner sig lyssnad till, tagen på allvar och är delaktig i viktiga vardagsbeslut',
-      'Barnet har en bra självkänsla och ser sig själv som värdefull',
-      'Barnet känner att vänner och andra tror på dess förmåga och stöttar hen',
-      'Barnet känner sig inte retad, utsatt/utstött eller kränkt av andra']},
+    {
+      color: '#d9f2e4', type: 'RESPEKTERAS', id: 'respect',
+      description: 'Barnet känner sig sedd, hörd och bekräftad av viktiga personer i sin vardag.',
+      helpText: ['Barnet känner sig lyssnad till, tagen på allvar och är delaktig i viktiga vardagsbeslut',
+        'Barnet har en bra självkänsla och ser sig själv som värdefull',
+        'Barnet känner att vänner och andra tror på dess förmåga och stöttar hen',
+        'Barnet känner sig inte retad, utsatt/utstött eller kränkt av andra']
+    },
 
-    { color: '#d1f3f3', type: 'UTVECKLAS', id: 'develop', 
-    description: 'Barnet utvecklas i fas med sin ålder och har förmågor att klara av det vardagliga livet.', 
-    helpText:['Barnet utvecklas och lär sig nya saker i olika miljöer',
-      'Barnet är nyfiket och motiverat till att lära sig nya saker',
-      'Barnet uppnår kunskapskraven för sin ålder',
-      'Barnet har utvecklat förmågor för att klara av och hantera sin vardag',
-      'Barnet har engagerade vuxna i sin närhet som stöttar hen i sin utveckling och i sitt lärande']},
+    {
+      color: '#d1f3f3', type: 'UTVECKLAS', id: 'develop',
+      description: 'Barnet utvecklas i fas med sin ålder och har förmågor att klara av det vardagliga livet.',
+      helpText: ['Barnet utvecklas och lär sig nya saker i olika miljöer',
+        'Barnet är nyfiket och motiverat till att lära sig nya saker',
+        'Barnet uppnår kunskapskraven för sin ålder',
+        'Barnet har utvecklat förmågor för att klara av och hantera sin vardag',
+        'Barnet har engagerade vuxna i sin närhet som stöttar hen i sin utveckling och i sitt lärande']
+    },
 
   ];
 
+  // an array to save the different score for different categories
   choices = [
     { type: 'OMSORG', choice: 4 },
     { type: 'TRYGGHET', choice: 4 },
@@ -107,6 +124,8 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
   ];
 
   createDiscoveCardFormGroup: FormGroup;
+
+  // the error msgs to be displayed to the user
   saveError = '';
   firstNameError = '';
   lastNameError = '';
@@ -116,6 +135,10 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
   situationError = '';
   categoryError = '';
   informMesg = '';
+  guardiansError = [
+    { name: '', personNbr: '' },
+    { name: '', personNbr: '' },
+  ];
 
   guardianNbr: number = 2;
   selected = '2';
@@ -126,10 +149,6 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
     { name: '', personNbr: '', inform: '0', samtycke: '0' },
   ];
 
-  guardiansError = [
-    { name: '', personNbr: '' },
-    { name: '', personNbr: '' },
-  ];
 
   unitNbr: number = -1;
   unitString = '-1';
@@ -163,7 +182,8 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       let name: string = data?.name ?? '';
       let units: Unit[] = data?.units ?? [];
 
-      this.store.dispatch(new fromState.LoadDiscoverCard(userID));
+      // a raw to be deleted 
+      //this.store.dispatch(new fromState.LoadDiscoverCard(userID));
 
       this.current_user = new User(userID, firstName, lastName,
         email, roleID, description, organisation, name, units);
@@ -174,29 +194,33 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       lastNameControl: ['', [Validators.required, Validators.minLength(2)]],
       personNbrControl: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       situationCommentControl: ['', Validators.required],
-
     });
 
   }
 
+  // check the personId written by the user
+  // only numbers and only 12 numbers
   isNumeric(str: any): boolean {
-      return this.isInteger(str) && str.trim().toString().length == 12;
+    return this.isInteger(str) && str.trim().toString().length == 12;
   }
 
-  isInteger(str: string){
-    var isNbr= true;
-        for (var i = 0; i < str.length; i++) {
-            if (str.charAt(i) < '0' || str.charAt(i) > '9') {
-                isNbr= false;
-            }
-        }
-        return isNbr;
+  // check if it is only numbers in the str string
+  isInteger(str: string) {
+    var isNbr = true;
+    for (var i = 0; i < str.length; i++) {
+      if (str.charAt(i) < '0' || str.charAt(i) > '9') {
+        isNbr = false;
+      }
     }
-  
+    return isNbr;
+  }
+
 
   changeGuardianNbr(nbr: number) {
     this.guardianNbr = nbr;
   }
+
+  // this function called on mat-select to change the unit 
   changeUnitNbr(unitID: string, unitName: string) {
     this.unitString = unitName;
     this.unitNbr = parseInt(unitID);
@@ -218,6 +242,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
     this.guardians[index1].samtycke = event.value;
   }
 
+  // check that the user doesn't miss to choose a value
   checkChoices(): boolean {
     var emptyChoice = true;
     this.choices.forEach(element => {
@@ -228,6 +253,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
     return emptyChoice;
   }
 
+  // check that the user has the permissions, otherwhise the card will be anonymous
   missCosent(): boolean {
     if (this.guardianNbr == 2 &&
       (this.guardians[0].samtycke != '1' || this.guardians[1].samtycke != '1' ||
@@ -240,6 +266,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
     return true;
   }
 
+  // check if the card will be anonymous and create the confirmationmsg to be shown to the user
   isAnonyms(): boolean {
     if (this.unitNbr == 7 && !this.missCosent()) {
       this.informMesg = 'kortet kommer att anonymiseras för barnet tillhör annat enhet än Ystad och samtycke av föräldrar saknas';
@@ -260,18 +287,21 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
     this.store.dispatch(new fromRoot.Back());
   }
 
+
+  // send the request to create the discover card 
   send(number: number) {
     this.personNbr = this.createDiscoveCardFormGroup.value.personNbrControl;
 
-    var GuardianName2= this.guardians[1].name;
-    if(this.guardians[1].name==''){
-      GuardianName2='0';
+    var GuardianName2 = this.guardians[1].name;
+    if (this.guardians[1].name == '') {
+      GuardianName2 = '0';
     }
-    var GuardianNbr2= this.guardians[1].personNbr;
-    if(this.guardians[1].personNbr==''){
-      GuardianNbr2='0';
+    var GuardianNbr2 = this.guardians[1].personNbr;
+    if (this.guardians[1].personNbr == '') {
+      GuardianNbr2 = '0';
     }
 
+    // the json vaiable to be send with the request
     var card = {
       UserID: parseInt(this.current_user.userID) ?? 0,
       PersonLastName: this.createDiscoveCardFormGroup.value.lastNameControl.trim() ?? '0',
@@ -327,7 +357,9 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
     this.situationError = '';
     this.categoryError = '';
     this.informMesg = '';
-  
+
+
+    // check for errors before sending the request
     if (this.createDiscoveCardFormGroup.controls.firstNameControl.status == "INVALID") {
       this.firstNameError = 'Förnamn behövs, kan ej vara mondre än 2 bokstäver';
       this.saveError = 'Du har missat att fylla i saker';
@@ -336,7 +368,7 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       this.lastNameError = 'efternamn behövs, kan ej vara mondre än 2 bokstäver';
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
-    }  if (this.createDiscoveCardFormGroup.controls.personNbrControl.status == "INVALID" || this.personNbr.toString().trim().length != 12) {
+    } if (this.createDiscoveCardFormGroup.controls.personNbrControl.status == "INVALID" || this.personNbr.toString().trim().length != 12) {
       this.personNbrError = 'Personnummer ska innehålla 12 siffror';
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
@@ -383,69 +415,80 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
       this.unitError = 'Du måste välja en enhet';
       this.saveError = 'Du har missat att fylla i saker';
       isSendAvailable = false;
-    } if (isSendAvailable) {
-      if (number == 1) {  
+    }
+
+    // if there is no error then send the request
+    if (isSendAvailable) {
+
+      // if the card will be s end, check for more errors and missed inputs
+      if (number == 1) {
         if (!this.checkChoices()) {
           this.categoryError = 'Du har missat att välja JA, NEJ eller VET EJ i någon av Behovsområden';
           isSendAvailable = false;
           this.saveError = 'Du har missat att fylla i saker';
 
-        }if (this.isMeasureTaken == 2) {
-            this.measureError = 'Du måste välja nej eller ja';
-            this.saveError = 'Du har missat att fylla i saker';
-            isSendAvailable = false;
+        } if (this.isMeasureTaken == 2) {
+          this.measureError = 'Du måste välja nej eller ja';
+          this.saveError = 'Du har missat att fylla i saker';
+          isSendAvailable = false;
 
-          } if (isSendAvailable) {
-            this.isAnonyms();
+        } if (isSendAvailable) {
+          this.isAnonyms();
 
-            const dialogRef = this.dialog.open(DialogComponent, {
-              data: {
-                title: 'Skapa upptäckarkort',
-                text: this.informMesg,
-              }
-            });
-
-            dialogRef.afterClosed().subscribe(result => {
-              if (result) {
-                if (!this.isAnonyms()) {
-                  card.Status = 0;
-
-                  card.PersonLastName = '0';
-                  card.PersonFirstName = '0';
-                  card.PersonNbr = '0';
-
-                  card.GuardianName1 = '0';
-                  card.GuardianNbr1 = '0';
-                  card.GuardianName2 = '0';
-                  card.GuardianNbr2 = '0';
-
-                }
-                this.isDirty = false;
-                this.store.dispatch(new fromState.CreateDiscoverCard(card));
-              }
-            });
-          }
-        }
-        else {
           const dialogRef = this.dialog.open(DialogComponent, {
             data: {
               title: 'Skapa upptäckarkort',
-              text: 'Kortet kommer att sparas',
+              text: this.informMesg,
             }
           });
 
+          // create the card  after showing a confirmation window to the user
           dialogRef.afterClosed().subscribe(result => {
             if (result) {
+              if (!this.isAnonyms()) {
+                // if the card will be anonymous, put zeros in the name and personnumbers for th child and the parents 
+                card.Status = 0;
+
+                card.PersonLastName = '0';
+                card.PersonFirstName = '0';
+                card.PersonNbr = '0';
+
+                card.GuardianName1 = '0';
+                card.GuardianNbr1 = '0';
+                card.GuardianName2 = '0';
+                card.GuardianNbr2 = '0';
+
+              }
               this.isDirty = false;
               this.store.dispatch(new fromState.CreateDiscoverCard(card));
             }
           });
         }
-      } 
+      }
 
+      // else if the card will only be saved, no need to check more inputs 
+      else {
+
+        // create the card  after showing a confirmation window to the user
+        const dialogRef = this.dialog.open(DialogComponent, {
+          data: {
+            title: 'Skapa upptäckarkort',
+            text: 'Kortet kommer att sparas',
+          }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.isDirty = false;
+            this.store.dispatch(new fromState.CreateDiscoverCard(card));
+          }
+        });
+      }
     }
 
-  
+  }
+
+
 }
 
 

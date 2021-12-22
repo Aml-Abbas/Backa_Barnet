@@ -12,22 +12,25 @@ import { Contact } from 'src/app/models/Contact';
   styleUrls: ['./contact-guardian.component.scss']
 })
 export class ContactGuardianComponent implements OnInit {
-  current_person$= new Observable<Person | null>();
+  current_person$ = new Observable<Person | null>();
 
-  barnKontakt$= new Observable<Contact[] | null>();
+  barnKontakt$ = new Observable<Contact[] | null>();
 
   userRoleId: string;
 
   constructor(private store: Store<fromState.State>,
-              private getSetService: GetSetService) { }
+    private getSetService: GetSetService) { }
 
+  // get the contact of the choosen child and diaplay it on the page
+  // Stödsamordnare-> To be implemented in the next phase
+  // html and css code for "Stödsamordnare" in place, just uncomment it and write the javascript code for it
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
-    this.current_person$.subscribe(data =>{
+    this.current_person$.subscribe(data => {
       this.barnKontakt$ = this.getSetService.getBarnKontakt(String(data?.personID));
-     });
-    this.store.select(fromState.getCurrentUser).subscribe(data=>{
-      this.userRoleId= String(data?.roleID);
+    });
+    this.store.select(fromState.getCurrentUser).subscribe(data => {
+      this.userRoleId = String(data?.roleID);
     });
 
   }

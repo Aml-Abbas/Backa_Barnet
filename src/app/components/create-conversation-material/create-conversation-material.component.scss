@@ -1,239 +1,138 @@
-h1{
-    font-size: 30px;
-    font-weight: bold;
-  }
-
-  h4{
-    font-size: 20px;
-    margin-bottom: 15px;
-  }
-  
-  table {
-    width: 100%;
-    background-color: whitesmoke;
-    border-collapse: collapse;
-  }
-
-  th{
-    text-align: left;
-    background-color: white;
-  }
-
-  td, th, tr{
-    color: black;
-    padding: 4px;
-  }
-
-  
-  thead{
-    border-bottom: 1px solid lightgray !important;
-  }
-
-  textarea{
-    border: 1px solid gray;
-    color: black;
-    margin-bottom: 8px !important;
-    margin-top: 5px !important;
-    min-height: 40px;
-    max-height: 80px;
-  }
-
-  tbody{
-    tr{
-      border-bottom: 1px solid lightgray !important;
-    }
-  }
-
-  mat-select{
-    border: 1px solid gray;
-  }
-
-  #matFormFieldGuardians{
-    width: 25%;
-    height: 45px;
-    margin-bottom: 25px;
-      mat-label{
-          color: black;
-      }
-  }
-#matselectGuardians{
-  border: 1px solid white !important;
-
+h1 {
+  font-size: 30px;
+  font-weight: bold;
 }
 
- mat-form-field{
-    width: 100%;
-    height: 55px;
-    margin-bottom: 20px;
-      mat-label{
-          color: black;
-      }
-  }
+h4 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
 
-::ng-deep .mat-select-value{
-    color: black !important;
-  }
-  
-  ::ng-deep #matselectGuardians-panel{
-    background-color: #663399 !important;
-  }
-  
-  ::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
-    color: white !important;
-  }
+table {
+  width: 100%;
+  background-color: whitesmoke;
+  border-collapse: collapse;
+}
 
-  button{
-    margin-top: 30px;
-    margin-left: 8%;
-    width: 25%;
-    background-color: #cde7e6;
+th {
+  text-align: left;
+  background-color: white;
+}
+
+td,
+th,
+tr {
+  color: black;
+  padding: 4px;
+}
+
+thead {
+  border-bottom: 1px solid lightgray !important;
+}
+
+textarea {
+  border: 1px solid gray;
+  color: black;
+  margin-bottom: 8px !important;
+  margin-top: 5px !important;
+  min-height: 40px;
+  max-height: 80px;
+}
+
+tbody {
+  tr {
+    border-bottom: 1px solid lightgray !important;
+  }
+}
+
+mat-select {
+  border: 1px solid gray;
+}
+
+#matFormFieldGuardians {
+  width: 25%;
+  height: 45px;
+  margin-bottom: 25px;
+  mat-label {
     color: black;
-    margin-bottom: 15px;
   }
+}
+#matselectGuardians {
+  border: 1px solid white !important;
+}
 
-  p{
-    font-size: 20px;
+mat-form-field {
+  width: 100%;
+  height: 55px;
+  margin-bottom: 20px;
+  mat-label {
+    color: black;
   }
+}
 
-  .error{
-    margin-top: 15px;
-    color: brown;
-    font-size: 15px;
- }
+::ng-deep .mat-select-value {
+  color: black !important;
+}
 
-::ng-deep .mat-select-arrow{
+::ng-deep #matselectGuardians-panel {
+  background-color: #663399 !important;
+}
+
+::ng-deep .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: white !important;
+}
+
+button {
+  margin-top: 30px;
+  margin-left: 8%;
+  width: 25%;
+  background-color: #cde7e6;
+  color: black;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 20px;
+}
+
+.error {
+  margin-top: 15px;
+  color: brown;
+  font-size: 15px;
+}
+
+::ng-deep .mat-select-arrow {
   color: gray;
 }
 
- /* 
- ::ng-deep #care{
-  td{
-    color: #003686;
-  }
-  .mat-select-arrow{
-    color: #003686;
-  }
-    }
-
-   ::ng-deep #care-class-panel{
-      background-color: #003686 !important;
-    }
-
-  
-::ng-deep #security{
-  td{
-    color: #353370;
-  }
-  .mat-select-arrow{
-    color: #353370;
-  }
-}
-
-::ng-deep #security-class-panel{
-  background-color: #353370 !important;
-}
-
-::ng-deep #feel_good{
-  td{
-    color: #e0448c;
-  }
-  .mat-select-arrow{
-    color: #e0448c;
-  }
-}
-
-::ng-deep #feel_good-class-panel{
-  background-color: #e0448c !important;
-}
-
-::ng-deep #free_time{
-  td{
-    color: #df2d5b;
-  }   
-  .mat-select-arrow{
-    color: #df2d5b;
-  }
-}
-
-::ng-deep #free_time-class-panel{
-  background-color: #df2d5b !important;
-}
-
-::ng-deep #beloning{
-  td{
-    color: #eb612d;
-  }   
-  .mat-select-arrow{
-    color: #eb612d;
-  }
-}
-
-::ng-deep #beloning-class-panel{
-  background-color: #eb612d !important;
-}
-
-::ng-deep #responsibility{
-  td{
-    color: #f79c2e;
-  }  
-  .mat-select-arrow{
-    color: #f79c2e;
-  }
-}
-
-::ng-deep #responsibility-class-panel{
-  background-color: #f79c2e !important;
-}
-
-::ng-deep #respekt{
-  td{
-    color: #4ba562;
-  }   
-  .mat-select-arrow{
-    color: #4ba562;
-  }
-}
-
-::ng-deep #respekt-class-panel{
-  background-color: #4ba562 !important;
-}
-
-::ng-deep #develop{
-  td{
-    color: #31acaf;
-  } 
-  .mat-select-arrow{
-    color: #31acaf;
-  } 
-}
-
-::ng-deep #develop-class-panel{
-  background-color: #31acaf !important;
-} */
-
-@media screen and (max-width: 1024px){
-  button{
+@media screen and (max-width: 1024px) {
+  button {
     width: 50%;
     margin-left: 25%;
   }
-  table, thead, tbody, th, td, tr {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
     display: block;
   }
-  
+
   thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
-  
+
   tr {
     margin: 0 0 1rem 0;
   }
-    
+
   tr:nth-child(odd) {
     background: whitesmoke;
   }
-  
+
   td {
     border: none;
     border-bottom: 1px solid #eee;
@@ -241,7 +140,7 @@ h1{
     padding-left: 50%;
     margin-bottom: 20px;
   }
-  
+
   td:before {
     position: absolute;
     top: 0;
@@ -251,16 +150,31 @@ h1{
     white-space: nowrap;
     color: black;
   }
-  
-  td:nth-of-type(1):before { content: "Behovsområde"; }
-  td:nth-of-type(2):before { content: "Frågan"; }
-  td:nth-of-type(3):before { content: "Barnet"; }
-  td:nth-of-type(4):before { content: ""; }
 
-  td:nth-of-type(5):before { content: "Vårdnadshavare 1"; }
-  td:nth-of-type(6):before { content: ""; }
+  td:nth-of-type(1):before {
+    content: "Behovsområde";
+  }
+  td:nth-of-type(2):before {
+    content: "Frågan";
+  }
+  td:nth-of-type(3):before {
+    content: "Barnet";
+  }
+  td:nth-of-type(4):before {
+    content: "";
+  }
 
-  td:nth-of-type(7):before { content: "Vårdnadshavare 2"; }
-  td:nth-of-type(8):before { content: ""; }
+  td:nth-of-type(5):before {
+    content: "Vårdnadshavare 1";
+  }
+  td:nth-of-type(6):before {
+    content: "";
+  }
 
+  td:nth-of-type(7):before {
+    content: "Vårdnadshavare 2";
+  }
+  td:nth-of-type(8):before {
+    content: "";
+  }
 }

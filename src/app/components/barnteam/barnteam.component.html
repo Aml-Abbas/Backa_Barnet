@@ -1,17 +1,17 @@
 <div class="container">
-    <h1>Barnteam</h1>
+  <h1>Barnteam</h1>
 
-    <div class="search">
-      <mat-form-field appearance="standard">
-        <mat-label>Sök - namn eller datum
-        </mat-label>
-        <input matInput (keyup)="applyFilter($event)" #input>  
-      </mat-form-field>
-      <button mat-raised-button routerLink="/create-barnteam">Nytt barnteam</button>
-    </div>
-      <h2>Lista med barnteam</h2>
-         
-  
+  <div class="search">
+    <mat-form-field appearance="standard">
+      <mat-label>Sök - namn eller datum
+      </mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+    <button mat-raised-button routerLink="/create-barnteam">Nytt barnteam</button>
+  </div>
+  <h2>Lista med barnteam</h2>
+
+
   <table role="table">
     <thead role="rowgroup">
       <tr role="row">

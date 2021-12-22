@@ -15,11 +15,11 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./barnteam-details.component.scss']
 })
 export class BarnteamDetailsComponent implements OnInit {
-  memberList$= new Observable<any[]| null>();
-  team$= new Observable<Barnteam | null>();
+  memberList$ = new Observable<any[] | null>();
+  team$ = new Observable<Barnteam | null>();
   barnteamID: string;
 
-  pusers: Promise<User[]>= new Promise((resolve, reject) => { });
+  pusers: Promise<User[]> = new Promise((resolve, reject) => { });
   users: User[] = [];
 
   constructor(private store: Store<fromState.State>,
@@ -27,27 +27,30 @@ export class BarnteamDetailsComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.team$= this.store.select(fromState.getCurrentAdminBarnteam);
-    this.team$.subscribe(data=>{
-      this.barnteamID= data?.teamID ??'';
-      this.pusers= this.adminService.getUnitUsers(this.barnteamID);
+    this.team$ = this.store.select(fromState.getCurrentAdminBarnteam);
+    this.team$.subscribe(data => {
+      this.barnteamID = data?.teamID ?? '';
+      this.pusers = this.adminService.getUnitUsers(this.barnteamID);
     });
 
-    let users= this.users;
+    let users = this.users;
 
     this.pusers.then(function (response) {
-      
-      response.forEach((user: User)=>{
+
+      response.forEach((user: User) => {
         users.push(user);
+      });
     });
-    });
-    users.forEach(element=>{
+    users.forEach(element => {
       this.users.push(element);
     });
 
   }
 
-  delete(){
+  // This function is called when clicking in the delete  button to delete the current user
+  // Show a confirm window and after delete confirmation call the delete action which delete the user
+  // send teamId as json object with the delete action to be used in the request
+  delete() {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: {
         title: 'Ta bort barnteam',
@@ -58,10 +61,10 @@ export class BarnteamDetailsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         var user = {
-          TeamID:  this.barnteamID,
-        } 
+          TeamID: this.barnteamID,
+        }
         this.store.dispatch(new fromState.RemoveBarnteam(user));
-            
+
       }
     });
 

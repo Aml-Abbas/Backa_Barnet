@@ -1,4 +1,4 @@
-button{
+button {
   margin-left: 12.5%;
   width: 20%;
   background-color: #cde7e6;
@@ -7,34 +7,33 @@ button{
   margin-right: 60%;
 }
 
-mat-label{
+mat-label {
   color: black;
 }
 
-.full-width{
+.full-width {
   width: 100%;
 }
 
-mat-form-field{
+mat-form-field {
   margin-right: 10%;
   width: 40%;
   color: black;
   margin-bottom: 10px;
   display: inline-block;
   height: 55px;
-
 }
 
-.material-icons { 
-    font-size: 30px;
-    color: #663399;
+.material-icons {
+  font-size: 30px;
+  color: #663399;
 }
-.create { 
+.create {
   font-size: 25px;
   color: #663399;
 }
 
-.back-button{
+.back-button {
   color: #663399;
   size: 16px;
   margin-right: 50%;
@@ -43,37 +42,36 @@ mat-form-field{
   width: 10%;
 }
 
-::ng-deep .mat-focused .mat-form-field-required-marker{
+::ng-deep .mat-focused .mat-form-field-required-marker {
   color: #663399;
 }
 
-::ng-deep .mat-select-panel{
-background-color: #663399 !important;
+::ng-deep .mat-select-panel {
+  background-color: #663399 !important;
 }
-::ng-deep.mat-select-arrow{
-color: #663399;
-}
-
-::ng-deep .mat-select-value{
-color: black !important;
-}
-::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
-color: white !important;
+::ng-deep.mat-select-arrow {
+  color: #663399;
 }
 
-.delete-button{
+::ng-deep .mat-select-value {
+  color: black !important;
+}
+::ng-deep .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: white !important;
+}
+
+.delete-button {
   background-color: brown;
   margin-left: 0%;
   margin-right: 60%;
   color: white;
-  }
+}
 
-  ::ng-deep .mat-primary .mat-pseudo-checkbox-checked{
-    background-color: white !important;
-    }
+::ng-deep .mat-primary .mat-pseudo-checkbox-checked {
+  background-color: white !important;
+}
 
-    
-p{
+p {
   margin-top: 15px;
   color: brown;
   font-size: 15px;

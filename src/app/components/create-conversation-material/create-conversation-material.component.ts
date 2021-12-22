@@ -15,7 +15,7 @@ import * as fromRoot from '../../../app/state';
   templateUrl: './create-conversation-material.component.html',
   styleUrls: ['./create-conversation-material.component.scss']
 })
-export class CreateConversationMaterialComponent implements OnInit, ComponentCanDeactivate{
+export class CreateConversationMaterialComponent implements OnInit, ComponentCanDeactivate {
   canDeactivate(): boolean {
     return !this.isDirty;
   }
@@ -23,132 +23,154 @@ export class CreateConversationMaterialComponent implements OnInit, ComponentCan
   isDirty = false;
 
   current_user$: Observable<User | null> = new Observable<User | null>();
-  userId: string='';
+  userId: string = '';
 
-  current_person$= new Observable<Person | null>();
+  current_person$ = new Observable<Person | null>();
   current_person: Person;
 
-  guardianNbr: number=2;
+  guardianNbr: number = 2;
   selected = '2';
-  saveError='';
+  saveError = '';
 
-   scores = [
-    { area: "OMSORG", id: "care",class: "care-class", question:'Jag har någon som bryr sig om mig', 
-    person_score:'', person_comment: '',
-    guardian1_score:'', guardian1_comment: '',
-    guardian2_score:'', guardian2_comment: '',
-    color: '#003686'},
+  // an array which have the different categories and questions to be displayed in the page
+  scores = [
+    {
+      area: "OMSORG", id: "care", class: "care-class", question: 'Jag har någon som bryr sig om mig',
+      person_score: '', person_comment: '',
+      guardian1_score: '', guardian1_comment: '',
+      guardian2_score: '', guardian2_comment: '',
+      color: '#003686'
+    },
 
-    { area: "TRYGGHET", id: "security", class:'security-class', question:'Jag känner mig trygg', 
-    person_score:'', person_comment:'',
-    guardian1_score:'', guardian1_comment: '',
-    guardian2_score:'', guardian2_comment: '',
-    color: '#353370'},
+    {
+      area: "TRYGGHET", id: "security", class: 'security-class', question: 'Jag känner mig trygg',
+      person_score: '', person_comment: '',
+      guardian1_score: '', guardian1_comment: '',
+      guardian2_score: '', guardian2_comment: '',
+      color: '#353370'
+    },
 
-    { area: "MÅ BRA", id: "feel_good", class:'feel_good-class', question:'Jag mår bra', 
-    person_score:'', person_comment: '',
-    guardian1_score:'', guardian1_comment: '',
-    guardian2_score:'', guardian2_comment: '',
-    color: '#e0448c'},
+    {
+      area: "MÅ BRA", id: "feel_good", class: 'feel_good-class', question: 'Jag mår bra',
+      person_score: '', person_comment: '',
+      guardian1_score: '', guardian1_comment: '',
+      guardian2_score: '', guardian2_comment: '',
+      color: '#e0448c'
+    },
 
-    { area: "FRITID", id: "free_time", class:'free_time-class', question:'Jag trivs med min fritid', 
-    person_score:'', person_comment: '',
-    guardian1_score:'', guardian1_comment: '',
-    guardian2_score:'', guardian2_comment: '',
-    color: '#df2d5b'},
+    {
+      area: "FRITID", id: "free_time", class: 'free_time-class', question: 'Jag trivs med min fritid',
+      person_score: '', person_comment: '',
+      guardian1_score: '', guardian1_comment: '',
+      guardian2_score: '', guardian2_comment: '',
+      color: '#df2d5b'
+    },
 
-    { area: "TILLHÖRIGHET", id: "beloning", class:'beloning-class', question:'Jag får vara med', 
-    person_score:'', person_comment: '',
-    guardian1_score:'', guardian1_comment: '',
-    guardian2_score:'', guardian2_comment: '',
-    color: '#eb612d'},
+    {
+      area: "TILLHÖRIGHET", id: "beloning", class: 'beloning-class', question: 'Jag får vara med',
+      person_score: '', person_comment: '',
+      guardian1_score: '', guardian1_comment: '',
+      guardian2_score: '', guardian2_comment: '',
+      color: '#eb612d'
+    },
 
-    { area: "ANSVARSTAGANDE", id: "responsibility", class:'responsibility-class', question:'Jag tar ansvar för mig själv och andra', 
-    person_score:'', person_comment: '',
-    guardian1_score:'', guardian1_comment: '',
-    guardian2_score:'', guardian2_comment: '',
-    color: '#f79c2e'},
+    {
+      area: "ANSVARSTAGANDE", id: "responsibility", class: 'responsibility-class', question: 'Jag tar ansvar för mig själv och andra',
+      person_score: '', person_comment: '',
+      guardian1_score: '', guardian1_comment: '',
+      guardian2_score: '', guardian2_comment: '',
+      color: '#f79c2e'
+    },
 
-    { area: "RESPEKTERAS", id: "respekt", class:'respekt-class', question:'Jag känner mig respekterad', 
-    person_score:'', person_comment: '',
-    guardian1_score:'', guardian1_comment: '',
-    guardian2_score:'', guardian2_comment: '',
-    color: '#4ba562'},
+    {
+      area: "RESPEKTERAS", id: "respekt", class: 'respekt-class', question: 'Jag känner mig respekterad',
+      person_score: '', person_comment: '',
+      guardian1_score: '', guardian1_comment: '',
+      guardian2_score: '', guardian2_comment: '',
+      color: '#4ba562'
+    },
 
-    { area: "UTVECKLAS", id: "develop", class:'develop-class', question:'Jag gör mitt bästa', 
-    person_score:'', person_comment: '',
-    guardian1_score:'', guardian1_comment: '',
-    guardian2_score:'', guardian2_comment: '',
-    color: '#31acaf'}
+    {
+      area: "UTVECKLAS", id: "develop", class: 'develop-class', question: 'Jag gör mitt bästa',
+      person_score: '', person_comment: '',
+      guardian1_score: '', guardian1_comment: '',
+      guardian2_score: '', guardian2_comment: '',
+      color: '#31acaf'
+    }
   ];
- 
+
   constructor(private store: Store<fromState.State>,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
+
+    // get the choosen child and the current user
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
     this.current_user$ = this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data => {
-      this.userId= data?.userID ?? '';
+      this.userId = data?.userID ?? '';
     });
     this.current_person$.subscribe(data => {
-      let personNbr:string= data?.personNbr ?? '';
-      let lastName: string= data?.lastName ?? '';
-      let firstName: string= data?.firstName ?? '';
-      let name: string= data?.name ?? '';
-  
-      let guardian1: string= data?.guardian1 ?? '';
-      let guardianPersonNbr1: string= data?.guardianPersonNbr1 ?? '';
-      let guardian2: string= data?.guardian2 ?? '';
-      let guardianPersonNbr2: string= data?.guardianPersonNbr2 ?? '';
-  
-      let changedBy: string= data?.changedBy ?? '';
-      let changedOn: string= data?.changedOn ?? '';
-      let status: string= data?.status ?? '';
-      let personID: string= data?.personID ?? '';
+      let personNbr: string = data?.personNbr ?? '';
+      let lastName: string = data?.lastName ?? '';
+      let firstName: string = data?.firstName ?? '';
+      let name: string = data?.name ?? '';
 
-      this.current_person= new Person(personNbr, lastName, firstName, name, guardian1, guardianPersonNbr1,
-                                      guardian2, guardianPersonNbr2, changedBy, changedOn, status, personID);
-                                      
+      let guardian1: string = data?.guardian1 ?? '';
+      let guardianPersonNbr1: string = data?.guardianPersonNbr1 ?? '';
+      let guardian2: string = data?.guardian2 ?? '';
+      let guardianPersonNbr2: string = data?.guardianPersonNbr2 ?? '';
 
-        });
+      let changedBy: string = data?.changedBy ?? '';
+      let changedOn: string = data?.changedOn ?? '';
+      let status: string = data?.status ?? '';
+      let personID: string = data?.personID ?? '';
+
+      this.current_person = new Person(personNbr, lastName, firstName, name, guardian1, guardianPersonNbr1,
+        guardian2, guardianPersonNbr2, changedBy, changedOn, status, personID);
+    });
 
   }
 
-    checkErroes(): boolean{
-      var isMissed= false;
-      this.scores.forEach(element => {
-        if(element.person_score==''||
-        element.guardian1_score==''){
-          isMissed= true;
-        }
-        if( element.guardian2_score=='' && this.selected=='2'){
-          isMissed= true;
-        }
-      });
-      return !isMissed;
-    }
+  // check for errors before send the craete samtalsunderlag request 
+  checkErroes(): boolean {
+    var isMissed = false;
+    this.scores.forEach(element => {
+      if (element.person_score == '' ||
+        element.guardian1_score == '') {
+        isMissed = true;
+      }
+      if (element.guardian2_score == '' && this.selected == '2') {
+        isMissed = true;
+      }
+    });
+    return !isMissed;
+  }
 
-    changeDirty(){
-      this.isDirty= true;
-    }
+  changeDirty() {
+    this.isDirty = true;
+  }
 
-  send(nbr: number): void{
-     if (!this.checkErroes()) {
-    this.saveError='Du har glömt att välja en Skala';
-    }else{ 
-      if(this.selected=='1'){
+  // craete the samtalsunderlag card
+  send(nbr: number): void {
+
+    if (!this.checkErroes()) {
+      // when error show the save error for the user
+      this.saveError = 'Du har glömt att välja en Skala';
+    } else {
+      if (this.selected == '1') {
+        // put zeros in the answers for the second guardian if it is only one guardian choosen
         this.putZeros();
-            }
-      this.saveError='';
+      }
+      this.saveError = '';
 
       var conversationMaterial = {
         UserID: parseInt(this.userId) ?? 0,
-        PersonId:  parseInt(this.current_person.personID)?? 0,
-  
+        PersonId: parseInt(this.current_person.personID) ?? 0,
+
         GuardianNbr1: this.current_person.guardianPersonNbr1 ?? '0',
         GuardianNbr2: this.current_person.guardianPersonNbr2 ?? '0',
-      
+
         GradeOmsorg: parseInt(this.scores[0].person_score),
         CommentOmsorg: this.scores[0].person_comment ?? '0',
         GradeTrygghet: parseInt(this.scores[1].person_score),
@@ -165,7 +187,7 @@ export class CreateConversationMaterialComponent implements OnInit, ComponentCan
         CommentRespekteras: this.scores[6].person_comment ?? '0',
         GradeUtvecklas: parseInt(this.scores[7].person_score),
         CommentUtvecklas: this.scores[7].person_comment ?? '0',
-  
+
         GradeOmsorg1: parseInt(this.scores[0].guardian1_score),
         CommentOmsorg1: this.scores[0].guardian1_comment ?? '0',
         GradeTrygghet1: parseInt(this.scores[1].guardian1_score),
@@ -203,19 +225,20 @@ export class CreateConversationMaterialComponent implements OnInit, ComponentCan
         Status: nbr,
       };
 
-      var title= 'Skapa samtalsunderlag';
-      var text= '';
+      var title = 'Skapa samtalsunderlag';
+      var text = '';
 
-      if(nbr==1){
-        text= 'Kortet kommer att sparas';
-      }else if(nbr==2){
-        text= 'Barnet kommer att tilldelas statusen "behov uppfyllt"';
-        this.current_person.status= 'Behov uppfyllt';
-      }else{
-        text= 'Barnet kommer att skickas till barnteam';
-        this.current_person.status= 'I barnteam';
+      if (nbr == 1) {
+        text = 'Kortet kommer att sparas';
+      } else if (nbr == 2) {
+        text = 'Barnet kommer att tilldelas statusen "behov uppfyllt"';
+        this.current_person.status = 'Behov uppfyllt';
+      } else {
+        text = 'Barnet kommer att skickas till barnteam';
+        this.current_person.status = 'I barnteam';
       }
 
+      // show a confirmation window for the user
       const dialogRef = this.dialog.open(DialogComponent, {
         data: {
           title: title,
@@ -226,30 +249,34 @@ export class CreateConversationMaterialComponent implements OnInit, ComponentCan
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           this.isDirty = false;
+
+          // after the confirmation send the request tocraete the  card
           this.store.dispatch(new fromRoot.UpdatePerson(this.current_person));
           this.store.dispatch(new fromState.CreateConversationMaterial(conversationMaterial));
         }
       });
+    }
+  }
 
-     }
-}
-putZeros(){
-  this.scores[0].guardian2_score='0';
-  this.scores[0].guardian2_comment='0';
-  this.scores[1].guardian2_score='0';
-  this.scores[1].guardian2_comment='0';
-  this.scores[2].guardian2_score='0';
-  this.scores[2].guardian2_comment='0';
-  this.scores[3].guardian2_score='0';
-  this.scores[3].guardian2_comment='0';
-  this.scores[4].guardian2_score='0';
-  this.scores[4].guardian2_comment='0';
-  this.scores[5].guardian2_score='0';
-  this.scores[5].guardian2_comment='0';
-  this.scores[6].guardian2_score='0';
-  this.scores[6].guardian2_comment='0';
-  this.scores[7].guardian2_score='0';
-  this.scores[7].guardian2_comment='0';
-}
+  // put zeros in the answers for the second guardian
+  // can't send empty scores to the databas
+  putZeros() {
+    this.scores[0].guardian2_score = '0';
+    this.scores[0].guardian2_comment = '0';
+    this.scores[1].guardian2_score = '0';
+    this.scores[1].guardian2_comment = '0';
+    this.scores[2].guardian2_score = '0';
+    this.scores[2].guardian2_comment = '0';
+    this.scores[3].guardian2_score = '0';
+    this.scores[3].guardian2_comment = '0';
+    this.scores[4].guardian2_score = '0';
+    this.scores[4].guardian2_comment = '0';
+    this.scores[5].guardian2_score = '0';
+    this.scores[5].guardian2_comment = '0';
+    this.scores[6].guardian2_score = '0';
+    this.scores[6].guardian2_comment = '0';
+    this.scores[7].guardian2_score = '0';
+    this.scores[7].guardian2_comment = '0';
+  }
 
 }

@@ -8,9 +8,9 @@ describe('ContactGuardianComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContactGuardianComponent ]
+      declarations: [ContactGuardianComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

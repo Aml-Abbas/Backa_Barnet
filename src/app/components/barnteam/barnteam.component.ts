@@ -14,21 +14,25 @@ import * as fromRoot from '../../../app/state';
   styleUrls: ['./barnteam.component.scss']
 })
 export class BarnteamComponent implements OnInit {
-  pteams: Promise<Barnteam[]>= new Promise((resolve, reject) => { });
+  pteams: Promise<Barnteam[]> = new Promise((resolve, reject) => { });
   teams: Barnteam[] = [];
 
 
-  current_user$: Observable<User| null> = new Observable<User| null>();
-  searchteams: Barnteam[]= [];
-  filterStatus: boolean= false;
+  current_user$: Observable<User | null> = new Observable<User | null>();
+  searchteams: Barnteam[] = [];
 
-  current_person$= new Observable<Person | null>();
+  // keep track about the search input 
+  filterStatus: boolean = false;
+
+  current_person$ = new Observable<Person | null>();
   current_person: Person;
   personID: string;
 
   constructor(private store: Store<fromState.State>,
     private adminService: AdminService) { }
 
+  // get the currentuser from the storage
+  // get the user list fom admin service
   ngOnInit(): void {
     this.current_user$ = this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data => {
@@ -36,39 +40,43 @@ export class BarnteamComponent implements OnInit {
       this.store.dispatch(new fromState.LoadPersons(userID));
     });
 
-    this.pteams= this.adminService.getBarnteams();
-    let teams= this.teams;
+    this.pteams = this.adminService.getBarnteams();
+    let teams = this.teams;
 
     this.pteams.then(function (response) {
-      
-      response.forEach((team: Barnteam)=>{
+
+      response.forEach((team: Barnteam) => {
         teams.push(team);
+      });
     });
-    });
-    teams.forEach(element=>{
+    teams.forEach(element => {
       this.teams.push(element);
     });
   }
 
+  // this function is called when the user writes something in the search input
+  // the function searches for a match team in the team list and display it in the barnteam list
   applyFilter(event: Event) {
-    this.searchteams=[];
-    
+    this.searchteams = [];
+
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-    if(filterValue!=''){
-      this.filterStatus= true;
+    if (filterValue != '') {
+      this.filterStatus = true;
     }
-    this.teams.forEach(team=>{
-      if(team.teamName.toLowerCase().includes(filterValue) || team.createdOn.includes(filterValue)){
+    this.teams.forEach(team => {
+      if (team.teamName.toLowerCase().includes(filterValue) || team.createdOn.includes(filterValue)) {
         this.searchteams.push(team);
       }
-   });
+    });
   }
 
-  setCurrentAdminTeam(team: Barnteam){
+  // this function is called when choosing a user from the list
+  // update the users and then update the choosen user 
+  // move to the user's detail page
+  setCurrentAdminTeam(team: Barnteam) {
     this.store.dispatch(new fromState.UpdateTeams(this.teams));
 
     this.store.dispatch(new fromState.UpdateAdminBarnteam(team));
     this.store.dispatch(new fromRoot.Go({ path: ['/barnteam', team.teamID] }));
-
   }
 }
