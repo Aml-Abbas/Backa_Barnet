@@ -29,8 +29,8 @@ export class GetSetService {
     return this.http.get<Person[]>('https://func-ykbb.azurewebsites.net/api/person/' + userId + '?code=SkXpI51pgjWl6UVNjxKjKNUr3o2gmPdlOZ4EFMFwn0LR0KlyDlYu3w==');
   }
 
-  // get the list of the discovercard
-  async getCards(userId: string): Promise<Card[]> {
+  // get the list of the discovercard for a specific user
+  async getCardsUser(userId: string): Promise<Card[]> {
     var cards: Card[] = [];
 
     await axios.get('https://func-ykbb.azurewebsites.net/api/card/' + userId + '?code=bbdIBAbikn/AMydOBvxm69FyKFhRfS4fxUb55SaSz0TfK/cjnxiYEw==')
@@ -121,6 +121,102 @@ export class GetSetService {
       });
     return cards;
   }
+
+  // get the list of the discovercard for a specific user
+  async getCardsPerson(personId: string, userId: string): Promise<Card[]> {
+    var cards: Card[] = [];
+
+    await axios.get('https://func-ykbb.azurewebsites.net/api/card/' + userId + '?code=bbdIBAbikn/AMydOBvxm69FyKFhRfS4fxUb55SaSz0TfK/cjnxiYEw==')
+      .then(function (response) {
+        var questions: string[] = [];
+        var grades: string[] = [];
+        var comments: string[] = [];
+
+        var index = 1;
+        response.data.forEach((discoverCard: DiscoverCard) => {
+          let gradedOn = discoverCard.gradedOn;
+
+          let userName = discoverCard.userName;
+          let userOrg = discoverCard.userOrg;
+          let userTitle = discoverCard.userTitle;
+
+          let personName = 'Dolt';
+          if (discoverCard.personName != " " && discoverCard.personName != "0 0") {
+            personName = discoverCard.personName;
+          }
+          let personNbr = 'Dolt';
+          if (discoverCard.personNbr != "" && discoverCard.personNbr != "0") {
+            personNbr = discoverCard.personNbr;
+          }
+          let guardian1 = 'Dolt';
+          if (discoverCard.guardian1 != '' && discoverCard.personNbr != "0") {
+            guardian1 = discoverCard.guardian1;
+          }
+          let guardianPersonNbr1 = 'Dolt';
+          if (discoverCard.guardianPersonNbr1 != '' && discoverCard.personNbr != "0") {
+            guardianPersonNbr1 = discoverCard.guardianPersonNbr1;
+          }
+          let guardian2 = 'Dolt';
+          if (discoverCard.guardian2 != '' && discoverCard.personNbr != "0") {
+            guardian2 = discoverCard.guardian2;
+          }
+          let guardianPersonNbr2 = 'Dolt';
+          if (discoverCard.guardianPersonNbr2 != '' && discoverCard.personNbr != "0") {
+            guardianPersonNbr2 = discoverCard.guardianPersonNbr2;
+          }
+
+          let unit = discoverCard.unit;
+          let situation = discoverCard.situation;
+
+          let questionID = discoverCard.questionID;
+          let grade = discoverCard.grade;
+          let comment = '';
+          if (discoverCard.comment != '0') {
+            comment = discoverCard.comment;
+          }
+          let status = discoverCard.status;
+          let personID = discoverCard.personID;
+
+          if (personID == personId) {
+            // check if the discovercard is already in the list
+            if (!containsCard(cards, discoverCard.gradedOn)) {
+
+              // add the discover card to the list if it is not already in the list
+              questions.push(questionID);
+              grades.push(grade);
+              comments.push(comment);
+              cards = Object.assign([], cards);
+              cards.push(new Card(String(index), gradedOn, userName, userOrg, userTitle,
+                personName, personNbr, guardian1, guardianPersonNbr1, guardian2, guardianPersonNbr2,
+                unit, situation, questions, grades, comments, status, personID));
+
+              questions = [];
+              grades = [];
+              comments = [];
+
+              index++;
+            } else {
+
+              // update the discover card if it is already in the list by adding the question, grades and comments to it
+              cards.forEach(element => {
+                if (element.gradedOn == gradedOn && !containsQuestion(element, questionID)) {
+                  element.questions.push(questionID);
+                  element.grades.push(grade);
+                  element.comments.push(comment);
+                }
+              });
+            }
+          }
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .then(function () {
+      });
+    return cards;
+  }
+
 
   // get the units
   getUnits(): Observable<Unit[]> {

@@ -81,7 +81,7 @@ export class EventService {
     var pcards = this.getSetService.getConversationMaterial(personId);
     var ecards = this.getSetService.getEstimate(personId);
     var events: Promise<Event[]> = this.getEvents(personId);
-    var dcards = this.getSetService.getCards(userId);
+    var dcards = this.getSetService.getCardsPerson(personId, userId);
     var conversation: ConversationCard[] = [];
     var discover: Card[] = [];
 

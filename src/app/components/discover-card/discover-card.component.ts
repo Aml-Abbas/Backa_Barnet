@@ -31,7 +31,7 @@ export class DiscoverCardComponent implements OnInit {
     this.current_user$ = this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data => {
       let userID: string = data?.userID ?? '';
-      this.pcards = this.getSetService.getCards(userID);
+      this.pcards = this.getSetService.getCardsUser(userID);
     });
     let cards = this.cards;
     this.pcards.then(function (response) {
