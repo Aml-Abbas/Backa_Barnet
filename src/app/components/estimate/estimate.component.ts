@@ -200,7 +200,6 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
 
     this.pcards.then(function (response) {
       response.forEach((card: EstimateCard) => {
-        savedEstimatecards.push(card);
 
         if (card.status == 'Sparat' && userID == card.userID) {
           savedEstimatecards.push(card);

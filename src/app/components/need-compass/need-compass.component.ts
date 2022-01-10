@@ -13,6 +13,7 @@ import { CompassDataConversation } from 'src/app/models/CompassDataConversation'
 import { ConversationCard } from 'src/app/models/ConversationCard';
 import { EstimateCard } from 'src/app/models/EstimateCard';
 import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-need-compass',
@@ -120,6 +121,10 @@ export class NeedCompassComponent implements OnInit {
   ecards: Promise<EstimateCard[]> = new Promise((resolve, reject) => { });
   estimatecards: EstimateCard[] = [];
 
+  current_user$ = new Observable<User | null>();
+  userRoleId:string;
+  userId:string;
+
   constructor(private store: Store<fromState.State>,
     private getSetService: GetSetService,
     private route: ActivatedRoute) {
@@ -127,6 +132,12 @@ export class NeedCompassComponent implements OnInit {
 
   ngOnInit(): void {
     var colorIndex = 0;
+
+    this.current_user$ = this.store.select(fromState.getCurrentUser);
+    this.current_user$.subscribe(data => {
+      this.userRoleId = String(data?.roleID);
+      this.userId = String(data?.userID);
+    });
 
     // get the params to check if we need to display a specific estimate
     // if no data in the params so we have to diaplay all data and not a specific one
@@ -163,15 +174,27 @@ export class NeedCompassComponent implements OnInit {
       let radarChartData = this.radarChartData;
       let selectedDate = this.selectedDate;
       let colors = this.colors;
+      let userRoleId= this.userRoleId;
+      let userId= this.userId;
 
       this.ecards.then(function (response) {
         response.forEach((card: EstimateCard) => {
-          estimatecards.push(card);
-          dates.add(card.gradedOn.slice(0, 10));
-          if (card.gradedOn.slice(0, 10) == selectedDate && radarChartData.length < 19) {
-            radarChartData.push({ data: card.average, label: getName(card.userName), borderColor: colors[colorIndex], pointBackgroundColor: colors[colorIndex] });
-            colorIndex++;
+          if(userRoleId=='2' || userRoleId=='4'){
+            estimatecards.push(card);
+            dates.add(card.gradedOn.slice(0, 10));
+            if (card.gradedOn.slice(0, 10) == selectedDate && radarChartData.length < 19) {
+              radarChartData.push({ data: card.average, label: getName(card.userName), borderColor: colors[colorIndex], pointBackgroundColor: colors[colorIndex] });
+              colorIndex++;
+            }
+          }else if(userId==card.userID){
+            estimatecards.push(card);
+            dates.add(card.gradedOn.slice(0, 10));
+            if (card.gradedOn.slice(0, 10) == selectedDate && radarChartData.length < 19) {
+              radarChartData.push({ data: card.average, label: getName(card.userName), borderColor: colors[colorIndex], pointBackgroundColor: colors[colorIndex] });
+              colorIndex++;
+            }
           }
+
         });
       });
 
