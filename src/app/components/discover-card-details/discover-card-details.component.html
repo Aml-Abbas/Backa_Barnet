@@ -115,9 +115,13 @@
 
       <div *ngFor="let question of QuestionTextData; let i= index;">
         <mat-list-item *ngIf="i == 8 " style="height: 80px !important;">
-          <h4>{{question.text}}</h4>
+          <h4>{{question.text}}: </h4>
           <p *ngIf="current_card.grades[i] == '1'">Ja</p>
           <p *ngIf="current_card.grades[i] == '0'">Nej</p>
+          
+          <h4>Kommentar: </h4>
+          <p>{{current_card.comments[i]}}</p>
+
         </mat-list-item>
 
         <mat-list-item *ngIf="i > 8 " style="height: 90px !important;">
