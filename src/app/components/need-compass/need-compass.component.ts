@@ -259,12 +259,20 @@ export class NeedCompassComponent implements OnInit {
           });
           this.radarChartData.push({ data: grades, label: 'Vårdnadshavare 1 ', borderColor: this.colors[colorIndex], pointBackgroundColor: this.colors[colorIndex] });
           colorIndex++;
+
+          var empty= true;
+
           var grades: number[] = [];
           element.guardian2_scores.forEach(score => {
             grades.push(parseInt(score));
+            if(parseInt(score)!=0){
+              empty= false;
+            }
           });
-          this.radarChartData.push({ data: grades, label: 'Vårdnadshavare 2 ', borderColor: this.colors[colorIndex], pointBackgroundColor: this.colors[colorIndex] });
-          colorIndex++;
+          if(!empty){
+            this.radarChartData.push({ data: grades, label: 'Vårdnadshavare 2 ', borderColor: this.colors[colorIndex], pointBackgroundColor: this.colors[colorIndex] });
+            colorIndex++;  
+          }
         }
       });
     }
