@@ -87,7 +87,8 @@ export class ConversationMaterialDetailsComponent implements OnInit {
   // move to the edit samtalsunderlag page
   moveToEditCard(card: ConversationCard) {
     this.store.dispatch(new fromState.UpdateCurrentConversationCard(card));
-    this.store.dispatch(new fromRoot.Go({ path: ['/edit-conversation-material', card.id] }));
+    this.store.dispatch(new fromRoot.Go({ path: ['/edit-conversation-material', card.gradedOn] }));
+
   }
 
 }
