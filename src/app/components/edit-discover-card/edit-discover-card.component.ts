@@ -123,6 +123,8 @@ export class EditDiscoverCardComponent implements OnInit, ComponentCanDeactivate
   guardianNbr: number = 2;
   selected = '2';
   units$: Observable<Unit[]> = new Observable<Unit[]>();
+  units: Unit[]= [];
+
   guardians = {};
 
   unitNbr: number = -1;
@@ -172,10 +174,19 @@ export class EditDiscoverCardComponent implements OnInit, ComponentCanDeactivate
     });
 
     this.units$ = this.getSetService.getUnits();
-    if (this.card.guardian2 == 'Dolt') {
-      this.selected = '1';
+    this.units$.subscribe(data => {
+    data.forEach((unit: Unit)=>{
+      if(unit.unitID!= '8'){
+        this.units.push(unit);
+      }
+    });
+    });
+
+    if (this.card.guardian1 != 'Dolt' && (this.card.guardian2 == 'Dolt' || this.card.guardian2 == '0')) {
       this.guardianNbr = 1;
+      this.selected = '1';
     }
+
     this.guardians = [
       {
         name: this.card.guardian1, personNbr: this.card.guardianPersonNbr1,

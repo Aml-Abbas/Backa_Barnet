@@ -52,7 +52,9 @@ export class DiscoverCardDetailsComponent implements OnInit {
 
   // this function is called when clicking on the edit button to move to the edit card page 
   moveToEditCard(card: Card) {
-    this.store.dispatch(new fromRoot.Go({ path: ['/edit-discover-card', card.id] }));
+
+    this.store.dispatch(new fromState.UpdateCard(card));
+    this.store.dispatch(new fromRoot.Go({ path: ['/edit-discover-card', card.gradedOn] }));
   }
 
 }

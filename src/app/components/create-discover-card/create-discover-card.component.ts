@@ -159,6 +159,8 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
   isMeasureTakenComment: string;
 
   units$: Observable<Unit[]> = new Observable<Unit[]>();
+  units: Unit[]= [];
+
   current_user$: Observable<User | null> = new Observable<User | null>();
   current_user: User;
   personNbr: string;
@@ -170,6 +172,15 @@ export class CreateDiscoverCardComponent implements OnInit, ComponentCanDeactiva
 
   ngOnInit(): void {
     this.units$ = this.getSetService.getUnits();
+    this.units$ = this.getSetService.getUnits();
+    this.units$.subscribe(data => {
+    data.forEach((unit: Unit)=>{
+      if(unit.unitID!= '8'){
+        this.units.push(unit);
+      }
+    });
+    });
+
     this.current_user$ = this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data => {
       let userID: string = data?.userID ?? '';

@@ -48,7 +48,7 @@
 
     </div>
 
-    <mat-form-field class="fixed-length" appearance="fill" *ngIf="(units$ | async) as units">
+    <mat-form-field class="fixed-length" appearance="fill">
       <mat-label>BMM/ BvC/ Förskola/ Skola (Barnkontakt)</mat-label>
       <mat-select>
         <mat-option *ngFor="let unit of units; let i= index" value="{{unit.unitID}}"
