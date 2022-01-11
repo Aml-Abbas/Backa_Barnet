@@ -91,4 +91,7 @@ export class ConversationMaterialDetailsComponent implements OnInit {
 
   }
 
+  back(){
+    this.store.dispatch(new fromRoot.Back());
+  }
 }

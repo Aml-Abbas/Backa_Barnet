@@ -4,7 +4,7 @@
 
   <div *ngIf="(current_conversation_card$ | async) as conversation_card">
 
-    <button class="back-button" mat-icon-button routerLink="/conversation-material">
+    <button class="back-button" mat-icon-button (click)="back()">
       <span class="material-icons"> arrow_back </span>
       Tillbaka
     </button>

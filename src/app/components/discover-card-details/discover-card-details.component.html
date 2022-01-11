@@ -3,7 +3,7 @@
 
   <div *ngIf="(current_card$ | async) as current_card">
 
-    <button class="back-button" mat-icon-button routerLink="/discover-card">
+    <button class="back-button" mat-icon-button (click)="back()">
       <span class="material-icons"> arrow_back </span>
       Tillbaka
     </button>

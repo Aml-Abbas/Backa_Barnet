@@ -57,4 +57,8 @@ export class DiscoverCardDetailsComponent implements OnInit {
     this.store.dispatch(new fromRoot.Go({ path: ['/edit-discover-card', card.gradedOn] }));
   }
 
+  back(){
+    this.store.dispatch(new fromRoot.Back());
+  }
+
 }
