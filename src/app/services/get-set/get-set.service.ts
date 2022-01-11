@@ -75,12 +75,13 @@ export class GetSetService {
           let unit = discoverCard.unit;
 
           let situation = '';
-          if (discoverCard.comment != '0') {
+          if (discoverCard.situation != '0') {
             situation = discoverCard.situation;
           }
 
           let questionID = discoverCard.questionID;
           let grade = discoverCard.grade;
+
           let comment = '';
           if (discoverCard.comment != '0') {
             comment = discoverCard.comment;
