@@ -234,7 +234,7 @@ export class EstimateComponent implements OnInit, ComponentCanDeactivate {
         const dialogRef = this.dialog.open(DialogComponent, {
           data: {
             title: 'Skapa skattning',
-            text: 'Din skattning har nu sparats och väntar på att bli sammanställs.',
+            text: 'Din skattning har nu sparats och väntar på att bli sammanställd.',
           }
         });
 
