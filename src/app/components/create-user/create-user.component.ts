@@ -65,7 +65,12 @@ export class CreateUserComponent implements OnInit, ComponentCanDeactivate {
     // get the units without "Annat", "Ingen enhet" unit
     this.units$ = this.getSetService.getUnitsWithoutAnnat();
 
-    this.unitsBarnkontakt$ = this.adminService.getUnits();
+    this.unitsBarnkontakt$ = this.adminService.getUnitsBarnKontakt();
+    this.unitsBarnkontakt$.subscribe(data=>{
+      data.forEach((unit:Unit)=>{
+        console.log(unit);
+      });
+    });
 
     this.createUserFormGroup = this._formBuilder.group({
       lastNameControl: ['', [Validators.required, Validators.minLength(2)]],
