@@ -193,6 +193,11 @@ export class AdminService {
     return this.http.get<Unit[]>('https://func-ykbb.azurewebsites.net/api/units?code=dxXy9WjiX7GNKIIrYZEv0GL7h0tXLX3KKsqZhey1z8Ec1Uf6rz22ZQ==');
   }
 
+    // get the available units to be choosen when creating a new barnkontakt
+    getUnitsBarnKontakt(): Observable<Unit[]> {
+      return this.http.get<Unit[]>('https://func-ykbb.azurewebsites.net/api/unitsBarnkontakt?code=cr8kiY53XIznOe27e4aBLju0lhbyaIT29qxWJ4naaoiSupEYnDO1ww==');
+    }
+  
   // get the users list for a specific team
   async getUnitUsers(teamid: string): Promise<User[]> {
     var users: User[] = [];

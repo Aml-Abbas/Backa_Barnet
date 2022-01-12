@@ -11,6 +11,8 @@ import * as adminAction from '../../state/actions/admin.action';
 import { tap } from 'rxjs/operators';
 import { DialogComponent } from '../../components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
   selector: 'app-create-user',
@@ -33,6 +35,8 @@ export class CreateUserComponent implements OnInit, ComponentCanDeactivate {
   added_units: string[] = [];
   units$: Promise<Unit[]> = new Promise((resolve, reject) => { });
 
+  unitsBarnkontakt$: Observable<Unit[]> = new Observable<Unit[]>();
+
   // the error msgs to be shown to the user
   saveError = '';
   firstNameError = '';
@@ -53,12 +57,16 @@ export class CreateUserComponent implements OnInit, ComponentCanDeactivate {
     private _formBuilder: FormBuilder,
     private getSetService: GetSetService,
     private actions$: Actions,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private adminService: AdminService) { }
 
   ngOnInit(): void {
 
     // get the units without "Annat", "Ingen enhet" unit
     this.units$ = this.getSetService.getUnitsWithoutAnnat();
+
+    this.unitsBarnkontakt$ = this.adminService.getUnits();
+
     this.createUserFormGroup = this._formBuilder.group({
       lastNameControl: ['', [Validators.required, Validators.minLength(2)]],
       firstNameControl: ['', [Validators.required, Validators.minLength(2)]],

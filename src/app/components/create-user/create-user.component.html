@@ -42,7 +42,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" *ngIf="selectedRole== '2' || selectedRole== '3'">
+    <mat-form-field appearance="fill" *ngIf="selectedRole== '3'">
       <mat-label>Enheter</mat-label>
       <mat-select [formControl]="units" multiple *ngIf="(units$ | async) as current_units">
         <mat-select-trigger>
@@ -54,6 +54,20 @@
         <mat-option *ngFor="let unit of current_units" [value]="unit">{{unit.unitName}}</mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="selectedRole== '2'">
+      <mat-label>Enheter</mat-label>
+      <mat-select [formControl]="units" multiple *ngIf="(unitsBarnkontakt$ | async) as unitsBarnkontakt">
+        <mat-select-trigger>
+          {{units.value ? units.value[0].unitName : ''}}
+          <span *ngIf="units.value?.length > 1">
+            (+{{units.value.length - 1}} {{units.value?.length === 2 ? 'till' : 'till'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let unit of unitsBarnkontakt" [value]="unit">{{unit.unitName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <p>{{unitError}}</p>
 
 
