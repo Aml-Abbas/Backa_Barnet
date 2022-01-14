@@ -165,7 +165,7 @@ export class EditUserComponent implements OnInit, ComponentCanDeactivate {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: {
         title: 'Ta bort användare',
-        text: 'Är du säker att du vill ta bort användaren?',
+        text: 'Är du säker på att du vill ta bort användaren?',
       }
     });
 

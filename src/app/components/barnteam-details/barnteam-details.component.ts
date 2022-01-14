@@ -54,7 +54,7 @@ export class BarnteamDetailsComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: {
         title: 'Ta bort barnteam',
-        text: 'Är du säker att du vill ta bort barnteamet?',
+        text: 'Är du säker på att du vill ta bort barnteamet?',
       }
     });
 

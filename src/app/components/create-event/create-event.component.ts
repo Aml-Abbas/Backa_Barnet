@@ -65,7 +65,7 @@ export class CreateEventComponent implements OnInit, ComponentCanDeactivate {
     } if (this.createPlanFormGroup.controls.eventControl.status == "INVALID") {
       this.eventError = 'Händelse beskrivning måste vara minst 10 bokstäver';
     } if (this.createPlanFormGroup.controls.planControl.status == "INVALID") {
-      this.planError = 'Insats beskrivning måste vara minst 10 bokstäver';
+      this.planError = 'Insatsbeskrivningen måste vara minst 10 bokstäver';
     } if (name.length < 2 || name[0].length < 2 || name[1].length < 2) {
       this.nameError = 'För och efternamn ska vara med. Minst två bokstäver i för och efternamn.';
       this.saveError = 'Du har missat att fylla i saker';

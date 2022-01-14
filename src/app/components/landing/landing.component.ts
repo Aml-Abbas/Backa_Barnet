@@ -223,7 +223,7 @@ export class LandingComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: {
         title: 'Avmarkera barnet',
-        text: 'Är du säker att du vill avmarkera barnet? Du kan inte skapa samtalsunderlag eller skattning om du inte väljer ett barn först. Se till att har sparat innan du klickar på bekräfta.',
+        text: 'Är du säker på att du vill avmarkera barnet? Du kan inte skapa samtalsunderlag eller skattning om du inte väljer ett barn först. Se till att har sparat innan du klickar på bekräfta.',
       }
     });
 

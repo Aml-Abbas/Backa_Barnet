@@ -299,17 +299,17 @@ export class EditDiscoverCardComponent implements OnInit, ComponentCanDeactivate
   // check if the card will be anonymous and create the confirmationmsg to be shown to the user
   isAnonyms(): boolean {
     if (this.unitNbr == 7 && !this.missCosent()) {
-      this.informMesg = 'kortet kommer att anonymiseras för barnet tillhör annat enhet än Ystad och samtycke av föräldrar saknas';
+      this.informMesg = 'Kortet kommer att anonymiseras för barnet tillhör annat enhet än Ystad och samtycke av föräldrar saknas';
       return false;
     }
     else if (this.unitNbr == 7) {
-      this.informMesg = 'kortet kommer att anonymiseras för barnet tillhör annat enhet än Ystad';
+      this.informMesg = 'Kortet kommer att anonymiseras för barnet tillhör annat enhet än Ystad';
       return false;
     } else if (!this.missCosent()) {
-      this.informMesg = 'kortet kommer att anonymiseras för samtycke av föräldrar saknas';
+      this.informMesg = 'Kortet kommer att anonymiseras för samtycke av föräldrar saknas';
       return false;
     }
-    this.informMesg = 'kortet kommer att skickas in';
+    this.informMesg = 'Kortet kommer att skickas in';
     return true;
   }
 

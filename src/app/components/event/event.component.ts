@@ -77,7 +77,7 @@ export class EventComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: {
         title: 'Avsluta insats',
-        text: 'Är du säker att du vill avsluta insatsen?',
+        text: 'Är du säker på att du vill avsluta insatsen?',
       }
     });
 

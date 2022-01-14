@@ -21,7 +21,7 @@ export class DirtycheckGuard implements CanDeactivate<ComponentCanDeactivate> {
       const dialogRef = this.dialog.open(DialogComponent, {
         data: {
           title: 'Lämna sidan',
-          text: "Du har inte sparat dina ändringar, Är du säker att du vill lämna sidan?",
+          text: "Du har inte sparat dina ändringar, Är du säker på att du vill lämna sidan?",
         }
       });
 
