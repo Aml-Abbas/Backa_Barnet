@@ -18,24 +18,23 @@ export class AdminService {
 
   // create the user but send the request for every unit that is assigned to the user.
   createUser(LastName: string, FirstName: string, Email: string, Organisation: string, RoleID: number, unitIDs: string[]) {
-    unitIDs.forEach(unitID => {
-      axios.post('https://func-ykbb.azurewebsites.net/api/user/create?code=h6mNFr9PwcAYrkfqVh4XZCGhdCx6qGjxDHdoatd4XQmmRraZJFqqFQ==', {
-        LastName: LastName,
-        FirstName: FirstName,
-        Email: Email,
-        Organisation: Organisation,
-        RoleID: RoleID,
-        UnitID: unitID,
+    axios.all([
+      unitIDs.forEach(unitID => {
+        axios.post('https://func-ykbb.azurewebsites.net/api/user/create?code=h6mNFr9PwcAYrkfqVh4XZCGhdCx6qGjxDHdoatd4XQmmRraZJFqqFQ==', {
+          LastName: LastName,
+          FirstName: FirstName,
+          Email: Email,
+          Organisation: Organisation,
+          RoleID: RoleID,
+          UnitID: unitID,
+          })
       })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+    ])
+      .then(axios.spread((obj1, obj2) => {
+        return of(true);
 
-    });
-    return of(true);
+      }));
+    return of(false);
   }
 
   // delete all the units whih is associated to the user, to update the units in a later request
