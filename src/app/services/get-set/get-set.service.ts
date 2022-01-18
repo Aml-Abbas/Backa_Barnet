@@ -442,8 +442,21 @@ export class GetSetService {
   }
 
   // change the status for the estimate from "spara" to "locked"
-  lockEstimate(estimateLockJson: any) {
-    return this.http.post('https://func-ykbb.azurewebsites.net/api/estimate/lock?code=DP4LbC5ad7QLWG35L1lOWxidF8a54/qwKDrDhUw4D19LtfcCUvC6/Q==', estimateLockJson);
+  lockEstimate(savedEstimatecards: EstimateCard[]) {
+    axios.all([
+      savedEstimatecards.forEach(estimate => {
+        axios.post('https://func-ykbb.azurewebsites.net/api/estimate/lock?code=DP4LbC5ad7QLWG35L1lOWxidF8a54/qwKDrDhUw4D19LtfcCUvC6/Q==', {
+          PersonID: estimate.personID,
+          UserID: estimate.userID,
+          GradedOn: estimate.gradedOn,
+          })
+      })
+    ])
+      .then(axios.spread((obj1, obj2) => {
+        return of(true);
+
+      }));
+    return of(false);
   }
 
   // get the barnkontakt for the specifik child

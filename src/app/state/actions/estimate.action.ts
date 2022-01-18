@@ -72,7 +72,7 @@ export class LoadEstimateCardsFail implements Action {
 export class LockEstimateCards implements Action {
   readonly type = LOCK_ESTIMATE_CARDS;
 
-  constructor(public payload: any) { }
+  constructor(public payload: EstimateCard[]) { }
 }
 
 export class LockEstimateCardsSuccess implements Action {
