@@ -65,11 +65,6 @@ export class EstimateOverviewComponent implements OnInit {
   // this function is called when clicking the sammanställa button
   // calls LockEstimateCards action to change the status of the estimates
   compile() {
-     /*  var skattning = {
-        PersonID: element.personID,
-        UserID: element.userID,
-        GradedOn: element.gradedOn,
-      } */
       this.store.dispatch(new fromState.LockEstimateCards(this.savedEstimatecards));
   }
 
