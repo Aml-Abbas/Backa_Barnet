@@ -68,7 +68,7 @@ export class NeedCompassComponent implements OnInit {
         backgroundColor: 'pink'
       }, point: {
       }, line: {
-        borderWidth: 2,
+        borderWidth: 4,
         tension: 0.15,
         fill: false,
       },

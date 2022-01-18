@@ -95,8 +95,8 @@ export class EventService {
           response.forEach((action: Event) => {
             eventsCard.push({
               title: 'Insats', date: action.createdOn,
-              description: ['Insatsbeskrivning: ' + action.eventDescription,
-              'Händelsebeskrivning: ' + action.actionDescription],
+              description: ['Händelsebeskrivning: ' + action.eventDescription,
+              'Insatsbeskrivning: ' + action.actionDescription],
               responsible: action.responsible, role: action.profession,
               id: action.actionID, status: action.status
             });
