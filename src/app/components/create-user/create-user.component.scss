@@ -79,3 +79,13 @@ button {
 ::ng-deep .mat-primary .mat-pseudo-checkbox-checked {
   background-color: white !important;
 }
+
+@media screen and (max-width: 800px) {
+  mat-form-field {
+  width: 100%;
+  }
+  button {
+    width: 50%;
+    margin-left: 25%;
+  }
+}

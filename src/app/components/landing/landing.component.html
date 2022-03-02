@@ -113,6 +113,10 @@
             </mat-button-toggle>
 
             <mat-divider></mat-divider>
+            <mat-button-toggle (click)="goToRoute($event, 'rights')" [disabled]="isDisabledRights">Rättigheter
+            </mat-button-toggle>
+
+            <mat-divider></mat-divider>
             <mat-button-toggle (click)="changeFiller($event, 'admin-menu')" [disabled]="isDisabledAdmin">
                 <span>Admin</span>
                 <span class="material-icons">{{showFillerAdminIcon}}</span>

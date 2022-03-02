@@ -49,6 +49,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { CreateInsatsComponent } from './components/create-insats/create-insats.component';
 import { UserDetailsGuard } from './guards/user-details.guard';
 import { BarnteamDetailsGuard } from './guards/barnteam-details.guard';
+import { RightsComponent } from './components/rights/rights.component';
+import { RightsGuard } from './guards/rights.guard';
 
 
 const routes: Routes = [
@@ -75,6 +77,11 @@ const routes: Routes = [
       {
         path: 'goal',
         component: GoalComponent, canActivate: [GoalGuard]
+      },
+      {
+        path: 'rights',
+        component: RightsComponent, canActivate: [RightsGuard],
+         canDeactivate: [DirtycheckGuard]
       },
       {
         path: 'discover-card',

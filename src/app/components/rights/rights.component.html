@@ -1,0 +1,36 @@
+<div class="container">
+    <h1>Rättigheter</h1>
+
+    <div class="form-container" [formGroup]="createRightsFormGroup" (change)="isDirty= true">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Användaren:</mat-label>
+        <mat-select [(ngModel)]="selectedUser" [ngModelOptions]="{standalone: true}">
+          <mat-option [value]="user.userID" *ngFor="let user of users; let i= index">{{user.firstName}} {{user.lastName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>{{userError}}</p>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Barn:</mat-label>
+        <mat-select [(ngModel)]="selectedChild" [ngModelOptions]="{standalone: true}">
+          <mat-option [value]="person.personID" *ngFor="let person of persons; let i= index">{{person.firstName}} {{person.lastName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>{{childError}}</p>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Typ:</mat-label>
+        <mat-select [(ngModel)]="selectedType" [ngModelOptions]="{standalone: true}">
+          <mat-option value="1">Samtalsunderlag</mat-option>
+          <mat-option value="2">Skattning</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>{{typeError}}</p>
+
+    
+      <p>{{saveError}}</p>
+
+      <button mat-raised-button (click)="createRights()">Spara</button>
+
+</div>  

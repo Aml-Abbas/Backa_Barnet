@@ -38,6 +38,7 @@ export class LandingComponent implements OnInit {
   isDisabledConsent = true;
   isDisabledEvent = true;
   isDisabledGoal = true;
+  isDisabledRights = true;
 
   isDisabledNeedCompassMenu = true;
   isDisabledGoalMenu = true;
@@ -62,6 +63,8 @@ export class LandingComponent implements OnInit {
       this.isDisabledEvent = false;
       this.isDisabledGoalMenu = false;
       this.isDisabledNeedCompassMenu = false;
+      this.isDisabledRights = false;
+
     }
     if (this.userRoleId == 4 || this.userRoleId == 2 || this.userRoleId == 3) {
       this.isDisabledEstimate = false;
@@ -248,6 +251,8 @@ export class LandingComponent implements OnInit {
     } else if (route == 'event' && this.isDisabledEvent) {
       event.stopPropagation()
     } else if (route == 'goal' && this.isDisabledGoal) {
+      event.stopPropagation()
+    }else if (route == 'rights' && this.isDisabledRights) {
       event.stopPropagation()
     } else {
       this.store.dispatch(new fromRoot.Go({ path: ['/' + route] }));
