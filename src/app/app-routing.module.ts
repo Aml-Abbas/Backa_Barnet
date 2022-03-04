@@ -51,6 +51,9 @@ import { UserDetailsGuard } from './guards/user-details.guard';
 import { BarnteamDetailsGuard } from './guards/barnteam-details.guard';
 import { RightsComponent } from './components/rights/rights.component';
 import { RightsGuard } from './guards/rights.guard';
+import { CreateRightsComponent } from './components/create-rights/create-rights.component';
+import { UserRightsDetailsComponent } from './components/user-rights-details/user-rights-details.component';
+import { UserRightsDetailsGuard } from './guards/user-rights-details.guard';
 
 
 const routes: Routes = [
@@ -80,7 +83,15 @@ const routes: Routes = [
       },
       {
         path: 'rights',
-        component: RightsComponent, canActivate: [RightsGuard],
+        component: RightsComponent, canActivate: [RightsGuard]
+      },
+      {
+        path: 'rights/:userId',
+        component: UserRightsDetailsComponent, canActivate: [UserRightsDetailsGuard]
+      },
+      {
+        path: 'create-rights',
+        component: CreateRightsComponent, canActivate: [RightsGuard],
          canDeactivate: [DirtycheckGuard]
       },
       {

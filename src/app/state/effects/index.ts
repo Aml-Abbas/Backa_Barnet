@@ -9,6 +9,7 @@ import { ConversationMaterialEffect } from './conversationMaterial.effect';
 import { EstimateEffect } from './estimate.effect';
 import { EventEffect } from './event.effect';
 import { AdminEffect } from './admin.effect';
+import { UserRightsEffect } from './userRights.effect';
 
 export const effects: any[] = [
   LoginEffect,
@@ -21,7 +22,8 @@ export const effects: any[] = [
   ConversationMaterialEffect,
   EstimateEffect,
   EventEffect,
-  AdminEffect
+  AdminEffect,
+  UserRightsEffect
 ];
 
 
@@ -36,3 +38,4 @@ export * from './conversationMaterial.effect';
 export * from './estimate.effect';
 export * from './event.effect';
 export * from './admin.effect';
+export * from './userRights.effect';

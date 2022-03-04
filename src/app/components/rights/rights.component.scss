@@ -1,70 +1,127 @@
 h1 {
-    font-size: 30px;
-    font-weight: bold;
-  }
-
-  .form-container {
-    background-color: whitesmoke;
-    color: black;
-    padding: 10px;
-    width: 95%;
-  }
-  mat-label {
-    color: black;
-  }
-  
-  mat-form-field {
-    margin-right: 10%;
-    width: 40%;
-    color: black;
-    margin-bottom: 20px;
-    height: 55px;
-  }
-  
-  p {
-    margin-top: 15px;
-    color: brown;
-    font-size: 15px;
-  }
-  
-  button {
-    margin-left: 12.5%;
-    width: 20%;
-    background-color: #cde7e6;
-    color: black;
-    margin-bottom: 15px;
-  }
-
-  
-::ng-deep .mat-focused .mat-form-field-required-marker {
-  color: #663399;
+  font-size: 30px;
+  font-weight: bold;
 }
 
-::ng-deep .mat-select-panel {
-  background-color: #663399 !important;
-}
-::ng-deep.mat-select-arrow {
-  color: #663399;
-}
-
-::ng-deep .mat-select-value {
-  color: black !important;
-}
-::ng-deep .mat-option.mat-selected:not(.mat-option-disabled) {
-  color: white !important;
+h2 {
+  font-size: 23px;
+  font-weight: bold;
+  margin-top: 25px;
 }
 
-::ng-deep .mat-primary .mat-pseudo-checkbox-checked {
-    background-color: white !important;
-  }
-  
+.mat-form-field {
+  font-size: 14px;
+  width: 55%;
+  height: 55px;
+}
+mat-label {
+  color: black;
+  text-indent: 12px !important;
+}
+
+.search {
+  width: 100%;
+}
+
+button {
+  margin-left: 20%;
+  width: 20%;
+  background-color: #cde7e6;
+  color: black;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: whitesmoke;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+button {
+  width: 15%;
+  background-color: #cde7e6;
+  color: black;
+}
+
+tr:hover td {
+  border-top: 1px solid #663399;
+  border-bottom: 2px solid #663399;
+}
+
 @media screen and (max-width: 800px) {
-    mat-form-field {
+  button {
+    width: 50%;
+    margin-top: 10px;
+  }
+
+  .mat-form-field {
     width: 100%;
-    }
-    button {
-        width: 50%;
-        margin-left: 25%;
-      }
-    
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    margin: 0 0 1rem 0;
+  }
+
+  tr:nth-child(odd) {
+    background: #ccc;
+  }
+
+  td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    margin-bottom: 20px;
+  }
+
+  td:before {
+    position: absolute;
+    top: 0;
+    left: 6px;
+    width: 50%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  td:nth-of-type(1):before {
+    content: "E-post";
+  }
+  td:nth-of-type(2):before {
+    content: "Namn";
+  }
+  td:nth-of-type(3):before {
+    content: "Organisation";
+  }
+  td:nth-of-type(4):before {
+    content: "Role";
+  }
 }

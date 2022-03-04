@@ -79,6 +79,8 @@ import { BarnteamDetailsComponent } from './components/barnteam-details/barnteam
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { CreateInsatsComponent } from './components/create-insats/create-insats.component';
 import { RightsComponent } from './components/rights/rights.component';
+import { CreateRightsComponent } from './components/create-rights/create-rights.component';
+import { UserRightsDetailsComponent } from './components/user-rights-details/user-rights-details.component';
 
 
 @NgModule({
@@ -91,7 +93,7 @@ import { RightsComponent } from './components/rights/rights.component';
     CreateConversationMaterialComponent, ConversationMaterialDetailsComponent, EstimateOverviewComponent,
     SvgComponent, BBLogComponent, EditDiscoverCardComponent, EditConversationMaterialComponent, CreateUserComponent,
     CreateBarnteamComponent, UsersComponent, BarnteamComponent, UserDetailsComponent, BarnteamDetailsComponent,
-    EditUserComponent, CreateInsatsComponent, RightsComponent],
+    EditUserComponent, CreateInsatsComponent, RightsComponent, CreateRightsComponent, UserRightsDetailsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

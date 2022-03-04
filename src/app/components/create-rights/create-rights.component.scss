@@ -1,0 +1,82 @@
+h1 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .form-container {
+    background-color: whitesmoke;
+    color: black;
+    padding: 10px;
+    width: 95%;
+  }
+  mat-label {
+    color: black;
+  }
+  
+  mat-form-field {
+    margin-right: 10%;
+    width: 40%;
+    color: black;
+    margin-bottom: 20px;
+    height: 55px;
+  }
+  
+  p {
+    margin-top: 15px;
+    color: brown;
+    font-size: 15px;
+  }
+  
+  button {
+    margin-left: 12.5%;
+    width: 20%;
+    background-color: #cde7e6;
+    color: black;
+    margin-bottom: 15px;
+  }
+
+  .material-icons {
+    font-size: 30px;
+    color: #663399;
+  }
+  
+  .back-button {
+    color: #663399;
+    size: 16px;
+    background-color: transparent;
+    margin-left: 0%;
+    width: 10%;
+  }
+
+::ng-deep .mat-focused .mat-form-field-required-marker {
+  color: #663399;
+}
+
+::ng-deep .mat-select-panel {
+  background-color: #663399 !important;
+}
+::ng-deep.mat-select-arrow {
+  color: #663399;
+}
+
+::ng-deep .mat-select-value {
+  color: black !important;
+}
+::ng-deep .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: white !important;
+}
+
+::ng-deep .mat-primary .mat-pseudo-checkbox-checked {
+    background-color: white !important;
+  }
+  
+@media screen and (max-width: 800px) {
+    mat-form-field {
+    width: 100%;
+    }
+    button {
+        width: 50%;
+        margin-left: 25%;
+      }
+    
+}

@@ -7,6 +7,7 @@ import * as fromCurrentCard from './currentCard.reducer';
 import * as fromConversationMaterial from './conversationMaterial.reducer';
 import * as fromEstimate from './estimate.reducer';
 import * as fromAdmin from './admin.reducer';
+import * as fromUserRights from './userRights.reducer';
 
 import { hydrationMetaReducer } from './hydration.reducer';
 import { clearMetaReducer } from './clear.reducer';
@@ -36,6 +37,8 @@ export interface State {
   conversationMaterial: fromConversationMaterial.ConversationMaterialSatet;
   estimate: fromEstimate.EstimateSatet;
   admin: fromAdmin.CurrentAdminState;
+  userRights: fromUserRights.UserRightsState;
+
 }
 
 export class CustomSerializer
@@ -64,6 +67,8 @@ export const reducers: ActionReducerMap<State, any> = {
   conversationMaterial: fromConversationMaterial.reducer,
   estimate: fromEstimate.reducer,
   admin: fromAdmin.reducer,
+  userRights: fromUserRights.reducer,
+
 };
 
 export const getRouterState = createFeatureSelector<

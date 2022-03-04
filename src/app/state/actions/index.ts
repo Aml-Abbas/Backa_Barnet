@@ -10,3 +10,4 @@ export * from './conversationMaterial.action';
 export * from './estimate.action';
 export * from './event.action';
 export * from './admin.action';
+export * from './userRights.action';

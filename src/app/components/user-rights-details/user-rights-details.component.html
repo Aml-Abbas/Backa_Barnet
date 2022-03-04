@@ -1,0 +1,43 @@
+<div class="container">
+    <h1>Användarens detaljer</h1>
+  
+    <button class="back-button" mat-icon-button routerLink="/rights">
+      <span class="material-icons"> arrow_back </span>
+      Tillbaka
+    </button>
+
+  
+    <mat-list *ngIf="(userRight$ | async) as userRight">
+  
+      <table role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+          </tr>
+        </thead>
+  
+        <tbody role="rowgroup">
+          <tr role="row">
+            <td>Användarens namn:</td>
+            <td>{{userRight.userFirstName}} {{userRight.userLastName}}</td>
+          </tr>
+  
+          <tr role="row">
+            <td>Barnets namn:</td>
+            <td>{{userRight.firstName}} {{userRight.lastName}}</td>
+          </tr>
+  
+          <tr role="row">
+            <td>Rättighet:</td>
+            <td *ngIf="userRight.questionTypeID == '1'">Samtalsunderlag</td>
+            <td *ngIf="userRight.questionTypeID == '2'">Skattning</td>
+  
+          </tr>
+  
+        </tbody>
+      </table>
+  
+      
+      <mat-divider></mat-divider>
+  
+    </mat-list>
+  </div>

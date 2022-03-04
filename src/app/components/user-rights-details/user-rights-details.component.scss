@@ -1,0 +1,43 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    padding: 5px;
+  }
+  th {
+    text-align: left;
+    font-size: 15px;
+  }
+  
+  td,
+  th,
+  tr {
+    color: black;
+    padding: 8px;
+  }
+  
+  tr {
+    border-bottom: 1px solid lightgray;
+  }
+  
+  .material-icons {
+    font-size: 30px;
+    color: #663399;
+  }
+  
+  .back-button {
+    color: #663399;
+    size: 16px;
+  }
+  
+  .mat-list-item {
+    color: black;
+  }
+  
+  li {
+    margin-left: 40px;
+  }
+  
+  mat-list {
+    background-color: whitesmoke;
+  }
+  

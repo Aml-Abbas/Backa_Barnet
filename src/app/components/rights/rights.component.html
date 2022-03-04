@@ -1,36 +1,42 @@
 <div class="container">
     <h1>Rättigheter</h1>
 
-    <div class="form-container" [formGroup]="createRightsFormGroup" (change)="isDirty= true">
-
-    <mat-form-field appearance="fill">
-        <mat-label>Användaren:</mat-label>
-        <mat-select [(ngModel)]="selectedUser" [ngModelOptions]="{standalone: true}">
-          <mat-option [value]="user.userID" *ngFor="let user of users; let i= index">{{user.firstName}} {{user.lastName}}</mat-option>
-        </mat-select>
+    <div class="search">
+      <mat-form-field appearance="standard">
+        <mat-label>Sök - användarens namn, barnets namn, eller typ
+        </mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
       </mat-form-field>
-      <p>{{userError}}</p>
+      <button mat-raised-button routerLink="/create-rights">Ny rättighet</button>
+    </div>
+  
+    <h2>Rättighetlista</h2>
+  
+    <table role="table">
+      <thead role="rowgroup">
+        <tr role="row">
+          <th role="columnheader">Användares namn</th>
+          <th role="columnheader">barn namn</th>
+          <th role="columnheader">typ av rättighet</th>
+        </tr>
+      </thead>
+      <tbody role="rowgroup" *ngIf="!filterStatus">
+        <tr role="row" *ngFor="let right of usersRights; let i= index" (click)="setCurrentUserRight(right)">
+          <td role="cell">{{right.userFirstName}} {{right.userLastName}}</td>
+          <td role="cell">{{right.firstName}} {{right.lastName}}</td>
+          <td role="cell" *ngIf="right.questionTypeID == '1'">Samtalsunderlag</td>
+          <td role="cell"*ngIf="right.questionTypeID == '2'">Skattning</td>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Barn:</mat-label>
-        <mat-select [(ngModel)]="selectedChild" [ngModelOptions]="{standalone: true}">
-          <mat-option [value]="person.personID" *ngFor="let person of persons; let i= index">{{person.firstName}} {{person.lastName}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <p>{{childError}}</p>
+        </tr>
+      </tbody>
+      <tbody *ngIf="filterStatus">
+        <tr role="row" *ngFor="let right of searchUsersRights; let i= index" (click)="setCurrentUserRight(right)">
+          <td role="cell">{{right.userFirstName}} {{right.userLastName}}</td>
+          <td role="cell">{{right.firstName}} {{right.lastName}}</td>
+          <td role="cell" *ngIf="right.questionTypeID == '1'">Samtalsunderlag</td>
+          <td role="cell"*ngIf="right.questionTypeID == '2'">Skattning</td>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Typ:</mat-label>
-        <mat-select [(ngModel)]="selectedType" [ngModelOptions]="{standalone: true}">
-          <mat-option value="1">Samtalsunderlag</mat-option>
-          <mat-option value="2">Skattning</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <p>{{typeError}}</p>
-
-    
-      <p>{{saveError}}</p>
-
-      <button mat-raised-button (click)="createRights()">Spara</button>
-
-</div>  
+        </tr>
+      </tbody>
+    </table>
+</div>
