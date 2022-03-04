@@ -151,6 +151,7 @@ export class CreateRightsComponent implements OnInit, ComponentCanDeactivate{
      console.log(this.selectedChild);
      console.log(this.selectedType);
 
+     this.isDirty = false;
      this.store.dispatch(new fromState.CreateUserRight(parseInt(this.currentUserID), parseInt(this.selectedUser), parseInt(this.selectedChild), this.selectedType));
     }
 
