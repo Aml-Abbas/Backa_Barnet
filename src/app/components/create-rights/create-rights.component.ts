@@ -21,9 +21,9 @@ import * as fromStore from 'src/app/state';
   templateUrl: './create-rights.component.html',
   styleUrls: ['./create-rights.component.scss']
 })
-export class CreateRightsComponent implements OnInit  , ComponentCanDeactivate{
+export class CreateRightsComponent implements OnInit, ComponentCanDeactivate{
   canDeactivate(): boolean {
-    return !this.isDirty;
+      return !this.isDirty;
   }
 
   isDirty = false;
@@ -39,7 +39,7 @@ export class CreateRightsComponent implements OnInit  , ComponentCanDeactivate{
 
   selectedUser = '';
   selectedChild = '';
-  selectedType = '1';
+  selectedType = 1;
 
   saveError = '';
 
@@ -151,7 +151,7 @@ export class CreateRightsComponent implements OnInit  , ComponentCanDeactivate{
      console.log(this.selectedChild);
      console.log(this.selectedType);
 
-     this.store.dispatch(new fromState.CreateUserRight(parseInt(this.currentUserID), parseInt(this.selectedUser), parseInt(this.selectedChild), parseInt(this.selectedType)));
+     this.store.dispatch(new fromState.CreateUserRight(parseInt(this.currentUserID), parseInt(this.selectedUser), parseInt(this.selectedChild), this.selectedType));
     }
 
   }
