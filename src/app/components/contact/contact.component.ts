@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromState from '../../state';
 import { User } from 'src/app/models/User';
+import { textSpanContainsPosition } from 'typescript';
 
 @Component({
   selector: 'app-contact',
@@ -68,7 +69,7 @@ export class ContactComponent implements OnInit {
         if (this.personID == personID) {
           this.clickedRows.add(current_per)
         }
-        if (status != 'Anonymiserad') {
+        if (status != 'Anonymiserad' && !this.containsChild(personNbr)) {
           this.persons.push(current_per);
         }
       }
@@ -101,4 +102,14 @@ export class ContactComponent implements OnInit {
     });
   }
 
+   containsChild(personNbr: string): boolean {
+    this.persons.forEach((person:Person)=>{
+      if(person.personID== personNbr){
+        return true;
+      }
+    });
+    return false;
+  }
+  
+  
 }
