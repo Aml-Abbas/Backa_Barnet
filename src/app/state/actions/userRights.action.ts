@@ -13,6 +13,10 @@ export const UPDATE_USER_RIGHT = '[User Right] Update User Right';
 export const UPDATE_USER_RIGHT_SUCCESS = '[User Right] Update User Right Success';
 export const UPDATE_USER_RIGHT_FAIL = '[User Right] Update User Right Fail';
 
+export const REMOVE_USER_RIGHT = '[User Right] Remove User Right';
+export const REMOVE_USER_RIGHT_SUCCESS = '[User Right] Remove User Right Success';
+export const REMOVE_USER_RIGHT_FAIL = '[User Right] Remove User Right Fail';
+
 export class CreateUserRight implements Action {
   readonly type = CREATE_USER_RIGHT;
   constructor(public CurrentUserID: number,public UserID: number,public PersonID: number,public Type: number) { }
@@ -58,8 +62,23 @@ export class UpdateUserRights implements Action {
     constructor(public payload: any) { }
   }
   
+  export class RemoveUserRigh implements Action {
+    readonly type = REMOVE_USER_RIGHT;
+    constructor(public payload: any) { }
+  }
+  
+  export class RemoveUserRighSuccess implements Action {
+    readonly type = REMOVE_USER_RIGHT_SUCCESS;
+    constructor(public payload: any) { }
+  }
+  
+  export class RemoveUserRighFail implements Action {
+    readonly type = REMOVE_USER_RIGHT_FAIL;
+    constructor(public payload: any) { }
+  }
   
   export type UserRightsAction =
   CreateUserRight | CreateUserRightSuccess | CreateUserRightFail |
   UpdateUserRights | UpdateUserRightsSuccess | UpdateUserRightsFail |
+  RemoveUserRigh | RemoveUserRighSuccess | RemoveUserRighFail |
   UpdateUserRight | UpdateUserRightSuccess | UpdateUserRightFail ;

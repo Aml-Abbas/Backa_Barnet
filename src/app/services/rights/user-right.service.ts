@@ -10,24 +10,6 @@ import { UserRight } from 'src/app/models/UserRight';
 export class UserRightService {
 
   constructor(private http: HttpClient) { }
-
-
-    // delete the user right
-    removeUserRight(CurrentUserID: number, UserID: number, PersonID: number, Type: number) {
-      axios.post('https://func-ykbb.azurewebsites.net/api/user/remove/right?code=2WzL026RTeE5hmvTXompkTV5gspaCXeTiUYoaczNNTKTIM0hdtW62A==',{
-        CurrentUserID: CurrentUserID,
-        UserID: UserID,
-        PersonID: PersonID,
-        Type: Type,
-      })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-      return of(true);
-    }
   
 
       // create the user right
@@ -52,4 +34,8 @@ export class UserRightService {
         return this.http.get<UserRight[]>('https://func-ykbb.azurewebsites.net/api/user/right/'+ CurrentUserID +'?code=iqHOiyjoGLMAm8QRaUUkrwag0/BlTnPOiFPJ1iaVa79n9byw/G90Pg==');
     }
 
+    removeUserRight(UserRightJson: any) {
+      return this.http.post('https://func-ykbb.azurewebsites.net/api/user/remove/right?code=2WzL026RTeE5hmvTXompkTV5gspaCXeTiUYoaczNNTKTIM0hdtW62A==', UserRightJson);
+    }
+  
 }
