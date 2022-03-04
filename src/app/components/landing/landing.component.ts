@@ -234,6 +234,7 @@ export class LandingComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.store.dispatch(new fromState.UpdatePerson(null));
+        window.location.reload()
       }
     });
   }
