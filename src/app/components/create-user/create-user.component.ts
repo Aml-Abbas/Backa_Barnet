@@ -150,6 +150,7 @@ export class CreateUserComponent implements OnInit, ComponentCanDeactivate {
         // save all unitID in the unitIDs to send to the request
         this.units.value.forEach(unit => {
           unitIDs.push(unit.unitID);
+          console.log(unit.unitID);
         });
       }
       this.store.dispatch(new fromState.CreateUser(LastName, FirstName, Email, Organisation, RoleID, unitIDs));

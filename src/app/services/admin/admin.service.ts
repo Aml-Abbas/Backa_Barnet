@@ -18,22 +18,40 @@ export class AdminService {
 
   // create the user but send the request for every unit that is assigned to the user.
   createUser(LastName: string, FirstName: string, Email: string, Organisation: string, RoleID: number, unitIDs: string[]) {
-    axios.all([
-      unitIDs.forEach(unitID => {
-        axios.post('https://func-ykbb.azurewebsites.net/api/user/create?code=h6mNFr9PwcAYrkfqVh4XZCGhdCx6qGjxDHdoatd4XQmmRraZJFqqFQ==', {
-          LastName: LastName,
-          FirstName: FirstName,
-          Email: Email,
-          Organisation: Organisation,
-          RoleID: RoleID,
-          UnitID: unitID,
-        })
-      })
-    ])
-      .then(axios.spread((obj1, obj2) => {
-        return of(true);
+    
+    axios.post('https://func-ykbb.azurewebsites.net/api/user/create?code=h6mNFr9PwcAYrkfqVh4XZCGhdCx6qGjxDHdoatd4XQmmRraZJFqqFQ==', {
+      LastName: LastName,
+      FirstName: FirstName,
+      Email: Email,
+      Organisation: Organisation,
+      RoleID: RoleID,
+      UnitID: unitIDs[0],
+    })
+      .then(function (response) {
+        console.log(response);
+        console.log(unitIDs[0]);
 
-      }));
+        for(var unitID of unitIDs) {
+          axios.post('https://func-ykbb.azurewebsites.net/api/user/create?code=h6mNFr9PwcAYrkfqVh4XZCGhdCx6qGjxDHdoatd4XQmmRraZJFqqFQ==', {
+            LastName: LastName,
+            FirstName: FirstName,
+            Email: Email,
+            Organisation: Organisation,
+            RoleID: RoleID,
+            UnitID: unitID,
+          })
+          .then(function (response) {
+            console.log(response);
+            console.log(unitID);
+
+          })
+        }
+  
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      
     return of(false);
   }
 
@@ -52,23 +70,42 @@ export class AdminService {
   // change the user and send one request for every unit that is assigned to the user.
   // call the deleteUserUnits before updateng the user to delete alla the old assigned units.
   editUser(LastName: string, FirstName: string, Organisation: string, RoleID: number, unitIDs: string[], UserID: string) {
-    axios.all([
-      unitIDs.forEach(unitID => {
-        axios.post('https://func-ykbb.azurewebsites.net/api/user/edit?code=Ycskc1dCm6umJWdESOOWzy6GcBVFXm1n7U1DHZwwijPUGaqjDPX87g==', {
-          LastName: LastName,
-          FirstName: FirstName,
-          Organisation: Organisation,
-          RoleID: RoleID,
-          UnitID: unitID,
-          UserID: UserID
-        })
-      })
-    ])
-      .then(axios.spread((obj1, obj2) => {
-        return of(true);
 
-      }));
+    axios.post('https://func-ykbb.azurewebsites.net/api/user/edit?code=Ycskc1dCm6umJWdESOOWzy6GcBVFXm1n7U1DHZwwijPUGaqjDPX87g==', {
+      LastName: LastName,
+      FirstName: FirstName,
+      Organisation: Organisation,
+      RoleID: RoleID,
+      UnitID: unitIDs[0],
+      UserID: UserID
+    })
+      .then(function (response) {
+        console.log(response);
+        console.log(unitIDs[0]);
+
+        for(var unitID of unitIDs) {
+          console.log(unitID);
+
+          axios.post('https://func-ykbb.azurewebsites.net/api/user/edit?code=Ycskc1dCm6umJWdESOOWzy6GcBVFXm1n7U1DHZwwijPUGaqjDPX87g==', {
+            LastName: LastName,
+            FirstName: FirstName,
+            Organisation: Organisation,
+            RoleID: RoleID,
+            UnitID: unitID,
+            UserID: UserID
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+        }
+  
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      
     return of(false);
+
   }
 
   // delete user
