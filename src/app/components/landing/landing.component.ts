@@ -10,6 +10,8 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../app/state';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { UserRight } from 'src/app/models/UserRight';
+import { UserRightService } from 'src/app/services/rights/user-right.service';
 
 @Component({
   selector: 'app-landing',
@@ -27,8 +29,13 @@ export class LandingComponent implements OnInit {
   admin = false;
 
   current_person$ = new Observable<Person | null>();
+  personID: number;
+
   current_user$ = new Observable<User | null>();
   userRoleId: number;
+  userID: number;
+
+  usersRights$: Observable<UserRight[]> = new Observable<UserRight[]>();
 
   // check if the user has right to a specifik meny
   isDisabledEstimate = true;
@@ -45,17 +52,42 @@ export class LandingComponent implements OnInit {
 
   constructor(private observer: BreakpointObserver,
     private store: Store<fromState.State>,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private userRight: UserRightService) { }
 
 
   ngOnInit(): void {
     this.current_person$ = this.store.select(fromState.getCurrentPerson);
+    this.current_person$.subscribe(data => {
+      this.personID = parseInt(String(data?.personID));
+    })
+
     this.current_user$ = this.store.select(fromState.getCurrentUser);
     this.current_user$.subscribe(data => {
       this.userRoleId = parseInt(String(data?.roleID));
-      let userID: string = data?.userID ?? '';
-      this.store.dispatch(new fromState.LoadPersons(userID));
+      this.userID = parseInt(String(data?.userID));
+      this.store.dispatch(new fromState.LoadPersons(String(this.userID)));
     })
+
+    
+    this.usersRights$ = this.userRight.getRight(this.userID, this.personID);
+
+    this.usersRights$.subscribe(data => {
+     data.map((userRight:UserRight) => {
+       console.log(userRight);
+       if(userRight.questionTypeID =='1'){
+        this.isDisabledConversationMaterial = false;
+        console.log('can do conversation');
+        this.isDisabledNeedCompassMenu = false;
+
+       }if(userRight.questionTypeID =='2'){
+        console.log('can do skattning');
+        this.isDisabledEstimate = false;
+        this.isDisabledNeedCompassMenu = false;
+
+       }
+     })
+   });
 
     // get the user rights by using userRoleId
     if (this.userRoleId == 4 || this.userRoleId == 2) {

@@ -38,4 +38,8 @@ export class UserRightService {
       return this.http.post('https://func-ykbb.azurewebsites.net/api/user/remove/right?code=2WzL026RTeE5hmvTXompkTV5gspaCXeTiUYoaczNNTKTIM0hdtW62A==', UserRightJson);
     }
   
+    getRight(UserID: number, PersonID: number): Observable<UserRight[]> {    
+      return this.http.get<UserRight[]>('https://func-ykbb.azurewebsites.net/api/user/right/'+UserID+'/'+PersonID+'?code=RXLMfunurDRoOxGZ6Fke8qfZg00dJ7b1jpDG8xad16KlhTfO2aWqcg==');
+  }
+
 }

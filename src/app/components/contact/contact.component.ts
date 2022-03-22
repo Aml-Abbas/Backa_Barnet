@@ -84,6 +84,7 @@ export class ContactComponent implements OnInit {
     this.store.dispatch(new fromState.UpdatePerson(person));
     this.clickedRows.clear();
     this.clickedRows.add(person);
+    window.location.reload()
   }
 
   // this function is called when the user writes something in the search input

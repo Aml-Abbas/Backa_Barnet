@@ -92,6 +92,6 @@ export class ConversationMaterialDetailsComponent implements OnInit {
   }
 
   back(){
-    this.store.dispatch(new fromRoot.Back());
+    this.store.dispatch(new fromRoot.Go({ path: ['conversation-material'] }));
   }
 }
