@@ -50,6 +50,10 @@ export class ConversationMaterialGuard implements CanActivate {
      })
    });
 
+   if(!found){
+    this.store.dispatch(new fromRoot.Go({ path: ['contact'] }));
+   }
+
     return of(found);
   }
 
