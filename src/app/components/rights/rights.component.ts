@@ -63,9 +63,9 @@ export class RightsComponent implements OnInit {
   }
 
   setCurrentUserRight(userRight:UserRight) {
-     this.store.dispatch(new fromState.UpdateUserRights(this.usersRights));
+    this.store.dispatch(new fromState.UpdateUserRights(this.usersRights));
 
     this.store.dispatch(new fromState.UpdateUserRight(userRight));
-    this.store.dispatch(new fromState.Go({ path: ['/rights', userRight.userID] })); 
+    this.store.dispatch(new fromState.Go({ path: ['/rights', userRight.userID, userRight.personID, userRight.questionTypeID] })); 
   }
 }

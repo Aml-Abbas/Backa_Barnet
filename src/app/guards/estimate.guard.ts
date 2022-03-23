@@ -31,16 +31,17 @@ export class EstimateGuard implements CanActivate {
       personid=  (data?.personID ?? '');
     });
 
-    if(userid =='2' || userid == '4'|| userid == '3'){
-      return of(true);
-     }
-else{
   return this.checkRights(userid, personid);
-}
 }
 
   checkRights(userid: string, personid: string): Observable<boolean> {
     var found = false;
+
+    if(userid =='2' || userid == '4'|| userid == '3'){
+      found = true;
+      return of(true);
+    }
+
     var usersRights$ = this.userRight.getRight(parseInt(userid), parseInt(personid));
     console.log('userid '+userid);
     console.log('personid: '+personid);
@@ -57,10 +58,6 @@ else{
      })
    });
 
-    if (!found) {
-      this.store.dispatch(new fromRoot.Back());
-      return of(true);
-    }
     return of(found);
   }
 

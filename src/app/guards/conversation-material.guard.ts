@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { ActivatedRoute, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as fromState from '../state';
 import { Store } from '@ngrx/store';
@@ -13,7 +13,8 @@ import { UserRight } from '../models/UserRight';
 })
 export class ConversationMaterialGuard implements CanActivate {
   constructor(private store: Store<fromState.State>,
-    private userRight: UserRightService) { }
+    private userRight: UserRightService,
+    private route: ActivatedRoute) { }
 
   // check the user's rights, only admin and barnkontakt can enter this page
   canActivate(): Observable<boolean> {
@@ -30,15 +31,17 @@ export class ConversationMaterialGuard implements CanActivate {
       personid=  (data?.personID ?? '');
     });
 
-    if(userid =='2' || userid == '4'){
-      return of(true);
-     }
-
   return this.checkRights(userid, personid);
 }
 
   checkRights(userid: string, personid: string): Observable<boolean> {
     var found = false;
+
+    if(userid =='2' || userid == '4'){
+      found = true;
+      return of(true);
+     }
+
     var usersRights$ = this.userRight.getRight(parseInt(userid), parseInt(personid));
     console.log('userid '+userid);
     console.log('personid: '+personid);
@@ -55,11 +58,6 @@ export class ConversationMaterialGuard implements CanActivate {
      })
    });
 
-    if (!found) {
-      this.store.dispatch(new fromRoot.Back());
-      return of(true);
-    }
-    
     return of(found);
   }
 

@@ -86,7 +86,7 @@ const routes: Routes = [
         component: RightsComponent, canActivate: [RightsGuard]
       },
       {
-        path: 'rights/:userId',
+        path: 'rights/:userId/:personId/:type',
         component: UserRightsDetailsComponent, canActivate: [UserRightsDetailsGuard]
       },
       {
