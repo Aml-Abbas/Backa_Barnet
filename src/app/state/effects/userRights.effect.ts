@@ -19,6 +19,13 @@ export class UserRightsEffect {
         return new UserRightsAction.UpdateUserRightsSuccess(action.payload);
       })));
 
+      updateUserPermission$ = createEffect(() =>
+      this.actions$.pipe(
+        ofType(UserRightsAction.UPDATE_USER_PERMISSION),
+        map((action: UserRightsAction.UpdateUserPermission) => {
+          return new UserRightsAction.UpdateUserPermissionSuccess(action.payload);
+        })));
+  
       updateUserRight$ = createEffect(() =>
       this.actions$.pipe(
         ofType(UserRightsAction.UPDATE_USER_RIGHT),

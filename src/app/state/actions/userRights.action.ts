@@ -9,6 +9,10 @@ export const UPDATE_USER_RIGHTS = '[User Rights] Update User Rights';
 export const UPDATE_USER_RIGHTS_SUCCESS = '[User Rights] Update User Rights Success';
 export const UPDATE_USER_RIGHTS_FAIL = '[User Rights] Update User Rights Fail';
 
+export const UPDATE_USER_PERMISSION = '[User Permission] Update User Permission';
+export const UPDATE_USER_PERMISSION_SUCCESS = '[User Permission] Update User Permission Success';
+export const UPDATE_USER_PERMISSION_FAIL = '[User Permission] Update User Permission Fail';
+
 export const UPDATE_USER_RIGHT = '[User Right] Update User Right';
 export const UPDATE_USER_RIGHT_SUCCESS = '[User Right] Update User Right Success';
 export const UPDATE_USER_RIGHT_FAIL = '[User Right] Update User Right Fail';
@@ -77,8 +81,24 @@ export class UpdateUserRights implements Action {
     constructor(public payload: any) { }
   }
   
+  export class UpdateUserPermission implements Action {
+    readonly type = UPDATE_USER_PERMISSION;
+    constructor(public payload: UserRight[]) { }
+  }
+  
+  export class UpdateUserPermissionSuccess implements Action {
+    readonly type = UPDATE_USER_PERMISSION_SUCCESS;
+    constructor(public payload: UserRight[]) { }
+  }
+  
+  export class UpdateUserPermissionFail implements Action {
+    readonly type = UPDATE_USER_PERMISSION_FAIL;
+    constructor(public payload: any) { }
+  }
+
   export type UserRightsAction =
   CreateUserRight | CreateUserRightSuccess | CreateUserRightFail |
   UpdateUserRights | UpdateUserRightsSuccess | UpdateUserRightsFail |
+  UpdateUserPermission | UpdateUserPermissionSuccess | UpdateUserPermissionFail |
   RemoveUserRigh | RemoveUserRighSuccess | RemoveUserRighFail |
   UpdateUserRight | UpdateUserRightSuccess | UpdateUserRightFail ;

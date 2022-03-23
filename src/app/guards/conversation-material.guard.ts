@@ -13,21 +13,18 @@ import { UserRight } from '../models/UserRight';
 })
 export class ConversationMaterialGuard implements CanActivate {
   constructor(private store: Store<fromState.State>,
-    private userRight: UserRightService,
-    private route: ActivatedRoute) { }
+    private userRight: UserRightService) { }
 
   // check the user's rights, only admin and barnkontakt can enter this page
   canActivate(): Observable<boolean> {
     var userid;
     var personid;
 
-    var currentUser = this.store.select(fromState.getCurrentUser);
-    currentUser.subscribe(data => {
+    this.store.select(fromState.getCurrentUser).subscribe(data => {
       userid= (data?.userID ?? '');
     });
 
-    var current_person = this.store.select(fromState.getCurrentPerson);
-    current_person.subscribe(data => {
+    this.store.select(fromState.getCurrentPerson).subscribe(data => {
       personid=  (data?.personID ?? '');
     });
 
@@ -39,21 +36,16 @@ export class ConversationMaterialGuard implements CanActivate {
 
     if(userid =='2' || userid == '4'){
       found = true;
-      return of(true);
+      console.log('found');
      }
 
-    var usersRights$ = this.userRight.getRight(parseInt(userid), parseInt(personid));
-    console.log('userid '+userid);
-    console.log('personid: '+personid);
-
-    usersRights$.subscribe(data => {
-     data.map((userRight:UserRight) => {
+     this.store.select(fromState.getUserPermission).subscribe(data => {
+      data.map((userRight:UserRight) => {
       console.log('userRight.questionTypeID '+userRight.questionTypeID);
 
        if(userRight.questionTypeID =='1'){
         found = true;
         console.log('found');
-        return of(true);
        }
      })
    });

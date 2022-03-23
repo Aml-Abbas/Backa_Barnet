@@ -4,11 +4,13 @@ import { UserRight } from '../../models/UserRight';
 
 export interface UserRightsState {
   userRights: UserRight[];
+  userPermission: UserRight[];
   userRight: UserRight | null;
 }
 
 export const initialState: UserRightsState = {
     userRights: [],
+    userPermission: [],
     userRight: null,
 };
 
@@ -23,6 +25,13 @@ export function reducer(
         userRights: action.payload,
       };
     }
+    case userRights.UPDATE_USER_PERMISSION_SUCCESS: {
+      return {
+        ...state,
+        userPermission: action.payload,
+      };
+    }
+
     case userRights.UPDATE_USER_RIGHT_SUCCESS: {
       return {
         ...state,
@@ -37,3 +46,4 @@ export function reducer(
 
 export const getUserRights = (state: UserRightsState) => state.userRights;
 export const getUserRight = (state: UserRightsState) => state.userRight;
+export const getUserPermission = (state: UserRightsState) => state.userPermission;

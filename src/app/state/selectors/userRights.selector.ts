@@ -17,3 +17,8 @@ export const getUserRights = createSelector(
     getUserRightsState,
     fromUserRights.getUserRight
   );
+
+  export const getUserPermission = createSelector(
+    getUserRightsState,
+    fromUserRights.getUserPermission
+  );

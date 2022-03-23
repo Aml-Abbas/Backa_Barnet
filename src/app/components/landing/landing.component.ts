@@ -36,6 +36,7 @@ export class LandingComponent implements OnInit {
   userID: number;
 
   usersRights$: Observable<UserRight[]> = new Observable<UserRight[]>();
+  usersPermission: UserRight[] = [];
 
   // check if the user has right to a specifik meny
   isDisabledEstimate = true;
@@ -77,17 +78,19 @@ export class LandingComponent implements OnInit {
        console.log(userRight);
        if(userRight.questionTypeID =='1'){
         this.isDisabledConversationMaterial = false;
-        console.log('can do conversation');
-        this.isDisabledNeedCompassMenu = false;
+       this.isDisabledNeedCompassMenu = false;
 
        }if(userRight.questionTypeID =='2'){
-        console.log('can do skattning');
         this.isDisabledEstimate = false;
         this.isDisabledNeedCompassMenu = false;
 
        }
-     })
+       let currentUserRight= new UserRight(userRight.currentUserID, userRight.userID, userRight.userLastName, userRight.userFirstName,
+        userRight.questionTypeID, userRight.personID, userRight.lastName, userRight.firstName);
+       this.usersPermission.push(currentUserRight);
+      })
    });
+
 
     // get the user rights by using userRoleId
     if (this.userRoleId == 4 || this.userRoleId == 2) {
@@ -288,6 +291,7 @@ export class LandingComponent implements OnInit {
     }else if (route == 'rights' && this.isDisabledRights) {
       event.stopPropagation()
     } else {
+      this.store.dispatch(new fromState.UpdateUserPermission(this.usersPermission));
       this.store.dispatch(new fromRoot.Go({ path: ['/' + route] }));
     }
   }
